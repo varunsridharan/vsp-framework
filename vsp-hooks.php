@@ -1,7 +1,6 @@
 <?php
 if(!defined("ABSPATH")){ exit; }
 
-
 add_action("admin_enqueue_scripts",'vsp_register_assets',1);
 add_action("vsp_framework_init",'vsp_init_admin_notices');
 

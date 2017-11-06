@@ -24,7 +24,6 @@ if(!function_exists('vsp_current_screen')){
         }
         
         return isset($screen->id) ? $screen->id : false;
-        
     }
 }
 

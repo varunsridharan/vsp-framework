@@ -43,43 +43,13 @@ if ( !class_exists( 'VSP_WP_Settings_Fields' ) ) {
             
         }
         
-        protected function callback_textfield($args,$type = 'text'){
+        public function callback_text($args,$type = 'text'){
             $args['size'] = ( isset( $args['size'] ) && $args['size'] ) ? $args['size'] : 'regular';
             $args['text_type'] = isset( $args['text_type'] ) ? esc_attr( $args['text_type'] ) : $type;
             $args = $this->get_arguments($args);
             $tag = $this->create_element('text',$args);
             return $args['before'].$tag.$args['after']. $this->description( $args['desc'] );
         }
-
-        public function callback_text($args){echo $this->callback_textfield($args,'text');}
-        
-        public function callback_search($args){echo $this->callback_textfield($args,'search');}
-        
-        public function callback_tel($args){echo $this->callback_textfield($args,'tel');}
-        
-        public function callback_url($args){echo $this->callback_textfield($args,'url');}
-        
-        public function callback_email($args){echo $this->callback_textfield($args,'email');}
-        
-        public function callback_password($args){echo $this->callback_textfield($args,'password');}
-        
-        public function callback_datetime($args){echo $this->callback_textfield($args,'datetime');}
-        
-        public function callback_date($args){echo $this->callback_textfield($args,'date');}
-        
-        public function callback_month($args){echo $this->callback_textfield($args,'month');}
-        
-        public function callback_week($args){echo $this->callback_textfield($args,'week');}
-        
-        public function callback_time($args){echo $this->callback_textfield($args,'time');}
-        
-        public function callback_datetime_local($args){echo $this->callback_textfield($args,'datetime_local');}
-        
-        public function callback_number($args){echo $this->callback_textfield($args,'number');}
-        
-        public function callback_range($args){echo $this->callback_textfield($args,'range');}
-        
-        public function callback_color($args){echo $this->callback_textfield($args,'color');}
         
         public function callback_textarea( $args ) {
 			$size  = ( isset( $args['size'] ) && $args['size'] ) ? $args['size'] : 'regular';

@@ -17,7 +17,6 @@ if ( ! class_exists( 'VSP_Dependencies' ) ){
             if ( ! self::$active_plugins ) {
                 self::init();
             }
-            
             return in_array($pluginToCheck, self::$active_plugins) || array_key_exists($pluginToCheck, self::$active_plugins);
         }
     }

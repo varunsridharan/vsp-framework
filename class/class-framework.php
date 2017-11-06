@@ -1,7 +1,6 @@
 <?php
 if(!defined("ABSPATH")){ exit; }
 
-
 if(!class_exists('VSP_Framework')){
     
     class VSP_Framework extends VSP_Framework_Init_Class {

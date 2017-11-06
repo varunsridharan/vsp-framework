@@ -92,7 +92,6 @@ if(!class_exists("VSP_Site_Status_Report")){
             $this->wp_env[__("Multisite")] = $this->_bool(is_multisite());
             $this->wp_env[__("WP Memory Limit")] = WP_MEMORY_LIMIT."MB";
             $this->wp_env[__("WP Table Prefix")] = $wpdb->prefix;
-            
             $this->wp_env[__("WP Timezone")] = get_option('timezone_string') . ', GMT: ' . get_option('gmt_offset'); 
             $this->wp_env[__("WP Remote Post")] = ($WP_REMOTE_POST) ? __("Enabled") : __("Disabled");
             $this->wp_env[__("Permalink Structure")] = get_option( 'permalink_structure' );
@@ -100,7 +99,6 @@ if(!class_exists("VSP_Site_Status_Report")){
             $this->wp_env[__("Show On Front")] = get_option( 'show_on_front' );
             $this->wp_env[__("Page On Front")] = ( $front_page_id != 0 ? get_the_title( $front_page_id ) . ' (#' . $front_page_id . ')' : 'Unset' );
             $this->wp_env[__("Show On Front")] = ( $blog_page_id != 0 ? get_the_title( $blog_page_id ) . ' (#' . $blog_page_id . ')' : 'Unset' );
-            
             $this->server_info[__("Server Info")] = $_SERVER['SERVER_SOFTWARE'];
             $this->server_info[__("Host")] = $this->get_host();
             $this->server_info[__("Default Timezone")] = date_default_timezone_get();
@@ -188,12 +186,10 @@ if(!class_exists("VSP_Site_Status_Report")){
                 __("WordPress Environment") => $this->wp_env,
                 __("Server Environment") =>  $this->server_info,
                 __("PHP Environment") => $this->php_info,
-                
                 __("WordPress Theme") => $this->active_theme,
                 __("WordPress Plugins") => $this->plugins,
                 __("WordPress Must Use Plugins") => $this->must_use_plugins,
                 __("WordPress MultiSite Plugins") => $this->msite_plugins,
-
                 __("PHP Extenstions") => $this->php_exts,
                 __("Session Configs") => $this->session_config,
             );
@@ -232,7 +228,6 @@ if(!class_exists("VSP_Site_Status_Report")){
                 $text .= '## '.$name.' ##'.PHP_EOL;
                 $html_output .= '<table  class="widefat striped fixed">';
                 $html_output .= '<thead><tr><th colspan="2"><b>'.$name.'</b></th></tr></thead>';
-                
                 if(in_array($var,$deep_looper)){
                     foreach($datas as $i => $infos){
                         $i_ap = $i.' =>  { '.PHP_EOL;
@@ -240,8 +235,7 @@ if(!class_exists("VSP_Site_Status_Report")){
                         foreach($infos as $c => $v){
                             $i_ap .= $c.' : '.$v.PHP_EOL;
                             $i_op .= '<tr><th>'.$c.'</th><td>'.$v.'</td></tr>';
-                        }
-                        
+                        }           
                         $i_op .= '</table>';
                         $html_output .=  '<tr> <th>'.$i.'</th> <td>'.$i_op.'</td></tr>';
                         $text .= $i_ap.' } '.PHP_EOL.PHP_EOL;
@@ -254,13 +248,11 @@ if(!class_exists("VSP_Site_Status_Report")){
                         $html_output .= '<tr> <th>'.$id.'</th> <td>'.$val.'</td></tr>';
                         $text .= $id.' : '.$val.PHP_EOL;
                     }
-                    
                 }
                 
                 $text .= PHP_EOL;
                 $html_output .= '</table> <br/>';
             }
-            
             $this->text_output = $text;
             $this->html_output = $html_output;
         }

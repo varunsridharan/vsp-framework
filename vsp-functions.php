@@ -1,7 +1,6 @@
 <?php
 if(!defined("ABSPATH")){ exit; }
 
-
 if(!function_exists('vsp_define')){
     function vsp_define($key,$value){
         if(!defined($key)){
@@ -76,17 +75,11 @@ if ( ! function_exists ( 'vsp_load_css' ) ) {
         if (!(( defined ( 'WP_DEBUG' ) && WP_DEBUG) || (defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG))) {
             $filename = str_replace ( '.css', '.min.css', $filename );
         }
-
         return $filename;
     }
 }
 
 if ( ! function_exists ( 'vsp_current_page_url' ) ) {
-    /**
-     * Retrieve the current complete url
-     *
-     * @since 1.0
-     */
     function vsp_current_page_url () {
         $pageURL = 'http';
         if ( isset( $_SERVER[ "HTTPS" ] ) AND $_SERVER[ "HTTPS" ] == "on" ) {

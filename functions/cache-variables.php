@@ -17,13 +17,11 @@ if(!function_exists("vsp_check_global_vars")){
 if(!function_exists("vsp_add_vars")){
     function vsp_add_vars($plugin_name = '',$key = '',$values = '',$force_add = false){
         $variable =& vsp_check_global_vars($plugin_name);
-        
         if(isset($variable[$key])){
             if(!$force_add){
                 return false;
             }
         }
-        
         $variable[$key] = $values;
     }
 }
@@ -31,11 +29,9 @@ if(!function_exists("vsp_add_vars")){
 if(!function_exists("vsp_vars")){
     function vsp_vars($plugin_name = '',$key = '',$default = ''){
         $variable =& vsp_check_global_vars($plugin_name);
-        
         if(!isset($variable[$key])){
             return $default;
         }
-        
         return $variable[$key];
     }
 }
@@ -43,12 +39,10 @@ if(!function_exists("vsp_vars")){
 if(!function_exists("vsp_remove_vars")){
     function vsp_remove_vars($plugin_name = '',$key = ''){
         $variable =& vsp_check_global_vars($plugin_name);
-        
         if(isset($variable[$key])){
             unset($variable[$Key]);
             return true;
         }
-        
         return false;
     }
 }

@@ -12,6 +12,23 @@ if(!class_exists("VSP_Admin_Notice_Handler")){
             return self::$_instance;
         }
 
+        public function __construct($options = array()) {
+            $defaults = array(
+                'noticeArrayName' => 'VSP_ADMIN_NOTICES',
+                'requestID' => 'vsp-msg',
+            );
+
+            $options = wp_parse_args($options,$defaults);
+            $this->noticesArrayName = $options['noticeArrayName'];
+            $this->requestID = $options['requestID'];
+            $this->notices = array();
+            $this->loadNotices();
+            $this->auto_remove_Notice();
+            if(vsp_is_request("admin") || vsp_is_request("ajax")){
+                add_action('admin_notices', array($this, 'displayNotices'));
+            }
+        }
+        
         public function displayNotices() {
             foreach ($this->notices as $key => $notice) { 
                 if ($this->isTimeToDisplay($notice)) { 
@@ -48,21 +65,6 @@ if(!class_exists("VSP_Admin_Notice_Handler")){
         public function addNotice(VSP_Admin_Notices $notice) {
             $this->notices[] = $notice;
             $this->storeNotices();
-        }
-
-        public function __construct($options = array()) {
-            $defaults = array(
-                'noticeArrayName' => 'VSP_ADMIN_NOTICES',
-                'requestID' => 'vsp-msg',
-            );
-
-            $options = wp_parse_args($options,$defaults);
-            $this->noticesArrayName = $options['noticeArrayName'];
-            $this->requestID = $options['requestID'];
-            $this->notices = array();
-            $this->loadNotices();
-            $this->auto_remove_Notice();
-            add_action('admin_notices', array($this, 'displayNotices'));
         }
 
         private function loadNotices() {
@@ -118,11 +120,7 @@ if(!class_exists("VSP_Admin_Notices")){
         public function __construct($content = '', $id='', $times = 1, $screen = array(), $users = array(), $WithWraper = true) {
             $this->content = $content;
             $this->screen = $screen;
-            if(empty($id)){
-                $this->id = uniqid();    
-            } else {
-                $this->id = $id;
-            }
+            $this->id = (empty($id)) ? uniqid() : $id;
             $this->times = $times;
             $this->users = $users;
             $this->WithWraper = $WithWraper;
@@ -132,7 +130,6 @@ if(!class_exists("VSP_Admin_Notices")){
             $class = $this->type;
             $extrC = '';        
             if($this->is_dismissible){ $class .= ' notice is-dismissible'; }
-
             $before = '<div id="vsp_notices_'.$this->id.'"  class="' .$class. '">';
             $before .= $wrapInParTag ? '<p>' : '';
             $after = $wrapInParTag ? '</p>' : '';
@@ -242,20 +239,6 @@ if(!class_exists("VSP_Admin_Notices")){
     }
 }
 
-if(!class_exists("VSP_Admin_Notices_Error")){
-    class VSP_Admin_Notices_Error extends VSP_Admin_Notices { 
-        protected $type = 'error'; 
-    }
-}
-
-if(!class_exists("VSP_Admin_Notices_Updated")){
-    class VSP_Admin_Notices_Updated extends VSP_Admin_Notices { 
-        protected $type = 'updated'; 
-    }
-}
-
-if(!class_exists("VSP_Admin_Notices_UpdateNag")){
-    class VSP_Admin_Notices_UpdateNag extends VSP_Admin_Notices { 
-        protected $type = 'update-nag'; 
-    }
-}
+if(!class_exists("VSP_Admin_Notices_Error")){ class VSP_Admin_Notices_Error extends VSP_Admin_Notices { protected $type = 'error'; } }
+if(!class_exists("VSP_Admin_Notices_Updated")){ class VSP_Admin_Notices_Updated extends VSP_Admin_Notices { protected $type = 'updated'; }}
+if(!class_exists("VSP_Admin_Notices_UpdateNag")){ class VSP_Admin_Notices_UpdateNag extends VSP_Admin_Notices {  protected $type = 'update-nag'; }}

@@ -1,7 +1,6 @@
 <?php
 if(!defined("ABSPATH")){ exit; }
 
-
 if(!class_exists("VSP_Activator")){
     class VSP_Activator{
         public static $path = '';
@@ -28,11 +27,9 @@ if(!class_exists("VSP_Activator")){
             if(VSP_Dependencies::active_check($options['dependency'])){
                 VSP_Version_Check::activation_check($options['required_wp_version']);
             } else {
-
                 if(is_plugin_active($options['plugin_file'])){
                     deactivate_plugins($options['plugin_file']);
                 }
-
                 wp_die($options['dependency_message']);
             }
         }

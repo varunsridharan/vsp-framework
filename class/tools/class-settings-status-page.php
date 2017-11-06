@@ -7,10 +7,10 @@ if(!class_exists("VSP_Settings_Status_Page")){
          
         public function __construct(VSP_WP_Settings $instance,$options = array()){
             parent::__construct($options,array(
-            'tab_id' => 'sys_status',
-            'tab_slug' => 'sys-status',
-            'tab_title' => __("System Status"),
-        ));
+                'tab_id' => 'sys_status',
+                'tab_slug' => 'sys-status',
+                'tab_title' => __("System Status"),
+            ));
             
             $instance->settings_page[] = array(
                 'id' => $this->option('tab_id'),
