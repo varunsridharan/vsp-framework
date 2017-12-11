@@ -17,7 +17,7 @@ if(!function_exists('vsp_notices')){
                 static $vsp_notices;
 
                 if(!isset($vsp_notices)){
-                    $vsp_notices = VSP_Admin_Notice_Handler::instance();
+                    $vsp_notices = VSP_Admin_Notice::instance();
                 }
                 return $vsp_notices;
                 break;

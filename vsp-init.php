@@ -3,7 +3,6 @@ global $vsp_plugins;
 
 $vsp_plugins = array();
 
-require_once(__DIR__.'/functions/plugin-handler.php');
 
 if(!function_exists("vsp_mayby_framework_loader")){
     function vsp_mayby_framework_loader($plugin_path){
@@ -46,7 +45,6 @@ if(!function_exists("vsp_framework_loader")){
     }
 }
 
-
 if(!function_exists("vsp_register_plugin")){
     function vsp_register_plugin($slug = '',&$instance = ''){
         global $vsp_plugins;
@@ -64,5 +62,61 @@ if(!function_exists("vsp_get_plugin")){
             return $vsp_plugins[$slug];
         }
         return false;
+    }
+}
+
+if(!function_exists("vsp_class_autoloader")){
+    function vsp_class_autoloader($class) {
+        $class = strtolower($class);
+        if ( false === strpos( $class, 'vsp_' ) ) {
+            return;
+        }
+        $current = str_ireplace( '_', '-', $class );
+        
+        $path = defined("VSP_PATH") ? VSP_PATH : __DIR__.'/';
+        
+        $base_path = $path.'class/class-'.$current.'.php';
+        $helper_path = $path.'helper/class-'.$current.'.php';
+        $settings_path = $path.'class/settings/class-'.$current.'.php';
+        $addons_path = $path.'class/addons/class-'.$current.'.php';
+        $tools_path = $path.'class/tools/class-'.$current.'.php';
+        
+        if(false !== strpos($class,'vsp_settings')){            
+            if(file_exists($settings_path)){
+                include($settings_path);
+            } else if(file_exists($tools_path)){
+                include($tools_path);
+            }
+        } else if(false !== strpos($class,'vsp_addons')){
+            if(file_exists($addons_path)){
+                include($addons_path);
+            }
+        } else if(file_exists($tools_path)){
+            include($tools_path);
+        } else if(file_exists($helper_path)){
+            include($helper_path);
+        } else if(file_exists($base_path)){
+            include($base_path);
+        }
+        
+    }
+    spl_autoload_register('vsp_class_autoloader');
+}
+
+if(!function_exists("vsp_plugin_activator")){
+    function vsp_plugin_activator($options = array()){
+        VSP_Activator::activate($options);
+    }
+}
+
+if(!function_exists("vsp_plugin_deactivator")){
+    function vsp_plugin_deactivator(){
+        VSP_Deactivator::deactivate();
+    }
+}
+
+if(!function_exists("vsp_plugin_dependency_deactivator")){
+    function vsp_plugin_dependency_deactivator($file){
+        VSP_Deactivator::dependency_deactivate($file);
     }
 }

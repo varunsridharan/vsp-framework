@@ -10,7 +10,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-flat.png) no-repeat;
+    background: url(themes/flat-flat.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -56,7 +56,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat,
     .iradio_flat {
-        background-image: url(../../../vendors/icheck/themes/flat-flat@2x.png);
+        background-image: url(themes/flat-flat@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -73,7 +73,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-red.png) no-repeat;
+    background: url(themes/flat-red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -119,7 +119,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-red,
     .iradio_flat-red {
-        background-image: url(../../../vendors/icheck/themes/flat-red@2x.png);
+        background-image: url(themes/flat-red@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -136,7 +136,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-green.png) no-repeat;
+    background: url(themes/flat-green.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -182,7 +182,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-green,
     .iradio_flat-green {
-        background-image: url(../../../vendors/icheck/themes/flat-green@2x.png);
+        background-image: url(themes/flat-green@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -199,7 +199,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-blue.png) no-repeat;
+    background: url(themes/flat-blue.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -245,7 +245,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-blue,
     .iradio_flat-blue {
-        background-image: url(../../../vendors/icheck/themes/flat-blue@2x.png);
+        background-image: url(themes/flat-blue@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -262,7 +262,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-aero.png) no-repeat;
+    background: url(themes/flat-aero.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -308,7 +308,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-aero,
     .iradio_flat-aero {
-        background-image: url(../../../vendors/icheck/themes/flat-aero@2x.png);
+        background-image: url(themes/flat-aero@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -325,7 +325,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-grey.png) no-repeat;
+    background: url(themes/flat-grey.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -371,7 +371,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-grey,
     .iradio_flat-grey {
-        background-image: url(../../../vendors/icheck/themes/flat-grey@2x.png);
+        background-image: url(themes/flat-grey@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -388,7 +388,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-orange.png) no-repeat;
+    background: url(themes/flat-orange.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -434,7 +434,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-orange,
     .iradio_flat-orange {
-        background-image: url(../../../vendors/icheck/themes/flat-orange@2x.png);
+        background-image: url(themes/flat-orange@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -451,7 +451,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-yellow.png) no-repeat;
+    background: url(themes/flat-yellow.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -497,7 +497,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-yellow,
     .iradio_flat-yellow {
-        background-image: url(../../../vendors/icheck/themes/flat-yellow@2x.png);
+        background-image: url(themes/flat-yellow@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -514,7 +514,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-pink.png) no-repeat;
+    background: url(themes/flat-pink.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -560,7 +560,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_flat-pink,
     .iradio_flat-pink {
-        background-image: url(../../../vendors/icheck/themes/flat-pink@2x.png);
+        background-image: url(themes/flat-pink@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -577,7 +577,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(../../../vendors/icheck/themes/flat-purple.png) no-repeat;
+    background: url(themes/flat-purple.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -624,7 +624,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_flat-purple,
     .iradio_flat-purple {
-        background-image: url(../../../vendors/icheck/themes/flat-purple@2x.png);
+        background-image: url(themes/flat-purple@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
@@ -642,7 +642,7 @@
     padding: 0;
     width: 16px;
     height: 17px;
-    background: url(../../../vendors/icheck/themes/futurico.png) no-repeat;
+    background: url(themes/futurico.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -689,7 +689,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_futurico,
     .iradio_futurico {
-        background-image: url(../../../vendors/icheck/themes/futurico@2x.png);
+        background-image: url(themes/futurico@2x.png);
         -webkit-background-size: 144px 19px;
         background-size: 144px 19px;
     }
@@ -726,7 +726,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -774,7 +774,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line .icheck_line-icon,
     .iradio_line .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -809,7 +809,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -857,7 +857,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-red .icheck_line-icon,
     .iradio_line-red .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -892,7 +892,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -940,7 +940,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-green .icheck_line-icon,
     .iradio_line-green .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -975,7 +975,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1023,7 +1023,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-blue .icheck_line-icon,
     .iradio_line-blue .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1058,7 +1058,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1106,7 +1106,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-aero .icheck_line-icon,
     .iradio_line-aero .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1141,7 +1141,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1189,7 +1189,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-grey .icheck_line-icon,
     .iradio_line-grey .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1224,7 +1224,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1272,7 +1272,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-orange .icheck_line-icon,
     .iradio_line-orange .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1307,7 +1307,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1355,7 +1355,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-yellow .icheck_line-icon,
     .iradio_line-yellow .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1390,7 +1390,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1438,7 +1438,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_line-pink .icheck_line-icon,
     .iradio_line-pink .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1473,7 +1473,7 @@
     margin: -5px 0 0 0;
     padding: 0;
     overflow: hidden;
-    background: url(../../../vendors/icheck/themes/line.png) no-repeat;
+    background: url(themes/line.png) no-repeat;
     border: none;
 }
 
@@ -1522,7 +1522,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_line-purple .icheck_line-icon,
     .iradio_line-purple .icheck_line-icon {
-        background-image: url(../../../vendors/icheck/themes/line@2x.png);
+        background-image: url(themes/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -1541,7 +1541,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-minimal.png) no-repeat;
+    background: url(themes/minimal-minimal.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1595,7 +1595,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal,
     .iradio_minimal {
-        background-image: url(../../../vendors/icheck/themes/minimal-minimal@2x.png);
+        background-image: url(themes/minimal-minimal@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1612,7 +1612,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-red.png) no-repeat;
+    background: url(themes/minimal-red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1666,7 +1666,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-red,
     .iradio_minimal-red {
-        background-image: url(../../../vendors/icheck/themes/minimal-red@2x.png);
+        background-image: url(themes/minimal-red@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1683,7 +1683,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-green.png) no-repeat;
+    background: url(themes/minimal-green.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1737,7 +1737,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-green,
     .iradio_minimal-green {
-        background-image: url(../../../vendors/icheck/themes/minimal-green@2x.png);
+        background-image: url(themes/minimal-green@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1754,7 +1754,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-blue.png) no-repeat;
+    background: url(themes/minimal-blue.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1808,7 +1808,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-blue,
     .iradio_minimal-blue {
-        background-image: url(../../../vendors/icheck/themes/minimal-blue@2x.png);
+        background-image: url(themes/minimal-blue@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1825,7 +1825,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-aero.png) no-repeat;
+    background: url(themes/minimal-aero.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1879,7 +1879,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-aero,
     .iradio_minimal-aero {
-        background-image: url(../../../vendors/icheck/themes/minimal-aero@2x.png);
+        background-image: url(themes/minimal-aero@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1896,7 +1896,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-grey.png) no-repeat;
+    background: url(themes/minimal-grey.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -1950,7 +1950,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-grey,
     .iradio_minimal-grey {
-        background-image: url(../../../vendors/icheck/themes/minimal-grey@2x.png);
+        background-image: url(themes/minimal-grey@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -1967,7 +1967,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-orange.png) no-repeat;
+    background: url(themes/minimal-orange.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2021,7 +2021,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-orange,
     .iradio_minimal-orange {
-        background-image: url(../../../vendors/icheck/themes/minimal-orange@2x.png);
+        background-image: url(themes/minimal-orange@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -2038,7 +2038,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-yellow.png) no-repeat;
+    background: url(themes/minimal-yellow.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2092,7 +2092,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-yellow,
     .iradio_minimal-yellow {
-        background-image: url(../../../vendors/icheck/themes/minimal-yellow@2x.png);
+        background-image: url(themes/minimal-yellow@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -2109,7 +2109,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-pink.png) no-repeat;
+    background: url(themes/minimal-pink.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2163,7 +2163,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_minimal-pink,
     .iradio_minimal-pink {
-        background-image: url(../../../vendors/icheck/themes/minimal-pink@2x.png);
+        background-image: url(themes/minimal-pink@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -2180,7 +2180,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(../../../vendors/icheck/themes/minimal-purple.png) no-repeat;
+    background: url(themes/minimal-purple.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2235,7 +2235,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_minimal-purple,
     .iradio_minimal-purple {
-        background-image: url(../../../vendors/icheck/themes/minimal-purple@2x.png);
+        background-image: url(themes/minimal-purple@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -2254,7 +2254,7 @@
     padding: 0;
     width: 29px;
     height: 29px;
-    background: url(../../../vendors/icheck/themes/polaris.png) no-repeat;
+    background: url(themes/polaris.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2309,7 +2309,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_polaris,
     .iradio_polaris {
-        background-image: url(../../../vendors/icheck/themes/polaris@2x.png);
+        background-image: url(themes/polaris@2x.png);
         -webkit-background-size: 310px 31px;
         background-size: 310px 31px;
     }
@@ -2327,7 +2327,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-square.png) no-repeat;
+    background: url(themes/square-square.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2381,7 +2381,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square,
     .iradio_square {
-        background-image: url(../../../vendors/icheck/themes/square-square@2x.png);
+        background-image: url(themes/square-square@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2398,7 +2398,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-red.png) no-repeat;
+    background: url(themes/square-red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2452,7 +2452,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-red,
     .iradio_square-red {
-        background-image: url(../../../vendors/icheck/themes/square-red@2x.png);
+        background-image: url(themes/square-red@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2469,7 +2469,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-green.png) no-repeat;
+    background: url(themes/square-green.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2523,7 +2523,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-green,
     .iradio_square-green {
-        background-image: url(../../../vendors/icheck/themes/square-green@2x.png);
+        background-image: url(themes/square-green@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2540,7 +2540,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-blue.png) no-repeat;
+    background: url(themes/square-blue.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2594,7 +2594,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-blue,
     .iradio_square-blue {
-        background-image: url(../../../vendors/icheck/themes/square-blue@2x.png);
+        background-image: url(themes/square-blue@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2611,7 +2611,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-aero.png) no-repeat;
+    background: url(themes/square-aero.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2665,7 +2665,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-aero,
     .iradio_square-aero {
-        background-image: url(../../../vendors/icheck/themes/square-aero@2x.png);
+        background-image: url(themes/square-aero@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2682,7 +2682,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-grey.png) no-repeat;
+    background: url(themes/square-grey.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2736,7 +2736,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-grey,
     .iradio_square-grey {
-        background-image: url(../../../vendors/icheck/themes/square-grey@2x.png);
+        background-image: url(themes/square-grey@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2753,7 +2753,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-orange.png) no-repeat;
+    background: url(themes/square-orange.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2807,7 +2807,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-orange,
     .iradio_square-orange {
-        background-image: url(../../../vendors/icheck/themes/square-orange@2x.png);
+        background-image: url(themes/square-orange@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2824,7 +2824,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-yellow.png) no-repeat;
+    background: url(themes/square-yellow.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2878,7 +2878,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-yellow,
     .iradio_square-yellow {
-        background-image: url(../../../vendors/icheck/themes/square-yellow@2x.png);
+        background-image: url(themes/square-yellow@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2895,7 +2895,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-pink.png) no-repeat;
+    background: url(themes/square-pink.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -2949,7 +2949,7 @@
 (min-resolution: 120dpi) {
     .icheckbox_square-pink,
     .iradio_square-pink {
-        background-image: url(../../../vendors/icheck/themes/square-pink@2x.png);
+        background-image: url(themes/square-pink@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -2966,7 +2966,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(../../../vendors/icheck/themes/square-purple.png) no-repeat;
+    background: url(themes/square-purple.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -3021,7 +3021,7 @@
 (min-resolution: 1.25dppx) {
     .icheckbox_square-purple,
     .iradio_square-purple {
-        background-image: url(../../../vendors/icheck/themes/square-purple@2x.png);
+        background-image: url(themes/square-purple@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
