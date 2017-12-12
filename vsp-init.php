@@ -1,7 +1,7 @@
 <?php
-global $vsp_plugins;
+global $vsp_plugins,$vsp_loaded_framework,$vsp_framework_data;
 
-$vsp_plugins = array();
+$vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
 
 
 if(!function_exists("vsp_mayby_framework_loader")){
@@ -39,8 +39,9 @@ if(!function_exists("vsp_mayby_framework_loader")){
 if(!function_exists("vsp_framework_loader")){
     add_action("plugins_loaded",'vsp_framework_loader');
     function vsp_framework_loader(){
-        global $vsp_framework_data;
+        global $vsp_framework_data,$vsp_loaded_framework;
         $info = array_shift($vsp_framework_data);
+        $vsp_loaded_framework = $info;
         require_once($info['framework_path'].'vsp-bootstrap.php');
     }
 }
@@ -52,6 +53,16 @@ if(!function_exists("vsp_register_plugin")){
         if(!empty($slug) && !empty($instance)){
             $vsp_plugins[$slug] = $instance;
         }
+    }
+}
+
+if(!function_exists('vsp_get_all_plugins')){
+    function vsp_get_all_plugins($only_slugs = true){
+        global $vsp_plugins;
+        if($only_slugs === false){
+            return $vsp_plugins;
+        }
+        return array_keys($vsp_plugins);
     }
 }
 

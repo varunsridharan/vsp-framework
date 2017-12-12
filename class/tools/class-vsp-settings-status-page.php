@@ -18,12 +18,12 @@ if(!class_exists("VSP_Settings_Status_Page")){
                 'title' => $this->option('tab_title'),
             );
             
-            add_filter($instance->hook_slug.'_form_fields',array($this,'list_addons'),10,2);
+            add_filter($instance->hook_slug.'_form_fields',array($this,'render_status_page'),10,2);
         }
         
-        public function list_addons($return = '',$tab = ''){
+        public function render_status_page($return = '',$tab = ''){
             if(strtolower($tab) === $this->option('tab_id')){
-                $m = new VSP_Site_Status_Report;
+                $m = VSP_Site_Status_Report::instance();
                 $return = $m->get_output();
             }
             

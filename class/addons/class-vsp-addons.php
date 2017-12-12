@@ -29,8 +29,8 @@ if(!class_exists("VSP_Addons")){
             $this->db_slug = $this->option('plugin_db_slug');
             
             if(vsp_is_request('admin')){
-                add_action($this->hook_slug.'_settings_section',array($this,'set_settings_section'),10,100);
-                add_action($this->hook_slug.'_settings_pages',array($this,'set_settings_page'),10,100);
+                add_action($this->hook_slug.'_settings_section',array($this,'set_settings_section'),99,100);
+                add_action($this->hook_slug.'_settings_pages',array($this,'set_settings_page'),99,100);
                 add_action($this->hook_slug.'_form_fields',array($this,'render_addons_page'),10,2);
             }
             

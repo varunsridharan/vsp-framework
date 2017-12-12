@@ -5,6 +5,8 @@ if ( !class_exists( 'VSP_Settings_Fields' ) ) {
 	class VSP_Settings_Fields {
 		public $settings_errors;
 
+        protected static $_instance = null;
+        
         public function __construct( $errors = array() ) {
 			$this->settings_errors = (array) $errors;
 		}
@@ -14,6 +16,13 @@ if ( !class_exists( 'VSP_Settings_Fields' ) ) {
                 return true;
             }
             return false;
+        }
+        
+        public static function get_instance() {
+            if ( null == self::$_instance ) {
+                self::$_instance = new self;
+            }
+            return self::$_instance;
         }
 
         public function create_element($type = '',$args){

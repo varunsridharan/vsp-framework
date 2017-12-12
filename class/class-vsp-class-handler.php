@@ -80,6 +80,10 @@ if(!class_exists("VSP_Class_Handler")){
             return $this->option('plugin_slug');
         }
         
+        public function plugin_name(){
+            return $this->option("plugin_name");
+        }
+        
         protected function option($key = '',$default = false){
             if(isset($this->options[$key])){
                 return $this->options[$key];

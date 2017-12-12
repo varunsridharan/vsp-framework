@@ -78,38 +78,6 @@ if(!function_exists("vsp_debug_file")){
     }
 }
 
-if(!function_exists('vsp_load_class')){
-    function vsp_load_class($slug = ''){
-        $files = array(
-            'activator' => 'helper/class-vsp-activator.php',
-            'deactivator' => 'helper/class-vsp-deactivator.php',
-            'dependencies' => 'helper/class-vsp-dependencies.php',
-            'version-check' => 'helper/class-vsp-version-check.php',
-            
-            'framework' => 'class/class-framework.php',
-            'framework-handler' => 'class/class-framework-class-handler.php',
-            'framework-init' => 'class/class-framework-init.php',
-            'framework-options' => 'class/class-framework-options.php',
-            'famework-ajax' => 'class/class-framework-core-ajax.php',
-            
-            'addons' => 'class/addons/class-addons.php',
-            'addons-admin' => 'class/addons/class-addons-admin.php',
-            'addons-core' => 'class/addons/class-addons-core.php',
-            'addons-view' => 'class/addons/class-addons-detailed-view.php',
-            'addons-filemeta' => 'class/addons/class-addons-filemeta.php',
-
-            'settings-fields' => 'class/settings/class-settings-fields.php',
-            'settings-handler' => 'class/settings/class-settings-handler.php',
-            'settings-init' => 'class/settings/class-settings-init.php',
-            
-            'admin-notices' => 'class/tools/class-admin-notices.php',
-            'settings-status-page' => 'class/tools/class-settings-status-page.php',
-            'status-page-handler' => 'class/tools/class-site-status-report.php',
-        );
-        
-    }
-}
-
 if(!function_exists("vsp_load_file")){
     function vsp_load_file($path,$type = 'require'){
         foreach( glob( $path ) as $files ){

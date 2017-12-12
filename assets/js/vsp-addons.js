@@ -100,10 +100,10 @@
 
     $(document).ready(function () {
         $.VSP_ADDONS.update_action_buttons();
-        
+
         $('body').on("click", "div.vsp_addon_listing button.vsp-active-addon, div.vsp_addon_listing button.vsp-deactive-addon", $.VSP_ADDONS.handle_action_clicks);
 
-        if ($("ul.vsp-addons-category-listing").size() > 0) {
+        if ($("ul.vsp-addons-category-listing").length > 0) {
             $(".vsp_settings_content").remove();
             $("p.submit").remove();
             $("ul.vsp-addons-category-listing li:first").addClass('current');

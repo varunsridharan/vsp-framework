@@ -8,9 +8,9 @@ if(!class_exists('VSP_Framework')){
         
         protected static $version = null;
 
-        public function instance(){
+        public static function instance(){
             if(null == self::$_instance){
-                self::$_instance = self;
+                self::$_instance = new self;
             }
             return self::$_instance;
         }
@@ -19,18 +19,24 @@ if(!class_exists('VSP_Framework')){
             $this->settings = null;
             $this->addons = null;
             $this->parse_options($options);
+            vsp_register_plugin($this->plugin_slug(),$this);
             $this->load_required_files();
+            add_action("vsp_framework_init",array($this,'init_plugin'));
+        }
+        
+        public function init_plugin(){
             $this->init_class();
             $this->init_hooks();
-            
-            vsp_register_plugin($this->plugin_slug(),$this);
         }
 
         public function init_class(){
             $this->hook_function("hook_init_class",array('type' => 'before'));
             $this->action("plugin_init_before");
             $this->addon_init();
-            $this->settings_init();
+            
+            if(vsp_is_request("admin")){
+                $this->settings_init();
+            }
             
             $this->action("plugin_init_after");
             $this->hook_function("hook_init_class",array('type' => 'after'));

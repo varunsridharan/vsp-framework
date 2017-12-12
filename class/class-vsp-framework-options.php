@@ -21,7 +21,6 @@ if(!class_exists('VSP_Framework_Options')){
         }
         
         public function plugin_url($file = __FILE__){
-            var_dump($file);
         }
         
     }

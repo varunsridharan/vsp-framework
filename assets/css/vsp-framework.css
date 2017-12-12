@@ -207,3 +207,11 @@
   float: left;
   width: 100%;
 }
+
+.popover-title button.close {
+  float: right;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

@@ -10,6 +10,15 @@ if(!class_exists("VSP_Settings_Handler")){
             'db_slug' => '',
         );
         
+        protected static $_instance = null;
+        
+        public static function get_instance() {
+            if ( null == self::$_instance ) {
+                self::$_instance = new self;
+            }
+            return self::$_instance;
+        }
+        
         public function __construct(){
             parent::__construct();
             $this->settings_tabs = array();
@@ -30,7 +39,7 @@ if(!class_exists("VSP_Settings_Handler")){
         }
         
         private function init_fields_class(){
-            return $this->fields = new VSP_Settings_Fields;
+            return $this->fields = VSP_Settings_Fields::get_instance();
         }
         
         public function init($pages = '',$options = array()){

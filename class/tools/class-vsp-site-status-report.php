@@ -3,6 +3,14 @@ if(!defined("ABSPATH")){ exit; }
 
 if(!class_exists("VSP_Site_Status_Report")){
     class VSP_Site_Status_Report {
+        private static $_instance = null;
+        
+        public static function instance(){
+            if(null == self::$_instance){
+                self::$_instance = new self;
+            }
+            return self::$_instance;
+        }
         
         public function __construct(){
             global $wpdb;
@@ -15,10 +23,14 @@ if(!class_exists("VSP_Site_Status_Report")){
             $this->php_info = array();
             $this->php_exts = array();
             $this->session_config = array();
+            $this->vsp_framework = array();
+            $this->vsp_settings = array();
             $this->set_wp_env_data();
             $this->set_active_theme_data();
             $this->set_plugins_data();
             $this->set_php_data();
+            $this->set_vsp_framework();
+            $this->set_vsp_settings();
             $this->output_html();
         }
          
@@ -181,23 +193,29 @@ if(!class_exists("VSP_Site_Status_Report")){
             $this->session_config[__("Use Only Cookies")] = $this->_bool(ini_get( 'session.use_only_cookies' ),'Yes','No');
         }
         
-        public function get_final_array(){
-            return array(
-                __("WordPress Environment") => $this->wp_env,
-                __("Server Environment") =>  $this->server_info,
-                __("PHP Environment") => $this->php_info,
-                __("WordPress Theme") => $this->active_theme,
-                __("WordPress Plugins") => $this->plugins,
-                __("WordPress Must Use Plugins") => $this->must_use_plugins,
-                __("WordPress MultiSite Plugins") => $this->msite_plugins,
-                __("PHP Extenstions") => $this->php_exts,
-                __("Session Configs") => $this->session_config,
-            );
+        public function set_vsp_framework(){
+            global $vsp_loaded_framework;
+            
+            $this->vsp_framework[__("Framework Version")] = $vsp_loaded_framework['Version'];
+            $this->vsp_framework[__("Textdomain")] = $vsp_loaded_framework['TextDomain'];
+            $this->vsp_framework[__("DomainPath")] = $vsp_loaded_framework['DomainPath'];
+            $this->vsp_framework[__("Framework Plugin Path")] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['plugin_path']);
+            $this->vsp_framework[__("Framework Path")] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['framework_path']);
         }
-    
+        
+        public function set_vsp_settings(){
+            $active_Plugins = vsp_get_all_plugins(false);
+            
+            foreach($active_Plugins as $Plugin){
+                $this->vsp_settings[$Plugin->plugin_name()] = vsp_option($Plugin->plugin_slug(),'all');
+            }
+        }
+        
         public function headings(){
             return array(
                 'wp_env' => __("WordPress Environment"),
+                'vsp_framework' => __("VSP Framework"),
+                'vsp_settings' => __("VSP Plugin Settings"),
                 'server_info' => __("Server Environment"),
                 'php_info' => __("PHP Environment"),
                 'php_exts' => __("PHP Extenstions"),
@@ -210,6 +228,7 @@ if(!class_exists("VSP_Site_Status_Report")){
         }
         
         public function output_html(){
+            
             $heads = $this->headings();
             $deep_looper = array("msite_plugins","must_use_plugins");
             $html_output = '';

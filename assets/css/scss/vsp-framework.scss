@@ -126,15 +126,11 @@
                 list-style-type: decimal !important;
 
 
-                li {
-                    
-                }
+                li {}
             }
         }
     }
 }
-
-
 
 .vsp_settings_subtab {
     float: none;
@@ -216,5 +212,23 @@
     .vsp-single-add-footer {
         float: left;
         width: 100%;
+    }
+}
+
+.popover-title {
+
+    button.close {
+        float: right;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        span {
+            font-size: 20px;
+            color: #0003;
+            line-height: 0;
+            vertical-align: middle;
+        }
     }
 }

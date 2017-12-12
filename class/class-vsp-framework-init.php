@@ -23,7 +23,7 @@ if(!class_exists("VSP_Framework_Init")){
                 $this->hook_function("hook_settings_init",array('type' => 'before'));
                 $args = $this->parse_args($this->option("settings_page"),$this->get_common_args());
                 $this->settings = new VSP_Settings($args);
-                $this->hook_function("hook_addons_init",array('type' => 'after'));
+                $this->hook_function("hook_settings_init",array('type' => 'after'));
             }
         }
     }

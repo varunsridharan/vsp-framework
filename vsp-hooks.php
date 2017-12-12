@@ -2,6 +2,8 @@
 if(!defined("ABSPATH")){ exit; }
 
 add_action("vsp_framework_init",'vsp_init_admin_notices');
+add_action("vsp_framework_loaded",'vsp_cache_options',99999);
+
 if(vsp_is_request("admin")){
     add_action("admin_enqueue_scripts",'vsp_register_assets',1);
 }

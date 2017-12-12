@@ -53,10 +53,13 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         }
         
         private function get_faq_datas(){
-            $cache = vsp_get_cache($this->plugin_slug().'-faqs6');
+            $cache = vsp_get_cache($this->plugin_slug().'-faqs');
             if(false === $cache){
                 $url = $this->plugin_slug().'/faq.json';
-                $cache = vsp_get_cdn($url,true);                
+                $cache = vsp_get_cdn($url,true); 
+                if(empty($cache)){
+                   return false; 
+                }
                 $cache = $this->handle_faqs($cache);
                 vsp_set_cache($this->plugin_slug().'-faqs',$cache,'10_days');
             }
@@ -67,6 +70,7 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         
         public function render_faqs(){
             $faqs = $this->get_faq_datas();
+            if(empty($faqs)){return;}
             $current_tabs = $this->option('settings')->option("current_page");
             $page_id = $current_tabs['id'];
             $page_slug = $current_tabs['slug'];

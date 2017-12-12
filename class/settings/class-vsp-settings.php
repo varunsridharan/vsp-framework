@@ -35,24 +35,13 @@ if(!class_exists("VSP_Settings")){
             $this->name = empty($this->option('pageName')) ? __("Boiler Plate Settings") : $this->option('pageName');
             $this->db_slug = vsp_fix_slug($this->option('db_slug'));
             $this->hook_slug = vsp_fix_slug($this->option('hook_slug'));
-            $this->settings_page = apply_filters($this->hook_slug.'_settings_pages',array());
-            $this->settings_section = apply_filters($this->hook_slug.'_settings_section',array());
-            $this->set_options();
-            
-            if($this->option('callback_validation') === true){
-                $this->create_callback_function();
-            }
-            
-            if(($this->option('show_status_page') === true)&& (vsp_is_request("admin"))){
-                $this->status_page = new VSP_Settings_Status_Page($this);
-            }
             
             if(empty($this->option('settings_page_slug'))) {
                 add_action( 'admin_menu', array( $this, 'admin_menu' ) );
             }
             
             add_action('admin_enqueue_scripts',array($this,'add_scripts'),10);
-            add_action( 'admin_init', array( $this, 'admin_init' ) );
+            add_action('load-options.php', array( $this, 'admin_init' ) );
         }
         
         public function set_options(){
@@ -98,6 +87,7 @@ if(!class_exists("VSP_Settings")){
             $key = add_submenu_page('woocommerce',$this->name, $this->name, 'manage_woocommerce', $this->option('plugin_slug').'-settings', array($this,'admin_page'));
             $this->set_option('settings_page_slug',$key);
             $this->page_hook = $key;
+            add_action('load-'.$this->page_hook,array($this,'admin_init'));
         }
 
         private function create_callback_function(){
@@ -120,7 +110,21 @@ if(!class_exists("VSP_Settings")){
         } 
 
         public function admin_init(){
-            $this->settings = new VSP_Settings_Handler();
+            $this->settings_page = apply_filters($this->hook_slug.'_settings_pages',array());
+            $this->settings_section = apply_filters($this->hook_slug.'_settings_section',array());
+            $this->set_options();
+            
+            if($this->option('callback_validation') === true){
+                $this->create_callback_function();
+            }
+            
+            if(($this->option('show_status_page') === true)&& (vsp_is_request("admin"))){
+                $this->status_page = new VSP_Settings_Status_Page($this);
+            }
+            
+            vsp_settings_save_sections($this->plugin_slug(),$this->db_slug(),$this->settings_section);
+            
+            $this->settings = new VSP_Settings_Handler;
             $this->settings_fields = apply_filters($this->hook_slug.'_settings_fields',$this->settings_fields);
             $this->settings->add_pages($this->settings_page);
             

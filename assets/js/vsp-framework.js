@@ -186,18 +186,20 @@
     }
 
     $.VSPFRAMEWORK.render_faqs = function ($tab) {
+        if (typeof vspFramework_Settings_Faqs == undefined) {
+            return;
+        }
         var $replace = '#' + vspFramework_Settings_Faqs['prefix_sec_id'] + '_';
         var $id = $tab.replace($replace, '');
         var $faqs = vspFramework_Settings_Faqs['faqs'][$id];
-        
+
         var $html = '<ul class="vsp-faq-list">';
         $.each($faqs, function ($a, $c) {
-            $html += '<li><a data-tab-id="' + $id + '" class="vsp-faq-single" data-trigger="focus" data-toggle-popover="true" data-title="' + $c['question'] + '"  href="#" id="' + $a + '">' + $c['question'] + '</a></li>';
+            $html += '<li><a data-tab-id="' + $id + '" class="vsp-faq-single" data-trigger="click" data-toggle-popover="true" data-stitle="' + $c['question'] + '"  href="javascript:void(0);" id="' + $a + '">' + $c['question'] + '</a></li>';
         });
 
         $html += '</ul>';
         $("#vsp-settings-faq .inside").html($html).find('a').VSPFRAMEWORK_FAQ_TOOLTIP();
-
     }
 
     $.fn.VSPFRAMEWORK_SETTINGS_TAB = function (el) {
@@ -285,12 +287,14 @@
                 'delay': 0,
                 'html': true,
                 'placement': 'left',
-                'title': '',
+                'title': $this.attr("data-stitle") + '<button data-target="a#'+$this.attr('id')+'" type="button" class="close vsp-close-popover" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
                 'content': function ($e) {
                     var $faqs = vspFramework_Settings_Faqs['faqs'][$tab_id];
                     var $faq = $faqs[$this.attr('id')];
-                    
-                    return $faq['answer'];
+                    $faq = $($.parseHTML('<div>' + $faq['answer'] + '</div>'));
+                    $faq.find('a').attr("target", '_blank');
+
+                    return $faq.html();
                 },
             };
             var $options = $.VSPFRAMEWORK.get_element_args($(this), $options);
@@ -365,44 +369,47 @@
         });
     };
 
-
     $(document).ready(function () {
-        $("body").on("vsp_settings_tab_updated", function ($event, $settings) {
-            $.VSPFRAMEWORK.render_faqs($settings);
-        });
-        
+
+        if ($("#vsp-settings-faq").length > 0) {
+            $("body").on("vsp_settings_tab_updated", function ($event, $settings) {
+                $.VSPFRAMEWORK.render_faqs($settings);
+            });
+            $("#vsp-settings-faq > button.handlediv , #vsp-settings-faq > h2").click(function () {
+                $(this).parent().toggleClass("closed");
+            })
+        }
+
         $('.vsp_settings_content , .vsp_inputs').VSPFRAMEWORK_DEPENDENCY();
 
         $("body").on("click", '.vsp-close-popover', function (e) {
             e.preventDefault();
             var $target = $(this).attr('data-target');
-            console.log($target);
             $($target).vsppopover('hide');
         });
-        
-        $('[data-toggle-tooltip="true"] , [data-toggle-popover="true"]').VSPFRAMEWORK_TOOLTIP();
-        
-        if ($('.vsp_settings_subtab').size() > 0) {
-            $.VSPFRAMEWORK.init_settings_tab();
 
+        $('[data-toggle-tooltip="true"] , [data-toggle-popover="true"]').VSPFRAMEWORK_TOOLTIP();
+
+        if ($('.vsp_settings_subtab').length > 0) {
+            $.VSPFRAMEWORK.init_settings_tab();
             jQuery("body").on("click", '.vsp_settings_subtab a', function (e) {
                 jQuery(this).VSPFRAMEWORK_SETTINGS_TAB(e);
             });
         }
 
-        if ($(".vsp-select2").size() > 0) {
+        if ($(".vsp-select2").length > 0) {
             $(".vsp-select2").VSPFRAMEWORK_SELECT2();
         }
 
-        if ($(".vsp-icheck").size() > 0) {
+        if ($(".vsp-icheck").length > 0) {
             $(".vsp-icheck").VSPFRAMEWORK_ICHECK();
         }
 
-        if ($(".vsp-switch").size() > 0) {
+        if ($(".vsp-switch").length > 0) {
             $(".vsp-switch").VSPFRAMEWORK_SWITCHERY();
         }
 
-        if ($("#vsp-sys-status-report-text-btn").size() > 0) {
+        if ($("#vsp-sys-status-report-text-btn").length > 0) {
             $("#vsp-sys-status-report-text-btn").click(function (e) {
                 e.preventDefault();
                 var $textarea = $(this).parent().parent().find("textarea");
@@ -411,14 +418,7 @@
             });
         }
 
-        if($("#vsp-settings-faq").size() > 0){
-            $("#vsp-settings-faq > button.handlediv , #vsp-settings-faq > h2").click(function(){
-                $(this).parent().toggleClass("closed");
-            })
-        }
-
-        
-        if ($('.vsp-adds-slider').size() > 0) {
+        if ($('.vsp-adds-slider').length > 0) {
             $('.vsp-adds-slider').owlCarousel({
                 items: 1,
                 nav: true,
@@ -429,11 +429,6 @@
 
             });
         }
-        
-        
-        
-        
-        
     });
 
 })(jQuery, window, document);
