@@ -4,6 +4,7 @@ if(!function_exists("vsp_cache_options")){
     function vsp_cache_options(){
         $exSections = get_option("vsp_settings_sections");
         if(empty($exSections)){return;}
+        
         $is_modified = false;
         $active_Plugins = vsp_get_all_plugins();
         foreach($exSections as $plugin => $sections){
@@ -16,11 +17,13 @@ if(!function_exists("vsp_cache_options")){
             $save_arr = array();
             foreach($sections as $id){
                 $option = get_option($id);
-                if($option === false){
+                if($option === false || !is_array($option)){
                     continue;
                 }
+                
                 $save_arr = array_merge($save_arr,$option);
             }
+            
             vsp_add_vars($plugin,'settings',$save_arr,true);
         }
         
@@ -58,7 +61,6 @@ if(!function_exists("vsp_settings_save_sections")){
 if(!function_exists("vsp_option")){
     function vsp_option($plugin_name = '',$option_name = '',$default = ''){
         $options = vsp_vars($plugin_name,'settings',array());
-        
         if(!empty($options)){
             if($option_name === 'all'){
                 return $options;
