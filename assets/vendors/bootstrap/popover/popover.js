@@ -7,33 +7,30 @@
 function ($) {
     'use strict';
 
-    // POPOVER PUBLIC CLASS DEFINITION
-    // ===============================
-
-    var VSPPopover = function (element, options) {
+    var Popover = function (element, options) {
         this.init('popover', element, options)
     }
 
-    if (!$.fn.vsptooltip) throw new Error('VSPPopover requires tooltip.js')
+    if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-    VSPPopover.VERSION = '3.3.7'
+    Popover.VERSION = '3.3.7'
 
-    VSPPopover.DEFAULTS = $.extend({}, $.fn.vsptooltip.Constructor.DEFAULTS, {
+    Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
         placement: 'right',
         trigger: 'click',
         content: '',
-        template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
     })
+    
+    Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
 
-    VSPPopover.prototype = $.extend({}, $.fn.vsptooltip.Constructor.prototype)
+    Popover.prototype.constructor = Popover
 
-    VSPPopover.prototype.constructor = VSPPopover
-
-    VSPPopover.prototype.getDefaults = function () {
-        return VSPPopover.DEFAULTS
+    Popover.prototype.getDefaults = function () {
+        return Popover.DEFAULTS
     }
 
-    VSPPopover.prototype.setContent = function () {
+    Popover.prototype.setContent = function () {
         var $tip = this.tip()
         var title = this.getTitle()
         var content = this.getContent()
@@ -50,11 +47,11 @@ function ($) {
         if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
     }
 
-    VSPPopover.prototype.hasContent = function () {
+    Popover.prototype.hasContent = function () {
         return this.getTitle() || this.getContent()
     }
 
-    VSPPopover.prototype.getContent = function () {
+    Popover.prototype.getContent = function () {
         var $e = this.$element
         var o = this.options
 
@@ -64,14 +61,10 @@ function ($) {
                 o.content)
     }
 
-    VSPPopover.prototype.arrow = function () {
+    Popover.prototype.arrow = function () {
         return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
     }
-
-
-    // POPOVER PLUGIN DEFINITION
-    // =========================
-
+    
     function Plugin(option) {
         return this.each(function () {
             var $this = $(this)
@@ -79,22 +72,18 @@ function ($) {
             var options = typeof option == 'object' && option
 
             if (!data && /destroy|hide/.test(option)) return
-            if (!data) $this.data('bs.popover', (data = new VSPPopover(this, options)))
+            if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
             if (typeof option == 'string') data[option]()
         })
     }
 
-    var old = $.fn.vsppopover
+    var old = $.fn.popover
 
-    $.fn.vsppopover = Plugin
-    $.fn.vsppopover.Constructor = VSPPopover
+    $.fn.popover = Plugin
+    $.fn.popover.Constructor = Popover
 
-
-    // POPOVER NO CONFLICT
-    // ===================
-
-    $.fn.vsppopover.noConflict = function () {
-        $.fn.vsppopover = old
+    $.fn.popover.noConflict = function () {
+        $.fn.popover = old
         return this
     }
 

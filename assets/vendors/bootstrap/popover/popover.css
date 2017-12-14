@@ -10,7 +10,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1060;
+    z-index: 99999999;
     display: none;
     max-width: 500px;
     padding: 1px;
@@ -38,6 +38,7 @@
     border-radius: 6px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    
 }
 
 .popover.top {

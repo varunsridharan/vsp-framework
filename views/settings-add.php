@@ -3,7 +3,8 @@
     <div class="vsp-single-add">
         
         <div class="vsp-single-add-header">
-            <img  src="<?php echo $r['logo']; ?>"/>
+            <?php $isrc = isset($r['logo']) ?  $r['logo'] : vsp_img('noimage.png'); ?>
+            <img  src="<?php echo $isrc; ?>"/>
             <h3><?php echo $r['name']; ?></h3>
             <div class="vsp-add-meta">
                 <span title="<?php _e("Downloads / Installs"); ?>"><span class="dashicons dashicons-chart-bar"></span> <?php echo $r['downloaded']; ?></span>

@@ -32,10 +32,16 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             $return = array();
             foreach($cache as $page => $sections){
                 if(!isset($return[$page])){$return[$page] = array();}
-                foreach($sections as $section => $faqs){
-                    if(!isset($return[$page][$section])){$return[$page][$section] = array();}
-                    foreach($faqs as $id => $faq){
-                        $return[$page][$section][vsp_fix_title($faq['question'])] = $faq;
+                if($page === 'global'){
+                    foreach($sections as $id => $faq){
+                        $return[$page][vsp_fix_title($faq['question'])] = $faq;
+                    }
+                } else {
+                    foreach($sections as $section => $faqs){
+                        if(!isset($return[$page][$section])){$return[$page][$section] = array();}
+                        foreach($faqs as $id => $faq){
+                            $return[$page][$section][vsp_fix_title($faq['question'])] = $faq;
+                        }
                     }
                 }
             }
@@ -43,7 +49,7 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         }
         
         private function get_adds_data(){
-            $cache = vsp_get_cache('vsp_shameless_plugs');
+            $cache = vsp_get_cache('vsp_shameless_plug');
             if(false === $cache){
                 $cache = vsp_get_cdn("shameless_plug.json",true);
                 vsp_set_cache("vsp_shameless_plug",$cache,'10_days');
@@ -71,6 +77,9 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         public function render_faqs(){
             $faqs = $this->get_faq_datas();
             if(empty($faqs)){return;}
+            
+            vsp_load_script("vsp-simscroll");
+            
             $current_tabs = $this->option('settings')->option("current_page");
             $page_id = $current_tabs['id'];
             $page_slug = $current_tabs['slug'];
@@ -80,6 +89,9 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             $current_faqs = isset($faqs[$page_id]) ? $faqs[$page_id] : array();
             if(empty($current_faqs)){
                 $current_faqs = isset($faqs[$page_slug]) ? $faqs[$page_slug] : array();
+            }
+            if(isset($faqs['global'])){
+                $current_faqs['global'] = $faqs['global'];
             }
             
             $current_faqs = array('prefix_sec_id' => $this->db_slug(),'faqs' => $current_faqs);

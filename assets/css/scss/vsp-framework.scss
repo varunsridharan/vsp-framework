@@ -1,132 +1,148 @@
 .wrap {
     &.vsp_with_metaboxes {
-        form {
-            tables {
-                box-shadow: none;
-                border: 0 none;
-                border-spacing: 0;
-                clear: both;
-                margin: 0;
-                max-width: 900px;
-                min-width: 800px;
-                width: auto;
-                background: #fff;
-                border: 1px solid #e1e1e1;
 
-                select,
-                textarea,
-                input[type=text],
-                input[type=password],
-                input[type=email],
-                input[type=number] {
-                    width: 100%;
-                    padding: 3px;
-                    height: auto;
+        #poststuff {
+            #post-body.columns-2 {
+                margin-right: 350px;
+ 
+                form {
+                    tables {
+                        box-shadow: none;
+                        border: 0 none;
+                        border-spacing: 0;
+                        clear: both;
+                        margin: 0;
+                        max-width: 900px;
+                        min-width: 800px;
+                        width: auto;
+                        background: #fff;
+                        border: 1px solid #e1e1e1;
+
+                        select,
+                        textarea,
+                        input[type=text],
+                        input[type=password],
+                        input[type=email],
+                        input[type=number] {
+                            width: 100%;
+                            padding: 3px;
+                            height: auto;
+                        }
+
+                        textarea {
+                            resize: vertical;
+                        }
+                        tr {
+
+                            th {
+                                font-weight: bold;
+                                text-align: left;
+                                font-size: 14px;
+                                padding: 8px 15px;
+                                line-height: 28px;
+                                border-bottom: 1px solid #e1e1e1;
+                                p {
+                                    display: block;
+                                    line-height: 1.4em;
+                                    padding: 0 !important;
+                                    margin: 3px 0 0 !important;
+                                    font-size: 12px;
+                                    font-style: italic;
+                                    /*line-height: 16px;*/
+                                    color: #666;
+                                }
+                                label {
+                                    display: block;
+                                    font-size: 13px;
+                                    line-height: 1.4em;
+                                    font-weight: bold;
+                                    padding: 0;
+                                    margin: 0 0 3px;
+                                    color: #333;
+                                }
+                            }
+                            > th {
+                                width: 30% !important;
+                                vertical-align: middle;
+                                background: #F9F9F9;
+                                border-top: 1px solid #f0f0f0;
+                                border-right: 1px solid #E1E1E1;
+                            }
+
+
+                            td {
+                                &.remove {
+                                    width: 20px;
+                                }
+                                &.add {
+                                    width: 40px;
+                                }
+                                padding: 13px 15px;
+                                border-top: 1px solid #f5f5f5;
+                                width: 70% !important;
+                                &:first-child {
+                                    width: 26%;
+                                    &.wcff-sortable {
+                                        cursor: move;
+                                    }
+                                }
+                            }
+                        }
+
+                        > tbody > tr:first-child > td,
+                        > tbody > tr:first-child > th {
+                            border-top: 0 none;
+                        }
+
+                    }
                 }
 
-                textarea {
-                    resize: vertical;
-                }
-                tr {
+                #postbox-container-1 {
+                    margin-right: -350px;
+                    width: 330px;
 
-                    th {
-                        font-weight: bold;
-                        text-align: left;
-                        font-size: 14px;
-                        padding: 8px 15px;
-                        line-height: 28px;
-                        border-bottom: 1px solid #e1e1e1;
-                        p {
-                            display: block;
-                            line-height: 1.4em;
-                            padding: 0 !important;
-                            margin: 3px 0 0 !important;
-                            font-size: 12px;
-                            font-style: italic;
-                            /*line-height: 16px;*/
-                            color: #666;
-                        }
-                        label {
-                            display: block;
-                            font-size: 13px;
-                            line-height: 1.4em;
-                            font-weight: bold;
-                            padding: 0;
-                            margin: 0 0 3px;
-                            color: #333;
+                    #vsp-adds-sidebar {
+                        .inside {
+                            margin-bottom: 0;
+                            padding-top: 12px;
+                            .owl-nav {
+                                text-align: center;
+                                margin-top: 20px;
+                                > button {
+                                    padding: 5px !important;
+                                    background: #D6D6D6;
+                                    color: #000;
+                                    border-radius: 5px;
+                                    margin: 0 15px;
+                                    width: 50px;
+                                    height: 25px;
+                                    vertical-align: middle;
+                                    font-size: 11px;
+                                    padding-top: 3px !important;
+                                    &:hover {
+                                        background: #869791;
+                                    }
+
+                                }
+                            }
                         }
                     }
-                    > th {
-                        width: 30% !important;
-                        vertical-align: middle;
-                        background: #F9F9F9;
-                        border-top: 1px solid #f0f0f0;
-                        border-right: 1px solid #E1E1E1;
-                    }
+                    #vsp-settings-faq {
+                        .vsp-faq-list {
+                            &.vsp-faq-global {
+                                margin-top: 0;
 
-
-                    td {
-                        &.remove {
-                            width: 20px;
-                        }
-                        &.add {
-                            width: 40px;
-                        }
-                        padding: 13px 15px;
-                        border-top: 1px solid #f5f5f5;
-                        width: 70% !important;
-                        &:first-child {
-                            width: 26%;
-                            &.wcff-sortable {
-                                cursor: move;
+                                border-bottom: 1px solid #ccc;
+                            }
+                            list-style: inside !important;
+                            list-style-type: decimal !important;
+                            padding-bottom: 10px;
+                            li {
+                                margin-bottom: 10px;
                             }
                         }
                     }
                 }
-
-                > tbody > tr:first-child > td,
-                > tbody > tr:first-child > th {
-                    border-top: 0 none;
-                }
-
-            }
-        }
-
-        #vsp-adds-sidebar {
-            .inside {
-                margin-bottom: 0;
-                padding-top: 12px;
-                .owl-nav {
-                    text-align: center;
-                    margin-top: 20px;
-                    > button {
-                        padding: 5px !important;
-                        background: #D6D6D6;
-                        color: #000;
-                        border-radius: 5px;
-                        margin: 0 15px;
-                        width: 50px;
-                        height: 25px;
-                        vertical-align: middle;
-                        font-size: 11px;
-                        padding-top: 3px !important;
-                        &:hover {
-                            background: #869791;
-                        }
-
-                    }
-                }
-            }
-        }
-        #vsp-settings-faq {
-            .vsp-faq-list {
-                list-style: inside !important;
-                max-height: 200px;
-                overflow-y: scroll;
-                list-style-type: decimal !important;
-
-
-                li {}
             }
         }
     }
@@ -215,20 +231,82 @@
     }
 }
 
-.popover-title {
 
-    button.close {
-        float: right;
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
+.popover {
+    .popover-title {
+        button.close {
+            float: right;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
 
-        span {
-            font-size: 20px;
-            color: #0003;
-            line-height: 0;
-            vertical-align: middle;
+            span {
+                font-size: 20px;
+                color: #ccc;
+                line-height: 0;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .popover-content {
+        > p {
+
+            &:first-child {
+                margin-top: 0px;
+            }
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+
+        pre {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: auto;
+        }
+
+        code {
+            padding: 2px 4px;
+            font-size: 90%;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            border-radius: 4px;
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        }
+
+        blockquote {
+            padding: 10px 20px;
+            margin: 0 0 20px;
+            font-size: 17.5px;
+            border-left: 5px solid #eee;
+            > p {
+
+                &:first-child {
+                    margin-top: 0px;
+                }
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+
+        table {
+            width: 100%;
+        }
+
+        iframe {
+            width: 100%;
         }
     }
 }

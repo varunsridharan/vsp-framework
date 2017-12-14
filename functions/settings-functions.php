@@ -3,6 +3,7 @@
 if(!function_exists("vsp_cache_options")){
     function vsp_cache_options(){
         $exSections = get_option("vsp_settings_sections");
+        if(empty($exSections)){return;}
         $is_modified = false;
         $active_Plugins = vsp_get_all_plugins();
         foreach($exSections as $plugin => $sections){

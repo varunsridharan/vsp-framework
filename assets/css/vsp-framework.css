@@ -1,4 +1,8 @@
-.wrap.vsp_with_metaboxes form tables {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 {
+  margin-right: 350px;
+}
+
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables {
   box-shadow: none;
   border: 0 none;
   border-spacing: 0;
@@ -11,22 +15,22 @@
   border: 1px solid #e1e1e1;
 }
 
-.wrap.vsp_with_metaboxes form tables select,
-.wrap.vsp_with_metaboxes form tables textarea,
-.wrap.vsp_with_metaboxes form tables input[type=text],
-.wrap.vsp_with_metaboxes form tables input[type=password],
-.wrap.vsp_with_metaboxes form tables input[type=email],
-.wrap.vsp_with_metaboxes form tables input[type=number] {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables select,
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables textarea,
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables input[type=text],
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables input[type=password],
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables input[type=email],
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables input[type=number] {
   width: 100%;
   padding: 3px;
   height: auto;
 }
 
-.wrap.vsp_with_metaboxes form tables textarea {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables textarea {
   resize: vertical;
 }
 
-.wrap.vsp_with_metaboxes form tables tr th {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr th {
   font-weight: bold;
   text-align: left;
   font-size: 14px;
@@ -35,7 +39,7 @@
   border-bottom: 1px solid #e1e1e1;
 }
 
-.wrap.vsp_with_metaboxes form tables tr th p {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr th p {
   display: block;
   line-height: 1.4em;
   padding: 0 !important;
@@ -46,7 +50,7 @@
   color: #666;
 }
 
-.wrap.vsp_with_metaboxes form tables tr th label {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr th label {
   display: block;
   font-size: 13px;
   line-height: 1.4em;
@@ -56,7 +60,7 @@
   color: #333;
 }
 
-.wrap.vsp_with_metaboxes form tables tr > th {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr > th {
   width: 30% !important;
   vertical-align: middle;
   background: #F9F9F9;
@@ -64,44 +68,49 @@
   border-right: 1px solid #E1E1E1;
 }
 
-.wrap.vsp_with_metaboxes form tables tr td {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr td {
   padding: 13px 15px;
   border-top: 1px solid #f5f5f5;
   width: 70% !important;
 }
 
-.wrap.vsp_with_metaboxes form tables tr td.remove {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr td.remove {
   width: 20px;
 }
 
-.wrap.vsp_with_metaboxes form tables tr td.add {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr td.add {
   width: 40px;
 }
 
-.wrap.vsp_with_metaboxes form tables tr td:first-child {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr td:first-child {
   width: 26%;
 }
 
-.wrap.vsp_with_metaboxes form tables tr td:first-child.wcff-sortable {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables tr td:first-child.wcff-sortable {
   cursor: move;
 }
 
-.wrap.vsp_with_metaboxes form tables > tbody > tr:first-child > td,
-.wrap.vsp_with_metaboxes form tables > tbody > tr:first-child > th {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables > tbody > tr:first-child > td,
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 form tables > tbody > tr:first-child > th {
   border-top: 0 none;
 }
 
-.wrap.vsp_with_metaboxes #vsp-adds-sidebar .inside {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 {
+  margin-right: -350px;
+  width: 330px;
+}
+
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-adds-sidebar .inside {
   margin-bottom: 0;
   padding-top: 12px;
 }
 
-.wrap.vsp_with_metaboxes #vsp-adds-sidebar .inside .owl-nav {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-adds-sidebar .inside .owl-nav {
   text-align: center;
   margin-top: 20px;
 }
 
-.wrap.vsp_with_metaboxes #vsp-adds-sidebar .inside .owl-nav > button {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-adds-sidebar .inside .owl-nav > button {
   padding: 5px !important;
   background: #D6D6D6;
   color: #000;
@@ -114,15 +123,23 @@
   padding-top: 3px !important;
 }
 
-.wrap.vsp_with_metaboxes #vsp-adds-sidebar .inside .owl-nav > button:hover {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-adds-sidebar .inside .owl-nav > button:hover {
   background: #869791;
 }
 
-.wrap.vsp_with_metaboxes #vsp-settings-faq .vsp-faq-list {
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-settings-faq .vsp-faq-list {
   list-style: inside !important;
-  max-height: 200px;
-  overflow-y: scroll;
   list-style-type: decimal !important;
+  padding-bottom: 10px;
+}
+
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-settings-faq .vsp-faq-list.vsp-faq-global {
+  margin-top: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.wrap.vsp_with_metaboxes #poststuff #post-body.columns-2 #postbox-container-1 #vsp-settings-faq .vsp-faq-list li {
+  margin-bottom: 10px;
 }
 
 .vsp_settings_subtab {
@@ -208,10 +225,72 @@
   width: 100%;
 }
 
-.popover-title button.close {
+.popover .popover-title button.close {
   float: right;
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
+}
+
+.popover .popover-title button.close span {
+  font-size: 20px;
+  color: #ccc;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.popover .popover-content > p:first-child {
+  margin-top: 0px;
+}
+
+.popover .popover-content > p:last-child {
+  margin-bottom: 0px;
+}
+
+.popover .popover-content pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.popover .popover-content code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.popover .popover-content blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee;
+}
+
+.popover .popover-content blockquote > p:first-child {
+  margin-top: 0px;
+}
+
+.popover .popover-content blockquote > p:last-child {
+  margin-bottom: 0px;
+}
+
+.popover .popover-content table {
+  width: 100%;
+}
+
+.popover .popover-content iframe {
+  width: 100%;
 }

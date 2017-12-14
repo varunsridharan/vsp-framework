@@ -1045,7 +1045,8 @@ function ($) {
     // TOOLTIP PUBLIC CLASS DEFINITION
     // ===============================
 
-    var VSPTooltip = function (element, options) {
+
+    var Tooltip = function (element, options) {
         this.type = null
         this.options = null
         this.enabled = null
@@ -1057,11 +1058,11 @@ function ($) {
         this.init('tooltip', element, options)
     }
 
-    VSPTooltip.VERSION = '3.3.7'
+    Tooltip.VERSION = '3.3.7'
 
-    VSPTooltip.TRANSITION_DURATION = 150
+    Tooltip.TRANSITION_DURATION = 150
 
-    VSPTooltip.DEFAULTS = {
+    Tooltip.DEFAULTS = {
         animation: true,
         placement: 'top',
         selector: false,
@@ -1077,7 +1078,7 @@ function ($) {
         }
     }
 
-    VSPTooltip.prototype.init = function (type, element, options) {
+    Tooltip.prototype.init = function (type, element, options) {
         this.enabled = true
         this.type = type
         this.$element = $(element)
@@ -1117,11 +1118,11 @@ function ($) {
             this.fixTitle()
     }
 
-    VSPTooltip.prototype.getDefaults = function () {
-        return VSPTooltip.DEFAULTS
+    Tooltip.prototype.getDefaults = function () {
+        return Tooltip.DEFAULTS
     }
 
-    VSPTooltip.prototype.getOptions = function (options) {
+    Tooltip.prototype.getOptions = function (options) {
         options = $.extend({}, this.getDefaults(), this.$element.data(), options)
 
         if (options.delay && typeof options.delay == 'number') {
@@ -1134,7 +1135,7 @@ function ($) {
         return options
     }
 
-    VSPTooltip.prototype.getDelegateOptions = function () {
+    Tooltip.prototype.getDelegateOptions = function () {
         var options = {}
         var defaults = this.getDefaults()
 
@@ -1145,7 +1146,7 @@ function ($) {
         return options
     }
 
-    VSPTooltip.prototype.enter = function (obj) {
+    Tooltip.prototype.enter = function (obj) {
         var self = obj instanceof this.constructor ?
             obj : $(obj.currentTarget).data('bs.' + this.type)
 
@@ -1174,7 +1175,7 @@ function ($) {
         }, self.options.delay.show)
     }
 
-    VSPTooltip.prototype.isInStateTrue = function () {
+    Tooltip.prototype.isInStateTrue = function () {
         for (var key in this.inState) {
             if (this.inState[key]) return true
         }
@@ -1182,7 +1183,7 @@ function ($) {
         return false
     }
 
-    VSPTooltip.prototype.leave = function (obj) {
+    Tooltip.prototype.leave = function (obj) {
         var self = obj instanceof this.constructor ?
             obj : $(obj.currentTarget).data('bs.' + this.type)
 
@@ -1208,7 +1209,7 @@ function ($) {
         }, self.options.delay.hide)
     }
 
-    VSPTooltip.prototype.show = function () {
+    Tooltip.prototype.show = function () {
         var e = $.Event('show.bs.' + this.type)
 
         if (this.hasContent() && this.enabled) {
@@ -1283,12 +1284,12 @@ function ($) {
             $.support.transition && this.$tip.hasClass('fade') ?
                 $tip
                 .one('bsTransitionEnd', complete)
-                .emulateTransitionEnd(VSPTooltip.TRANSITION_DURATION) :
+                .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
                 complete()
         }
     }
 
-    VSPTooltip.prototype.applyPlacement = function (offset, placement) {
+    Tooltip.prototype.applyPlacement = function (offset, placement) {
         var $tip = this.tip()
         var width = $tip[0].offsetWidth
         var height = $tip[0].offsetHeight
@@ -1338,13 +1339,13 @@ function ($) {
         this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
     }
 
-    VSPTooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
+    Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
         this.arrow()
             .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
             .css(isVertical ? 'top' : 'left', '')
     }
 
-    VSPTooltip.prototype.setContent = function () {
+    Tooltip.prototype.setContent = function () {
         var $tip = this.tip()
         var title = this.getTitle()
 
@@ -1352,7 +1353,7 @@ function ($) {
         $tip.removeClass('fade in top bottom left right')
     }
 
-    VSPTooltip.prototype.hide = function (callback) {
+    Tooltip.prototype.hide = function (callback) {
         var that = this
         var $tip = $(this.$tip)
         var e = $.Event('hide.bs.' + this.type)
@@ -1376,7 +1377,7 @@ function ($) {
         $.support.transition && $tip.hasClass('fade') ?
             $tip
             .one('bsTransitionEnd', complete)
-            .emulateTransitionEnd(VSPTooltip.TRANSITION_DURATION) :
+            .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
             complete()
 
         this.hoverState = null
@@ -1384,18 +1385,18 @@ function ($) {
         return this
     }
 
-    VSPTooltip.prototype.fixTitle = function () {
+    Tooltip.prototype.fixTitle = function () {
         var $e = this.$element
         if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
             $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
         }
     }
 
-    VSPTooltip.prototype.hasContent = function () {
+    Tooltip.prototype.hasContent = function () {
         return this.getTitle()
     }
 
-    VSPTooltip.prototype.getPosition = function ($element) {
+    Tooltip.prototype.getPosition = function ($element) {
         $element = $element || this.$element
 
         var el = $element[0]
@@ -1427,7 +1428,7 @@ function ($) {
         return $.extend({}, elRect, scroll, outerDims, elOffset)
     }
 
-    VSPTooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+    Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
         return placement == 'bottom' ? {
                 top: pos.top + pos.height,
                 left: pos.left + pos.width / 2 - actualWidth / 2
@@ -1448,7 +1449,7 @@ function ($) {
 
     }
 
-    VSPTooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
+    Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
         var delta = {
             top: 0,
             left: 0
@@ -1479,7 +1480,7 @@ function ($) {
         return delta
     }
 
-    VSPTooltip.prototype.getTitle = function () {
+    Tooltip.prototype.getTitle = function () {
         var title
         var $e = this.$element
         var o = this.options
@@ -1490,13 +1491,13 @@ function ($) {
         return title
     }
 
-    VSPTooltip.prototype.getUID = function (prefix) {
+    Tooltip.prototype.getUID = function (prefix) {
         do prefix += ~~(Math.random() * 1000000)
         while (document.getElementById(prefix))
         return prefix
     }
 
-    VSPTooltip.prototype.tip = function () {
+    Tooltip.prototype.tip = function () {
         if (!this.$tip) {
             this.$tip = $(this.options.template)
             if (this.$tip.length != 1) {
@@ -1506,23 +1507,23 @@ function ($) {
         return this.$tip
     }
 
-    VSPTooltip.prototype.arrow = function () {
+    Tooltip.prototype.arrow = function () {
         return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
     }
 
-    VSPTooltip.prototype.enable = function () {
+    Tooltip.prototype.enable = function () {
         this.enabled = true
     }
 
-    VSPTooltip.prototype.disable = function () {
+    Tooltip.prototype.disable = function () {
         this.enabled = false
     }
 
-    VSPTooltip.prototype.toggleEnabled = function () {
+    Tooltip.prototype.toggleEnabled = function () {
         this.enabled = !this.enabled
     }
 
-    VSPTooltip.prototype.toggle = function (e) {
+    Tooltip.prototype.toggle = function (e) {
         var self = this
         if (e) {
             self = $(e.currentTarget).data('bs.' + this.type)
@@ -1541,7 +1542,7 @@ function ($) {
         }
     }
 
-    VSPTooltip.prototype.destroy = function () {
+    Tooltip.prototype.destroy = function () {
         var that = this
         clearTimeout(this.timeout)
         this.hide(function () {
@@ -1567,26 +1568,23 @@ function ($) {
             var options = typeof option == 'object' && option
 
             if (!data && /destroy|hide/.test(option)) return
-            if (!data) $this.data('bs.tooltip', (data = new VSPTooltip(this, options)))
+            if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
             if (typeof option == 'string') data[option]()
         })
     }
 
-    var old = $.fn.vsptooltip
+    var old = $.fn.tooltip
 
-    $.fn.vsptooltip = Plugin
-    $.fn.vsptooltip.Constructor = VSPTooltip
+    $.fn.tooltip = Plugin
+    $.fn.tooltip.Constructor = Tooltip
 
-
-    // TOOLTIP NO CONFLICT
-    // ===================
-
-    $.fn.vsptooltip.noConflict = function () {
-        $.fn.vsptooltip = old
+    $.fn.tooltip.noConflict = function () {
+        $.fn.tooltip = old
         return this
     }
 
 }(jQuery);
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2017 Twitter, Inc.
@@ -1596,33 +1594,30 @@ function ($) {
 function ($) {
     'use strict';
 
-    // POPOVER PUBLIC CLASS DEFINITION
-    // ===============================
-
-    var VSPPopover = function (element, options) {
+    var Popover = function (element, options) {
         this.init('popover', element, options)
     }
 
-    if (!$.fn.vsptooltip) throw new Error('VSPPopover requires tooltip.js')
+    if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-    VSPPopover.VERSION = '3.3.7'
+    Popover.VERSION = '3.3.7'
 
-    VSPPopover.DEFAULTS = $.extend({}, $.fn.vsptooltip.Constructor.DEFAULTS, {
+    Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
         placement: 'right',
         trigger: 'click',
         content: '',
-        template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
     })
+    
+    Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
 
-    VSPPopover.prototype = $.extend({}, $.fn.vsptooltip.Constructor.prototype)
+    Popover.prototype.constructor = Popover
 
-    VSPPopover.prototype.constructor = VSPPopover
-
-    VSPPopover.prototype.getDefaults = function () {
-        return VSPPopover.DEFAULTS
+    Popover.prototype.getDefaults = function () {
+        return Popover.DEFAULTS
     }
 
-    VSPPopover.prototype.setContent = function () {
+    Popover.prototype.setContent = function () {
         var $tip = this.tip()
         var title = this.getTitle()
         var content = this.getContent()
@@ -1639,11 +1634,11 @@ function ($) {
         if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
     }
 
-    VSPPopover.prototype.hasContent = function () {
+    Popover.prototype.hasContent = function () {
         return this.getTitle() || this.getContent()
     }
 
-    VSPPopover.prototype.getContent = function () {
+    Popover.prototype.getContent = function () {
         var $e = this.$element
         var o = this.options
 
@@ -1653,14 +1648,10 @@ function ($) {
                 o.content)
     }
 
-    VSPPopover.prototype.arrow = function () {
+    Popover.prototype.arrow = function () {
         return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
     }
-
-
-    // POPOVER PLUGIN DEFINITION
-    // =========================
-
+    
     function Plugin(option) {
         return this.each(function () {
             var $this = $(this)
@@ -1668,26 +1659,23 @@ function ($) {
             var options = typeof option == 'object' && option
 
             if (!data && /destroy|hide/.test(option)) return
-            if (!data) $this.data('bs.popover', (data = new VSPPopover(this, options)))
+            if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
             if (typeof option == 'string') data[option]()
         })
     }
 
-    var old = $.fn.vsppopover
+    var old = $.fn.popover
 
-    $.fn.vsppopover = Plugin
-    $.fn.vsppopover.Constructor = VSPPopover
+    $.fn.popover = Plugin
+    $.fn.popover.Constructor = Popover
 
-
-    // POPOVER NO CONFLICT
-    // ===================
-
-    $.fn.vsppopover.noConflict = function () {
-        $.fn.vsppopover = old
+    $.fn.popover.noConflict = function () {
+        $.fn.popover = old
         return this
     }
 
 }(jQuery);
+
 ;
 (function () {
 

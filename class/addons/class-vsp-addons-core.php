@@ -23,7 +23,7 @@ if(!class_exists("VSP_Addons_Core")){
         
         public function search_get_addons($single_addon = false){
             $this->addon_metadatas = array();
-            $dirs = apply_filters($this->hook_slug.'_addons_dirs',array('E:\xampp\htdocs\wp-plugins\boilerplate\wp-content\plugins\addons'));
+            $dirs = apply_filters($this->hook_slug.'_addons_dirs',array());
             $internal_addons = $this->search_plugins($this->option("base_path"),$single_addon);
             $internal_addons = $this->get_metadata($internal_addons);
             $external_addons = array();

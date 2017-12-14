@@ -389,8 +389,9 @@ if(!class_exists("VSP_Settings_Handler")){
         }
         
         public function render_section_description( $section ) {
-			foreach ( $this->current_page['sections'] as $setting ) {
-				if ( $this->page_hook .'_'. $setting['id'] === $section['id'] )
+			$current_page = $this->option("current_page");
+			foreach ( $current_page['sections'] as $setting ) {
+				if ( $this->db_slug() .'_'. $setting['id'] === $section['id'] )
 					echo $setting['desc'];
 			}
 		}
