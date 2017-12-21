@@ -182,3 +182,25 @@ if(!function_exists("vsp_fix_title")){
         return sanitize_title($title);
     }
 }
+
+
+if(!function_exists("vsp_update_term_meta")){
+    function vsp_update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
+        return function_exists( 'update_term_meta' ) ? update_term_meta( $term_id, $meta_key, $meta_value, $prev_value ) : update_option('vsp_tm_'.$term_id.'_'.$meta_key,$meta_value);
+    }
+}
+if(!function_exists("vsp_add_term_meta")){
+    function vsp_add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
+        return function_exists( 'add_term_meta' ) ? add_term_meta( $term_id, $meta_key, $meta_value, $unique ) : add_option('vsp_tm_'.$term_id.'_'.$meta_key,$meta_value);
+    }
+}
+if(!function_exists("vsp_delete_term_meta")){
+    function vsp_delete_term_meta( $term_id, $meta_key, $meta_value = '', $deprecated = false ) {
+        return function_exists( 'delete_term_meta' ) ? delete_term_meta( $term_id, $meta_key, $meta_value ) : delete_option('vsp_tm_'.$term_id.'_'.$meta_key);
+    }
+}
+if(!function_exists("vsp_get_term_meta")){
+    function vsp_get_term_meta( $term_id, $key, $single = true ) {
+        return function_exists( 'get_term_meta' ) ? get_term_meta( $term_id, $key, $single ) : get_option('vsp_tm_'.$term_id.'_'.$meta_key);
+    }
+}

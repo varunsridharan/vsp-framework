@@ -5,8 +5,8 @@ if(!defined("ABSPATH")){exit;}
 if(!class_exists("VSP_Settings_Metaboxes")){
     class VSP_Settings_Metaboxes extends VSP_Class_Handler {
         protected $default_options = array(
-            'show_adds' => true,
-            'show_faqs' => true,
+            'show_adds' => false,
+            'show_faqs' => false,
         );
         
         public function __construct($options = array()){
@@ -75,6 +75,9 @@ if(!class_exists("VSP_Settings_Metaboxes")){
     
         
         public function render_faqs(){
+            if($this->option("show_faqs") === false){
+                return;
+            }
             $faqs = $this->get_faq_datas();
             if(empty($faqs)){return;}
             

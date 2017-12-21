@@ -66,7 +66,7 @@ if(!class_exists('VSP_Framework')){
         }
 
         public function load_textdomain($file = '',$domain = ''){
-            $this->hook_function("hook_load_textdomain",array('type' => 'after','file' =>  $file,'domain' => $domain));
+            return $file;
         }
         
         public function enqueue_assets(){

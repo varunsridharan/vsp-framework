@@ -14,6 +14,7 @@ vsp_define("VSP_JS_PATH",VSP_PATH.'assets/js/');
 vsp_define("VSP_CSS_PATH",VSP_PATH.'assets/css/');
 vsp_define("VSP_IMG_PATH",VSP_PATH.'assets/img/');
 vsp_define("VSP_CLASS",VSP_PATH.'class/');
+vsp_define("VSP_LIB",VSP_PATH.'libs/');
 vsp_define("VSP_FUNCTIONS",VSP_PATH.'functions/');
 vsp_define("VSP_HELPERS",VSP_PATH.'helper/');
 

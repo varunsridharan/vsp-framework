@@ -140,6 +140,100 @@ if ( !class_exists( 'VSP_Settings_Fields' ) ) {
 			echo '</fieldset>' . $html . $this->description( $args['desc'] );
 		}
         
+        public function callback_imagesize($args){
+            $args  = $this->get_arguments( $args );
+            
+            $default_value = array('width' => '','height' => '','crop'=>false);
+            $value = $this->get_option($args);
+            
+            if(!is_array($value)){
+                $value = $default_value;
+            }
+            
+            $widthv = isset($value['width']) ? $value['width'] : "";
+            $heightv = isset($value['height']) ? $value['height'] : "";
+            $crop = isset($value['crop']) ? $value['crop'] : "";
+            
+            $width_args = array('section' => $args['section'],'id' => $args['id'],
+                                'attr' => array(
+                                    'size' => '3',
+                                    'id' => $args['section'].'_'.$args['id'].'_width',
+                                    'name' => $args['section'].'['.$args['id'].'][width]'
+                                ),
+                                'value' => $widthv,'text_type' => 'text','type' => 'text',);
+         
+            $height_args = array('section' => $args['section'],'id' => $args['id'],
+                                 'attr' => array(
+                                     'size' => '3',
+                                     'id' => $args['section'].'_'.$args['id'].'_height',
+                                     'name' => $args['section'].'['.$args['id'].'][height]'
+                                 ),
+                                'value' => $heightv,'text_type' => 'text','type' => 'text',);
+            
+            echo $this->create_element('text',$this->get_arguments($width_args));
+            echo ' x ';
+            echo $this->create_element('text',$this->get_arguments($height_args));
+            echo 'px ';
+            echo $this->callback_checkbox(array(
+                'type' => 'checkbox',
+                'id' => $args['id'].'_crop',
+                'section' => $args['section'],
+                'attr' => array( 'id' => $args['section'].'_'.$args['id'].'_crop', 'name' => $args['section'].'['.$args['id'].'][crop]'),
+                'desc' => '',
+                'value' => $crop,
+                'multiple_label' => __(" Hard Crop ?"),
+            ));
+        }
+        
+        public function callback_image($args){
+            wp_enqueue_media();
+            vsp_load_script("vsp-image-field");
+            $args  = $this->get_arguments( $args );
+            $defaults = array(
+                'height' => '100px',
+                'width' => '100px', 
+                'add_button_label' =>  __("Upload / Add Image"),
+                'remove_button_label' => __("Remove Image"),
+                'add_button_class' => 'button',
+                'remove_button_class' => 'button',
+                'value_type' => 'id',
+                'popup-title' => __("Choose Image"),
+                'button-label' => __("Select Image"),
+                'is_multiple' => false,
+            );
+            $settings = $defaults;
+            if(isset($args['settings'])){
+                $settings = wp_parse_args($args['settings'],$defaults);
+            }
+            
+            $value = $this->get_option($args);
+            
+            if($value){
+                $value = wp_get_attachment_image_url($value,'thumbnail');
+            }
+            
+            if(!$value){
+                $value = vsp_placeholder_img();
+            }
+
+            $hidden_args = $args;
+            $hidden_args['text_type'] = 'hidden';
+            $hidden_args['type'] = 'text';
+            $output = '<fieldset>';
+            $output .= '<div class="vsp_image_select_field"> <div id="'.$args['id'].'_thumbnail" style="margin-right: 10px;display: inline-block;vertical-align: middle;">';
+            $output .= '<img src="'.esc_url($value).'"  data-placeholder-src="'.esc_url(vsp_placeholder_img()).'" width="'.$settings['width'].'" height="'.$settings['width'].'"></div>';
+            $output .= '<div style="display: inline-block;vertical-align: middle;">';
+            $output .= $this->create_element('text',$hidden_args);
+            $output .= '<button data-output-type="'.esc_attr($settings['value_type']).'" data-popup-title="'.esc_attr($settings['popup-title']).'" data-button-label="'.esc_attr($settings['button-label']).'" data-is_multiple="'.esc_attr($settings['is_multiple']).'" type="button" class="upload_image_button '.$settings['add_button_class'].'">'.$settings['add_button_label'].'</button>';
+			$output .= '<button type="button" class="remove_image_button '.$settings['remove_button_class'].'">'.$settings['remove_button_label'].'</button>';
+            $output .= '</div>';
+            $output .= '</div>';
+            $output .= isset($args['desc']) ? $this->description($args['desc']) : '';
+            $output .= '</fieldset>';
+            echo $output;
+        }
+        
+        
         public function check_options_type($args){
             if(isset($args['select_type'])){
                 $type = $args['select_type'];
@@ -200,13 +294,15 @@ if ( !class_exists( 'VSP_Settings_Fields' ) ) {
 			return $display_error;
 		}
         
-        private function cache_options($section){
+        public function cache_options($section){
             if(!isset($this->cached_options)){
                 $this->cached_options = array();
             }
             
             if(isset($this->cached_options[$section])){
-                return $this->cached_options[$section];
+                if($this->cached_options[$section] !== false){
+                    return $this->cached_options[$section];
+                }
             }
             
             $this->cached_options[$section] = get_option($section);
@@ -301,15 +397,19 @@ if ( !class_exists( 'VSP_Settings_Fields' ) ) {
             if("checkbox" === $args['type']){
                 if(isset($args['bx_value'])){
                     $use_default = false;
-                    $attr['id'] = $args['section'].'_'.$args['id'].$args['bx_value'];
-                    $attr['name'] = $args['section'].'['.$args['id'].']'.'['.$args['bx_value'].']';
+                    $attr['id'] = $attr['id'].'_'.$args['bx_value'];
+                    $attr['name'] = $attr['name'].'['.$args['bx_value'].']';
                 }
-            }
+            }/*
             
             if($use_default === true){
                 $attr['id'] = $args['section'].'_'.$args['id'];
                 $attr['name'] = $args['section'].'['.$args['id'].']';
             }
+            
+            if(isset($args['name'])){
+                //$attr['name'] .= $args['name'];
+            }*/
             
             return $attr;
         }

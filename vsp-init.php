@@ -114,6 +114,19 @@ if(!function_exists("vsp_class_autoloader")){
     spl_autoload_register('vsp_class_autoloader');
 }
 
+if(!function_exists("vsp_load_lib")){
+    function vsp_load_lib($class){
+        $file = str_replace('_','-',$class);
+        $file = strtolower($file);
+        $file .= '.php';
+        
+        $path = defined("VSP_LIB") ? VSP_LIB : __DIR__.'/libs/';
+        if(file_exists($path.$file)){
+            include($path.$file);
+        }
+    }
+}
+
 if(!function_exists("vsp_plugin_activator")){
     function vsp_plugin_activator($options = array()){
         VSP_Activator::activate($options);

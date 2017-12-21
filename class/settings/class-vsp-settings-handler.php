@@ -120,7 +120,9 @@ if(!class_exists("VSP_Settings_Handler")){
                 'input_class' => array(),
             );
             $opt_defaults = array();
-            $use_defaults = (false === get_option($sec_id)) ? true : false;
+            //$use_defaults = (false === get_option($sec_id)) ? true : false;
+            
+            $use_defaults = (false === $this->fields->cache_options($sec_id)) ? true : false;
             
             foreach($fields as $field){
                 $args = $this->parse_args($field,$defaults);
@@ -131,6 +133,13 @@ if(!class_exists("VSP_Settings_Handler")){
                 if(in_array($args['type'],$this->option("label_for"))){
                     $args['label_for'] = $sec_id.'_'.$args['id'];
                 }
+                
+                if(!isset($args['attr']['id'])){
+                    $args['attr']['id'] = $sec_id.'_'.$args['id'];
+                }
+                
+                $old_name = isset($args['attr']['name']) ? $args['attr']['name'] : "";
+                $args['attr']['name'] = $sec_id.'['.$args['id'].']'.$old_name;
                 
                 if(!$this->fields->has_method('callback_'.$field['type'])){
                     $args['callback'] = $field['type'];

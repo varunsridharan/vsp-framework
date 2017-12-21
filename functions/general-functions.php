@@ -206,3 +206,9 @@ if(!function_exists("vsp_js_vars")){
         return $script;
     }
 }
+
+if(!function_exists("vsp_placeholder_img")){
+    function vsp_placeholder_img(){
+        return apply_filters('vsp_placeholder_img',vsp_img('noimage.png'));
+    }
+}

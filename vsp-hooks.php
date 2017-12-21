@@ -31,6 +31,7 @@ if(!function_exists("vsp_register_assets")){
             'vsp-plugins' => vsp_debug_file('vsp-plugins.js','js'),
             'vsp-framework' => vsp_debug_file('vsp-framework.js','js'),
             'simscroll' => vsp_debug_file('vendors/simscroll/simscroll.js','assets'),
+            'vsp-image-field' => vsp_debug_file('vsp-image-field.js','js'),
         );
         
         $cs = array(
@@ -61,6 +62,7 @@ if(!function_exists("vsp_register_assets")){
         vsp_register_script('vsp-addons',$li['vsp-addons'],array('jquery'),'1.0',true);
         vsp_register_script('woothemes-flexslider',$li['woothemes-flexslider'],array(),'2.0',true);
         vsp_register_script('vsp-framework',$li['vsp-framework'],array('jquery','vsp-plugins'),'1.0',true);
+        vsp_register_script('vsp-image-field',$li['vsp-image-field'],array('jquery'),'1.0',true);
         vsp_register_script('vsp-simscroll',$li['simscroll'],array('jquery'),'1.3.8',true);
         
         vsp_register_style('vsp-select2',$cs['select2'],array(),'2 4.0.4');
