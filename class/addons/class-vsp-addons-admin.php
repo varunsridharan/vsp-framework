@@ -8,7 +8,7 @@ if(!class_exists("VSP_Addons_Admin")){
             parent::__construct();
             $this->addons_list = array();
             $this->settings_pagehook = '';
-            add_action("admin_init",array($this,'on_wp_admin_init'));
+            //add_action("admin_init",array($this,'on_wp_admin_init'));
         }
         
         public function on_wp_admin_init(){
@@ -20,46 +20,35 @@ if(!class_exists("VSP_Addons_Admin")){
         public function load_addons(){
             if(isset($_REQUEST['tab'])){
                 if($_REQUEST['tab'] == $this->option("addon_listing_tab_slug")){
-                    $this->addons_list = $this->search_get_addons();
+                    
                 }
             }
         }
         
-        public function set_settings_section($tabs){
-            $tabs[$this->option("addon_listing_tab_id")] = array(
-                array(
-                    'id' => 'addons-section',
-                    'title' => '',
-                ),
-            );
-            
-            return $tabs;
-        }
+        
         
         public function set_settings_page($pages){
-            $pages[] = array(
-                'id' => $this->option("addon_listing_tab_id"),
-                'slug' => $this->option("addon_listing_tab_slug"),
-                'title' => $this->option("addon_listing_tab_name"),
+            $pages[$this->option("addon_listing_tab_name")] = array(
+                'name' => $this->option("addon_listing_tab_name"),
+                'title' => $this->option("addon_listing_tab_title"),
+                'icon' => $this->option("addon_listing_tab_icon"),
+                'callback_hook' => 'vsp_render_'.$this->hook_slug.'_addons_list',
             );
             return $pages;
         }
         
-        public function render_addons_page($none,$form_id){
+        public function render_addons_page(){
+            $this->addons_list = $this->search_get_addons();
             vsp_load_script('vsp-addons');
             vsp_load_style("vsp-addons");
             wp_enqueue_script( 'plugin-install' );
-            if($form_id !== $this->option("addon_listing_tab_id")){
-                return $none;
-            }
-            
-            
+
             wp_localize_script('vsp-addons','vsp_addons_settings', array(
                 'hook_slug' => $this->option("hook_slug"),
                 'save_slug' => $this->option("db_slug"),
             ));
             
-            return $this->render_category_html().$this->render_addons_html();
+            echo $this->render_category_html().$this->render_addons_html();
         }
         
         

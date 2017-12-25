@@ -39,7 +39,7 @@
                      $(this).on('shown.bs.tooltip', function () {
                          $element.addClass("tooltip-open");
                      });
-                     
+
                      return $element.tooltip(option);
                  })
              }
@@ -111,133 +111,6 @@
          return true;
      }
 
-     $.VSPFRAMEWORK.DEPENDENCY = function (el, param) {
-         var base = this;
-
-         base.$el = $(el);
-
-         base.el = el;
-
-         base.init = function () {
-             base.ruleset = $.deps.createRuleset();
-             var cfg = {
-                 show: function (el) {
-                     el.parent().parent().show();
-                     el.removeClass('hidden');
-                 },
-                 hide: function (el) {
-                     el.parent().parent().hide();
-                     el.addClass('hidden');
-                 },
-                 log: false,
-                 checkTargets: false
-             };
-
-             if (param !== undefined) {
-                 base.depSub();
-             } else {
-                 base.depRoot();
-             }
-             $.deps.enable(base.$el, base.ruleset, cfg);
-         };
-
-         base.depRoot = function () {
-             base.$el.each(function () {
-                 $(this).find('[data-controller]').each(function () {
-                     var $this = $(this),
-                         _controller = $this.data('controller').split('|'),
-                         _condition = $this.data('condition').split('|'),
-                         _value = $this.data('value').toString().split('|'),
-                         _rules = base.ruleset;
-                     $.each(_controller, function (index, element) {
-                         var value = _value[index] || '',
-                             condition = _condition[index] || _condition[0];
-                         _rules = _rules.createRule('[data-depend-id="' + element + '"]', condition, value);
-                         _rules.include($this);
-                     });
-                 });
-             });
-         };
-
-         base.depSub = function () {
-             base.$el.each(function () {
-                 $(this).find('[data-sub-controller]').each(function () {
-                     var $this = $(this),
-                         _controller = $this.data('sub-controller').split('|'),
-                         _condition = $this.data('sub-condition').split('|'),
-                         _value = $this.data('sub-value').toString().split('|'),
-                         _rules = base.ruleset;
-                     $.each(_controller, function (index, element) {
-                         var value = _value[index] || '',
-                             condition = _condition[index] || _condition[0];
-                         _rules = _rules.createRule('[data-sub-depend-id="' + element + '"]', condition, value);
-                         _rules.include($this);
-                     });
-                 });
-             });
-         };
-
-         base.init();
-     };
-
-     $.fn.VSPFRAMEWORK_DEPENDENCY = function (param) {
-         return this.each(function () {
-             new $.VSPFRAMEWORK.DEPENDENCY(this, param);
-         });
-     };
-
-     $.VSPFRAMEWORK.URL_PARAM = function (name, url) {
-         if (!url) url = window.location.href;
-         name = name.replace(/[\[\]]/g, "\\$&");
-         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-             results = regex.exec(url);
-         if (!results) return null;
-         if (!results[2]) return '';
-         return decodeURIComponent(results[2].replace(/\+/g, " "));
-     }
-
-     $.VSPFRAMEWORK.UPDATE_SETTINGS_PAGE_URL = function (clicked_tab, el) {
-         var $location = window.location;
-         clicked_tab = clicked_tab.replace("#", '');
-         var $data = {
-             page: $.VSPFRAMEWORK.URL_PARAM('page'),
-             tab: $.VSPFRAMEWORK.URL_PARAM('tab'),
-             ctab: clicked_tab
-         }
-         var $data = $.param($data);
-         var url = window.location.protocol + '//' + window.location.hostname + window.location.pathname + '?' + $data;
-         $('input[name=_wp_http_referer').val(url);
-         return url;
-     }
-
-     $.VSPFRAMEWORK.show_settings_tab = function (id) {
-         $(".popover-open , .tooltip-open").click();
-         $("div.vsp_settings_content").hide();
-         id = id.replace('#', '#settings_');
-         $(id).show();
-         id = id.replace('#settings_', '#');
-         $('body').trigger("vsp_settings_tab_updated", [id]);
-         
-         return $.VSPFRAMEWORK.UPDATE_SETTINGS_PAGE_URL(id);
-     }
-
-     $.VSPFRAMEWORK.init_settings_tab = function () {
-         var id = $.VSPFRAMEWORK.URL_PARAM("ctab"); //window.location.hash;
-         if (id !== null) {
-             id = '#' + id;
-         }
-
-         if (id == '' || id == null) {
-             $('.vsp_settings_subtab a:first').addClass('current');
-             id = $('.vsp_settings_subtab a:first').attr('href');
-         } else {
-             $('.vsp_settings_subtab a').removeClass('current');
-             $('.vsp_settings_subtab a[href="' + id + '" ]').addClass('current');
-         }
-
-         $.VSPFRAMEWORK.show_settings_tab(id);
-     }
-
      $.VSPFRAMEWORK.get_element_args = function (elem, $options) {
          var $final_data = {};
 
@@ -253,45 +126,55 @@
          return $final_data;
      }
 
-     $.VSPFRAMEWORK.render_faq_ul = function ($faqs, $id, $ulClass) {
+     $.VSPFRAMEWORK.render_faq_ul = function ($faqs, $page, $section, $ulClass) {
          var $html = '<ul class="' + $ulClass + '">';
          $.each($faqs, function ($a, $c) {
-             $html += '<li><a data-tab-id="' + $id + '" class="vsp-faq-single" data-trigger="click" data-toggle-popover="true" data-stitle="' + $c['question'] + '"  href="javascript:void(0);" id="' + $a + '">' + $c['question'] + '</a></li>';
+             $html += '<li><a data-page="' + $page + '" data-section="' + $section + '" class="vsp-faq-single" data-trigger="click" data-toggle-popover="true" data-stitle="' + $c['question'] + '"  href="javascript:void(0);" id="' + $a + '">' + $c['question'] + '</a></li>';
          });
 
          $html += '</ul>';
          return $html;
      }
 
-     $.VSPFRAMEWORK.render_faqs = function ($tab) {
+     $.VSPFRAMEWORK.render_faqs = function ($parent, $subnav, $el) {
+         $(".popover-open , .tooltip-open").click();
          if (typeof vspFramework_Settings_Faqs == undefined) {
              return;
          }
-         var $replace = '#' + vspFramework_Settings_Faqs['prefix_sec_id'] + '_';
-         var $id = $tab.replace($replace, '');
-         var $faqs = vspFramework_Settings_Faqs['faqs'][$id];
-         var $html = '';
-         if (vspFramework_Settings_Faqs['faqs']['global'] !== undefined) {
-             $html = $html + $.VSPFRAMEWORK.render_faq_ul(vspFramework_Settings_Faqs['faqs']['global'], 'global', ' vsp-faq-list vsp-faq-global');
+
+         var $page = $parent;
+         var $section = ($subnav === undefined) ? false : $subnav;
+         var $elem = $el;
+
+         var $faqs = null;
+
+         if ($section === false) {
+             $faqs = vspFramework_Settings_Faqs['faqs'][$page];
+         } else {
+             $faqs = vspFramework_Settings_Faqs['faqs'][$page][$section];
          }
-         $html = $html + $.VSPFRAMEWORK.render_faq_ul($faqs, $id, ' vsp-faq-list ');
 
-         $("#vsp-settings-faq .inside").html($html).find('a').VSPFRAMEWORK_FAQ_TOOLTIP();
-         $("#vsp-settings-faq .inside").slimScroll({
-             height: '250px',
-             allowPageScroll: false,
-             alwaysVisible: true,
-         });
-     }
+         var $html = '';
 
-     $.fn.VSPFRAMEWORK_SETTINGS_TAB = function (el) {
-         el.preventDefault();
-         var clicked_tab = this.attr('href');
-         $(".vsp_settings_subtab a").removeClass("current");
-         this.addClass("current");
+         if ($faqs === null) {
+             return;
+         } else {
 
-         var url = $.VSPFRAMEWORK.show_settings_tab(clicked_tab);
-         //location.href = url;
+             if (vspFramework_Settings_Faqs['faqs']['global'] !== undefined) {
+                 $html = $html + $.VSPFRAMEWORK.render_faq_ul(vspFramework_Settings_Faqs['faqs']['global'], 'global', '', ' vsp-faq-list vsp-faq-global');
+             }
+
+             $html = $html + $.VSPFRAMEWORK.render_faq_ul($faqs, $page, $section, ' vsp-faq-list');
+
+             $("#vsp-settings-faq .inside").html($html).find('a').VSPFRAMEWORK_FAQ_TOOLTIP();;
+
+             $("#vsp-settings-faq .inside").slimScroll({
+                 height: '250px',
+                 allowPageScroll: false,
+                 alwaysVisible: true,
+             });
+
+         }
      }
 
      $.fn.VSPFRAMEWORK_SELECT2 = function () {
@@ -333,35 +216,18 @@
          })
      }
 
-     $.fn.VSPFRAMEWORK_SWITCHERY = function ($element) {
-         if (!$.VSPFRAMEWORK.is_framework_exists('Switchery')) {
-             return;
-         }
-         return this.each(function () {
-             var $this = $(this);
-             var $options = {
-                 color: '#64bd63',
-                 secondaryColor: '#aaa',
-                 jackColor: '#fff',
-                 jackSecondaryColor: null,
-                 className: 'switchery',
-                 disabled: false,
-                 disabledOpacity: 0.5,
-                 speed: '0.1s',
-                 size: 'small'
-             };
-
-             var $final_data = $.VSPFRAMEWORK.get_element_args($this, $options);
-
-             new Switchery($this.get(0), $final_data);
-
-         });
-     };
-
      $.fn.VSPFRAMEWORK_FAQ_TOOLTIP = function () {
          return this.each(function () {
              var $this = $(this);
-             var $tab_id = $this.data('tab-id');
+             var $page = $this.data('page');
+             var $section = $this.data('section');
+             var $fqs = null;
+
+             if ($section === undefined || $section === '') {
+                 $fqs = vspFramework_Settings_Faqs['faqs'][$page];
+             } else {
+                 $fqs = vspFramework_Settings_Faqs['faqs'][$page][$section];
+             }
 
              var $options = {
                  'animation': true,
@@ -372,7 +238,7 @@
                  'placement': 'left',
                  'title': $this.attr("data-stitle") + '<button data-target="a#' + $this.attr('id') + '" type="button" class="close vsp-close-popover" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
                  'content': function ($e) {
-                     var $faqs = vspFramework_Settings_Faqs['faqs'][$tab_id];
+                     var $faqs = $fqs;
                      var $faq = $faqs[$this.attr('id')];
                      $faq = $($.parseHTML('<div>' + $faq['answer'] + '</div>'));
                      $faq.find('a').attr("target", '_blank');
@@ -453,19 +319,18 @@
      };
 
      $(document).ready(function () {
-         
+
          $.VSPFRAMEWORK.init_frameworks();
 
          if ($("#vsp-settings-faq").length > 0) {
-             $("body").on("vsp_settings_tab_updated", function ($event, $settings) {
-                 $.VSPFRAMEWORK.render_faqs($settings);
+             $("body").on("wpsf_settings_nav_updated", function ($event, $parent, $subnav, $el) {
+                 $.VSPFRAMEWORK.render_faqs($parent, $subnav, $el);
              });
              $("#vsp-settings-faq > button.handlediv , #vsp-settings-faq > h2").click(function () {
                  $(this).parent().toggleClass("closed");
              })
          }
 
-         $('.vsp_settings_content , .vsp_inputs').VSPFRAMEWORK_DEPENDENCY();
 
          $("body").on("click", '.vsp-close-popover', function (e) {
              e.preventDefault();
@@ -475,12 +340,7 @@
 
          $('[data-toggle-tooltip="true"] , [data-toggle-popover="true"]').VSPFRAMEWORK_TOOLTIP();
 
-         if ($('.vsp_settings_subtab').length > 0) {
-             $.VSPFRAMEWORK.init_settings_tab();
-             jQuery("body").on("click", '.vsp_settings_subtab a', function (e) {
-                 jQuery(this).VSPFRAMEWORK_SETTINGS_TAB(e);
-             });
-         }
+
 
          if ($(".vsp-select2").length > 0) {
              $(".vsp-select2").VSPFRAMEWORK_SELECT2();
@@ -488,10 +348,6 @@
 
          if ($(".vsp-icheck").length > 0) {
              $(".vsp-icheck").VSPFRAMEWORK_ICHECK();
-         }
-
-         if ($(".vsp-switch").length > 0) {
-             $(".vsp-switch").VSPFRAMEWORK_SWITCHERY();
          }
 
          if ($("#vsp-sys-status-report-text-btn").length > 0) {

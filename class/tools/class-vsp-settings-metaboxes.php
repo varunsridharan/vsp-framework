@@ -5,8 +5,8 @@ if(!defined("ABSPATH")){exit;}
 if(!class_exists("VSP_Settings_Metaboxes")){
     class VSP_Settings_Metaboxes extends VSP_Class_Handler {
         protected $default_options = array(
-            'show_adds' => false,
-            'show_faqs' => false,
+            'show_adds' => true,
+            'show_faqs' => true,
         );
         
         public function __construct($options = array()){
@@ -31,20 +31,21 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         public function handle_faqs($cache){
             $return = array();
             foreach($cache as $page => $sections){
-                if(!isset($return[$page])){$return[$page] = array();}
-                if($page === 'global'){
-                    foreach($sections as $id => $faq){
-                        $return[$page][vsp_fix_title($faq['question'])] = $faq;
-                    }
-                } else {
-                    foreach($sections as $section => $faqs){
-                        if(!isset($return[$page][$section])){$return[$page][$section] = array();}
-                        foreach($faqs as $id => $faq){
-                            $return[$page][$section][vsp_fix_title($faq['question'])] = $faq;
-                        }
+                if(!isset($return[$page])){
+                    $return[$page] = array();
+                }
+                
+                foreach($sections as $sec_id => $section){
+                    if(isset($section['question'])){
+                        $return[$page][vsp_fix_title($section['question'])] = $section;
+                    } else {
+                        foreach($section as $faq){
+                            $return[$page][$sec_id][vsp_fix_title($faq['question'])] = $faq;
+                        }                        
                     }
                 }
             }
+            
             return $return;
         }
         
@@ -59,9 +60,9 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         }
         
         private function get_faq_datas(){
-            $cache = vsp_get_cache($this->plugin_slug().'-faqs');
+            $cache = vsp_get_cache($this->plugin_slug().'-faqss');
             if(false === $cache){
-                $url = $this->plugin_slug().'/faq.json';
+                $url = $this->plugin_slug().'/faq-new.json';
                 $cache = vsp_get_cdn($url,true); 
                 if(empty($cache)){
                    return false; 
@@ -79,25 +80,19 @@ if(!class_exists("VSP_Settings_Metaboxes")){
                 return;
             }
             $faqs = $this->get_faq_datas();
+            
             if(empty($faqs)){return;}
             
             vsp_load_script("vsp-simscroll");
             
-            $current_tabs = $this->option('settings')->option("current_page");
-            $page_id = $current_tabs['id'];
-            $page_slug = $current_tabs['slug'];
+            $current_tabs = $this->option('settings')->current_section(false);
+            $page_id = $this->option('settings')->current_section(false);
             
             echo '<div class="postbox" id="vsp-settings-faq">';
             echo '<button type="button" class="handlediv" aria-expanded="true"><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class="hndle"><span>'.__("F A Q's").'</span></h2>';
-            $current_faqs = isset($faqs[$page_id]) ? $faqs[$page_id] : array();
-            if(empty($current_faqs)){
-                $current_faqs = isset($faqs[$page_slug]) ? $faqs[$page_slug] : array();
-            }
-            if(isset($faqs['global'])){
-                $current_faqs['global'] = $faqs['global'];
-            }
             
-            $current_faqs = array('prefix_sec_id' => $this->db_slug(),'faqs' => $current_faqs);
+            
+            $current_faqs = array('prefix_sec_id' => $this->db_slug(),'faqs' => $faqs);
             echo vsp_js_vars('vspFramework_Settings_Faqs',$current_faqs,true);
             echo '<div class="inside">';
             echo '</div>';
@@ -108,8 +103,8 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             if($this->option("show_adds") === false){
                 return;
             }
-            vsp_load_style('woothemes-flexslider');
-            vsp_load_script('woothemes-flexslider');
+            vsp_load_style('vsp-owlslider');
+            vsp_load_script('vsp-owlslider');
             
             $adds_json = $this->get_adds_data();
              shuffle($adds_json);

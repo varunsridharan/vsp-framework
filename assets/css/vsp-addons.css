@@ -13,8 +13,16 @@
   width: 100%;
 }
 
+@-webkit-keyframes vsp-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes vsp-spin {
   100% {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -29,6 +37,7 @@
   margin-left: -0.5em;
   margin-top: -0.5em;
   content: '';
+  -webkit-animation: vsp-spin 1s ease-in-out infinite;
   animation: vsp-spin 1s ease-in-out infinite;
   background: url("../../img/loader.svg") center center;
   background-size: cover;

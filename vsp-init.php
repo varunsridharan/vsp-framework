@@ -120,7 +120,7 @@ if(!function_exists("vsp_load_lib")){
         $file = strtolower($file);
         $file .= '.php';
         
-        $path = defined("VSP_LIB") ? VSP_LIB : __DIR__.'/libs/';
+        $path = __DIR__.'/libs/';
         if(file_exists($path.$file)){
             include($path.$file);
         }

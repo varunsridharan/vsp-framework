@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if(!class_exists("WP_Async_Request",false)){
-    if(file_exists(VSP_LIB.'wp-async-request.php')){
-        include(VSP_LIB.'wp-async-request.php');
+    if(file_exists(VSP_PATH.'libs/wp-async-request.php')){
+        include(VSP_PATH.'libs/wp-async-request.php');
     }
 }
 

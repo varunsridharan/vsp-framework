@@ -12,9 +12,9 @@ if(!class_exists("VSP_Addons")){
             'plugin_slug' => '',
             'base_path' => '',
             'base_url' => '',
-            'addon_listing_tab_id' => 'addons',
-            'addon_listing_tab_slug' => 'addons-listing',
-            'addon_listing_tab_name' => 'Addons',
+            'addon_listing_tab_name' => 'addons',
+            'addon_listing_tab_title' => "Addons",
+            'addon_listing_tab_icon' => 'fa fa-plus',
             'file_headers' => array(),
             'show_category_count' => true,
         );
@@ -29,9 +29,9 @@ if(!class_exists("VSP_Addons")){
             $this->db_slug = $this->option('plugin_db_slug');
             
             if(vsp_is_request('admin')){
-                add_action($this->hook_slug.'_settings_section',array($this,'set_settings_section'),99,100);
+                //add_action($this->hook_slug.'_settings_section',array($this,'set_settings_section'),99,100);
                 add_action($this->hook_slug.'_settings_pages',array($this,'set_settings_page'),99,100);
-                add_action($this->hook_slug.'_form_fields',array($this,'render_addons_page'),10,2);
+                add_action('vsp_render_'.$this->hook_slug.'_addons_list',array($this,'render_addons_page'),10,2);
             }
             
             if(vsp_is_request("ajax")){

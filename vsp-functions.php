@@ -27,27 +27,27 @@ if(!function_exists("vsp_path")){
 if(!function_exists('vsp_js')){
     function vsp_js($extra = '',$url = true){
         if($url === true){
-            return VSP_JS_URL.$extra;
+            return vsp_url('assets/js/'.$extra);
         }
-        return VSP_JS_PATH.$extra;
+        return vsp_path('assets/js/'.$extra);
     } 
 }
 
 if(!function_exists('vsp_css')){
     function vsp_css($extra = '',$url = true){
         if($url === true){
-            return VSP_CSS_URL.$extra;
+            return vsp_url('assets/css/'.$extra);
         }
-        return VSP_CSS_URL.$extra;
+        return vsp_path('assets/css/'.$extra);
     } 
 }
 
 if(!function_exists('vsp_img')){
     function vsp_img($extra = '',$url = true){
         if($url === true){
-            return VSP_IMG_URL.'/'.$extra;
+            return vsp_url('assets/img/'.$extra);
         }
-        return VSP_IMG_PATH.$extra;
+        return vsp_path('assets/img/'.$extra);
     } 
 }
 
@@ -61,10 +61,10 @@ if(!function_exists("vsp_debug_file")){
             $filename = str_replace ( '.js', '.min.js', $filename );
         }
         
-        
         if($makeurl === 'js'){                
             return vsp_js($filename,$is_url);
         }
+        
         
         if($makeurl === 'css'){
             return vsp_css($filename,$is_url);
@@ -72,6 +72,10 @@ if(!function_exists("vsp_debug_file")){
 
         if($makeurl === 'assets'){
             return vsp_url($makeurl.'/'.$filename,$is_url);
+        }
+        
+        if($makeurl === 'url'){
+            return vsp_url($filename,$is_url);
         }
         
         return $filename;
