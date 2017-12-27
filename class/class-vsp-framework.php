@@ -16,61 +16,93 @@ if(!class_exists('VSP_Framework')){
         }
         
         public function __construct($options = array()){
+            parent::__construct($options);
             $this->settings = null;
             $this->addons = null;
-            parent::__construct($options);
             $this->parse_options($options);
             vsp_register_plugin($this->plugin_slug(),$this);
-            $this->load_required_files();
-            add_action("vsp_framework_init",array($this,'init_plugin'));
+            $this->vsp_load_required_files();
+            add_action("vsp_framework_init",array($this,'vsp_init_plugin'));
+        }
+
+        public function vsp_init_plugin(){
+            $this->vsp_init_class();
+            $this->vsp_init_hooks();
+        }
+
+        private function vsp_init_class(){
+            $this->init_before();
+            $this->action("init_before");
+            $this->vsp_addon_init();
+            
+            if(vsp_is_request("admin")){
+                $this->vsp_settings_init();
+            }
+            $this->init();            
+            $this->action("init");
         }
         
-        public function init_plugin(){
-            $this->init_class();
+        private function vsp_init_hooks(){
+            $this->init_hooks_before();
+            add_action("init",array($this,'vsp_on_wp_init'));
+            add_action('vsp_framework_init', array( $this, 'vsp_plugins_loaded' ));
+            add_filter('load_textdomain_mofile',  array( $this, 'load_textdomain' ), 10, 2);
+            add_action( 'wp_enqueue_scripts', array($this,'add_assets') );
             $this->init_hooks();
         }
 
-        public function init_class(){
-            $this->hook_function("hook_init_class",array('type' => 'before'));
-            $this->action("init_before");
-            $this->addon_init();
-            
-            if(vsp_is_request("admin")){
-                $this->settings_init();
+        private function vsp_addon_init(){
+            if($this->option("addons") !== false){
+                $this->action("addons_init_before");
+                $args = $this->parse_args($this->option("addons"),$this->get_common_args(array('settings' => &$this->settings )));
+                $this->addons = new VSP_Addons($args);
+                $this->action("addons_init");
             }
-            
-            $this->action("init");
-            $this->hook_function("hook_init_class",array('type' => 'after'));
         }
-        
-        public function init_hooks(){
-            $this->hook_function("hook_init_hooks",array('type' => 'before'));
-            add_action("init",array($this,'on_wp_init'));
-            add_action('vsp_framework_init', array( $this, 'plugins_loaded' ));
-            add_filter('load_textdomain_mofile',  array( $this, 'load_textdomain' ), 10, 2);
-            add_action( 'wp_enqueue_scripts', array($this,'enqueue_assets') );
-            $this->hook_function("hook_init_hooks",array('type' => 'after'));
-        }
-        
-        public function load_required_files(){
-            $this->hook_function("hook_load_required_files",array('type' => 'before'));
-        }
-        
-        public function on_wp_init(){
-            $this->hook_function("hook_on_wp_init",array('type' => 'before'));
+    
+        private function vsp_settings_init(){
+            if($this->option("settings_page") !== false){
+                $this->action("settings_init_before");
+                $this->settings_init_before();
+                $args = $this->parse_args($this->option("settings_page"),$this->get_common_args());
+                $this->settings = new VSP_Settings_WPSF($args);
+                $this->settings_init();
+                $this->action("settings_init");
+            }
         }
 
-        public function plugins_loaded(){
-            $this->action("loaded");
-            $this->hook_function("hook_plugins_loaded");
+        private function vsp_load_required_files(){
+            $this->hook_function("load_required_files");
+        }
+
+        public function vsp_on_wp_init(){
+            $this->hook_function("on_wp_init");
+        }
+
+        public function vsp_plugins_loaded(){
+            $this->hook_function_action("loaded");
         }
 
         public function load_textdomain($file = '',$domain = ''){
             return $file;
         }
+
+        public function init_before(){}
         
-        public function enqueue_assets(){
-            
-        }
+        public function init(){}
+        
+        public function init_hooks_before(){}
+        
+        public function init_hooks(){}
+        
+        public function addons_init_before(){}
+        
+        public function addons_init(){}
+        
+        public function settings_init_before(){}
+        
+        public function settings_init(){}
+        
+        public function add_assets(){}
     }
 }

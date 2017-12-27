@@ -30,8 +30,7 @@ if(!function_exists("vsp_cache_options")){
         if($is_modified === true){
             update_option('vsp_settings_sections',$exSections);
         }
-    }
-    
+    }    
 }
 
 

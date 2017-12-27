@@ -11,7 +11,6 @@ if(!class_exists("VSP_Class_Handler")){
         protected $user_options = array();
         
         protected $base_defaults = array(
-            'settings_page_slug' => '',
             'page_hook' => '',
             'plugin_slug' => '',
             'db_slug' => '',
@@ -49,29 +48,13 @@ if(!class_exists("VSP_Class_Handler")){
         }
         
         public function hook_slug(){
-            if(empty($this->option('hook_slug'))){
-                return $this->db_slug();
-            }
-            
-            return $this->option('hook_slug');
+            return (empty($this->option('hook_slug'))) ? $this->db_slug() : $this->option('hook_slug');
         }
         
         public function db_slug(){
-            if(empty($this->option('db_slug'))){
-                return $this->plugin_slug();
-            }
-            
-            return $this->option('db_slug');
+            return (empty($this->option('db_slug'))) ? $this->plugin_slug() : $this->option('db_slug');
         }
-        
-        protected function settings_page_slug(){
-            $data = $this->option("settings_page_slug");
-            if(empty($data)){
-                $data = $this->option("page_hook");
-            }
-            return $data;
-        }
-        
+
         public function version(){
             return $this->option('version');
         }
@@ -85,11 +68,7 @@ if(!class_exists("VSP_Class_Handler")){
         }
         
         protected function option($key = '',$default = false){
-            if(isset($this->options[$key])){
-                return $this->options[$key];
-            }
-
-            return $default;
+            return (isset($this->options[$key])) ? $this->options[$key] : $default;
         }
         
         protected function set_option($key,$value){
@@ -105,7 +84,6 @@ if(!class_exists("VSP_Class_Handler")){
                 'plugin_slug' => $this->plugin_slug(),
                 'db_slug' => $this->db_slug(),
                 'hook_slug' => $this->hook_slug(),
-                'settings_page_slug' => $this->settings_page_slug(),
                 'plugin_name' => $this->option("plugin_name"),
             );
             
@@ -122,8 +100,16 @@ if(!class_exists("VSP_Class_Handler")){
             }
         }
         
+        protected function hook_function_action($hook = ''){
+            $data = func_get_args();
+            unset($data[0]);
+            $this->hook_function($hook,$data);
+            $this->hook_function('action',func_get_args());
+        }
+        
         private function action_filter($type = '',$args = array()){
-            $args[0] = $this->hook_slug().'_'.$args[0];
+            $args[0] = $this->hook_slug().'_'.$args[0];            
+            php_logger($args);
             return call_user_func_array($type,$args);
         }
         

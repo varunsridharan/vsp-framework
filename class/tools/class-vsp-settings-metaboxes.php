@@ -4,6 +4,7 @@ if(!defined("ABSPATH")){exit;}
 
 if(!class_exists("VSP_Settings_Metaboxes")){
     class VSP_Settings_Metaboxes extends VSP_Class_Handler {
+        
         protected $default_options = array(
             'show_adds' => true,
             'show_faqs' => true,
@@ -60,9 +61,9 @@ if(!class_exists("VSP_Settings_Metaboxes")){
         }
         
         private function get_faq_datas(){
-            $cache = vsp_get_cache($this->plugin_slug().'-faqss');
+            $cache = vsp_get_cache($this->plugin_slug().'-faqs');
             if(false === $cache){
-                $url = $this->plugin_slug().'/faq-new.json';
+                $url = $this->plugin_slug().'/faq.json';
                 $cache = vsp_get_cdn($url,true); 
                 if(empty($cache)){
                    return false; 
@@ -72,9 +73,7 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             }
             return $cache;            
         }
-        
-    
-        
+
         public function render_faqs(){
             if($this->option("show_faqs") === false){
                 return;

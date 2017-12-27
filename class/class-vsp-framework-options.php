@@ -18,10 +18,6 @@ if(!class_exists('VSP_Framework_Options')){
             $options['db_slug'] = vsp_fix_slug($options["db_slug"]);
             $options['hook_slug'] = vsp_fix_slug($options["hook_slug"]);
             $this->options = $options;
-        }
-        
-        public function plugin_url($file = __FILE__){
-        }
-        
+        }        
     }
 }
