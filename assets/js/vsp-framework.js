@@ -4,7 +4,7 @@
 
      $.VSPFRAMEWORK.init_frameworks = function () {
          if ($.VSPFRAMEWORK.is_framework_exists('bspopover')) {
-             function extended_popover(option) {
+             function vsp_extended_popover(option) {
                  return this.each(function () {
                      var $element = $(this);
                      $(this).on('hidden.bs.popover', function () {
@@ -21,7 +21,7 @@
 
              var old = $.fn.vsppopover
 
-             $.fn.vsppopover = extended_popover
+             $.fn.vsppopover = vsp_extended_popover
              $.fn.vsppopover.noConflict = function () {
                  $.fn.vsppopover = old
                  return this
@@ -29,7 +29,7 @@
          }
 
          if ($.VSPFRAMEWORK.is_framework_exists('bstooltip')) {
-             function extended_tooltip(option) {
+             function vsp_extended_tooltip(option) {
                  return this.each(function () {
                      var $element = $(this);
                      $(this).on('hidden.bs.tooltip', function () {
@@ -46,7 +46,7 @@
 
              var old = $.fn.vsptooltip;
 
-             $.fn.vsptooltip = extended_tooltip
+             $.fn.vsptooltip = vsp_extended_tooltip
              $.fn.vsptooltip.noConflict = function () {
                  $.fn.vsptooltip = old
                  return this
@@ -77,30 +77,22 @@
              try {
                  jQuery().vsptooltip();
                  $is_error = false;
-             } catch (err) {
-                 console.log(err);
-             }
+             } catch (err) {}
          } else if (type === 'vsppopover') {
              try {
                  jQuery().vsppopover();
                  $is_error = false;
-             } catch (err) {
-                 console.log(err);
-             }
+             } catch (err) {}
          } else if (type === 'bstooltip') {
              try {
                  jQuery().tooltip();
                  $is_error = false;
-             } catch (err) {
-                 console.log(err);
-             }
+             } catch (err) {}
          } else if (type === 'bspopover') {
              try {
                  jQuery().popover();
                  $is_error = false;
-             } catch (err) {
-                 console.log(err);
-             }
+             } catch (err) {}
          }
 
          if ($is_error === true) {
@@ -129,7 +121,7 @@
      $.VSPFRAMEWORK.render_faq_ul = function ($faqs, $page, $section, $ulClass) {
          var $html = '<ul class="' + $ulClass + '">';
          $.each($faqs, function ($a, $c) {
-             $html += '<li><a data-page="' + $page + '" data-section="' + $section + '" class="vsp-faq-single" data-trigger="click" data-toggle-popover="true" data-stitle="' + $c['question'] + '"  href="javascript:void(0);" id="' + $a + '">' + $c['question'] + '</a></li>';
+             $html += '<li><a data-page="' + $page + '" data-section="' + $section + '" class="vsp-faq-single" data-trigger="click" data-stitle="' + $c['question'] + '"  href="javascript:void(0);" id="' + $a + '">' + $c['question'] + '</a></li>';
          });
 
          $html += '</ul>';
@@ -142,39 +134,44 @@
              return;
          }
 
+         var $vspsf = vspFramework_Settings_Faqs;
          var $page = $parent;
          var $section = ($subnav === undefined) ? false : $subnav;
          var $elem = $el;
-
+         var $theme = $('.wpsf-framework').data('theme');
+         var $spage = $('.wpsf-framework').data('single-page');
          var $faqs = null;
-
-         if ($section === false) {
-             $faqs = vspFramework_Settings_Faqs['faqs'][$page];
-         } else {
-             $faqs = vspFramework_Settings_Faqs['faqs'][$page][$section];
-         }
-
          var $html = '';
 
-         if ($faqs === null) {
+         if($theme === 'modern' && $page === undefined){
              return;
-         } else {
-
-             if (vspFramework_Settings_Faqs['faqs']['global'] !== undefined) {
-                 $html = $html + $.VSPFRAMEWORK.render_faq_ul(vspFramework_Settings_Faqs['faqs']['global'], 'global', '', ' vsp-faq-list vsp-faq-global');
-             }
-
-             $html = $html + $.VSPFRAMEWORK.render_faq_ul($faqs, $page, $section, ' vsp-faq-list');
-
-             $("#vsp-settings-faq .inside").html($html).find('a').VSPFRAMEWORK_FAQ_TOOLTIP();;
-
-             $("#vsp-settings-faq .inside").slimScroll({
-                 height: '250px',
-                 allowPageScroll: false,
-                 alwaysVisible: true,
-             });
-
          }
+         
+         if ($vspsf['faqs'][$page] !== undefined) {
+             if ($section === false) {
+                 if($theme === 'simple' && $spage === 'no'){
+                     return;
+                 }
+                 $faqs = $vspsf['faqs'][$page];
+             } else {
+                 $faqs = $vspsf['faqs'][$page][$section];
+             }
+         }
+         
+         
+         if ($vspsf['faqs']['global'] !== undefined) {
+             $html = $html + $.VSPFRAMEWORK.render_faq_ul($vspsf['faqs']['global'], 'global', '', ' vsp-faq-list vsp-faq-global');
+         }
+
+         $html = $html + $.VSPFRAMEWORK.render_faq_ul($faqs, $page, $section, ' vsp-faq-list');
+
+         $("#vsp-settings-faq .inside").html($html).find('a').VSPFRAMEWORK_FAQ_TOOLTIP();
+
+         $("#vsp-settings-faq .inside").slimScroll({
+             height: '250px',
+             allowPageScroll: false,
+             alwaysVisible: true,
+         });
      }
 
      $.fn.VSPFRAMEWORK_SELECT2 = function () {
@@ -319,10 +316,18 @@
      };
 
      $(document).ready(function () {
-
          $.VSPFRAMEWORK.init_frameworks();
 
          if ($("#vsp-settings-faq").length > 0) {
+             if ($('.wpsf-framework').data('theme') === 'modern') {
+                 var $active = $('.wpsf-section-active');
+                 $.VSPFRAMEWORK.render_faqs($active.data('parent-section'), $active.data('section'), $active);
+             } else if ($('.wpsf-framework').data('theme') === 'simple') {
+                 var $active = $('.nav-tab-wrapper .nav-tab-active').data('section');
+                 var $active = $("#wpsf-tab-" + $active).find('a.current');
+                 $.VSPFRAMEWORK.render_faqs($active.data('parent-section'), $active.data('section'), $active);
+             }
+
              $("body").on("wpsf_settings_nav_updated", function ($event, $parent, $subnav, $el) {
                  $.VSPFRAMEWORK.render_faqs($parent, $subnav, $el);
              });
@@ -331,7 +336,6 @@
              })
          }
 
-
          $("body").on("click", '.vsp-close-popover', function (e) {
              e.preventDefault();
              var $target = $(this).attr('data-target');
@@ -339,8 +343,6 @@
          });
 
          $('[data-toggle-tooltip="true"] , [data-toggle-popover="true"]').VSPFRAMEWORK_TOOLTIP();
-
-
 
          if ($(".vsp-select2").length > 0) {
              $(".vsp-select2").VSPFRAMEWORK_SELECT2();
@@ -360,14 +362,18 @@
          }
 
          if ($('.vsp-adds-slider').length > 0) {
-             $('.vsp-adds-slider').owlCarousel({
+             var $owl = $('.vsp-adds-slider').owlCarousel({
                  items: 1,
                  nav: true,
                  autoplay: true,
                  autoHeight: true,
                  navText: ['< prev', 'next >'],
+                 callbacks: true,
                  dots: false,
-
+                 onInitialize: function () {},
+                 onInitialized: function () {
+                     $('.vsp-adds-slider button').attr("type", 'button');
+                 }
              });
          }
      });

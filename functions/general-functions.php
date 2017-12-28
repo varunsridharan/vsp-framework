@@ -177,7 +177,7 @@ if(!function_exists("vsp_get_cdn")){
         $resource = wp_remote_get($url);
         
         if(is_wp_error($resource)){
-            return $resource   ;
+            return $resource;
         } else {
             $body = wp_remote_retrieve_body( $resource );
             return json_decode($body,$force_decode);

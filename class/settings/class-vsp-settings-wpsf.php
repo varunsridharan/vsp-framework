@@ -2,6 +2,8 @@
 if(!class_exists("VSP_Settings_WPSF")){
     class VSP_Settings_WPSF extends VSP_Class_Handler {
         protected $default_options = array(
+            'show_adds' => true,
+            'show_faqs' => true,
             'plugin_slug' => '',
             'hook_slug' => '',
             'db_slug' => '',
@@ -48,7 +50,7 @@ if(!class_exists("VSP_Settings_WPSF")){
 
                 $this->final_array();
                 add_action("init",array(&$this,'init_settings'),10);
-                add_action("vsp_wp_settings_simple_footer",array(&$this,'render_settings_metaboxes'));
+               add_action("vsp_wp_settings_simple_footer",array(&$this,'render_settings_metaboxes'));
                 add_action('vsp_show_sys_page',array(&$this,'render_sys_page'));
             }
         }
@@ -67,7 +69,7 @@ if(!class_exists("VSP_Settings_WPSF")){
 
         public function get_settings_config(){
             
-            $defaults = array('menu_parent','menu_title','menu_type','menu_slug','menu_icon','menu_position','menu_capability','ajax_save','show_reset_all','framework_title','options_name','style','is_single_page','is_sticky_header','extra_css','extra_js');
+            $defaults = array('menu_parent','menu_title','menu_type','menu_slug','menu_icon','menu_position','menu_capability','ajax_save','show_reset_all','framework_title','options_name','style','is_single_page','is_sticky_header','extra_css','extra_js','buttons');
             $this->page_config = array();
             foreach($defaults as $op){
                 $this->page_config[$op] = $this->option($op,'');
@@ -120,7 +122,6 @@ if(!class_exists("VSP_Settings_WPSF")){
                 }
                 
             }
-            
             $this->final_options = $pages;
         }
     
@@ -134,7 +135,10 @@ if(!class_exists("VSP_Settings_WPSF")){
         }
 
         public function render_settings_metaboxes(){
-            $adds = new VSP_Settings_Metaboxes(array_merge(array('settings' => &$this->framework->settings),$this->get_common_args()));
+            $adds = new VSP_Settings_Metaboxes($this->get_common_args(array(
+                'show_adds' => $this->option('show_adds'),
+                'show_faqs' => $this->option('show_faqs'),
+            )));
             $adds->render_metaboxes();
         }
         

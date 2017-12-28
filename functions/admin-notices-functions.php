@@ -3,6 +3,10 @@ if(!defined("ABSPATH")){ exit; }
 
 if(!function_exists('vsp_notices')){
     function vsp_notices($type = ''){
+        if(!class_exists("VSP_Admin_Notice",false)){
+            require_once(VSP_PATH.'class/tools/class-vsp-admin-notice.php');
+        }
+        
         switch($type){
             case 'error':
                 return new VSP_Admin_Notices_Error;
@@ -45,28 +49,37 @@ if(!function_exists('vsp_notice')){
 }
 
 if(!function_exists('vsp_notice_error')){
-    function vsp_notice_error( $message,$times = 1, $id = '', $screen = array(),$args = array()) {
+    function vsp_notice_error( $message,$id = '', $times = 1,  $screen = array(),$args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+            return;
+        }
         vsp_notice($message,'error',$args);
     }
 }
 
 if(!function_exists('vsp_notice_update')){
-    function vsp_notice_update( $message,$times = 1, $id = '', $screen = array(),$args = array()) {
+    function vsp_notice_update( $message,$id = '', $times = 1,  $screen = array(),$args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+            return;
+        }
         vsp_notice($message,'update',$args);
     }
 }
 
 if(!function_exists('vsp_notice_upgrade')){
-    function vsp_notice_upgrade( $message,$times = 1, $id = '', $screen = array(),$args = array()) {
+    function vsp_notice_upgrade( $message,$id = '', $times = 1,  $screen = array(),$args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+            return;
+        }
         vsp_notice($message,'upgrade',$args);
     }
 }

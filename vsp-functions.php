@@ -1,5 +1,96 @@
 <?php
 if(!defined("ABSPATH")){ exit; }
+global $vsp_plugins,$vsp_loaded_framework,$vsp_framework_data;
+$vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
+
+if(!function_exists("vsp_class_autoloader")){
+    function vsp_class_autoloader($class) {
+        $class = strtolower($class);
+        if ( false === strpos( $class, 'vsp_' ) ) {
+            return;
+        }
+        $current = str_ireplace( '_', '-', $class );
+        
+        $path = defined("VSP_PATH") ? VSP_PATH : __DIR__.'/';
+        
+        $base_path = $path.'class/class-'.$current.'.php';
+        $settings_path = $path.'class/settings/class-'.$current.'.php';
+        $addons_path = $path.'class/addons/class-'.$current.'.php';
+        $tools_path = $path.'class/tools/class-'.$current.'.php';
+        if(false !== strpos($class,'vsp_settings')){            
+            if(file_exists($settings_path)){
+                include($settings_path);
+            } else if(file_exists($tools_path)){
+                include($tools_path);
+            }
+        } else if(false !== strpos($class,'vsp_addons')){
+            if(file_exists($addons_path)){
+                include($addons_path);
+            }
+        } else if(file_exists($tools_path)){
+            include($tools_path);
+        } else if(file_exists($base_path)){
+            include($base_path);
+        }
+        
+    }
+    spl_autoload_register('vsp_class_autoloader');
+}
+
+if(!function_exists("vsp_register_plugin")){
+    function vsp_register_plugin($slug = '',&$instance = ''){
+        global $vsp_plugins;
+        
+        if(!empty($slug) && !empty($instance)){
+            $vsp_plugins[$slug] = $instance;
+        }
+    }
+}
+
+if(!function_exists('vsp_get_all_plugins')){
+    function vsp_get_all_plugins($only_slugs = true){
+        global $vsp_plugins;
+        if($only_slugs === false){
+            return $vsp_plugins;
+        }
+        return array_keys($vsp_plugins);
+    }
+}
+
+if(!function_exists("vsp_get_plugin")){
+    function vsp_get_plugin($slug = ''){
+        global $vsp_plugins;
+        if(isset($vsp_plugins[$slug])){
+            return $vsp_plugins[$slug];
+        }
+        return false;
+    }
+}
+
+if ( ! function_exists( 'vsp_is_plugin_active' ) ) {
+	function vsp_is_plugin_active($file= '') {
+		return VSP_Dependencies::active_check($file);
+	}
+}
+
+if(!function_exists("vsp_wc_active")){
+    function vsp_wc_active(){
+        return vsp_is_plugin_active('woocommerce/woocommerce.php');
+    }
+}
+
+if(!function_exists("vsp_load_lib")){
+    function vsp_load_lib($class){
+        $file = str_replace('_','-',$class);
+        $file = strtolower($file);
+        $file .= '.php';
+        
+        $path = __DIR__.'/libs/';
+        if(file_exists($path.$file)){
+            include($path.$file);
+        }
+    }
+}
 
 if(!function_exists('vsp_define')){
     function vsp_define($key,$value){

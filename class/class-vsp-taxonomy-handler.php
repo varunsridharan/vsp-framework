@@ -37,6 +37,9 @@ class VSP_WPSF_Integration {
         }
         
         if(is_array($this->shortcode_fields) && !empty($this->shortcode_fields)){
+            $this->shortcode_fields['settings'] = array(
+                'button_title' => __("VSP Shortcodes"),
+            );
             $this->shortcode_instance = new WPSFramework_Shortcode_Manager($this->shortcode_fields);
         }
     }

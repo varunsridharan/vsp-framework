@@ -54,6 +54,13 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             $cache = vsp_get_cache('vsp_shameless_plug');
             if(false === $cache){
                 $cache = vsp_get_cdn("shameless_plug.json",true);
+                if(is_wp_error($cache)){
+                    return false;
+                }
+                
+                if(empty($cache)){
+                   return false; 
+                }
                 vsp_set_cache("vsp_shameless_plug",$cache,'10_days');
             }
             
@@ -68,6 +75,10 @@ if(!class_exists("VSP_Settings_Metaboxes")){
                 if(empty($cache)){
                    return false; 
                 }
+                
+                if(is_wp_error($cache)){
+                    return false;
+                }
                 $cache = $this->handle_faqs($cache);
                 vsp_set_cache($this->plugin_slug().'-faqs',$cache,'10_days');
             }
@@ -79,18 +90,10 @@ if(!class_exists("VSP_Settings_Metaboxes")){
                 return;
             }
             $faqs = $this->get_faq_datas();
-            
             if(empty($faqs)){return;}
-            
             vsp_load_script("vsp-simscroll");
-            
-            $current_tabs = $this->option('settings')->current_section(false);
-            $page_id = $this->option('settings')->current_section(false);
-            
             echo '<div class="postbox" id="vsp-settings-faq">';
             echo '<button type="button" class="handlediv" aria-expanded="true"><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class="hndle"><span>'.__("F A Q's").'</span></h2>';
-            
-            
             $current_faqs = array('prefix_sec_id' => $this->db_slug(),'faqs' => $faqs);
             echo vsp_js_vars('vspFramework_Settings_Faqs',$current_faqs,true);
             echo '<div class="inside">';
@@ -104,9 +107,8 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             }
             vsp_load_style('vsp-owlslider');
             vsp_load_script('vsp-owlslider');
-            
             $adds_json = $this->get_adds_data();
-             shuffle($adds_json);
+            shuffle($adds_json);
             echo '<div class="postbox" id="vsp-adds-sidebar">';
                 echo '<div class="inside"> ';
                     echo '<div class="owl-carousel owl-theme vsp-adds-slider"> ';

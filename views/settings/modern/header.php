@@ -1,4 +1,4 @@
-<div id="poststuff">
+<div class="vsp_with_metaboxes"><div id="poststuff">
         <div class="metabox-holder columns-2" id="post-body">
             <div id="post-body-content">
             <header class="wpsf-header <?php echo $class->is_sticky_header(); ?>">

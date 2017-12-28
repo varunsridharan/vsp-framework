@@ -108,8 +108,7 @@ if(!class_exists("VSP_Class_Handler")){
         }
         
         private function action_filter($type = '',$args = array()){
-            $args[0] = $this->hook_slug().'_'.$args[0];            
-            php_logger($args);
+            $args[0] = $this->hook_slug().'_'.$args[0];
             return call_user_func_array($type,$args);
         }
         
