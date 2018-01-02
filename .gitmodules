@@ -1,0 +1,3 @@
+[submodule "/"]
+  path= /libs/wpsf/
+url = https://github.com/wpsf/wpsf-dev
