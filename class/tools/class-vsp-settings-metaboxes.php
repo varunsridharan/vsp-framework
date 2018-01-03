@@ -93,7 +93,7 @@ if(!class_exists("VSP_Settings_Metaboxes")){
             if(empty($faqs)){return;}
             vsp_load_script("vsp-simscroll");
             echo '<div class="postbox" id="vsp-settings-faq">';
-            echo '<button type="button" class="handlediv" aria-expanded="true"><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class="hndle"><span>'.__("F A Q's").'</span></h2>';
+            echo '<button type="button" class="handlediv" aria-expanded="true"><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class="hndle"><span>'.__("F A Q's",'vsp-framework').'</span></h2>';
             $current_faqs = array('prefix_sec_id' => $this->db_slug(),'faqs' => $faqs);
             echo vsp_js_vars('vspFramework_Settings_Faqs',$current_faqs,true);
             echo '<div class="inside">';

@@ -43,23 +43,23 @@ if(!class_exists("VSP_Site_Status_Report")){
 
         private function get_theme_information($theme,$prefix = ''){
             $return = array();
-            $return[$prefix.__("Theme Name")] = $theme->name;
-            $return[$prefix.__("Theme Version")] = $theme->version;
-            $return[$prefix.__("Theme URI")] = $theme->get('ThemeURI');
-            $return[$prefix.__("Theme Description")] = $theme->description;
-            $return[$prefix.__("Theme Author")] = $theme->get('Author');
-            $return[$prefix.__("Theme AuthorURI")] = $theme->get('AuthorURI');
-            $return[$prefix.__("Parent Theme")] = $theme->parent_theme;
+            $return[$prefix.__("Theme Name",'vsp-framework')] = $theme->name;
+            $return[$prefix.__("Theme Version",'vsp-framework')] = $theme->version;
+            $return[$prefix.__("Theme URI",'vsp-framework')] = $theme->get('ThemeURI');
+            $return[$prefix.__("Theme Description",'vsp-framework')] = $theme->description;
+            $return[$prefix.__("Theme Author",'vsp-framework')] = $theme->get('Author');
+            $return[$prefix.__("Theme AuthorURI",'vsp-framework')] = $theme->get('AuthorURI');
+            $return[$prefix.__("Parent Theme",'vsp-framework')] = $theme->parent_theme;
             return $return;
         }
         
         private function get_plugin_information($plugin,$prefix = ''){
             $return = array();
-            $return[$prefix.__("Name")] = $plugin['Name'];
-            $return[$prefix.__("PluginURI")] = $plugin['PluginURI'];
-            $return[$prefix.__("Version")] = $plugin['Version'];
-            $return[$prefix.__("Author")] = $plugin['Author'];
-            $return[$prefix.__("AuthorURI")] = $plugin['AuthorURI'];
+            $return[$prefix.__("Name",'vsp-framework')] = $plugin['Name'];
+            $return[$prefix.__("PluginURI",'vsp-framework')] = $plugin['PluginURI'];
+            $return[$prefix.__("Version",'vsp-framework')] = $plugin['Version'];
+            $return[$prefix.__("Author",'vsp-framework')] = $plugin['Author'];
+            $return[$prefix.__("AuthorURI",'vsp-framework')] = $plugin['AuthorURI'];
             return $return;
         }
 
@@ -97,39 +97,39 @@ if(!class_exists("VSP_Site_Status_Report")){
             global $wpdb,$WP_REMOTE_POST;
             $front_page_id = get_option( 'page_on_front' );
             $blog_page_id = get_option( 'page_for_posts' ); 
-            $this->wp_env[__("Home URL")] = home_url(); 
-            $this->wp_env[__("Site URL")] = site_url(); 
-            $this->wp_env[__("WP Version")] = get_bloginfo( 'version' );
-            $this->wp_env[__("WP Language")] = (defined( 'WPLANG' ) && WPLANG ? WPLANG : 'en_US' );
-            $this->wp_env[__("Multisite")] = $this->_bool(is_multisite());
-            $this->wp_env[__("WP Memory Limit")] = WP_MEMORY_LIMIT."MB";
-            $this->wp_env[__("WP Table Prefix")] = $wpdb->prefix;
-            $this->wp_env[__("WP Timezone")] = get_option('timezone_string') . ', GMT: ' . get_option('gmt_offset'); 
-            $this->wp_env[__("WP Remote Post")] = ($WP_REMOTE_POST) ? __("Enabled") : __("Disabled");
-            $this->wp_env[__("Permalink Structure")] = get_option( 'permalink_structure' );
-            $this->wp_env[__("Registered Post Stati")] = implode(" , ",get_post_stati());
-            $this->wp_env[__("Show On Front")] = get_option( 'show_on_front' );
-            $this->wp_env[__("Page On Front")] = ( $front_page_id != 0 ? get_the_title( $front_page_id ) . ' (#' . $front_page_id . ')' : 'Unset' );
-            $this->wp_env[__("Show On Front")] = ( $blog_page_id != 0 ? get_the_title( $blog_page_id ) . ' (#' . $blog_page_id . ')' : 'Unset' );
-            $this->server_info[__("Server Info")] = $_SERVER['SERVER_SOFTWARE'];
-            $this->server_info[__("Host")] = $this->get_host();
-            $this->server_info[__("Default Timezone")] = date_default_timezone_get();
+            $this->wp_env[__("Home URL",'vsp-framework')] = home_url(); 
+            $this->wp_env[__("Site URL",'vsp-framework')] = site_url(); 
+            $this->wp_env[__("WP Version",'vsp-framework')] = get_bloginfo( 'version' );
+            $this->wp_env[__("WP Language",'vsp-framework')] = (defined( 'WPLANG' ) && WPLANG ? WPLANG : 'en_US' );
+            $this->wp_env[__("Multisite",'vsp-framework')] = $this->_bool(is_multisite());
+            $this->wp_env[__("WP Memory Limit",'vsp-framework')] = WP_MEMORY_LIMIT."MB";
+            $this->wp_env[__("WP Table Prefix",'vsp-framework')] = $wpdb->prefix;
+            $this->wp_env[__("WP Timezone",'vsp-framework')] = get_option('timezone_string') . ', GMT: ' . get_option('gmt_offset'); 
+            $this->wp_env[__("WP Remote Post",'vsp-framework')] = ($WP_REMOTE_POST) ? __("Enabled",'vsp-framework') : __("Disabled",'vsp-framework');
+            $this->wp_env[__("Permalink Structure",'vsp-framework')] = get_option( 'permalink_structure' );
+            $this->wp_env[__("Registered Post Stati",'vsp-framework')] = implode(" , ",get_post_stati());
+            $this->wp_env[__("Show On Front",'vsp-framework')] = get_option( 'show_on_front' );
+            $this->wp_env[__("Page On Front",'vsp-framework')] = ( $front_page_id != 0 ? get_the_title( $front_page_id ) . ' (#' . $front_page_id . ')' : 'Unset' );
+            $this->wp_env[__("Show On Front",'vsp-framework')] = ( $blog_page_id != 0 ? get_the_title( $blog_page_id ) . ' (#' . $blog_page_id . ')' : 'Unset' );
+            $this->server_info[__("Server Info",'vsp-framework')] = $_SERVER['SERVER_SOFTWARE'];
+            $this->server_info[__("Host",'vsp-framework')] = $this->get_host();
+            $this->server_info[__("Default Timezone",'vsp-framework')] = date_default_timezone_get();
               
             if ( $wpdb->use_mysqli ) {
-                $this->server_info[__("MySql Version")] = @mysqli_get_server_info( $wpdb->dbh );
+                $this->server_info[__("MySql Version",'vsp-framework')] = @mysqli_get_server_info( $wpdb->dbh );
             } else { 
-                $this->server_info[__("MySql Version")] = @mysql_get_server_info(); 
+                $this->server_info[__("MySql Version",'vsp-framework')] = @mysql_get_server_info(); 
             }
         }
         
         public function set_active_theme_data(){
             $active_theme = wp_get_theme(); 
             $active_theme = $this->get_theme_information($active_theme);
-            $active_theme[__("Is Child Theme")] = is_child_theme() ? __("Yes") :  __("No");
+            $active_theme[__("Is Child Theme",'vsp-framework')] = is_child_theme() ? __("Yes") :  __("No");
             
             if( is_child_theme() ) {
                 $parent_theme = wp_get_theme( $active_theme->Template );
-                $active_theme = array_merge($active_theme,$this->get_theme_information($parent_theme,__("Parent Theme")));
+                $active_theme = array_merge($active_theme,$this->get_theme_information($parent_theme,__("Parent Theme",'vsp-framework')));
             }
             
             $this->active_theme = $active_theme;
@@ -171,36 +171,36 @@ if(!class_exists("VSP_Site_Status_Report")){
         }
         
         public function set_php_data(){
-            $this->php_info[__("PHP Version")] = PHP_VERSION;
-            $this->php_info[__("PHP Post Max Size")] = ini_get( 'post_max_size' );
-            $this->php_info[__("PHP Time Limit")] = ini_get( 'max_execution_time' );
-            $this->php_info[__("PHP Max Input Vars")] = ini_get( 'max_input_vars' );
-            $this->php_info[__("PHP Safe Mode")] = $this->_bool(ini_get( 'safe_mode' ));
-            $this->php_info[__("PHP Memory Limit")] = ini_get( 'memory_limit' );
-            $this->php_info[__("PHP Upload Max Size")] = ini_get( 'upload_max_filesize' );
-            $this->php_info[__("PHP Arg Separator")] = ini_get( 'arg_separator.output' );
-            $this->php_info[__("PHP Allow URL File Open")] = $this->_bool(ini_get( 'allow_url_fopen' ));
-            $this->php_exts[__("Display Errors")] = $this->_bool(ini_get( 'display_errors' ));
-            $this->php_exts[__("FSOCKOPEN")] = $this->_bool(function_exists( 'fsockopen' ));
-            $this->php_exts[__("cURL")] = $this->_bool(function_exists( 'curl_init' ));
-            $this->php_exts[__("SOAP Client")] = $this->_bool(function_exists( 'SoapClient' ));
-            $this->php_exts[__("SUHOSIN")] = $this->_bool(function_exists( 'suhosin' ));
-            $this->session_config[__("Session")] = $this->_bool(isset( $_SESSION ));
-            $this->session_config[__("Session Name")] = esc_html( ini_get( 'session.name' ) );
-            $this->session_config[__("Cookie Path")] = esc_html( ini_get( 'session.cookie_path' ) );
-            $this->session_config[__("Save Path")] = esc_html( ini_get( 'session.save_path' ) );
-            $this->session_config[__("Use Cookies")] = $this->_bool(ini_get( 'session.use_cookies' ),'Yes','No');
-            $this->session_config[__("Use Only Cookies")] = $this->_bool(ini_get( 'session.use_only_cookies' ),'Yes','No');
+            $this->php_info[__("PHP Version",'vsp-framework')] = PHP_VERSION;
+            $this->php_info[__("PHP Post Max Size",'vsp-framework')] = ini_get( 'post_max_size' );
+            $this->php_info[__("PHP Time Limit",'vsp-framework')] = ini_get( 'max_execution_time' );
+            $this->php_info[__("PHP Max Input Vars",'vsp-framework')] = ini_get( 'max_input_vars' );
+            $this->php_info[__("PHP Safe Mode",'vsp-framework')] = $this->_bool(ini_get( 'safe_mode' ));
+            $this->php_info[__("PHP Memory Limit",'vsp-framework')] = ini_get( 'memory_limit' );
+            $this->php_info[__("PHP Upload Max Size",'vsp-framework')] = ini_get( 'upload_max_filesize' );
+            $this->php_info[__("PHP Arg Separator",'vsp-framework')] = ini_get( 'arg_separator.output' );
+            $this->php_info[__("PHP Allow URL File Open",'vsp-framework')] = $this->_bool(ini_get( 'allow_url_fopen' ));
+            $this->php_exts[__("Display Errors",'vsp-framework')] = $this->_bool(ini_get( 'display_errors' ));
+            $this->php_exts[__("FSOCKOPEN",'vsp-framework')] = $this->_bool(function_exists( 'fsockopen' ));
+            $this->php_exts[__("cURL",'vsp-framework')] = $this->_bool(function_exists( 'curl_init' ));
+            $this->php_exts[__("SOAP Client",'vsp-framework')] = $this->_bool(function_exists( 'SoapClient' ));
+            $this->php_exts[__("SUHOSIN",'vsp-framework')] = $this->_bool(function_exists( 'suhosin' ));
+            $this->session_config[__("Session",'vsp-framework')] = $this->_bool(isset( $_SESSION ));
+            $this->session_config[__("Session Name",'vsp-framework')] = esc_html( ini_get( 'session.name' ) );
+            $this->session_config[__("Cookie Path",'vsp-framework')] = esc_html( ini_get( 'session.cookie_path' ) );
+            $this->session_config[__("Save Path",'vsp-framework')] = esc_html( ini_get( 'session.save_path' ) );
+            $this->session_config[__("Use Cookies",'vsp-framework')] = $this->_bool(ini_get( 'session.use_cookies' ),'Yes','No');
+            $this->session_config[__("Use Only Cookies",'vsp-framework')] = $this->_bool(ini_get( 'session.use_only_cookies' ),'Yes','No');
         }
         
         public function set_vsp_framework(){
             global $vsp_loaded_framework;
             
-            $this->vsp_framework[__("Framework Version")] = $vsp_loaded_framework['Version'];
-            $this->vsp_framework[__("Textdomain")] = $vsp_loaded_framework['TextDomain'];
-            $this->vsp_framework[__("DomainPath")] = $vsp_loaded_framework['DomainPath'];
-            $this->vsp_framework[__("Framework Plugin Path")] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['plugin_path']);
-            $this->vsp_framework[__("Framework Path")] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['framework_path']);
+            $this->vsp_framework[__("Framework Version",'vsp-framework')] = $vsp_loaded_framework['Version'];
+            $this->vsp_framework[__("Textdomain",'vsp-framework')] = $vsp_loaded_framework['TextDomain'];
+            $this->vsp_framework[__("DomainPath",'vsp-framework')] = $vsp_loaded_framework['DomainPath'];
+            $this->vsp_framework[__("Framework Plugin Path",'vsp-framework')] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['plugin_path']);
+            $this->vsp_framework[__("Framework Path",'vsp-framework')] = str_replace(vsp_unslashit(ABSPATH),'',$vsp_loaded_framework['framework_path']);
         }
         
         public function set_vsp_settings(){
@@ -213,17 +213,17 @@ if(!class_exists("VSP_Site_Status_Report")){
         
         public function headings(){
             return array(
-                'wp_env' => __("WordPress Environment"),
-                'vsp_framework' => __("VSP Framework"),
-                'vsp_settings' => __("VSP Plugin Settings"),
-                'server_info' => __("Server Environment"),
-                'php_info' => __("PHP Environment"),
-                'php_exts' => __("PHP Extenstions"),
-                'session_config' => __("Session Config"),
-                'active_theme' => __("Active Theme"),
-                'active_plugins' => __("Active Plugins"),
-                'msite_plugins' => __("Muilti Site Plugins"),
-                'must_use_plugins' => __("WordPress Must Use Plugins"),
+                'wp_env' => __("WordPress Environment",'vsp-framework'),
+                'vsp_framework' => __("VSP Framework",'vsp-framework'),
+                'vsp_settings' => __("VSP Plugin Settings",'vsp-framework'),
+                'server_info' => __("Server Environment",'vsp-framework'),
+                'php_info' => __("PHP Environment",'vsp-framework'),
+                'php_exts' => __("PHP Extenstions",'vsp-framework'),
+                'session_config' => __("Session Config",'vsp-framework'),
+                'active_theme' => __("Active Theme",'vsp-framework'),
+                'active_plugins' => __("Active Plugins",'vsp-framework'),
+                'msite_plugins' => __("Muilti Site Plugins",'vsp-framework'),
+                'must_use_plugins' => __("WordPress Must Use Plugins",'vsp-framework'),
             );
         }
         
@@ -277,12 +277,12 @@ if(!class_exists("VSP_Site_Status_Report")){
         }
         
         public function get_output(){
-            $title = __( 'To copy the System Status, click below then press Ctrl + C (PC) or Cmd + C (Mac)');
+            $title = __( 'To copy the System Status, click below then press Ctrl + C (PC) or Cmd + C (Mac)','vsp-framework');
             $html = '<div class="updated woocommerce-message inline">';
-            $html .= '<p>'.__("Please copy and paste this information in your ticket when contacting support: ").'</p>';
+            $html .= '<p>'.__("Please copy and paste this information in your ticket when contacting support: ",'vsp-framework').'</p>';
             $html .= '<textarea style="display:none; min-height:250px; width:100%;" readonly="readonly" onclick="this.focus();this.select()" id="wcqdssstextarea" title="'.$title.'">'.$this->text_output.'</textarea>';
             $html .= '<p class="submit">';
-                $html .= '<a href="#" class="button-primary debug-report" id="vsp-sys-status-report-text-btn">'.__("Get system report").'</a>';
+                $html .= '<a href="#" class="button-primary debug-report" id="vsp-sys-status-report-text-btn">'.__("Get system report",'vsp-framework').'</a>';
             $html .= '</p>';
             $html .= '</div>';
             $html .= $this->html_output;

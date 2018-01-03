@@ -19,11 +19,11 @@ if(!class_exists("VSP_Class_Handler")){
         );
         
         public function __clone() {
-            _doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.'), $this->option("version"));
+            _doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.','vsp-framework'), $this->option("version"));
         }
 
         public function __wakeup() {
-            _doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.'),$this->option("version"));
+            _doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.','vsp-framework'),$this->option("version"));
         }
         
         public function __construct($options = array(),$defaults = array()){

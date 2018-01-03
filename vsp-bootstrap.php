@@ -1,8 +1,13 @@
 <?php
 /** 
+ * Plugin Name: VSP Framework
  * Framework Name: VSP Framework
  * Version: 1.1
  * Author: Varun Sridharan
+ * Author:            Varun Sridharan
+ * Author URI:        http://varunsridharan.in
+ * Text Domain:       vsp-framework
+ * Domain Path: languages/
  */
 if(!defined("ABSPATH")){ exit; }
 
@@ -31,6 +36,13 @@ if(!function_exists("vsp_version")){
     if(vsp_is_request('ajax')){
         require_once(VSP_PATH.'class/class-vsp-framework-core-ajax.php');
     }
+    
+    /**
+     * Framework load text domain
+     * @since 1.0.0
+     * @version 1.0.0
+     */
+    load_textdomain ( 'vsp-framework', VSP_PATH . '/languages/' . get_locale () . '.mo' );
     
     do_action("vsp_framework_init");
 }

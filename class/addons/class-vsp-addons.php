@@ -44,7 +44,7 @@ if(!class_exists("VSP_Addons")){
         public function load_active_addons(){
             $active_addons = $this->get_active_addons();
             
-            $msg = sprintf(__("%s Has deactivated the following addons because its required plugins are deactivated"),'<strong>'.$this->option('plugin_name').'</strong>');
+            $msg = sprintf(__("%s Has deactivated the following addons because its required plugins are deactivated",'vsp-framework'),'<strong>'.$this->option('plugin_name').'</strong>');
             $deactivated_plugins = '';
             
             if(!empty($active_addons)){
@@ -88,13 +88,13 @@ if(!class_exists("VSP_Addons")){
         
         public function handle_ajax_request(){
             if(isset($_REQUEST['addon_action'])){
-                $action = $this->handle_ajax_params("addon_action",__("Addon Action Not Provided"));
-                $addon = urldecode($this->handle_ajax_params('addon_slug',__("No Addon Selected")));
-                $pathid = $this->handle_ajax_params("addon_pathid",__("Unable To Process Your Request"));
+                $action = $this->handle_ajax_params("addon_action",__("Addon Action Not Provided",'vsp-framework'));
+                $addon = urldecode($this->handle_ajax_params('addon_slug',__("No Addon Selected",'vsp-framework')));
+                $pathid = $this->handle_ajax_params("addon_pathid",__("Unable To Process Your Request",'vsp-framework'));
                 
                 
                 if(empty($addon)){
-                    wp_send_json_error(array("msg" => __("Invalid Addon")));
+                    wp_send_json_error(array("msg" => __("Invalid Addon",'vsp-framework')));
                 }
                 
                 if($action == 'activate'){
@@ -103,18 +103,18 @@ if(!class_exists("VSP_Addons")){
                         
                         if(isset($addon_data['required_plugins']) && is_array($addon_data['required_plugins'])){
                             if($addon_data['required_plugins']['fulfilled'] !== true){
-                               wp_send_json_error(array('msg' => __("Addon's Requried Plugins Not Active / Installed"))); 
+                               wp_send_json_error(array('msg' => __("Addon's Requried Plugins Not Active / Installed",'vsp-framework'))); 
                             }
                         }
                         
                         $slug = $this->activate_addon($addon,$pathid);
 
                         if($slug){
-                            wp_send_json_success(array('msg' => __("Addon Activated")));
+                            wp_send_json_success(array('msg' => __("Addon Activated",'vsp-framework')));
                         }  
                         
                     } else {
-                        wp_send_json_error(array('msg' => __("Addon Already Active")));
+                        wp_send_json_error(array('msg' => __("Addon Already Active",'vsp-framework')));
                     }
                 }
                 
@@ -123,11 +123,11 @@ if(!class_exists("VSP_Addons")){
                         $slug = $this->deactivate_addon($addon,$pathid);
 
                         if($slug){
-                            wp_send_json_success(array('msg' => __("Addon De-Activated")));
+                            wp_send_json_success(array('msg' => __("Addon De-Activated",'vsp-framework')));
                         }
 
                     } else {
-                        wp_send_json_error(array('msg' => __("Addon Is Not Active")));
+                        wp_send_json_error(array('msg' => __("Addon Is Not Active",'vsp-framework')));
                     }
                 }
             }

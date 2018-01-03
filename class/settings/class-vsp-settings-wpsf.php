@@ -143,7 +143,7 @@ if(!class_exists("VSP_Settings_WPSF")){
         }
         
         private function update_status_page(){
-            $defaults = array('name' => 'sys-page','title' => __("System Status"),'icon' => 'fa fa-info-circle');
+            $defaults = array('name' => 'sys-page','title' => __("System Status",'vsp-framework'),'icon' => 'fa fa-info-circle');
             $status_page = $this->option('status_page');
             $status_page = ($status_page !== false && !is_array($status_page)) ? array() : $status_page;
             $status_page = $this->parse_args($status_page,$defaults);

@@ -9,7 +9,7 @@ if(!class_exists("VPS_Addons_FileMeta")){
         
         private function __addon_duplicate_msg($addon_file){
             $data = json_encode($addon_file);
-            $msg = sprintf(__("Duplicate Addon Found. Unable to load Please contact the developer with below information %s"),date('h:i:s'));
+            $msg = sprintf(__("Duplicate Addon Found. Unable to load Please contact the developer with below information %s",'vsp-framework'),date('h:i:s'));
             $msg .= '<br/> <pre><code>'.$data.'</code></pre>';
             $msgID = md5($addon_file['full_path']).'-duplicate';
             vsp_notice_error($msg,1,$msgID,array($this->settings_pagehook));   
@@ -108,9 +108,9 @@ if(!class_exists("VPS_Addons_FileMeta")){
         
         protected function extract_registered_shortcodes($meta_data){
             $codes = array(
-                'REQUIRED_PLUGINS' => __("Required Plugins"),
-                'SCREENSHOTS' => __("Screenshots"),
-                'FAQ' => __("FAQ"),
+                'REQUIRED_PLUGINS' => __("Required Plugins",'vsp-framework'),
+                'SCREENSHOTS' => __("Screenshots",'vsp-framework'),
+                'FAQ' => __("FAQ",'vsp-framework'),
             );
             $reg_shortcodes = vsp_addons_extract_tags($this->filedata);
             

@@ -1,0 +1,474 @@
+# Copyright (C) 2018 VSP Framework
+# This file is distributed under the same license as the VSP Framework package.
+msgid ""
+msgstr ""
+"Project-Id-Version: VSP Framework 1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/vsp-framework\n"
+"POT-Creation-Date: 2018-01-02 11:16:09+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: class/addons/class-vsp-addons-admin.php:63
+msgid "Search Plugins"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:138
+msgid "View WP All Import Pro Changelog"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:138
+msgid "View details"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:145
+#: class/addons/class-vsp-addons-filemeta.php:111
+msgid "Required Plugins"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:147
+msgid "Above Mentioned Plugin name with version are Tested Upto"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:168
+msgid "Activate"
+msgstr ""
+
+#: class/addons/class-vsp-addons-admin.php:169
+msgid "De Activate"
+msgstr ""
+
+#: class/addons/class-vsp-addons-core.php:10
+msgid "All"
+msgstr ""
+
+#: class/addons/class-vsp-addons-core.php:11
+#: class/addons/class-vsp-addons-core.php:227
+msgid "Active"
+msgstr ""
+
+#: class/addons/class-vsp-addons-core.php:12
+#: class/addons/class-vsp-addons-core.php:220
+msgid "In Active"
+msgstr ""
+
+#: class/addons/class-vsp-addons-core.php:223
+msgid "Not Exist"
+msgstr ""
+
+#: class/addons/class-vsp-addons-filemeta.php:12
+msgid "Duplicate Addon Found. Unable to load Please contact the developer with below information %s"
+msgstr ""
+
+#: class/addons/class-vsp-addons-filemeta.php:112
+msgid "Screenshots"
+msgstr ""
+
+#: class/addons/class-vsp-addons-filemeta.php:113
+msgid "FAQ"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:47
+msgid "%s Has deactivated the following addons because its required plugins are deactivated"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:91
+msgid "Addon Action Not Provided"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:92
+msgid "No Addon Selected"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:93
+msgid "Unable To Process Your Request"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:97
+msgid "Invalid Addon"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:106
+msgid "Addon's Requried Plugins Not Active / Installed"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:113
+msgid "Addon Activated"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:117
+msgid "Addon Already Active"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:126
+msgid "Addon De-Activated"
+msgstr ""
+
+#: class/addons/class-vsp-addons.php:130
+msgid "Addon Is Not Active"
+msgstr ""
+
+#: class/class-vsp-class-handler.php:22
+msgid "Cloning instances of the class is forbidden."
+msgstr ""
+
+#: class/class-vsp-class-handler.php:26
+msgid "Unserializing instances of the class is forbidden."
+msgstr ""
+
+#: class/class-vsp-taxonomy-handler.php:41
+msgid "VSP Shortcodes"
+msgstr ""
+
+#: class/settings/class-vsp-settings-wpsf.php:146
+msgid "System Status"
+msgstr ""
+
+#: class/tools/class-vsp-settings-metaboxes.php:96
+msgid "F A Q's"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:46
+msgid "Theme Name"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:47
+msgid "Theme Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:48
+msgid "Theme URI"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:49
+msgid "Theme Description"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:50
+msgid "Theme Author"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:51
+msgid "Theme AuthorURI"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:52
+#: class/tools/class-vsp-site-status-report.php:132
+msgid "Parent Theme"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:58
+msgid "Name"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:59
+msgid "PluginURI"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:60
+msgid "Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:61
+msgid "Author"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:62
+msgid "AuthorURI"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:100
+msgid "Home URL"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:101
+msgid "Site URL"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:102
+msgid "WP Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:103
+msgid "WP Language"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:104
+msgid "Multisite"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:105
+msgid "WP Memory Limit"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:106
+msgid "WP Table Prefix"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:107
+msgid "WP Timezone"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:108
+msgid "WP Remote Post"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:108
+msgid "Enabled"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:108
+msgid "Disabled"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:109
+msgid "Permalink Structure"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:110
+msgid "Registered Post Stati"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:111
+#: class/tools/class-vsp-site-status-report.php:113
+msgid "Show On Front"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:112
+msgid "Page On Front"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:114
+msgid "Server Info"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:115
+msgid "Host"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:116
+msgid "Default Timezone"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:119
+#: class/tools/class-vsp-site-status-report.php:121
+msgid "MySql Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:128
+msgid "Is Child Theme"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:128
+msgid "Yes"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:128
+msgid "No"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:174
+msgid "PHP Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:175
+msgid "PHP Post Max Size"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:176
+msgid "PHP Time Limit"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:177
+msgid "PHP Max Input Vars"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:178
+msgid "PHP Safe Mode"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:179
+msgid "PHP Memory Limit"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:180
+msgid "PHP Upload Max Size"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:181
+msgid "PHP Arg Separator"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:182
+msgid "PHP Allow URL File Open"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:183
+msgid "Display Errors"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:184
+msgid "FSOCKOPEN"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:185
+msgid "cURL"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:186
+msgid "SOAP Client"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:187
+msgid "SUHOSIN"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:188
+msgid "Session"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:189
+msgid "Session Name"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:190
+msgid "Cookie Path"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:191
+msgid "Save Path"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:192
+msgid "Use Cookies"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:193
+msgid "Use Only Cookies"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:199
+msgid "Framework Version"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:200
+msgid "Textdomain"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:201
+msgid "DomainPath"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:202
+msgid "Framework Plugin Path"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:203
+msgid "Framework Path"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:216
+msgid "WordPress Environment"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:217
+msgid "VSP Framework"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:218
+msgid "VSP Plugin Settings"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:219
+msgid "Server Environment"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:220
+msgid "PHP Environment"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:221
+msgid "PHP Extenstions"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:222
+msgid "Session Config"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:223
+msgid "Active Theme"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:224
+msgid "Active Plugins"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:225
+msgid "Muilti Site Plugins"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:226
+msgid "WordPress Must Use Plugins"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:280
+msgid "To copy the System Status, click below then press Ctrl + C (PC) or Cmd + C (Mac)"
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:282
+msgid "Please copy and paste this information in your ticket when contacting support: "
+msgstr ""
+
+#: class/tools/class-vsp-site-status-report.php:285
+msgid "Get system report"
+msgstr ""
+
+#: functions/wp-replacement.php:107
+msgid "By %s."
+msgstr ""
+
+#: libs/wp-background-process.php:434
+msgid "Every %d minutes"
+msgstr ""
+
+#: views/settings/modern/header.php:11 views/settings/simple/footer.php:5
+msgid "Settings Saved"
+msgstr ""
+
+#: views/settings/modern/header.php:18
+msgid "show all options"
+msgstr ""
+
+#: views/settings-add.php:10
+msgid "Downloads / Installs"
+msgstr ""
+
+#: views/settings-add.php:11
+msgid "Price"
+msgstr ""
+
+#: views/settings-add.php:11
+msgid "Free"
+msgstr ""
+
+#: views/settings-add.php:19
+msgid "Purchase Plugin"
+msgstr ""
+
+#: views/settings-add.php:19
+msgid "View Plugin Page"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "VSP Framework"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Varun Sridharan"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://varunsridharan.in"
+msgstr ""

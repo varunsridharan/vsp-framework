@@ -104,7 +104,7 @@ if(!function_exists("vsp_addon_data_markup")){
             $plugin_data['Description'] = wptexturize( $plugin_data['Description'] );
 
             if ( $plugin_data['Author'] )
-                $plugin_data['Description'] .= ' <cite>' . sprintf( __('By %s.'), $plugin_data['Author'] ) . '</cite>';
+                $plugin_data['Description'] .= ' <cite>' . sprintf( __('By %s.','vsp-framework'), $plugin_data['Author'] ) . '</cite>';
         }
 
         return $plugin_data;

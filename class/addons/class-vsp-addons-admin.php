@@ -60,7 +60,7 @@ if(!class_exists("VSP_Addons_Admin")){
             $html = '<div class="wp-filter">';
             $html .= $this->render_category_ulli_html();
             $html .= '<div class="vsp-addons-search-form '.$this->option("plugin_slug").'-addons-search-form">';
-            $html .= '<input type="search" placeholder="'.__("Search Plugins").'" class="wp-filter-search" value="" name="s" />';
+            $html .= '<input type="search" placeholder="'.__("Search Plugins",'vsp-framework').'" class="wp-filter-search" value="" name="s" />';
             $html .= '</div>';
             $html .= '</div>';
             return $html;
@@ -135,16 +135,16 @@ if(!class_exists("VSP_Addons_Admin")){
                             $html .= '<p>'.$data['Description'].'</p>';
                             
                 
-                            $url = '<a href="' . admin_url( 'plugin-install.php?&isvspaddon=true&tab=plugin-information&plugin='. $file .'&pathid='.$pathid.'&TB_iframe=true&width=600&height=800' ) . '" class="thickbox open-plugin-details-modal" title="' . esc_attr( __( 'View WP All Import Pro Changelog' ) ) . '">' . __( 'View details' ) . '</a>';
+                            $url = '<a href="' . admin_url( 'plugin-install.php?&isvspaddon=true&tab=plugin-information&plugin='. $file .'&pathid='.$pathid.'&TB_iframe=true&width=600&height=800' ) . '" class="thickbox open-plugin-details-modal" title="' . esc_attr( __( 'View WP All Import Pro Changelog' ,'vsp-framework') ) . '">' . __( 'View details' ,'vsp-framework') . '</a>';
                             $html .= '<p>'.$url.'</p>';
                         $html .= '</div>';
                     $html .= '</div>';
                 
                 if(!empty($_rplugins)){
                     $html .= '<div class="plugin-card-top vsp-addons-required-plugins">';
-                    $html .= '<h3>'.__("Required Plugins").'</h3>';
+                    $html .= '<h3>'.__("Required Plugins",'vsp-framework','vsp-framework').'</h3>';
                     $html .= $_rplugins;
-                    $html .= '<p> <span>'.__("Above Mentioned Plugin name with version are Tested Upto").'</span> </p>';
+                    $html .= '<p> <span>'.__("Above Mentioned Plugin name with version are Tested Upto",'vsp-framework','vsp-framework').'</span> </p>';
                     $html .= '</div>';
                 }
                 
@@ -165,8 +165,8 @@ if(!class_exists("VSP_Addons_Admin")){
             $slug = urlencode($file);
             $active_button = '<button type="button" data-outline="'.$addon_slug.'" data-filename="'.$file.'" class="vsp-active-addon button button-primary">%s</button>';
             $deactive_button = '<button type="button" data-outline="'.$addon_slug.'" data-filename="'.$file.'" class="vsp-deactive-addon button button-secondary">%s</button>';
-            $active_button = sprintf($active_button,__("Activate"));
-            $deactive_button = sprintf($deactive_button,__("De Activate"));
+            $active_button = sprintf($active_button,__("Activate",'vsp-framework'));
+            $deactive_button = sprintf($deactive_button,__("De Activate",'vsp-framework'));
             return $active_button.$deactive_button;
         }
         

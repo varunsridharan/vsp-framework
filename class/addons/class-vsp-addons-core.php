@@ -7,9 +7,9 @@ if(!class_exists("VSP_Addons_Core")){
         
         public function __construct(){
             $this->default_cats = array(
-                'all' => __("All"),
-                'active' => __("Active"),
-                'inactive' => __("In Active"),
+                'all' => __("All",'vsp-framework'),
+                'active' => __("Active",'vsp-framework'),
+                'inactive' => __("In Active",'vsp-framework'),
             );
             $this->addon_cats = $this->default_cats;
             
@@ -217,14 +217,14 @@ if(!class_exists("VSP_Addons_Core")){
         
         protected function get_plugin_status_label($status = false){
             if($status === 'exists'){
-                return __("In Active");
+                return __("In Active",'vsp-framework');
             }
             if($status === 'notexist'){
-                return __("Not Exist");
+                return __("Not Exist",'vsp-framework');
             }
             
             if($status === 'activated'){
-                return __("Active");
+                return __("Active",'vsp-framework');
             }
         }
     }
