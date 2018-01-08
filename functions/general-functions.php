@@ -13,6 +13,7 @@ if(!function_exists('vsp_is_request')){
             case 'frontend' :
                 return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
         }
+        return false;
     }
 }
 
@@ -182,8 +183,6 @@ if(!function_exists("vsp_get_cdn")){
             $body = wp_remote_retrieve_body( $resource );
             return json_decode($body,$force_decode);
         }
-        
-        return false;
     }
 }
 
@@ -210,5 +209,75 @@ if(!function_exists("vsp_js_vars")){
 if(!function_exists("vsp_placeholder_img")){
     function vsp_placeholder_img(){
         return apply_filters('vsp_placeholder_img',vsp_img('noimage.png'));
+    }
+}
+
+
+if(!function_exists('vsp_is_user_role')){
+    function vsp_is_user_role($role = null,$current_role = null){
+        if(in_array($role,array('logedout','loggedout','visitor'))){
+            $role = 'visitor';
+        }
+
+        if($current_role === null){
+            $current_role = vsp_get_current_user(true);
+        }
+
+        return ($role === $current_role) ? true : false;
+    }
+}
+
+if(!function_exists('vsp_get_current_user')){
+    function vsp_get_current_user($user_role_only = true){
+        $user_role = wp_get_current_user();
+        if($user_role_only === true){
+            $user_roles = $user_role->roles;
+            $user_role = array_shift($user_roles);
+            if($user_role == null){ $user_role = 'visitor'; }
+        }
+
+        return $user_role;
+    }
+}
+
+if(!function_exists('vsp_wp_user_roles')){
+    function vsp_wp_user_roles(){
+        $all_roles = array();
+        if(function_exists('wp_roles')){ $all_roles = wp_roles()->roles;  }
+        return $all_roles;
+    }
+}
+if(!function_exists('vsp_get_user_roles')){
+    function vsp_get_user_roles(){
+        $user_roles = vsp_wp_user_roles();
+        $user_roles['visitor'] = array('name' => __('Visitor / Logged-Out User','vsp-framework'));
+        $user_roles = apply_filters('wc_rbp_wp_user_roles',$user_roles);
+        return $user_roles;
+    }
+}
+
+if(!function_exists('vsp_user_roles_as_options')){
+    function vsp_user_roles_as_options($only_slug = false){
+        $return = array();
+        foreach (vsp_get_user_roles() as $slug => $data){
+            $return[$slug] = $data['name'];
+        }
+        return ($only_slug === true) ? array_keys($return) :  $return;
+    }
+}
+
+if(!function_exists('vsp_filter_user_roles')){
+    function vsp_filter_user_roles($required = array()){
+
+        $existing = vsp_user_roles_as_options(false);
+        if(!is_array($required)){
+            return $existing;
+        }
+        foreach($existing as $slug => $name){
+            if(!in_array($slug,$required)){
+                unset($existing[$slug]);
+            }
+        }
+        return $existing;
     }
 }

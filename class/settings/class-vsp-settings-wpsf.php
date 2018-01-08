@@ -31,7 +31,7 @@ if(!class_exists("VSP_Settings_WPSF")){
         
         public function __construct($options = array()){
             parent::__construct($options);
-            
+
             if(vsp_is_request("admin") || vsp_is_request("ajax")){
                 $this->pages = array();
                 $this->fields = array();

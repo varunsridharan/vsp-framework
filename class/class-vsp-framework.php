@@ -3,18 +3,11 @@ if(!defined("ABSPATH")){ exit; }
 
 if(!class_exists('VSP_Framework')){
     
-    class VSP_Framework extends VSP_Framework_Admin {
+    abstract class VSP_Framework extends VSP_Framework_Admin implements VSP_Framework_Interface{
         private static $_instance = null;
         
         protected static $version = null;
 
-        public static function instance(){
-            if(null == self::$_instance){
-                self::$_instance = new self;
-            }
-            return self::$_instance;
-        }
-        
         public function __construct($options = array()){
             parent::__construct($options);
             $this->settings = null;
@@ -22,6 +15,7 @@ if(!class_exists('VSP_Framework')){
             $this->parse_options($options);
             vsp_register_plugin($this->plugin_slug(),$this);
             $this->vsp_load_required_files();
+            $this->hook_function_action("loaded");
             add_action("vsp_framework_init",array($this,'vsp_init_plugin'));
         }
 
@@ -45,7 +39,6 @@ if(!class_exists('VSP_Framework')){
         private function vsp_init_hooks(){
             $this->init_hooks_before();
             add_action("init",array($this,'vsp_on_wp_init'));
-            add_action('vsp_framework_init', array( $this, 'vsp_plugins_loaded' ));
             add_filter('load_textdomain_mofile',  array( $this, 'load_textdomain' ), 10, 2);
             add_action( 'wp_enqueue_scripts', array($this,'add_assets') );
             $this->init_hooks();
@@ -79,30 +72,14 @@ if(!class_exists('VSP_Framework')){
             $this->hook_function("on_wp_init");
         }
 
-        public function vsp_plugins_loaded(){
-            $this->hook_function_action("loaded");
-        }
-
         public function load_textdomain($file = '',$domain = ''){
             return $file;
         }
 
         public function init_before(){}
-        
-        public function init(){}
-        
+
         public function init_hooks_before(){}
-        
-        public function init_hooks(){}
-        
+
         public function addons_init_before(){}
-        
-        public function addons_init(){}
-        
-        public function settings_init_before(){}
-        
-        public function settings_init(){}
-        
-        public function add_assets(){}
     }
 }

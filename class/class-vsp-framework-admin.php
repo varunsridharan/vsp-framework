@@ -19,10 +19,7 @@ if(!class_exists('VSP_Framework_Admin')){
             add_filter( 'plugin_action_links_'.$this->option('plugin_file'), array($this,'action_links'),10,10);
         }
         
-        public function admin_loaded(){}
-        public function on_admin_init(){}
         public function row_links($plugin_meta, $plugin_file){return $plugin_meta;}
         public function action_links($action,$file,$plugin_meta,$status){return $action;}
-        public function admin_enqueue_assets(){}
     }
 }
