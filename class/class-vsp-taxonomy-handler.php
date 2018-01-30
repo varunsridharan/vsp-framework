@@ -16,6 +16,7 @@ class VSP_WPSF_Integration {
         $this->tax_fields = array();
         $this->metabox_fields = array();
         $this->shortcode_fields = array();
+        $this->wc_metabox_fields = array();
         add_action('init',array(&$this,'init_wpsf'),10);
     }
     
@@ -23,6 +24,7 @@ class VSP_WPSF_Integration {
         $this->tax_fields = apply_filters("vsp_taxonomy_fields",$this->tax_fields);
         $this->metabox_fields = apply_filters("vsp_metabox_fields",$this->metabox_fields);
         $this->shortcode_fields = apply_filters("vsp_shortcode_fields",$this->shortcode_fields);
+        $this->wc_metabox_fields = apply_filters('vsp_wc_metabox_fields',$this->wc_metabox_fields);
     }
 
     public function init_wpsf(){
@@ -31,9 +33,13 @@ class VSP_WPSF_Integration {
         if(is_array($this->tax_fields) && !empty($this->tax_fields)){
             $this->tax_instance = new WPSFramework_Taxonomy($this->tax_fields);
         }
-        
+
         if(is_array($this->metabox_fields) && !empty($this->metabox_fields)){
             $this->metabox_instance = new WPSFramework_Metabox($this->metabox_fields);
+        }
+
+        if(is_array($this->wc_metabox_fields) && !empty($this->wc_metabox_fields)){
+            $this->wc_metabox_instance = new WPSFramework_WC_Metabox($this->wc_metabox_fields);
         }
         
         if(is_array($this->shortcode_fields) && !empty($this->shortcode_fields)){

@@ -19,7 +19,7 @@ if(!class_exists("VSP_Settings_WPSF")){
             'ajax_save' => false,
             'show_reset_all' => false,
             'framework_title' => false,
-            'options_name' => false,
+            'option_name' => false,
             'style' => 'modern',
             'is_single_page' => false,
             'is_sticky_header' => false,
@@ -69,7 +69,7 @@ if(!class_exists("VSP_Settings_WPSF")){
 
         public function get_settings_config(){
             
-            $defaults = array('menu_parent','menu_title','menu_type','menu_slug','menu_icon','menu_position','menu_capability','ajax_save','show_reset_all','framework_title','options_name','style','is_single_page','is_sticky_header','extra_css','extra_js','buttons');
+            $defaults = array('menu_parent','menu_title','menu_type','menu_slug','menu_icon','menu_position','menu_capability','ajax_save','show_reset_all','framework_title','option_name','style','is_single_page','is_sticky_header','extra_css','extra_js','buttons');
             $this->page_config = array();
             foreach($defaults as $op){
                 $this->page_config[$op] = $this->option($op,'');
