@@ -37,6 +37,11 @@ if( ! function_exists("vsp_cache_options") ) {
 
 
 if( ! function_exists("vsp_settings_save_sections") ) {
+    /**
+     * @param string $plugin_slug
+     * @param string $db_slug
+     * @param        $sections
+     */
     function vsp_settings_save_sections($plugin_slug = '', $db_slug = '', $sections) {
         $exSections = get_option("vsp_settings_sections");
         if( empty($exSections) ) {
@@ -62,6 +67,12 @@ if( ! function_exists("vsp_settings_save_sections") ) {
 }
 
 if( ! function_exists("vsp_option") ) {
+    /**
+     * @param string $plugin_name
+     * @param string $option_name
+     * @param string $default
+     * @return string
+     */
     function vsp_option($plugin_name = '', $option_name = '', $default = '') {
         $options = vsp_vars($plugin_name, 'settings', array());
         if( ! empty($options) ) {

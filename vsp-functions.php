@@ -6,7 +6,10 @@ global $vsp_plugins, $vsp_loaded_framework, $vsp_framework_data;
 $vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
 
 if( ! function_exists("vsp_class_autoloader") ) {
-    function vsp_class_autoloader($class) {
+    /**
+     * @param string $class
+     */
+    function vsp_class_autoloader($class = '') {
         $class = strtolower($class);
         if( FALSE === strpos($class, 'vsp_') ) {
             return;
@@ -41,6 +44,10 @@ if( ! function_exists("vsp_class_autoloader") ) {
 }
 
 if( ! function_exists("vsp_register_plugin") ) {
+    /**
+     * @param string $slug
+     * @param string $instance
+     */
     function vsp_register_plugin($slug = '', &$instance = '') {
         global $vsp_plugins;
 
@@ -51,6 +58,10 @@ if( ! function_exists("vsp_register_plugin") ) {
 }
 
 if( ! function_exists('vsp_get_all_plugins') ) {
+    /**
+     * @param bool $only_slugs
+     * @return array
+     */
     function vsp_get_all_plugins($only_slugs = TRUE) {
         global $vsp_plugins;
         if( $only_slugs === FALSE ) {
@@ -61,6 +72,10 @@ if( ! function_exists('vsp_get_all_plugins') ) {
 }
 
 if( ! function_exists("vsp_get_plugin") ) {
+    /**
+     * @param string $slug
+     * @return bool
+     */
     function vsp_get_plugin($slug = '') {
         global $vsp_plugins;
         if( isset($vsp_plugins[$slug]) ) {
@@ -71,18 +86,28 @@ if( ! function_exists("vsp_get_plugin") ) {
 }
 
 if( ! function_exists('vsp_is_plugin_active') ) {
+    /**
+     * @param string $file
+     * @return bool
+     */
     function vsp_is_plugin_active($file = '') {
         return VSP_Dependencies::active_check($file);
     }
 }
 
 if( ! function_exists("vsp_wc_active") ) {
+    /**
+     * @return bool
+     */
     function vsp_wc_active() {
         return vsp_is_plugin_active('woocommerce/woocommerce.php');
     }
 }
 
 if( ! function_exists("vsp_load_lib") ) {
+    /**
+     * @param $class
+     */
     function vsp_load_lib($class) {
         $file = str_replace('_', '-', $class);
         $file = strtolower($file);
@@ -96,6 +121,10 @@ if( ! function_exists("vsp_load_lib") ) {
 }
 
 if( ! function_exists('vsp_define') ) {
+    /**
+     * @param $key
+     * @param $value
+     */
     function vsp_define($key, $value) {
         if( ! defined($key) ) {
             define($key, $value);
@@ -104,6 +133,11 @@ if( ! function_exists('vsp_define') ) {
 }
 
 if( ! function_exists("vsp_url") ) {
+    /**
+     * @param string $extra
+     * @param bool   $is_url
+     * @return string
+     */
     function vsp_url($extra = '', $is_url = TRUE) {
         if( $is_url === TRUE ) {
             return VSP_URL . $extra;
@@ -113,12 +147,21 @@ if( ! function_exists("vsp_url") ) {
 }
 
 if( ! function_exists("vsp_path") ) {
+    /**
+     * @param string $extra
+     * @return string
+     */
     function vsp_path($extra = '') {
         return VSP_PATH . $extra;
     }
 }
 
 if( ! function_exists('vsp_js') ) {
+    /**
+     * @param string $extra
+     * @param bool   $url
+     * @return string
+     */
     function vsp_js($extra = '', $url = TRUE) {
         if( $url === TRUE ) {
             return vsp_url('assets/js/' . $extra);
@@ -128,6 +171,11 @@ if( ! function_exists('vsp_js') ) {
 }
 
 if( ! function_exists('vsp_css') ) {
+    /**
+     * @param string $extra
+     * @param bool   $url
+     * @return string
+     */
     function vsp_css($extra = '', $url = TRUE) {
         if( $url === TRUE ) {
             return vsp_url('assets/css/' . $extra);
@@ -137,6 +185,11 @@ if( ! function_exists('vsp_css') ) {
 }
 
 if( ! function_exists('vsp_img') ) {
+    /**
+     * @param string $extra
+     * @param bool   $url
+     * @return string
+     */
     function vsp_img($extra = '', $url = TRUE) {
         if( $url === TRUE ) {
             return vsp_url('assets/img/' . $extra);
@@ -146,6 +199,12 @@ if( ! function_exists('vsp_img') ) {
 }
 
 if( ! function_exists("vsp_debug_file") ) {
+    /**
+     * @param      $filename
+     * @param bool $makeurl
+     * @param bool $is_url
+     * @return mixed|null|string
+     */
     function vsp_debug_file($filename, $makeurl = FALSE, $is_url = TRUE) {
         if( empty($filename) ) {
             return NULL;
@@ -179,6 +238,10 @@ if( ! function_exists("vsp_debug_file") ) {
 }
 
 if( ! function_exists("vsp_load_file") ) {
+    /**
+     * @param        $path
+     * @param string $type
+     */
     function vsp_load_file($path, $type = 'require') {
         foreach( glob($path) as $files ) {
             if( $type == 'require' ) {
@@ -191,6 +254,10 @@ if( ! function_exists("vsp_load_file") ) {
 }
 
 if( ! function_exists("vsp_get_file_paths") ) {
+    /**
+     * @param $path
+     * @return array
+     */
     function vsp_get_file_paths($path) {
         return glob($path);
     }

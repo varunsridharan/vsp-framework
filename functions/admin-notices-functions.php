@@ -4,6 +4,10 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! function_exists('vsp_notices') ) {
+    /**
+     * @param string $type
+     * @return bool|\VSP_Admin_Notice|\VSP_Admin_Notices_Error|\VSP_Admin_Notices_Updated|\VSP_Admin_Notices_UpdateNag
+     */
     function vsp_notices($type = '') {
         if( ! class_exists("VSP_Admin_Notice", FALSE) ) {
             require_once( VSP_PATH . 'class/tools/class-vsp-admin-notice.php' );
@@ -33,6 +37,10 @@ if( ! function_exists('vsp_notices') ) {
 }
 
 if( ! function_exists('vsp_remove_notice') ) {
+    /**
+     * @param $id
+     * @return bool
+     */
     function vsp_remove_notice($id) {
         vsp_notices()->deleteNotice($id);
         return TRUE;
@@ -40,6 +48,11 @@ if( ! function_exists('vsp_remove_notice') ) {
 }
 
 if( ! function_exists('vsp_notice') ) {
+    /**
+     * @param        $message
+     * @param string $type
+     * @param array  $args
+     */
     function vsp_notice($message, $type = 'update', $args = array()) {
         $defaults = array( 'times'  => 1,
                            'screen' => array(),
@@ -56,6 +69,13 @@ if( ! function_exists('vsp_notice') ) {
 }
 
 if( ! function_exists('vsp_notice_error') ) {
+    /**
+     * @param        $message
+     * @param string $id
+     * @param int    $times
+     * @param array  $screen
+     * @param array  $args
+     */
     function vsp_notice_error($message, $id = '', $times = 1, $screen = array(), $args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;
@@ -68,6 +88,13 @@ if( ! function_exists('vsp_notice_error') ) {
 }
 
 if( ! function_exists('vsp_notice_update') ) {
+    /**
+     * @param        $message
+     * @param string $id
+     * @param int    $times
+     * @param array  $screen
+     * @param array  $args
+     */
     function vsp_notice_update($message, $id = '', $times = 1, $screen = array(), $args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;
@@ -80,6 +107,13 @@ if( ! function_exists('vsp_notice_update') ) {
 }
 
 if( ! function_exists('vsp_notice_upgrade') ) {
+    /**
+     * @param        $message
+     * @param string $id
+     * @param int    $times
+     * @param array  $screen
+     * @param array  $args
+     */
     function vsp_notice_upgrade($message, $id = '', $times = 1, $screen = array(), $args = array()) {
         $args['id'] = $id;
         $args['times'] = $times;

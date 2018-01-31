@@ -5,6 +5,9 @@ if( ! defined("ABSPATH") ) {
 
 if( ! class_exists('VSP_Framework_Options') ) {
 
+    /**
+     * Class VSP_Framework_Options
+     */
     class VSP_Framework_Options extends VSP_Class_Handler {
 
         protected $default_options = array(
@@ -14,6 +17,9 @@ if( ! class_exists('VSP_Framework_Options') ) {
             'plugin_file'   => __FILE__,
         );
 
+        /**
+         * @param array $options
+         */
         protected function parse_options($options = array()) {
             $options = $this->parse_args($options, $this->default_options);
             $options['plugin_slug'] = vsp_fix_slug($options["plugin_slug"]);

@@ -3,10 +3,16 @@ if( ! defined("VSP_PATH") ) {
     exit;
 }
 if( ! class_exists("VSP_Framework_Core_Ajax") ) {
+    /**
+     * Class VSP_Framework_Core_Ajax
+     */
     class VSP_Framework_Core_Ajax {
 
         private static $_instance = NULL;
 
+        /**
+         * @return null|\VSP_Framework_Core_Ajax
+         */
         public static function instance() {
             if( NULL == self::$_instance ) {
                 self::$_instance = new self;

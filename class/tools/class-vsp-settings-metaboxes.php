@@ -5,6 +5,9 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Settings_Metaboxes") ) {
+    /**
+     * Class VSP_Settings_Metaboxes
+     */
     class VSP_Settings_Metaboxes extends VSP_Class_Handler {
 
         protected $default_options = array(
@@ -12,6 +15,10 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             'show_faqs' => TRUE,
         );
 
+        /**
+         * VSP_Settings_Metaboxes constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             parent::__construct($options);
         }
@@ -31,6 +38,10 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             <?php
         }
 
+        /**
+         * @param $cache
+         * @return array
+         */
         public function handle_faqs($cache) {
             $return = array();
             foreach( $cache as $page => $sections ) {
@@ -52,6 +63,9 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             return $return;
         }
 
+        /**
+         * @return array|bool|mixed|object|\WP_Error
+         */
         private function get_adds_data() {
             $cache = vsp_get_cache('vsp_shameless_plug');
             if( FALSE === $cache ) {
@@ -69,6 +83,9 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             return $cache;
         }
 
+        /**
+         * @return array|bool|mixed|object|\WP_Error
+         */
         private function get_faq_datas() {
             $cache = vsp_get_cache($this->plugin_slug() . '-faqs');
             if( FALSE === $cache ) {

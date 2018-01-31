@@ -5,6 +5,9 @@ $vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
 
 
 if( ! function_exists("vsp_mayby_framework_loader") ) {
+    /**
+     * @param $plugin_path
+     */
     function vsp_mayby_framework_loader($plugin_path) {
         global $vsp_framework_data;
         $plugin_path = rtrim($plugin_path, '/');

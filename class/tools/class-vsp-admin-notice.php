@@ -4,9 +4,15 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Admin_Notice") ) {
+    /**
+     * Class VSP_Admin_Notice
+     */
     class VSP_Admin_Notice {
         protected static $_instance;
 
+        /**
+         * @return \VSP_Admin_Notice
+         */
         public static function instance() {
             if( NULL == self::$_instance ) {
                 self::$_instance = new self;
@@ -14,6 +20,10 @@ if( ! class_exists("VSP_Admin_Notice") ) {
             return self::$_instance;
         }
 
+        /**
+         * VSP_Admin_Notice constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             $defaults = array(
                 'noticeArrayName' => 'VSP_ADMIN_NOTICES',
@@ -56,6 +66,9 @@ if( ! class_exists("VSP_Admin_Notice") ) {
             }
         }
 
+        /**
+         * @param $notId
+         */
         public function deleteNotice($notId) {
             foreach( $this->notices as $key => $notice ) {
                 if( $notice->getId() === $notId ) {
@@ -66,6 +79,9 @@ if( ! class_exists("VSP_Admin_Notice") ) {
             $this->storeNotices();
         }
 
+        /**
+         * @param \VSP_Admin_Notices $notice
+         */
         public function addNotice(VSP_Admin_Notices $notice) {
             $this->notices[] = $notice;
             $this->storeNotices();
@@ -82,6 +98,10 @@ if( ! class_exists("VSP_Admin_Notice") ) {
             update_option($this->noticesArrayName, $this->notices);
         }
 
+        /**
+         * @param \VSP_Admin_Notices $notice
+         * @return bool
+         */
         private function isTimeToDisplay(VSP_Admin_Notices $notice) {
             $screens = $notice->getScreen();
             if( ! empty($screens) ) {
@@ -109,6 +129,9 @@ if( ! class_exists("VSP_Admin_Notice") ) {
 }
 
 if( ! class_exists("VSP_Admin_Notices") ) {
+    /**
+     * Class VSP_Admin_Notices
+     */
     abstract class VSP_Admin_Notices {
         protected $content;
         protected $type;
@@ -121,6 +144,15 @@ if( ! class_exists("VSP_Admin_Notices") ) {
         protected $WithWraper = TRUE;
         protected $is_dismissible = TRUE;
 
+        /**
+         * VSP_Admin_Notices constructor.
+         * @param string $content
+         * @param string $id
+         * @param int    $times
+         * @param array  $screen
+         * @param array  $users
+         * @param bool   $WithWraper
+         */
         public function __construct($content = '', $id = '', $times = 1, $screen = array(), $users = array(), $WithWraper = TRUE) {
             $this->content = $content;
             $this->screen = $screen;
@@ -130,6 +162,10 @@ if( ! class_exists("VSP_Admin_Notices") ) {
             $this->WithWraper = $WithWraper;
         }
 
+        /**
+         * @param bool $wrapInParTag
+         * @return string
+         */
         public function getContentFormated($wrapInParTag = TRUE) {
             $class = $this->type;
             $extrC = '';
@@ -143,6 +179,9 @@ if( ! class_exists("VSP_Admin_Notices") ) {
             return $before . $this->getContent() . $after . $extrC;
         }
 
+        /**
+         * @return $this
+         */
         public function incrementDisplayedTimes() {
             $this->displayedTimes++;
             if( array_key_exists(get_current_user_id(), $this->displayedToUsers) ) {
@@ -153,6 +192,9 @@ if( ! class_exists("VSP_Admin_Notices") ) {
             return $this;
         }
 
+        /**
+         * @return bool
+         */
         public function isTimeToDie() {
             if( empty($this->users) ) {
                 return $this->displayedTimes >= $this->times;
@@ -170,73 +212,129 @@ if( ! class_exists("VSP_Admin_Notices") ) {
             return FALSE;
         }
 
+        /**
+         * @return bool
+         */
         public function getWrapper() {
             return $this->WithWraper;
         }
 
+        /**
+         * @param bool $wrapper
+         * @return $this
+         */
         public function setWrapper($wrapper = TRUE) {
             $this->WithWraper = $wrapper;
             return $this;
         }
 
+        /**
+         * @return array
+         */
         public function getScreen() {
             return $this->screen;
         }
 
+        /**
+         * @param $screen
+         * @return $this
+         */
         public function setScreen($screen) {
             $this->screen = $screen;
             return $this;
         }
 
+        /**
+         * @return string
+         */
         public function getContent() {
             return $this->content;
         }
 
+        /**
+         * @param $content
+         * @return $this
+         */
         public function setContent($content) {
             $this->content = $content;
             return $this;
         }
 
+        /**
+         * @return string
+         */
         public function getId() {
             return $this->id;
         }
 
+        /**
+         * @param string $id
+         * @return $this
+         */
         public function set_id($id = '') {
             $this->id = $id;
             return $this;
         }
 
+        /**
+         * @return int
+         */
         public function getTimes() {
             return $this->times;
         }
 
+        /**
+         * @return array
+         */
         public function getUsers() {
             return $this->users;
         }
 
+        /**
+         * @param $times
+         * @return $this
+         */
         public function setTimes($times) {
             $this->times = $times;
             return $this;
         }
 
+        /**
+         * @param array $users
+         * @return $this
+         */
         public function setUsers(Array $users) {
             $this->users = $users;
             return $this;
         }
 
+        /**
+         * @return int
+         */
         public function getDisplayedTimes() {
             return $this->displayedTimes;
         }
 
+        /**
+         * @return array
+         */
         public function getDisplayedToUsers() {
             return $this->displayedToUsers;
         }
 
+        /**
+         * @param $displayedTimes
+         * @return $this
+         */
         public function setDisplayedTimes($displayedTimes) {
             $this->displayedTimes = $displayedTimes;
             return $this;
         }
 
+        /**
+         * @param array $displayedToUsers
+         * @return $this
+         */
         public function setDisplayedToUsers(Array $displayedToUsers) {
             $this->displayedToUsers = $displayedToUsers;
             return $this;
@@ -246,16 +344,25 @@ if( ! class_exists("VSP_Admin_Notices") ) {
 }
 
 if( ! class_exists("VSP_Admin_Notices_Error") ) {
+    /**
+     * Class VSP_Admin_Notices_Error
+     */
     class VSP_Admin_Notices_Error extends VSP_Admin_Notices {
         protected $type = 'error';
     }
 }
 if( ! class_exists("VSP_Admin_Notices_Updated") ) {
+    /**
+     * Class VSP_Admin_Notices_Updated
+     */
     class VSP_Admin_Notices_Updated extends VSP_Admin_Notices {
         protected $type = 'updated';
     }
 }
 if( ! class_exists("VSP_Admin_Notices_UpdateNag") ) {
+    /**
+     * Class VSP_Admin_Notices_UpdateNag
+     */
     class VSP_Admin_Notices_UpdateNag extends VSP_Admin_Notices {
         protected $type = 'update-nag';
     }

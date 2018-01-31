@@ -4,9 +4,15 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Site_Status_Report") ) {
+    /**
+     * Class VSP_Site_Status_Report
+     */
     class VSP_Site_Status_Report {
         private static $_instance = NULL;
 
+        /**
+         * @return null|\VSP_Site_Status_Report
+         */
         public static function instance() {
             if( NULL == self::$_instance ) {
                 self::$_instance = new self;
@@ -36,6 +42,12 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             $this->output_html();
         }
 
+        /**
+         * @param        $check
+         * @param string $success
+         * @param string $fail
+         * @return string
+         */
         private function _bool($check, $success = 'Enabled', $fail = 'Disabled') {
             if( $check === TRUE ) {
                 return $success;
@@ -43,6 +55,11 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             return $fail;
         }
 
+        /**
+         * @param        $theme
+         * @param string $prefix
+         * @return array
+         */
         private function get_theme_information($theme, $prefix = '') {
             $return = array();
             $return[$prefix . __("Theme Name", 'vsp-framework')] = $theme->name;
@@ -55,6 +72,11 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             return $return;
         }
 
+        /**
+         * @param        $plugin
+         * @param string $prefix
+         * @return array
+         */
         private function get_plugin_information($plugin, $prefix = '') {
             $return = array();
             $return[$prefix . __("Name", 'vsp-framework')] = $plugin['Name'];
@@ -65,6 +87,9 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             return $return;
         }
 
+        /**
+         * @return bool|string
+         */
         private function get_host() {
             $host = FALSE;
             if( defined('WPE_APIKEY') ) {
@@ -215,6 +240,9 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             }
         }
 
+        /**
+         * @return array
+         */
         public function headings() {
             return array(
                 'wp_env'           => __("WordPress Environment", 'vsp-framework'),
@@ -280,6 +308,9 @@ if( ! class_exists("VSP_Site_Status_Report") ) {
             $this->html_output = $html_output;
         }
 
+        /**
+         * @return string
+         */
         public function get_output() {
             $title = __('To copy the System Status, click below then press Ctrl + C (PC) or Cmd + C (Mac)', 'vsp-framework');
             $html = '<div class="updated woocommerce-message inline">';

@@ -3,6 +3,9 @@ if( ! defined("ABSPATH") ) {
     exit;
 }
 
+/**
+ * Class VSP_WPSF_Integration
+ */
 class VSP_WPSF_Integration {
     private static $_instance = NULL;
 
@@ -14,6 +17,9 @@ class VSP_WPSF_Integration {
         add_action('init', array( &$this, 'init_wpsf' ), 10);
     }
 
+    /**
+     * @return null|\VSP_WPSF_Integration
+     */
     public static function instance() {
         if( NULL == self::$_instance ) {
             self::$_instance = new self;

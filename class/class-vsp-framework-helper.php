@@ -10,6 +10,9 @@ if( ! defined("ABSPATH") ) {
     exit;
 }
 
+/**
+ * Class VSP_Framework_Helper
+ */
 class VSP_Framework_Helper extends VSP_Framework_WC_Helper {
 
     /** encoding used for mb_*() string functions */

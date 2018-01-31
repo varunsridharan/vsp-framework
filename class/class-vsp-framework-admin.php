@@ -5,7 +5,14 @@ if( ! defined("ABSPATH") ) {
 
 if( ! class_exists('VSP_Framework_Admin') ) {
 
+    /**
+     * Class VSP_Framework_Admin
+     */
     class VSP_Framework_Admin extends VSP_Framework_Options {
+        /**
+         * VSP_Framework_Admin constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             parent::__construct($options);
             if( vsp_is_admin() ) {
@@ -21,10 +28,22 @@ if( ! class_exists('VSP_Framework_Admin') ) {
             add_filter('plugin_action_links_' . $this->option('plugin_file'), array( $this, 'action_links' ), 10, 10);
         }
 
+        /**
+         * @param $plugin_meta
+         * @param $plugin_file
+         * @return mixed
+         */
         public function row_links($plugin_meta, $plugin_file) {
             return $plugin_meta;
         }
 
+        /**
+         * @param $action
+         * @param $file
+         * @param $plugin_meta
+         * @param $status
+         * @return mixed
+         */
         public function action_links($action, $file, $plugin_meta, $status) {
             return $action;
         }

@@ -1,5 +1,8 @@
 <?php
 if( ! class_exists("VSP_Settings_WPSF") ) {
+    /**
+     * Class VSP_Settings_WPSF
+     */
     class VSP_Settings_WPSF extends VSP_Class_Handler {
         protected $default_options = array(
             'show_adds'   => TRUE,
@@ -29,6 +32,10 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
 
         private $final_options = array();
 
+        /**
+         * VSP_Settings_WPSF constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             parent::__construct($options);
 

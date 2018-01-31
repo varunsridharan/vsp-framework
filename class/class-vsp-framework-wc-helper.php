@@ -10,6 +10,9 @@ if( ! defiend("ABSPATH") ) {
     exit;
 }
 
+/**
+ * Class VSP_Framework_WC_Helper
+ */
 class VSP_Framework_WC_Helper {
 
     /**

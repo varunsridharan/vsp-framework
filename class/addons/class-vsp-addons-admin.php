@@ -4,6 +4,9 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Addons_Admin") ) {
+    /**
+     * Class VSP_Addons_Admin
+     */
     class VSP_Addons_Admin extends VSP_Addons_Core {
 
         public function __construct() {
@@ -12,6 +15,10 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             $this->settings_pagehook = '';
         }
 
+        /**
+         * @param $pages
+         * @return mixed
+         */
         public function set_settings_page($pages) {
             $pages[$this->option("addon_listing_tab_name")] = array(
                 'name'          => $this->option("addon_listing_tab_name"),
@@ -37,9 +44,12 @@ if( ! class_exists("VSP_Addons_Admin") ) {
         }
 
 
+        /**
+         * @return bool|string
+         */
         public function render_category_html() {
             if( ! is_array($this->addon_cats) ) {
-                return;
+                return true;
             }
 
             $html = '<div class="wp-filter">';
@@ -51,9 +61,12 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             return $html;
         }
 
+        /**
+         * @return bool|string
+         */
         public function render_category_ulli_html() {
             if( ! is_array($this->addon_cats) ) {
-                return;
+                return true;
             }
 
             $filter_ul_class = 'filter-links vsp-addons-category-listing ' . $this->option("plugin_slug") . '-addons-category-listing';
@@ -75,6 +88,9 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             return $html;
         }
 
+        /**
+         * @return string
+         */
         public function render_addons_html() {
             add_thickbox();
             $html = '';
@@ -86,6 +102,9 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             return $html;
         }
 
+        /**
+         * @return string
+         */
         public function render_single_addon() {
             if( ! is_array($this->addons_list) ) {
                 return '';
@@ -148,6 +167,11 @@ if( ! class_exists("VSP_Addons_Admin") ) {
         }
 
 
+        /**
+         * @param $file
+         * @param $addon_slug
+         * @return string
+         */
         public function get_addon_action_button($file, $addon_slug) {
             $slug = urlencode($file);
             $active_button = '<button type="button" data-outline="' . $addon_slug . '" data-filename="' . $file . '" class="vsp-active-addon button button-primary">%s</button>';
@@ -157,6 +181,10 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             return $active_button . $deactive_button;
         }
 
+        /**
+         * @param $data
+         * @return string
+         */
         private function render_required_plugins_html($data) {
             if( ! isset($data['required_plugins']) ) {
                 return '';

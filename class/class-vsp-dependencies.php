@@ -9,6 +9,10 @@ class VSP_Dependencies {
 
     private static $active_plugins;
 
+    /**
+     * @param $file
+     * @return bool
+     */
     public static function active_check($file) {
         if( ! self::$active_plugins )
             self::init();

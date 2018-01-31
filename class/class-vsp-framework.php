@@ -4,12 +4,19 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists('VSP_Framework') ) {
-
+    /**
+     * Class VSP_Framework
+     * This class should be extened and used in a plugins class
+     */
     abstract class VSP_Framework extends VSP_Framework_Admin implements VSP_Framework_Interface {
         private static $_instance = NULL;
 
         protected static $version = NULL;
 
+        /**
+         * VSP_Framework constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             parent::__construct($options);
             $this->settings = NULL;
@@ -21,6 +28,10 @@ if( ! class_exists('VSP_Framework') ) {
             add_action("vsp_framework_init", array( $this, 'vsp_init_plugin' ));
         }
 
+        /**
+         * This function is called via hook
+         * @hook vsp_framework_init
+         */
         public function vsp_init_plugin() {
             $this->vsp_init_class();
             $this->vsp_init_hooks();
@@ -74,6 +85,11 @@ if( ! class_exists('VSP_Framework') ) {
             $this->hook_function("on_wp_init");
         }
 
+        /**
+         * @param string $file
+         * @param string $domain
+         * @return string
+         */
         public function load_textdomain($file = '', $domain = '') {
             return $file;
         }

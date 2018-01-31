@@ -14,6 +14,9 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! function_exists("vsp_version") ) {
+    /**
+     * @return string
+     */
     function vsp_version() {
         return '1.1';
     }

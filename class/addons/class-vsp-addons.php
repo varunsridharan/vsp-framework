@@ -4,6 +4,9 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Addons") ) {
+    /**
+     * Class VSP_Addons
+     */
     class VSP_Addons extends VSP_Addons_Admin {
 
         protected $user_options = array();
@@ -21,6 +24,10 @@ if( ! class_exists("VSP_Addons") ) {
             'show_category_count'     => TRUE,
         );
 
+        /**
+         * VSP_Addons constructor.
+         * @param array $options
+         */
         public function __construct($options = array()) {
             $this->active_addons = array();
             $this->user_options = $options;
@@ -83,12 +90,18 @@ if( ! class_exists("VSP_Addons") ) {
             }
         }
 
+        /**
+         * @param string $request
+         * @param        $msg
+         * @return bool
+         */
         public function handle_ajax_params($request = '', $msg) {
             if( isset($_REQUEST[$request]) ) {
                 return $_REQUEST[$request];
             }
 
             wp_send_json_error(array( 'msg' => $msg ));
+            return FALSE;
         }
 
         public function handle_ajax_request() {
@@ -139,6 +152,10 @@ if( ! class_exists("VSP_Addons") ) {
             wp_die();
         }
 
+
+        /**
+         * @return array|mixed|void
+         */
         public function get_active_addons() {
             if( empty($this->active_addons) ) {
                 $this->active_addons = get_option($this->option("db_slug") . '_active_addons', array());
@@ -148,12 +165,21 @@ if( ! class_exists("VSP_Addons") ) {
             return $this->active_addons;
         }
 
+        /**
+         * @param $addons
+         * @return array
+         */
         public function update_active_addons($addons) {
             update_option($this->option("db_slug") . '_active_addons', $addons);
             $this->active_addons = $addons;
             return $this->active_addons;
         }
 
+        /**
+         * @param string $addons_slug
+         * @param string $pathid
+         * @return bool
+         */
         public function activate_addon($addons_slug = '', $pathid = '') {
             $active_addons = $this->get_active_addons();
             if( ! isset($active_addons[$pathid]) ) {
@@ -165,6 +191,11 @@ if( ! class_exists("VSP_Addons") ) {
             return FALSE;
         }
 
+        /**
+         * @param string $addons_slug
+         * @param string $pathid
+         * @return bool
+         */
         public function deactivate_addon($addons_slug = '', $pathid = '') {
             $active_addons = $this->get_active_addons();
             if( isset($active_addons[$pathid]) ) {
@@ -178,6 +209,11 @@ if( ! class_exists("VSP_Addons") ) {
             return FALSE;
         }
 
+        /**
+         * @param      $slug
+         * @param bool $is_pathid
+         * @return bool|mixed
+         */
         public function is_active($slug, $is_pathid = FALSE) {
             $addons = $this->get_active_addons();
 

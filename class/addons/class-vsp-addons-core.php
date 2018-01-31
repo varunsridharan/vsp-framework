@@ -4,6 +4,9 @@ if( ! defined("ABSPATH") ) {
 }
 
 if( ! class_exists("VSP_Addons_Core") ) {
+    /**
+     * Class VSP_Addons_Core
+     */
     class VSP_Addons_Core extends VSP_Addons_Detailed_View {
         protected $addon_cats = array();
 
@@ -23,6 +26,10 @@ if( ! class_exists("VSP_Addons_Core") ) {
             parent::__construct();
         }
 
+        /**
+         * @param bool $single_addon
+         * @return array
+         */
         public function search_get_addons($single_addon = FALSE) {
             $this->addon_metadatas = array();
             $dirs = apply_filters($this->hook_slug . '_addons_dirs', array());
@@ -40,6 +47,11 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return $this->addon_metadatas;
         }
 
+        /**
+         * @param bool   $addon_slug
+         * @param string $path_id
+         * @return array|mixed
+         */
         public function search_get_addon($addon_slug = FALSE, $path_id = '') {
             $addons = $this->search_get_addons($addon_slug);
             $return_data = array();
@@ -57,10 +69,20 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return $return_data;
         }
 
+        /**
+         * @param        $file
+         * @param string $search
+         * @param string $replace
+         * @return mixed
+         */
         protected function file_file_name($file, $search = '.php', $replace = '') {
             return str_replace($search, $replace, $file);
         }
 
+        /**
+         * @param $category
+         * @return array
+         */
         protected function handle_addon_category($category) {
             $category = explode(",", $category);
             $return = array();
@@ -82,12 +104,21 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return $return;
         }
 
+        /**
+         * @param $addon_path
+         */
         public function search_addon($addon_path) {
             $dirs = apply_filters($this->hook_slug . '_addons_dirs', array());
 
 
         }
 
+        /**
+         * @param        $search_path
+         * @param bool   $single_addon
+         * @param string $subpath
+         * @return array
+         */
         public function search_plugins($search_path, $single_addon = FALSE, $subpath = '') {
             $search_path = rtrim($search_path, '/');
             $subpath = rtrim($subpath, '/');
@@ -131,6 +162,9 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return $r;
         }
 
+        /**
+         * @return array
+         */
         protected function get_default_headers() {
             return array(
                 'Name'         => 'Addon Name',
@@ -146,17 +180,30 @@ if( ! class_exists("VSP_Addons_Core") ) {
             );
         }
 
+        /**
+         * @param $meta
+         * @return mixed
+         */
         protected function fix_addon_metadata($meta) {
             $meta = $this->_extract_required_plugins($meta);
             return $meta;
         }
 
+        /**
+         * @param $string
+         * @param $char
+         * @return string
+         */
         protected function strip_space($string, $char) {
             $string = ltrim($string, $char);
             $string = rtrim($string, $char);
             return $string;
         }
 
+        /**
+         * @param $slug
+         * @return bool|string
+         */
         protected function check_plugin_status($slug) {
             if( ! function_exists("validate_plugin") ) {
                 require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -172,6 +219,10 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return FALSE;
         }
 
+        /**
+         * @param $meta
+         * @return mixed
+         */
         protected function _extract_required_plugins($meta) {
 
             if( empty($meta['rplugins']) ) {
@@ -221,6 +272,10 @@ if( ! class_exists("VSP_Addons_Core") ) {
             return $meta;
         }
 
+        /**
+         * @param bool $status
+         * @return bool|string|void
+         */
         protected function get_plugin_status_label($status = FALSE) {
             if( $status === 'exists' ) {
                 return __("In Active", 'vsp-framework');
@@ -232,6 +287,8 @@ if( ! class_exists("VSP_Addons_Core") ) {
             if( $status === 'activated' ) {
                 return __("Active", 'vsp-framework');
             }
+
+            return FALSE;
         }
     }
 }

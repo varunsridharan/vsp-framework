@@ -1,5 +1,8 @@
 <?php
 if( ! class_exists("VPS_Addons_FileMeta") ) {
+    /**
+     * Class VSP_Addons_FileMeta
+     */
     class VSP_Addons_FileMeta extends VSP_Class_Handler {
 
         public function __construct() {
@@ -7,6 +10,9 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             parent::__construct();
         }
 
+        /**
+         * @param $addon_file
+         */
         private function __addon_duplicate_msg($addon_file) {
             $data = json_encode($addon_file);
             $msg = sprintf(__("Duplicate Addon Found. Unable to load Please contact the developer with below information %s", 'vsp-framework'), date('h:i:s'));
@@ -15,6 +21,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             vsp_notice_error($msg, 1, $msgID, array( $this->settings_pagehook ));
         }
 
+        /**
+         * @param $addon_file
+         * @return bool|mixed
+         */
         private function get_file_metadata($addon_file) {
             $meta_data = $this->get_plugin_meta($addon_file['full_path']);
 
@@ -41,6 +51,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $meta_data;
         }
 
+        /**
+         * @param $addons_files
+         * @return bool
+         */
         public function get_metadata($addons_files) {
             if( ! is_array($addons_files) ) {
                 return FALSE;
@@ -64,6 +78,12 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $this->addon_metadatas;
         }
 
+        /**
+         * @param      $file
+         * @param bool $markup
+         * @param bool $translate
+         * @return mixed
+         */
         private function get_plugin_meta($file, $markup = TRUE, $translate = TRUE) {
             $headers = $this->parse_args($this->option("file_headers"), $this->get_default_headers());
             $data = $this->render_file_headers($file, $headers);
@@ -87,6 +107,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $data;
         }
 
+        /**
+         * @param $file
+         * @return bool|string
+         */
         protected function read_file_data($file) {
             if( file_exists($file) ) {
                 $fp = fopen($file, 'r');
@@ -98,6 +122,12 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $file;
         }
 
+        /**
+         * @param        $file
+         * @param        $default_headers
+         * @param string $context
+         * @return mixed
+         */
         protected function render_file_headers($file, $default_headers, $context = '') {
             $file_data = $this->read_file_data($file);
             $file_data = str_replace("\r", "\n", $file_data);
@@ -111,6 +141,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $all_headers;
         }
 
+        /**
+         * @param $meta_data
+         * @return mixed
+         */
         protected function extract_registered_shortcodes($meta_data) {
             $codes = array(
                 'REQUIRED_PLUGINS' => __("Required Plugins", 'vsp-framework'),
@@ -136,6 +170,11 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $meta_data;
         }
 
+        /**
+         * @param $content
+         * @param $meta
+         * @return array
+         */
         private function extract_screenshots($content, $meta) {
             $screens = $this->search_addon_screenshots($meta);
             $text = str_replace(array( "\r\n", "\r" ), "\n", $content[5]);
@@ -167,6 +206,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return array_merge($return, $screens);
         }
 
+        /**
+         * @param $meta
+         * @return array
+         */
         private function search_addon_screenshots($meta) {
             $file_formats = array( 'screenshot', 'addon-screenshot' );
             $file_exts = array( 'jpg', 'png', 'gif' );
@@ -186,6 +229,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $return;
         }
 
+        /**
+         * @param $meta
+         * @return bool|string
+         */
         protected function search_addon_icon($meta) {
             $name_formats = array(
                 'icon',
@@ -213,6 +260,11 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
             return $return;
         }
 
+        /**
+         * @param $content
+         * @param $meta
+         * @return array
+         */
         protected function extract_required_plugins($content, $meta) {
             //preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content[5], $reg_shortcodes );
 
