@@ -1,5 +1,5 @@
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
     'use strict';
 
     $.VSP_ADDONS = $.VSP_ADDONS || {};
@@ -7,7 +7,7 @@
     $.VSP_ADDONS.pending_ajax_requets = [];
 
     $.VSP_ADDONS.addonsHTML = '';
-    
+
     $.VSP_ADDONS.is_ajax_ongoing = false;
 
     $.VSP_ADDONS.blockUI = function (id) {
@@ -28,13 +28,13 @@
 
     $.VSP_ADDONS.kick_start_addon_ajax = function () {
         $.VSP_ADDONS.is_ajax_ongoing = true;
-        if ($.VSP_ADDONS.pending_ajax_requets[0] !== undefined) {
+        if ( $.VSP_ADDONS.pending_ajax_requets[0] !== undefined ) {
             var $elem = $.VSP_ADDONS.pending_ajax_requets[0];
             var $PARENTDIV = $elem.attr("data-outline");
             var $type = 'activate';
             $PARENTDIV = $("div#" + $PARENTDIV);
             var $path_id = $PARENTDIV.data('pathid');
-            if ($elem.hasClass("vsp-deactive-addon")) {
+            if ( $elem.hasClass("vsp-deactive-addon") ) {
                 $type = 'deactivate';
             }
 
@@ -53,7 +53,7 @@
                 $AjaxDiv.removeClass("vsp_ajax_error");
                 $AjaxDiv.removeClass("vsp_ajax_success");
                 $AjaxDiv.hide();
-                if (response.success === true) {
+                if ( response.success === true ) {
                     $PARENTDIV.toggleClass("addon-inactive");
                     $PARENTDIV.toggleClass("addon-active");
                     $.VSP_ADDONS.update_action_buttons();
@@ -80,10 +80,10 @@
 
     $.VSP_ADDONS.handle_action_clicks = function () {
         var $ID = $(this).attr("data-outline");
-        if (!$('div#' + $ID).hasClass("vsp-requested")) {
+        if ( !$('div#' + $ID).hasClass("vsp-requested") ) {
             $.VSP_ADDONS.pending_ajax_requets.push($(this));
 
-            if ($.VSP_ADDONS.is_ajax_ongoing === false) {
+            if ( $.VSP_ADDONS.is_ajax_ongoing === false ) {
                 $.VSP_ADDONS.kick_start_addon_ajax();
             }
             $.VSP_ADDONS.blockUI($ID);
@@ -103,7 +103,7 @@
 
         $('body').on("click", "div.vsp_addon_listing button.vsp-active-addon, div.vsp_addon_listing button.vsp-deactive-addon", $.VSP_ADDONS.handle_action_clicks);
 
-        if ($("ul.vsp-addons-category-listing").length > 0) {
+        if ( $("ul.vsp-addons-category-listing").length > 0 ) {
             $(".vsp_settings_content").remove();
             $("p.submit").remove();
             $("ul.vsp-addons-category-listing li:first").addClass('current');
@@ -113,7 +113,7 @@
                 $("ul.vsp-addons-category-listing li").removeClass("current");
                 $elem.parent().addClass('current');
 
-                if ($cat == 'all') {
+                if ( $cat == 'all' ) {
                     $(".vsp-single-addon").show();
                 } else {
                     $(".vsp-single-addon").hide();
@@ -121,11 +121,11 @@
                 }
 
             });
-            
-            $('body').on("keyup",".wp-filter-search",function(){
+
+            $('body').on("keyup", ".wp-filter-search", function () {
                 var $html = $.VSP_ADDONS.addonsHTML.clone();
             });
         }
     });
 
-})(jQuery, window, document);
+} )(jQuery, window, document);

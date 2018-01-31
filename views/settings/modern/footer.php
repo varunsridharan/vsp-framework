@@ -6,5 +6,5 @@
     <div class="clear"></div>
 </footer>
 </div>
-    <?php echo do_action("vsp_wp_settings_simple_footer"); ?> </div>
+<?php echo do_action("vsp_wp_settings_simple_footer"); ?> </div>
 </div></div>

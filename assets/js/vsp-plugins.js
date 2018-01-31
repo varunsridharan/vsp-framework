@@ -15,14 +15,15 @@
  */
 
 ;
-(function () {
+( function () {
     /*jshint eqeqeq:false curly:false latedef:false */
     "use strict";
 
     function setup($) {
         $.fn._fadeIn = $.fn.fadeIn;
 
-        var noOp = $.noop || function () {};
+        var noOp = $.noop || function () {
+        };
 
         // this bit is to ensure we don't call setExpression when we shouldn't (with extra muscle to handle
         // confusing userAgent strings on Vista)
@@ -42,9 +43,9 @@
         // convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
         $.growlUI = function (title, message, timeout, onClose) {
             var $m = $('<div class="growlUI"></div>');
-            if (title) $m.append('<h1>' + title + '</h1>');
-            if (message) $m.append('<h2>' + message + '</h2>');
-            if (timeout === undefined) timeout = 3000;
+            if ( title ) $m.append('<h1>' + title + '</h1>');
+            if ( message ) $m.append('<h2>' + message + '</h2>');
+            if ( timeout === undefined ) timeout = 3000;
 
             // Added by konapun: Set timeout to 30 seconds if this growl is moused over, like normal toast notifications
             var callBlock = function (opts) {
@@ -81,14 +82,14 @@
 
         // plugin method for blocking element content
         $.fn.block = function (opts) {
-            if (this[0] === window) {
+            if ( this[0] === window ) {
                 $.blockUI(opts);
                 return this;
             }
             var fullOpts = $.extend({}, $.blockUI.defaults, opts || {});
             this.each(function () {
                 var $el = $(this);
-                if (fullOpts.ignoreIfBlocked && $el.data('blockUI.isBlocked'))
+                if ( fullOpts.ignoreIfBlocked && $el.data('blockUI.isBlocked') )
                     return;
                 $el.unblock({
                     fadeOut: 0
@@ -96,7 +97,7 @@
             });
 
             return this.each(function () {
-                if ($.css(this, 'position') == 'static') {
+                if ( $.css(this, 'position') == 'static' ) {
                     this.style.position = 'relative';
                     $(this).data('blockUI.static', true);
                 }
@@ -107,7 +108,7 @@
 
         // plugin method for unblocking element content
         $.fn.unblock = function (opts) {
-            if (this[0] === window) {
+            if ( this[0] === window ) {
                 $.unblockUI(opts);
                 return this;
             }
@@ -258,23 +259,23 @@
 
         function install(el, opts) {
             var css, themedCSS;
-            var full = (el == window);
-            var msg = (opts && opts.message !== undefined ? opts.message : undefined);
+            var full = ( el == window );
+            var msg = ( opts && opts.message !== undefined ? opts.message : undefined );
             opts = $.extend({}, $.blockUI.defaults, opts || {});
 
-            if (opts.ignoreIfBlocked && $(el).data('blockUI.isBlocked'))
+            if ( opts.ignoreIfBlocked && $(el).data('blockUI.isBlocked') )
                 return;
 
             opts.overlayCSS = $.extend({}, $.blockUI.defaults.overlayCSS, opts.overlayCSS || {});
             css = $.extend({}, $.blockUI.defaults.css, opts.css || {});
-            if (opts.onOverlayClick)
+            if ( opts.onOverlayClick )
                 opts.overlayCSS.cursor = 'pointer';
 
             themedCSS = $.extend({}, $.blockUI.defaults.themedCSS, opts.themedCSS || {});
             msg = msg === undefined ? opts.message : msg;
 
             // remove the current block (if there is one)
-            if (full && pageBlock)
+            if ( full && pageBlock )
                 remove(window, {
                     fadeOut: 0
                 });
@@ -282,7 +283,7 @@
             // if an existing element is being used as the blocking content then we capture
             // its current place in the DOM (and current display style) so we can restore
             // it when we unblock
-            if (msg && typeof msg != 'string' && (msg.parentNode || msg.jquery)) {
+            if ( msg && typeof msg != 'string' && ( msg.parentNode || msg.jquery ) ) {
                 var node = msg.jquery ? msg[0] : msg;
                 var data = {};
                 $(el).data('blockUI.history', data);
@@ -290,7 +291,7 @@
                 data.parent = node.parentNode;
                 data.display = node.style.display;
                 data.position = node.style.position;
-                if (data.parent)
+                if ( data.parent )
                     data.parent.removeChild(node);
             }
 
@@ -302,40 +303,40 @@
             // layer2 is the overlay layer which has opacity and a wait cursor (by default)
             // layer3 is the message content that is displayed while blocking
             var lyr1, lyr2, lyr3, s;
-            if (msie || opts.forceIframe)
-                lyr1 = $('<iframe class="blockUI" style="z-index:' + (z++) + ';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="' + opts.iframeSrc + '"></iframe>');
+            if ( msie || opts.forceIframe )
+                lyr1 = $('<iframe class="blockUI" style="z-index:' + ( z++ ) + ';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="' + opts.iframeSrc + '"></iframe>');
             else
                 lyr1 = $('<div class="blockUI" style="display:none"></div>');
 
-            if (opts.theme)
-                lyr2 = $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:' + (z++) + ';display:none"></div>');
+            if ( opts.theme )
+                lyr2 = $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:' + ( z++ ) + ';display:none"></div>');
             else
-                lyr2 = $('<div class="blockUI blockOverlay" style="z-index:' + (z++) + ';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
+                lyr2 = $('<div class="blockUI blockOverlay" style="z-index:' + ( z++ ) + ';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
 
-            if (opts.theme && full) {
-                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:fixed">';
-                if (opts.title) {
-                    s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+            if ( opts.theme && full ) {
+                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:' + ( z + 10 ) + ';display:none;position:fixed">';
+                if ( opts.title ) {
+                    s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + ( opts.title || '&nbsp;' ) + '</div>';
                 }
                 s += '<div class="ui-widget-content ui-dialog-content"></div>';
                 s += '</div>';
-            } else if (opts.theme) {
-                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:absolute">';
-                if (opts.title) {
-                    s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+            } else if ( opts.theme ) {
+                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:' + ( z + 10 ) + ';display:none;position:absolute">';
+                if ( opts.title ) {
+                    s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + ( opts.title || '&nbsp;' ) + '</div>';
                 }
                 s += '<div class="ui-widget-content ui-dialog-content"></div>';
                 s += '</div>';
-            } else if (full) {
-                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage" style="z-index:' + (z + 10) + ';display:none;position:fixed"></div>';
+            } else if ( full ) {
+                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage" style="z-index:' + ( z + 10 ) + ';display:none;position:fixed"></div>';
             } else {
-                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement" style="z-index:' + (z + 10) + ';display:none;position:absolute"></div>';
+                s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement" style="z-index:' + ( z + 10 ) + ';display:none;position:absolute"></div>';
             }
             lyr3 = $(s);
 
             // if we have a message, style it
-            if (msg) {
-                if (opts.theme) {
+            if ( msg ) {
+                if ( opts.theme ) {
                     lyr3.css(themedCSS);
                     lyr3.addClass('ui-widget-content');
                 } else
@@ -343,12 +344,12 @@
             }
 
             // style the overlay
-            if (!opts.theme /*&& (!opts.applyPlatformOpacityRules)*/ )
+            if ( !opts.theme /*&& (!opts.applyPlatformOpacityRules)*/ )
                 lyr2.css(opts.overlayCSS);
             lyr2.css('position', full ? 'fixed' : 'absolute');
 
             // make iframe layer transparent in IE
-            if (msie || opts.forceIframe)
+            if ( msie || opts.forceIframe )
                 lyr1.css('opacity', 0.0);
 
             //$([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
@@ -358,7 +359,7 @@
                 this.appendTo($par);
             });
 
-            if (opts.theme && opts.draggable && $.fn.draggable) {
+            if ( opts.theme && opts.draggable && $.fn.draggable ) {
                 lyr3.draggable({
                     handle: '.ui-dialog-titlebar',
                     cancel: 'li'
@@ -366,14 +367,14 @@
             }
 
             // ie7 must use absolute positioning in quirks mode and to account for activex issues (when scrolling)
-            var expr = setExpr && (!$.support.boxModel || $('object,embed', full ? null : el).length > 0);
-            if (ie6 || expr) {
+            var expr = setExpr && ( !$.support.boxModel || $('object,embed', full ? null : el).length > 0 );
+            if ( ie6 || expr ) {
                 // give body 100% height
-                if (full && opts.allowBodyStretch && $.support.boxModel)
+                if ( full && opts.allowBodyStretch && $.support.boxModel )
                     $('html,body').css('height', '100%');
 
                 // fix ie6 issue when blocked element has a border width
-                if ((ie6 || !$.support.boxModel) && !full) {
+                if ( ( ie6 || !$.support.boxModel ) && !full ) {
                     var t = sz(el, 'borderTopWidth'),
                         l = sz(el, 'borderLeftWidth');
                     var fixT = t ? '(0 - ' + t + ')' : 0;
@@ -384,22 +385,22 @@
                 $.each(layers, function (i, o) {
                     var s = o[0].style;
                     s.position = 'absolute';
-                    if (i < 2) {
-                        if (full)
+                    if ( i < 2 ) {
+                        if ( full )
                             s.setExpression('height', 'Math.max(document.body.scrollHeight, document.body.offsetHeight) - (jQuery.support.boxModel?0:' + opts.quirksmodeOffsetHack + ') + "px"');
                         else
                             s.setExpression('height', 'this.parentNode.offsetHeight + "px"');
-                        if (full)
+                        if ( full )
                             s.setExpression('width', 'jQuery.support.boxModel && document.documentElement.clientWidth || document.body.clientWidth + "px"');
                         else
                             s.setExpression('width', 'this.parentNode.offsetWidth + "px"');
-                        if (fixL) s.setExpression('left', fixL);
-                        if (fixT) s.setExpression('top', fixT);
-                    } else if (opts.centerY) {
-                        if (full) s.setExpression('top', '(document.documentElement.clientHeight || document.body.clientHeight) / 2 - (this.offsetHeight / 2) + (blah = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop) + "px"');
+                        if ( fixL ) s.setExpression('left', fixL);
+                        if ( fixT ) s.setExpression('top', fixT);
+                    } else if ( opts.centerY ) {
+                        if ( full ) s.setExpression('top', '(document.documentElement.clientHeight || document.body.clientHeight) / 2 - (this.offsetHeight / 2) + (blah = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop) + "px"');
                         s.marginTop = 0;
-                    } else if (!opts.centerY && full) {
-                        var top = (opts.css && opts.css.top) ? parseInt(opts.css.top, 10) : 0;
+                    } else if ( !opts.centerY && full ) {
+                        var top = ( opts.css && opts.css.top ) ? parseInt(opts.css.top, 10) : 0;
                         var expression = '((document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop) + ' + top + ') + "px"';
                         s.setExpression('top', expression);
                     }
@@ -407,49 +408,49 @@
             }
 
             // show the message
-            if (msg) {
-                if (opts.theme)
+            if ( msg ) {
+                if ( opts.theme )
                     lyr3.find('.ui-widget-content').append(msg);
                 else
                     lyr3.append(msg);
-                if (msg.jquery || msg.nodeType)
+                if ( msg.jquery || msg.nodeType )
                     $(msg).show();
             }
 
-            if ((msie || opts.forceIframe) && opts.showOverlay)
+            if ( ( msie || opts.forceIframe ) && opts.showOverlay )
                 lyr1.show(); // opacity is zero
-            if (opts.fadeIn) {
+            if ( opts.fadeIn ) {
                 var cb = opts.onBlock ? opts.onBlock : noOp;
-                var cb1 = (opts.showOverlay && !msg) ? cb : noOp;
+                var cb1 = ( opts.showOverlay && !msg ) ? cb : noOp;
                 var cb2 = msg ? cb : noOp;
-                if (opts.showOverlay)
+                if ( opts.showOverlay )
                     lyr2._fadeIn(opts.fadeIn, cb1);
-                if (msg)
+                if ( msg )
                     lyr3._fadeIn(opts.fadeIn, cb2);
             } else {
-                if (opts.showOverlay)
+                if ( opts.showOverlay )
                     lyr2.show();
-                if (msg)
+                if ( msg )
                     lyr3.show();
-                if (opts.onBlock)
+                if ( opts.onBlock )
                     opts.onBlock.bind(lyr3)();
             }
 
             // bind key and mouse events
             bind(1, el, opts);
 
-            if (full) {
+            if ( full ) {
                 pageBlock = lyr3[0];
                 pageBlockEls = $(opts.focusableElements, pageBlock);
-                if (opts.focusInput)
+                if ( opts.focusInput )
                     setTimeout(focus, 20);
             } else
                 center(lyr3[0], opts.centerX, opts.centerY);
 
-            if (opts.timeout) {
+            if ( opts.timeout ) {
                 // auto-unblock
                 var to = setTimeout(function () {
-                    if (full)
+                    if ( full )
                         $.unblockUI(opts);
                     else
                         $(el).unblock(opts);
@@ -461,43 +462,43 @@
         // remove the block
         function remove(el, opts) {
             var count;
-            var full = (el == window);
+            var full = ( el == window );
             var $el = $(el);
             var data = $el.data('blockUI.history');
             var to = $el.data('blockUI.timeout');
-            if (to) {
+            if ( to ) {
                 clearTimeout(to);
                 $el.removeData('blockUI.timeout');
             }
             opts = $.extend({}, $.blockUI.defaults, opts || {});
             bind(0, el, opts); // unbind events
 
-            if (opts.onUnblock === null) {
+            if ( opts.onUnblock === null ) {
                 opts.onUnblock = $el.data('blockUI.onUnblock');
                 $el.removeData('blockUI.onUnblock');
             }
 
             var els;
-            if (full) // crazy selector to handle odd field errors in ie6/7
+            if ( full ) // crazy selector to handle odd field errors in ie6/7
                 els = $('body').children().filter('.blockUI').add('body > .blockUI');
             else
                 els = $el.find('>.blockUI');
 
             // fix cursor issue
-            if (opts.cursorReset) {
-                if (els.length > 1)
+            if ( opts.cursorReset ) {
+                if ( els.length > 1 )
                     els[1].style.cursor = opts.cursorReset;
-                if (els.length > 2)
+                if ( els.length > 2 )
                     els[2].style.cursor = opts.cursorReset;
             }
 
-            if (full)
+            if ( full )
                 pageBlock = pageBlockEls = null;
 
-            if (opts.fadeOut) {
+            if ( opts.fadeOut ) {
                 count = els.length;
                 els.stop().fadeOut(opts.fadeOut, function () {
-                    if (--count === 0)
+                    if ( --count === 0 )
                         reset(els, data, opts, el);
                 });
             } else
@@ -507,29 +508,29 @@
         // move blocking element back into the DOM where it started
         function reset(els, data, opts, el) {
             var $el = $(el);
-            if ($el.data('blockUI.isBlocked'))
+            if ( $el.data('blockUI.isBlocked') )
                 return;
 
             els.each(function (i, o) {
                 // remove via DOM calls so we don't lose event handlers
-                if (this.parentNode)
+                if ( this.parentNode )
                     this.parentNode.removeChild(this);
             });
 
-            if (data && data.el) {
+            if ( data && data.el ) {
                 data.el.style.display = data.display;
                 data.el.style.position = data.position;
                 data.el.style.cursor = 'default'; // #59
-                if (data.parent)
+                if ( data.parent )
                     data.parent.appendChild(data.el);
                 $el.removeData('blockUI.history');
             }
 
-            if ($el.data('blockUI.static')) {
+            if ( $el.data('blockUI.static') ) {
                 $el.css('position', 'static'); // #22
             }
 
-            if (typeof opts.onUnblock == 'function')
+            if ( typeof opts.onUnblock == 'function' )
                 opts.onUnblock(el, opts);
 
             // fix issue in Safari 6 where block artifacts remain until reflow
@@ -546,18 +547,18 @@
                 $el = $(el);
 
             // don't bother unbinding if there is nothing to unbind
-            if (!b && (full && !pageBlock || !full && !$el.data('blockUI.isBlocked')))
+            if ( !b && ( full && !pageBlock || !full && !$el.data('blockUI.isBlocked') ) )
                 return;
 
             $el.data('blockUI.isBlocked', b);
 
             // don't bind events when overlay is not in use or if bindEvents is false
-            if (!full || !opts.bindEvents || (b && !opts.showOverlay))
+            if ( !full || !opts.bindEvents || ( b && !opts.showOverlay ) )
                 return;
 
             // bind anchors and inputs for mouse and key events
             var events = 'mousedown mouseup keydown keypress keyup touchstart touchend touchmove';
-            if (b)
+            if ( b )
                 $(document).bind(events, opts, handler);
             else
                 $(document).unbind(events, handler);
@@ -570,12 +571,12 @@
         // event handler to suppress keyboard/mouse events when blocking
         function handler(e) {
             // allow tab navigation (conditionally)
-            if (e.type === 'keydown' && e.keyCode && e.keyCode == 9) {
-                if (pageBlock && e.data.constrainTabKey) {
+            if ( e.type === 'keydown' && e.keyCode && e.keyCode == 9 ) {
+                if ( pageBlock && e.data.constrainTabKey ) {
                     var els = pageBlockEls;
                     var fwd = !e.shiftKey && e.target === els[els.length - 1];
                     var back = e.shiftKey && e.target === els[0];
-                    if (fwd || back) {
+                    if ( fwd || back ) {
                         setTimeout(function () {
                             focus(back);
                         }, 10);
@@ -585,11 +586,11 @@
             }
             var opts = e.data;
             var target = $(e.target);
-            if (target.hasClass('blockOverlay') && opts.onOverlayClick)
+            if ( target.hasClass('blockOverlay') && opts.onOverlayClick )
                 opts.onOverlayClick(e);
 
             // allow events within the message content
-            if (target.parents('div.' + opts.blockMsgClass).length > 0)
+            if ( target.parents('div.' + opts.blockMsgClass).length > 0 )
                 return true;
 
             // allow events for content that is not being blocked
@@ -597,20 +598,20 @@
         }
 
         function focus(back) {
-            if (!pageBlockEls)
+            if ( !pageBlockEls )
                 return;
             var e = pageBlockEls[back === true ? pageBlockEls.length - 1 : 0];
-            if (e)
+            if ( e )
                 e.focus();
         }
 
         function center(el, x, y) {
             var p = el.parentNode,
                 s = el.style;
-            var l = ((p.offsetWidth - el.offsetWidth) / 2) - sz(p, 'borderLeftWidth');
-            var t = ((p.offsetHeight - el.offsetHeight) / 2) - sz(p, 'borderTopWidth');
-            if (x) s.left = l > 0 ? (l + 'px') : '0';
-            if (y) s.top = t > 0 ? (t + 'px') : '0';
+            var l = ( ( p.offsetWidth - el.offsetWidth ) / 2 ) - sz(p, 'borderLeftWidth');
+            var t = ( ( p.offsetHeight - el.offsetHeight ) / 2 ) - sz(p, 'borderTopWidth');
+            if ( x ) s.left = l > 0 ? ( l + 'px' ) : '0';
+            if ( y ) s.top = t > 0 ? ( t + 'px' ) : '0';
         }
 
         function sz(el, p) {
@@ -621,15 +622,15 @@
 
 
     /*global define:true */
-    if (typeof define === 'function' && define.amd && define.amd.jQuery) {
+    if ( typeof define === 'function' && define.amd && define.amd.jQuery ) {
         define(['jquery'], setup);
     } else {
         setup(jQuery);
     }
 
-})();
+} )();
 
-(function (window) {
+( function (window) {
     'use strict';
 
     function define_VSPAjax() {
@@ -648,15 +649,15 @@
         return VSPAjaxQ;
     }
 
-    function vsp_Ajax_Elem_Access($element,stats){
-        if (stats == 'block') {
+    function vsp_Ajax_Elem_Access($element, stats) {
+        if ( stats == 'block' ) {
             $element.vspbutton('loading');
         } else {
             $element.vspbutton("reset");
         }
     }
-    
-    if (typeof (Library) === 'undefined') {
+
+    if ( typeof ( Library ) === 'undefined' ) {
         window.VSPAjax = define_VSPAjax();
         window.VSPAjaxQ = define_VSPAjaxQ();
     }
@@ -684,29 +685,29 @@
             var ct = 0;
             var toStr = Object.prototype.toString;
             var retArr = true;
-            for (i = 0; i < argl; i++) {
-                if (toStr.call(args[i]) !== '[object Array]') {
+            for ( i = 0; i < argl; i++ ) {
+                if ( toStr.call(args[i]) !== '[object Array]' ) {
                     retArr = false
                     break;
                 }
             }
-            if (retArr) {
+            if ( retArr ) {
                 retArr = [];
-                for (i = 0; i < argl; i++) {
+                for ( i = 0; i < argl; i++ ) {
                     retArr = retArr.concat(args[i]);
                 }
                 return retArr;
             }
-            for (i = 0, ct = 0; i < argl; i++) {
+            for ( i = 0, ct = 0; i < argl; i++ ) {
                 arg = args[i];
-                if (toStr.call(arg) === '[object Array]') {
-                    for (j = 0, argil = arg.length; j < argil; j++) {
+                if ( toStr.call(arg) === '[object Array]' ) {
+                    for ( j = 0, argil = arg.length; j < argil; j++ ) {
                         retObj[ct++] = arg[j];
                     }
                 } else {
-                    for (k in arg) {
-                        if (arg.hasOwnProperty(k)) {
-                            if (parseInt(k, 10) + '' === k) {
+                    for ( k in arg ) {
+                        if ( arg.hasOwnProperty(k) ) {
+                            if ( parseInt(k, 10) + '' === k ) {
                                 retObj[ct++] = arg[k];
                             } else {
                                 retObj[k] = arg[k];
@@ -719,48 +720,48 @@
         },
 
         _set_Options: function ($Options) {
-            if ($Options !== undefined) {
+            if ( $Options !== undefined ) {
                 this._Options = $Options;
             }
         },
 
         _set_ajax_options: function ($Options) {
-            if ($Options !== undefined) {
-                this._AjaxOptions = this._mergeArray(this._default_ajax_options,$Options);
+            if ( $Options !== undefined ) {
+                this._AjaxOptions = this._mergeArray(this._default_ajax_options, $Options);
             }
         },
 
         _BodyTrigger: function ($status) {
-            if (this._Options.trigger_code !== undefined) {
+            if ( this._Options.trigger_code !== undefined ) {
                 jQuery("body").trigger(this._Options.trigger_code, [$status, Options.element, this._AjaxOptions]);
             }
         },
 
         _FuncTrigger: function ($status, $args) {
-            if ($status == 'before' && this._Options.before === 'function') {
+            if ( $status == 'before' && this._Options.before === 'function' ) {
                 this._Options.before($args);
-            } else if ($status == 'after' && this._Options.after === 'function') {
+            } else if ( $status == 'after' && this._Options.after === 'function' ) {
                 this._Options.after($args);
-            } else if ($status == 'onSuccess' && this._AjaxOptions.OnSuccess === 'function') {
+            } else if ( $status == 'onSuccess' && this._AjaxOptions.OnSuccess === 'function' ) {
                 this._AjaxOptions.OnSuccess($args);
-            } else if ($status == 'onError' && this._AjaxOptions.onError === 'function') {
+            } else if ( $status == 'onError' && this._AjaxOptions.onError === 'function' ) {
                 this._AjaxOptions.onError($args);
-            } else if ($status == 'OnAlways' && this._AjaxOptions.OnAlways === 'function') {
+            } else if ( $status == 'OnAlways' && this._AjaxOptions.OnAlways === 'function' ) {
                 this._AjaxOptions.OnAlways($args);
-            } else if ($status == 'AjaxQ') {
+            } else if ( $status == 'AjaxQ' ) {
                 jQuery("body").trigger('vsp-ajaxq');
             }
         },
 
         _elementLock: function (stats) {
-            if (this._Options.element_lock) {
+            if ( this._Options.element_lock ) {
                 vsp_Ajax_Elem_Access(this._Options.element, stats);
             }
         },
 
         _handle_response: function (res) {
-            if (res.data !== undefined) {
-                if (res.data.msg !== undefined) {
+            if ( res.data !== undefined ) {
+                if ( res.data.msg !== undefined ) {
                     this._Options.response_element.html(res.data.msg);
                     return false;
                 }
@@ -771,7 +772,7 @@
         _string_function_callback: function (callback) {
             try {
                 window[callback]();
-            } catch (err) {
+            } catch ( err ) {
                 console.log(err);
             }
         },
@@ -783,24 +784,24 @@
         },
 
         _handle_callback: function (res) {
-            if (res.data !== undefined) {
-                if (res.data.callback !== undefined) {
-                    if (typeof res.data.callback == 'string') {
+            if ( res.data !== undefined ) {
+                if ( res.data.callback !== undefined ) {
+                    if ( typeof res.data.callback == 'string' ) {
                         this._string_function_callback(res.data.callback);
-                    } else if (typeof res.data.callback == 'object' || typeof res.data.callback == 'array') {
+                    } else if ( typeof res.data.callback == 'object' || typeof res.data.callback == 'array' ) {
 
                         jQuery.each(res.data.callback, function (key, value) {
-                            if (key == parseInt(key)) {
-                                if (typeof value == 'string') {
+                            if ( key == parseInt(key) ) {
+                                if ( typeof value == 'string' ) {
                                     this._string_function_callback(value);
-                                } else if (typeof value == 'object' || typeof value == 'array') {
+                                } else if ( typeof value == 'object' || typeof value == 'array' ) {
                                     this._array_function_callback(value);
                                 }
                             } else {
                                 try {
                                     var CB = new Function(key, value);
                                     CB();
-                                } catch (arr) {
+                                } catch ( arr ) {
                                     console.log(err);
                                 }
                             }
@@ -814,15 +815,15 @@
         ajax: function (AjaxOptions, Options) {
             this._set_ajax_options(AjaxOptions);
             this._set_Options(Options);
-            
-            if (AjaxOptions.ajax !== undefined) {
+
+            if ( AjaxOptions.ajax !== undefined ) {
                 this._set_ajax_options(AjaxOptions.ajax);
             }
 
-            if (AjaxOptions.options !== undefined) {
+            if ( AjaxOptions.options !== undefined ) {
                 this._set_Options(AjaxOptions.options);
             }
-            
+
 
             this._FuncTrigger("before");
 
@@ -830,7 +831,7 @@
 
             this._elementLock('block');
 
-            if (this._Options.response_element === undefined) {
+            if ( this._Options.response_element === undefined ) {
                 this._Options.response_element = jQuery(".inline-ajax-response");
             }
 
@@ -885,7 +886,7 @@
         init: function () {
             var $self = this;
             jQuery("body").on("vsp-ajaxq", function () {
-                if($self.ajax_queue[0] !== undefined){
+                if ( $self.ajax_queue[0] !== undefined ) {
                     var $elem = $self.ajax_queue[0].elem;
                     $elem.removeClass("vspajaxq-in-queue");
                     $self.ajax_queue.shift();
@@ -895,11 +896,11 @@
                 }
             });
         },
-        
+
         kick_start_ajax: function () {
             this.is_ajax_ongoing = true;
 
-            if (this.ajax_queue[0] !== undefined) {
+            if ( this.ajax_queue[0] !== undefined ) {
                 new VSPAjax(this.ajax_queue[0].data)
             } else {
                 this.is_ajax_ongoing = false;
@@ -907,19 +908,19 @@
         },
 
         add: function ($ele, $data) {
-            if (!$ele.hasClass("vspajaxq-in-queue")) {
+            if ( !$ele.hasClass("vspajaxq-in-queue") ) {
                 this.ajax_queue.push({
                     elem: $ele,
                     data: $data
                 });
                 $ele.addClass("vspajaxq-in-queue");
-                vsp_Ajax_Elem_Access($ele,'block');
-                if (this.is_ajax_ongoing === false) {
+                vsp_Ajax_Elem_Access($ele, 'block');
+                if ( this.is_ajax_ongoing === false ) {
                     this.kick_start_ajax();
                 }
             }
         },
 
     };
-})(window);
+} )(window);
 

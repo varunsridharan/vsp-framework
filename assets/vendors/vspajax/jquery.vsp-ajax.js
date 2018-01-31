@@ -1,4 +1,4 @@
-(function (window) {
+( function (window) {
     'use strict';
 
     function define_VSPAjax() {
@@ -17,15 +17,15 @@
         return VSPAjaxQ;
     }
 
-    function vsp_Ajax_Elem_Access($element,stats){
-        if (stats == 'block') {
+    function vsp_Ajax_Elem_Access($element, stats) {
+        if ( stats == 'block' ) {
             $element.vspbutton('loading');
         } else {
             $element.vspbutton("reset");
         }
     }
-    
-    if (typeof (Library) === 'undefined') {
+
+    if ( typeof ( Library ) === 'undefined' ) {
         window.VSPAjax = define_VSPAjax();
         window.VSPAjaxQ = define_VSPAjaxQ();
     }
@@ -53,29 +53,29 @@
             var ct = 0;
             var toStr = Object.prototype.toString;
             var retArr = true;
-            for (i = 0; i < argl; i++) {
-                if (toStr.call(args[i]) !== '[object Array]') {
+            for ( i = 0; i < argl; i++ ) {
+                if ( toStr.call(args[i]) !== '[object Array]' ) {
                     retArr = false
                     break;
                 }
             }
-            if (retArr) {
+            if ( retArr ) {
                 retArr = [];
-                for (i = 0; i < argl; i++) {
+                for ( i = 0; i < argl; i++ ) {
                     retArr = retArr.concat(args[i]);
                 }
                 return retArr;
             }
-            for (i = 0, ct = 0; i < argl; i++) {
+            for ( i = 0, ct = 0; i < argl; i++ ) {
                 arg = args[i];
-                if (toStr.call(arg) === '[object Array]') {
-                    for (j = 0, argil = arg.length; j < argil; j++) {
+                if ( toStr.call(arg) === '[object Array]' ) {
+                    for ( j = 0, argil = arg.length; j < argil; j++ ) {
                         retObj[ct++] = arg[j];
                     }
                 } else {
-                    for (k in arg) {
-                        if (arg.hasOwnProperty(k)) {
-                            if (parseInt(k, 10) + '' === k) {
+                    for ( k in arg ) {
+                        if ( arg.hasOwnProperty(k) ) {
+                            if ( parseInt(k, 10) + '' === k ) {
                                 retObj[ct++] = arg[k];
                             } else {
                                 retObj[k] = arg[k];
@@ -88,48 +88,48 @@
         },
 
         _set_Options: function ($Options) {
-            if ($Options !== undefined) {
+            if ( $Options !== undefined ) {
                 this._Options = $Options;
             }
         },
 
         _set_ajax_options: function ($Options) {
-            if ($Options !== undefined) {
-                this._AjaxOptions = this._mergeArray(this._default_ajax_options,$Options);
+            if ( $Options !== undefined ) {
+                this._AjaxOptions = this._mergeArray(this._default_ajax_options, $Options);
             }
         },
 
         _BodyTrigger: function ($status) {
-            if (this._Options.trigger_code !== undefined) {
+            if ( this._Options.trigger_code !== undefined ) {
                 jQuery("body").trigger(this._Options.trigger_code, [$status, Options.element, this._AjaxOptions]);
             }
         },
 
         _FuncTrigger: function ($status, $args) {
-            if ($status == 'before' && this._Options.before === 'function') {
+            if ( $status == 'before' && this._Options.before === 'function' ) {
                 this._Options.before($args);
-            } else if ($status == 'after' && this._Options.after === 'function') {
+            } else if ( $status == 'after' && this._Options.after === 'function' ) {
                 this._Options.after($args);
-            } else if ($status == 'onSuccess' && this._AjaxOptions.OnSuccess === 'function') {
+            } else if ( $status == 'onSuccess' && this._AjaxOptions.OnSuccess === 'function' ) {
                 this._AjaxOptions.OnSuccess($args);
-            } else if ($status == 'onError' && this._AjaxOptions.onError === 'function') {
+            } else if ( $status == 'onError' && this._AjaxOptions.onError === 'function' ) {
                 this._AjaxOptions.onError($args);
-            } else if ($status == 'OnAlways' && this._AjaxOptions.OnAlways === 'function') {
+            } else if ( $status == 'OnAlways' && this._AjaxOptions.OnAlways === 'function' ) {
                 this._AjaxOptions.OnAlways($args);
-            } else if ($status == 'AjaxQ') {
+            } else if ( $status == 'AjaxQ' ) {
                 jQuery("body").trigger('vsp-ajaxq');
             }
         },
 
         _elementLock: function (stats) {
-            if (this._Options.element_lock) {
+            if ( this._Options.element_lock ) {
                 vsp_Ajax_Elem_Access(this._Options.element, stats);
             }
         },
 
         _handle_response: function (res) {
-            if (res.data !== undefined) {
-                if (res.data.msg !== undefined) {
+            if ( res.data !== undefined ) {
+                if ( res.data.msg !== undefined ) {
                     this._Options.response_element.html(res.data.msg);
                     return false;
                 }
@@ -140,7 +140,7 @@
         _string_function_callback: function (callback) {
             try {
                 window[callback]();
-            } catch (err) {
+            } catch ( err ) {
                 console.log(err);
             }
         },
@@ -152,24 +152,24 @@
         },
 
         _handle_callback: function (res) {
-            if (res.data !== undefined) {
-                if (res.data.callback !== undefined) {
-                    if (typeof res.data.callback == 'string') {
+            if ( res.data !== undefined ) {
+                if ( res.data.callback !== undefined ) {
+                    if ( typeof res.data.callback == 'string' ) {
                         this._string_function_callback(res.data.callback);
-                    } else if (typeof res.data.callback == 'object' || typeof res.data.callback == 'array') {
+                    } else if ( typeof res.data.callback == 'object' || typeof res.data.callback == 'array' ) {
 
                         jQuery.each(res.data.callback, function (key, value) {
-                            if (key == parseInt(key)) {
-                                if (typeof value == 'string') {
+                            if ( key == parseInt(key) ) {
+                                if ( typeof value == 'string' ) {
                                     this._string_function_callback(value);
-                                } else if (typeof value == 'object' || typeof value == 'array') {
+                                } else if ( typeof value == 'object' || typeof value == 'array' ) {
                                     this._array_function_callback(value);
                                 }
                             } else {
                                 try {
                                     var CB = new Function(key, value);
                                     CB();
-                                } catch (arr) {
+                                } catch ( arr ) {
                                     console.log(err);
                                 }
                             }
@@ -183,15 +183,15 @@
         ajax: function (AjaxOptions, Options) {
             this._set_ajax_options(AjaxOptions);
             this._set_Options(Options);
-            
-            if (AjaxOptions.ajax !== undefined) {
+
+            if ( AjaxOptions.ajax !== undefined ) {
                 this._set_ajax_options(AjaxOptions.ajax);
             }
 
-            if (AjaxOptions.options !== undefined) {
+            if ( AjaxOptions.options !== undefined ) {
                 this._set_Options(AjaxOptions.options);
             }
-            
+
 
             this._FuncTrigger("before");
 
@@ -199,7 +199,7 @@
 
             this._elementLock('block');
 
-            if (this._Options.response_element === undefined) {
+            if ( this._Options.response_element === undefined ) {
                 this._Options.response_element = jQuery(".inline-ajax-response");
             }
 
@@ -254,7 +254,7 @@
         init: function () {
             var $self = this;
             jQuery("body").on("vsp-ajaxq", function () {
-                if($self.ajax_queue[0] !== undefined){
+                if ( $self.ajax_queue[0] !== undefined ) {
                     var $elem = $self.ajax_queue[0].elem;
                     $elem.removeClass("vspajaxq-in-queue");
                     $self.ajax_queue.shift();
@@ -264,11 +264,11 @@
                 }
             });
         },
-        
+
         kick_start_ajax: function () {
             this.is_ajax_ongoing = true;
 
-            if (this.ajax_queue[0] !== undefined) {
+            if ( this.ajax_queue[0] !== undefined ) {
                 new VSPAjax(this.ajax_queue[0].data)
             } else {
                 this.is_ajax_ongoing = false;
@@ -276,18 +276,18 @@
         },
 
         add: function ($ele, $data) {
-            if (!$ele.hasClass("vspajaxq-in-queue")) {
+            if ( !$ele.hasClass("vspajaxq-in-queue") ) {
                 this.ajax_queue.push({
                     elem: $ele,
                     data: $data
                 });
                 $ele.addClass("vspajaxq-in-queue");
-                vsp_Ajax_Elem_Access($ele,'block');
-                if (this.is_ajax_ongoing === false) {
+                vsp_Ajax_Elem_Access($ele, 'block');
+                if ( this.is_ajax_ongoing === false ) {
                     this.kick_start_ajax();
                 }
             }
         },
 
     };
-})(window);
+} )(window);

@@ -1,12 +1,14 @@
 <?php
-if(!defined("ABSPATH")){ exit; }
+if( ! defined("ABSPATH") ) {
+    exit;
+}
 
-if(!class_exists("VSP_Admin_Notice")){
+if( ! class_exists("VSP_Admin_Notice") ) {
     class VSP_Admin_Notice {
         protected static $_instance;
 
-        public static function instance(){
-            if(null == self::$_instance){
+        public static function instance() {
+            if( NULL == self::$_instance ) {
                 self::$_instance = new self;
             }
             return self::$_instance;
@@ -15,46 +17,48 @@ if(!class_exists("VSP_Admin_Notice")){
         public function __construct($options = array()) {
             $defaults = array(
                 'noticeArrayName' => 'VSP_ADMIN_NOTICES',
-                'requestID' => 'vsp-msg',
+                'requestID'       => 'vsp-msg',
             );
 
-            $options = wp_parse_args($options,$defaults);
+            $options = wp_parse_args($options, $defaults);
             $this->noticesArrayName = $options['noticeArrayName'];
             $this->requestID = $options['requestID'];
             $this->notices = array();
             $this->loadNotices();
             $this->auto_remove_Notice();
-            if(vsp_is_admin() || vsp_is_ajax()){
-                add_action('admin_notices', array($this, 'displayNotices'));
+            if( vsp_is_admin() || vsp_is_ajax() ) {
+                add_action('admin_notices', array( $this, 'displayNotices' ));
             }
         }
-        
+
         public function displayNotices() {
-            foreach ($this->notices as $key => $notice) { 
-                if ($this->isTimeToDisplay($notice)) { 
+            foreach( $this->notices as $key => $notice ) {
+                if( $this->isTimeToDisplay($notice) ) {
                     echo $notice->getContentFormated($notice->getWrapper());
                     $notice->incrementDisplayedTimes();
                 }
-                if($notice->getTimes() > 0){
-                    if ($notice->isTimeToDie()) {
+                if( $notice->getTimes() > 0 ) {
+                    if( $notice->isTimeToDie() ) {
                         unset($this->notices[$key]);
-                    }                    
+                    }
                 }
             }
             $this->storeNotices();
         }
 
-        public function auto_remove_Notice(){
-            if(isset($_REQUEST[$this->requestID])){
+        public function auto_remove_Notice() {
+            if( isset($_REQUEST[$this->requestID]) ) {
                 $nonce = $_REQUEST['_wpnonce'];
                 $this->deleteNotice($_REQUEST[$this->requestID]);
-                if (wp_get_referer()){ wp_safe_redirect( wp_get_referer() ); }
+                if( wp_get_referer() ) {
+                    wp_safe_redirect(wp_get_referer());
+                }
             }
         }
 
         public function deleteNotice($notId) {
-            foreach ($this->notices as $key => $notice) {
-                if ($notice->getId() === $notId) {
+            foreach( $this->notices as $key => $notice ) {
+                if( $notice->getId() === $notId ) {
                     unset($this->notices[$key]);
                     break;
                 }
@@ -69,7 +73,7 @@ if(!class_exists("VSP_Admin_Notice")){
 
         private function loadNotices() {
             $notices = get_option($this->noticesArrayName);
-            if (is_array($notices)) {
+            if( is_array($notices) ) {
                 $this->notices = $notices;
             }
         }
@@ -80,31 +84,31 @@ if(!class_exists("VSP_Admin_Notice")){
 
         private function isTimeToDisplay(VSP_Admin_Notices $notice) {
             $screens = $notice->getScreen();
-            if (!empty($screens)) {
+            if( ! empty($screens) ) {
                 $curScreen = get_current_screen();
-                if (!is_array($screens) || !in_array($curScreen->id, $screens)) {
-                    return false;
+                if( ! is_array($screens) || ! in_array($curScreen->id, $screens) ) {
+                    return FALSE;
                 }
             }
 
-            $usersArray = $notice->getUsers(); 
-            if (!empty($usersArray)) {
+            $usersArray = $notice->getUsers();
+            if( ! empty($usersArray) ) {
                 $curUser = get_current_user_id();
-                if (!is_array($usersArray) || !in_array($curUser, $usersArray) || $usersArray[$curUser] >= $notice->getTimes()) {
-                    return false;
+                if( ! is_array($usersArray) || ! in_array($curUser, $usersArray) || $usersArray[$curUser] >= $notice->getTimes() ) {
+                    return FALSE;
                 }
-            } else if ($notice->getTimes() == 0) {
-                return true;
-            } else if ($notice->getTimes() <= $notice->getDisplayedTimes()) {
-                return false;
+            } else if( $notice->getTimes() == 0 ) {
+                return TRUE;
+            } else if( $notice->getTimes() <= $notice->getDisplayedTimes() ) {
+                return FALSE;
             }
 
-            return true;
+            return TRUE;
         }
     }
 }
 
-if(!class_exists("VSP_Admin_Notices")){
+if( ! class_exists("VSP_Admin_Notices") ) {
     abstract class VSP_Admin_Notices {
         protected $content;
         protected $type;
@@ -114,23 +118,25 @@ if(!class_exists("VSP_Admin_Notices")){
         protected $users = array();
         protected $displayedTimes = 0;
         protected $displayedToUsers = array();
-        protected $WithWraper = true;  
-        protected $is_dismissible = true;
+        protected $WithWraper = TRUE;
+        protected $is_dismissible = TRUE;
 
-        public function __construct($content = '', $id='', $times = 1, $screen = array(), $users = array(), $WithWraper = true) {
+        public function __construct($content = '', $id = '', $times = 1, $screen = array(), $users = array(), $WithWraper = TRUE) {
             $this->content = $content;
             $this->screen = $screen;
-            $this->id = (empty($id)) ? uniqid() : $id;
+            $this->id = ( empty($id) ) ? uniqid() : $id;
             $this->times = $times;
             $this->users = $users;
             $this->WithWraper = $WithWraper;
         }
 
-        public function getContentFormated($wrapInParTag = true) {
+        public function getContentFormated($wrapInParTag = TRUE) {
             $class = $this->type;
-            $extrC = '';        
-            if($this->is_dismissible){ $class .= ' notice is-dismissible'; }
-            $before = '<div id="vsp_notices_'.$this->id.'"  class="' .$class. '">';
+            $extrC = '';
+            if( $this->is_dismissible ) {
+                $class .= ' notice is-dismissible';
+            }
+            $before = '<div id="vsp_notices_' . $this->id . '"  class="' . $class . '">';
             $before .= $wrapInParTag ? '<p>' : '';
             $after = $wrapInParTag ? '</p>' : '';
             $after .= '</div>';
@@ -139,8 +145,8 @@ if(!class_exists("VSP_Admin_Notices")){
 
         public function incrementDisplayedTimes() {
             $this->displayedTimes++;
-            if (array_key_exists(get_current_user_id(), $this->displayedToUsers)) {
-                $this->displayedToUsers[get_current_user_id()] ++;
+            if( array_key_exists(get_current_user_id(), $this->displayedToUsers) ) {
+                $this->displayedToUsers[get_current_user_id()]++;
             } else {
                 $this->displayedToUsers[get_current_user_id()] = 1;
             }
@@ -148,27 +154,27 @@ if(!class_exists("VSP_Admin_Notices")){
         }
 
         public function isTimeToDie() {
-            if (empty($this->users)) {
+            if( empty($this->users) ) {
                 return $this->displayedTimes >= $this->times;
             } else {
                 $i = 0;
-                foreach ($this->users as $key => $value) {
-                    if (isset($this->displayedToUsers[$value]) && $this->displayedToUsers[$value] >= $this->times) {
+                foreach( $this->users as $key => $value ) {
+                    if( isset($this->displayedToUsers[$value]) && $this->displayedToUsers[$value] >= $this->times ) {
                         $i++;
                     }
                 }
-                if ($i >= count($this->users)) {
-                    return true;
+                if( $i >= count($this->users) ) {
+                    return TRUE;
                 }
             }
-            return false;
+            return FALSE;
         }
 
-        public function getWrapper(){
+        public function getWrapper() {
             return $this->WithWraper;
         }
 
-        public function setWrapper($wrapper = true){
+        public function setWrapper($wrapper = TRUE) {
             $this->WithWraper = $wrapper;
             return $this;
         }
@@ -195,7 +201,7 @@ if(!class_exists("VSP_Admin_Notices")){
             return $this->id;
         }
 
-        public function set_id($id = ''){
+        public function set_id($id = '') {
             $this->id = $id;
             return $this;
         }
@@ -239,6 +245,18 @@ if(!class_exists("VSP_Admin_Notices")){
     }
 }
 
-if(!class_exists("VSP_Admin_Notices_Error")){ class VSP_Admin_Notices_Error extends VSP_Admin_Notices { protected $type = 'error'; } }
-if(!class_exists("VSP_Admin_Notices_Updated")){ class VSP_Admin_Notices_Updated extends VSP_Admin_Notices { protected $type = 'updated'; }}
-if(!class_exists("VSP_Admin_Notices_UpdateNag")){ class VSP_Admin_Notices_UpdateNag extends VSP_Admin_Notices {  protected $type = 'update-nag'; }}
+if( ! class_exists("VSP_Admin_Notices_Error") ) {
+    class VSP_Admin_Notices_Error extends VSP_Admin_Notices {
+        protected $type = 'error';
+    }
+}
+if( ! class_exists("VSP_Admin_Notices_Updated") ) {
+    class VSP_Admin_Notices_Updated extends VSP_Admin_Notices {
+        protected $type = 'updated';
+    }
+}
+if( ! class_exists("VSP_Admin_Notices_UpdateNag") ) {
+    class VSP_Admin_Notices_UpdateNag extends VSP_Admin_Notices {
+        protected $type = 'update-nag';
+    }
+}

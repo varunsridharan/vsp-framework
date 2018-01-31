@@ -65,6 +65,26 @@ class VSP_Framework_WC_Helper {
     }
 
     /**
+     * Determines if the installed version of WooCommerce is 3.1 or greater.
+     *
+     * @since 4.6.5
+     * @return bool
+     */
+    public static function is_wc_version_gte_3_1() {
+        return self::get_wc_version() && version_compare(self::get_wc_version(), '3.1', '>=');
+    }
+
+    /**
+     * Helper method to get the version of the currently installed WooCommerce
+     *
+     * @since 3.0.0
+     * @return string woocommerce version number or null
+     */
+    protected static function get_wc_version() {
+        return defined('WC_VERSION') && WC_VERSION ? WC_VERSION : NULL;
+    }
+
+    /**
      * Determines if an order contains only virtual products.
      *
      * @since 4.5.0
@@ -86,6 +106,16 @@ class VSP_Framework_WC_Helper {
             }
         }
         return $is_virtual;
+    }
+
+    /**
+     * Determines if the installed version of WooCommerce is 3.0 or greater.
+     *
+     * @since 4.6.0
+     * @return bool
+     */
+    public static function is_wc_version_gte_3_0() {
+        return self::get_wc_version() && version_compare(self::get_wc_version(), '3.0', '>=');
     }
 
     /**
@@ -188,26 +218,6 @@ class VSP_Framework_WC_Helper {
     }
 
     /**
-     * Determines if the installed version of WooCommerce is 3.0 or greater.
-     *
-     * @since 4.6.0
-     * @return bool
-     */
-    public static function is_wc_version_gte_3_0() {
-        return self::get_wc_version() && version_compare(self::get_wc_version(), '3.0', '>=');
-    }
-
-    /**
-     * Helper method to get the version of the currently installed WooCommerce
-     *
-     * @since 3.0.0
-     * @return string woocommerce version number or null
-     */
-    protected static function get_wc_version() {
-        return defined('WC_VERSION') && WC_VERSION ? WC_VERSION : NULL;
-    }
-
-    /**
      * Determines if the installed version of WooCommerce is less than 3.0.
      *
      * @since 4.6.0
@@ -215,16 +225,6 @@ class VSP_Framework_WC_Helper {
      */
     public static function is_wc_version_lt_3_0() {
         return self::get_wc_version() && version_compare(self::get_wc_version(), '3.0', '<');
-    }
-
-    /**
-     * Determines if the installed version of WooCommerce is 3.1 or greater.
-     *
-     * @since 4.6.5
-     * @return bool
-     */
-    public static function is_wc_version_gte_3_1() {
-        return self::get_wc_version() && version_compare(self::get_wc_version(), '3.1', '>=');
     }
 
     /**

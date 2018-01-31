@@ -16,7 +16,7 @@
  * @todo stagePadding calculate wrong active classes
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates a carousel.
@@ -269,17 +269,17 @@
         run: function () {
             this._width = this.$element.width();
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function (cache) {
             cache.current = this._items && this._items[this.relative(this._current)];
         }
-	}, {
+    }, {
         filter: ['items', 'settings'],
         run: function () {
             this.$stage.children('.cloned').remove();
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function (cache) {
             var margin = this.settings.margin || '',
@@ -295,10 +295,10 @@
 
             cache.css = css;
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function (cache) {
-            var width = (this.width() / this.settings.items).toFixed(3) - this.settings.margin,
+            var width = ( this.width() / this.settings.items ).toFixed(3) - this.settings.margin,
                 merge = null,
                 iterator = this._items.length,
                 grid = !this.settings.autoWidth,
@@ -309,7 +309,7 @@
                 width: width
             };
 
-            while (iterator--) {
+            while ( iterator-- ) {
                 merge = this._mergers[iterator];
                 merge = this.settings.mergeFit && Math.min(merge, this.settings.items) || merge;
 
@@ -320,7 +320,7 @@
 
             this._widths = widths;
         }
-	}, {
+    }, {
         filter: ['items', 'settings'],
         run: function () {
             var clones = [],
@@ -335,11 +335,11 @@
 
             repeat /= 2;
 
-            while (repeat > 0) {
+            while ( repeat > 0 ) {
                 // Switch to only using appended clones
                 clones.push(this.normalize(clones.length / 2, true));
                 append = append + items[clones[clones.length - 1]][0].outerHTML;
-                clones.push(this.normalize(items.length - 1 - (clones.length - 1) / 2, true));
+                clones.push(this.normalize(items.length - 1 - ( clones.length - 1 ) / 2, true));
                 prepend = items[clones[clones.length - 1]][0].outerHTML + prepend;
                 repeat -= 1;
             }
@@ -349,7 +349,7 @@
             $(append).addClass('cloned').appendTo(this.$stage);
             $(prepend).addClass('cloned').prependTo(this.$stage);
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function () {
             var rtl = this.settings.rtl ? 1 : -1,
@@ -359,7 +359,7 @@
                 current = 0,
                 coordinates = [];
 
-            while (++iterator < size) {
+            while ( ++iterator < size ) {
                 previous = coordinates[iterator - 1] || 0;
                 current = this._widths[this.relative(iterator)] + this.settings.margin;
                 coordinates.push(previous + current * rtl);
@@ -367,7 +367,7 @@
 
             this._coordinates = coordinates;
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function () {
             var padding = this.settings.stagePadding,
@@ -380,41 +380,41 @@
 
             this.$stage.css(css);
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function (cache) {
             var iterator = this._coordinates.length,
                 grid = !this.settings.autoWidth,
                 items = this.$stage.children();
 
-            if (grid && cache.items.merge) {
-                while (iterator--) {
+            if ( grid && cache.items.merge ) {
+                while ( iterator-- ) {
                     cache.css.width = this._widths[this.relative(iterator)];
                     items.eq(iterator).css(cache.css);
                 }
-            } else if (grid) {
+            } else if ( grid ) {
                 cache.css.width = cache.items.width;
                 items.css(cache.css);
             }
         }
-	}, {
+    }, {
         filter: ['items'],
         run: function () {
             this._coordinates.length < 1 && this.$stage.removeAttr('style');
         }
-	}, {
+    }, {
         filter: ['width', 'items', 'settings'],
         run: function (cache) {
             cache.current = cache.current ? this.$stage.children().index(cache.current) : 0;
             cache.current = Math.max(this.minimum(), Math.min(this.maximum(), cache.current));
             this.reset(cache.current);
         }
-	}, {
+    }, {
         filter: ['position'],
         run: function () {
             this.animate(this.coordinates(this._current));
         }
-	}, {
+    }, {
         filter: ['width', 'position', 'items', 'settings'],
         run: function () {
             var rtl = this.settings.rtl ? 1 : -1,
@@ -424,12 +424,12 @@
                 inner, outer, matches = [],
                 i, n;
 
-            for (i = 0, n = this._coordinates.length; i < n; i++) {
+            for ( i = 0, n = this._coordinates.length; i < n; i++ ) {
                 inner = this._coordinates[i - 1] || 0;
                 outer = Math.abs(this._coordinates[i]) + padding * rtl;
 
-                if ((this.op(inner, '<=', begin) && (this.op(inner, '>', end))) ||
-                    (this.op(outer, '<', begin) && this.op(outer, '>', end))) {
+                if ( ( this.op(inner, '<=', begin) && ( this.op(inner, '>', end) ) ) ||
+                    ( this.op(outer, '<', begin) && this.op(outer, '>', end) ) ) {
                     matches.push(i);
                 }
             }
@@ -438,11 +438,11 @@
             this.$stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
 
             this.$stage.children('.center').removeClass('center');
-            if (this.settings.center) {
+            if ( this.settings.center ) {
                 this.$stage.children().eq(this.current()).addClass('center');
             }
         }
-	}];
+    }];
 
     /**
      * Initializes the carousel.
@@ -454,13 +454,13 @@
 
         this.$element.toggleClass(this.settings.rtlClass, this.settings.rtl);
 
-        if (this.settings.autoWidth && !this.is('pre-loading')) {
+        if ( this.settings.autoWidth && !this.is('pre-loading') ) {
             var imgs, nestedSelector, width;
             imgs = this.$element.find('img');
             nestedSelector = this.settings.nestedItemSelector ? '.' + this.settings.nestedItemSelector : undefined;
             width = this.$element.children(nestedSelector).width();
 
-            if (imgs.length && width <= 0) {
+            if ( imgs.length && width <= 0 ) {
                 this.preloadAutoWidthImages(imgs);
             }
         }
@@ -478,7 +478,7 @@
         this.replace(this.$element.children().not(this.$stage.parent()));
 
         // check visibility
-        if (this.$element.is(':visible')) {
+        if ( this.$element.is(':visible') ) {
             // update view
             this.refresh();
         } else {
@@ -509,23 +509,23 @@
             match = -1,
             settings = null;
 
-        if (!overwrites) {
+        if ( !overwrites ) {
             settings = $.extend({}, this.options);
         } else {
             $.each(overwrites, function (breakpoint) {
-                if (breakpoint <= viewport && breakpoint > match) {
+                if ( breakpoint <= viewport && breakpoint > match ) {
                     match = Number(breakpoint);
                 }
             });
 
             settings = $.extend({}, this.options, overwrites[match]);
-            if (typeof settings.stagePadding === 'function') {
+            if ( typeof settings.stagePadding === 'function' ) {
                 settings.stagePadding = settings.stagePadding();
             }
             delete settings.responsive;
 
             // responsive class
-            if (settings.responsiveClass) {
+            if ( settings.responsiveClass ) {
                 this.$element.attr('class',
                     this.$element.attr('class').replace(new RegExp('(' + this.options.responsiveClass + '-)\\S+\\s', 'g'), '$1' + match)
                 );
@@ -554,7 +554,7 @@
      * @protected
      */
     Owl.prototype.optionsLogic = function () {
-        if (this.settings.autoWidth) {
+        if ( this.settings.autoWidth ) {
             this.settings.stagePadding = false;
             this.settings.merge = false;
         }
@@ -571,7 +571,7 @@
             content: item
         });
 
-        if (!event.data) {
+        if ( !event.data ) {
             event.data = $('<' + this.settings.itemElement + '/>')
                 .addClass(this.options.itemClass).append(item)
         }
@@ -595,8 +595,8 @@
             }, this._invalidated),
             cache = {};
 
-        while (i < n) {
-            if (this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0) {
+        while ( i < n ) {
+            if ( this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0 ) {
                 this._pipe[i].run(cache);
             }
             i++;
@@ -615,7 +615,7 @@
      */
     Owl.prototype.width = function (dimension) {
         dimension = dimension || Owl.Width.Default;
-        switch (dimension) {
+        switch ( dimension ) {
             case Owl.Width.Inner:
             case Owl.Width.Outer:
                 return this._width;
@@ -660,21 +660,21 @@
      * @protected
      */
     Owl.prototype.onResize = function () {
-        if (!this._items.length) {
+        if ( !this._items.length ) {
             return false;
         }
 
-        if (this._width === this.$element.width()) {
+        if ( this._width === this.$element.width() ) {
             return false;
         }
 
-        if (!this.$element.is(':visible')) {
+        if ( !this.$element.is(':visible') ) {
             return false;
         }
 
         this.enter('resizing');
 
-        if (this.trigger('resize').isDefaultPrevented()) {
+        if ( this.trigger('resize').isDefaultPrevented() ) {
             this.leave('resizing');
             return false;
         }
@@ -694,15 +694,15 @@
      * @protected
      */
     Owl.prototype.registerEventHandlers = function () {
-        if ($.support.transition) {
+        if ( $.support.transition ) {
             this.$stage.on($.support.transition.end + '.owl.core', $.proxy(this.onTransitionEnd, this));
         }
 
-        if (this.settings.responsive !== false) {
+        if ( this.settings.responsive !== false ) {
             this.on(window, 'resize', this._handlers.onThrottledResize);
         }
 
-        if (this.settings.mouseDrag) {
+        if ( this.settings.mouseDrag ) {
             this.$element.addClass(this.options.dragClass);
             this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
             this.$stage.on('dragstart.owl.core selectstart.owl.core', function () {
@@ -710,7 +710,7 @@
             });
         }
 
-        if (this.settings.touchDrag) {
+        if ( this.settings.touchDrag ) {
             this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
             this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
         }
@@ -726,11 +726,11 @@
     Owl.prototype.onDragStart = function (event) {
         var stage = null;
 
-        if (event.which === 3) {
+        if ( event.which === 3 ) {
             return;
         }
 
-        if ($.support.transform) {
+        if ( $.support.transform ) {
             stage = this.$stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
             stage = {
                 x: stage[stage.length === 16 ? 12 : 4],
@@ -745,7 +745,7 @@
             };
         }
 
-        if (this.is('animating')) {
+        if ( this.is('animating') ) {
             $.support.transform ? this.animate(stage.x) : this.$stage.stop()
             this.invalidate('position');
         }
@@ -767,7 +767,7 @@
 
             $(document).on('mousemove.owl.core touchmove.owl.core', $.proxy(this.onDragMove, this));
 
-            if (Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid')) {
+            if ( Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid') ) {
                 return;
             }
 
@@ -791,16 +791,16 @@
             delta = this.difference(this._drag.pointer, this.pointer(event)),
             stage = this.difference(this._drag.stage.start, delta);
 
-        if (!this.is('dragging')) {
+        if ( !this.is('dragging') ) {
             return;
         }
 
         event.preventDefault();
 
-        if (this.settings.loop) {
+        if ( this.settings.loop ) {
             minimum = this.coordinates(this.minimum());
             maximum = this.coordinates(this.maximum() + 1) - minimum;
-            stage.x = (((stage.x - minimum) % maximum + maximum) % maximum) + minimum;
+            stage.x = ( ( ( stage.x - minimum ) % maximum + maximum ) % maximum ) + minimum;
         } else {
             minimum = this.settings.rtl ? this.coordinates(this.maximum()) : this.coordinates(this.minimum());
             maximum = this.settings.rtl ? this.coordinates(this.minimum()) : this.coordinates(this.maximum());
@@ -829,7 +829,7 @@
 
         this.$element.removeClass(this.options.grabClass);
 
-        if (delta.x !== 0 && this.is('dragging') || !this.is('valid')) {
+        if ( delta.x !== 0 && this.is('dragging') || !this.is('valid') ) {
             this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
             this.current(this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction));
             this.invalidate('position');
@@ -837,14 +837,14 @@
 
             this._drag.direction = direction;
 
-            if (Math.abs(delta.x) > 3 || new Date().getTime() - this._drag.time > 300) {
+            if ( Math.abs(delta.x) > 3 || new Date().getTime() - this._drag.time > 300 ) {
                 this._drag.target.one('click.owl.core', function () {
                     return false;
                 });
             }
         }
 
-        if (!this.is('dragging')) {
+        if ( !this.is('dragging') ) {
             return;
         }
 
@@ -866,29 +866,29 @@
             width = this.width(),
             coordinates = this.coordinates();
 
-        if (!this.settings.freeDrag) {
+        if ( !this.settings.freeDrag ) {
             // check closest item
             $.each(coordinates, $.proxy(function (index, value) {
                 // on a left pull, check on current index
-                if (direction === 'left' && coordinate > value - pull && coordinate < value + pull) {
+                if ( direction === 'left' && coordinate > value - pull && coordinate < value + pull ) {
                     position = index;
                     // on a right pull, check on previous index
                     // to do so, subtract width from value and set position = index + 1
-                } else if (direction === 'right' && coordinate > value - width - pull && coordinate < value - width + pull) {
+                } else if ( direction === 'right' && coordinate > value - width - pull && coordinate < value - width + pull ) {
                     position = index + 1;
-                } else if (this.op(coordinate, '<', value) &&
-                    this.op(coordinate, '>', coordinates[index + 1] || value - width)) {
+                } else if ( this.op(coordinate, '<', value) &&
+                    this.op(coordinate, '>', coordinates[index + 1] || value - width) ) {
                     position = direction === 'left' ? index + 1 : index;
                 }
                 return position === -1;
             }, this));
         }
 
-        if (!this.settings.loop) {
+        if ( !this.settings.loop ) {
             // non loop boundries
-            if (this.op(coordinate, '>', coordinates[this.minimum()])) {
+            if ( this.op(coordinate, '>', coordinates[this.minimum()]) ) {
                 position = coordinate = this.minimum();
-            } else if (this.op(coordinate, '<', coordinates[this.maximum()])) {
+            } else if ( this.op(coordinate, '<', coordinates[this.maximum()]) ) {
                 position = coordinate = this.maximum();
             }
         }
@@ -907,17 +907,17 @@
 
         this.is('animating') && this.onTransitionEnd();
 
-        if (animate) {
+        if ( animate ) {
             this.enter('animating');
             this.trigger('translate');
         }
 
-        if ($.support.transform3d && $.support.transition) {
+        if ( $.support.transform3d && $.support.transition ) {
             this.$stage.css({
                 transform: 'translate3d(' + coordinate + 'px,0px,0px)',
-                transition: (this.speed() / 1000) + 's'
+                transition: ( this.speed() / 1000 ) + 's'
             });
-        } else if (animate) {
+        } else if ( animate ) {
             this.$stage.animate({
                 left: coordinate + 'px'
             }, this.speed(), this.settings.fallbackEasing, $.proxy(this.onTransitionEnd, this));
@@ -944,17 +944,17 @@
      * @returns {Number} - The absolute position of the current item.
      */
     Owl.prototype.current = function (position) {
-        if (position === undefined) {
+        if ( position === undefined ) {
             return this._current;
         }
 
-        if (this._items.length === 0) {
+        if ( this._items.length === 0 ) {
             return undefined;
         }
 
         position = this.normalize(position);
 
-        if (this._current !== position) {
+        if ( this._current !== position ) {
             var event = this.trigger('change', {
                 property: {
                     name: 'position',
@@ -962,7 +962,7 @@
                 }
             });
 
-            if (event.data !== undefined) {
+            if ( event.data !== undefined ) {
                 position = this.normalize(event.data);
             }
 
@@ -987,7 +987,7 @@
      * @returns {Array.<String>} - The invalidated parts.
      */
     Owl.prototype.invalidate = function (part) {
-        if ($.type(part) === 'string') {
+        if ( $.type(part) === 'string' ) {
             this._invalidated[part] = true;
             this.is('valid') && this.leave('valid');
         }
@@ -1004,7 +1004,7 @@
     Owl.prototype.reset = function (position) {
         position = this.normalize(position);
 
-        if (position === undefined) {
+        if ( position === undefined ) {
             return;
         }
 
@@ -1029,10 +1029,10 @@
         var n = this._items.length,
             m = relative ? 0 : this._clones.length;
 
-        if (!this.isNumeric(position) || n < 1) {
+        if ( !this.isNumeric(position) || n < 1 ) {
             position = undefined;
-        } else if (position < 0 || position >= n + m) {
-            position = ((position - m / 2) % n + n) % n + m / 2;
+        } else if ( position < 0 || position >= n + m ) {
+            position = ( ( position - m / 2 ) % n + n ) % n + m / 2;
         }
 
         return position;
@@ -1062,28 +1062,28 @@
             reciprocalItemsWidth,
             elementWidth;
 
-        if (settings.loop) {
+        if ( settings.loop ) {
             maximum = this._clones.length / 2 + this._items.length - 1;
-        } else if (settings.autoWidth || settings.merge) {
+        } else if ( settings.autoWidth || settings.merge ) {
             iterator = this._items.length;
-            if (iterator) {
+            if ( iterator ) {
                 reciprocalItemsWidth = this._items[--iterator].width();
                 elementWidth = this.$element.width();
-                while (iterator--) {
+                while ( iterator-- ) {
                     reciprocalItemsWidth += this._items[iterator].width() + this.settings.margin;
-                    if (reciprocalItemsWidth > elementWidth) {
+                    if ( reciprocalItemsWidth > elementWidth ) {
                         break;
                     }
                 }
             }
             maximum = iterator + 1;
-        } else if (settings.center) {
+        } else if ( settings.center ) {
             maximum = this._items.length - 1;
         } else {
             maximum = this._items.length - settings.items;
         }
 
-        if (relative) {
+        if ( relative ) {
             maximum -= this._clones.length / 2;
         }
 
@@ -1107,7 +1107,7 @@
      * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
      */
     Owl.prototype.items = function (position) {
-        if (position === undefined) {
+        if ( position === undefined ) {
             return this._items.slice();
         }
 
@@ -1122,7 +1122,7 @@
      * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
      */
     Owl.prototype.mergers = function (position) {
-        if (position === undefined) {
+        if ( position === undefined ) {
             return this._mergers.slice();
         }
 
@@ -1140,10 +1140,10 @@
         var odd = this._clones.length / 2,
             even = odd + this._items.length,
             map = function (index) {
-                return index % 2 === 0 ? even + index / 2 : odd - (index + 1) / 2
+                return index % 2 === 0 ? even + index / 2 : odd - ( index + 1 ) / 2
             };
 
-        if (position === undefined) {
+        if ( position === undefined ) {
             return $.map(this._clones, function (v, i) {
                 return map(i)
             });
@@ -1161,7 +1161,7 @@
      * @returns {Number} - The current animation speed in milliseconds.
      */
     Owl.prototype.speed = function (speed) {
-        if (speed !== undefined) {
+        if ( speed !== undefined ) {
             this._speed = speed;
         }
 
@@ -1180,20 +1180,20 @@
             newPosition = position - 1,
             coordinate;
 
-        if (position === undefined) {
+        if ( position === undefined ) {
             return $.map(this._coordinates, $.proxy(function (coordinate, index) {
                 return this.coordinates(index);
             }, this));
         }
 
-        if (this.settings.center) {
-            if (this.settings.rtl) {
+        if ( this.settings.center ) {
+            if ( this.settings.rtl ) {
                 multiplier = -1;
                 newPosition = position + 1;
             }
 
             coordinate = this._coordinates[position];
-            coordinate += (this.width() - coordinate + (this._coordinates[newPosition] || 0)) / 2 * multiplier;
+            coordinate += ( this.width() - coordinate + ( this._coordinates[newPosition] || 0 ) ) / 2 * multiplier;
         } else {
             coordinate = this._coordinates[newPosition] || 0;
         }
@@ -1212,11 +1212,11 @@
      * @returns {Number} - The time in milliseconds for the translation.
      */
     Owl.prototype.duration = function (from, to, factor) {
-        if (factor === 0) {
+        if ( factor === 0 ) {
             return 0;
         }
 
-        return Math.min(Math.max(Math.abs(to - from), 1), 6) * Math.abs((factor || this.settings.smartSpeed));
+        return Math.min(Math.max(Math.abs(to - from), 1), 6) * Math.abs(( factor || this.settings.smartSpeed ));
     };
 
     /**
@@ -1229,27 +1229,27 @@
         var current = this.current(),
             revert = null,
             distance = position - this.relative(current),
-            direction = (distance > 0) - (distance < 0),
+            direction = ( distance > 0 ) - ( distance < 0 ),
             items = this._items.length,
             minimum = this.minimum(),
             maximum = this.maximum();
 
-        if (this.settings.loop) {
-            if (!this.settings.rewind && Math.abs(distance) > items / 2) {
+        if ( this.settings.loop ) {
+            if ( !this.settings.rewind && Math.abs(distance) > items / 2 ) {
                 distance += direction * -1 * items;
             }
 
             position = current + distance;
-            revert = ((position - minimum) % items + items) % items + minimum;
+            revert = ( ( position - minimum ) % items + items ) % items + minimum;
 
-            if (revert !== position && revert - distance <= maximum && revert - distance > 0) {
+            if ( revert !== position && revert - distance <= maximum && revert - distance > 0 ) {
                 current = revert - distance;
                 position = revert;
                 this.reset(current);
             }
-        } else if (this.settings.rewind) {
+        } else if ( this.settings.rewind ) {
             maximum += 1;
-            position = (position % maximum + maximum) % maximum;
+            position = ( position % maximum + maximum ) % maximum;
         } else {
             position = Math.max(minimum, Math.min(maximum, position));
         }
@@ -1257,7 +1257,7 @@
         this.speed(this.duration(current, position, speed));
         this.current(position);
 
-        if (this.$element.is(':visible')) {
+        if ( this.$element.is(':visible') ) {
             this.update();
         }
     };
@@ -1290,11 +1290,11 @@
     Owl.prototype.onTransitionEnd = function (event) {
 
         // if css2 animation then event object is undefined
-        if (event !== undefined) {
+        if ( event !== undefined ) {
             event.stopPropagation();
 
             // Catch only owl-stage transitionEnd event
-            if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
+            if ( ( event.target || event.srcElement || event.originalTarget ) !== this.$stage.get(0) ) {
                 return false;
             }
         }
@@ -1310,11 +1310,11 @@
      */
     Owl.prototype.viewport = function () {
         var width;
-        if (this.options.responsiveBaseElement !== window) {
+        if ( this.options.responsiveBaseElement !== window ) {
             width = $(this.options.responsiveBaseElement).width();
-        } else if (window.innerWidth) {
+        } else if ( window.innerWidth ) {
             width = window.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientWidth) {
+        } else if ( document.documentElement && document.documentElement.clientWidth ) {
             width = document.documentElement.clientWidth;
         } else {
             console.warn('Can not detect viewport width.');
@@ -1331,11 +1331,11 @@
         this.$stage.empty();
         this._items = [];
 
-        if (content) {
-            content = (content instanceof jQuery) ? content : $(content);
+        if ( content ) {
+            content = ( content instanceof jQuery ) ? content : $(content);
         }
 
-        if (this.settings.nestedItemSelector) {
+        if ( this.settings.nestedItemSelector ) {
             content = content.find('.' + this.settings.nestedItemSelector);
         }
 
@@ -1373,7 +1373,7 @@
 
         content = this.prepare(content);
 
-        if (this._items.length === 0 || position === this._items.length) {
+        if ( this._items.length === 0 || position === this._items.length ) {
             this._items.length === 0 && this.$stage.append(content);
             this._items.length !== 0 && this._items[position - 1].after(content);
             this._items.push(content);
@@ -1403,7 +1403,7 @@
     Owl.prototype.remove = function (position) {
         position = this.normalize(position, true);
 
-        if (position === undefined) {
+        if ( position === undefined ) {
             return;
         }
 
@@ -1452,12 +1452,12 @@
         this.$stage.off('.owl.core');
         $(document).off('.owl.core');
 
-        if (this.settings.responsive !== false) {
+        if ( this.settings.responsive !== false ) {
             window.clearTimeout(this.resizeTimer);
             this.off(window, 'resize', this._handlers.onThrottledResize);
         }
 
-        for (var i in this._plugins) {
+        for ( var i in this._plugins ) {
             this._plugins[i].destroy();
         }
 
@@ -1487,7 +1487,7 @@
      */
     Owl.prototype.op = function (a, o, b) {
         var rtl = this.settings.rtl;
-        switch (o) {
+        switch ( o ) {
             case '<':
                 return rtl ? a > b : a < b;
             case '>':
@@ -1510,9 +1510,9 @@
      * @param {Boolean} capture - Wether the event should be handled at the capturing phase or not.
      */
     Owl.prototype.on = function (element, event, listener, capture) {
-        if (element.addEventListener) {
+        if ( element.addEventListener ) {
             element.addEventListener(event, listener, capture);
-        } else if (element.attachEvent) {
+        } else if ( element.attachEvent ) {
             element.attachEvent('on' + event, listener);
         }
     };
@@ -1526,9 +1526,9 @@
      * @param {Boolean} capture - Wether the attached event handler was registered as a capturing listener or not.
      */
     Owl.prototype.off = function (element, event, listener, capture) {
-        if (element.removeEventListener) {
+        if ( element.removeEventListener ) {
             element.removeEventListener(event, listener, capture);
-        } else if (element.detachEvent) {
+        } else if ( element.detachEvent ) {
             element.detachEvent('on' + event, listener);
         }
     };
@@ -1555,18 +1555,18 @@
                 $.grep(['on', name, namespace], function (v) {
                     return v
                 })
-                .join('-').toLowerCase()
+                    .join('-').toLowerCase()
             ),
             event = $.Event(
-			[name, 'owl', namespace || 'carousel'].join('.').toLowerCase(),
+                [name, 'owl', namespace || 'carousel'].join('.').toLowerCase(),
                 $.extend({
                     relatedTarget: this
                 }, status, data)
             );
 
-        if (!this._supress[name]) {
+        if ( !this._supress[name] ) {
             $.each(this._plugins, function (name, plugin) {
-                if (plugin.onTrigger) {
+                if ( plugin.onTrigger ) {
                     plugin.onTrigger(event);
                 }
             });
@@ -1577,7 +1577,7 @@
             });
             this.$element.trigger(event);
 
-            if (this.settings && typeof this.settings[handler] === 'function') {
+            if ( this.settings && typeof this.settings[handler] === 'function' ) {
                 this.settings[handler].call(this, event);
             }
         }
@@ -1591,7 +1591,7 @@
      */
     Owl.prototype.enter = function (name) {
         $.each([name].concat(this._states.tags[name] || []), $.proxy(function (i, name) {
-            if (this._states.current[name] === undefined) {
+            if ( this._states.current[name] === undefined ) {
                 this._states.current[name] = 0;
             }
 
@@ -1615,23 +1615,23 @@
      * @param {Object} object - The event or state to register.
      */
     Owl.prototype.register = function (object) {
-        if (object.type === Owl.Type.Event) {
-            if (!$.event.special[object.name]) {
+        if ( object.type === Owl.Type.Event ) {
+            if ( !$.event.special[object.name] ) {
                 $.event.special[object.name] = {};
             }
 
-            if (!$.event.special[object.name].owl) {
+            if ( !$.event.special[object.name].owl ) {
                 var _default = $.event.special[object.name]._default;
                 $.event.special[object.name]._default = function (e) {
-                    if (_default && _default.apply && (!e.namespace || e.namespace.indexOf('owl') === -1)) {
+                    if ( _default && _default.apply && ( !e.namespace || e.namespace.indexOf('owl') === -1 ) ) {
                         return _default.apply(this, arguments);
                     }
                     return e.namespace && e.namespace.indexOf('owl') > -1;
                 };
                 $.event.special[object.name].owl = true;
             }
-        } else if (object.type === Owl.Type.State) {
-            if (!this._states.tags[object.name]) {
+        } else if ( object.type === Owl.Type.State ) {
+            if ( !this._states.tags[object.name] ) {
                 this._states.tags[object.name] = object.tags;
             } else {
                 this._states.tags[object.name] = this._states.tags[object.name].concat(object.tags);
@@ -1682,9 +1682,9 @@
 
         event = event.touches && event.touches.length ?
             event.touches[0] : event.changedTouches && event.changedTouches.length ?
-            event.changedTouches[0] : event;
+                event.changedTouches[0] : event;
 
-        if (event.pageX) {
+        if ( event.pageX ) {
             result.x = event.pageX;
             result.y = event.pageY;
         } else {
@@ -1732,19 +1732,19 @@
             var $this = $(this),
                 data = $this.data('owl.carousel');
 
-            if (!data) {
+            if ( !data ) {
                 data = new Owl(this, typeof option == 'object' && option);
                 $this.data('owl.carousel', data);
 
                 $.each([
-					'next', 'prev', 'to', 'destroy', 'refresh', 'replace', 'add', 'remove'
-				], function (i, event) {
+                    'next', 'prev', 'to', 'destroy', 'refresh', 'replace', 'add', 'remove'
+                ], function (i, event) {
                     data.register({
                         type: Owl.Type.Event,
                         name: event
                     });
                     data.$element.on(event + '.owl.carousel.core', $.proxy(function (e) {
-                        if (e.namespace && e.relatedTarget !== this) {
+                        if ( e.namespace && e.relatedTarget !== this ) {
                             this.suppress([event]);
                             data[event].apply(this, [].slice.call(arguments, 1));
                             this.release([event]);
@@ -1753,7 +1753,7 @@
                 });
             }
 
-            if (typeof option == 'string' && option.charAt(0) !== '_') {
+            if ( typeof option == 'string' && option.charAt(0) !== '_' ) {
                 data[option].apply(data, args);
             }
         });
@@ -1765,7 +1765,7 @@
      */
     $.fn.owlCarousel.Constructor = Owl;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * AutoRefresh Plugin
@@ -1775,7 +1775,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the auto refresh plugin.
@@ -1811,7 +1811,7 @@
          */
         this._handlers = {
             'initialized.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.autoRefresh) {
+                if ( e.namespace && this._core.settings.autoRefresh ) {
                     this.watch();
                 }
             }, this)
@@ -1837,7 +1837,7 @@
      * Watches the element.
      */
     AutoRefresh.prototype.watch = function () {
-        if (this._interval) {
+        if ( this._interval ) {
             return;
         }
 
@@ -1849,7 +1849,7 @@
      * Refreshes the element.
      */
     AutoRefresh.prototype.refresh = function () {
-        if (this._core.$element.is(':visible') === this._visible) {
+        if ( this._core.$element.is(':visible') === this._visible ) {
             return;
         }
 
@@ -1857,7 +1857,7 @@
 
         this._core.$element.toggleClass('owl-hidden', !this._visible);
 
-        this._visible && (this._core.invalidate('width') && this._core.refresh());
+        this._visible && ( this._core.invalidate('width') && this._core.refresh() );
     };
 
     /**
@@ -1868,17 +1868,17 @@
 
         window.clearInterval(this._interval);
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this._core.$element.off(handler, this._handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Lazy Plugin
@@ -1888,7 +1888,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the lazy plugin.
@@ -1918,25 +1918,25 @@
          */
         this._handlers = {
             'initialized.owl.carousel change.owl.carousel resized.owl.carousel': $.proxy(function (e) {
-                if (!e.namespace) {
+                if ( !e.namespace ) {
                     return;
                 }
 
-                if (!this._core.settings || !this._core.settings.lazyLoad) {
+                if ( !this._core.settings || !this._core.settings.lazyLoad ) {
                     return;
                 }
 
-                if ((e.property && e.property.name == 'position') || e.type == 'initialized') {
+                if ( ( e.property && e.property.name == 'position' ) || e.type == 'initialized' ) {
                     var settings = this._core.settings,
-                        n = (settings.center && Math.ceil(settings.items / 2) || settings.items),
-                        i = ((settings.center && n * -1) || 0),
-                        position = (e.property && e.property.value !== undefined ? e.property.value : this._core.current()) + i,
+                        n = ( settings.center && Math.ceil(settings.items / 2) || settings.items ),
+                        i = ( ( settings.center && n * -1 ) || 0 ),
+                        position = ( e.property && e.property.value !== undefined ? e.property.value : this._core.current() ) + i,
                         clones = this._core.clones().length,
                         load = $.proxy(function (i, v) {
                             this.load(v)
                         }, this);
 
-                    while (i++ < n) {
+                    while ( i++ < n ) {
                         this.load(clones / 2 + this._core.relative(position));
                         clones && $.each(this._core.clones(this._core.relative(position)), load);
                         position++;
@@ -1969,21 +1969,21 @@
         var $item = this._core.$stage.children().eq(position),
             $elements = $item && $item.find('.owl-lazy');
 
-        if (!$elements || $.inArray($item.get(0), this._loaded) > -1) {
+        if ( !$elements || $.inArray($item.get(0), this._loaded) > -1 ) {
             return;
         }
 
         $elements.each($.proxy(function (index, element) {
             var $element = $(element),
                 image,
-                url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src');
+                url = ( window.devicePixelRatio > 1 && $element.attr('data-src-retina') ) || $element.attr('data-src');
 
             this._core.trigger('load', {
                 element: $element,
                 url: url
             }, 'lazy');
 
-            if ($element.is('img')) {
+            if ( $element.is('img') ) {
                 $element.one('load.owl.lazy', $.proxy(function () {
                     $element.css('opacity', 1);
                     this._core.trigger('loaded', {
@@ -2017,17 +2017,17 @@
     Lazy.prototype.destroy = function () {
         var handler, property;
 
-        for (handler in this.handlers) {
+        for ( handler in this.handlers ) {
             this._core.$element.off(handler, this.handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * AutoHeight Plugin
@@ -2037,7 +2037,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the auto height plugin.
@@ -2059,18 +2059,18 @@
          */
         this._handlers = {
             'initialized.owl.carousel refreshed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.autoHeight) {
+                if ( e.namespace && this._core.settings.autoHeight ) {
                     this.update();
                 }
             }, this),
             'changed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.autoHeight && e.property.name == 'position') {
+                if ( e.namespace && this._core.settings.autoHeight && e.property.name == 'position' ) {
                     this.update();
                 }
             }, this),
             'loaded.owl.lazy': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.autoHeight &&
-                    e.element.closest('.' + this._core.settings.itemClass).index() === this._core.current()) {
+                if ( e.namespace && this._core.settings.autoHeight &&
+                    e.element.closest('.' + this._core.settings.itemClass).index() === this._core.current() ) {
                     this.update();
                 }
             }, this)
@@ -2116,17 +2116,17 @@
     AutoHeight.prototype.destroy = function () {
         var handler, property;
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this._core.$element.off(handler, this._handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Video Plugin
@@ -2136,7 +2136,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the video plugin.
@@ -2173,7 +2173,7 @@
          */
         this._handlers = {
             'initialized.owl.carousel': $.proxy(function (e) {
-                if (e.namespace) {
+                if ( e.namespace ) {
                     this._core.register({
                         type: 'state',
                         name: 'playing',
@@ -2182,28 +2182,28 @@
                 }
             }, this),
             'resize.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.video && this.isInFullScreen()) {
+                if ( e.namespace && this._core.settings.video && this.isInFullScreen() ) {
                     e.preventDefault();
                 }
             }, this),
             'refreshed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.is('resizing')) {
+                if ( e.namespace && this._core.is('resizing') ) {
                     this._core.$stage.find('.cloned .owl-video-frame').remove();
                 }
             }, this),
             'changed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && e.property.name === 'position' && this._playing) {
+                if ( e.namespace && e.property.name === 'position' && this._playing ) {
                     this.stop();
                 }
             }, this),
             'prepared.owl.carousel': $.proxy(function (e) {
-                if (!e.namespace) {
+                if ( !e.namespace ) {
                     return;
                 }
 
                 var $element = $(e.content).find('.owl-video');
 
-                if ($element.length) {
+                if ( $element.length ) {
                     $element.css('display', 'none');
                     this.fetch($element, $(e.content));
                 }
@@ -2238,21 +2238,21 @@
      * @param {jQuery} item - The item containing the video.
      */
     Video.prototype.fetch = function (target, item) {
-        var type = (function () {
-                if (target.attr('data-vimeo-id')) {
+        var type = ( function () {
+                if ( target.attr('data-vimeo-id') ) {
                     return 'vimeo';
-                } else if (target.attr('data-vzaar-id')) {
+                } else if ( target.attr('data-vzaar-id') ) {
                     return 'vzaar'
                 } else {
                     return 'youtube';
                 }
-            })(),
+            } )(),
             id = target.attr('data-vimeo-id') || target.attr('data-youtube-id') || target.attr('data-vzaar-id'),
             width = target.attr('data-width') || this._core.settings.videoWidth,
             height = target.attr('data-height') || this._core.settings.videoHeight,
             url = target.attr('href');
 
-        if (url) {
+        if ( url ) {
 
             /*
             		Parses the id's out of the following urls (and probably more):
@@ -2268,11 +2268,11 @@
 
             id = url.match(/(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
 
-            if (id[3].indexOf('youtu') > -1) {
+            if ( id[3].indexOf('youtu') > -1 ) {
                 type = 'youtube';
-            } else if (id[3].indexOf('vimeo') > -1) {
+            } else if ( id[3].indexOf('vimeo') > -1 ) {
                 type = 'vimeo';
-            } else if (id[3].indexOf('vzaar') > -1) {
+            } else if ( id[3].indexOf('vzaar') > -1 ) {
                 type = 'vzaar';
             } else {
                 throw new Error('Video URL not supported.');
@@ -2313,7 +2313,7 @@
             create = function (path) {
                 icon = '<div class="owl-video-play-icon"></div>';
 
-                if (settings.lazyLoad) {
+                if ( settings.lazyLoad ) {
                     tnLink = '<div class="owl-video-tn ' + lazyClass + '" ' + srcType + '="' + path + '"></div>';
                 } else {
                     tnLink = '<div class="owl-video-tn" style="opacity:1;background-image:url(' + path + ')"></div>';
@@ -2325,22 +2325,22 @@
         // wrap video content into owl-video-wrapper div
         target.wrap('<div class="owl-video-wrapper"' + dimensions + '></div>');
 
-        if (this._core.settings.lazyLoad) {
+        if ( this._core.settings.lazyLoad ) {
             srcType = 'data-src';
             lazyClass = 'owl-lazy';
         }
 
         // custom thumbnail
-        if (customTn.length) {
+        if ( customTn.length ) {
             create(customTn.attr(srcType));
             customTn.remove();
             return false;
         }
 
-        if (video.type === 'youtube') {
+        if ( video.type === 'youtube' ) {
             path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
             create(path);
-        } else if (video.type === 'vimeo') {
+        } else if ( video.type === 'vimeo' ) {
             $.ajax({
                 type: 'GET',
                 url: '//vimeo.com/api/v2/video/' + video.id + '.json',
@@ -2351,7 +2351,7 @@
                     create(path);
                 }
             });
-        } else if (video.type === 'vzaar') {
+        } else if ( video.type === 'vzaar' ) {
             $.ajax({
                 type: 'GET',
                 url: '//vzaar.com/api/videos/' + video.id + '.json',
@@ -2391,7 +2391,7 @@
             height = video.height || this._core.$stage.height(),
             html;
 
-        if (this._playing) {
+        if ( this._playing ) {
             return;
         }
 
@@ -2402,14 +2402,14 @@
 
         this._core.reset(item.index());
 
-        if (video.type === 'youtube') {
+        if ( video.type === 'youtube' ) {
             html = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
                 video.id + '?autoplay=1&rel=0&v=' + video.id + '" frameborder="0" allowfullscreen></iframe>';
-        } else if (video.type === 'vimeo') {
+        } else if ( video.type === 'vimeo' ) {
             html = '<iframe src="//player.vimeo.com/video/' + video.id +
                 '?autoplay=1" width="' + width + '" height="' + height +
                 '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-        } else if (video.type === 'vzaar') {
+        } else if ( video.type === 'vzaar' ) {
             html = '<iframe frameborder="0"' + 'height="' + height + '"' + 'width="' + width +
                 '" allowfullscreen mozallowfullscreen webkitAllowFullScreen ' +
                 'src="//view.vzaar.com/' + video.id + '/player?autoplay=true"></iframe>';
@@ -2441,17 +2441,17 @@
 
         this._core.$element.off('click.owl.video');
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this._core.$element.off(handler, this._handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.Video = Video;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Animate Plugin
@@ -2461,7 +2461,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the animate plugin.
@@ -2477,18 +2477,18 @@
 
         this.handlers = {
             'change.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && e.property.name == 'position') {
+                if ( e.namespace && e.property.name == 'position' ) {
                     this.previous = this.core.current();
                     this.next = e.property.value;
                 }
             }, this),
             'drag.owl.carousel dragged.owl.carousel translated.owl.carousel': $.proxy(function (e) {
-                if (e.namespace) {
+                if ( e.namespace ) {
                     this.swapping = e.type == 'translated';
                 }
             }, this),
             'translate.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this.swapping && (this.core.options.animateOut || this.core.options.animateIn)) {
+                if ( e.namespace && this.swapping && ( this.core.options.animateOut || this.core.options.animateIn ) ) {
                     this.swap();
                 }
             }, this)
@@ -2513,11 +2513,11 @@
      */
     Animate.prototype.swap = function () {
 
-        if (this.core.settings.items !== 1) {
+        if ( this.core.settings.items !== 1 ) {
             return;
         }
 
-        if (!$.support.animation || !$.support.transition) {
+        if ( !$.support.animation || !$.support.transition ) {
             return;
         }
 
@@ -2530,11 +2530,11 @@
             incoming = this.core.settings.animateIn,
             outgoing = this.core.settings.animateOut;
 
-        if (this.core.current() === this.previous) {
+        if ( this.core.current() === this.previous ) {
             return;
         }
 
-        if (outgoing) {
+        if ( outgoing ) {
             left = this.core.coordinates(this.previous) - this.core.coordinates(this.next);
             previous.one($.support.animation.end, clear)
                 .css({
@@ -2544,7 +2544,7 @@
                 .addClass(outgoing);
         }
 
-        if (incoming) {
+        if ( incoming ) {
             next.one($.support.animation.end, clear)
                 .addClass('animated owl-animated-in')
                 .addClass(incoming);
@@ -2553,8 +2553,8 @@
 
     Animate.prototype.clear = function (e) {
         $(e.target).css({
-                'left': ''
-            })
+            'left': ''
+        })
             .removeClass('animated owl-animated-out owl-animated-in')
             .removeClass(this.core.settings.animateIn)
             .removeClass(this.core.settings.animateOut);
@@ -2568,17 +2568,17 @@
     Animate.prototype.destroy = function () {
         var handler, property;
 
-        for (handler in this.handlers) {
+        for ( handler in this.handlers ) {
             this.core.$element.off(handler, this.handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.Animate = Animate;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Autoplay Plugin
@@ -2590,7 +2590,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     /**
      * Creates the autoplay plugin.
@@ -2639,50 +2639,50 @@
          */
         this._handlers = {
             'changed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && e.property.name === 'settings') {
-                    if (this._core.settings.autoplay) {
+                if ( e.namespace && e.property.name === 'settings' ) {
+                    if ( this._core.settings.autoplay ) {
                         this.play();
                     } else {
                         this.stop();
                     }
-                } else if (e.namespace && e.property.name === 'position' && this._paused) {
+                } else if ( e.namespace && e.property.name === 'position' && this._paused ) {
                     // Reset the timer. This code is triggered when the position
                     // of the carousel was changed through user interaction.
                     this._time = 0;
                 }
             }, this),
             'initialized.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.autoplay) {
+                if ( e.namespace && this._core.settings.autoplay ) {
                     this.play();
                 }
             }, this),
             'play.owl.autoplay': $.proxy(function (e, t, s) {
-                if (e.namespace) {
+                if ( e.namespace ) {
                     this.play(t, s);
                 }
             }, this),
             'stop.owl.autoplay': $.proxy(function (e) {
-                if (e.namespace) {
+                if ( e.namespace ) {
                     this.stop();
                 }
             }, this),
             'mouseover.owl.autoplay': $.proxy(function () {
-                if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+                if ( this._core.settings.autoplayHoverPause && this._core.is('rotating') ) {
                     this.pause();
                 }
             }, this),
             'mouseleave.owl.autoplay': $.proxy(function () {
-                if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+                if ( this._core.settings.autoplayHoverPause && this._core.is('rotating') ) {
                     this.play();
                 }
             }, this),
             'touchstart.owl.core': $.proxy(function () {
-                if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
+                if ( this._core.settings.autoplayHoverPause && this._core.is('rotating') ) {
                     this.pause();
                 }
             }, this),
             'touchend.owl.core': $.proxy(function () {
-                if (this._core.settings.autoplayHoverPause) {
+                if ( this._core.settings.autoplayHoverPause ) {
                     this.play();
                 }
             }, this)
@@ -2714,10 +2714,10 @@
     Autoplay.prototype._next = function (speed) {
         this._call = window.setTimeout(
             $.proxy(this._next, this, speed),
-            this._timeout * (Math.round(this.read() / this._timeout) + 1) - this.read()
+            this._timeout * ( Math.round(this.read() / this._timeout) + 1 ) - this.read()
         );
 
-        if (this._core.is('busy') || this._core.is('interacting') || document.hidden) {
+        if ( this._core.is('busy') || this._core.is('interacting') || document.hidden ) {
             return;
         }
         this._core.next(speed || this._core.settings.autoplaySpeed);
@@ -2740,7 +2740,7 @@
     Autoplay.prototype.play = function (timeout, speed) {
         var elapsed;
 
-        if (!this._core.is('rotating')) {
+        if ( !this._core.is('rotating') ) {
             this._core.enter('rotating');
         }
 
@@ -2748,9 +2748,9 @@
 
         // Calculate the elapsed time since the last transition. If the carousel
         // wasn't playing this calculation will yield zero.
-        elapsed = Math.min(this._time % (this._timeout || timeout), timeout);
+        elapsed = Math.min(this._time % ( this._timeout || timeout ), timeout);
 
-        if (this._paused) {
+        if ( this._paused ) {
             // Start the clock.
             this._time = this.read();
             this._paused = false;
@@ -2771,7 +2771,7 @@
      * @public
      */
     Autoplay.prototype.stop = function () {
-        if (this._core.is('rotating')) {
+        if ( this._core.is('rotating') ) {
             // Reset the clock.
             this._time = 0;
             this._paused = true;
@@ -2786,7 +2786,7 @@
      * @public
      */
     Autoplay.prototype.pause = function () {
-        if (this._core.is('rotating') && !this._paused) {
+        if ( this._core.is('rotating') && !this._paused ) {
             // Pause the clock.
             this._time = this.read();
             this._paused = true;
@@ -2803,17 +2803,17 @@
 
         this.stop();
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this._core.$element.off(handler, this._handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Navigation Plugin
@@ -2823,7 +2823,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
     'use strict';
 
     /**
@@ -2891,28 +2891,28 @@
          */
         this._handlers = {
             'prepared.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.dotsData) {
+                if ( e.namespace && this._core.settings.dotsData ) {
                     this._templates.push('<div class="' + this._core.settings.dotClass + '">' +
                         $(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
                 }
             }, this),
             'added.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.dotsData) {
+                if ( e.namespace && this._core.settings.dotsData ) {
                     this._templates.splice(e.position, 0, this._templates.pop());
                 }
             }, this),
             'remove.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.dotsData) {
+                if ( e.namespace && this._core.settings.dotsData ) {
                     this._templates.splice(e.position, 1);
                 }
             }, this),
             'changed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && e.property.name == 'position') {
+                if ( e.namespace && e.property.name == 'position' ) {
                     this.draw();
                 }
             }, this),
             'initialized.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && !this._initialized) {
+                if ( e.namespace && !this._initialized ) {
                     this._core.trigger('initialize', null, 'navigation');
                     this.initialize();
                     this.update();
@@ -2922,7 +2922,7 @@
                 }
             }, this),
             'refreshed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._initialized) {
+                if ( e.namespace && this._initialized ) {
                     this._core.trigger('refresh', null, 'navigation');
                     this.update();
                     this.draw();
@@ -2946,17 +2946,17 @@
     Navigation.Defaults = {
         nav: false,
         navText: [
-			'<span aria-label="' + 'prev' + '">&#x2039;</span>',
-			'<span aria-label="' + 'next' + '">&#x203a;</span>'
-		],
+            '<span aria-label="' + 'prev' + '">&#x2039;</span>',
+            '<span aria-label="' + 'next' + '">&#x203a;</span>'
+        ],
         navSpeed: false,
         navElement: 'button role="presentation"',
         navContainer: false,
         navContainerClass: 'owl-nav',
         navClass: [
-			'owl-prev',
-			'owl-next'
-		],
+            'owl-prev',
+            'owl-next'
+        ],
         slideBy: 1,
         dotClass: 'owl-dot',
         dotsClass: 'owl-dots',
@@ -2976,8 +2976,8 @@
             settings = this._core.settings;
 
         // create DOM structure for relative navigation
-        this._controls.$relative = (settings.navContainer ? $(settings.navContainer) :
-            $('<div>').addClass(settings.navContainerClass).appendTo(this.$element)).addClass('disabled');
+        this._controls.$relative = ( settings.navContainer ? $(settings.navContainer) :
+            $('<div>').addClass(settings.navContainerClass).appendTo(this.$element) ).addClass('disabled');
 
         this._controls.$previous = $('<' + settings.navElement + '>')
             .addClass(settings.navClass[0])
@@ -2995,15 +2995,15 @@
             }, this));
 
         // create DOM structure for absolute navigation
-        if (!settings.dotsData) {
+        if ( !settings.dotsData ) {
             this._templates = [$('<button>')
-				.addClass(settings.dotClass)
-				.append($('<span>'))
-				.prop('outerHTML')];
+                .addClass(settings.dotClass)
+                .append($('<span>'))
+                .prop('outerHTML')];
         }
 
-        this._controls.$absolute = (settings.dotsContainer ? $(settings.dotsContainer) :
-            $('<div>').addClass(settings.dotsClass).appendTo(this.$element)).addClass('disabled');
+        this._controls.$absolute = ( settings.dotsContainer ? $(settings.dotsContainer) :
+            $('<div>').addClass(settings.dotsClass).appendTo(this.$element) ).addClass('disabled');
 
         this._controls.$absolute.on('click', 'button', $.proxy(function (e) {
             var index = $(e.target).parent().is(this._controls.$absolute) ?
@@ -3028,7 +3028,7 @@
         });*/
 
         // override public methods of the carousel
-        for (override in this._overrides) {
+        for ( override in this._overrides ) {
             this._core[override] = $.proxy(this[override], this);
         }
     };
@@ -3040,21 +3040,21 @@
     Navigation.prototype.destroy = function () {
         var handler, control, property, override;
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this.$element.off(handler, this._handlers[handler]);
         }
-        for (control in this._controls) {
-            if (control === '$relative' && settings.navContainer) {
+        for ( control in this._controls ) {
+            if ( control === '$relative' && settings.navContainer ) {
                 this._controls[control].html('');
             } else {
                 this._controls[control].remove();
             }
         }
-        for (override in this.overides) {
+        for ( override in this.overides ) {
             this._core[override] = this._overrides[override];
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
@@ -3069,22 +3069,22 @@
             maximum = this._core.maximum(true),
             settings = this._core.settings,
             size = settings.center || settings.autoWidth || settings.dotsData ?
-            1 : settings.dotsEach || settings.items;
+                1 : settings.dotsEach || settings.items;
 
-        if (settings.slideBy !== 'page') {
+        if ( settings.slideBy !== 'page' ) {
             settings.slideBy = Math.min(settings.slideBy, settings.items);
         }
 
-        if (settings.dots || settings.slideBy == 'page') {
+        if ( settings.dots || settings.slideBy == 'page' ) {
             this._pages = [];
 
-            for (i = lower, j = 0, k = 0; i < upper; i++) {
-                if (j >= size || j === 0) {
+            for ( i = lower, j = 0, k = 0; i < upper; i++ ) {
+                if ( j >= size || j === 0 ) {
                     this._pages.push({
                         start: Math.min(maximum, i - lower),
                         end: i - lower + size - 1
                     });
-                    if (Math.min(maximum, i - lower) === maximum) {
+                    if ( Math.min(maximum, i - lower) === maximum ) {
                         break;
                     }
                     j = 0, ++k;
@@ -3108,21 +3108,21 @@
 
         this._controls.$relative.toggleClass('disabled', !settings.nav || disabled);
 
-        if (settings.nav) {
+        if ( settings.nav ) {
             this._controls.$previous.toggleClass('disabled', !loop && index <= this._core.minimum(true));
             this._controls.$next.toggleClass('disabled', !loop && index >= this._core.maximum(true));
         }
 
         this._controls.$absolute.toggleClass('disabled', !settings.dots || disabled);
 
-        if (settings.dots) {
+        if ( settings.dots ) {
             difference = this._pages.length - this._controls.$absolute.children().length;
 
-            if (settings.dotsData && difference !== 0) {
+            if ( settings.dotsData && difference !== 0 ) {
                 this._controls.$absolute.html(this._templates.join(''));
-            } else if (difference > 0) {
+            } else if ( difference > 0 ) {
                 this._controls.$absolute.append(new Array(difference + 1).join(this._templates[0]));
-            } else if (difference < 0) {
+            } else if ( difference < 0 ) {
                 this._controls.$absolute.children().slice(difference).remove();
             }
 
@@ -3142,8 +3142,8 @@
         event.page = {
             index: $.inArray(this.current(), this._pages),
             count: this._pages.length,
-            size: settings && (settings.center || settings.autoWidth || settings.dotsData ?
-                1 : settings.dotsEach || settings.items)
+            size: settings && ( settings.center || settings.autoWidth || settings.dotsData ?
+                1 : settings.dotsEach || settings.items )
         };
     };
 
@@ -3168,11 +3168,11 @@
         var position, length,
             settings = this._core.settings;
 
-        if (settings.slideBy == 'page') {
+        if ( settings.slideBy == 'page' ) {
             position = $.inArray(this.current(), this._pages);
             length = this._pages.length;
             successor ? ++position : --position;
-            position = this._pages[((position % length) + length) % length].start;
+            position = this._pages[( ( position % length ) + length ) % length].start;
         } else {
             position = this._core.relative(this._core.current());
             length = this._core.items().length;
@@ -3210,9 +3210,9 @@
     Navigation.prototype.to = function (position, speed, standard) {
         var length;
 
-        if (!standard && this._pages.length) {
+        if ( !standard && this._pages.length ) {
             length = this._pages.length;
-            $.proxy(this._overrides.to, this._core)(this._pages[((position % length) + length) % length].start, speed);
+            $.proxy(this._overrides.to, this._core)(this._pages[( ( position % length ) + length ) % length].start, speed);
         } else {
             $.proxy(this._overrides.to, this._core)(position, speed);
         }
@@ -3220,7 +3220,7 @@
 
     $.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Hash Plugin
@@ -3230,7 +3230,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
     'use strict';
 
     /**
@@ -3266,15 +3266,15 @@
          */
         this._handlers = {
             'initialized.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && this._core.settings.startPosition === 'URLHash') {
+                if ( e.namespace && this._core.settings.startPosition === 'URLHash' ) {
                     $(window).trigger('hashchange.owl.navigation');
                 }
             }, this),
             'prepared.owl.carousel': $.proxy(function (e) {
-                if (e.namespace) {
+                if ( e.namespace ) {
                     var hash = $(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
 
-                    if (!hash) {
+                    if ( !hash ) {
                         return;
                     }
 
@@ -3282,13 +3282,13 @@
                 }
             }, this),
             'changed.owl.carousel': $.proxy(function (e) {
-                if (e.namespace && e.property.name === 'position') {
+                if ( e.namespace && e.property.name === 'position' ) {
                     var current = this._core.items(this._core.relative(this._core.current())),
                         hash = $.map(this._hashes, function (item, hash) {
                             return item === current ? hash : null;
                         }).join();
 
-                    if (!hash || window.location.hash.slice(1) === hash) {
+                    if ( !hash || window.location.hash.slice(1) === hash ) {
                         return;
                     }
 
@@ -3309,7 +3309,7 @@
                 items = this._core.$stage.children(),
                 position = this._hashes[hash] && items.index(this._hashes[hash]);
 
-            if (position === undefined || position === this._core.current()) {
+            if ( position === undefined || position === this._core.current() ) {
                 return;
             }
 
@@ -3334,17 +3334,17 @@
 
         $(window).off('hashchange.owl.navigation');
 
-        for (handler in this._handlers) {
+        for ( handler in this._handlers ) {
             this._core.$element.off(handler, this._handlers[handler]);
         }
-        for (property in Object.getOwnPropertyNames(this)) {
-            typeof this[property] != 'function' && (this[property] = null);
+        for ( property in Object.getOwnPropertyNames(this) ) {
+            typeof this[property] != 'function' && ( this[property] = null );
         }
     };
 
     $.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
 
 /**
  * Support Plugin
@@ -3356,7 +3356,7 @@
  * @license The MIT License (MIT)
  */
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
 
     var style = $('<support>').get(0).style,
         prefixes = 'Webkit Moz O ms'.split(' '),
@@ -3397,8 +3397,8 @@
         var result = false,
             upper = property.charAt(0).toUpperCase() + property.slice(1);
 
-        $.each((property + ' ' + prefixes.join(upper + ' ') + upper).split(' '), function (i, property) {
-            if (style[property] !== undefined) {
+        $.each(( property + ' ' + prefixes.join(upper + ' ') + upper ).split(' '), function (i, property) {
+            if ( style[property] !== undefined ) {
                 result = prefixed ? property : true;
                 return false;
             }
@@ -3411,22 +3411,22 @@
         return test(property, true);
     }
 
-    if (tests.csstransitions()) {
+    if ( tests.csstransitions() ) {
         /* jshint -W053 */
         $.support.transition = new String(prefixed('transition'))
         $.support.transition.end = events.transition.end[$.support.transition];
     }
 
-    if (tests.cssanimations()) {
+    if ( tests.cssanimations() ) {
         /* jshint -W053 */
         $.support.animation = new String(prefixed('animation'))
         $.support.animation.end = events.animation.end[$.support.animation];
     }
 
-    if (tests.csstransforms()) {
+    if ( tests.csstransforms() ) {
         /* jshint -W053 */
         $.support.transform = new String(prefixed('transform'));
         $.support.transform3d = tests.csstransforms3d();
     }
 
-})(window.Zepto || window.jQuery, window, document);
+} )(window.Zepto || window.jQuery, window, document);
