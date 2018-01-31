@@ -21,7 +21,6 @@ if( ! function_exists("vsp_register_assets") ) {
             'bs-transition' => vsp_debug_file("libs/wpsf/assets/vendors/bootstrap/bootstrap-transition.js", 'url'),
             'bs-popover'    => vsp_debug_file("libs/wpsf/assets/vendors/bootstrap/popover/popover.js", 'url'),
             'bs-tooltip'    => vsp_debug_file("libs/wpsf/assets/vendors/bootstrap/tooltip/tooltip.js", 'url'),
-            'icheck'        => vsp_debug_file("libs/wpsf/assets/vendors/icheck/jquery.icheck.js", 'url'),
             'select2'       => vsp_debug_file("libs/wpsf/assets/vendors/select2/select2.full.js", 'url'),
             'blockui'       => vsp_debug_file("vendors/blockui/jquery.blockui.js", 'assets'),
             'owlslider'     => vsp_debug_file("vendors/owlslider/jquery.owl.js", 'assets'),
@@ -36,7 +35,6 @@ if( ! function_exists("vsp_register_assets") ) {
         $css = array(
             'bs-popover' => vsp_debug_file("libs/wpsf/assets/vendors/bootstrap/popover/popover.css", 'url'),
             'bs-tooltip' => vsp_debug_file("libs/wpsf/assets/vendors/bootstrap/tooltip/tooltip.css", 'url'),
-            'icheck'     => vsp_debug_file("libs/wpsf/assets/vendors/icheck/icheck.css", 'url'),
             'select2'    => vsp_debug_file("libs/wpsf/assets/vendors/select2/select2.css", 'url'),
             'framework'  => vsp_debug_file("vsp-framework.css", 'css'),
             'owlslider'  => vsp_debug_file("vendors/owlslider/owl.css", 'assets'),
@@ -49,7 +47,6 @@ if( ! function_exists("vsp_register_assets") ) {
         vsp_register_script('vsp-transition', $js['bs-transition'], array( 'jquery' ), '3.3.7', TRUE);
         vsp_register_script('vsp-tooltip', $js['bs-tooltip'], array( 'jquery' ), '3.3.7', TRUE);
         vsp_register_script('vsp-popover', $js['bs-popover'], array( 'vsp-tooltip' ), '3.3.7', TRUE);
-        vsp_register_script('vsp-icheck', $js['icheck'], array( 'jquery' ), '2.4.0.4', TRUE);
         vsp_register_script('vsp-select2', $js['select2'], array( 'jquery' ), '2 4.0.5', TRUE);
         vsp_register_script('vsp-owlslider', $js['owlslider'], array(), '2.0', TRUE);
         vsp_register_script('vsp-ajax', $js['vspajax'], array( 'jquery' ), '1.0', TRUE);
@@ -60,7 +57,6 @@ if( ! function_exists("vsp_register_assets") ) {
         vsp_register_style('vsp-select2', $css['select2'], array(), '2 4.0.4');
         vsp_register_style('vsp-tooltip', $css['bs-tooltip'], array(), '3.3.7');
         vsp_register_style('vsp-popover', $css['bs-popover'], array(), '3.3.7');
-        vsp_register_style('vsp-icheck', $css['icheck'], array(), '1.0.2');
         vsp_register_style('vsp-plugins', $css['plugins']);
         vsp_register_style('vsp-framework', $css['framework'], array(), '1.0');
         vsp_register_style('vsp-addons', $css['addons'], array(), '1.0');

@@ -9,9 +9,15 @@ if( ! class_exists('VSP_Framework') ) {
      * This class should be extened and used in a plugins class
      */
     abstract class VSP_Framework extends VSP_Framework_Admin implements VSP_Framework_Interface {
-        private static $_instance = NULL;
 
         protected static $version = NULL;
+
+        protected $default_options = array(
+            'version'       => 1.0,
+            'settings_page' => TRUE,
+            'addons'        => TRUE,
+            'plugin_file'   => __FILE__,
+        );
 
         /**
          * VSP_Framework constructor.
@@ -101,6 +107,17 @@ if( ! class_exists('VSP_Framework') ) {
         }
 
         public function addons_init_before() {
+        }
+
+        /**
+         * @param array $options
+         */
+        protected function parse_options($options = array()) {
+            $options = $this->parse_args($options, $this->default_options);
+            $options['plugin_slug'] = vsp_fix_slug($options["plugin_slug"]);
+            $options['db_slug'] = vsp_fix_slug($options["db_slug"]);
+            $options['hook_slug'] = vsp_fix_slug($options["hook_slug"]);
+            $this->options = $options;
         }
     }
 }

@@ -18,7 +18,7 @@ if( ! function_exists("vsp_version") ) {
      * @return string
      */
     function vsp_version() {
-        return '1.1';
+        return '1.2';
     }
 
     defined("VSP_V") or define("VSP_V", vsp_version());

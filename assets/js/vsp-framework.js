@@ -52,7 +52,7 @@
                 return this
             }
         }
-    }
+    };
 
     $.VSPFRAMEWORK.is_framework_exists = function (type) {
         var $is_error = true;
@@ -61,12 +61,6 @@
         if ( type === 'select2' ) {
             try {
                 jQuery().select2();
-                $is_error = false;
-            } catch ( err ) {
-            }
-        } else if ( type === 'icheck' ) {
-            try {
-                jQuery().iCheck();
                 $is_error = false;
             } catch ( err ) {
             }
@@ -108,7 +102,7 @@
         }
 
         return true;
-    }
+    };
 
     $.VSPFRAMEWORK.get_element_args = function (elem, $options) {
         var $final_data = {};
@@ -123,7 +117,7 @@
         });
 
         return $final_data;
-    }
+    };
 
     $.VSPFRAMEWORK.render_faq_ul = function ($faqs, $page, $section, $ulClass) {
         var $html = '<ul class="' + $ulClass + '">';
@@ -133,7 +127,7 @@
 
         $html += '</ul>';
         return $html;
-    }
+    };
 
     $.VSPFRAMEWORK.render_faqs = function ($parent, $subnav, $el) {
         $(".popover-open , .tooltip-open").click();
@@ -192,33 +186,7 @@
 
             }
         });
-    }
-
-    $.fn.VSPFRAMEWORK_ICHECK = function () {
-        if ( !$.VSPFRAMEWORK.is_framework_exists('icheck') ) {
-            return;
-        }
-        this.each(function () {
-            var $this = $(this);
-            var $options = {
-                increaseArea: '',
-                cursor: false,
-                inheritClass: false,
-                inheritID: false,
-                aria: false,
-                checkboxClass: 'icheckbox_minimal-green',
-                radioClass: 'iradio_minimal-green',
-            };
-
-            var $final_data = $.VSPFRAMEWORK.get_element_args($this, $options);
-            var $theme = $this.data('theme');
-            if ( $theme !== undefined ) {
-                $final_data['checkboxClass'] = 'icheckbox_' + $theme;
-                $final_data['radioClass'] = 'iradio_' + $theme;
-            }
-            $this.iCheck($final_data);
-        })
-    }
+    };
 
     $.fn.VSPFRAMEWORK_FAQ_TOOLTIP = function () {
         return this.each(function () {
@@ -254,7 +222,7 @@
             $(this).vsppopover($options);
         });
 
-    }
+    };
 
     $.fn.VSPFRAMEWORK_TOOLTIP = function () {
         return this.each(function () {
@@ -353,10 +321,6 @@
 
         if ( $(".vsp-select2").length > 0 ) {
             $(".vsp-select2").VSPFRAMEWORK_SELECT2();
-        }
-
-        if ( $(".vsp-icheck").length > 0 ) {
-            $(".vsp-icheck").VSPFRAMEWORK_ICHECK();
         }
 
         if ( $("#vsp-sys-status-report-text-btn").length > 0 ) {

@@ -213,14 +213,14 @@ if( ! class_exists("VSP_Class_Handler") ) {
 
         /**
          * @param string $variable
-         * @param bool   $return
+         * @param bool   $_return
          * @param bool   $clear
          * @return bool|null
          */
-        protected function _echo_output($variable = 'output_data', $return = FALSE, $clear = TRUE) {
+        protected function _echo_output($variable = 'output_data', $_return = FALSE, $clear = TRUE) {
             $return = NULL;
             if( isset($this->{$variable}) ) {
-                if( $return === FALSE ) {
+                if( $_return === FALSE ) {
                     echo $this->{$variable};
                 } else {
                     $return = $this->{$variable};

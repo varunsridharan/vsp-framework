@@ -8,7 +8,8 @@ if( ! class_exists('VSP_Framework_Admin') ) {
     /**
      * Class VSP_Framework_Admin
      */
-    class VSP_Framework_Admin extends VSP_Framework_Options {
+    class VSP_Framework_Admin extends VSP_Class_Handler {
+
         /**
          * VSP_Framework_Admin constructor.
          * @param array $options
