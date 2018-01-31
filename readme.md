@@ -8,7 +8,6 @@ $plugin_settings = array(
     'version' => '1.0',
     'plugin_file' => __FILE__,
     'settings_page_slug' => '',
-    'page_hook' => '',
     'plugin_slug' => '',
     'db_slug' => '',
     'plugin_name' => '',

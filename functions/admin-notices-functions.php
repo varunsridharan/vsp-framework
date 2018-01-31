@@ -53,7 +53,7 @@ if(!function_exists('vsp_notice_error')){
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
-        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_ajax()){
             return;
         }
         vsp_notice($message,'error',$args);
@@ -65,7 +65,7 @@ if(!function_exists('vsp_notice_update')){
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
-        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_ajax()){
             return;
         }
         vsp_notice($message,'update',$args);
@@ -77,7 +77,7 @@ if(!function_exists('vsp_notice_upgrade')){
         $args['id'] = $id;
         $args['times'] = $times;
         $args['screen'] = $screen;
-        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_request('ajax')){
+        if(isset($args['on_ajax']) && $args['on_ajax'] === false && vsp_is_ajax()){
             return;
         }
         vsp_notice($message,'upgrade',$args);

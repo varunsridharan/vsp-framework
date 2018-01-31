@@ -6,7 +6,7 @@ if(!class_exists('VSP_Framework_Admin')){
     class VSP_Framework_Admin extends VSP_Framework_Options {
         public function __construct($options = array()){
             parent::__construct($options);
-            if(vsp_is_request("admin")){
+            if(vsp_is_admin()){
                 add_action("vsp_framework_init",array($this,'admin_init'));
             }            
         }

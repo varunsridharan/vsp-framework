@@ -4,7 +4,7 @@ if(!defined("ABSPATH")){ exit; }
 add_action("vsp_framework_init",'vsp_init_admin_notices');
 add_action("vsp_framework_loaded",'vsp_cache_options',99999);
 
-if(vsp_is_request("admin")){
+if(vsp_is_admin()){
     add_action("admin_enqueue_scripts",'vsp_register_assets',1);
 }
 
@@ -69,7 +69,7 @@ if(!function_exists("vsp_register_assets")){
 
 if(!function_exists("vsp_init_admin_notices")){
     function vsp_init_admin_notices(){
-        if(vsp_is_request("admin") || vsp_is_request("ajax")){
+        if(vsp_is_admin() || vsp_is_ajax()){
             vsp_notices();
         }
     }

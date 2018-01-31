@@ -24,7 +24,7 @@ if(!class_exists("VSP_Admin_Notice")){
             $this->notices = array();
             $this->loadNotices();
             $this->auto_remove_Notice();
-            if(vsp_is_request("admin") || vsp_is_request("ajax")){
+            if(vsp_is_admin() || vsp_is_ajax()){
                 add_action('admin_notices', array($this, 'displayNotices'));
             }
         }

@@ -28,13 +28,13 @@ if(!class_exists("VSP_Addons")){
             $this->hook_slug = $this->option('hook_slug');
             $this->db_slug = $this->option('plugin_db_slug');
             
-            if(vsp_is_request('admin')){
+            if(vsp_is_admin()){
                 //add_action($this->hook_slug.'_settings_section',array($this,'set_settings_section'),99,100);
                 add_action($this->hook_slug.'_settings_pages',array($this,'set_settings_page'),99,100);
                 add_action('vsp_render_'.$this->hook_slug.'_addons_list',array($this,'render_addons_page'),10,2);
             }
             
-            if(vsp_is_request("ajax")){
+            if(vsp_is_ajax()){
                 add_action($this->option("hook_slug")."_handle_addon_request",array($this,'handle_ajax_request'));
             }
             
