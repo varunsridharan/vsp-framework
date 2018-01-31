@@ -1,21 +1,21 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if( ! defined('ABSPATH') ) {
+    exit;
 }
 
-if(!class_exists("WP_Async_Request",false)){
-    if(file_exists(VSP_PATH.'libs/wp-async-request.php')){
-        include(VSP_PATH.'libs/wp-async-request.php');
+if( ! class_exists("WP_Async_Request", FALSE) ) {
+    if( file_exists(VSP_PATH . 'libs/wp-async-request.php') ) {
+        include( VSP_PATH . 'libs/wp-async-request.php' );
     }
 }
 
-if(!class_exists("WP_Background_Process",false)){
-    if(file_exists(WP_PLUGIN_DIR.'/woocommerce/includes/libraries/wp-background-process.php')){
-        include(WP_PLUGIN_DIR.'/woocommerce/includes/libraries/wp-background-process.php');
+if( ! class_exists("WP_Background_Process", FALSE) ) {
+    if( file_exists(WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-background-process.php') ) {
+        include( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-background-process.php' );
     }
 }
 
-if(!class_exists("WP_Background_Process",false)){
+if( ! class_exists("WP_Background_Process", FALSE) ) {
 
     /**
      * Abstract WP_Background_Process class.
@@ -68,11 +68,11 @@ if(!class_exists("WP_Background_Process",false)){
         public function __construct() {
             parent::__construct();
 
-            $this->cron_hook_identifier     = $this->identifier . '_cron';
+            $this->cron_hook_identifier = $this->identifier . '_cron';
             $this->cron_interval_identifier = $this->identifier . '_cron_interval';
 
-            add_action( $this->cron_hook_identifier, array( $this, 'handle_cron_healthcheck' ) );
-            add_filter( 'cron_schedules', array( $this, 'schedule_cron_healthcheck' ) );
+            add_action($this->cron_hook_identifier, array( $this, 'handle_cron_healthcheck' ));
+            add_filter('cron_schedules', array( $this, 'schedule_cron_healthcheck' ));
         }
 
         /**
@@ -96,7 +96,7 @@ if(!class_exists("WP_Background_Process",false)){
          *
          * @return $this
          */
-        public function push_to_queue( $data ) {
+        public function push_to_queue($data) {
             $this->data[] = $data;
 
             return $this;
@@ -110,8 +110,8 @@ if(!class_exists("WP_Background_Process",false)){
         public function save() {
             $key = $this->generate_key();
 
-            if ( ! empty( $this->data ) ) {
-                update_site_option( $key, $this->data );
+            if( ! empty($this->data) ) {
+                update_site_option($key, $this->data);
             }
 
             return $this;
@@ -125,9 +125,9 @@ if(!class_exists("WP_Background_Process",false)){
          *
          * @return $this
          */
-        public function update( $key, $data ) {
-            if ( ! empty( $data ) ) {
-                update_site_option( $key, $data );
+        public function update($key, $data) {
+            if( ! empty($data) ) {
+                update_site_option($key, $data);
             }
 
             return $this;
@@ -140,8 +140,8 @@ if(!class_exists("WP_Background_Process",false)){
          *
          * @return $this
          */
-        public function delete( $key ) {
-            delete_site_option( $key );
+        public function delete($key) {
+            delete_site_option($key);
 
             return $this;
         }
@@ -156,11 +156,11 @@ if(!class_exists("WP_Background_Process",false)){
          *
          * @return string
          */
-        protected function generate_key( $length = 64 ) {
-            $unique  = md5( microtime() . rand() );
+        protected function generate_key($length = 64) {
+            $unique = md5(microtime() . rand());
             $prepend = $this->identifier . '_batch_';
 
-            return substr( $prepend . $unique, 0, $length );
+            return substr($prepend . $unique, 0, $length);
         }
 
         /**
@@ -173,17 +173,17 @@ if(!class_exists("WP_Background_Process",false)){
             // Don't lock up other requests while processing
             session_write_close();
 
-            if ( $this->is_process_running() ) {
+            if( $this->is_process_running() ) {
                 // Background process already running.
                 wp_die();
             }
 
-            if ( $this->is_queue_empty() ) {
+            if( $this->is_queue_empty() ) {
                 // No data to process.
                 wp_die();
             }
 
-            check_ajax_referer( $this->identifier, 'nonce' );
+            check_ajax_referer($this->identifier, 'nonce');
 
             $this->handle();
 
@@ -198,23 +198,23 @@ if(!class_exists("WP_Background_Process",false)){
         protected function is_queue_empty() {
             global $wpdb;
 
-            $table  = $wpdb->options;
+            $table = $wpdb->options;
             $column = 'option_name';
 
-            if ( is_multisite() ) {
-                $table  = $wpdb->sitemeta;
+            if( is_multisite() ) {
+                $table = $wpdb->sitemeta;
                 $column = 'meta_key';
             }
 
-            $key = $wpdb->esc_like( $this->identifier . '_batch_' ) . '%';
+            $key = $wpdb->esc_like($this->identifier . '_batch_') . '%';
 
-            $count = $wpdb->get_var( $wpdb->prepare( "
+            $count = $wpdb->get_var($wpdb->prepare("
             SELECT COUNT(*)
             FROM {$table}
             WHERE {$column} LIKE %s
-        ", $key ) );
+        ", $key));
 
-            return ( $count > 0 ) ? false : true;
+            return ( $count > 0 ) ? FALSE : TRUE;
         }
 
         /**
@@ -224,12 +224,12 @@ if(!class_exists("WP_Background_Process",false)){
          * in a background process.
          */
         protected function is_process_running() {
-            if ( get_site_transient( $this->identifier . '_process_lock' ) ) {
+            if( get_site_transient($this->identifier . '_process_lock') ) {
                 // Process already running.
-                return true;
+                return TRUE;
             }
 
-            return false;
+            return FALSE;
         }
 
         /**
@@ -242,10 +242,10 @@ if(!class_exists("WP_Background_Process",false)){
         protected function lock_process() {
             $this->start_time = time(); // Set start time of current process.
 
-            $lock_duration = ( property_exists( $this, 'queue_lock_time' ) ) ? $this->queue_lock_time : 60; // 1 minute
-            $lock_duration = apply_filters( $this->identifier . '_queue_lock_time', $lock_duration );
+            $lock_duration = ( property_exists($this, 'queue_lock_time') ) ? $this->queue_lock_time : 60; // 1 minute
+            $lock_duration = apply_filters($this->identifier . '_queue_lock_time', $lock_duration);
 
-            set_site_transient( $this->identifier . '_process_lock', microtime(), $lock_duration );
+            set_site_transient($this->identifier . '_process_lock', microtime(), $lock_duration);
         }
 
         /**
@@ -256,7 +256,7 @@ if(!class_exists("WP_Background_Process",false)){
          * @return $this
          */
         protected function unlock_process() {
-            delete_site_transient( $this->identifier . '_process_lock' );
+            delete_site_transient($this->identifier . '_process_lock');
 
             return $this;
         }
@@ -269,31 +269,31 @@ if(!class_exists("WP_Background_Process",false)){
         protected function get_batch() {
             global $wpdb;
 
-            $table        = $wpdb->options;
-            $column       = 'option_name';
-            $key_column   = 'option_id';
+            $table = $wpdb->options;
+            $column = 'option_name';
+            $key_column = 'option_id';
             $value_column = 'option_value';
 
-            if ( is_multisite() ) {
-                $table        = $wpdb->sitemeta;
-                $column       = 'meta_key';
-                $key_column   = 'meta_id';
+            if( is_multisite() ) {
+                $table = $wpdb->sitemeta;
+                $column = 'meta_key';
+                $key_column = 'meta_id';
                 $value_column = 'meta_value';
             }
 
-            $key = $wpdb->esc_like( $this->identifier . '_batch_' ) . '%';
+            $key = $wpdb->esc_like($this->identifier . '_batch_') . '%';
 
-            $query = $wpdb->get_row( $wpdb->prepare( "
+            $query = $wpdb->get_row($wpdb->prepare("
             SELECT *
             FROM {$table}
             WHERE {$column} LIKE %s
             ORDER BY {$key_column} ASC
             LIMIT 1
-            ", $key ) );
+            ", $key));
 
-            $batch       = new stdClass();
-            $batch->key  = $query->$column;
-            $batch->data = maybe_unserialize( $query->$value_column );
+            $batch = new stdClass();
+            $batch->key = $query->$column;
+            $batch->data = maybe_unserialize($query->$value_column);
 
             return $batch;
         }
@@ -310,33 +310,33 @@ if(!class_exists("WP_Background_Process",false)){
             do {
                 $batch = $this->get_batch();
 
-                foreach ( $batch->data as $key => $value ) {
-                    $task = $this->task( $value );
+                foreach( $batch->data as $key => $value ) {
+                    $task = $this->task($value);
 
-                    if ( false !== $task ) {
-                        $batch->data[ $key ] = $task;
+                    if( FALSE !== $task ) {
+                        $batch->data[$key] = $task;
                     } else {
-                        unset( $batch->data[ $key ] );
+                        unset($batch->data[$key]);
                     }
 
-                    if ( $this->time_exceeded() || $this->memory_exceeded() ) {
+                    if( $this->time_exceeded() || $this->memory_exceeded() ) {
                         // Batch limits reached.
                         break;
                     }
                 }
 
                 // Update or delete current batch.
-                if ( ! empty( $batch->data ) ) {
-                    $this->update( $batch->key, $batch->data );
+                if( ! empty($batch->data) ) {
+                    $this->update($batch->key, $batch->data);
                 } else {
-                    $this->delete( $batch->key );
+                    $this->delete($batch->key);
                 }
-            } while ( ! $this->time_exceeded() && ! $this->memory_exceeded() && ! $this->is_queue_empty() );
+            } while( ! $this->time_exceeded() && ! $this->memory_exceeded() && ! $this->is_queue_empty() );
 
             $this->unlock_process();
 
             // Start next batch or complete process.
-            if ( ! $this->is_queue_empty() ) {
+            if( ! $this->is_queue_empty() ) {
                 $this->dispatch();
             } else {
                 $this->complete();
@@ -352,15 +352,15 @@ if(!class_exists("WP_Background_Process",false)){
          * @return bool
          */
         protected function memory_exceeded() {
-            $memory_limit   = $this->get_memory_limit() * 0.9; // 90% of max memory
-            $current_memory = memory_get_usage( true );
-            $return         = false;
+            $memory_limit = $this->get_memory_limit() * 0.9; // 90% of max memory
+            $current_memory = memory_get_usage(TRUE);
+            $return = FALSE;
 
-            if ( $current_memory >= $memory_limit ) {
-                $return = true;
+            if( $current_memory >= $memory_limit ) {
+                $return = TRUE;
             }
 
-            return apply_filters( $this->identifier . '_memory_exceeded', $return );
+            return apply_filters($this->identifier . '_memory_exceeded', $return);
         }
 
         /**
@@ -369,19 +369,19 @@ if(!class_exists("WP_Background_Process",false)){
          * @return int
          */
         protected function get_memory_limit() {
-            if ( function_exists( 'ini_get' ) ) {
-                $memory_limit = ini_get( 'memory_limit' );
+            if( function_exists('ini_get') ) {
+                $memory_limit = ini_get('memory_limit');
             } else {
                 // Sensible default.
                 $memory_limit = '128M';
             }
 
-            if ( ! $memory_limit || -1 === intval( $memory_limit ) ) {
+            if( ! $memory_limit || -1 === intval($memory_limit) ) {
                 // Unlimited, set to 32GB.
                 $memory_limit = '32000M';
             }
 
-            return intval( $memory_limit ) * 1024 * 1024;
+            return intval($memory_limit) * 1024 * 1024;
         }
 
         /**
@@ -393,14 +393,14 @@ if(!class_exists("WP_Background_Process",false)){
          * @return bool
          */
         protected function time_exceeded() {
-            $finish = $this->start_time + apply_filters( $this->identifier . '_default_time_limit', 20 ); // 20 seconds
-            $return = false;
+            $finish = $this->start_time + apply_filters($this->identifier . '_default_time_limit', 20); // 20 seconds
+            $return = FALSE;
 
-            if ( time() >= $finish ) {
-                $return = true;
+            if( time() >= $finish ) {
+                $return = TRUE;
             }
 
-            return apply_filters( $this->identifier . '_time_exceeded', $return );
+            return apply_filters($this->identifier . '_time_exceeded', $return);
         }
 
         /**
@@ -421,17 +421,17 @@ if(!class_exists("WP_Background_Process",false)){
          * @param mixed $schedules Schedules.
          * @return mixed
          */
-        public function schedule_cron_healthcheck( $schedules ) {
-            $interval = apply_filters( $this->identifier . '_cron_interval', 5 );
+        public function schedule_cron_healthcheck($schedules) {
+            $interval = apply_filters($this->identifier . '_cron_interval', 5);
 
-            if ( property_exists( $this, 'cron_interval' ) ) {
-                $interval = apply_filters( $this->identifier . '_cron_interval', $this->cron_interval_identifier );
+            if( property_exists($this, 'cron_interval') ) {
+                $interval = apply_filters($this->identifier . '_cron_interval', $this->cron_interval_identifier);
             }
 
             // Adds every 5 minutes to the existing schedules.
-            $schedules[ $this->identifier . '_cron_interval' ] = array(
+            $schedules[$this->identifier . '_cron_interval'] = array(
                 'interval' => MINUTE_IN_SECONDS * $interval,
-                'display'  => sprintf( __( 'Every %d minutes', 'woocommerce' ), $interval ),
+                'display'  => sprintf(__('Every %d minutes', 'woocommerce'), $interval),
             );
 
             return $schedules;
@@ -444,12 +444,12 @@ if(!class_exists("WP_Background_Process",false)){
          * and data exists in the queue.
          */
         public function handle_cron_healthcheck() {
-            if ( $this->is_process_running() ) {
+            if( $this->is_process_running() ) {
                 // Background process already running.
                 exit;
             }
 
-            if ( $this->is_queue_empty() ) {
+            if( $this->is_queue_empty() ) {
                 // No data to process.
                 $this->clear_scheduled_event();
                 exit;
@@ -464,8 +464,8 @@ if(!class_exists("WP_Background_Process",false)){
          * Schedule event
          */
         protected function schedule_event() {
-            if ( ! wp_next_scheduled( $this->cron_hook_identifier ) ) {
-                wp_schedule_event( time(), $this->cron_interval_identifier, $this->cron_hook_identifier );
+            if( ! wp_next_scheduled($this->cron_hook_identifier) ) {
+                wp_schedule_event(time(), $this->cron_interval_identifier, $this->cron_hook_identifier);
             }
         }
 
@@ -473,10 +473,10 @@ if(!class_exists("WP_Background_Process",false)){
          * Clear scheduled event
          */
         protected function clear_scheduled_event() {
-            $timestamp = wp_next_scheduled( $this->cron_hook_identifier );
+            $timestamp = wp_next_scheduled($this->cron_hook_identifier);
 
-            if ( $timestamp ) {
-                wp_unschedule_event( $timestamp, $this->cron_hook_identifier );
+            if( $timestamp ) {
+                wp_unschedule_event($timestamp, $this->cron_hook_identifier);
             }
         }
 
@@ -487,12 +487,12 @@ if(!class_exists("WP_Background_Process",false)){
          *
          */
         public function cancel_process() {
-            if ( ! $this->is_queue_empty() ) {
+            if( ! $this->is_queue_empty() ) {
                 $batch = $this->get_batch();
 
-                $this->delete( $batch->key );
+                $this->delete($batch->key);
 
-                wp_clear_scheduled_hook( $this->cron_hook_identifier );
+                wp_clear_scheduled_hook($this->cron_hook_identifier);
             }
 
         }
@@ -509,7 +509,7 @@ if(!class_exists("WP_Background_Process",false)){
          *
          * @return mixed
          */
-        abstract protected function task( $item );
+        abstract protected function task($item);
 
     }
 }

@@ -1,15 +1,15 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if( ! defined('ABSPATH') ) {
+    exit;
 }
 
-if(!class_exists("WP_Async_Request",false)){
-    if(file_exists(WP_PLUGIN_DIR.'/woocommerce/includes/libraries/wp-async-request.php')){
-        include(WP_PLUGIN_DIR.'/woocommerce/includes/libraries/wp-async-request.php');
+if( ! class_exists("WP_Async_Request", FALSE) ) {
+    if( file_exists(WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-async-request.php') ) {
+        include( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-async-request.php' );
     }
 }
 
-if(!class_exists("WP_Async_Request",false)){
+if( ! class_exists("WP_Async_Request", FALSE) ) {
     /**
      * Abstract WP_Async_Request class.
      *
@@ -62,8 +62,8 @@ if(!class_exists("WP_Async_Request",false)){
         public function __construct() {
             $this->identifier = $this->prefix . '_' . $this->action;
 
-            add_action( 'wp_ajax_' . $this->identifier, array( $this, 'maybe_handle' ) );
-            add_action( 'wp_ajax_nopriv_' . $this->identifier, array( $this, 'maybe_handle' ) );
+            add_action('wp_ajax_' . $this->identifier, array( $this, 'maybe_handle' ));
+            add_action('wp_ajax_nopriv_' . $this->identifier, array( $this, 'maybe_handle' ));
         }
 
         /**
@@ -73,7 +73,7 @@ if(!class_exists("WP_Async_Request",false)){
          *
          * @return $this
          */
-        public function data( $data ) {
+        public function data($data) {
             $this->data = $data;
 
             return $this;
@@ -85,10 +85,10 @@ if(!class_exists("WP_Async_Request",false)){
          * @return array|WP_Error
          */
         public function dispatch() {
-            $url  = add_query_arg( $this->get_query_args(), $this->get_query_url() );
+            $url = add_query_arg($this->get_query_args(), $this->get_query_url());
             $args = $this->get_post_args();
 
-            return wp_remote_post( esc_url_raw( $url ), $args );
+            return wp_remote_post(esc_url_raw($url), $args);
         }
 
         /**
@@ -97,13 +97,13 @@ if(!class_exists("WP_Async_Request",false)){
          * @return array
          */
         protected function get_query_args() {
-            if ( property_exists( $this, 'query_args' ) ) {
+            if( property_exists($this, 'query_args') ) {
                 return $this->query_args;
             }
 
             return array(
                 'action' => $this->identifier,
-                'nonce'  => wp_create_nonce( $this->identifier ),
+                'nonce'  => wp_create_nonce($this->identifier),
             );
         }
 
@@ -113,11 +113,11 @@ if(!class_exists("WP_Async_Request",false)){
          * @return string
          */
         protected function get_query_url() {
-            if ( property_exists( $this, 'query_url' ) ) {
+            if( property_exists($this, 'query_url') ) {
                 return $this->query_url;
             }
 
-            return admin_url( 'admin-ajax.php' );
+            return admin_url('admin-ajax.php');
         }
 
         /**
@@ -126,16 +126,16 @@ if(!class_exists("WP_Async_Request",false)){
          * @return array
          */
         protected function get_post_args() {
-            if ( property_exists( $this, 'post_args' ) ) {
+            if( property_exists($this, 'post_args') ) {
                 return $this->post_args;
             }
 
             return array(
                 'timeout'   => 0.01,
-                'blocking'  => false,
+                'blocking'  => FALSE,
                 'body'      => $this->data,
                 'cookies'   => $_COOKIE,
-                'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
+                'sslverify' => apply_filters('https_local_ssl_verify', FALSE),
             );
         }
 
@@ -148,7 +148,7 @@ if(!class_exists("WP_Async_Request",false)){
             // Don't lock up other requests while processing
             session_write_close();
 
-            check_ajax_referer( $this->identifier, 'nonce' );
+            check_ajax_referer($this->identifier, 'nonce');
 
             $this->handle();
 
