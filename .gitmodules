@@ -1,0 +1,3 @@
+[submodule "libs/wpsf"]
+	path = libs/wpsf
+	url = http://github.com/wpsf/wpsf/
