@@ -399,6 +399,7 @@ if( ! function_exists('vsp_user_roles_as_options') ) {
 
 if( ! function_exists('vsp_filter_user_roles') ) {
     /**
+     * @example This function will filter vsp_user_roles_as_options function and provide only the given user role slug values
      * @param array $required
      * @return array
      */

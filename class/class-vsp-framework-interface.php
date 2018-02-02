@@ -22,8 +22,16 @@ interface VSP_Framework_Interface {
      */
     public function settings_init_before();
 
+    /**
+     * INIT Function called @ vsp_framework_init hook
+     * @return mixed
+     */
     public function init();
 
+    /**
+     * INIT Function called @ vsp_framework_init hook And After init function is called
+     * @return mixed
+     */
     public function init_hooks();
 
     public function addons_init();

@@ -2,6 +2,7 @@
 if( ! defined("ABSPATH") ) {
     exit;
 }
+
 global $vsp_plugins, $vsp_loaded_framework, $vsp_framework_data;
 $vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
 
@@ -22,7 +23,18 @@ if( ! function_exists("vsp_class_autoloader") ) {
         $settings_path = $path . 'class/settings/class-' . $current . '.php';
         $addons_path = $path . 'class/addons/class-' . $current . '.php';
         $tools_path = $path . 'class/tools/class-' . $current . '.php';
-        if( FALSE !== strpos($class, 'vsp_settings') ) {
+        $helper_path = $path . 'class/helpers/class-' . $current . '.php';
+        $compatibility = $path . 'class/helpers/compatibility/class-' . $current . '.php';
+
+        if( FALSE !== strpos($class, 'compatibility') ) {
+            if( file_exists($compatibility) ) {
+                include( $compatibility );
+            }
+        } else if( FALSE !== strpos($class, 'helper') ) {
+            if( file_exists($helper_path) ) {
+                include( $helper_path );
+            }
+        } else if( FALSE !== strpos($class, 'vsp_settings') ) {
             if( file_exists($settings_path) ) {
                 include( $settings_path );
             } else if( file_exists($tools_path) ) {
