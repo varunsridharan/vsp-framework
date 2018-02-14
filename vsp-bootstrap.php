@@ -32,12 +32,12 @@ if( ! function_exists("vsp_version") ) {
     require_once( VSP_PATH . 'functions/cache-variables.php' );
     require_once( VSP_PATH . 'functions/admin-notices-functions.php' );
     require_once( VSP_PATH . 'libs/wpsf/wpsf-framework.php' );
-    wpsf_framework_init();
+    ///wpsf_framework_init();
     require_once( VSP_PATH . 'vsp-hooks.php' );
 
     do_action("vsp_framework_loaded");
 
-    if( vsp_is_admin() || vsp_is_ajax() ) {
+    if( ( vsp_is_admin() || vsp_is_ajax() ) || defined("VSP_WPSF_FORCE") ) {
         require_once( VSP_PATH . 'class/class-vsp-wpsf-handler.php' );
     }
 

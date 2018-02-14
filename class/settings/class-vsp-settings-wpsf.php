@@ -46,20 +46,23 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
                 $this->status_page = NULL;
                 $this->hook_slug = vsp_fix_slug($this->option('hook_slug'));
 
-                $this->get_settings_config();
-                $this->settings_pages();
-                $this->settings_sections();
-                $this->settings_fields();
-
-                if( $this->option("status_page") !== FALSE && vsp_is_admin() === TRUE ) {
-                    $this->update_status_page();
-                }
-
-                $this->final_array();
                 add_action("init", array( &$this, 'init_settings' ), 10);
                 add_action("vsp_wp_settings_simple_footer", array( &$this, 'render_settings_metaboxes' ));
                 add_action('vsp_show_sys_page', array( &$this, 'render_sys_page' ));
             }
+        }
+
+        private function make_settings_arr() {
+            $this->get_settings_config();
+            $this->settings_pages();
+            $this->settings_sections();
+            $this->settings_fields();
+
+            if( $this->option("status_page") !== FALSE && vsp_is_admin() === TRUE ) {
+                $this->update_status_page();
+            }
+
+            $this->final_array();
         }
 
         public function settings_pages() {
@@ -151,6 +154,7 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
         }
 
         public function init_settings() {
+            $this->make_settings_arr();
             $this->framework = new WPSFramework(array(
                 'settings' => array(
                     'config'  => $this->page_config,

@@ -320,7 +320,6 @@ if( ! function_exists("vsp_placeholder_img") ) {
     }
 }
 
-
 if( ! function_exists('vsp_is_user_role') ) {
     /**
      * @param null $role
@@ -371,6 +370,7 @@ if( ! function_exists('vsp_wp_user_roles') ) {
         return $all_roles;
     }
 }
+
 if( ! function_exists('vsp_get_user_roles') ) {
     /**
      * @return array|mixed|void
@@ -415,5 +415,55 @@ if( ! function_exists('vsp_filter_user_roles') ) {
             }
         }
         return $existing;
+    }
+}
+
+if( ! function_exists('vsp_array_insert_before') ) {
+    /*
+     * Inserts a new key/value before the key in the array.
+     * @param $key The key to insert before.
+     * @param $array An array to insert in to.
+     * @param $new_key The key to insert.
+     * @param $new_value An value to insert.
+     * @return The new array if the key exists, FALSE otherwise.
+     * @see array_insert_after()
+     */
+    function vsp_array_insert_before($key, array &$array, $new_key, $new_value) {
+        if( array_key_exists($key, $array) ) {
+            $new = array();
+            foreach( $array as $k => $value ) {
+                if( $k === $key ) {
+                    $new[$new_key] = $new_value;
+                }
+                $new[$k] = $value;
+            }
+            return $new;
+        }
+        return FALSE;
+    }
+}
+
+if( ! function_exists('vsp_array_insert_after') ) {
+    /*
+     * Inserts a new key/value after the key in the array.
+     * @param $key The key to insert after.
+     * @param $array An array to insert in to.
+     * @param $new_key The key to insert.
+     * @param $new_value An value to insert.
+     * @return The new array if the key exists, FALSE otherwise.
+     * @see array_insert_before()
+     */
+    function vsp_array_insert_after($key, array &$array, $new_key, $new_value) {
+        if( array_key_exists($key, $array) ) {
+            $new = array();
+            foreach( $array as $k => $value ) {
+                $new[$k] = $value;
+                if( $k === $key ) {
+                    $new[$new_key] = $new_value;
+                }
+            }
+            return $new;
+        }
+        return FALSE;
     }
 }
