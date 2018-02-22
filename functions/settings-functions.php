@@ -35,7 +35,6 @@ if( ! function_exists("vsp_cache_options") ) {
     }
 }
 
-
 if( ! function_exists("vsp_settings_save_sections") ) {
     /**
      * @param string $plugin_slug

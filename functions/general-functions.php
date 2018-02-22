@@ -305,7 +305,7 @@ if( ! function_exists("vsp_js_vars") ) {
             $script .= "\n$after;";
 
         if( $with_script_tag ) {
-            return '<script type="text/javascript"> /* <![CDATA[*/' . $script . '/*]]>*/ </script>';
+            return "<script type=\"text/javascript\"> $script </script>";
         }
         return $script;
     }
@@ -313,7 +313,7 @@ if( ! function_exists("vsp_js_vars") ) {
 
 if( ! function_exists("vsp_placeholder_img") ) {
     /**
-     * @return mixed|void
+     * @return mixed
      */
     function vsp_placeholder_img() {
         return apply_filters('vsp_placeholder_img', vsp_img('noimage.png'));
@@ -373,7 +373,7 @@ if( ! function_exists('vsp_wp_user_roles') ) {
 
 if( ! function_exists('vsp_get_user_roles') ) {
     /**
-     * @return array|mixed|void
+     * @return array|mixed
      */
     function vsp_get_user_roles() {
         $user_roles = vsp_wp_user_roles();

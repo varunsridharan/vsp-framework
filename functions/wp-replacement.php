@@ -288,6 +288,6 @@ if( ! function_exists("vsp_get_term_meta") ) {
      * @return mixed|void
      */
     function vsp_get_term_meta($term_id, $key, $single = TRUE) {
-        return function_exists('get_term_meta') ? get_term_meta($term_id, $key, $single) : get_option('vsp_tm_' . $term_id . '_' . $meta_key);
+        return function_exists('get_term_meta') ? get_term_meta($term_id, $key, $single) : get_option('vsp_tm_' . $term_id . '_' . $key);
     }
 }

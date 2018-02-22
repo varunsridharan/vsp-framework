@@ -231,8 +231,7 @@ if( ! function_exists("vsp_debug_file") ) {
         if( $makeurl === 'js' ) {
             return vsp_js($filename, $is_url);
         }
-
-
+        
         if( $makeurl === 'css' ) {
             return vsp_css($filename, $is_url);
         }

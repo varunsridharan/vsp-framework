@@ -54,11 +54,12 @@ if( ! function_exists('vsp_notice') ) {
      * @param array  $args
      */
     function vsp_notice($message, $type = 'update', $args = array()) {
-        $defaults = array( 'times'  => 1,
-                           'screen' => array(),
-                           'users'  => array(),
-                           'wraper' => TRUE,
-                           'id'     => $type . '-' . uniqid(),
+        $defaults = array(
+            'times'  => 1,
+            'screen' => array(),
+            'users'  => array(),
+            'wraper' => TRUE,
+            'id'     => $type . '-' . uniqid(),
         );
         $args = wp_parse_args($args, $defaults);
         $message = str_replace('$msgID$', $args['id'], $message);
