@@ -52,6 +52,7 @@ class VSP_VC_Fields {
             'font_family' => __("Select Font Family"),
             'font_style'  => __("Select font styling"),
         );
+        $this->group_dependecy       = '';
     }
 
     public function __call($name, $arguments) {
@@ -84,8 +85,18 @@ class VSP_VC_Fields {
         return $this;
     }
 
+    public function clear_group_dependecy() {
+        $this->group_dependecy = '';
+        return $this;
+    }
+
     public function set_group($title) {
         $this->form_group = $title;
+        return $this;
+    }
+
+    public function set_group_dependecy($title) {
+        $this->group_dependecy = $title;
         return $this;
     }
 
@@ -172,7 +183,6 @@ class VSP_VC_Fields {
             'type'        => 'dropdown',
             'heading'     => __('Icon library'),
             'value'       => $this->get_icons(TRUE),
-            'admin_label' => TRUE,
             'param_name'  => 'type',
             'description' => __('Select icon library.'),
         ));
@@ -191,6 +201,10 @@ class VSP_VC_Fields {
             if( ! empty($this->get_group()) ) {
                 $new_data['group'] = $this->get_group();
             }
+
+            if( ! empty($this->get_group_dependecy()) ) {
+                $new_data['dependency'] = $this->get_group_dependecy();
+            }
         }
 
         return $new_data;
@@ -198,6 +212,10 @@ class VSP_VC_Fields {
 
     public function get_group() {
         return $this->form_group;
+    }
+
+    public function get_group_dependecy() {
+        return $this->group_dependecy;
     }
 
     public function get_icons($is_options = FALSE) {
