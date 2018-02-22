@@ -18,7 +18,7 @@ if( ! function_exists("vsp_version") ) {
      * @return string
      */
     function vsp_version() {
-        return '010220181121';
+        return '190220181145';
     }
 
     defined("VSP_V") or define("VSP_V", vsp_version());
@@ -31,7 +31,10 @@ if( ! function_exists("vsp_version") ) {
     require_once( VSP_PATH . 'functions/general-functions.php' );
     require_once( VSP_PATH . 'functions/cache-variables.php' );
     require_once( VSP_PATH . 'functions/admin-notices-functions.php' );
-    require_once( VSP_PATH . 'libs/wpsf/wpsf-framework.php' );
+
+    if( file_exists(VSP_PATH . 'libs/wpsf/wpsf-framework.php') ) {
+        require_once( VSP_PATH . 'libs/wpsf/wpsf-framework.php' );
+    }
 
     require_once( VSP_PATH . 'vsp-hooks.php' );
 

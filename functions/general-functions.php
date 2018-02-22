@@ -209,7 +209,7 @@ if( ! function_exists("vsp_get_time_in_seconds") ) {
         }
 
         $time_limit = $times[0];
-        $type = $times[1];
+        $type       = $times[1];
 
         $time_limit = intval($time_limit);
 
@@ -273,7 +273,7 @@ if( ! function_exists("vsp_get_cdn") ) {
      */
     function vsp_get_cdn($part_url, $force_decode = FALSE) {
         $part_url = ltrim($part_url, '/');
-        $url = vsp_cdn_url() . $part_url;
+        $url      = vsp_cdn_url() . $part_url;
         $resource = wp_remote_get($url);
 
         if( is_wp_error($resource) ) {
@@ -348,7 +348,7 @@ if( ! function_exists('vsp_get_current_user') ) {
         $user_role = wp_get_current_user();
         if( $user_role_only === TRUE ) {
             $user_roles = $user_role->roles;
-            $user_role = array_shift($user_roles);
+            $user_role  = array_shift($user_roles);
             if( $user_role == NULL ) {
                 $user_role = 'visitor';
             }
@@ -376,9 +376,9 @@ if( ! function_exists('vsp_get_user_roles') ) {
      * @return array|mixed
      */
     function vsp_get_user_roles() {
-        $user_roles = vsp_wp_user_roles();
+        $user_roles            = vsp_wp_user_roles();
         $user_roles['visitor'] = array( 'name' => __('Visitor / Logged-Out User', 'vsp-framework') );
-        $user_roles = apply_filters('wc_rbp_wp_user_roles', $user_roles);
+        $user_roles            = apply_filters('wc_rbp_wp_user_roles', $user_roles);
         return $user_roles;
     }
 }
@@ -465,5 +465,30 @@ if( ! function_exists('vsp_array_insert_after') ) {
             return $new;
         }
         return FALSE;
+    }
+}
+
+if( ! function_exists('vsp_array_to_html_attributes') ) {
+    function vsp_array_to_html_attributes($array = array()) {
+        $attrs = '';
+        if( ! empty($array) ) {
+            foreach( $array as $id => $val ) {
+                $val   = esc_attr($val);
+                $id    = esc_attr($id);
+                $attrs .= " {$id}=\"{$val}\" ";
+            }
+        }
+        return $attrs;
+    }
+}
+
+if( ! function_exists('vsp_validate_css_unit') ) {
+    function vsp_validate_css_unit($value) {
+        $pattern = '/^(\d*(?:\.\d+)?)\s*(px|\%|in|cm|mm|em|rem|ex|pt|pc|vw|vh|vmin|vmax)?$/';
+        // allowed metrics: http://www.w3schools.com/cssref/css_units.asp
+        $regexr = preg_match($pattern, $value, $matches);
+        $value  = isset($matches[1]) ? (float) $matches[1] : (float) $value;
+        $unit   = isset($matches[2]) ? $matches[2] : 'px';
+        return $value . $unit;
     }
 }

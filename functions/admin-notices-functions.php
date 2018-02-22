@@ -5,6 +5,7 @@ if( ! defined("ABSPATH") ) {
 
 if( ! function_exists('vsp_notices') ) {
     /**
+     * creates a instance of a given notice class
      * @param string $type
      * @return bool|\VSP_Admin_Notice|\VSP_Admin_Notices_Error|\VSP_Admin_Notices_Updated|\VSP_Admin_Notices_UpdateNag
      */
@@ -38,6 +39,7 @@ if( ! function_exists('vsp_notices') ) {
 
 if( ! function_exists('vsp_remove_notice') ) {
     /**
+     * Removes A Notice using the Notice ID from database
      * @param $id
      * @return bool
      */
@@ -49,28 +51,35 @@ if( ! function_exists('vsp_remove_notice') ) {
 
 if( ! function_exists('vsp_notice') ) {
     /**
+     * Updates Database With Given Notices Details
      * @param        $message
      * @param string $type
      * @param array  $args
      */
     function vsp_notice($message, $type = 'update', $args = array()) {
-        $defaults = array(
+        $defaults  = array(
             'times'  => 1,
             'screen' => array(),
             'users'  => array(),
             'wraper' => TRUE,
             'id'     => $type . '-' . uniqid(),
         );
-        $args = wp_parse_args($args, $defaults);
-        $message = str_replace('$msgID$', $args['id'], $message);
+        $args      = wp_parse_args($args, $defaults);
+        $message   = str_replace('$msgID$', $args['id'], $message);
         $_instance = vsp_notices($type);
-        $_instance->setContent($message)->set_id($args['id'])->setTimes($args['times'])->setScreen($args['screen'])->setUsers($args['users'])->setWrapper($args['wraper']);
+        $_instance->setContent($message)
+                  ->set_id($args['id'])
+                  ->setTimes($args['times'])
+                  ->setScreen($args['screen'])
+                  ->setUsers($args['users'])
+                  ->setWrapper($args['wraper']);
         vsp_notices()->addNotice($_instance);
     }
 }
 
 if( ! function_exists('vsp_notice_error') ) {
     /**
+     * Creates a error notice instances and saves in DB
      * @param        $message
      * @param string $id
      * @param int    $times
@@ -78,8 +87,8 @@ if( ! function_exists('vsp_notice_error') ) {
      * @param array  $args
      */
     function vsp_notice_error($message, $id = '', $times = 1, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         if( isset($args['on_ajax']) && $args['on_ajax'] === FALSE && vsp_is_ajax() ) {
             return;
@@ -90,6 +99,7 @@ if( ! function_exists('vsp_notice_error') ) {
 
 if( ! function_exists('vsp_notice_update') ) {
     /**
+     * Creates a error update instances and saves in DB
      * @param        $message
      * @param string $id
      * @param int    $times
@@ -97,8 +107,8 @@ if( ! function_exists('vsp_notice_update') ) {
      * @param array  $args
      */
     function vsp_notice_update($message, $id = '', $times = 1, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         if( isset($args['on_ajax']) && $args['on_ajax'] === FALSE && vsp_is_ajax() ) {
             return;
@@ -109,6 +119,7 @@ if( ! function_exists('vsp_notice_update') ) {
 
 if( ! function_exists('vsp_notice_upgrade') ) {
     /**
+     * Creates a upgrade notice instances and saves in DB
      * @param        $message
      * @param string $id
      * @param int    $times
@@ -116,8 +127,8 @@ if( ! function_exists('vsp_notice_upgrade') ) {
      * @param array  $args
      */
     function vsp_notice_upgrade($message, $id = '', $times = 1, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         if( isset($args['on_ajax']) && $args['on_ajax'] === FALSE && vsp_is_ajax() ) {
             return;
