@@ -176,10 +176,14 @@ trait VSP_VC_Element {
 
     }
 
-    public function do_shortcode($shortcode_name = '', $atts = array()) {
+    public function vsp_do_shortcodes($shortcode_name = '', $atts = array(), $content = NULL){
+        var_dump($content);
+    }
+
+    public function do_shortcode($shortcode_name = '', $atts = array(), $content = NULL) {
         $custom_heading = visual_composer()->getShortCode($shortcode_name);
         if( $custom_heading ) {
-            return $custom_heading->render(array_filter($atts));
+            return $custom_heading->render(array_filter($atts), $content);
         }
         return FALSE;
     }
