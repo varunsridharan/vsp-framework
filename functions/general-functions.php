@@ -5,6 +5,7 @@ if( ! defined("ABSPATH") ) {
 
 if( ! function_exists('vsp_ajax_action') ) {
     /**
+     * Check if current request has action parameter and returns it
      * @return bool
      */
     function vsp_ajax_action() {
@@ -18,6 +19,8 @@ if( ! function_exists('vsp_ajax_action') ) {
 
 if( ! function_exists('vsp_is_ajax') ) {
     /**
+     * Checks if current request is ajax
+     * Also takes required action key to check if the ajax is exactly the action is passed
      * @param string $action
      * @return bool
      */
@@ -32,6 +35,7 @@ if( ! function_exists('vsp_is_ajax') ) {
 
 if( ! function_exists('vsp_is_cron') ) {
     /**
+     * Checks if current request is cron
      * @return bool
      */
     function vsp_is_cron() {
@@ -41,6 +45,7 @@ if( ! function_exists('vsp_is_cron') ) {
 
 if( ! function_exists('vsp_is_admin') ) {
     /**
+     * Checks if current request is admin
      * @return bool
      */
     function vsp_is_admin() {
@@ -50,6 +55,7 @@ if( ! function_exists('vsp_is_admin') ) {
 
 if( ! function_exists('vsp_is_frontend') ) {
     /**
+     * Checks if current request is frontend
      * @return bool
      */
     function vsp_is_frontend() {

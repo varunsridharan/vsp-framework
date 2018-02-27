@@ -21,7 +21,7 @@ if( ! function_exists("vsp_version") ) {
         return '190220181146';
     }
 
-    defined("VSP_V") or define("VSP_V", vsp_version());
+    defined("VSP_VERSION") or define("VSP_VERSION", vsp_version());
     defined("VSP_PATH") or define("VSP_PATH", plugin_dir_path(__FILE__));
     defined("VSP_URL") or define("VSP_URL", trailingslashit(plugins_url("", __FILE__)));
 

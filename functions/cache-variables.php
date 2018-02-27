@@ -8,6 +8,7 @@ $vsp_vars_data = array();
 
 if( ! function_exists("vsp_check_global_vars") ) {
     /**
+     * Creates / Returns a global variable for the given plugin slug
      * @param string $plugin_name
      * @return mixed
      */
@@ -22,6 +23,7 @@ if( ! function_exists("vsp_check_global_vars") ) {
 
 if( ! function_exists("vsp_add_vars") ) {
     /**
+     * Adds Given Key & values to the plugin's global variable
      * @param string $plugin_name
      * @param string $key
      * @param string $values
@@ -42,6 +44,7 @@ if( ! function_exists("vsp_add_vars") ) {
 
 if( ! function_exists("vsp_vars") ) {
     /**
+     * Returns plugin's global variable
      * @param string $plugin_name
      * @param string $key
      * @param string $default
@@ -58,6 +61,7 @@ if( ! function_exists("vsp_vars") ) {
 
 if( ! function_exists("vsp_remove_vars") ) {
     /**
+     * Removes a plugins global variable
      * @param string $plugin_name
      * @param string $key
      * @return bool
@@ -65,7 +69,7 @@ if( ! function_exists("vsp_remove_vars") ) {
     function vsp_remove_vars($plugin_name = '', $key = '') {
         $variable =& vsp_check_global_vars($plugin_name);
         if( isset($variable[$key]) ) {
-            unset($variable[$Key]);
+            unset($variable[$key]);
             return TRUE;
         }
         return FALSE;

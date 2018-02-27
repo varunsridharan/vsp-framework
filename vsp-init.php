@@ -6,7 +6,7 @@ if( ! class_exists('VSP_Framework_Loader') ) {
         public static $data      = array();
 
         public function __construct() {
-            add_action("plugins_loaded", array( &$this, 'load_framework' ),0);
+            add_action("plugins_loaded", array( &$this, 'load_framework' ), 0);
         }
 
         public function load_framework() {
