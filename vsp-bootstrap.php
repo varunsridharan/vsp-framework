@@ -24,28 +24,23 @@ if( ! function_exists("vsp_version") ) {
     defined("VSP_VERSION") or define("VSP_VERSION", vsp_version());
     defined("VSP_PATH") or define("VSP_PATH", plugin_dir_path(__FILE__));
     defined("VSP_URL") or define("VSP_URL", trailingslashit(plugins_url("", __FILE__)));
+    defined("VSP_CORE") or define("VSP_CORE", VSP_PATH . 'core/');
 
-    require_once( plugin_dir_path(__FILE__) . 'vsp-functions.php' );
-    require_once( VSP_PATH . 'functions/settings-functions.php' );
+    require_once( VSP_CORE . 'class-autoloader.php' );
+    require_once( VSP_CORE . 'class-cache.php' );
+    require_once( VSP_PATH . 'vsp-functions.php' );
+    require_once( VSP_PATH . 'functions/options.php' );
     require_once( VSP_PATH . 'functions/wp-replacement.php' );
     require_once( VSP_PATH . 'functions/general-functions.php' );
-    require_once( VSP_PATH . 'functions/cache-variables.php' );
     require_once( VSP_PATH . 'functions/admin-notices-functions.php' );
-
-    if( file_exists(VSP_PATH . 'libs/wpsf/wpsf-framework.php') ) {
-        require_once( VSP_PATH . 'libs/wpsf/wpsf-framework.php' );
-    }
-
     require_once( VSP_PATH . 'vsp-hooks.php' );
+
+    do_action('vsp_framework_load_lib_integrations');
 
     do_action("vsp_framework_loaded");
 
-    if( ( vsp_is_admin() || vsp_is_ajax() ) || defined("VSP_WPSF_FORCE") ) {
-        require_once( VSP_PATH . 'class/class-vsp-wpsf-handler.php' );
-    }
-
     if( vsp_is_ajax() ) {
-        require_once( VSP_PATH . 'class/class-vsp-framework-core-ajax.php' );
+        require_once( VSP_CORE . 'class-core-ajax.php' );
     }
 
     /**

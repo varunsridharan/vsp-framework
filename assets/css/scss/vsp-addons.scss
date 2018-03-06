@@ -1,4 +1,3 @@
-
 .vsp-addons-search-form {
   display: inline-block;
   float: right;
@@ -33,7 +32,7 @@
         margin-top: -0.5em;
         content: '';
         animation: vsp-spin 1s ease-in-out infinite;
-        background: url('../../img/loader.svg') center center;
+        background: url('../img/loader.svg') center center;
         background-size: cover;
         line-height: 1;
         text-align: center;
@@ -107,6 +106,35 @@
         width: 100%;
         max-width: 70%;
       }
+    }
+  }
+}
+
+div#wpsf-tab-addons {
+  display: inline-block;
+  width: 100%;
+  div.addonsLoader {
+    position: fixed;
+    width: 90%;
+    height: 100%;
+    background: #f1f1f1;
+    text-align: center;
+    z-index: 1;
+    margin-top: -100px;
+    .loader {
+
+      animation: vsp-spin 1s ease-in-out infinite;
+      background-image: url('../img/loader.svg');
+      position: absolute;
+      margin: 0 auto;
+      margin-top: 25%;
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: auto 20px;
+      padding: 30px;
+      background-color: #f1f1f1;
+
     }
   }
 }

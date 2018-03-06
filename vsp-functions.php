@@ -3,66 +3,21 @@ if( ! defined("ABSPATH") ) {
     exit;
 }
 
-global $vsp_plugins, $vsp_loaded_framework, $vsp_framework_data;
-$vsp_plugins = $vsp_loaded_framework = $vsp_framework_data = array();
+global $vsp_plugins;
+$vsp_plugins = array();
 
+spl_autoload_register('VSP_Autoloader::load');
 
-/**
- * VSP Framework Specific Functions
- */
-if( ! function_exists("vsp_class_autoloader") ) {
-    /**
-     * Autoloader Class function for vsp related Classes
-     * @param string $class
-     */
-    function vsp_class_autoloader($class = '') {
-        $class = strtolower($class);
-        if( FALSE === strpos($class, 'vsp_') ) {
-            return;
-        }
-        $current = str_ireplace('_', '-', $class);
-
-        $path = defined("VSP_PATH") ? VSP_PATH : __DIR__ . '/';
-
-        $base_path     = $path . 'class/class-' . $current . '.php';
-        $settings_path = $path . 'class/settings/class-' . $current . '.php';
-        $addons_path   = $path . 'class/addons/class-' . $current . '.php';
-        $tools_path    = $path . 'class/tools/class-' . $current . '.php';
-        $helper_path   = $path . 'class/helpers/class-' . $current . '.php';
-        $compatibility = $path . 'class/helpers/compatibility/class-' . $current . '.php';
-        $vc_fields     = $path . 'libs/visual-composer/class-' . $current . '.php';
-
-        if( FALSE !== strpos($class, 'vc') ) {
-            if( file_exists($vc_fields) ) {
-                include( $vc_fields );
-            }
-        } else if( FALSE !== strpos($class, 'compatibility') ) {
-            if( file_exists($compatibility) ) {
-                include( $compatibility );
-            }
-        } else if( FALSE !== strpos($class, 'helper') ) {
-            if( file_exists($helper_path) ) {
-                include( $helper_path );
-            }
-        } else if( FALSE !== strpos($class, 'vsp_settings') ) {
-            if( file_exists($settings_path) ) {
-                include( $settings_path );
-            } else if( file_exists($tools_path) ) {
-                include( $tools_path );
-            }
-        } else if( FALSE !== strpos($class, 'vsp_addons') ) {
-            if( file_exists($addons_path) ) {
-                include( $addons_path );
-            }
-        } else if( file_exists($tools_path) ) {
-            include( $tools_path );
-        } else if( file_exists($base_path) ) {
-            include( $base_path );
-        }
-
+if( ! function_exists('vsp_load_integration') ) {
+    function vsp_load_integration($type = '') {
+        return VSP_Autoloader::integration($type);
     }
+}
 
-    spl_autoload_register('vsp_class_autoloader');
+if( ! function_exists('vsp_load_lib') ) {
+    function vsp_load_lib($type = '') {
+        return VSP_Autoloader::library($type);
+    }
 }
 
 if( ! function_exists("vsp_register_plugin") ) {

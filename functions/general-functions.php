@@ -291,6 +291,22 @@ if( ! function_exists("vsp_get_cdn") ) {
     }
 }
 
+if( ! function_exists('vsp_js_vars_encode') ) {
+    function vsp_js_vars_encode($l10n) {
+        if( is_array($l10n) ) {
+            foreach( (array) $l10n as $key => $value ) {
+                if( ! is_scalar($value) )
+                    continue;
+
+                $l10n[$key] = html_entity_decode((string) $value, ENT_QUOTES, 'UTF-8');
+            }
+        } else {
+            $l10n = html_entity_decode((string) $l10n, ENT_QUOTES, 'UTF-8');
+        }
+        return $l10n;
+    }
+}
+
 if( ! function_exists("vsp_js_vars") ) {
     /**
      * @param      $object_name
@@ -299,13 +315,7 @@ if( ! function_exists("vsp_js_vars") ) {
      * @return string
      */
     function vsp_js_vars($object_name, $l10n, $with_script_tag = TRUE) {
-        foreach( (array) $l10n as $key => $value ) {
-            if( ! is_scalar($value) )
-                continue;
-
-            $l10n[$key] = html_entity_decode((string) $value, ENT_QUOTES, 'UTF-8');
-        }
-
+        $l10n   = vsp_js_vars_encode($l10n);
         $script = "var $object_name = " . wp_json_encode($l10n) . ';';
         if( ! empty($after) )
             $script .= "\n$after;";
@@ -496,5 +506,32 @@ if( ! function_exists('vsp_validate_css_unit') ) {
         $value  = isset($matches[1]) ? (float) $matches[1] : (float) $value;
         $unit   = isset($matches[2]) ? $matches[2] : 'px';
         return $value . $unit;
+    }
+}
+
+if( ! function_exists('vsp_print_r') ) {
+    function vsp_print_r($debug) {
+        echo '<pre>' . print_r($debug, TRUE) . '</pre>';
+    }
+}
+
+if( ! function_exists('vsp_send_json_callback') ) {
+    function vsp_send_json_callback($status = TRUE, $functions = array(), $other_info = array(), $status_code = NULL) {
+        $function = 'wp_send_json_error';
+        if( $status ) {
+            $function = 'wp_send_json_success';
+        }
+
+        if( is_string($functions) ) {
+            $functions = array( $functions );
+        }
+
+
+        $data = array(
+            'callback' => $functions,
+        );
+
+        $data = array_merge($data, $other_info);
+        $function($data, $status_code);
     }
 }

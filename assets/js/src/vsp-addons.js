@@ -1,38 +1,34 @@
-'use strict';
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var $vsp_addons_list = new Vue({
     el: "#vspAddonListing",
     template: '#VSPAddonsListingTemplate',
     methods: {
-        getPluginStatusLabel: function getPluginStatusLabel(label) {
-            if (this.status[label] !== undefined) {
+        getPluginStatusLabel: function (label) {
+            if ( this.status[label] !== undefined ) {
                 return this.status[label];
             }
         },
-        change_category: function change_category(cat) {
+        change_category: function (cat) {
             this.current_category = cat;
         },
-        is_show_cateogry: function is_show_cateogry(addon) {
-            if (this.current_category === 'all') {
+        is_show_cateogry: function (addon) {
+            if ( this.current_category === 'all' ) {
                 return true;
-            } else if (this.current_category === 'inactive' && addon.is_active === false) {
+            } else if ( this.current_category === 'inactive' && addon.is_active === false ) {
                 return true;
-            } else if (this.current_category === 'active' && addon.is_active === true) {
+            } else if ( this.current_category === 'active' && addon.is_active === true ) {
                 return true;
-            } else if (addon.category !== undefined) {
+            } else if ( addon.category !== undefined ) {
                 return _.hasIn(addon.category, this.current_category);
             }
 
             return false;
         },
-        pluginViewUrl: function pluginViewUrl(addon, file) {
+        pluginViewUrl: function (addon, file) {
             var $data = _.replace(this.text.plugin_view_url, '{{slug}}', file);
             $data = _.replace($data, '{{addon.addon_path_md5}}', addon.addon_path_md5);
             return $data;
         },
-        addonHandleButton: function addonHandleButton(addon, file, $type) {
+        addonHandleButton: function (addon, file, $type) {
             var $this = this;
             $.VSP_ADDONS.blockUI(addon.addon_path_md5);
             var $parentDIV = jQuery('div#' + addon.addon_path_md5);
@@ -43,32 +39,32 @@ var $vsp_addons_list = new Vue({
                     addon_slug: file,
                     addon_action: $type,
                     addon_pathid: addon.addon_path_md5,
-                    action: "vsp-addon-action"
+                    action: "vsp-addon-action",
                 },
-                error: function error(res) {
+                error: function (res) {
                     $.VSP_HELPER.ajax_callback(res);
                     $.VSP_ADDONS.unblock(addon.addon_path_md5);
                 },
-                success: function success(response) {
+                success: function (response) {
                     $.VSP_HELPER.ajax_callback(response);
                     $.VSP_ADDONS.unblock(addon.addon_path_md5);
 
-                    if ($type === 'activate') {
+                    if ( $type === 'activate' ) {
                         $this.pdata[file].is_active = true;
                     } else {
                         $this.pdata[file].is_active = false;
                     }
                 }
-            });
+            })
         }
     },
     computed: {
-        cats: function cats() {
-            if (this.categoires === undefined) {
+        cats: function () {
+            if ( this.categoires === undefined ) {
                 var $arr = this.pdata;
                 var $cats = this.default_cats;
                 _.forEach($arr, function (value, key) {
-                    if (_typeof(value.category) !== undefined) {
+                    if ( typeof value.category !== undefined ) {
                         _.merge($cats, value.category);
                     }
                 });
@@ -80,6 +76,7 @@ var $vsp_addons_list = new Vue({
             }
 
             return this.categoires;
+
         }
     },
     data: {
@@ -89,12 +86,12 @@ var $vsp_addons_list = new Vue({
         categories: null,
         category_slugs: null,
         current_category: null,
-        text: vsp_addons_settings.texts
-    }
+        text: vsp_addons_settings.texts,
+    },
 });
 
 ;
-(function ($, window, document) {
+( function ($, window, document) {
     'use strict';
 
     $.VSP_ADDONS = $.VSP_ADDONS || {};
@@ -114,4 +111,6 @@ var $vsp_addons_list = new Vue({
         $('div#' + id).toggleClass("vsp-requested");
         $('div#' + id).unblock();
     };
-})(jQuery, window, document);
+
+
+} )(jQuery, window, document);
