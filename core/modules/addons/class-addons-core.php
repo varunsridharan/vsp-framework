@@ -16,7 +16,7 @@ if( ! class_exists("VSP_Addons_Core") ) {
                 'active'   => __("Active", 'vsp-framework'),
                 'inactive' => __("In Active", 'vsp-framework'),
             );
-            $this->addon_cats = $this->default_cats;
+            $this->addon_cats   = $this->default_cats;
 
             $this->addons_cats_count = array(
                 'all'      => 0,
@@ -32,10 +32,10 @@ if( ! class_exists("VSP_Addons_Core") ) {
          */
         public function search_get_addons($single_addon = FALSE) {
             $this->addon_metadatas = array();
-            $dirs = apply_filters($this->hook_slug . '_addons_dirs', array());
-            $internal_addons = $this->search_plugins($this->option("base_path"), $single_addon);
-            $internal_addons = $this->get_metadata($internal_addons);
-            $external_addons = array();
+            $dirs                  = apply_filters($this->hook_slug . '_addons_dirs', array());
+            $internal_addons       = $this->search_plugins($this->option("base_path"), $single_addon);
+            $internal_addons       = $this->get_metadata($internal_addons);
+            $external_addons       = array();
 
             if( ! empty($dirs) ) {
                 foreach( $dirs as $dir ) {
@@ -53,7 +53,7 @@ if( ! class_exists("VSP_Addons_Core") ) {
          * @return array|mixed
          */
         public function search_get_addon($addon_slug = FALSE, $path_id = '') {
-            $addons = $this->search_get_addons($addon_slug);
+            $addons      = $this->search_get_addons($addon_slug);
             $return_data = array();
             if( ! empty($addons) ) {
                 foreach( $addons as $slug => $data ) {
@@ -85,22 +85,12 @@ if( ! class_exists("VSP_Addons_Core") ) {
          */
         protected function handle_addon_category($category) {
             $category = explode(",", $category);
-            $return = array();
+            $return   = array();
             foreach( $category as $cat ) {
-                $cat = $this->strip_space($cat, ' ');
-                $slug = sanitize_title($cat);
+                $cat           = $this->strip_space($cat, ' ');
+                $slug          = sanitize_title($cat);
                 $return[$slug] = $cat;
-
-                if( ! isset($this->addon_cats[$slug]) ) {
-                    $this->addon_cats[$slug] = $cat;
-                    $this->addons_cats_count[$slug] = 1;
-                } else {
-                    $this->addons_cats_count[$slug] = $this->addons_cats_count[$slug] + 1;
-                }
             }
-
-            $this->addons_cats_count['all'] = $this->addons_cats_count['all'] + 1;
-
             return $return;
         }
 
@@ -121,8 +111,8 @@ if( ! class_exists("VSP_Addons_Core") ) {
          */
         public function search_plugins($search_path, $single_addon = FALSE, $subpath = '') {
             $search_path = rtrim($search_path, '/');
-            $subpath = rtrim($subpath, '/');
-            $r = array();
+            $subpath     = rtrim($subpath, '/');
+            $r           = array();
 
             if( ! empty($search_path) ) {
                 $_dir = @ opendir($search_path . $subpath);
@@ -227,14 +217,14 @@ if( ! class_exists("VSP_Addons_Core") ) {
 
             if( empty($meta['rplugins']) ) {
                 $_rplugins = array();
-                $_rpc = 1;
-                $_apc = 1;
+                $_rpc      = 1;
+                $_apc      = 1;
             } else {
-                $rplugins = $meta['rplugins'];
-                $_rpc = count($rplugins);
-                $_apc = 1;
+                $rplugins    = $meta['rplugins'];
+                $_rpc        = count($rplugins);
+                $_apc        = 1;
                 $r_plugins_a = explode(',', $rplugins);
-                $_rplugins = array();
+                $_rplugins   = array();
                 foreach( $r_plugins_a as $r_plugin ) {
                     $r_plugin = $this->strip_space($r_plugin, ' ');
                     $r_plugin = $this->strip_space($r_plugin, ']');
@@ -250,8 +240,8 @@ if( ! class_exists("VSP_Addons_Core") ) {
 
                             if( count($data) > 1 ) {
                                 if( isset($data[0]) ) {
-                                    $key = strtolower($this->strip_space($data[0], ' '));
-                                    $value = $this->strip_space($data[1], ' ');
+                                    $key      = strtolower($this->strip_space($data[0], ' '));
+                                    $value    = $this->strip_space($data[1], ' ');
                                     $pd[$key] = $value;
                                 }
                             }
@@ -267,7 +257,7 @@ if( ! class_exists("VSP_Addons_Core") ) {
                     }
                 }
             }
-            $meta['rplugins'] = $_rplugins;
+            $meta['rplugins']              = $_rplugins;
             $meta['requirement_fullfiled'] = ( $_rpc == $_apc );
             return $meta;
         }

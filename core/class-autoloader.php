@@ -19,6 +19,7 @@ final class VSP_Autoloader {
         'wpsf'         => 'wpsf.php',
         'wpreview'     => 'review-me.php',
         'wpallimport'  => 'wpallimport.php',
+        'wppointer'    => 'wp-pointers/wp-pointers.php',
     );
 
     public static function load($class = '') {
