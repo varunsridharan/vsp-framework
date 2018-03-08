@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: VSP Framework
  * Framework Name: VSP Framework
