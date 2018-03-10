@@ -147,11 +147,20 @@ if( ! class_exists('VSP_Framework_Loader') ) {
     }
 }
 
-if( ! function_exists("vsp_mayby_framework_loader") ) {
+if( ! function_exists('vsp_maybe_load') ) {
+    function vsp_maybe_load($plugin_path = '', $meta_data = array(), $callback = array(), $framework_path = '/vsp-framework/') {
+        VSP_Framework_Loader::instance()
+                            ->register_plugin($plugin_path, $meta_data, $framework_path)
+                            ->register_callback($callback);
+    }
+}
+
+if( ! function_exists("vsp_maybe_framework_loader") ) {
     /**
      * Adds Passed Plugin path to the list array which later used to compare and
      * load the framework from a plugin which has the latest version of framework
      * @param $plugin_path
+     * @deprecated This plugin has been deprecated instead use vsp_maybe_load
      */
     function vsp_mayby_framework_loader($plugin_path = '', $meta_data = array(), $callback = array(), $framework_path = '/vsp-framework/') {
         VSP_Framework_Loader::instance()

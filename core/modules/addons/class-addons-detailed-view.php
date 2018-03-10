@@ -24,7 +24,7 @@ class VSP_Addons_Detailed_View extends VSP_Addons_FileMeta {
         }
 
         $addon_folder = trim(dirname($args->slug), '/');
-        $result       = vsp_get_cdn($this->plugin_slug() . '/addons/' . $addon_folder . '.json');
+        $result       = vsp_get_cdn($this->slug() . '/addons/' . $addon_folder . '.json');
 
         if( $result !== FALSE ) {
             if( is_object($result) || is_array($result) ) {

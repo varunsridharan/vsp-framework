@@ -238,7 +238,7 @@ if( ! class_exists("VSP_Status_Report") ) {
             $active_Plugins = vsp_get_all_plugins(FALSE);
 
             foreach( $active_Plugins as $Plugin ) {
-                $this->vsp_settings[$Plugin->plugin_name()] = vsp_option($Plugin->plugin_slug(), 'all');
+                $this->vsp_settings[$Plugin->plugin_name()] = vsp_option($Plugin->slug(), 'all');
             }
         }
 

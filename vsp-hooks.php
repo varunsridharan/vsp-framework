@@ -3,7 +3,7 @@ if( ! defined("ABSPATH") ) {
     exit;
 }
 
-add_action("vsp_framework_init", 'vsp_init_admin_notices', 1);
+add_action("vsp_framework_loaded", 'vsp_init_admin_notices', 1);
 add_action("vsp_framework_loaded", 'vsp_cache_options', 99999);
 
 if( vsp_is_admin() ) {

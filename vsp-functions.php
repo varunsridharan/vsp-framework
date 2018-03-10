@@ -249,3 +249,11 @@ if( ! function_exists("vsp_wc_active") ) {
     }
 }
 
+
+if( ! function_exists('vsp_add_wc_required_notice') ) {
+    function vsp_add_wc_required_notice($plugin_name = '') {
+        $msg = __("%s Requires %s WooCommerce %s to be installed & activated.");
+        $msg = sprintf($msg, '<strong>' . $plugin_name . '</strong>', '<strong><i>', '</i></strong>');
+        vsp_notice_error($msg);
+    }
+}

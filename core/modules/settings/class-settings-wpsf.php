@@ -6,9 +6,6 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
     class VSP_Settings_WPSF extends VSP_Class_Handler {
         protected $default_options = array(
             'show_faqs'   => TRUE,
-            'plugin_slug' => '',
-            'hook_slug'   => '',
-            'db_slug'     => '',
             'status_page' => TRUE,
 
             'menu_parent'      => FALSE,
@@ -43,7 +40,6 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
                 $this->fields      = array();
                 $this->sections    = array();
                 $this->status_page = NULL;
-                $this->hook_slug   = vsp_fix_slug($this->option('hook_slug'));
 
                 add_action("vsp_sys_status_before_render", array( $this, 'add_settings_data' ));
                 add_action("init", array( &$this, 'init_settings' ), 10);
@@ -56,7 +52,7 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
             if( ! isset($class->vsp_settings) ) {
                 $class->vsp_settings = array();
             }
-            $class->vsp_settings[$this->plugin_slug()] = $this->framework->settings->get_db_options();
+            $class->vsp_settings[$this->slug()] = $this->framework->settings->get_db_options();
         }
 
         private function make_settings_arr() {
@@ -85,7 +81,6 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
         }
 
         public function get_settings_config() {
-
             $defaults          = array(
                 'menu_parent',
                 'menu_title',

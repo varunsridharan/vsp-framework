@@ -12,9 +12,6 @@ if( ! class_exists("VSP_Addons") ) {
         protected $user_options = array();
 
         protected $default_options = array(
-            'hook_slug'               => '',
-            'db_slug'                 => '',
-            'plugin_slug'             => '',
             'base_path'               => '',
             'base_url'                => '',
             'addon_listing_tab_name'  => 'addons',
@@ -33,20 +30,16 @@ if( ! class_exists("VSP_Addons") ) {
             $this->user_options  = $options;
             parent::__construct();
 
-            $this->plugin_slug = $this->option('plugin_slug');
-            $this->hook_slug   = $this->option('hook_slug');
-            $this->db_slug     = $this->option('plugin_db_slug');
-
             if( vsp_is_admin() ) {
-                add_action($this->hook_slug . '_settings_pages', array( $this, 'set_settings_page' ), 99, 100);
-                add_action('vsp_render_' . $this->hook_slug . '_addons_list', array(
+                add_action($this->slug('hook') . 'settings_pages', array( $this, 'set_settings_page' ), 99, 100);
+                add_action('vsp_render_' . $this->slug('hook') . 'addons_list', array(
                     $this,
                     'render_addons_page',
                 ), 10, 2);
             }
 
             if( vsp_is_ajax() ) {
-                add_action($this->option("hook_slug") . "_handle_addon_request", array( $this, 'handle_ajax_request' ));
+                add_action($this->slug('hook') . "handle_addon_request", array( $this, 'handle_ajax_request' ));
             }
 
             $this->load_active_addons();
@@ -167,7 +160,7 @@ if( ! class_exists("VSP_Addons") ) {
          */
         public function get_active_addons() {
             if( empty($this->active_addons) ) {
-                $this->active_addons = get_option($this->option("db_slug") . '_active_addons', array());
+                $this->active_addons = get_option($this->slug("db") . 'active_addons', array());
             }
 
             $this->active_addons = is_array($this->active_addons) ? $this->active_addons : array();
@@ -179,7 +172,7 @@ if( ! class_exists("VSP_Addons") ) {
          * @return array
          */
         public function update_active_addons($addons) {
-            update_option($this->option("db_slug") . '_active_addons', $addons);
+            update_option($this->slug("db") . 'active_addons', $addons);
             $this->active_addons = $addons;
             return $this->active_addons;
         }

@@ -8,18 +8,24 @@ if( ! class_exists("VSP_Class_Handler") ) {
      * Class VSP_Class_Handler
      */
     abstract class VSP_Class_Handler {
-
-        protected $options = array();
-
-        protected $default_options = array();
-
-        protected $user_options = array();
-
-        protected $base_defaults = array(
-            'plugin_slug' => '',
-            'db_slug'     => '',
-            'plugin_name' => '',
-            'hook_slug'   => '',
+        private static $_instances      = array();
+        public         $textdomain      = NULL;
+        public         $version         = NULL;
+        public         $file            = NULL;
+        public         $slug            = NULL;
+        public         $db_slug         = NULL;
+        public         $name            = NULL;
+        public         $hook_slug       = NULL;
+        protected      $options         = array();
+        protected      $default_options = array();
+        protected      $user_options    = array();
+        protected      $base_defaults   = array(
+            'version'   => '',
+            'file'      => '',
+            'slug'      => '',
+            'db_slug'   => '',
+            'hook_slug' => '',
+            'name'      => '',
         );
 
         public function __clone() {
@@ -30,16 +36,51 @@ if( ! class_exists("VSP_Class_Handler") ) {
             _doing_it_wrong(__FUNCTION__, __('Unserializing instances of the class is forbidden.', 'vsp-framework'), $this->option("version"));
         }
 
+        public static function instance() {
+            if( ! isset(self::$_instances[static::class]) ) {
+                self::$_instances[static::class] = new static();
+            }
+            return self::$_instances[static::class];
+        }
+
+        public function __set_core($key = '', $default = '') {
+            if( empty($this->$key) || is_null($this->$key) ) {
+                $this->$key = $default;
+            }
+        }
+
+        public function set_args($options = array(), $defaults = array()) {
+            $defaults = empty($defaults) ? $this->default_options : $defaults;
+            $defaults = $this->parse_args($defaults, $this->base_defaults);
+            $options  = empty($options) ? $this->user_options : $options;
+            $options  = $this->parse_args($options, $defaults);
+            $this->__set_core('version', $options['version']);
+            $this->__set_core('file', $options['file']);
+            $this->__set_core('slug', $options['slug']);
+            $this->__set_core('db_slug', $options['db_slug']);
+            $this->__set_core('hook_slug', $options['hook_slug']);
+            $this->__set_core('name', $options['name']);
+            $this->options = $options;
+        }
+
+        public function _instance($class, $force_instance = FALSE, $extra_option = array()) {
+            if( ! isset(self::$_instances[$class]) ) {
+                self::$_instances[$class] = ( $force_instance === TRUE ) ? $class::instance() : new $class($this->get_common_args($extra_option));
+                if( $force_instance === TRUE ) {
+                    self::$_instances[$class]->set_args($this->get_common_args($extra_option));
+                }
+
+            }
+            return self::$_instances[$class];
+        }
+
         /**
          * VSP_Class_Handler constructor.
          * @param array $options
          * @param array $defaults
          */
         public function __construct($options = array(), $defaults = array()) {
-            $defaults      = empty($defaults) ? $this->default_options : $defaults;
-            $defaults      = $this->parse_args($defaults, $this->base_defaults);
-            $options       = empty($options) ? $this->user_options : $options;
-            $this->options = $this->parse_args($options, $defaults);
+            $this->set_args($options, $defaults);
         }
 
         /**
@@ -54,39 +95,40 @@ if( ! class_exists("VSP_Class_Handler") ) {
             return wp_parse_args($new, $defaults);
         }
 
-        /**
-         * @return bool|mixed
-         */
-        public function hook_slug() {
-            return ( empty($this->option('hook_slug')) ) ? $this->db_slug() : $this->option('hook_slug');
-        }
-
-        /**
-         * @return bool|mixed
-         */
-        public function db_slug() {
-            return ( empty($this->option('db_slug')) ) ? $this->plugin_slug() : $this->option('db_slug');
+        public function file() {
+            return $this->file;
         }
 
         /**
          * @return bool|mixed
          */
         public function version() {
-            return $this->option('version');
+            return $this->version;
         }
 
         /**
          * @return bool|mixed
          */
-        public function plugin_slug() {
-            return $this->option('plugin_slug');
+        public function slug($type = 'slug') {
+            switch( $type ) {
+                case 'slug':
+                    return $this->slug;
+                break;
+                case 'db':
+                    return $this->db_slug;
+                break;
+                case 'hook':
+                    return $this->hook_slug;
+                break;
+            }
+            return FALSE;
         }
 
         /**
          * @return bool|mixed
          */
         public function plugin_name() {
-            return $this->option("plugin_name");
+            return $this->name;
         }
 
         /**
@@ -118,39 +160,12 @@ if( ! class_exists("VSP_Class_Handler") ) {
          * @return array
          */
         public function get_common_args($extra_options = array()) {
-            $defaults = array(
-                'plugin_slug' => $this->plugin_slug(),
-                'db_slug'     => $this->db_slug(),
-                'hook_slug'   => $this->hook_slug(),
-                'plugin_name' => $this->option("plugin_name"),
-            );
-
-            return $this->parse_args($extra_options, $defaults);
-        }
-
-        /**
-         * @param        $method
-         * @param array  $args
-         * @param string $class
-         */
-        protected function hook_function($method, $args = array(), $class = '') {
-            if( empty($class) ) {
-                $class = $this;
-            }
-
-            if( method_exists($class, $method) ) {
-                call_user_func_array(array( $class, $method ), $args);
-            }
-        }
-
-        /**
-         * @param string $hook
-         */
-        protected function hook_function_action($hook = '') {
-            $data = func_get_args();
-            unset($data[0]);
-            $this->hook_function($hook, $data);
-            $this->hook_function('action', func_get_args());
+            return $this->parse_args($extra_options, array(
+                'plugin_slug' => $this->slug(),
+                'db_slug'     => $this->slug('db'),
+                'hook_slug'   => $this->slug('hook'),
+                'plugin_name' => $this->plugin_name(),
+            ));
         }
 
         /**
@@ -159,7 +174,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
          * @return mixed
          */
         private function action_filter($type = '', $args = array()) {
-            $args[0] = $this->hook_slug() . '_' . $args[0];
+            $args[0] = $this->slug('hook') . $args[0];
             return call_user_func_array($type, $args);
         }
 
@@ -175,56 +190,6 @@ if( ! class_exists("VSP_Class_Handler") ) {
          */
         protected function action() {
             return $this->action_filter('do_action', func_get_args());
-        }
-
-        /**
-         * @param $status
-         * @return bool|string
-         */
-        protected function cache_output($status) {
-            if( $status == 'start' ) {
-                ob_start();
-                return TRUE;
-            }
-
-            $data = ob_get_clean();
-            ob_flush();
-            return $data;
-        }
-
-        /**
-         * @param        $data
-         * @param string $variable
-         */
-        protected function output($data, $variable = 'output_data') {
-            if( ! isset($this->{$variable}) ) {
-                $this->{$variable} = '';
-            }
-
-            $this->{$variable} .= $data;
-        }
-
-        /**
-         * @param string $variable
-         * @param bool   $_return
-         * @param bool   $clear
-         * @return bool|null
-         */
-        protected function _echo_output($variable = 'output_data', $_return = FALSE, $clear = TRUE) {
-            $return = NULL;
-            if( isset($this->{$variable}) ) {
-                if( $_return === FALSE ) {
-                    echo $this->{$variable};
-                } else {
-                    $return = $this->{$variable};
-                }
-
-                if( $clear ) {
-                    $this->{$variable} = '';
-                }
-            }
-
-            return $return;
         }
     }
 }

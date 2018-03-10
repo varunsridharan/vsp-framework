@@ -50,7 +50,6 @@ if( ! function_exists('vsp_notice') ) {
             'users'  => array(),
         );
         $args      = wp_parse_args($args, $defaults);
-        $message   = str_replace('$msgID$', $args['id'], $message);
         $_instance = vsp_notices($type);
         $_instance->setContent($message)
                   ->setTimes($args['times'])

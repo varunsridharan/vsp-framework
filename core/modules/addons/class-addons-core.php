@@ -32,7 +32,7 @@ if( ! class_exists("VSP_Addons_Core") ) {
          */
         public function search_get_addons($single_addon = FALSE) {
             $this->addon_metadatas = array();
-            $dirs                  = apply_filters($this->hook_slug . '_addons_dirs', array());
+            $dirs                  = apply_filters($this->slug('hook') . 'addons_dirs', array());
             $internal_addons       = $this->search_plugins($this->option("base_path"), $single_addon);
             $internal_addons       = $this->get_metadata($internal_addons);
             $external_addons       = array();
@@ -98,7 +98,7 @@ if( ! class_exists("VSP_Addons_Core") ) {
          * @param $addon_path
          */
         public function search_addon($addon_path) {
-            $dirs = apply_filters($this->hook_slug . '_addons_dirs', array());
+            $dirs = apply_filters($this->slug('slug') . 'addons_dirs', array());
 
 
         }

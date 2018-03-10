@@ -64,9 +64,9 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
          * @return array|bool|mixed|object|\WP_Error
          */
         private function get_faq_datas() {
-            $cache = vsp_get_cache($this->plugin_slug() . '-faqs');
+            $cache = vsp_get_cache($this->slug() . '_faqs');
             if( FALSE === $cache ) {
-                $url = $this->plugin_slug() . '/faq.json';
+                $url = $this->slug() . '/faq.json';
                 $cache = vsp_get_cdn($url, TRUE);
                 if( empty($cache) ) {
                     return FALSE;
@@ -76,7 +76,7 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
                     return FALSE;
                 }
                 $cache = $this->handle_faqs($cache);
-                vsp_set_cache($this->plugin_slug() . '-faqs', $cache, '10_days');
+                vsp_set_cache($this->slug() . '_faqs', $cache, '10_days');
             }
             return $cache;
         }
@@ -92,7 +92,7 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             vsp_load_script("vsp-simscroll");
             echo '<div class="postbox" id="vsp-settings-faq">';
             echo '<button type="button" class="handlediv" aria-expanded="true"><span class="toggle-indicator" aria-hidden="true"></span></button><h2 class="hndle"><span>' . __("F A Q's", 'vsp-framework') . '</span></h2>';
-            $current_faqs = array( 'prefix_sec_id' => $this->db_slug(), 'faqs' => $faqs );
+            $current_faqs = array( 'prefix_sec_id' => $this->slug('db'), 'faqs' => $faqs );
             echo vsp_js_vars('vspFramework_Settings_Faqs', $current_faqs, TRUE);
             echo '<div class="inside">';
             echo '</div>';

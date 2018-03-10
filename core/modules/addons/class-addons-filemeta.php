@@ -14,11 +14,10 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
          * @param $addon_file
          */
         private function __addon_duplicate_msg($addon_file) {
-            $data  = json_encode($addon_file);
-            $msg   = sprintf(__("Duplicate Addon Found. Unable to load Please contact the developer with below information %s", 'vsp-framework'), date('h:i:s'));
-            $msg   .= '<br/> <pre><code>' . $data . '</code></pre>';
-            $msgID = md5($addon_file['full_path']) . '-duplicate';
-            vsp_notice_error($msg, 1, $msgID, array( $this->settings_pagehook ));
+            $data = json_encode($addon_file);
+            $msg  = sprintf(__("Duplicate Addon Found. Unable to load Please contact the developer with below information %s", 'vsp-framework'), date('h:i:s'));
+            $msg  .= '<br/> <pre><code>' . $data . '</code></pre>';
+            vsp_notice_error($msg, 1, '', array( $this->settings_pagehook ));
         }
 
         /**
@@ -272,14 +271,11 @@ if( ! class_exists("VPS_Addons_FileMeta") ) {
          */
         protected function extract_required_plugins($content, $meta) {
             //preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content[5], $reg_shortcodes );
-
             $reg_shortcodes = vsp_addons_extract_tags($content[5], TRUE);
-
-            $return_array = array();
-            $total_active = 0;
+            $return_array   = array();
+            $total_active   = 0;
             if( ! empty($reg_shortcodes[1]) ) {
                 foreach( $reg_shortcodes[1] as $sc ) {
-
                     $data = vsp_addons_extract_tags_pattern($sc, $content[5], TRUE);
                     if( ! empty($data[5]) ) {
                         $info = $this->render_file_headers($data[5], array(

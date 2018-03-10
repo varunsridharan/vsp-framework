@@ -7,57 +7,49 @@
  */
 
 trait VSP_Framework_Trait {
+    /* @see VSP_Framework::__init_plugin() */
+    public function plugin_init_before() {
+    }
 
-    public function ajax_required_files() {
+    /* @see VSP_Framework::__init_class() */
+    public function init_class() {
+    }
+
+    /* @see VSP_Framework::__addon_init */
+    public function addon_init_before() {
 
     }
 
-    public function admin_required_files() {
+    /* @see VSP_Framework::__addon_init */
+    public function addon_init() {
 
     }
 
-    public function cron_required_files() {
-
-    }
-
-    public function frontend_required_files() {
-
-    }
-
-    public function init_before() {
-    }
-
-    public function register_hooks_before() {
-
-    }
-
-    public function addons_init_before() {
-
-    }
-
-    public function addons_init() {
-
-    }
-
+    /* @see VSP_Framework::__settings_init */
     public function settings_init() {
 
     }
 
-    public function loaded() {
+    /* @see \VSP_Framework::__wp_init */
+    public function wp_init() {
 
     }
 
-    public function admin_loaded() {
+    /* @see \VSP_Framework::__admin_init */
+    public function admin_init() {
+
     }
 
+    /* @see \VSP_Framework::__admin_assets() */
     public function admin_assets() {
     }
 
-    public function frontend_assets() {
-
+    /* @see \VSP_Framework_Admin::__register_admin_hooks */
+    public function wp_admin_init() {
     }
 
-    public function load_textdomain($file = '', $domain = '') {
-        return $file;
+    /* @see \VSP_Framework::__register_hooks()*/
+    public function load_textdomain() {
+
     }
 }

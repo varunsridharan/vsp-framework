@@ -20,7 +20,7 @@ class VSP_WP_Admin_Notices {
     /**
      * $_POST or $_GET request var name for killing sticky notices
      */
-    const KILL_STICKY_NTC_VAR = 'rm_ntc';
+    const KILL_STICKY_NTC_VAR = 'vsp_kill_notice';
     /**
      * Ajax action that is responsible for dismissing sticky notices
      */
@@ -47,7 +47,7 @@ class VSP_WP_Admin_Notices {
      * @var string
      * @since 1.0.0
      */
-    protected $noticesArrayName = 'WPAdminNotices';
+    protected $noticesArrayName = 'VSPAdminNotices';
 
     /**
      * Notices array as loaded from DB
@@ -62,6 +62,9 @@ class VSP_WP_Admin_Notices {
      */
     private function __construct() {
         $this->loadNotices();
+        if( vsp_is_admin() || vsp_is_ajax() ) {
+            add_action('admin_notices', array( $this, 'displayNotices' ));
+        }
     }
 
     /**

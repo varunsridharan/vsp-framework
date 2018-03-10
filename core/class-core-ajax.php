@@ -27,7 +27,7 @@ if( ! class_exists("VSP_Core_Ajax") ) {
 
         public function handle_request() {
             if( isset($_REQUEST['hook_slug']) ) {
-                do_action($_REQUEST['hook_slug'] . '_handle_addon_request');
+                do_action($_REQUEST['hook_slug'] . 'handle_addon_request');
             }
 
             wp_send_json_error();

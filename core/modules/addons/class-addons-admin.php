@@ -24,7 +24,7 @@ if( ! class_exists("VSP_Addons_Admin") ) {
                 'name'          => $this->option("addon_listing_tab_name"),
                 'title'         => $this->option("addon_listing_tab_title"),
                 'icon'          => $this->option("addon_listing_tab_icon"),
-                'callback_hook' => 'vsp_render_' . $this->hook_slug . '_addons_list',
+                'callback_hook' => 'vsp_render_' . $this->slug('hook') . 'addons_list',
             );
             return $pages;
         }
@@ -46,8 +46,8 @@ if( ! class_exists("VSP_Addons_Admin") ) {
             add_thickbox();
 
             wp_localize_script('vsp-addons', 'vsp_addons_settings', array(
-                'hook_slug'     => $this->option("hook_slug"),
-                'save_slug'     => $this->option("db_slug"),
+                'hook_slug'     => $this->slug('hook'),
+                'save_slug'     => $this->slug("db"),
                 'plugin_data'   => $this->addons_list,
                 'default_cats'  => $this->default_cats,
                 'texts'         => array(
