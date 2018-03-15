@@ -5,31 +5,32 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
      */
     class VSP_Settings_WPSF extends VSP_Class_Handler {
         protected $default_options = array(
-            'show_faqs'   => TRUE,
-            'status_page' => TRUE,
-
-            'menu_parent'      => FALSE,
-            'menu_title'       => FALSE,
-            'menu_type'        => FALSE,
-            'menu_slug'        => FALSE,
-            'menu_icon'        => FALSE,
-            'menu_position'    => FALSE,
-            'menu_capability'  => FALSE,
-            'ajax_save'        => FALSE,
-            'show_reset_all'   => FALSE,
-            'framework_title'  => FALSE,
-            'option_name'      => FALSE,
-            'style'            => 'modern',
-            'is_single_page'   => FALSE,
-            'is_sticky_header' => FALSE,
-            'extra_css'        => array( 'vsp-plugins', 'vsp-framework' ),
-            'extra_js'         => array( 'vsp-plugins', 'vsp-framework' ),
+            'show_faqs'         => TRUE,
+            'status_page'       => TRUE,
+            'menu_parent'       => FALSE,
+            'menu_title'        => FALSE,
+            'menu_type'         => FALSE,
+            'menu_slug'         => FALSE,
+            'menu_icon'         => FALSE,
+            'menu_position'     => FALSE,
+            'menu_capability'   => FALSE,
+            'ajax_save'         => FALSE,
+            'show_reset_all'    => FALSE,
+            'framework_title'   => FALSE,
+            'option_name'       => FALSE,
+            'style'             => 'modern',
+            'override_location' => VSP_PATH . 'views/settings/',
+            'is_single_page'    => FALSE,
+            'is_sticky_header'  => FALSE,
+            'extra_css'         => array( 'vsp-plugins', 'vsp-framework' ),
+            'extra_js'          => array( 'vsp-plugins', 'vsp-framework' ),
         );
 
         private $final_options = array();
 
         /**
          * VSP_Settings_WPSF constructor.
+         *
          * @param array $options
          */
         public function __construct($options = array()) {
@@ -42,7 +43,7 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
                 $this->status_page = NULL;
 
                 add_action("vsp_sys_status_before_render", array( $this, 'add_settings_data' ));
-                add_action("init", array( &$this, 'init_settings' ), 10);
+                add_action("wpsf_framework_loaded", array( &$this, 'init_settings' ), 40);
                 add_action("vsp_wp_settings_simple_footer", array( &$this, 'render_settings_metaboxes' ));
                 add_action('vsp_show_sys_page', array( &$this, 'render_sys_page' ));
             }
@@ -52,7 +53,7 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
             if( ! isset($class->vsp_settings) ) {
                 $class->vsp_settings = array();
             }
-            $class->vsp_settings[$this->slug()] = $this->framework->settings->get_db_options();
+            $class->vsp_settings[$this->slug()] = $this->framework->get_db_options();
         }
 
         private function make_settings_arr() {
@@ -105,8 +106,9 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
                 $this->page_config[$op] = $this->option($op, '');
             }
 
-            if( ! isset($this->page_config['override_location']) )
-                $this->page_config['override_location'] = VSP_PATH . '/views/';
+            if( ! isset($this->page_config['override_location']) || empty($this->page_config['override_location']) ) {
+                $this->page_config['override_location'] = VSP_PATH . 'views/';
+            }
         }
 
         public function final_array() {
@@ -157,19 +159,15 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
 
         public function init_settings() {
             $this->make_settings_arr();
-            $this->framework = new WPSFramework(array(
-                'settings' => array(
-                    'config'  => $this->page_config,
-                    'options' => $this->final_options,
-                ),
-            ));
+            $this->framework = new WPSFramework_Settings($this->page_config, $this->final_options);
 
         }
 
         public function render_settings_metaboxes() {
-            $adds = new VSP_Settings_Metaboxes($this->get_common_args(array(
+            $args = $this->get_common_args(array(
                 'show_faqs' => $this->option('show_faqs'),
-            )));
+            ));
+            $adds = new VSP_Settings_Metabox($args);
             $adds->render_metaboxes();
         }
 
@@ -193,7 +191,9 @@ if( ! class_exists("VSP_Settings_WPSF") ) {
         }
 
         public function render_sys_page() {
-            echo '<style>div#post-body.metabox-holder.columns-2{width:100%;} #postbox-container-1{display:none;}</style>';
+            echo '<style>div#post-body.metabox-holder.columns-2{width:100%;} #postbox-container-1{display:none;}div#wpsf-tab-sys-page .postbox {
+        background : transparent;  border     : none;
+    }</style>';
             echo VSP_Status_Report::instance()
                                   ->get_output();
         }

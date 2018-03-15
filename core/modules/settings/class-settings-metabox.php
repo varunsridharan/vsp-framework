@@ -4,18 +4,18 @@ if( ! defined("ABSPATH") ) {
     exit;
 }
 
-if( ! class_exists("VSP_Settings_Metaboxes") ) {
+if( ! class_exists("VSP_Settings_Metabox") ) {
     /**
-     * Class VSP_Settings_Metaboxes
+     * Class VSP_Settings_Metabox
      */
-    class VSP_Settings_Metaboxes extends VSP_Class_Handler {
+    class VSP_Settings_Metabox extends VSP_Class_Handler {
 
         protected $default_options = array(
             'show_faqs' => TRUE,
         );
 
         /**
-         * VSP_Settings_Metaboxes constructor.
+         * VSP_Settings_Metabox constructor.
          * @param array $options
          */
         public function __construct($options = array()) {
@@ -28,7 +28,7 @@ if( ! class_exists("VSP_Settings_Metaboxes") ) {
             <div id="postbox-container-1" class="postbox-container">
                 <div class="meta-box-sortables">
                     <?php
-                        $this->render_faqs();
+                    $this->render_faqs();
                     ?>
                 </div>
             </div>
