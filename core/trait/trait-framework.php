@@ -48,8 +48,12 @@ trait VSP_Framework_Trait {
     public function wp_admin_init() {
     }
 
-    /* @see \VSP_Framework::__register_hooks()*/
+    /* @see \VSP_Framework::__register_hooks() */
     public function load_textdomain() {
 
+    }
+
+    /* @see \VSP_Framework::register_hooks() */
+    public function frontend_assets() {
     }
 }

@@ -6,6 +6,7 @@ if( ! defined("ABSPATH") ) {
 if( ! function_exists('vsp_ajax_action') ) {
     /**
      * Check if current request has action parameter and returns it
+     *
      * @return bool
      */
     function vsp_ajax_action() {
@@ -21,7 +22,9 @@ if( ! function_exists('vsp_is_ajax') ) {
     /**
      * Checks if current request is ajax
      * Also takes required action key to check if the ajax is exactly the action is passed
+     *
      * @param string $action
+     *
      * @return bool
      */
     function vsp_is_ajax($action = '') {
@@ -36,6 +39,7 @@ if( ! function_exists('vsp_is_ajax') ) {
 if( ! function_exists('vsp_is_cron') ) {
     /**
      * Checks if current request is cron
+     *
      * @return bool
      */
     function vsp_is_cron() {
@@ -46,6 +50,7 @@ if( ! function_exists('vsp_is_cron') ) {
 if( ! function_exists('vsp_is_admin') ) {
     /**
      * Checks if current request is admin
+     *
      * @return bool
      */
     function vsp_is_admin() {
@@ -56,6 +61,7 @@ if( ! function_exists('vsp_is_admin') ) {
 if( ! function_exists('vsp_is_frontend') ) {
     /**
      * Checks if current request is frontend
+     *
      * @return bool
      */
     function vsp_is_frontend() {
@@ -66,6 +72,7 @@ if( ! function_exists('vsp_is_frontend') ) {
 if( ! function_exists('vsp_is_request') ) {
     /**
      * @param $type
+     *
      * @return bool
      */
     function vsp_is_request($type) {
@@ -86,6 +93,7 @@ if( ! function_exists('vsp_is_request') ) {
 if( ! function_exists('vsp_current_screen') ) {
     /**
      * @param bool $only_id
+     *
      * @return bool|null|string|\WP_Screen
      */
     function vsp_current_screen($only_id = TRUE) {
@@ -102,6 +110,7 @@ if( ! function_exists("vsp_is_screen") ) {
     /**
      * @param string $check_screen
      * @param string $current_screen
+     *
      * @return bool
      */
     function vsp_is_screen($check_screen = '', $current_screen = '') {
@@ -132,6 +141,7 @@ if( ! function_exists("vsp_is_screen") ) {
 if( ! function_exists("vsp_fix_slug") ) {
     /**
      * @param $name
+     *
      * @return string
      */
     function vsp_fix_slug($name) {
@@ -147,6 +157,7 @@ if( ! function_exists("vsp_addons_extract_tags") ) {
     /**
      * @param      $content
      * @param bool $is_addons_reqplugin
+     *
      * @return mixed
      */
     function vsp_addons_extract_tags($content, $is_addons_reqplugin = FALSE) {
@@ -164,6 +175,7 @@ if( ! function_exists('vsp_addons_extract_tags_pattern') ) {
      * @param      $tags
      * @param      $content
      * @param bool $is_addon
+     *
      * @return mixed
      */
     function vsp_addons_extract_tags_pattern($tags, $content, $is_addon = FALSE) {
@@ -206,6 +218,7 @@ if( ! function_exists('vsp_current_page_url') ) {
 if( ! function_exists("vsp_get_time_in_seconds") ) {
     /**
      * @param $time
+     *
      * @return float|int
      */
     function vsp_get_time_in_seconds($time) {
@@ -275,6 +288,7 @@ if( ! function_exists("vsp_get_cdn") ) {
     /**
      * @param      $part_url
      * @param bool $force_decode
+     *
      * @return array|mixed|object|\WP_Error
      */
     function vsp_get_cdn($part_url, $force_decode = FALSE) {
@@ -312,6 +326,7 @@ if( ! function_exists("vsp_js_vars") ) {
      * @param      $object_name
      * @param      $l10n
      * @param bool $with_script_tag
+     *
      * @return string
      */
     function vsp_js_vars($object_name, $l10n, $with_script_tag = TRUE) {
@@ -340,6 +355,7 @@ if( ! function_exists('vsp_is_user_role') ) {
     /**
      * @param null $role
      * @param null $current_role
+     *
      * @return bool
      */
     function vsp_is_user_role($role = NULL, $current_role = NULL) {
@@ -358,6 +374,7 @@ if( ! function_exists('vsp_is_user_role') ) {
 if( ! function_exists('vsp_get_current_user') ) {
     /**
      * @param bool $user_role_only
+     *
      * @return mixed|string|\WP_User
      */
     function vsp_get_current_user($user_role_only = TRUE) {
@@ -371,6 +388,12 @@ if( ! function_exists('vsp_get_current_user') ) {
         }
 
         return $user_role;
+    }
+}
+
+if( ! function_exists('vsp_get_current_user_id') ) {
+    function vsp_get_current_user_id() {
+        return get_current_user_id();
     }
 }
 
@@ -402,6 +425,7 @@ if( ! function_exists('vsp_get_user_roles') ) {
 if( ! function_exists('vsp_user_roles_as_options') ) {
     /**
      * @param bool $only_slug
+     *
      * @return array
      */
     function vsp_user_roles_as_options($only_slug = FALSE) {
@@ -416,7 +440,9 @@ if( ! function_exists('vsp_user_roles_as_options') ) {
 if( ! function_exists('vsp_filter_user_roles') ) {
     /**
      * @example This function will filter vsp_user_roles_as_options function and provide only the given user role slug values
+     *
      * @param array $required
+     *
      * @return array
      */
     function vsp_filter_user_roles($required = array()) {
