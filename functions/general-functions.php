@@ -18,6 +18,13 @@ if( ! function_exists('vsp_ajax_action') ) {
     }
 }
 
+if( ! function_exists('vsp_is_ajax_heartbeat') ) {
+    function vsp_is_ajax_heartbeat() {
+        return ( vsp_is_ajax() === TRUE && vsp_is_ajax('heartbeat') === TRUE ) ? TRUE : FALSE;
+    }
+
+}
+
 if( ! function_exists('vsp_is_ajax') ) {
     /**
      * Checks if current request is ajax
@@ -306,6 +313,11 @@ if( ! function_exists("vsp_get_cdn") ) {
 }
 
 if( ! function_exists('vsp_js_vars_encode') ) {
+    /**
+     * @param $l10n
+     *
+     * @return array|string
+     */
     function vsp_js_vars_encode($l10n) {
         if( is_array($l10n) ) {
             foreach( (array) $l10n as $key => $value ) {
@@ -392,6 +404,9 @@ if( ! function_exists('vsp_get_current_user') ) {
 }
 
 if( ! function_exists('vsp_get_current_user_id') ) {
+    /**
+     * @return int
+     */
     function vsp_get_current_user_id() {
         return get_current_user_id();
     }
@@ -511,6 +526,11 @@ if( ! function_exists('vsp_array_insert_after') ) {
 }
 
 if( ! function_exists('vsp_array_to_html_attributes') ) {
+    /**
+     * @param array $array
+     *
+     * @return string
+     */
     function vsp_array_to_html_attributes($array = array()) {
         $attrs = '';
         if( ! empty($array) ) {
@@ -525,6 +545,11 @@ if( ! function_exists('vsp_array_to_html_attributes') ) {
 }
 
 if( ! function_exists('vsp_validate_css_unit') ) {
+    /**
+     * @param $value
+     *
+     * @return string
+     */
     function vsp_validate_css_unit($value) {
         $pattern = '/^(\d*(?:\.\d+)?)\s*(px|\%|in|cm|mm|em|rem|ex|pt|pc|vw|vh|vmin|vmax)?$/';
         // allowed metrics: http://www.w3schools.com/cssref/css_units.asp
@@ -536,12 +561,21 @@ if( ! function_exists('vsp_validate_css_unit') ) {
 }
 
 if( ! function_exists('vsp_print_r') ) {
+    /**
+     * @param $debug
+     */
     function vsp_print_r($debug) {
         echo '<pre>' . print_r($debug, TRUE) . '</pre>';
     }
 }
 
 if( ! function_exists('vsp_send_json_callback') ) {
+    /**
+     * @param bool  $status
+     * @param array $functions
+     * @param array $other_info
+     * @param null  $status_code
+     */
     function vsp_send_json_callback($status = TRUE, $functions = array(), $other_info = array(), $status_code = NULL) {
         $function = 'wp_send_json_error';
         if( $status ) {
@@ -559,5 +593,16 @@ if( ! function_exists('vsp_send_json_callback') ) {
 
         $data = array_merge($data, $other_info);
         $function($data, $status_code);
+    }
+}
+
+/**
+ * Wrapper for set_time_limit to see if it is enabled.
+ *
+ * @param int $limit Time limit.
+ */
+function vsp_set_time_limit($limit = 0) {
+    if( function_exists('set_time_limit') && FALSE === strpos(ini_get('disable_functions'), 'set_time_limit') && ! ini_get('safe_mode') ) {
+        @set_time_limit($limit);
     }
 }

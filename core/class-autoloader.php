@@ -11,6 +11,7 @@ final class VSP_Autoloader {
     private static $_integrations = array(
         'wpsf'            => 'wpsf.php',
         'visual-composer' => 'visual-composer.php',
+        'wp-importer'     => 'wp-importer.php',
     );
 
     private static $_libs = array(
@@ -21,6 +22,9 @@ final class VSP_Autoloader {
         'wpallimport'  => 'wpallimport.php',
         'wppointer'    => 'wp-pointers/wp-pointers.php',
     );
+
+    private static $_loaded_libs         = array();
+    private static $_loaded_integrations = array();
 
     public static function load($class = '') {
         if( strpos($class, 'VSP_') !== FALSE ) {
@@ -75,6 +79,8 @@ final class VSP_Autoloader {
             require_once( VSP_CORE . 'modules/admin-notices/' . $file_name );
         } else if( file_exists(VSP_CORE . 'modules/settings/' . $file_name) ) {
             require_once( VSP_CORE . 'modules/settings/' . $file_name );
+        } else if( file_exists(VSP_CORE . 'modules/wp-importer/' . $file_name) ) {
+            require_once( VSP_CORE . 'modules/wp-importer/' . $file_name );
         } else if( file_exists(VSP_CORE . 'modules/' . $file_name) ) {
             require_once( VSP_CORE . 'modules/' . $file_name );
         } else if( has_action('vsp_load_' . $classname) ) {
@@ -84,12 +90,14 @@ final class VSP_Autoloader {
 
     public static function integration($integration = '') {
         $integration = strtolower($integration);
-        if( isset(self::$_integrations[$integration]) ) {
+        if( isset(self::$_integrations[$integration]) && ! isset(self::$_loaded_integrations[$integration]) ) {
             if( file_exists(self::integration_path() . self::$_integrations[$integration]) ) {
                 require_once( self::integration_path() . self::$_integrations[$integration] );
+                self::$_loaded_integrations[$integration] = $integration;
                 return TRUE;
             } else if( has_action('vsp_integration_' . $integration) ) {
                 do_action('vsp_integration_' . $integration);
+                self::$_loaded_integrations[$integration] = $integration;
                 return TRUE;
             }
         }
@@ -102,12 +110,14 @@ final class VSP_Autoloader {
 
     public static function library($lib) {
         $lib = strtolower($lib);
-        if( isset(self::$_libs[$lib]) ) {
+        if( isset(self::$_libs[$lib]) && ! isset(self::$_loaded_libs[$lib]) ) {
             if( file_exists(self::lib_path() . self::$_libs[$lib]) ) {
                 require_once( self::lib_path() . self::$_libs[$lib] );
+                self::$_loaded_libs[$lib] = $lib;
                 return TRUE;
             } else if( has_action('vsp_lib_' . $lib) ) {
                 do_action('vsp_lib_' . $lib);
+                self::$_loaded_libs[$lib] = $lib;
                 return TRUE;
             }
         }

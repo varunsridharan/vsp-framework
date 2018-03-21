@@ -16,12 +16,14 @@ if( ! class_exists('VSP_Framework') ) {
         protected $default_options = array(
             'version'       => 1.0,
             'settings_page' => TRUE,
+            'reviewme'      => FALSE,
             'addons'        => TRUE,
             'plugin_file'   => __FILE__,
         );
 
         /**
          * VSP_Framework constructor.
+         *
          * @param array $options
          */
         public function __construct($options = array()) {
@@ -33,6 +35,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Function Called When vsp_framework_init hook is fired
+         *
          * @hook vsp_framework_init
          * @uses \VSP_Framework::__admin_init()
          * @uses VSP_Framework::plugin_init_before
@@ -48,10 +51,12 @@ if( ! class_exists('VSP_Framework') ) {
         /**
          * This function will create a instance for all the framework classes.
          * also provides hook
+         *
          * @uses __init_plugin
          * @uses init_class
          */
         private function __init_class() {
+            $this->review_me();
             $this->__addon_init();
 
             if( vsp_is_admin() ) {
@@ -61,7 +66,20 @@ if( ! class_exists('VSP_Framework') ) {
         }
 
         /**
+         * Adds Review Reminder Option
+         */
+        protected function review_me() {
+            if( $this->option('reviewme') !== FALSE ) {
+                if( vsp_is_admin() ) {
+                    vsp_load_lib('wpreview');
+                    new VS_WP_Review_Me($this->option('reviewme'));
+                }
+            }
+        }
+
+        /**
          * Function used to register common plugin hooks
+         *
          * @uses \VSP_Framework_Admin::__register_admin_hooks()
          * @uses \VSP_Framework::register_hooks()
          */
@@ -78,6 +96,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Function Used to init Addons Module
+         *
          * @uses VSP_Framework::addons_init_before
          * @uses VSP_Framework::addons_init
          * @hook addons_init_before
@@ -95,6 +114,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Function used to init settings module
+         *
          * @uses VSP_Framework::settings_init_before()
          * @uses \VSP_Framework::settings_init()
          * @hook settings_init_before
@@ -112,6 +132,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Function used to load all framework required files
+         *
          * @uses \VSP_Framework::load_files
          * @hook loaded
          */
@@ -122,6 +143,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Function Calls When wp_inited
+         *
          * @uses \VSP_Framework::wp_init
          */
         public function __wp_init() {
@@ -130,6 +152,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Get the plugin url.
+         *
          * @see \plugins_url()
          * @return string
          */
@@ -139,6 +162,7 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Get the plugin path.
+         *
          * @see \plugin_dir_path()
          * @return string
          */
@@ -148,7 +172,9 @@ if( ! class_exists('VSP_Framework') ) {
 
         /**
          * Get Ajax URL.
+         *
          * @param $scheme
+         *
          * @see \admin_url()
          * @return string
          */

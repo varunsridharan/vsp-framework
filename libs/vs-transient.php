@@ -105,6 +105,14 @@ abstract class VS_Transient_WP_Api {
 }
 
 abstract class VS_Transient_Api extends VS_Transient_WP_Api {
+    protected static $_instances = array();
+
+    public static function instance() {
+        if( ! isset(self::$_instances[static::class]) ) {
+            self::$_instances[static::class] = new static();
+        }
+        return self::$_instances[static::class];
+    }
 
     public function force_set($key = '', $value = '', $expiry = '') {
         if( $this->is_option === TRUE ) {

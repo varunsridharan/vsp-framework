@@ -1,15 +1,14 @@
 <?php
 /**
  * Name: WP Review Me
- * Version:1.0
- */
-/**
+ * Version:1.1
  * Created by PhpStorm.
  * User: varun
  * Date: 02-03-2018
  * Time: 03:15 PM
+ *
  * @copyright GPLV3
- * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
  */
 
 if( ! defined("WPINC") ) {
@@ -26,6 +25,7 @@ if( class_exists("VS_WP_Review_Me") ) {
 class VS_WP_Review_Me {
     /**
      * Library Version
+     *
      * @var string
      */
     public    $version = '1.0';
@@ -34,6 +34,7 @@ class VS_WP_Review_Me {
 
     /**
      * VS_WP_Review_Me constructor.
+     *
      * @param array $options
      */
     public function __construct($options = array()) {
@@ -52,6 +53,7 @@ class VS_WP_Review_Me {
 
     /**
      * returns defaults args
+     *
      * @return array
      */
     public function get_defaults() {
@@ -92,9 +94,9 @@ class VS_WP_Review_Me {
      * @return bool
      */
     protected function is_time() {
-        $installed = (int) get_option($this->key, FALSE);
+        $installed = get_option($this->key, FALSE);
 
-        if( FALSE === $installed ) {
+        if( FALSE === $installed || $installed === 0 ) {
             $this->setup_date();
             $installed = time();
         }
