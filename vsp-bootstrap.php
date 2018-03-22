@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VSP Framework
  * Framework Name: VSP Framework
- * Version: 080320180719 - Build 1
+ * Version: 220320181114 - Build 1
  * Author: Varun Sridharan
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
