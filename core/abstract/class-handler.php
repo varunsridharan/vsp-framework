@@ -9,7 +9,8 @@ if( ! class_exists("VSP_Class_Handler") ) {
      */
     abstract class VSP_Class_Handler {
         private static $_instances      = array();
-        public         $textdomain      = NULL;
+        protected      $instances       = array();
+        public         $text_domain     = NULL;
         public         $version         = NULL;
         public         $file            = NULL;
         public         $slug            = NULL;
@@ -63,19 +64,39 @@ if( ! class_exists("VSP_Class_Handler") ) {
             $this->options = $options;
         }
 
+        protected function get_instance($key) {
+            return ( isset($this->instances[$key]) ) ? $this->instances[$key] : FALSE;
+        }
+
+        protected function get_all_instances() {
+            return $this->instances;
+        }
+
+        protected function set_instance($key, $instance) {
+            $this->instances[$key] = $instance;
+        }
+
+
         public function _instance($class, $force_instance = FALSE, $extra_option = array()) {
-            if( ! isset(self::$_instances[$class]) ) {
-                self::$_instances[$class] = ( $force_instance === TRUE ) ? $class::instance() : new $class($this->get_common_args($extra_option));
+            if( $this->get_instance($class) === FALSE ) {
+                if( $force_instance === TRUE && method_exists($class, 'instance') ) {
+                    $this->set_instance($class, $class::instance());
+                } else {
+                    $instances = new $class($this->get_common_args($extra_option));
+                    $this->set_instance($class, $instances);
+                }
+
                 if( $force_instance === TRUE ) {
-                    self::$_instances[$class]->set_args($this->get_common_args($extra_option));
+                    $this->get_instance($class)
+                         ->set_args($this->get_common_args($extra_option));
                 }
 
             }
-            return self::$_instances[$class];
+            return $this->get_instance($class);
         }
 
         /**
-         * VSP_Class_Handler constructor.
+         *
          * @param array $options
          * @param array $defaults
          */
@@ -86,6 +107,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
         /**
          * @param array $new
          * @param       $defaults
+         *
          * @return array
          */
         protected function parse_args($new = array(), $defaults) {
@@ -106,9 +128,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
             return $this->version;
         }
 
-        /**
-         * @return bool|mixed
-         */
+
         public function slug($type = 'slug') {
             switch( $type ) {
                 case 'slug':
@@ -134,6 +154,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
         /**
          * @param string $key
          * @param bool   $default
+         *
          * @return bool|mixed
          */
         protected function option($key = '', $default = FALSE) {
@@ -157,6 +178,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
 
         /**
          * @param array $extra_options
+         *
          * @return array
          */
         public function get_common_args($extra_options = array()) {
@@ -171,6 +193,7 @@ if( ! class_exists("VSP_Class_Handler") ) {
         /**
          * @param string $type
          * @param array  $args
+         *
          * @return mixed
          */
         private function action_filter($type = '', $args = array()) {

@@ -28,7 +28,6 @@ if( ! class_exists('VSP_Framework') ) {
          */
         public function __construct($options = array()) {
             parent::__construct($options);
-            vsp_register_plugin($this->slug(), $this);
             $this->__load_required_files();
             add_action("vsp_framework_init", array( $this, '__init_plugin' ));
         }
@@ -72,7 +71,8 @@ if( ! class_exists('VSP_Framework') ) {
             if( $this->option('reviewme') !== FALSE ) {
                 if( vsp_is_admin() ) {
                     vsp_load_lib('wpreview');
-                    new VS_WP_Review_Me($this->option('reviewme'));
+                    $this->_instance('VS_WP_Review_Me', FALSE, $this->option('reviewme'));
+                    #new VS_WP_Review_Me($this->option('reviewme'));
                 }
             }
         }

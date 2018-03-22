@@ -20,58 +20,13 @@ if( ! function_exists('vsp_load_lib') ) {
     }
 }
 
-if( ! function_exists("vsp_register_plugin") ) {
-    /**
-     * Make A Copy Of Plugin instance in a array
-     * @todo check if its really required funciton !
-     * @param string $slug
-     * @param string $instance
-     */
-    function vsp_register_plugin($slug = '', &$instance = '') {
-        global $vsp_plugins;
-
-        if( ! empty($slug) && ! empty($instance) ) {
-            $vsp_plugins[$slug] = $instance;
-        }
-    }
-}
-
-if( ! function_exists('vsp_get_all_plugins') ) {
-    /**
-     * Returns all registered plugins instance / slug
-     * @todo check if its really needed function (vsp_register_plugin)
-     * @param bool $only_slugs
-     * @return array
-     */
-    function vsp_get_all_plugins($only_slugs = TRUE) {
-        global $vsp_plugins;
-        if( $only_slugs === FALSE ) {
-            return $vsp_plugins;
-        }
-        return array_keys($vsp_plugins);
-    }
-}
-
-if( ! function_exists("vsp_get_plugin") ) {
-    /**
-     * Returns instance of a given plugin slug if instance exists
-     * @param string $slug
-     * @return bool
-     */
-    function vsp_get_plugin($slug = '') {
-        global $vsp_plugins;
-        if( isset($vsp_plugins[$slug]) ) {
-            return $vsp_plugins[$slug];
-        }
-        return FALSE;
-    }
-}
-
 if( ! function_exists('vsp_define') ) {
     /**
      * Defines Give Values if not defined
+     *
      * @param $key
      * @param $value
+     *
      * @return bool
      */
     function vsp_define($key, $value) {
@@ -82,8 +37,10 @@ if( ! function_exists('vsp_define') ) {
 if( ! function_exists("vsp_url") ) {
     /**
      * returns VSP Framework url
+     *
      * @param string $extra
      * @param bool   $is_url
+     *
      * @return string
      */
     function vsp_url($extra = '', $is_url = TRUE) {
@@ -97,7 +54,9 @@ if( ! function_exists("vsp_url") ) {
 if( ! function_exists("vsp_path") ) {
     /**
      * returns VSP Framework Full PATH
+     *
      * @param string $extra
+     *
      * @return string
      */
     function vsp_path($extra = '') {
@@ -108,8 +67,10 @@ if( ! function_exists("vsp_path") ) {
 if( ! function_exists('vsp_js') ) {
     /**
      * returns VSP Framework assets/js Path / URL base on given values
+     *
      * @param string $extra
      * @param bool   $url
+     *
      * @return string
      */
     function vsp_js($extra = '', $url = TRUE) {
@@ -123,8 +84,10 @@ if( ! function_exists('vsp_js') ) {
 if( ! function_exists('vsp_css') ) {
     /**
      * returns VSP Framework assets/css Path / URL base on given values
+     *
      * @param string $extra
      * @param bool   $url
+     *
      * @return string
      */
     function vsp_css($extra = '', $url = TRUE) {
@@ -138,8 +101,10 @@ if( ! function_exists('vsp_css') ) {
 if( ! function_exists('vsp_img') ) {
     /**
      * returns VSP Framework assets/img Path / URL base on given values
+     *
      * @param string $extra
      * @param bool   $url
+     *
      * @return string
      */
     function vsp_img($extra = '', $url = TRUE) {
@@ -154,9 +119,11 @@ if( ! function_exists("vsp_debug_file") ) {
     /**
      * Makes .min.css / .min.js file based on wordpress config
      * if WP_DEBUG / SCRIPT_DEBUG is set to true then it loads unminified files
+     *
      * @param      $filename
      * @param bool $makeurl
      * @param bool $is_url
+     *
      * @return mixed|null|string
      */
     function vsp_debug_file($filename, $makeurl = FALSE, $is_url = TRUE) {
@@ -193,9 +160,11 @@ if( ! function_exists("vsp_debug_file") ) {
 if( ! function_exists("vsp_load_file") ) {
     /**
      * Search and loads files based on the search parameter
+     *
      * @param        $search_type
      * @param string $type
-     * @uses  vsp_get_file_paths
+     *
+     * @uses    vsp_get_file_paths
      * @example vsp_load_file("mypath/*.php")
      * @example vsp_load_file("mypath/class-*.php")
      */
@@ -213,9 +182,12 @@ if( ! function_exists("vsp_load_file") ) {
 if( ! function_exists("vsp_get_file_paths") ) {
     /**
      * returns files in a given path
+     *
      * @example vsp_load_file("mypath/*.php")
      * @example vsp_load_file("mypath/class-*.php")
+     *
      * @param $path
+     *
      * @return array
      */
     function vsp_get_file_paths($path) {
@@ -229,7 +201,9 @@ if( ! function_exists("vsp_get_file_paths") ) {
 if( ! function_exists('vsp_is_plugin_active') ) {
     /**
      * Checks if given plugin file is active in wordpress
+     *
      * @param string $file
+     *
      * @return bool
      */
     function vsp_is_plugin_active($file = '') {
@@ -241,6 +215,7 @@ if( ! function_exists("vsp_wc_active") ) {
     /**
      * Checks if woocommerce is active
      * in current wp instance
+     *
      * @example if(vsp_wc_active()){echo "Yes";}else{echo "No"}
      * @return bool
      */
