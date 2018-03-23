@@ -38,7 +38,7 @@ if( ! class_exists("VSP_Status_Report") ) {
             $this->set_plugins_data();
             $this->set_php_data();
             $this->set_vsp_framework();
-            $this->set_vsp_settings();
+            #$this->set_vsp_settings();
             $this->output_html();
         }
 

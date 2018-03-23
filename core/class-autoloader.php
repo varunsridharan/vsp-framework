@@ -11,7 +11,6 @@ final class VSP_Autoloader {
     private static $_integrations = array(
         'wpsf'            => 'wpsf.php',
         'visual-composer' => 'visual-composer.php',
-        'wp-importer'     => 'wp-importer.php',
     );
 
     private static $_libs = array(

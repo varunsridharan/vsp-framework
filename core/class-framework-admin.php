@@ -62,7 +62,7 @@ if( ! class_exists('VSP_Framework_Admin') ) {
             if( $this->file() === $plugin_file ) {
 
                 if( is_array($this->action_links) && ! empty($this->action_links) ) {
-                    $is_before = ( isset($this->action_actions['before']) ) ? TRUE : FALSE;
+                    $is_before = ( isset($this->action_links['before']) ) ? TRUE : FALSE;
                     unset($this->action_links['before']);
                     if( $is_before === TRUE ) {
                         $action = array_merge($this->action_links, $action);
