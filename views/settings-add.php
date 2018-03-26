@@ -13,7 +13,7 @@
                             class="dashicons dashicons-money"></span> <?php if ( isset( $r['cost'] ) ) {
 						echo intval( $r['cost'] ) . ' $ ';
 					} else {
-						echo __( "Free", 'vsp-framework' );
+						echo __( 'Free', 'vsp-framework' );
 					} ?></span>
 
             </div>
@@ -27,9 +27,9 @@
 				echo 'button-primary';
 			} ?>" target="_blank">
 				<?php if ( $r['type'] == 'paid' ) {
-					_e( "Purchase Plugin", 'vsp-framework' );
+					_e( 'Purchase Plugin', 'vsp-framework' );
 				} else {
-					_e( "View Plugin Page", 'vsp-framework' );
+					_e( 'View Plugin Page', 'vsp-framework' );
 				} ?>
             </a>
 

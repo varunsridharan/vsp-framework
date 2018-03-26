@@ -110,7 +110,7 @@
                         <div class="wpsf-simple-footer">
 							<?php
 							if ( $ajax === 'yes' ) {
-								echo '<span id="wpsf-save-ajax">' . esc_html__( "Settings Saved", 'wpsf-framework' ) . '</span>';
+								echo '<span id="wpsf-save-ajax">' . esc_html__( "Settings Saved", 'wpsf-framework', 'vsp-framework' ) . '</span>';
 							}
 							echo $class->get_settings_buttons(); ?>
                         </div>

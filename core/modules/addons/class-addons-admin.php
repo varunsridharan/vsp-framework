@@ -75,16 +75,16 @@ if ( ! class_exists( 'VSP_Addons_Admin' ) ) {
 				'default_cats'  => $this->default_cats,
 				'texts'         => array(
 					'required_plugin' => __( 'Required Plugin', 'vsp-framework' ),
-					'required_desc'   => __( 'Above Mentioned Plugin name with version are Tested Upto' ),
-					'activate_btn'    => __( 'Activate' ),
-					'deactivate_btn'  => __( 'De Activate' ),
+					'required_desc'   => __( 'Above Mentioned Plugin name with version are Tested Upto', 'vsp-framework' ),
+					'activate_btn'    => __( 'Activate', 'vsp-framework' ),
+					'deactivate_btn'  => __( 'De Activate', 'vsp-framework' ),
 					'admin_url'       => admin_url(),
 					'plugin_view_url' => admin_url( 'plugin-install.php?&isvspaddon=true&tab=plugin-information&plugin={{slug}}&pathid={{addon.addon_path_md5}}&TB_iframe=true&width=600&height=800' ),
 				),
 				'plugin_status' => array(
-					'exists'    => __( "In Active" ),
-					'notexist'  => __( "Not Exist" ),
-					'activated' => __( "Active" ),
+					'exists'    => __( 'In Active', 'vsp-framework' ),
+					'notexist'  => __( 'Not Exist', 'vsp-framework' ),
+					'activated' => __( 'Active', 'vsp-framework' ),
 				),
 			) );
 

@@ -422,7 +422,7 @@ if ( ! class_exists( "WP_Background_Process", false ) ) {
 			// Adds every 5 minutes to the existing schedules.
 			$schedules[ $this->identifier . '_cron_interval' ] = array(
 				'interval' => MINUTE_IN_SECONDS * $interval,
-				'display'  => sprintf( __( 'Every %d minutes', 'woocommerce' ), $interval ),
+				'display'  => sprintf( __( 'Every %d minutes', 'vsp-framework' ), $interval ),
 			);
 
 			return $schedules;

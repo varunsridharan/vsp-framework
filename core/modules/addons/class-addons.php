@@ -154,7 +154,7 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 						if ( isset( $addon_data['required_plugins'] ) && is_array( $addon_data['required_plugins'] ) ) {
 							if ( true !== $addon_data['required_plugins']['fulfilled'] ) {
 								vsp_send_json_callback( false, array(
-									'process_failed' => vsp_js_alert_error( __( 'Activation Failed' ), __( 'Addon\'s Requried Plugins Not Active / Installed' ) ),
+									'process_failed' => vsp_js_alert_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) ),
 								) );
 							}
 						}
@@ -163,12 +163,12 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 
 						if ( $slug ) {
 							vsp_send_json_callback( true, array(
-								'process_success' => vsp_js_alert_success( __( 'Addon Activated' ) ),
+								'process_success' => vsp_js_alert_success( __( 'Addon Activated', 'vsp-framework' ) ),
 							) );
 						}
 					} else {
 						vsp_send_json_callback( false, array(
-							'process_warning' => vsp_js_alert_warning( __( 'Addon Already Active' ) ),
+							'process_warning' => vsp_js_alert_warning( __( 'Addon Already Active', 'vsp-framework' ) ),
 						) );
 					}
 				}
@@ -178,12 +178,12 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 						$slug = $this->deactivate_addon( $addon, $pathid );
 						if ( $slug ) {
 							vsp_send_json_callback( true, array(
-								'process_success' => vsp_js_alert_warning( __( 'Addon De-Activated' ) ),
+								'process_success' => vsp_js_alert_warning( __( 'Addon De-Activated', 'vsp-framework' ) ),
 							) );
 						}
 					} else {
 						vsp_send_json_callback( false, array(
-							'process_error' => vsp_js_alert_warning( __( 'Addon Is Not Active' ) ),
+							'process_error' => vsp_js_alert_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ),
 						) );
 					}
 				}

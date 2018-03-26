@@ -73,12 +73,13 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * @return array
 		 */
 		public function add_extra_info( $meta = array() ) {
-			$integrations                         = VSP_Autoloader::get_integrations();
-			$libs                                 = VSP_Autoloader::get_libs();
-			$meta[ __( 'Loaded Library' ) ]       = self::$meta_data['lib'];
-			$meta[ __( 'Loaded Integration' ) ]   = self::$meta_data['integrations'];
-			$meta[ __( 'Bundled Integrations' ) ] = array();
-			$meta[ __( 'Bundled Libs' ) ]         = array();
+			$integrations = VSP_Autoloader::get_integrations();
+			$libs         = VSP_Autoloader::get_libs();
+
+			$meta[ __( 'Loaded Library', 'vsp-framework' ) ]       = self::$meta_data['lib'];
+			$meta[ __( 'Loaded Integration', 'vsp-framework' ) ]   = self::$meta_data['integrations'];
+			$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ] = array();
+			$meta[ __( 'Bundled Libs', 'vsp-framework' ) ]         = array();
 			foreach ( $integrations as $k => $v ) {
 				$data = get_file_data( VSP_Autoloader::integration_path() . $v, [
 					'Name'    => 'Name',
@@ -86,9 +87,9 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 				], 'vsp' );
 
 				if ( count( array_filter( $data ) ) === 2 ) {
-					$meta[ __( 'Bundled Integrations' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
+					$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
 				} else {
-					$meta[ __( 'Bundled Integrations' ) ][] = $k . ' - ' . $v;
+					$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ][] = $k . ' - ' . $v;
 				}
 			}
 			foreach ( $libs as $k => $v ) {
@@ -98,9 +99,9 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 				], 'vsp' );
 
 				if ( count( array_filter( $data ) ) === 2 ) {
-					$meta[ __( 'Bundled Libs' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
+					$meta[ __( 'Bundled Libs', 'vsp-framework' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
 				} else {
-					$meta[ __( 'Bundled Libs' ) ][] = $k . ' - ' . $v;
+					$meta[ __( 'Bundled Libs', 'vsp-framework' ) ][] = $k . ' - ' . $v;
 				}
 			}
 			return $meta;
@@ -116,8 +117,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			if ( empty( $info ) ) {
 
 				$msg = base64_encode( wp_json_encode( self::$data ) );
-				$ms  = __( 'Unable To Load VSP Framework. Please Contact The Author' );
-				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . __( 'ERROR ID : ' ) . '</strong>' . $msg . '</p>';
+				$ms  = __( 'Unable To Load VSP Framework. Please Contact The Author', 'vsp-framework' );
+				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . __( 'ERROR ID : ', 'vsp-framework' ) . '</strong>' . $msg . '</p>';
 				wp_die( $ms );
 			}
 			self::$_loaded = $info;

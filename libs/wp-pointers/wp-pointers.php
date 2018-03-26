@@ -68,7 +68,7 @@ class PointerPlus {
 				}
 			}
 		}
-		$this->pointers['l10n'] = array( 'next' => __( 'Next' ) );
+		$this->pointers['l10n'] = array( 'next' => __( 'Next', 'vsp-framework' ) );
 	}
 
 	/**
@@ -112,7 +112,7 @@ class PointerPlus {
 							unset( $pointers[ $key ] );
 						}
 					} else {
-						new WP_Error( 'broke', __( 'PointerPlus Error: post_type is not an array!' ) );
+						new WP_Error( 'broke', __( 'PointerPlus Error: post_type is not an array!', 'vsp-framework' ) );
 					}
 					// If not in CPT view remove all the pointers with post_type
 				} else {
@@ -136,7 +136,7 @@ class PointerPlus {
 							unset( $pointers[ $key ] );
 						}
 					} else {
-						new WP_Error( 'broke', __( 'PointerPlus Error: pages is not an array!' ) );
+						new WP_Error( 'broke', __( 'PointerPlus Error: pages is not an array!', 'vsp-framework' ) );
 					}
 				}
 			}

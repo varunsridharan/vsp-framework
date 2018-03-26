@@ -149,7 +149,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	public function is_writeable() {
 		$upload_dir = wp_upload_dir();
 		if ( ! empty( $upload_dir['error'] ) ) {
-			echo '<div class="error"><p>' . esc_html( __( 'Before you can upload your import file, you will need to fix the following error:' ) ) . '</p>
+			echo '<div class="error"><p>' . esc_html( __( 'Before you can upload your import file, you will need to fix the following error:', 'vsp-framework' ) ) . '</p>
             <p><strong>' . esc_html( $upload_dir['error'] ) . '</strong></p></div>';
 			return false;
 		}
@@ -170,7 +170,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 			}
 		}
 
-		echo '<div class="wpsf-element"><p class="submit"> <input type="submit" class="button" value="' . esc_html( __( 'Upload file and import' ) ) . '" /> </p></div> </form>';
+		echo '<div class="wpsf-element"><p class="submit"> <input type="submit" class="button" value="' . esc_html( __( 'Upload file and import', 'vsp-framework' ) ) . '" /> </p></div> </form>';
 		echo '</div>';
 		echo '</div>';
 		echo '<style>
@@ -247,7 +247,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	 * @param  string $message .
 	 */
 	private function import_error( $message = '' ) {
-		echo '<p><strong>' . __( 'Sorry, there has been an error.' ) . '</strong><br />';
+		echo '<p><strong>' . __( 'Sorry, there has been an error.', 'vsp-framework' ) . '</strong><br />';
 		if ( $message ) {
 			echo esc_html( $message );
 		}
@@ -270,7 +270,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	 */
 	public function init_import( $file ) {
 		if ( ! is_file( $file ) ) {
-			$this->import_error( __( 'The file does not exist, please try again.' ) );
+			$this->import_error( __( 'The file does not exist, please try again.', 'vsp-framework' ) );
 		}
 
 		$this->__import_start();
@@ -284,7 +284,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 					$loop++;
 				}
 			} else {
-				$this->import_error( __( 'The CSV is invalid.' ) );
+				$this->import_error( __( 'The CSV is invalid.', 'vsp-framework' ) );
 			}
 			fclose( $handle );
 		}
@@ -344,7 +344,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	 */
 	protected function show_success() {
 		echo '<div class="updated settings - error"><p>
-			' . esc_html( __( 'Import completed' ) ) . '
+			' . esc_html( __( 'Import completed', 'vsp-framework' ) ) . '
 		</p></div>';
 	}
 
@@ -354,7 +354,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	protected function show_errors() {
 		if ( ! empty( array_filter( $this->errors ) ) ) {
 			echo '<div class="error settings - error">';
-			echo '<p>' . esc_html( __( 'Import Errors - ' ) ) . ' </p > ';
+			echo '<p>' . esc_html( __( 'Import Errors - ', 'vsp-framework' ) ) . ' </p > ';
 			echo '<p>' . esc_html( implode( ' < br />', $this->errors ) ) . ' </p > ';
 			echo '</div > ';
 		}

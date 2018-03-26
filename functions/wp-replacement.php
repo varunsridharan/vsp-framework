@@ -373,13 +373,13 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 		);
 
 		$plugins_section_titles = array(
-			'description'  => _x( 'Description', 'Plugin installer section title' ),
-			'installation' => _x( 'Installation', 'Plugin installer section title' ),
-			'faq'          => _x( 'FAQ', 'Plugin installer section title' ),
-			'screenshots'  => _x( 'Screenshots', 'Plugin installer section title' ),
-			'changelog'    => _x( 'Changelog', 'Plugin installer section title' ),
-			'reviews'      => _x( 'Reviews', 'Plugin installer section title' ),
-			'other_notes'  => _x( 'Other Notes', 'Plugin installer section title' ),
+			'description'  => _x( 'Description', 'Plugin installer section title', 'vsp-framework' ),
+			'installation' => _x( 'Installation', 'Plugin installer section title', 'vsp-framework' ),
+			'faq'          => _x( 'FAQ', 'Plugin installer section title', 'vsp-framework' ),
+			'screenshots'  => _x( 'Screenshots', 'Plugin installer section title', 'vsp-framework' ),
+			'changelog'    => _x( 'Changelog', 'Plugin installer section title', 'vsp-framework' ),
+			'reviews'      => _x( 'Reviews', 'Plugin installer section title', 'vsp-framework' ),
+			'other_notes'  => _x( 'Other Notes', 'Plugin installer section title', 'vsp-framework' ),
 		);
 
 		// Sanitize HTML
@@ -401,7 +401,7 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 			$section        = reset( $section_titles );
 		}
 
-		iframe_header( __( 'Plugin Installation' ) );
+		iframe_header( __( 'Plugin Installation', 'vsp-framework' ) );
 
 		$_with_banner = '';
 
@@ -453,39 +453,41 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
         <div class="fyi">
             <ul>
 				<?php if ( ! empty( $api->version ) ) { ?>
-                    <li><strong><?php _e( 'Version:' ); ?></strong> <?php echo $api->version; ?></li>
+                    <li><strong><?php _e( 'Version:', 'vsp-framework' ); ?></strong> <?php echo $api->version; ?></li>
 				<?php }
 				if ( ! empty( $api->author ) ) { ?>
                     <li>
-                        <strong><?php _e( 'Author:' ); ?></strong> <?php echo links_add_target( $api->author, '_blank' ); ?>
+                        <strong><?php _e( 'Author:', 'vsp-framework' ); ?></strong> <?php echo links_add_target( $api->author, '_blank' ); ?>
                     </li>
 				<?php }
 				if ( ! empty( $api->last_updated ) ) { ?>
-                    <li><strong><?php _e( 'Last Updated:' ); ?></strong>
+                    <li><strong><?php _e( 'Last Updated:', 'vsp-framework' ); ?></strong>
 						<?php
 						/* translators: %s: Time since the last update */
-						printf( __( '%s ago' ), human_time_diff( strtotime( $api->last_updated ) ) );
+						printf( __( '%s ago', 'vsp-framework' ), human_time_diff( strtotime( $api->last_updated ) ) );
 						?>
                     </li>
 				<?php }
 				if ( ! empty( $api->requires ) ) { ?>
                     <li>
-                        <strong><?php _e( 'Requires WordPress Version:' ); ?></strong>
+                        <strong><?php _e( 'Requires WordPress Version:', 'vsp-framework' ); ?></strong>
 						<?php
 						/* translators: %s: WordPress version */
-						printf( __( '%s or higher' ), $api->requires );
+						printf( __( '%s or higher', 'vsp-framework' ), $api->requires );
 						?>
                     </li>
 				<?php }
 				if ( ! empty( $api->tested ) ) { ?>
-                    <li><strong><?php _e( 'Compatible up to:' ); ?></strong> <?php echo $api->tested; ?></li>
+                    <li>
+                        <strong><?php _e( 'Compatible up to:', 'vsp-framework' ); ?></strong> <?php echo $api->tested; ?>
+                    </li>
 				<?php }
 				if ( isset( $api->active_installs ) ) { ?>
-                    <li><strong><?php _e( 'Active Installations:' ); ?></strong> <?php
+                    <li><strong><?php _e( 'Active Installations:', 'vsp-framework' ); ?></strong> <?php
 						if ( $api->active_installs >= 1000000 ) {
-							_ex( '1+ Million', 'Active plugin installations' );
+							_ex( '1+ Million', 'Active plugin installations', 'vsp-framework' );
 						} elseif ( 0 == $api->active_installs ) {
-							_ex( 'Less Than 10', 'Active plugin installations' );
+							_ex( 'Less Than 10', 'Active plugin installations', 'vsp-framework' );
 						} else {
 							echo number_format_i18n( $api->active_installs ) . '+';
 						}
@@ -493,46 +495,46 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 				<?php }
 				if ( ! empty( $api->slug ) && empty( $api->external ) ) { ?>
                     <li><a target="_blank"
-                           href="<?php echo __( 'https://wordpress.org/plugins/' ) . $api->slug; ?>/"><?php _e( 'WordPress.org Plugin Page &#187;' ); ?></a>
+                           href="<?php echo __( 'https://wordpress.org/plugins/', 'vsp-framework' ) . $api->slug; ?>/"><?php _e( 'WordPress.org Plugin Page &#187;', 'vsp-framework' ); ?></a>
                     </li>
 				<?php }
 				if ( ! empty( $api->homepage ) ) { ?>
                     <li><a target="_blank"
-                           href="<?php echo esc_url( $api->homepage ); ?>"><?php _e( 'Plugin Homepage &#187;' ); ?></a>
+                           href="<?php echo esc_url( $api->homepage ); ?>"><?php _e( 'Plugin Homepage &#187;', 'vsp-framework' ); ?></a>
                     </li>
 				<?php }
 				if ( ! empty( $api->donate_link ) && empty( $api->contributors ) ) { ?>
                     <li><a target="_blank"
-                           href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;' ); ?></a>
+                           href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
                     </li>
 				<?php } ?>
             </ul>
 			<?php if ( ! empty( $api->rating ) ) { ?>
-                <h3><?php _e( 'Average Rating' ); ?></h3>
+                <h3><?php _e( 'Average Rating', 'vsp-framework' ); ?></h3>
 				<?php wp_star_rating( array(
 					'rating' => $api->rating,
 					'type'   => 'percent',
 					'number' => $api->num_ratings,
 				) ); ?>
                 <p aria-hidden="true"
-                   class="fyi-description"><?php printf( _n( '(based on %s rating)', '(based on %s ratings)', $api->num_ratings ), number_format_i18n( $api->num_ratings ) ); ?></p>
+                   class="fyi-description"><?php printf( _n( '(based on %s rating)', '(based on %s ratings)', $api->num_ratings, 'vsp-framework' ), number_format_i18n( $api->num_ratings ) ); ?></p>
 			<?php }
 
 			if ( ! empty( $api->ratings ) && array_sum( (array) $api->ratings ) > 0 ) { ?>
-                <h3><?php _e( 'Reviews' ); ?></h3>
-                <p class="fyi-description"><?php _e( 'Read all reviews on WordPress.org or write your own!' ); ?></p>
+                <h3><?php _e( 'Reviews', 'vsp-framework' ); ?></h3>
+                <p class="fyi-description"><?php _e( 'Read all reviews on WordPress.org or write your own!', 'vsp-framework' ); ?></p>
 				<?php
 				foreach ( $api->ratings as $key => $ratecount ) {
 					// Avoid div-by-zero.
 					$_rating = $api->num_ratings ? ( $ratecount / $api->num_ratings ) : 0;
 					/* translators: 1: number of stars (used to determine singular/plural), 2: number of reviews */
-					$aria_label = esc_attr( sprintf( _n( 'Reviews with %1$d star: %2$s. Opens in a new window.', 'Reviews with %1$d stars: %2$s. Opens in a new window.', $key ), $key, number_format_i18n( $ratecount ) ) );
+					$aria_label = esc_attr( sprintf( _n( 'Reviews with %1$d star: %2$s. Opens in a new window.', 'Reviews with %1$d stars: %2$s. Opens in a new window.', $key, 'vsp-framework' ), $key, number_format_i18n( $ratecount ) ) );
 					?>
                     <div class="counter-container">
 						<span class="counter-label"><a
                                     href="https://wordpress.org/support/plugin/<?php echo $api->slug; ?>/reviews/?filter=<?php echo $key; ?>"
                                     target="_blank"
-                                    aria-label="<?php echo $aria_label; ?>"><?php printf( _n( '%d star', '%d stars', $key ), $key ); ?></a></span>
+                                    aria-label="<?php echo $aria_label; ?>"><?php printf( _n( '%d star', '%d stars', $key, 'vsp-framework' ), $key ); ?></a></span>
                         <span class="counter-back">
 							<span class="counter-bar" style="width: <?php echo 92 * $_rating; ?>px;"></span>
 						</span>
@@ -543,7 +545,7 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 				}
 			}
 			if ( ! empty( $api->contributors ) ) { ?>
-                <h3><?php _e( 'Contributors' ); ?></h3>
+                <h3><?php _e( 'Contributors', 'vsp-framework' ); ?></h3>
                 <ul class="contributors">
 					<?php
 					foreach ( (array) $api->contributors as $contrib_username => $contrib_profile ) {
@@ -564,7 +566,7 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
                 </ul>
 				<?php if ( ! empty( $api->donate_link ) ) { ?>
                     <a target="_blank"
-                       href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;' ); ?></a>
+                       href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
 				<?php } ?>
 			<?php } ?>
         </div>
@@ -573,9 +575,9 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 		$wp_version = get_bloginfo( 'version' );
 
 		if ( ! empty( $api->tested ) && version_compare( substr( $wp_version, 0, strlen( $api->tested ) ), $api->tested, '>' ) ) {
-			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress.' ) . '</p></div>';
+			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress.', 'vsp-framework' ) . '</p></div>';
 		} elseif ( ! empty( $api->requires ) && version_compare( substr( $wp_version, 0, strlen( $api->requires ) ), $api->requires, '<' ) ) {
-			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been marked as compatible</strong> with your version of WordPress.' ) . '</p></div>';
+			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been marked as compatible</strong> with your version of WordPress.', 'vsp-framework' ) . '</p></div>';
 		}
 
 		foreach ( (array) $api->sections as $section_name => $content ) {
@@ -599,20 +601,20 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 			switch ( $status['status'] ) {
 				case 'install':
 					if ( $status['url'] ) {
-						echo '<a data-slug="' . esc_attr( $api->slug ) . '" id="plugin_install_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Now' ) . '</a>';
+						echo '<a data-slug="' . esc_attr( $api->slug ) . '" id="plugin_install_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Now', 'vsp-framework' ) . '</a>';
 					}
 					break;
 				case 'update_available':
 					if ( $status['url'] ) {
-						echo '<a data-slug="' . esc_attr( $api->slug ) . '" data-plugin="' . esc_attr( $status['file'] ) . '" id="plugin_update_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Update Now' ) . '</a>';
+						echo '<a data-slug="' . esc_attr( $api->slug ) . '" data-plugin="' . esc_attr( $status['file'] ) . '" id="plugin_update_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Update Now', 'vsp-framework' ) . '</a>';
 					}
 					break;
 				case 'newer_installed':
 					/* translators: %s: Plugin version */
-					echo '<a class="button button-primary right disabled">' . sprintf( __( 'Newer Version (%s) Installed' ), $status['version'] ) . '</a>';
+					echo '<a class="button button-primary right disabled">' . sprintf( __( 'Newer Version (%s) Installed', 'vsp-framework' ), $status['version'] ) . '</a>';
 					break;
 				case 'latest_installed':
-					echo '<a class="button button-primary right disabled">' . __( 'Latest Version Installed' ) . '</a>';
+					echo '<a class="button button-primary right disabled">' . __( 'Latest Version Installed', 'vsp-framework' ) . '</a>';
 					break;
 			}
 		}

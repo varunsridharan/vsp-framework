@@ -2,11 +2,10 @@
 /**
  * Plugin Name: VSP Framework
  * Framework Name: VSP Framework
- * Version: 230320181039 - Build 1
+ * Version: 260320181112 - Build 1
  * Author: Varun Sridharan
- * Author:            Varun Sridharan
- * Author URI:        http://varunsridharan.in
- * Text Domain:       vsp-framework
+ * Author URI:http://varunsridharan.in
+ * Text Domain:vsp-framework
  * Domain Path: languages/
  *
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
@@ -26,7 +25,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @return string
 	 */
 	function vsp_version() {
-		return '230320181039';
+		return '260320181112';
 	}
 
 	defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', vsp_version() );

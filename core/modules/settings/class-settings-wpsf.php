@@ -301,7 +301,10 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 		 * Renders Syspage HTML
 		 */
 		public function render_sys_page() {
-			echo '<style>div#post-body.metabox-holder.columns-2{width:100%;} #postbox-container-1{display:none;}div#wpsf-tab-sys-page .postbox {
+			echo '<style>
+				div#post-body.metabox-holder.columns-2{width:100%;} 
+#postbox-container-1,.wpsf-simple-footer{display:none;}
+div#wpsf-tab-sys-page .postbox {
         background : transparent;  border     : none;
     }</style>';
 			$html = VSP_Status_Report::instance();

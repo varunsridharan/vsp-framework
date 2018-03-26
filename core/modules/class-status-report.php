@@ -194,7 +194,7 @@ if ( ! class_exists( 'VSP_Status_Report' ) ) {
 			$active_theme = wp_get_theme();
 			$active_theme = $this->get_theme_information( $active_theme );
 
-			$active_theme[ __( 'Is Child Theme', 'vsp-framework' ) ] = is_child_theme() ? __( 'Yes' ) : __( 'No' );
+			$active_theme[ __( 'Is Child Theme', 'vsp-framework' ) ] = is_child_theme() ? __( 'Yes', 'vsp-framework' ) : __( 'No', 'vsp-framework' );
 
 			if ( is_child_theme() ) {
 				$parent_theme = wp_get_theme( $active_theme->Template );

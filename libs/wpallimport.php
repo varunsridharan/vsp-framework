@@ -559,7 +559,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 				}
 			} elseif ( $field_params['type'] == 'title' ) {
 				?>
-                <h4 class="wpallimport-add-on-options-title"><?php _e( $field_params['name'], 'wp_all_import_plugin' ); ?><?php if ( ! empty( $field_params['tooltip'] ) ): ?>
+                <h4 class="wpallimport-add-on-options-title"><?php _e( $field_params['name'], 'vsp-framework' ); ?><?php if ( ! empty( $field_params['tooltip'] ) ): ?>
                     <a href="#help" class="wpallimport-help" title="<?php echo $field_params['tooltip']; ?>"
                        style="position:relative; top: -1px;">?</a><?php endif; ?></h4>
 				<?php
@@ -846,7 +846,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 			<div class="wpallimport-collapsed wpallimport-section wpallimport-addon ' . $this->slug . ' closed">
 				<div class="wpallimport-content-section">
 					<div class="wpallimport-collapsed-header">
-						<h3>' . __( $name, 'pmxi_plugin' ) . '</h3>	
+						<h3>' . __( $name, 'vsp-framework' ) . '</h3>	
 					</div>
 					<div class="wpallimport-collapsed-content" style="padding: 0;">
 						<div class="wpallimport-collapsed-content-inner">
@@ -1099,7 +1099,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 
                 <div class="error notice is-dismissible wpallimport-dismissible" style="margin-top: 10px;"
                      rel="<?php echo sanitize_key( $this->slug ); ?>">
-                    <p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'rapid_addon_' . $this->slug ); ?></p>
+                    <p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'rapid_addon_' . $this->slug, 'vsp-framework' ); ?></p>
                 </div>
 
 				<?php

@@ -145,7 +145,7 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 			'buttons' => array(
 				'confirm' => array(
 					'className' => 'btn-primary',
-					'text'      => __( 'Ok' ),
+					'text'      => __( 'Ok', 'vsp-framework' ),
 				),
 			),
 			'after'   => '',

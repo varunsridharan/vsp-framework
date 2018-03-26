@@ -38,7 +38,7 @@ Class VSP_WP_Requirements {
 		}
 		$message = array();
 
-		$heading = '<h4>' . sprintf( __( "%s Plugin Could Not Be Activated / Loaded Due to the following reasons" ), '<strong>' . $this->args['name'] . '</strong>' ) . '</h4>';
+		$heading = '<h4>' . sprintf( __( "%s Plugin Could Not Be Activated / Loaded Due to the following reasons", 'vsp-framework' ), '<strong>' . $this->args['name'] . '</strong>' ) . '</h4>';
 		if ( ! empty( $this->php ) ) {
 			$php_status = new VS_Version_Compare( $this->php, 'PHP', phpversion() );
 			if ( $php_status->status() === false ) {
@@ -131,7 +131,7 @@ Class VS_PHP_Exts_Requirements {
 		$html = '';
 
 		if ( ! empty( $this->not_installed ) ) {
-			$html .= '<li><strong>' . __( "Required PHP Extensitions :" ) . '</strong>';
+			$html .= '<li><strong>' . __( "Required PHP Extensitions :", 'vsp-framework' ) . '</strong>';
 			$html .= '<ul>';
 			foreach ( $this->not_installed as $a ) {
 				$html .= '<li>' . $a . '</li>';
@@ -140,7 +140,7 @@ Class VS_PHP_Exts_Requirements {
 		}
 
 		if ( ! empty( $this->not_required_installed ) ) {
-			$html .= '<li><strong>' . __( "PHP Extensitions Installed & Not Supported By This Plugin" ) . '</strong>';
+			$html .= '<li><strong>' . __( "PHP Extensitions Installed & Not Supported By This Plugin", 'vsp-framework' ) . '</strong>';
 			$html .= '<ul>';
 			foreach ( $this->not_required_installed as $a ) {
 				$html .= '<li>' . $a . '</li>';
@@ -178,14 +178,14 @@ Class VS_Version_Compare {
 	public function message() {
 		$html = '';
 		if ( $this->compare === '>=' ) {
-			$html .= sprintf( __( "Required %s : %s+ " ), $this->type, $this->version );
+			$html .= sprintf( __( "Required %s : %s+ ", 'vsp-framework' ), $this->type, $this->version );
 		} elseif ( $this->compare === '<=' ) {
-			$html .= sprintf( __( "Required %s : %s or lower" ), $this->type, $this->version );
+			$html .= sprintf( __( "Required %s : %s or lower", 'vsp-framework' ), $this->type, $this->version );
 		} elseif ( $this->compare === '==' ) {
-			$html .= sprintf( __( "Required %s : %s " ), $this->type, $this->version );
+			$html .= sprintf( __( "Required %s : %s ", 'vsp-framework' ), $this->type, $this->version );
 		}
 
-		$html .= ' | ' . sprintf( __( "Detected : %s" ), $this->current_version );
+		$html .= ' | ' . sprintf( __( "Detected : %s", 'vsp-framework' ), $this->current_version );
 		return $html;
 	}
 }
@@ -247,7 +247,7 @@ Class VS_WP_Plugin_Requirements {
 				$this->active[ $_slug ] = $args;
 			} else {
 				$this->inactive[ $_slug ]            = $args;
-				$this->inactive[ $_slug ]['message'] = sprintf( __( "%s Plugin Must Be Active" ), $args['name'] );
+				$this->inactive[ $_slug ]['message'] = sprintf( __( "%s Plugin Must Be Active", 'vsp-framework' ), $args['name'] );
 
 			}
 		}
@@ -280,7 +280,7 @@ Class VS_WP_Plugin_Requirements {
 	public function message() {
 		$html = '';
 		if ( ! empty( $this->inactive ) ) {
-			$message = '<li><strong>' . __( "Version Compatibility" ) . '</strong><ul>';
+			$message = '<li><strong>' . __( "Version Compatibility", 'vsp-framework' ) . '</strong><ul>';
 			$arr     = wp_list_pluck( $this->versionIssue, 'message' );
 			foreach ( $arr as $r ) {
 				$message .= '<li>' . $r . '</li>';
@@ -289,7 +289,7 @@ Class VS_WP_Plugin_Requirements {
 			$html    .= $message;
 		}
 		if ( ! empty( $this->inactive ) ) {
-			$message = '<li><strong>' . __( "Inactive Plugins" ) . '</strong><ul>';
+			$message = '<li><strong>' . __( "Inactive Plugins", 'vsp-framework' ) . '</strong><ul>';
 			$arr     = wp_list_pluck( $this->inactive, 'message' );
 			foreach ( $arr as $r ) {
 				$message .= '<li>' . $r . '</li>';
