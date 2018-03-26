@@ -1,34 +1,102 @@
 <?php
-if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
+/**
+ * VSP Plugin Addon File Handler Class.
+ *
+ * Created by PhpStorm.
+ * User: varun
+ * Date: 27-02-2018
+ * Time: 09:11 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 	/**
 	 * Class VSP_Addons_FileMeta
 	 */
 	class VSP_Addons_FileMeta extends VSP_Class_Handler {
+		/**
+		 * Filedata
+		 *
+		 * @var null
+		 */
+		public $filedata = null;
 
+		/**
+		 * Addons_list
+		 *
+		 * @var array
+		 */
+		public $addons_list = array();
+
+		/**
+		 * Settings_pagehook
+		 *
+		 * @var string
+		 */
+		public $settings_pagehook = '';
+
+		/**
+		 * Array of addon Categorys
+		 *
+		 * @var array
+		 */
+		protected $addon_cats = array();
+
+		/**
+		 * Addons Default_cats
+		 *
+		 * @var array
+		 */
+		public $default_cats = array();
+
+		/**
+		 * Addons_cats_count
+		 *
+		 * @var array
+		 */
+		public $addons_cats_count = array();
+
+		/**
+		 * Addon_metadatas
+		 *
+		 * @var array
+		 */
+		public $addon_metadatas = array();
+
+		/**
+		 * VSP_Addons_FileMeta constructor.
+		 */
 		public function __construct() {
 			$this->filedata = null;
 			parent::__construct();
 		}
 
 		/**
-		 * @param $addon_file
+		 * Adds Duplicate Addon Notice.
+		 *
+		 * @param mixed $addon_file .
 		 */
 		private function __addon_duplicate_msg( $addon_file ) {
-			$data = json_encode( $addon_file );
-			$msg  = sprintf( __( "Duplicate Addon Found. Unable to load Please contact the developer with below information %s", 'vsp-framework' ), date( 'h:i:s' ) );
-			$msg  .= '<br/> <pre><code>' . $data . '</code></pre>';
+			$data = wp_json_encode( $addon_file );
+			$msg  = sprintf( __( 'Duplicate Addon Found. Unable to load Please contact the developer with below information %s', 'vsp-framework' ), date( 'h:i:s' ) );
+			$msg  = $msg . '<br/> <pre><code>' . $data . '</code></pre>';
 			vsp_notice_error( $msg, 1, '', array( $this->settings_pagehook ) );
 		}
 
 		/**
-		 * @param $addon_file
+		 * Gets Addons File meta
+		 *
+		 * @param array $addon_file .
 		 *
 		 * @return bool|mixed
 		 */
 		private function get_file_metadata( $addon_file ) {
 			$meta_data = $this->get_plugin_meta( $addon_file['full_path'] );
 
-			if ( empty ( $meta_data['Name'] ) ) {
+			if ( empty( $meta_data['Name'] ) ) {
 				return false;
 			}
 
@@ -37,7 +105,7 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 			$meta_data['addon_subfolder'] = $addon_file['sub_folder'];
 			$meta_data['addon_file']      = $addon_file['file_name'];
 			$meta_data['addon_slug']      = empty( $meta_data['addon_subfolder'] ) ? sanitize_title( $meta_data['addon_file'] ) : sanitize_title( $meta_data['addon_subfolder'] );
-			$meta_data['addon_url']       = $this->option( "base_url" ) . $addon_file['sub_folder'];
+			$meta_data['addon_url']       = $this->option( 'base_url' ) . $addon_file['sub_folder'];
 
 			if ( empty( $meta_data['icon'] ) ) {
 				$meta_data['icon'] = $this->search_addon_icon( $meta_data );
@@ -53,7 +121,9 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param $addons_files
+		 * Gets Addon Meta data
+		 *
+		 * @param array $addons_files .
 		 *
 		 * @return bool
 		 */
@@ -73,7 +143,8 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 					continue;
 				}
 
-				$meta_data                                              = $this->get_file_metadata( $addon_file );
+				$meta_data = $this->get_file_metadata( $addon_file );
+
 				$this->addon_metadatas[ $meta_data['addon_file_slug'] ] = $meta_data;
 			}
 
@@ -81,14 +152,16 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param      $file
-		 * @param bool $markup
-		 * @param bool $translate
+		 * Reads Addon File And Returns Doc Block
+		 *
+		 * @param string $file      .
+		 * @param bool   $markup    .
+		 * @param bool   $translate .
 		 *
 		 * @return mixed
 		 */
 		private function get_plugin_meta( $file, $markup = true, $translate = true ) {
-			$headers = $this->parse_args( $this->option( "file_headers" ), $this->get_default_headers() );
+			$headers = $this->parse_args( $this->option( 'file_headers' ), $this->get_default_headers() );
 			$data    = $this->render_file_headers( $file, $headers );
 
 			if ( empty( $data['TextDomain'] ) ) {
@@ -100,7 +173,11 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 			if ( empty( $data['category'] ) ) {
 				$data['category'] = array( 'general' );
 			}
-			$data['category-slug'] = sanitize_key( $data['category'] );
+			/**
+			 * @todo convert to ($data['category']) to string here)
+			 *       sanitize_key( $data['category'] );
+			 */
+			$data['category-slug'] = '';
 			$data['PluginURI']     = $data['addon_url'];
 
 			if ( $markup || $translate ) {
@@ -111,7 +188,9 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param $file
+		 * Reads The Addon File
+		 *
+		 * @param string $file .
 		 *
 		 * @return bool|string
 		 */
@@ -127,9 +206,11 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param        $file
-		 * @param        $default_headers
-		 * @param string $context
+		 * Reads The File Header
+		 *
+		 * @param string $file            .
+		 * @param array  $default_headers .
+		 * @param string $context         .
 		 *
 		 * @return mixed
 		 */
@@ -138,24 +219,32 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 			$file_data   = str_replace( "\r", "\n", $file_data );
 			$all_headers = $default_headers;
 			foreach ( $all_headers as $field => $regex ) {
-				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, $match ) && $match[1] )
-					$all_headers[ $field ] = _cleanup_header_comment( $match[1] ); else
+				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, $match ) && $match[1] ) :
+					$all_headers[ $field ] = _cleanup_header_comment( $match[1] );
+				else :
 					$all_headers[ $field ] = '';
+				endif;
 			}
 
 			return $all_headers;
 		}
 
 		/**
-		 * @param $meta_data
+		 * Extracts Required Plugins , Screenshots,FAQ info
+		 *
+		 * @param array $meta_data .
+		 *
+		 * @uses VSP_Addons_FileMeta::extract_screenshots()
+		 * @uses VSP_Addons_FileMeta::extract_required_plugins()
+		 * @todo FAQ is incomplete
 		 *
 		 * @return mixed
 		 */
 		protected function extract_registered_shortcodes( $meta_data ) {
 			$codes          = array(
-				'REQUIRED_PLUGINS' => __( "Required Plugins", 'vsp-framework' ),
-				'SCREENSHOTS'      => __( "Screenshots", 'vsp-framework' ),
-				'FAQ'              => __( "FAQ", 'vsp-framework' ),
+				'REQUIRED_PLUGINS' => __( 'Required Plugins', 'vsp-framework' ),
+				'SCREENSHOTS'      => __( 'Screenshots', 'vsp-framework' ),
+				'FAQ'              => __( 'FAQ', 'vsp-framework' ),
 			);
 			$reg_shortcodes = vsp_addons_extract_tags( $this->filedata );
 
@@ -166,8 +255,6 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 						$callback = 'extract_' . strtolower( $sc );
 						if ( method_exists( $this, $callback ) ) {
 							$meta_data[ strtolower( $sc ) ] = $this->$callback( $ctn, $meta_data );
-						} else {
-							var_dump( $callback );
 						}
 					}
 				}
@@ -177,8 +264,10 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param $content
-		 * @param $meta
+		 * Extract Screenshots
+		 *
+		 * @param array $content .
+		 * @param array $meta    .
 		 *
 		 * @return array
 		 */
@@ -200,10 +289,9 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 							if ( isset( $screens[ $info[2] ] ) ) {
 								$return[ $info[2] ] = array(
 									'title' => isset( $info[3] ) ? $info[3] : '',
-									'url'   => ( isset( $screens[ $info[2] ] ) ) ? $screens[ $info[2] ] : "",
+									'url'   => ( isset( $screens[ $info[2] ] ) ) ? $screens[ $info[2] ] : '',
 								);
 							}
-
 						} else {
 							$return[ basename( $info[2] ) ] = array(
 								'title' => isset( $info[3] ) ? $info[3] : '',
@@ -218,7 +306,9 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param $meta
+		 * Searchs For Addon Screenshots
+		 *
+		 * @param array $meta .
 		 *
 		 * @return array
 		 */
@@ -242,7 +332,9 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 		}
 
 		/**
-		 * @param $meta
+		 * Searchs for addon icon
+		 *
+		 * @param array $meta .
 		 *
 		 * @return bool|string
 		 */
@@ -266,21 +358,23 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 				}
 			}
 
-			if ( $return === false ) {
-				$return = vsp_img( "noimage.png" );
+			if ( false === $return ) {
+				$return = vsp_img( 'noimage.png' );
 			}
 
 			return $return;
 		}
 
 		/**
-		 * @param $content
-		 * @param $meta
+		 * Extracts Required Plugins Data From metadata
+		 *
+		 * @param string $content .
+		 * @param array  $meta    .
 		 *
 		 * @return array
+		 * //preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content[5], $reg_shortcodes );
 		 */
 		protected function extract_required_plugins( $content, $meta ) {
-			//preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content[5], $reg_shortcodes );
 			$reg_shortcodes = vsp_addons_extract_tags( $content[5], true );
 			$return_array   = array();
 			$total_active   = 0;
@@ -293,7 +387,7 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 							'author'           => 'Author',
 							'required_version' => 'Required Version',
 							'url'              => 'URL',
-							'slug'             => "Slug",
+							'slug'             => 'Slug',
 						) );
 
 						if ( empty( $info['slug'] ) ) {
@@ -301,7 +395,7 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 						}
 
 						$info['status'] = $this->check_plugin_status( $info['slug'] );
-						if ( $info['status'] == 'activated' ) {
+						if ( 'activated' === $info['status'] ) {
 							$total_active++;
 						}
 						$return_array[ $info['slug'] ] = $info;
@@ -310,8 +404,11 @@ if ( ! class_exists( "VPS_Addons_FileMeta" ) ) {
 			}
 
 			$total_req    = count( $return_array );
-			$is_fullfiled = ( $total_req == $total_active );
-			return array( "plugins" => $return_array, 'fulfilled' => $is_fullfiled );
+			$is_fullfiled = ( $total_req === $total_active );
+			return array(
+				'plugins'   => $return_array,
+				'fulfilled' => $is_fullfiled,
+			);
 		}
 	}
 }

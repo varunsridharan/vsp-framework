@@ -1,12 +1,19 @@
 <?php
 /**
+ * Common Functions for WooCommerce Plugin
+ *
  * Created by PhpStorm.
  * User: varun
  * Date: 31-01-2018
  * Time: 06:52 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
  */
 
-if ( ! defined( "ABSPATH" ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -71,7 +78,7 @@ class VSP_WC_Helper {
 	 *
 	 * @since 4.7.3
 	 *
-	 * @param string $version version number to compare
+	 * @param string $version version number to compare.
 	 *
 	 * @return bool
 	 */
@@ -85,7 +92,7 @@ class VSP_WC_Helper {
 	 *
 	 * @since 4.7.3
 	 *
-	 * @param string $version version number to compare
+	 * @param string $version version number to compare.
 	 *
 	 * @return bool
 	 */
@@ -98,7 +105,7 @@ class VSP_WC_Helper {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param string $version the version to compare
+	 * @param string $version the version to compare.
 	 *
 	 * @return boolean true if the installed version of WooCommerce is > $version
 	 */

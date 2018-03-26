@@ -1,5 +1,12 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -19,10 +26,14 @@ if ( ! function_exists( 'vsp_ajax_action' ) ) {
 }
 
 if ( ! function_exists( 'vsp_is_ajax_heartbeat' ) ) {
+	/**
+	 * Checks if current request is heartbeat
+	 *
+	 * @return bool
+	 */
 	function vsp_is_ajax_heartbeat() {
 		return ( vsp_is_ajax() === true && vsp_is_ajax( 'heartbeat' ) === true ) ? true : false;
 	}
-
 }
 
 if ( ! function_exists( 'vsp_is_ajax' ) ) {
@@ -30,7 +41,7 @@ if ( ! function_exists( 'vsp_is_ajax' ) ) {
 	 * Checks if current request is ajax
 	 * Also takes required action key to check if the ajax is exactly the action is passed
 	 *
-	 * @param string $action
+	 * @param string $action .
 	 *
 	 * @return bool
 	 */
@@ -78,19 +89,21 @@ if ( ! function_exists( 'vsp_is_frontend' ) ) {
 
 if ( ! function_exists( 'vsp_is_request' ) ) {
 	/**
-	 * @param $type
+	 * Checks What kind of request is it.
+	 *
+	 * @param string $type .
 	 *
 	 * @return bool
 	 */
 	function vsp_is_request( $type ) {
 		switch ( $type ) {
-			case 'admin' :
+			case 'admin':
 				return is_admin();
-			case 'ajax' :
+			case 'ajax':
 				return defined( 'DOING_AJAX' );
-			case 'cron' :
+			case 'cron':
 				return defined( 'DOING_CRON' );
-			case 'frontend' :
+			case 'frontend':
 				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 		}
 		return false;
@@ -99,13 +112,15 @@ if ( ! function_exists( 'vsp_is_request' ) ) {
 
 if ( ! function_exists( 'vsp_current_screen' ) ) {
 	/**
-	 * @param bool $only_id
+	 * Gets current screen ID
+	 *
+	 * @param bool $only_id .
 	 *
 	 * @return bool|null|string|\WP_Screen
 	 */
 	function vsp_current_screen( $only_id = true ) {
 		$screen = get_current_screen();
-		if ( $only_id === false ) {
+		if ( false === $only_id ) {
 			return $screen;
 		}
 
@@ -113,10 +128,12 @@ if ( ! function_exists( 'vsp_current_screen' ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_is_screen" ) ) {
+if ( ! function_exists( 'vsp_is_screen' ) ) {
 	/**
-	 * @param string $check_screen
-	 * @param string $current_screen
+	 * Checks if current screen is given screen
+	 *
+	 * @param string $check_screen   .
+	 * @param string $current_screen .
 	 *
 	 * @return bool
 	 */
@@ -129,15 +146,14 @@ if ( ! function_exists( "vsp_is_screen" ) ) {
 			$current_screen = vsp_current_screen( true );
 		}
 
-
 		if ( is_array( $check_screen ) ) {
-			if ( in_array( $current_screen, $check_screen ) ) {
+			if ( in_array( $current_screen, $check_screen, true ) ) {
 				return true;
 			}
 		}
 
 		if ( is_string( $check_screen ) ) {
-			if ( $check_screen == $current_screen ) {
+			if ( $check_screen === $current_screen ) {
 				return true;
 			}
 		}
@@ -145,9 +161,11 @@ if ( ! function_exists( "vsp_is_screen" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_fix_slug" ) ) {
+if ( ! function_exists( 'vsp_fix_slug' ) ) {
 	/**
-	 * @param $name
+	 * Fix Slug
+	 *
+	 * @param string $name .
 	 *
 	 * @return string
 	 */
@@ -160,18 +178,22 @@ if ( ! function_exists( "vsp_fix_slug" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_addons_extract_tags" ) ) {
+if ( ! function_exists( 'vsp_addons_extract_tags' ) ) {
 	/**
-	 * @param      $content
-	 * @param bool $is_addons_reqplugin
+	 * Extracts Addon Tags
+	 *
+	 * @param string $content             .
+	 * @param bool   $is_addons_reqplugin .
+	 *
+	 * preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content, $reg_shortcodes ).
 	 *
 	 * @return mixed
 	 */
 	function vsp_addons_extract_tags( $content, $is_addons_reqplugin = false ) {
-		if ( $is_addons_reqplugin === false ) {
+		if ( false === $is_addons_reqplugin ) {
 			preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $reg_shortcodes );
 		} else {
-			preg_match_all( '@\[(\w[^<>&\[\]\x00-\x20=]++)@', $content, $reg_shortcodes );  #preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content, $reg_shortcodes );
+			preg_match_all( '@\[(\w[^<>&\[\]\x00-\x20=]++)@', $content, $reg_shortcodes );
 		}
 		return $reg_shortcodes;
 	}
@@ -179,9 +201,11 @@ if ( ! function_exists( "vsp_addons_extract_tags" ) ) {
 
 if ( ! function_exists( 'vsp_addons_extract_tags_pattern' ) ) {
 	/**
-	 * @param      $tags
-	 * @param      $content
-	 * @param bool $is_addon
+	 * Extract Tags
+	 *
+	 * @param array|string $tags     .
+	 * @param string       $content  .
+	 * @param bool         $is_addon .
 	 *
 	 * @return mixed
 	 */
@@ -191,7 +215,7 @@ if ( ! function_exists( 'vsp_addons_extract_tags_pattern' ) ) {
 		}
 
 		foreach ( $tags as $i => $tag ) {
-			$tags[ $i ] = str_replace( "/", '\/', $tag );
+			$tags[ $i ] = str_replace( '/', '\/', $tag );
 		}
 
 		$patterns = vsp_get_shortcode_regex( $tags, $is_addon );
@@ -202,34 +226,38 @@ if ( ! function_exists( 'vsp_addons_extract_tags_pattern' ) ) {
 
 if ( ! function_exists( 'vsp_current_page_url' ) ) {
 	/**
+	 * Returns Current Page URL
+	 *
 	 * @return string
 	 */
 	function vsp_current_page_url() {
 		$pageURL = 'http';
-		if ( isset( $_SERVER["HTTPS"] ) AND $_SERVER["HTTPS"] == "on" ) {
-			$pageURL .= "s";
+		if ( isset( $_SERVER['HTTPS'] ) AND 'on' === $_SERVER['HTTPS'] ) {
+			$pageURL .= 's';
 		}
 
-		$pageURL .= "://";
+		$pageURL .= '://';
 
-		if ( isset( $_SERVER["SERVER_PORT"] ) AND $_SERVER["SERVER_PORT"] != "80" ) {
-			$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+		if ( isset( $_SERVER['SERVER_PORT'] ) AND '80' !== $_SERVER['SERVER_PORT'] ) {
+			$pageURL .= $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
 		} else {
-			$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+			$pageURL .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		}
 
 		return $pageURL;
 	}
 }
 
-if ( ! function_exists( "vsp_get_time_in_seconds" ) ) {
+if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 	/**
-	 * @param $time
+	 * Returns Cache Time in numeric values
+	 *
+	 * @param string $time .
 	 *
 	 * @return float|int
 	 */
 	function vsp_get_time_in_seconds( $time ) {
-		$times = explode( "_", $time );
+		$times = explode( '_', $time );
 		if ( ! is_array( $times ) ) {
 			return $time;
 		}
@@ -240,46 +268,48 @@ if ( ! function_exists( "vsp_get_time_in_seconds" ) ) {
 		$time_limit = intval( $time_limit );
 
 		switch ( $type ) {
-			case "seconds":
-			case "second":
-			case "sec":
+			case 'seconds':
+			case 'second':
+			case 'sec':
 				$time = $time_limit;
-			break;
-			case "minute":
-			case "minutes":
-			case "min":
+				break;
+			case 'minute':
+			case 'minutes':
+			case 'min':
 				$time = $time_limit * MINUTE_IN_SECONDS;
-			break;
-			case "hour":
-			case "hours":
-			case "hrs":
+				break;
+			case 'hour':
+			case 'hours':
+			case 'hrs':
 				$time = $time_limit * HOUR_IN_SECONDS;
-			break;
-			case "days":
-			case "day":
+				break;
+			case 'days':
+			case 'day':
 				$time = $time_limit * DAY_IN_SECONDS;
-			break;
-			case "weeks":
-			case "week":
+				break;
+			case 'weeks':
+			case 'week':
 				$time = $time_limit * WEEK_IN_SECONDS;
-			break;
+				break;
 
-			case "month":
-			case "months":
+			case 'month':
+			case 'months':
 				$time = $time_limit * MONTH_IN_SECONDS;
-			break;
-			case "year":
-			case "years":
+				break;
+			case 'year':
+			case 'years':
 				$time = $time_limit * YEAR_IN_SECONDS;
-			break;
+				break;
 		}
 
 		return intval( $time );
 	}
 }
 
-if ( ! function_exists( "vsp_cdn_url" ) ) {
+if ( ! function_exists( 'vsp_cdn_url' ) ) {
 	/**
+	 * Returns CDN URL
+	 *
 	 * @return string
 	 */
 	function vsp_cdn_url() {
@@ -291,10 +321,12 @@ if ( ! function_exists( "vsp_cdn_url" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_get_cdn" ) ) {
+if ( ! function_exists( 'vsp_get_cdn' ) ) {
 	/**
-	 * @param      $part_url
-	 * @param bool $force_decode
+	 * Gets CDN Data.
+	 *
+	 * @param string $part_url     .
+	 * @param bool   $force_decode .
 	 *
 	 * @return array|mixed|object|\WP_Error
 	 */
@@ -314,15 +346,18 @@ if ( ! function_exists( "vsp_get_cdn" ) ) {
 
 if ( ! function_exists( 'vsp_js_vars_encode' ) ) {
 	/**
-	 * @param $l10n
+	 * Encodes PHP Array in JSString.
+	 *
+	 * @param array $l10n .
 	 *
 	 * @return array|string
 	 */
 	function vsp_js_vars_encode( $l10n ) {
 		if ( is_array( $l10n ) ) {
 			foreach ( (array) $l10n as $key => $value ) {
-				if ( ! is_scalar( $value ) )
+				if ( ! is_scalar( $value ) ) {
 					continue;
+				}
 
 				$l10n[ $key ] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8' );
 			}
@@ -333,29 +368,35 @@ if ( ! function_exists( 'vsp_js_vars_encode' ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_js_vars" ) ) {
+if ( ! function_exists( 'vsp_js_vars' ) ) {
 	/**
-	 * @param      $object_name
-	 * @param      $l10n
-	 * @param bool $with_script_tag
+	 * Generates Script Tag
+	 *
+	 * @param string $object_name     .
+	 * @param array  $l10n            .
+	 * @param bool   $with_script_tag .
 	 *
 	 * @return string
 	 */
 	function vsp_js_vars( $object_name, $l10n, $with_script_tag = true ) {
-		$l10n   = vsp_js_vars_encode( $l10n );
-		$script = "var $object_name = " . wp_json_encode( $l10n ) . ';';
-		if ( ! empty( $after ) )
+		$l10n = vsp_js_vars_encode( $l10n );
+
+		$script = 'var ' . $object_name . ' = ' . wp_json_encode( $l10n ) . ';';
+		if ( ! empty( $after ) ) {
 			$script .= "\n$after;";
+		}
 
 		if ( $with_script_tag ) {
-			return "<script type=\"text/javascript\"> $script </script>";
+			$script = '<script type="text/javascript">' . $script . '</script>';
 		}
 		return $script;
 	}
 }
 
-if ( ! function_exists( "vsp_placeholder_img" ) ) {
+if ( ! function_exists( 'vsp_placeholder_img' ) ) {
 	/**
+	 * Returns VSP Placeholder Image
+	 *
 	 * @return mixed
 	 */
 	function vsp_placeholder_img() {
@@ -365,17 +406,19 @@ if ( ! function_exists( "vsp_placeholder_img" ) ) {
 
 if ( ! function_exists( 'vsp_is_user_role' ) ) {
 	/**
-	 * @param null $role
-	 * @param null $current_role
+	 * Checks if given user role is the same as current user role
+	 *
+	 * @param null $role         .
+	 * @param null $current_role .
 	 *
 	 * @return bool
 	 */
 	function vsp_is_user_role( $role = null, $current_role = null ) {
-		if ( in_array( $role, array( 'logedout', 'loggedout', 'visitor' ) ) ) {
+		if ( in_array( $role, array( 'logedout', 'loggedout', 'visitor' ), true ) ) {
 			$role = 'visitor';
 		}
 
-		if ( $current_role === null ) {
+		if ( null === $current_role ) {
 			$current_role = vsp_get_current_user( true );
 		}
 
@@ -385,16 +428,18 @@ if ( ! function_exists( 'vsp_is_user_role' ) ) {
 
 if ( ! function_exists( 'vsp_get_current_user' ) ) {
 	/**
-	 * @param bool $user_role_only
+	 * Gets current user information.
+	 *
+	 * @param bool $user_role_only .
 	 *
 	 * @return mixed|string|\WP_User
 	 */
 	function vsp_get_current_user( $user_role_only = true ) {
 		$user_role = wp_get_current_user();
-		if ( $user_role_only === true ) {
+		if ( true === $user_role_only ) {
 			$user_roles = $user_role->roles;
 			$user_role  = array_shift( $user_roles );
-			if ( $user_role == null ) {
+			if ( null === $user_role ) {
 				$user_role = 'visitor';
 			}
 		}
@@ -405,6 +450,8 @@ if ( ! function_exists( 'vsp_get_current_user' ) ) {
 
 if ( ! function_exists( 'vsp_get_current_user_id' ) ) {
 	/**
+	 * Gets current wp user id.
+	 *
 	 * @return int
 	 */
 	function vsp_get_current_user_id() {
@@ -414,6 +461,8 @@ if ( ! function_exists( 'vsp_get_current_user_id' ) ) {
 
 if ( ! function_exists( 'vsp_wp_user_roles' ) ) {
 	/**
+	 * Gets all wp user roles
+	 *
 	 * @return array
 	 */
 	function vsp_wp_user_roles() {
@@ -427,6 +476,8 @@ if ( ! function_exists( 'vsp_wp_user_roles' ) ) {
 
 if ( ! function_exists( 'vsp_get_user_roles' ) ) {
 	/**
+	 * Gets all wp user roles with visitor role.
+	 *
 	 * @return array|mixed
 	 */
 	function vsp_get_user_roles() {
@@ -439,7 +490,9 @@ if ( ! function_exists( 'vsp_get_user_roles' ) ) {
 
 if ( ! function_exists( 'vsp_user_roles_as_options' ) ) {
 	/**
-	 * @param bool $only_slug
+	 * Returns only user roles as options or just a array of slug.
+	 *
+	 * @param bool $only_slug .
 	 *
 	 * @return array
 	 */
@@ -448,15 +501,15 @@ if ( ! function_exists( 'vsp_user_roles_as_options' ) ) {
 		foreach ( vsp_get_user_roles() as $slug => $data ) {
 			$return[ $slug ] = $data['name'];
 		}
-		return ( $only_slug === true ) ? array_keys( $return ) : $return;
+		return ( true === $only_slug ) ? array_keys( $return ) : $return;
 	}
 }
 
 if ( ! function_exists( 'vsp_filter_user_roles' ) ) {
 	/**
-	 * @example This function will filter vsp_user_roles_as_options function and provide only the given user role slug values
+	 * This function will filter vsp_user_roles_as_options function and provide only the given user role slug values
 	 *
-	 * @param array $required
+	 * @param array $required .
 	 *
 	 * @return array
 	 */
@@ -467,7 +520,7 @@ if ( ! function_exists( 'vsp_filter_user_roles' ) ) {
 			return $existing;
 		}
 		foreach ( $existing as $slug => $name ) {
-			if ( ! in_array( $slug, $required ) ) {
+			if ( ! in_array( $slug, $required, true ) ) {
 				unset( $existing[ $slug ] );
 			}
 		}
@@ -476,14 +529,15 @@ if ( ! function_exists( 'vsp_filter_user_roles' ) ) {
 }
 
 if ( ! function_exists( 'vsp_array_insert_before' ) ) {
-	/*
+	/**
 	 * Inserts a new key/value before the key in the array.
-	 * @param $key The key to insert before.
-	 * @param $array An array to insert in to.
-	 * @param $new_key The key to insert.
-	 * @param $new_value An value to insert.
-	 * @return The new array if the key exists, FALSE otherwise.
-	 * @see array_insert_after()
+	 *
+	 * @param string $key       The key to insert before.
+	 * @param array  $array     An array to insert in to.
+	 * @param string $new_key   The key to insert.
+	 * @param mixed  $new_value An value to insert.
+	 *
+	 * @return array|boolean|bool The new array if the key exists, FALSE otherwise.
 	 */
 	function vsp_array_insert_before( $key, array &$array, $new_key, $new_value ) {
 		if ( array_key_exists( $key, $array ) ) {
@@ -501,14 +555,15 @@ if ( ! function_exists( 'vsp_array_insert_before' ) ) {
 }
 
 if ( ! function_exists( 'vsp_array_insert_after' ) ) {
-	/*
+	/**
 	 * Inserts a new key/value after the key in the array.
-	 * @param $key The key to insert after.
-	 * @param $array An array to insert in to.
-	 * @param $new_key The key to insert.
-	 * @param $new_value An value to insert.
-	 * @return The new array if the key exists, FALSE otherwise.
-	 * @see array_insert_before()
+	 *
+	 * @param string $key       The key to insert after.
+	 * @param array  $array     An array to insert in to.
+	 * @param string $new_key   The key to insert.
+	 * @param mixed  $new_value An value to insert.
+	 *
+	 * @return array|mixed The new array if the key exists, FALSE otherwise.
 	 */
 	function vsp_array_insert_after( $key, array &$array, $new_key, $new_value ) {
 		if ( array_key_exists( $key, $array ) ) {
@@ -527,7 +582,9 @@ if ( ! function_exists( 'vsp_array_insert_after' ) ) {
 
 if ( ! function_exists( 'vsp_array_to_html_attributes' ) ) {
 	/**
-	 * @param array $array
+	 * Converts PHP Array into html attributes
+	 *
+	 * @param array $array .
 	 *
 	 * @return string
 	 */
@@ -535,9 +592,7 @@ if ( ! function_exists( 'vsp_array_to_html_attributes' ) ) {
 		$attrs = '';
 		if ( ! empty( $array ) ) {
 			foreach ( $array as $id => $val ) {
-				$val   = esc_attr( $val );
-				$id    = esc_attr( $id );
-				$attrs .= " {$id}=\"{$val}\" ";
+				$attrs = ' ' . esc_attr( $id ) . '="' . esc_attr( $val ) . '" ';
 			}
 		}
 		return $attrs;
@@ -546,23 +601,29 @@ if ( ! function_exists( 'vsp_array_to_html_attributes' ) ) {
 
 if ( ! function_exists( 'vsp_validate_css_unit' ) ) {
 	/**
-	 * @param $value
+	 * Validates CSS Units.
+	 *
+	 * @param string $value .
 	 *
 	 * @return string
 	 */
 	function vsp_validate_css_unit( $value ) {
 		$pattern = '/^(\d*(?:\.\d+)?)\s*(px|\%|in|cm|mm|em|rem|ex|pt|pc|vw|vh|vmin|vmax)?$/';
-		// allowed metrics: http://www.w3schools.com/cssref/css_units.asp
-		$regexr = preg_match( $pattern, $value, $matches );
-		$value  = isset( $matches[1] ) ? (float) $matches[1] : (float) $value;
-		$unit   = isset( $matches[2] ) ? $matches[2] : 'px';
+		// allowed metrics: http://www.w3schools.com/cssref/css_units.asp.
+		preg_match( $pattern, $value, $matches );
+		$value = isset( $matches[1] ) ? (float) $matches[1] : (float) $value;
+		$unit  = isset( $matches[2] ) ? $matches[2] : 'px';
 		return $value . $unit;
 	}
 }
 
 if ( ! function_exists( 'vsp_print_r' ) ) {
 	/**
-	 * @param $debug
+	 * Simple Debug Function
+	 *
+	 * @uses \print_r()
+	 *
+	 * @param mixed $debug .
 	 */
 	function vsp_print_r( $debug ) {
 		echo '<pre>' . print_r( $debug, true ) . '</pre>';
@@ -571,10 +632,13 @@ if ( ! function_exists( 'vsp_print_r' ) ) {
 
 if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	/**
-	 * @param bool  $status
-	 * @param array $functions
-	 * @param array $other_info
-	 * @param null  $status_code
+	 * Send Json Callback array in ajax.
+	 * used for sweatalert / trigger custom js functions.
+	 *
+	 * @param bool  $status      .
+	 * @param array $functions   .
+	 * @param array $other_info  .
+	 * @param null  $status_code .
 	 */
 	function vsp_send_json_callback( $status = true, $functions = array(), $other_info = array(), $status_code = null ) {
 		$function = 'wp_send_json_error';
@@ -585,7 +649,6 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 		if ( is_string( $functions ) ) {
 			$functions = array( $functions );
 		}
-
 
 		$data = array(
 			'callback' => $functions,

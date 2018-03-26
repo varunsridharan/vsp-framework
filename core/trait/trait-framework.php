@@ -1,14 +1,20 @@
 <?php
-
 /**
+ * VSP Framework Trait
+ *
  * Created by PhpStorm.
  * User: varun
  * Date: 28-02-2018
  * Time: 01:05 PM
  *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+/**
  * Trait VSP_Framework_Trait
- *
- * @package vsp-framework
  */
 trait VSP_Framework_Trait {
 	/**

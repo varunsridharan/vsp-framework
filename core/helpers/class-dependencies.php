@@ -1,16 +1,34 @@
 <?php
+/**
+ * WP Dependencies Checker.
+ *
+ * Created by PhpStorm.
+ * User: varun
+ * Date: 14-02-2018
+ * Time: 03:57 PM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
 
 /**
- * WC Dependency Checker
- *
- * Checks if WooCommerce is enabled
+ * Class VSP_Dependencies
  */
 class VSP_Dependencies {
 
+	/**
+	 * Array of active_plugins
+	 *
+	 * @var $active_plugins
+	 */
 	private static $active_plugins;
 
 	/**
-	 * @param $file
+	 * Checks if given plugin is active
+	 *
+	 * @param string $file Plugin File Name .
 	 *
 	 * @return bool
 	 */
@@ -18,9 +36,12 @@ class VSP_Dependencies {
 		if ( ! self::$active_plugins ) {
 			self::init();
 		}
-		return in_array( $file, self::$active_plugins ) || array_key_exists( $file, self::$active_plugins );
+		return in_array( $file, self::$active_plugins, true ) || array_key_exists( $file, self::$active_plugins );
 	}
 
+	/**
+	 * Inits VSP_Dependencies class
+	 */
 	public static function init() {
 		self::$active_plugins = (array) get_option( 'active_plugins', array() );
 		if ( is_multisite() ) {

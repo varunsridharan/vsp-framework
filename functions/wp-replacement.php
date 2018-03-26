@@ -1,11 +1,20 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( "vsp_slashit" ) ) {
+if ( ! function_exists( 'vsp_slashit' ) ) {
 	/**
-	 * @param $path
+	 * @param string $path .
+	 *
+	 * @uses trailingslashit
 	 *
 	 * @return string
 	 */
@@ -14,9 +23,9 @@ if ( ! function_exists( "vsp_slashit" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_unslashit" ) ) {
+if ( ! function_exists( 'vsp_unslashit' ) ) {
 	/**
-	 * @param $path
+	 * @param string $path .
 	 *
 	 * @return string
 	 */
@@ -25,13 +34,13 @@ if ( ! function_exists( "vsp_unslashit" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_register_script" ) ) {
+if ( ! function_exists( 'vsp_register_script' ) ) {
 	/**
-	 * @param string $handle
-	 * @param string $src
-	 * @param array  $deps
-	 * @param string $ver
-	 * @param bool   $footer
+	 * @param string $handle .
+	 * @param string $src    .
+	 * @param array  $deps   .
+	 * @param string $ver    .
+	 * @param bool   $footer .
 	 *
 	 * @return bool
 	 */
@@ -41,13 +50,13 @@ if ( ! function_exists( "vsp_register_script" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_register_style" ) ) {
+if ( ! function_exists( 'vsp_register_style' ) ) {
 	/**
-	 * @param string $handle
-	 * @param string $src
-	 * @param array  $deps
-	 * @param string $ver
-	 * @param string $media
+	 * @param string $handle .
+	 * @param string $src    .
+	 * @param array  $deps   .
+	 * @param string $ver    .
+	 * @param string $media  .
 	 *
 	 * @return bool
 	 */
@@ -57,13 +66,13 @@ if ( ! function_exists( "vsp_register_style" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_load_script" ) ) {
+if ( ! function_exists( 'vsp_load_script' ) ) {
 	/**
-	 * @param string $handle
-	 * @param string $src
-	 * @param array  $deps
-	 * @param string $ver
-	 * @param bool   $in_footer
+	 * @param string $handle    .
+	 * @param string $src       .
+	 * @param array  $deps      .
+	 * @param string $ver       .
+	 * @param bool   $in_footer .
 	 */
 	function vsp_load_script( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
 		$src = vsp_debug_file( $src );
@@ -71,13 +80,13 @@ if ( ! function_exists( "vsp_load_script" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_load_style" ) ) {
+if ( ! function_exists( 'vsp_load_style' ) ) {
 	/**
-	 * @param string $handle
-	 * @param string $src
-	 * @param array  $deps
-	 * @param string $ver
-	 * @param bool   $in_footer
+	 * @param string $handle    .
+	 * @param string $src       .
+	 * @param array  $deps      .
+	 * @param string $ver       .
+	 * @param bool   $in_footer .
 	 */
 	function vsp_load_style( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
 		$src = vsp_debug_file( $src );
@@ -85,12 +94,12 @@ if ( ! function_exists( "vsp_load_style" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_addon_data_markup" ) ) {
+if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 	/**
-	 * @param      $plugin_file
-	 * @param      $plugin_data
-	 * @param bool $markup
-	 * @param bool $translate
+	 * @param      $plugin_file .
+	 * @param      $plugin_data .
+	 * @param bool $markup      .
+	 * @param bool $translate   .
 	 *
 	 * @return mixed
 	 */
@@ -112,7 +121,7 @@ if ( ! function_exists( "vsp_addon_data_markup" ) ) {
 						load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) );
 					}
 				}
-			} else if ( 'hello.php' == basename( $plugin_file ) ) {
+			} elseif ( 'hello.php' == basename( $plugin_file ) ) {
 				$textdomain = 'default';
 			}
 			if ( $textdomain ) {
@@ -207,9 +216,9 @@ if ( ! function_exists( "vsp_get_shortcode_regex" ) ) {
 
 if ( ! function_exists( "vsp_set_cache" ) ) {
 	/**
-	 * @param     $cache_name
-	 * @param     $data
-	 * @param int $expiry
+	 * @param     $cache_name .
+	 * @param     $data       .
+	 * @param int $expiry     .
 	 *
 	 * @return bool
 	 */
@@ -221,7 +230,7 @@ if ( ! function_exists( "vsp_set_cache" ) ) {
 
 if ( ! function_exists( "vsp_get_cache" ) ) {
 	/**
-	 * @param $cache_name
+	 * @param $cache_name .
 	 *
 	 * @return mixed
 	 */
@@ -232,7 +241,7 @@ if ( ! function_exists( "vsp_get_cache" ) ) {
 
 if ( ! function_exists( "vsp_delete_cache" ) ) {
 	/**
-	 * @param $cache_name
+	 * @param $cache_name .
 	 *
 	 * @return bool
 	 */
@@ -243,7 +252,7 @@ if ( ! function_exists( "vsp_delete_cache" ) ) {
 
 if ( ! function_exists( "vsp_fix_title" ) ) {
 	/**
-	 * @param $title
+	 * @param $title .
 	 *
 	 * @return string
 	 */
@@ -254,10 +263,10 @@ if ( ! function_exists( "vsp_fix_title" ) ) {
 
 if ( ! function_exists( "vsp_update_term_meta" ) ) {
 	/**
-	 * @param        $term_id
-	 * @param        $meta_key
-	 * @param        $meta_value
-	 * @param string $prev_value
+	 * @param        $term_id    .
+	 * @param        $meta_key   .
+	 * @param        $meta_value .
+	 * @param string $prev_value .
 	 *
 	 * @return bool|int|\WP_Error
 	 */
@@ -268,10 +277,10 @@ if ( ! function_exists( "vsp_update_term_meta" ) ) {
 
 if ( ! function_exists( "vsp_add_term_meta" ) ) {
 	/**
-	 * @param      $term_id
-	 * @param      $meta_key
-	 * @param      $meta_value
-	 * @param bool $unique
+	 * @param      $term_id    .
+	 * @param      $meta_key   .
+	 * @param      $meta_value .
+	 * @param bool $unique     .
 	 *
 	 * @return bool|int|\WP_Error
 	 */
@@ -282,10 +291,10 @@ if ( ! function_exists( "vsp_add_term_meta" ) ) {
 
 if ( ! function_exists( "vsp_delete_term_meta" ) ) {
 	/**
-	 * @param        $term_id
-	 * @param        $meta_key
-	 * @param string $meta_value
-	 * @param bool   $deprecated
+	 * @param        $term_id    .
+	 * @param        $meta_key   .
+	 * @param string $meta_value .
+	 * @param bool   $deprecated .
 	 *
 	 * @return bool
 	 */
@@ -296,9 +305,9 @@ if ( ! function_exists( "vsp_delete_term_meta" ) ) {
 
 if ( ! function_exists( "vsp_get_term_meta" ) ) {
 	/**
-	 * @param      $term_id
-	 * @param      $key
-	 * @param bool $single
+	 * @param      $term_id .
+	 * @param      $key     .
+	 * @param bool $single  .
 	 *
 	 * @return mixed|void
 	 */
@@ -475,7 +484,7 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
                     <li><strong><?php _e( 'Active Installations:' ); ?></strong> <?php
 						if ( $api->active_installs >= 1000000 ) {
 							_ex( '1+ Million', 'Active plugin installations' );
-						} else if ( 0 == $api->active_installs ) {
+						} elseif ( 0 == $api->active_installs ) {
 							_ex( 'Less Than 10', 'Active plugin installations' );
 						} else {
 							echo number_format_i18n( $api->active_installs ) . '+';
@@ -565,7 +574,7 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 
 		if ( ! empty( $api->tested ) && version_compare( substr( $wp_version, 0, strlen( $api->tested ) ), $api->tested, '>' ) ) {
 			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress.' ) . '</p></div>';
-		} else if ( ! empty( $api->requires ) && version_compare( substr( $wp_version, 0, strlen( $api->requires ) ), $api->requires, '<' ) ) {
+		} elseif ( ! empty( $api->requires ) && version_compare( substr( $wp_version, 0, strlen( $api->requires ) ), $api->requires, '<' ) ) {
 			echo '<div class="notice notice-warning notice-alt"><p>' . __( '<strong>Warning:</strong> This plugin has <strong>not been marked as compatible</strong> with your version of WordPress.' ) . '</p></div>';
 		}
 
@@ -592,19 +601,19 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 					if ( $status['url'] ) {
 						echo '<a data-slug="' . esc_attr( $api->slug ) . '" id="plugin_install_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Now' ) . '</a>';
 					}
-				break;
+					break;
 				case 'update_available':
 					if ( $status['url'] ) {
 						echo '<a data-slug="' . esc_attr( $api->slug ) . '" data-plugin="' . esc_attr( $status['file'] ) . '" id="plugin_update_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Update Now' ) . '</a>';
 					}
-				break;
+					break;
 				case 'newer_installed':
 					/* translators: %s: Plugin version */
 					echo '<a class="button button-primary right disabled">' . sprintf( __( 'Newer Version (%s) Installed' ), $status['version'] ) . '</a>';
-				break;
+					break;
 				case 'latest_installed':
 					echo '<a class="button button-primary right disabled">' . __( 'Latest Version Installed' ) . '</a>';
-				break;
+					break;
 			}
 		}
 		echo "</div>\n";

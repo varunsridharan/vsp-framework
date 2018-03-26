@@ -1,13 +1,19 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! function_exists( 'vsp_notices' ) ) {
 	/**
-	 * creates a instance of a given notice class
+	 * Creates a instance of a given notice class
 	 *
-	 * @param string $type
+	 * @param string $type .
 	 *
 	 * @return \VSP_WP_Admin_Notices|\VSP_WP_Notice
 	 */
@@ -21,18 +27,18 @@ if ( ! function_exists( 'vsp_notices' ) ) {
 			return $vsp_notices;
 		}
 
-		$_instance = new VSP_WP_Notice;
+		$_instance = new VSP_WP_Notice();
 
 		switch ( $type ) {
 			case 'error':
 				$_instance->setType( VSP_WP_Notice::TYPE_ERROR );
-			break;
+				break;
 			case 'update':
 				$_instance->setType( VSP_WP_Notice::TYPE_UPDATED );
-			break;
+				break;
 			case 'upgrade':
 				$_instance->setType( VSP_WP_Notice::TYPE_UPDATED_NAG );
-			break;
+				break;
 		}
 		return $_instance;
 	}
@@ -42,9 +48,9 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 	/**
 	 * Updates Database With Given Notices Details
 	 *
-	 * @param        $message
-	 * @param string $type
-	 * @param array  $args
+	 * @param string $message .
+	 * @param string $type    .
+	 * @param array  $args    .
 	 */
 	function vsp_notice( $message, $type = 'update', $args = array() ) {
 		$defaults  = array(
@@ -55,9 +61,9 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 		$args      = wp_parse_args( $args, $defaults );
 		$_instance = vsp_notices( $type );
 		$_instance->setContent( $message )
-				  ->setTimes( $args['times'] )
-				  ->setScreens( $args['screen'] )
-				  ->addUsers( $args['users'] );
+			->setTimes( $args['times'] )
+			->setScreens( $args['screen'] )
+			->addUsers( $args['users'] );
 		vsp_notices()->addNotice( $_instance );
 	}
 }
@@ -66,16 +72,15 @@ if ( ! function_exists( 'vsp_notice_error' ) ) {
 	/**
 	 * Creates a error notice instances and saves in DB
 	 *
-	 * @param        $message
-	 * @param string $id
-	 * @param int    $times
-	 * @param array  $screen
-	 * @param array  $args
+	 * @param string $message .
+	 * @param int    $times   .
+	 * @param array  $screen  .
+	 * @param array  $args    .
 	 */
 	function vsp_notice_error( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
 		$args['screen'] = $screen;
-		if ( isset( $args['on_ajax'] ) && $args['on_ajax'] === false && vsp_is_ajax() ) {
+		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
 			return;
 		}
 		vsp_notice( $message, 'error', $args );
@@ -86,16 +91,15 @@ if ( ! function_exists( 'vsp_notice_update' ) ) {
 	/**
 	 * Creates a error update instances and saves in DB
 	 *
-	 * @param        $message
-	 * @param string $id
-	 * @param int    $times
-	 * @param array  $screen
-	 * @param array  $args
+	 * @param string $message .
+	 * @param int    $times   .
+	 * @param array  $screen  .
+	 * @param array  $args    .
 	 */
 	function vsp_notice_update( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
 		$args['screen'] = $screen;
-		if ( isset( $args['on_ajax'] ) && $args['on_ajax'] === false && vsp_is_ajax() ) {
+		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
 			return;
 		}
 		vsp_notice( $message, 'update', $args );
@@ -104,18 +108,17 @@ if ( ! function_exists( 'vsp_notice_update' ) ) {
 
 if ( ! function_exists( 'vsp_notice_upgrade' ) ) {
 	/**
-	 * Creates a upgrade notice instances and saves in DB
+	 * Creates a error update instances and saves in DB
 	 *
-	 * @param        $message
-	 * @param string $id
-	 * @param int    $times
-	 * @param array  $screen
-	 * @param array  $args
+	 * @param string $message .
+	 * @param int    $times   .
+	 * @param array  $screen  .
+	 * @param array  $args    .
 	 */
 	function vsp_notice_upgrade( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
 		$args['screen'] = $screen;
-		if ( isset( $args['on_ajax'] ) && $args['on_ajax'] === false && vsp_is_ajax() ) {
+		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
 			return;
 		}
 		vsp_notice( $message, 'upgrade', $args );
@@ -123,26 +126,36 @@ if ( ! function_exists( 'vsp_notice_upgrade' ) ) {
 }
 
 
-if ( ! function_exists( "vsp_js_alert" ) ) {
+if ( ! function_exists( 'vsp_js_alert' ) ) {
+	/**
+	 * Creats JS code to show SweatAlert
+	 *
+	 * @param string $title   .
+	 * @param string $text    .
+	 * @param string $type    .
+	 * @param array  $options .
+	 *
+	 * @return string
+	 */
 	function vsp_js_alert( $title = '', $text = '', $type = '', $options = array() ) {
-		$defaults = array(
+		$defaults    = array(
 			'title'   => $title,
 			'text'    => $text,
 			'icon'    => $type,
 			'buttons' => array(
 				'confirm' => array(
 					'className' => 'btn-primary',
-					'text'      => __( "Ok" ),
+					'text'      => __( 'Ok' ),
 				),
 			),
 			'after'   => '',
 		);
-
 		$opts        = wp_parse_args( $options, $defaults );
 		$opts        = array_filter( $opts );
 		$after       = isset( $opts['after'] ) ? $opts['after'] : '';
 		$return_html = '';
 		$name        = 'swal' . rand( 1, 100 );
+
 		$return_html .= vsp_js_vars( $name, $opts, false );
 		$return_html .= 'swal(' . $name . ')';
 
@@ -155,25 +168,61 @@ if ( ! function_exists( "vsp_js_alert" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_js_alert_success" ) ) {
+if ( ! function_exists( 'vsp_js_alert_success' ) ) {
+	/**
+	 * JS Sucess Alert
+	 *
+	 * @param string $title   .
+	 * @param string $text    .
+	 * @param array  $options .
+	 *
+	 * @return string
+	 */
 	function vsp_js_alert_success( $title = '', $text = '', $options = array() ) {
 		return vsp_js_alert( $title, $text, 'success', $options );
 	}
 }
 
-if ( ! function_exists( "vsp_js_alert_error" ) ) {
+if ( ! function_exists( 'vsp_js_alert_error' ) ) {
+	/**
+	 * JS Error Alert
+	 *
+	 * @param string $title   .
+	 * @param string $text    .
+	 * @param array  $options .
+	 *
+	 * @return string
+	 */
 	function vsp_js_alert_error( $title = '', $text = '', $options = array() ) {
 		return vsp_js_alert( $title, $text, 'error', $options );
 	}
 }
 
-if ( ! function_exists( "vsp_js_alert_warning" ) ) {
+if ( ! function_exists( 'vsp_js_alert_warning' ) ) {
+	/**
+	 * JS Warning Alert
+	 *
+	 * @param string $title   .
+	 * @param string $text    .
+	 * @param array  $options .
+	 *
+	 * @return string
+	 */
 	function vsp_js_alert_warning( $title = '', $text = '', $options = array() ) {
 		return vsp_js_alert( $title, $text, 'warning', $options );
 	}
 }
 
-if ( ! function_exists( "vsp_js_alert_info" ) ) {
+if ( ! function_exists( 'vsp_js_alert_info' ) ) {
+	/**
+	 * JS Info Alert
+	 *
+	 * @param string $title   .
+	 * @param string $text    .
+	 * @param array  $options .
+	 *
+	 * @return string
+	 */
 	function vsp_js_alert_info( $title = '', $text = '', $options = array() ) {
 		return vsp_js_alert( $title, $text, 'info', $options );
 	}

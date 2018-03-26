@@ -1,4 +1,12 @@
 <?php
+/**
+ * VSP Framework Basic Setup / Hooks To WP
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -44,10 +52,10 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 		];
 
 		$css = [
-			'framework' => vsp_debug_file( "vsp-framework.css", 'css' ),
-			'plugins'   => vsp_debug_file( "vsp-plugins.css", 'css' ),
-			'fancybox'  => vsp_debug_file( "vendors/fancybox/jquery.fancybox.css", 'assets' ),
-			'addons'    => vsp_debug_file( "vsp-addons.css", 'css' ),
+			'framework' => vsp_debug_file( 'vsp-framework.css', 'css' ),
+			'plugins'   => vsp_debug_file( 'vsp-plugins.css', 'css' ),
+			'fancybox'  => vsp_debug_file( 'vendors/fancybox/jquery.fancybox.css', 'assets' ),
+			'addons'    => vsp_debug_file( 'vsp-addons.css', 'css' ),
 		];
 
 		vsp_register_script( 'wp-js-hooks', $js['wp-js-hooks'], [], '1.0', false );

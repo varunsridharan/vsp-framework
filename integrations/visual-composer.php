@@ -2,8 +2,14 @@
 /**
  * Name:Visual Composer
  * Version:1.0
+ *
+ * @author     Varun Sridharan <varunsridharan23@gmail.com>
+ * @since      1.0
+ * @package    vsp-framework
+ * @subpackage vsp-framework/integrations/
+ * @copyright  GPL V3 Or greater
  */
-define( "VSP_VC_PATH", plugin_dir_path( __FILE__ ) . 'visual-composer/' );
+define( 'VSP_VC_PATH', plugin_dir_path( __FILE__ ) . 'visual-composer/' );
 
 require_once( VSP_VC_PATH . 'functions.php' );
 

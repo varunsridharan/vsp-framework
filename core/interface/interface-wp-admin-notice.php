@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Project: wp-admin-notices
  * File: FormatterInterface.php
@@ -14,6 +13,10 @@
  * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since   2.0.0
  */
+
+/**
+ * Interface VSP_WP_Admin_Notice_Interface
+ */
 interface VSP_WP_Admin_Notice_Interface {
 	/**
 	 * Returns the output of the notice formatted
@@ -24,5 +27,5 @@ interface VSP_WP_Admin_Notice_Interface {
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since  2.0.0
 	 */
-	function formatOutput( VSP_WP_Notice $notice );
+	public function formatOutput( VSP_WP_Notice $notice );
 }

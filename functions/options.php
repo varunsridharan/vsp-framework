@@ -1,16 +1,23 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 global $vsp_vars_data;
 $vsp_vars_data = array();
 
-if ( ! function_exists( "vsp_check_global_vars" ) ) {
+if ( ! function_exists( 'vsp_check_global_vars' ) ) {
 	/**
 	 * Creates / Returns a global variable for the given plugin slug
 	 *
-	 * @param string $plugin_name
+	 * @param string $plugin_name .
 	 *
 	 * @return mixed
 	 */
@@ -23,14 +30,14 @@ if ( ! function_exists( "vsp_check_global_vars" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_add_vars" ) ) {
+if ( ! function_exists( 'vsp_add_vars' ) ) {
 	/**
 	 * Adds Given Key & values to the plugin's global variable
 	 *
-	 * @param string $plugin_name
-	 * @param string $key
-	 * @param string $values
-	 * @param bool   $force_add
+	 * @param string $plugin_name .
+	 * @param string $key         .
+	 * @param string $values      .
+	 * @param bool   $force_add   .
 	 *
 	 * @return bool
 	 */
@@ -46,13 +53,13 @@ if ( ! function_exists( "vsp_add_vars" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_vars" ) ) {
+if ( ! function_exists( 'vsp_vars' ) ) {
 	/**
 	 * Returns plugin's global variable
 	 *
-	 * @param string $plugin_name
-	 * @param string $key
-	 * @param string $default
+	 * @param string $plugin_name .
+	 * @param string $key         .
+	 * @param string $default     .
 	 *
 	 * @return string
 	 */
@@ -65,12 +72,12 @@ if ( ! function_exists( "vsp_vars" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_remove_vars" ) ) {
+if ( ! function_exists( 'vsp_remove_vars' ) ) {
 	/**
 	 * Removes a plugins global variable
 	 *
-	 * @param string $plugin_name
-	 * @param string $key
+	 * @param string $plugin_name .
+	 * @param string $key         .
 	 *
 	 * @return bool
 	 */
@@ -84,53 +91,21 @@ if ( ! function_exists( "vsp_remove_vars" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_cache_options" ) ) {
-	function vsp_cache_options() {
-		$exSections = get_option( "vsp_settings_sections" );
-		if ( empty( $exSections ) ) {
-			return;
-		}
 
-		$is_modified    = false;
-		$active_Plugins = vsp_get_all_plugins();
-		foreach ( $exSections as $plugin => $sections ) {
-			if ( ! in_array( $plugin, $active_Plugins ) ) {
-				unset( $exSections[ $plugin ] );
-				$is_modified = true;
-				continue;
-			}
-
-			$save_arr = array();
-			foreach ( $sections as $id ) {
-				$option = get_option( $id );
-				if ( $option === false || ! is_array( $option ) ) {
-					continue;
-				}
-
-				$save_arr = array_merge( $save_arr, $option );
-			}
-
-			vsp_add_vars( $plugin, 'settings', $save_arr, true );
-		}
-
-		if ( $is_modified === true ) {
-			update_option( 'vsp_settings_sections', $exSections );
-		}
-	}
-}
-
-if ( ! function_exists( "vsp_option" ) ) {
+if ( ! function_exists( 'vsp_option' ) ) {
 	/**
-	 * @param string $plugin_name
-	 * @param string $option_name
-	 * @param string $default
+	 * Returns VSP Options
+	 *
+	 * @param string $plugin_name .
+	 * @param string $option_name .
+	 * @param string $default     .
 	 *
 	 * @return string
 	 */
 	function vsp_option( $plugin_name = '', $option_name = '', $default = '' ) {
 		$options = vsp_vars( $plugin_name, 'settings', array() );
 		if ( ! empty( $options ) ) {
-			if ( $option_name === 'all' ) {
+			if ( 'all' === $option_name ) {
 				return $options;
 			}
 			if ( isset( $options[ $option_name ] ) ) {

@@ -1,12 +1,16 @@
 <?php
 /**
- * Name: WP Importer
- * Version: 1.0
+ * WP Importer Handler
+ *
  * Created by PhpStorm.
- * Project : vsp-framework
  * User: varun
  * Date: 20-03-2018
  * Time: 11:08 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -50,19 +54,23 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	public $options = array();
 
 	/**
+	 * Upload_type
+	 *
+	 * @var null
+	 */
+	public $upload_type = null;
+	/**
 	 * Delimiter
 	 *
 	 * @var string .
 	 */
 	protected $delimiter = ',';
-
 	/**
 	 * Header_size
 	 *
 	 * @var int .
 	 */
 	protected $header_size = 2;
-
 	/**
 	 * Errors
 	 *
@@ -105,7 +113,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 				if ( $this->is_writeable() === true ) {
 					$this->greet();
 				}
-			break;
+				break;
 
 			case 1:
 				check_admin_referer( 'import-upload' );
@@ -119,7 +127,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 					add_filter( 'http_request_timeout', array( $this, 'bump_request_timeout' ) );
 					$this->init_import( $file );
 				}
-			break;
+				break;
 		}
 
 		$this->footer();
@@ -154,7 +162,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	public function greet() {
 		echo '<div class="vsp-wp-importer-wrap">
 <div class="wpsf-content"> <form enctype="multipart/form-data" id="import-upload-form" method="post" action="' . esc_attr( wp_nonce_url( $this->step_url( 1 ), 'import-upload' ) ) . '">
-<input type="hidden" name="action" value="save" /> <input type="hidden" name="max_file_size" value="' . esc_attr__( $this->upload_size( true ) ) . '" />';
+<input type="hidden" name="action" value="save" /> <input type="hidden" name="max_file_size" value="' . esc_attr( $this->upload_size( true ) ) . '" />';
 		if ( ! empty( $this->fields() ) ) {
 			foreach ( $this->fields() as $field ) {
 				$default = ( isset( $field['default'] ) ) ? $field['default'] : null;
@@ -168,7 +176,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 		echo '<style>
                 .vsp-wp-importer-wrap form > .wpsf-element { padding: 15px 0; } 
                 .wpsf-element > p.submit{margin:0;padding:0;} 
-                .vsp-wp-importer-wrap form > .wpsf-element .wpsf-fieldset{margin-left:0%;} 
+                .vsp-wp-importer-wrap form > .wpsf-element .wpsf-fieldset{margin-left:0;} 
             </style>';
 	}
 
@@ -217,14 +225,14 @@ abstract class VSP_WP_Importer extends WP_Importer {
 		$upload_type       = ( isset( $_POST['upload_type'] ) && ! empty( $_POST['upload_type'] ) ) ? $_POST['upload_type'] : 'upload';
 		$this->upload_type = $upload_type;
 
-		if ( $upload_type === 'upload' ) {
+		if ( 'upload' === $upload_type ) {
 			$file = wp_import_handle_upload();
 			if ( isset( $file['error'] ) ) {
 				$this->import_error( $file['error'] );
 			}
 			$this->id = absint( $file['id'] );
 
-		} else if ( file_exists( ABSPATH . $_POST['file_url'] ) ) {
+		} elseif ( file_exists( ABSPATH . $_POST['file_url'] ) ) {
 			$this->file_url = esc_attr( $_POST['file_url'] );
 		} else {
 			$this->import_error();
@@ -236,7 +244,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	/**
 	 * Show import error and quit.
 	 *
-	 * @param  string $message
+	 * @param  string $message .
 	 */
 	private function import_error( $message = '' ) {
 		echo '<p><strong>' . __( 'Sorry, there has been an error.' ) . '</strong><br />';
@@ -268,10 +276,10 @@ abstract class VSP_WP_Importer extends WP_Importer {
 		$this->__import_start();
 		$loop = 0;
 
-		if ( ( $handle = fopen( $file, "r" ) ) !== false ) {
+		if ( false !== ( $handle = fopen( $file, 'r' ) ) ) {
 			$header = fgetcsv( $handle, 0, $this->delimiter );
-			if ( $this->header_size === sizeof( $header ) ) {
-				while ( ( $row = fgetcsv( $handle, 0, $this->delimiter ) ) !== false ) {
+			if ( sizeof( $header ) === $this->header_size ) {
+				while ( false !== ( $row = fgetcsv( $handle, 0, $this->delimiter ) ) ) {
 					$this->import( $row );
 					$loop++;
 				}

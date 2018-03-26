@@ -110,7 +110,7 @@ Class VS_PHP_Exts_Requirements {
 					$this->not_required[] = $ext_name;
 				}
 
-			} else if ( $g_status === true ) {
+			} elseif ( $g_status === true ) {
 				if ( $is_installed === true ) {
 					$this->installed[] = $ext_name;
 				} else {
@@ -179,9 +179,9 @@ Class VS_Version_Compare {
 		$html = '';
 		if ( $this->compare === '>=' ) {
 			$html .= sprintf( __( "Required %s : %s+ " ), $this->type, $this->version );
-		} else if ( $this->compare === '<=' ) {
+		} elseif ( $this->compare === '<=' ) {
 			$html .= sprintf( __( "Required %s : %s or lower" ), $this->type, $this->version );
-		} else if ( $this->compare === '==' ) {
+		} elseif ( $this->compare === '==' ) {
 			$html .= sprintf( __( "Required %s : %s " ), $this->type, $this->version );
 		}
 
@@ -243,7 +243,7 @@ Class VS_WP_Plugin_Requirements {
 					}
 				}
 
-			} else if ( $is_active && $args['version'] === false ) {
+			} elseif ( $is_active && $args['version'] === false ) {
 				$this->active[ $_slug ] = $args;
 			} else {
 				$this->inactive[ $_slug ]            = $args;
@@ -270,7 +270,7 @@ Class VS_WP_Plugin_Requirements {
 	public function status() {
 		if ( ! empty( $this->inactive ) && ! empty( $this->versionIssue ) ) {
 			return false;
-		} else if ( ! empty( $this->inactive ) || ! empty( $this->versionIssue ) ) {
+		} elseif ( ! empty( $this->inactive ) || ! empty( $this->versionIssue ) ) {
 			return false;
 		}
 
@@ -299,6 +299,4 @@ Class VS_WP_Plugin_Requirements {
 		}
 		return $html;
 	}
-
-
 }

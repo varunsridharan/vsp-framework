@@ -1,5 +1,18 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * VSP Plugin Addon Detailed Class.
+ *
+ * Created by PhpStorm.
+ * User: varun
+ * Date: 27-02-2018
+ * Time: 09:11 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -9,13 +22,15 @@ if ( ! defined( "ABSPATH" ) ) {
 class VSP_Addons_Detailed_View extends VSP_Addons_FileMeta {
 	public function __construct() {
 		parent::__construct();
-		add_filter( "plugins_api", array( $this, 'enable_addon_viewdetails' ), 10, 100 );
+		add_filter( 'plugins_api', array( $this, 'enable_addon_viewdetails' ), 10, 100 );
 	}
 
 	/**
-	 * @param $result
-	 * @param $action
-	 * @param $args
+	 * Renders Addons Full Detail View
+	 *
+	 * @param object $result .
+	 * @param string $action .
+	 * @param array  $args   .
 	 *
 	 * @return array|bool|mixed|object|\WP_Error
 	 */
@@ -27,7 +42,7 @@ class VSP_Addons_Detailed_View extends VSP_Addons_FileMeta {
 		$addon_folder = trim( dirname( $args->slug ), '/' );
 		$result       = vsp_get_cdn( $this->slug() . '/addons/' . $addon_folder . '.json' );
 
-		if ( $result !== false ) {
+		if ( false !== $result ) {
 			if ( is_object( $result ) || is_array( $result ) ) {
 				$result->banners  = (array) $result->banners;
 				$result->sections = (array) $result->sections;

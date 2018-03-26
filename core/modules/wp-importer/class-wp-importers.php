@@ -1,11 +1,18 @@
 <?php
 /**
+ * WP Importers Loader
+ *
  * Created by PhpStorm.
- * Project : product-hide
  * User: varun
  * Date: 20-03-2018
  * Time: 11:43 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
  */
+
 if ( ! defined( 'VSP_PATH' ) ) {
 	die;
 }
@@ -15,7 +22,7 @@ if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 	 */
 	final class VSP_WP_Importers extends VSP_Class_Handler {
 		/**
-		 * _importers
+		 * Importers
 		 *
 		 * @var array
 		 */
@@ -47,6 +54,7 @@ if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 					'wpsf' => $wpsf,
 				);
 			}
+			return true;
 		}
 
 		/**
@@ -85,7 +93,7 @@ if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 		 */
 		function vsp_add_importer( $slug = '', $title = '', $description = '', $file = '', $wpsf = true ) {
 			return VSP_WP_Importers::instance()
-								   ->add( $slug, $title, $description, $file, $wpsf );
+				->add( $slug, $title, $description, $file, $wpsf );
 		}
 	}
 }

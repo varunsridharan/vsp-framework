@@ -1,12 +1,22 @@
 <?php
-
 /**
+ * VSP Date Helper
+ *
  * Created by PhpStorm.
  * User: varun
  * Date: 14-02-2018
  * Time: 03:57 PM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
  */
-Class VSP_Date_Time extends \DateTime {
+
+/**
+ * Class VSP_Date_Time
+ */
+class VSP_Date_Time extends \DateTime {
 
 	/**
 	 * UTC Offset, if needed. Only used when a timezone is not set. When
@@ -29,7 +39,7 @@ Class VSP_Date_Time extends \DateTime {
 	/**
 	 * Set UTC offset - this is a fixed offset instead of a timezone.
 	 *
-	 * @param int $offset
+	 * @param int $offset .
 	 */
 	public function set_utc_offset( $offset ) {
 		$this->utc_offset = intval( $offset );
@@ -40,7 +50,7 @@ Class VSP_Date_Time extends \DateTime {
 	 *
 	 * @since 4.6.0
 	 *
-	 * @param  string $format date format
+	 * @param  string $format date format .
 	 *
 	 * @return string
 	 */
@@ -85,7 +95,7 @@ Class VSP_Date_Time extends \DateTime {
 	 *
 	 * @since 4.6.0
 	 *
-	 * @param  string $format date format
+	 * @param  string $format date format .
 	 *
 	 * @return string
 	 */
@@ -96,7 +106,7 @@ Class VSP_Date_Time extends \DateTime {
 	/**
 	 * Set timezone.
 	 *
-	 * @param DateTimeZone $timezone
+	 * @param DateTimeZone $timezone .
 	 *
 	 * @return DateTime
 	 */

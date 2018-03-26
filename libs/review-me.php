@@ -164,19 +164,19 @@ class VS_WP_Review_Me {
 				switch ( $this->op['type'] ) {
 					case 'theme':
 						$link .= 'theme/';
-					break;
+						break;
 					case 'plugin':
 						$link .= 'plugin/';
-					break;
+						break;
 				}
 
 				$link .= $this->op['type'] . '/reviews';
 				$link = add_query_arg( 'rate', $this->op['rating'], $link );
 				$link = esc_url( $link . '#new-post' );
-			} else if ( $this->op['site'] === 'codecanyon' ) {
+			} elseif ( $this->op['site'] === 'codecanyon' ) {
 				$link = 'https://codecanyon.net/item/x/reviews/';
 				$link .= $this->op['item_id'] . '#rating-' . $this->op['item_id'];
-			} else if ( $this->op['site'] === 'themeforest' ) {
+			} elseif ( $this->op['site'] === 'themeforest' ) {
 				$link = 'https://themeforest.net/item/x/reviews/';
 				$link .= $this->op['item_id'] . '#rating-' . $this->op['item_id'];
 			}

@@ -369,7 +369,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 								"download"          => $download,
 							);
 
-						break;
+							break;
 
 						case 'file':
 
@@ -385,12 +385,12 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 								"download"          => $download,
 							);
 
-						break;
+							break;
 
 						default:
 							// set the field data to the value of the field after it's been parsed
 							$data[ $field_slug ] = $parsedData[ $field_slug ][ $index ];
-						break;
+							break;
 					}
 
 					// apply mapping rules if they exist
@@ -481,7 +481,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					'field_value' => ( $current_values[ $this->slug ][ $field_slug ] == '' && $this->isWizard ) ? $field_params['default_text'] : $current_values[ $this->slug ][ $field_slug ],
 				) );
 
-			} else if ( $field_params['type'] == 'textarea' ) {
+			} elseif ( $field_params['type'] == 'textarea' ) {
 
 				PMXI_API::add_field( 'textarea', $field_params['name'], array(
 					'tooltip'     => $field_params['tooltip'],
@@ -489,7 +489,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					'field_value' => ( $current_values[ $this->slug ][ $field_slug ] == '' && $this->isWizard ) ? $field_params['default_text'] : $current_values[ $this->slug ][ $field_slug ],
 				) );
 
-			} else if ( $field_params['type'] == 'wp_editor' ) {
+			} elseif ( $field_params['type'] == 'wp_editor' ) {
 
 				PMXI_API::add_field( 'wp_editor', $field_params['name'], array(
 					'tooltip'     => $field_params['tooltip'],
@@ -497,7 +497,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					'field_value' => ( $current_values[ $this->slug ][ $field_slug ] == '' && $this->isWizard ) ? $field_params['default_text'] : $current_values[ $this->slug ][ $field_slug ],
 				) );
 
-			} else if ( $field_params['type'] == 'image' or $field_params['type'] == 'file' ) {
+			} elseif ( $field_params['type'] == 'image' or $field_params['type'] == 'file' ) {
 
 				if ( ! isset( $current_values[ $this->slug ]['download_image'][ $field_slug ] ) ) {
 					$current_values[ $this->slug ]['download_image'][ $field_slug ] = '';
@@ -513,7 +513,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 
 				) );
 
-			} else if ( $field_params['type'] == 'radio' ) {
+			} elseif ( $field_params['type'] == 'radio' ) {
 
 				if ( ! isset( $current_values[ $this->slug ]['mapping'][ $field_slug ] ) ) {
 					$current_values[ $this->slug ]['mapping'][ $field_slug ] = array();
@@ -535,7 +535,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					'sub_fields'    => $this->get_sub_fields( $field_params, $field_slug, $current_values ),
 				) );
 
-			} else if ( $field_params['type'] == 'accordion' ) {
+			} elseif ( $field_params['type'] == 'accordion' ) {
 
 				PMXI_API::add_field( 'accordion', $field_params['name'], array(
 					'tooltip'       => $field_params['tooltip'],
@@ -546,7 +546,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					'in_the_bottom' => $in_the_bottom,
 				) );
 
-			} else if ( $field_params['type'] == 'acf' ) {
+			} elseif ( $field_params['type'] == 'acf' ) {
 				$fieldData          = ( ! empty( $field_params['field_obj']->post_content ) ) ? unserialize( $field_params['field_obj']->post_content ) : array();
 				$fieldData['ID']    = $field_params['field_obj']->ID;
 				$fieldData['id']    = $field_params['field_obj']->ID;
@@ -557,14 +557,14 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 				if ( function_exists( 'pmai_render_field' ) ) {
 					echo pmai_render_field( $fieldData, ( ! empty( $current_values ) ) ? $current_values : array() );
 				}
-			} else if ( $field_params['type'] == 'title' ) {
+			} elseif ( $field_params['type'] == 'title' ) {
 				?>
                 <h4 class="wpallimport-add-on-options-title"><?php _e( $field_params['name'], 'wp_all_import_plugin' ); ?><?php if ( ! empty( $field_params['tooltip'] ) ): ?>
                     <a href="#help" class="wpallimport-help" title="<?php echo $field_params['tooltip']; ?>"
                        style="position:relative; top: -1px;">?</a><?php endif; ?></h4>
 				<?php
 
-			} else if ( $field_params['type'] == 'plain_text' ) {
+			} elseif ( $field_params['type'] == 'plain_text' ) {
 				if ( $field_params['is_html'] ):
 					echo $field_params['name'];
 				else:
@@ -620,7 +620,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'is_main_field' => $sub_field['is_main_field'],
 						),
 					);
-				break;
+					break;
 				case 'textarea':
 					$field = array(
 						'type'   => 'textarea',
@@ -632,7 +632,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'is_main_field' => $sub_field['is_main_field'],
 						),
 					);
-				break;
+					break;
 				case 'wp_editor':
 					$field = array(
 						'type'   => 'wp_editor',
@@ -644,7 +644,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'is_main_field' => $sub_field['is_main_field'],
 						),
 					);
-				break;
+					break;
 				case 'image':
 					$field = array(
 						'type'   => 'image',
@@ -673,7 +673,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'is_main_field'  => $sub_field['is_main_field'],
 						),
 					);
-				break;
+					break;
 				case 'radio':
 					$field = array(
 						'type'   => 'enum',
@@ -692,7 +692,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'is_main_field' => $sub_field['is_main_field'],
 						),
 					);
-				break;
+					break;
 				case 'accordion':
 					$field = array(
 						'type'   => 'accordion',
@@ -706,10 +706,10 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 							'in_the_bottom' => false,
 						),
 					);
-				break;
+					break;
 				default:
 					# code...
-				break;
+					break;
 			}
 			return $field;
 		}
@@ -985,12 +985,12 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 								$count and $this->data[ $option_name ] = array_fill( 0, $count, "" );
 							} else {
 								$data[ $option_name ] = XmlImportParser::factory( $xml, $cxpath, (string) $import->options[ $this->slug ]['xpaths'][ $option_name ], $file )
-																	   ->parse( $records );
+									->parse( $records );
 								$tmp_files[]          = $file;
 							}
 						} else {
 							$data[ $option_name ] = XmlImportParser::factory( $xml, $cxpath, (string) $import->options[ $this->slug ][ $option_name ], $file )
-																   ->parse();
+								->parse();
 							$tmp_files[]          = $file;
 						}
 

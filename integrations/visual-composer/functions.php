@@ -4,6 +4,12 @@
  * User: varun
  * Date: 20-02-2018
  * Time: 01:10 PM
+ *
+ * @author     Varun Sridharan <varunsridharan23@gmail.com>
+ * @since      1.0
+ * @package    vsp-framework
+ * @subpackage libs/visual-composer
+ * @copyright  GPL V3 Or greater
  */
 
 
@@ -46,7 +52,7 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 		) );
 
 		$style = '';
-		if ( $options['customize'] !== false ) {
+		if ( false !== $options['customize'] ) {
 			if ( ! empty( $options['icon_color'] ) ) {
 				$icon_color = ( $options['icon_color'] === 'custom' ) ? $options['icon_custom_color'] : $options['icon_color'];
 				$style      .= ' color:' . $icon_color . '; ';
@@ -75,7 +81,6 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 
 		return '<i ' . $attr_html . '> </i>';
 	}
-
 }
 
 if ( ! function_exists( 'vsp_vc_remap_group' ) ) {

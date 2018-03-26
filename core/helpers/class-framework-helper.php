@@ -1,12 +1,19 @@
 <?php
 /**
+ * VSP Framework Helper
+ *
  * Created by PhpStorm.
  * User: varun
  * Date: 31-01-2018
  * Time: 06:47 AM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
  */
 
-if ( ! defined( "ABSPATH" ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -14,19 +21,19 @@ if ( ! defined( "ABSPATH" ) ) {
  * Class VSP_Framework_Helper
  */
 class VSP_Framework_Helper {
-
-	/** encoding used for mb_*() string functions */
+	/**
+	 * Encoding used for mb_*() string function
+	 */
 	const MB_ENCODING = 'UTF-8';
 
 	/**
 	 * Returns true if the haystack string starts with needle
-	 *
 	 * Note: case-sensitive
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $haystack
-	 * @param string $needle
+	 * @param string $haystack .
+	 * @param string $needle   .
 	 *
 	 * @return bool
 	 */
@@ -64,26 +71,25 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $string string to make ASCII
+	 * @param string $string string to make ASCII.
 	 *
 	 * @return string
 	 */
 	public static function str_to_ascii( $string ) {
-		// strip ASCII chars 32 and under
+		// strip ASCII chars 32 and under.
 		$string = filter_var( $string, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW );
-		// strip ASCII chars 127 and higher
+		// strip ASCII chars 127 and higher.
 		return filter_var( $string, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
 	}
 
 	/**
 	 * Return true if the haystack string ends with needle
-	 *
 	 * Note: case-sensitive
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $haystack
-	 * @param string $needle
+	 * @param string $haystack .
+	 * @param string $needle   .
 	 *
 	 * @return bool
 	 */
@@ -102,13 +108,12 @@ class VSP_Framework_Helper {
 
 	/**
 	 * Returns true if the needle exists in haystack
-	 *
 	 * Note: case-sensitive
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $haystack
-	 * @param string $needle
+	 * @param string $haystack .
+	 * @param string $needle   .
 	 *
 	 * @return bool
 	 */
@@ -134,15 +139,15 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $string   text to truncate
-	 * @param int    $length   total desired length of string, including omission
-	 * @param string $omission omission text, defaults to '...'
+	 * @param string $string   text to truncate .
+	 * @param int    $length   total desired length of string, including omission .
+	 * @param string $omission omission text, defaults to '...' .
 	 *
 	 * @return string
 	 */
 	public static function str_truncate( $string, $length, $omission = '...' ) {
 		if ( self::multibyte_loaded() ) {
-			// bail if string doesn't need to be truncated
+			// bail if string doesn't need to be truncated.
 			if ( mb_strlen( $string, self::MB_ENCODING ) <= $length ) {
 				return $string;
 			}
@@ -150,7 +155,7 @@ class VSP_Framework_Helper {
 			return mb_substr( $string, 0, $length, self::MB_ENCODING ) . $omission;
 		} else {
 			$string = self::str_to_ascii( $string );
-			// bail if string doesn't need to be truncated
+			// bail if string doesn't need to be truncated.
 			if ( strlen( $string ) <= $length ) {
 				return $string;
 			}
@@ -179,48 +184,39 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param string $string
+	 * @param string $string .
 	 *
 	 * @return mixed
 	 */
 	public static function str_to_sane_utf8( $string ) {
 		$sane_string = preg_replace( '/[^\p{L}\p{Mn}\p{Mc}\p{Nd}\p{Zs}\p{P}\p{Sm}\p{Sc}]/u', '', $string );
-		// preg_replace with the /u modifier can return null or false on failure
+		// preg_replace with the /u modifier can return null or false on failure.
 		return ( is_null( $sane_string ) || false === $sane_string ) ? $string : $sane_string;
 	}
 
 	/**
 	 * Convert array into XML by recursively generating child elements
-	 *
 	 * First instantiate a new XML writer object:
-	 *
 	 * $xml = new XMLWriter();
-	 *
 	 * Open in memory (alternatively you can use a local URI for file output)
-	 *
 	 * $xml->openMemory();
-	 *
 	 * Then start the document
-	 *
 	 * $xml->startDocument( '1.0', 'UTF-8' );
-	 *
 	 * Don't forget to end the document and output the memory
-	 *
 	 * $xml->endDocument();
-	 *
 	 * $your_xml_string = $xml->outputMemory();
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param \XMLWriter   $xml_writer    XML writer instance
-	 * @param string|array $element_key   name for element, e.g. <per_page>
-	 * @param string|array $element_value value for element, e.g. 100
+	 * @param \XMLWriter   $xml_writer    XML writer instance.
+	 * @param string|array $element_key   name for element, e.g. <per_page>.
+	 * @param string|array $element_value value for element, e.g. 100.
 	 *
 	 * @return string generated XML
 	 */
 	public static function array_to_xml( $xml_writer, $element_key, $element_value = array() ) {
 		if ( is_array( $element_value ) ) {
-			// handle attributes
+			// handle attributes.
 			if ( '@attributes' === $element_key ) {
 				foreach ( $element_value as $attribute_key => $attribute_value ) {
 					$xml_writer->startAttribute( $attribute_key );
@@ -229,9 +225,9 @@ class VSP_Framework_Helper {
 				}
 				return;
 			}
-			// handle multi-elements (e.g. multiple <Order> elements)
+			// handle multi-elements (e.g. multiple <Order> elements).
 			if ( is_numeric( key( $element_value ) ) ) {
-				// recursively generate child elements
+				// recursively generate child elements.
 				foreach ( $element_value as $child_element_key => $child_element_value ) {
 					$xml_writer->startElement( $element_key );
 					foreach ( $child_element_value as $sibling_element_key => $sibling_element_value ) {
@@ -240,21 +236,21 @@ class VSP_Framework_Helper {
 					$xml_writer->endElement();
 				}
 			} else {
-				// start root element
+				// start root element.
 				$xml_writer->startElement( $element_key );
-				// recursively generate child elements
+				// recursively generate child elements.
 				foreach ( $element_value as $child_element_key => $child_element_value ) {
 					self::array_to_xml( $xml_writer, $child_element_key, $child_element_value );
 				}
-				// end root element
+				// end root element.
 				$xml_writer->endElement();
 			}
 		} else {
-			// handle single elements
-			if ( '@value' == $element_key ) {
+			// handle single elements.
+			if ( '@value' === $element_key ) {
 				$xml_writer->text( $element_value );
 			} else {
-				// wrap element in CDATA tags if it contains illegal characters
+				// wrap element in CDATA tags if it contains illegal characters.
 				if ( false !== strpos( $element_value, '<' ) || false !== strpos( $element_value, '>' ) ) {
 					$xml_writer->startElement( $element_key );
 					$xml_writer->writeCdata( $element_value );
@@ -270,12 +266,11 @@ class VSP_Framework_Helper {
 	/**
 	 * Format a number with 2 decimal points, using a period for the decimal
 	 * separator and no thousands separator.
-	 *
 	 * Commonly used for payment gateways which require amounts in this format.
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param float $number
+	 * @param float $number .
 	 *
 	 * @return string
 	 */
@@ -286,18 +281,17 @@ class VSP_Framework_Helper {
 	/**
 	 * Convert a 2-character country code into its 3-character equivalent, or
 	 * vice-versa, e.g.
-	 *
 	 * 1) given USA, returns US
 	 * 2) given US, returns USA
 	 *
 	 * @since 4.2.0
 	 *
-	 * @param string $code ISO-3166-alpha-2 or ISO-3166-alpha-3 country code
+	 * @param string $code ISO-3166-alpha-2 or ISO-3166-alpha-3 country code.
 	 *
 	 * @return string country code
 	 */
 	public static function convert_country_code( $code ) {
-		// ISO 3166-alpha-2 => ISO 3166-alpha3
+		// ISO 3166-alpha-2 => ISO 3166-alpha3.
 		$countries = array(
 			'AF' => 'AFG',
 			'AL' => 'ALB',
@@ -558,18 +552,18 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 4.6.0
 	 *
-	 * @param string $message the error message
-	 * @param int    $type    Optional. The error type. Defaults to E_USER_NOTICE
+	 * @param string $message the error message.
+	 * @param int    $type    Optional. The error type. Defaults to E_USER_NOTICE.
 	 */
 	public static function trigger_error( $message, $type = E_USER_NOTICE ) {
 		if ( is_callable( 'is_ajax' ) && is_ajax() ) {
 			switch ( $type ) {
 				case E_USER_NOTICE:
 					$prefix = 'Notice: ';
-				break;
+					break;
 				case E_USER_WARNING:
 					$prefix = 'Warning: ';
-				break;
+					break;
 				default:
 					$prefix = '';
 			}
@@ -597,7 +591,7 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $key array key to get from $_POST array
+	 * @param string $key array key to get from $_POST array.
 	 *
 	 * @return string value from $_POST or blank string if $_POST[ $key ] is not set
 	 */
@@ -613,7 +607,7 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $key array key to get from $_REQUEST array
+	 * @param string $key array key to get from $_REQUEST array.
 	 *
 	 * @return string value from $_REQUEST or blank string if $_REQUEST[ $key ] is not set
 	 */
@@ -623,6 +617,4 @@ class VSP_Framework_Helper {
 		}
 		return '';
 	}
-
-
 }

@@ -1,4 +1,13 @@
 <?php
+/**
+ * VSP Framework INIT File.
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
 	 * Class VSP_Framework_Loader
@@ -259,8 +268,8 @@ if ( ! function_exists( 'vsp_maybe_load' ) ) {
 	 */
 	function vsp_maybe_load( $plugin_path = '', $meta_data = [], $callback = [], $framework_path = '/vsp-framework/' ) {
 		VSP_Framework_Loader::instance()
-							->register_plugin( $plugin_path, $meta_data, $framework_path )
-							->register_callback( $callback );
+			->register_plugin( $plugin_path, $meta_data, $framework_path )
+			->register_callback( $callback );
 	}
 }
 
@@ -292,8 +301,7 @@ if ( ! function_exists( 'vsp_maybe_framework_loader' ) ) {
 	 */
 	function vsp_mayby_framework_loader( $plugin_path = '', $meta_data = [], $callback = [], $framework_path = '/vsp-framework/' ) {
 		VSP_Framework_Loader::instance()
-							->register_plugin( $plugin_path, $meta_data, $framework_path )
-							->register_callback( $callback );
+			->register_plugin( $plugin_path, $meta_data, $framework_path )
+			->register_callback( $callback );
 	}
 }
-

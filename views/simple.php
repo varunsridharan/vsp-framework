@@ -85,10 +85,10 @@
 									echo $class->get_title( $section ) . $fields . '</div>';
 								}
 								echo '</div>';
-							} else if ( isset( $option['fields'] ) ) {
+							} elseif ( isset( $option['fields'] ) ) {
 								$fields = $class->render_fields( $option );
 								echo '<div class="inside">' . $class->get_title( $option ) . $fields . '</div>';
-							} else if ( isset( $option['callback_hook'] ) ) {
+							} elseif ( isset( $option['callback_hook'] ) ) {
 								$fields  = $class->render_fields( $option );
 								$is_wrap = ( isset( $option['with_wrapper'] ) && $option['with_wrapper'] === true ) ? true : false;
 

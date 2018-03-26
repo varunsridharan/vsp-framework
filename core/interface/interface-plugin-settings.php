@@ -1,13 +1,20 @@
 <?php
-
 /**
- * Interface VSP_Plugin_Settings_Interface
+ * Interface class for plugins that uses VSP-Framework/wpsf
+ *
  * Created by PhpStorm.
  * User: varun
  * Date: 27-02-2018
  * Time: 09:09 AM
  *
- * @package vsp-framework
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+/**
+ * Interface VSP_Plugin_Settings_Interface
  */
 interface VSP_Plugin_Settings_Interface {
 	/**

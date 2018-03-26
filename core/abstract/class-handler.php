@@ -1,26 +1,112 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * VSP Framework Commom Functions for all class. (VSP_Class_Handler).
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( "VSP_Class_Handler" ) ) {
+if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 	/**
-	 * Class VSP_Class_Handler
+	 * Class VSP_Class_Handlers
 	 */
 	abstract class VSP_Class_Handler {
-		private static $_instances      = array();
-		protected      $instances       = array();
-		public         $text_domain     = null;
-		public         $version         = null;
-		public         $file            = null;
-		public         $slug            = null;
-		public         $db_slug         = null;
-		public         $name            = null;
-		public         $hook_slug       = null;
-		protected      $options         = array();
-		protected      $default_options = array();
-		protected      $user_options    = array();
-		protected      $base_defaults   = array(
+		/**
+		 * Stores all plugins instances
+		 *
+		 * @var array
+		 */
+		private static $_instances = array();
+
+		/**
+		 * Stores plugins class instances
+		 *
+		 * @var array
+		 */
+		protected $instances = array();
+
+		/**
+		 * Text_domain
+		 *
+		 * @var null
+		 */
+		public $text_domain = null;
+
+		/**
+		 * Version
+		 *
+		 * @var null
+		 */
+		public $version = null;
+
+		/**
+		 * File
+		 *
+		 * @var null
+		 */
+		public $file = null;
+
+		/**
+		 * Plugin Slug
+		 *
+		 * @var null
+		 */
+		public $slug = null;
+
+		/**
+		 * DB_slug
+		 *
+		 * @var null
+		 */
+		public $db_slug = null;
+
+		/**
+		 * Name
+		 *
+		 * @var null
+		 */
+		public $name = null;
+
+		/**
+		 * Hook_slug
+		 *
+		 * @var null
+		 */
+		public $hook_slug = null;
+
+		/**
+		 * Options
+		 *
+		 * @var array
+		 */
+		protected $options = array();
+
+		/**
+		 * Default_options
+		 *
+		 * @var array
+		 */
+		protected $default_options = array();
+
+		/**
+		 * User_options
+		 *
+		 * @var array
+		 */
+		protected $user_options = array();
+
+		/**
+		 * Base_defaults
+		 *
+		 * @var array
+		 */
+		protected $base_defaults = array(
 			'version'   => '',
 			'file'      => '',
 			'slug'      => '',
@@ -29,14 +115,25 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 			'name'      => '',
 		);
 
+		/**
+		 * Clone
+		 */
 		public function __clone() {
-			_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->option( "version" ) );
+			_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
 		}
 
+		/**
+		 * WakeUp
+		 */
 		public function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( "version" ) );
+			_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
 		}
 
+		/**
+		 * Returns Current Instance / create a new instance
+		 *
+		 * @return mixed
+		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
 				self::$_instances[ static::class ] = new static();
@@ -44,69 +141,107 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 			return self::$_instances[ static::class ];
 		}
 
-		public function __set_core( $key = '', $default = '' ) {
+		/**
+		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
+		 *
+		 * @param string $key     .
+		 * @param string $default .
+		 */
+		protected function _set_core( $key = '', $default = '' ) {
 			if ( empty( $this->$key ) || is_null( $this->$key ) ) {
 				$this->$key = $default;
 			}
 		}
 
+		/**
+		 * Merges And sets the given args
+		 *
+		 * @param array $options  .
+		 * @param array $defaults .
+		 */
 		public function set_args( $options = array(), $defaults = array() ) {
 			$defaults = empty( $defaults ) ? $this->default_options : $defaults;
 			$defaults = $this->parse_args( $defaults, $this->base_defaults );
 			$options  = empty( $options ) ? $this->user_options : $options;
 			$options  = $this->parse_args( $options, $defaults );
-			$this->__set_core( 'version', $options['version'] );
-			$this->__set_core( 'file', $options['file'] );
-			$this->__set_core( 'slug', $options['slug'] );
-			$this->__set_core( 'db_slug', $options['db_slug'] );
-			$this->__set_core( 'hook_slug', $options['hook_slug'] );
-			$this->__set_core( 'name', $options['name'] );
+			$this->_set_core( 'version', $options['version'] );
+			$this->_set_core( 'file', $options['file'] );
+			$this->_set_core( 'slug', $options['slug'] );
+			$this->_set_core( 'db_slug', $options['db_slug'] );
+			$this->_set_core( 'hook_slug', $options['hook_slug'] );
+			$this->_set_core( 'name', $options['name'] );
 			$this->options = $options;
 		}
 
+		/**
+		 * Gets Given key's instance
+		 *
+		 * @param string $key .
+		 *
+		 * @return bool|mixed
+		 */
 		protected function get_instance( $key ) {
 			return ( isset( $this->instances[ $key ] ) ) ? $this->instances[ $key ] : false;
 		}
 
+		/**
+		 * Returns all instance
+		 *
+		 * @return array
+		 */
 		protected function get_all_instances() {
 			return $this->instances;
 		}
 
-		protected function set_instance( $key, $instance ) {
+		/**
+		 * Creats a new instance for a given class
+		 *
+		 * @param string $key
+		 * @param        $instance
+		 */
+		protected function set_instance( $key = '', $instance ) {
 			$this->instances[ $key ] = $instance;
 		}
 
-
+		/**
+		 * @param       $class          .
+		 * @param bool  $force_instance .
+		 * @param array $extra_option   .
+		 *
+		 * @return bool|mixed
+		 */
 		public function _instance( $class, $force_instance = false, $extra_option = array() ) {
 			if ( $this->get_instance( $class ) === false ) {
-				if ( $force_instance === true && method_exists( $class, 'instance' ) ) {
+				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
 					$this->set_instance( $class, $class::instance() );
 				} else {
 					$instances = new $class( $this->get_common_args( $extra_option ) );
 					$this->set_instance( $class, $instances );
 				}
 
-				if ( $force_instance === true ) {
+				if ( true === $force_instance ) {
 					$this->get_instance( $class )
-						 ->set_args( $this->get_common_args( $extra_option ) );
+						->set_args( $this->get_common_args( $extra_option ) );
 				}
-
 			}
 			return $this->get_instance( $class );
 		}
 
 		/**
+		 * VSP_Class_Handler constructor.
 		 *
-		 * @param array $options
-		 * @param array $defaults
+		 * @param array $options  .
+		 * @param array $defaults .
 		 */
 		public function __construct( $options = array(), $defaults = array() ) {
 			$this->set_args( $options, $defaults );
 		}
 
 		/**
-		 * @param array $new
-		 * @param       $defaults
+		 * Merges given array
+		 *
+		 * @param array $new      .
+		 * @param array $defaults .
 		 *
 		 * @return array
 		 */
@@ -117,34 +252,51 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 			return wp_parse_args( $new, $defaults );
 		}
 
+		/**
+		 * Returns $this->file
+		 *
+		 * @return null
+		 */
 		public function file() {
 			return $this->file;
 		}
 
 		/**
+		 * Returns $this->version
+		 *
 		 * @return bool|mixed
 		 */
 		public function version() {
 			return $this->version;
 		}
 
-
+		/**
+		 * Returns with slug value for the given type
+		 * Types (slug,db,hook)
+		 *
+		 * @param string $type .
+		 *
+		 * @return bool|null
+		 */
 		public function slug( $type = 'slug' ) {
+			$return = false;
 			switch ( $type ) {
 				case 'slug':
-					return $this->slug;
-				break;
+					$return = $this->slug;
+					break;
 				case 'db':
-					return $this->db_slug;
-				break;
+					$return = $this->db_slug;
+					break;
 				case 'hook':
-					return $this->hook_slug;
-				break;
+					$return = $this->hook_slug;
+					break;
 			}
-			return false;
+			return $return;
 		}
 
 		/**
+		 * Returns $this->name
+		 *
 		 * @return bool|mixed
 		 */
 		public function plugin_name() {
@@ -152,8 +304,10 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 		}
 
 		/**
-		 * @param string $key
-		 * @param bool   $default
+		 * Returns value from options array
+		 *
+		 * @param string $key     .
+		 * @param bool   $default .
 		 *
 		 * @return bool|mixed
 		 */
@@ -162,22 +316,28 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 		}
 
 		/**
-		 * @param $key
-		 * @param $value
+		 * Sets given value for the option
+		 *
+		 * @param string                          $key   .
+		 * @param string|object|array|int|integer $value .
 		 */
 		protected function set_option( $key, $value ) {
 			$this->options[ $key ] = $value;
 		}
 
 		/**
-		 * @param $array
+		 * Updates Options array.
+		 *
+		 * @param array $array .
 		 */
 		protected function update_option( $array ) {
 			$this->options = $array;
 		}
 
 		/**
-		 * @param array $extra_options
+		 * Returns all common array like (slug,db_slug,hook_slug,plugin_name)
+		 *
+		 * @param array $extra_options .
 		 *
 		 * @return array
 		 */
@@ -191,8 +351,10 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 		}
 
 		/**
-		 * @param string $type
-		 * @param array  $args
+		 * Triggers Given function
+		 *
+		 * @param string $type .
+		 * @param array  $args .
 		 *
 		 * @return mixed
 		 */
@@ -202,6 +364,9 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 		}
 
 		/**
+		 * Triggers apply_filters
+		 *
+		 * @uses \apply_filters()
 		 * @return mixed
 		 */
 		protected function filter() {
@@ -209,6 +374,10 @@ if ( ! class_exists( "VSP_Class_Handler" ) ) {
 		}
 
 		/**
+		 * Triggers do_action
+		 *
+		 * @uses \do_action()
+		 *
 		 * @return mixed
 		 */
 		protected function action() {

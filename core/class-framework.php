@@ -1,5 +1,11 @@
 <?php
-if ( ! defined( "ABSPATH" ) ) {
+/**
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework
+ * @copyright GPL V3 Or greater
+ */
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -11,8 +17,25 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 	abstract class VSP_Framework extends VSP_Framework_Admin implements VSP_Framework_Interface {
 		use VSP_Framework_Trait;
 
-		private   $settings        = null;
-		private   $addons          = null;
+		/**
+		 * Settings
+		 *
+		 * @var null
+		 */
+		private $settings = null;
+
+		/**
+		 * Addons
+		 *
+		 * @var null
+		 */
+		private $addons = null;
+
+		/**
+		 * Default_options
+		 *
+		 * @var array
+		 */
 		protected $default_options = array(
 			'version'       => 1.0,
 			'settings_page' => true,
@@ -24,12 +47,12 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		/**
 		 * VSP_Framework constructor.
 		 *
-		 * @param array $options
+		 * @param array $options .
 		 */
 		public function __construct( $options = array() ) {
 			parent::__construct( $options );
 			$this->__load_required_files();
-			add_action( "vsp_framework_init", array( $this, '__init_plugin' ) );
+			add_action( 'vsp_framework_init', array( $this, '__init_plugin' ) );
 		}
 
 		/**
@@ -72,7 +95,6 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 				if ( vsp_is_admin() ) {
 					vsp_load_lib( 'wpreview' );
 					$this->_instance( 'VS_WP_Review_Me', false, $this->option( 'reviewme' ) );
-					#new VS_WP_Review_Me($this->option('reviewme'));
 				}
 			}
 		}
@@ -84,7 +106,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @uses \VSP_Framework::register_hooks()
 		 */
 		private function __register_hooks() {
-			add_action( "init", array( $this, '__wp_init' ), 20 );
+			add_action( 'init', array( $this, '__wp_init' ), 20 );
 			add_filter( 'load_textdomain_mofile', array( $this, 'load_textdomain' ), 10, 2 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_assets' ) );
 
@@ -103,12 +125,12 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @hook addons_inti
 		 */
 		private function __addon_init() {
-			if ( $this->option( "addons" ) !== false ) {
+			if ( false !== $this->option( 'addons' ) ) {
 				$this->addon_init_before();
-				$this->action( "addons_init_before" );
-				$this->addons = $this->_instance( 'VSP_Addons', false, $this->option( "addons" ) );
+				$this->action( 'addons_init_before' );
+				$this->addons = $this->_instance( 'VSP_Addons', false, $this->option( 'addons' ) );
 				$this->addon_init();
-				$this->action( "addons_init" );
+				$this->action( 'addons_init' );
 			}
 		}
 
@@ -121,12 +143,12 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @hook settings_init
 		 */
 		private function __settings_init() {
-			if ( $this->option( "settings_page" ) !== false ) {
+			if ( false !== $this->option( 'settings_page' ) ) {
 				$this->settings_init_before();
-				$this->action( "settings_init_before" );
+				$this->action( 'settings_init_before' );
 				$this->settings = $this->_instance( 'VSP_Settings_WPSF', false, $this->option( 'settings_page' ) );
 				$this->settings_init();
-				$this->action( "settings_init" );
+				$this->action( 'settings_init' );
 			}
 		}
 
@@ -138,7 +160,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 */
 		private function __load_required_files() {
 			$this->load_files();
-			$this->action( "loaded" );
+			$this->action( 'loaded' );
 		}
 
 		/**
@@ -173,7 +195,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		/**
 		 * Get Ajax URL.
 		 *
-		 * @param $scheme
+		 * @param string $scheme .
 		 *
 		 * @see \admin_url()
 		 * @return string
