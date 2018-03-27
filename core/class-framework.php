@@ -37,7 +37,6 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'version'       => 1.0,
 			'settings_page' => true,
 			'reviewme'      => false,
 			'addons'        => true,
@@ -94,7 +93,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			if ( $this->option( 'reviewme' ) !== false ) {
 				if ( vsp_is_admin() ) {
 					vsp_load_lib( 'wpreview' );
-					$this->_instance( 'VS_WP_Review_Me', false, $this->option( 'reviewme' ) );
+					$this->_instance( 'VS_WP_Review_Me', false, true, $this->option( 'reviewme' ) );
 				}
 			}
 		}
@@ -128,7 +127,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			if ( false !== $this->option( 'addons' ) ) {
 				$this->addon_init_before();
 				$this->action( 'addons_init_before' );
-				$this->addons = $this->_instance( 'VSP_Addons', false, $this->option( 'addons' ) );
+				$this->addons = $this->_instance( 'VSP_Addons', false, true, $this->option( 'addons' ) );
 				$this->addon_init();
 				$this->action( 'addons_init' );
 			}
@@ -146,7 +145,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			if ( false !== $this->option( 'settings_page' ) ) {
 				$this->settings_init_before();
 				$this->action( 'settings_init_before' );
-				$this->settings = $this->_instance( 'VSP_Settings_WPSF', false, $this->option( 'settings_page' ) );
+				$this->settings = $this->_instance( 'VSP_Settings_WPSF', false, true, $this->option( 'settings_page' ) );
 				$this->settings_init();
 				$this->action( 'settings_init' );
 			}
@@ -173,35 +172,15 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		}
 
 		/**
-		 * Get the plugin url.
+		 * Define constant if not already set.
 		 *
-		 * @see \plugins_url()
-		 * @return string
+		 * @param string      $key   Constant name.
+		 * @param string|bool $value Constant value.
 		 */
-		public function plugin_url() {
-			return untrailingslashit( plugins_url( '/', $this->file() ) );
-		}
-
-		/**
-		 * Get the plugin path.
-		 *
-		 * @see \plugin_dir_path()
-		 * @return string
-		 */
-		public function plugin_path() {
-			return untrailingslashit( plugin_dir_path( $this->file() ) );
-		}
-
-		/**
-		 * Get Ajax URL.
-		 *
-		 * @param string $scheme .
-		 *
-		 * @see \admin_url()
-		 * @return string
-		 */
-		public function ajax_url( $scheme = 'relative' ) {
-			return admin_url( 'admin-ajax.php', $scheme );
+		public function define( $key, $value = '' ) {
+			if ( ! defined( $key ) ) {
+				define( $key, $value );
+			}
 		}
 	}
 }

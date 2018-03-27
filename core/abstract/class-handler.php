@@ -16,7 +16,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 	/**
 	 * Class VSP_Class_Handlers
 	 */
-	abstract class VSP_Class_Handler {
+	class VSP_Class_Handler {
 		/**
 		 * Stores all plugins instances
 		 *
@@ -136,7 +136,11 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
-				self::$_instances[ static::class ] = new static();
+				$args = func_get_args();
+				$arg1 = ( isset( $args[0] ) && ! empty( $args[0] ) ) ? $args[0] : array();
+				$arg2 = ( isset( $args[1] ) && ! empty( $args[1] ) ) ? $args[1] : array();
+
+				self::$_instances[ static::class ] = new static( $arg1, $arg2 );
 			}
 			return self::$_instances[ static::class ];
 		}
@@ -204,24 +208,22 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		}
 
 		/**
-		 * @param       $class          .
-		 * @param bool  $force_instance .
-		 * @param array $extra_option   .
+		 * @param string $class          .
+		 * @param bool   $force_instance .
+		 * @param bool   $with_args      .
+		 * @param array  $extra_option   .
 		 *
 		 * @return bool|mixed
 		 */
-		public function _instance( $class, $force_instance = false, $extra_option = array() ) {
+		public function _instance( $class, $force_instance = false, $with_args = true, $extra_option = array() ) {
 			if ( $this->get_instance( $class ) === false ) {
-				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
-					$this->set_instance( $class, $class::instance() );
-				} else {
-					$instances = new $class( $this->get_common_args( $extra_option ) );
-					$this->set_instance( $class, $instances );
-				}
+				$args = ( $with_args === true ) ? $this->get_common_args( $extra_option ) : $extra_option;
 
-				if ( true === $force_instance ) {
-					$this->get_instance( $class )
-						->set_args( $this->get_common_args( $extra_option ) );
+				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
+					$this->set_instance( $class, $class::instance( $args ) );
+				} else {
+					$instances = new $class( $args );
+					$this->set_instance( $class, $instances );
 				}
 			}
 			return $this->get_instance( $class );
@@ -347,6 +349,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 				'db_slug'     => $this->slug( 'db' ),
 				'hook_slug'   => $this->slug( 'hook' ),
 				'plugin_name' => $this->plugin_name(),
+				'file'        => $this->file(),
 			) );
 		}
 
@@ -382,6 +385,44 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 */
 		protected function action() {
 			return $this->action_filter( 'do_action', func_get_args() );
+		}
+
+
+		/**
+		 * Get the plugin url.
+		 *
+		 * @see \plugins_url()
+		 * @return string
+		 */
+		public function plugin_url() {
+			return untrailingslashit( plugins_url( '/', $this->file() ) );
+		}
+
+		/**
+		 * Get the plugin path.
+		 *
+		 * @see \plugin_dir_path()
+		 * @return string
+		 */
+		public function plugin_path() {
+			return untrailingslashit( plugin_dir_path( $this->file() ) );
+		}
+
+		/**
+		 * Get Ajax URL.
+		 *
+		 * @see \admin_url()
+		 *
+		 * @param array  $query_args
+		 * @param string $scheme
+		 *
+		 * @return string
+		 */
+		public function ajax_url( $query_args = array(), $scheme = 'relative' ) {
+			if ( is_array( $query_args ) ) {
+				return add_query_arg( $query_args, admin_url( 'admin-ajax.php', $scheme ) );
+			}
+			return admin_url( 'admin-ajax.php?' . $query_args, $scheme );
 		}
 	}
 }
