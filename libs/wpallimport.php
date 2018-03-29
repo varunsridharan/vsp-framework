@@ -1,7 +1,7 @@
 <?php
 /**
- * Name: WP-All-Import RapidAddon
- * Version: 1.1.0
+ * @name: WP-All-Import RapidAddon
+ * @version: 1.1.0
  */
 /**
  * RapidAddon
@@ -242,7 +242,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 		 *
 		 * Add an option to WP All Import options list
 		 *
-		 * @param string $slug          - option name
+		 * @param string $slug - option name
 		 * @param string $default_value - default option value
 		 *
 		 */

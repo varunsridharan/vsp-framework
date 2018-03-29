@@ -39,6 +39,7 @@ final class VSP_Autoloader {
 		'wpreview'     => 'review-me.php',
 		'wpallimport'  => 'wpallimport.php',
 		'wppointer'    => 'wp-pointers/wp-pointers.php',
+		'wp-endpoints' => 'vs-wp-endpoint.php',
 	);
 
 	/**

@@ -1,8 +1,7 @@
 <?php
 /**
- * Name: WP Review Me
- * Version:1.1
- * Created by PhpStorm.
+ * @name: WP Review Me
+ * @version: 1.2
  * User: varun
  * Date: 02-03-2018
  * Time: 03:15 PM
@@ -11,11 +10,11 @@
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
  */
 
-if ( ! defined( "WPINC" ) ) {
+if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( class_exists( "VS_WP_Review_Me" ) ) {
+if ( class_exists( 'VS_WP_Review_Me' ) ) {
 	return;
 }
 
@@ -28,9 +27,35 @@ class VS_WP_Review_Me {
 	 *
 	 * @var string
 	 */
-	public    $version = '1.0';
-	public    $linkid;
+	public $version = '1.2';
+
+	/**
+	 * linkid
+	 *
+	 * @var
+	 */
+	public $linkid;
+
+	/**
+	 * key
+	 *
+	 * @var string
+	 */
 	protected $key;
+
+	/**
+	 * link_id
+	 *
+	 * @var null|string
+	 */
+	protected $link_id = null;
+
+	/**
+	 * op
+	 *
+	 * @var array
+	 */
+	protected $op = array();
 
 	/**
 	 * VS_WP_Review_Me constructor.
@@ -38,7 +63,7 @@ class VS_WP_Review_Me {
 	 * @param array $options
 	 */
 	public function __construct( $options = array() ) {
-		if ( is_admin() || defined( "DOING_AJAX" ) ) {
+		if ( is_admin() || defined( 'DOING_AJAX' ) ) {
 			$this->op      = wp_parse_args( $options, $this->get_defaults() );
 			$this->key     = 'vswprm_' . substr( md5( $this->op['slug'] ), 0, 20 );
 			$this->link_id = 'vswprm-review-link-' . $this->key;
@@ -80,7 +105,7 @@ class VS_WP_Review_Me {
 		}
 
 		add_action( 'admin_footer', array( $this, 'script' ) );
-		if ( $this->op['notice_callback'] !== false ) {
+		if ( false !== $this->op['notice_callback'] ) {
 			call_user_func_array( $this->op['notice_callback'], array( &$this ) );
 		} else {
 			add_action( 'admin_notices', array( $this, 'add_notice' ) );
@@ -96,7 +121,7 @@ class VS_WP_Review_Me {
 	protected function is_time() {
 		$installed = get_option( $this->key, false );
 
-		if ( false === $installed || $installed === 0 ) {
+		if ( false === $installed || 0 === $installed ) {
 			$this->setup_date();
 			$installed = time();
 		}
@@ -156,9 +181,9 @@ class VS_WP_Review_Me {
 	 * @return string
 	 */
 	protected function get_review_link() {
-		if ( $this->op['review_link'] === false ) {
+		if ( false === $this->op['review_link'] ) {
 			$link = '';
-			if ( $this->op['site'] === 'wordpress' ) {
+			if ( 'wordpress' === $this->op['site'] ) {
 				$link = 'https://wordpress.org/support/';
 
 				switch ( $this->op['type'] ) {
@@ -171,14 +196,12 @@ class VS_WP_Review_Me {
 				}
 
 				$link .= $this->op['type'] . '/reviews';
-				$link = add_query_arg( 'rate', $this->op['rating'], $link );
-				$link = esc_url( $link . '#new-post' );
-			} elseif ( $this->op['site'] === 'codecanyon' ) {
-				$link = 'https://codecanyon.net/item/x/reviews/';
-				$link .= $this->op['item_id'] . '#rating-' . $this->op['item_id'];
-			} elseif ( $this->op['site'] === 'themeforest' ) {
-				$link = 'https://themeforest.net/item/x/reviews/';
-				$link .= $this->op['item_id'] . '#rating-' . $this->op['item_id'];
+
+				$link = add_query_arg( 'rate', $this->op['rating'], $link ) . esc_url( $link . '#new-post' );
+			} elseif ( 'codecanyon' === $this->op['site'] ) {
+				$link = 'https://codecanyon.net/item/x/reviews/' . $this->op['item_id'] . '#rating-' . $this->op['item_id'];
+			} elseif ( 'themeforest' === $this->op['site'] ) {
+				$link = 'https://themeforest.net/item/x/reviews/' . $this->op['item_id'] . '#rating-' . $this->op['item_id'];
 			}
 
 			return $link;

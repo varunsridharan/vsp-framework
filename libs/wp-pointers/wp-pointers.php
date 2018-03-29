@@ -1,7 +1,7 @@
 <?php
 /**
- * Name: WP Pointers
- * Version:1.0
+ * @name    : WP Pointers
+ * @version : 1.0
  */
 /**
  * @package   PointerPlus

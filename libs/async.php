@@ -1,11 +1,11 @@
 <?php
 /**
- * Name: WP Async
- * Version: 1.0
+ * @name: WP Async
+ * @version: 1.0
  */
-define( "VSP_ASYNC_PATH", plugin_dir_path( __FILE__ ) );
+define( 'VSP_ASYNC_PATH', plugin_dir_path( __FILE__ ) );
 
-if ( ! class_exists( "WP_Async_Request", false ) && vsp_wc_active() === true ) {
+if ( ! class_exists( 'WP_Async_Request', false ) && vsp_wc_active() === true ) {
 	if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-async-request.php' ) ) {
 		include( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-async-request.php' );
 	}
@@ -16,7 +16,7 @@ if ( ! class_exists( "WP_Async_Request", false ) && vsp_wc_active() === true ) {
 }
 
 
-if ( ! class_exists( "WP_Background_Process", false ) && vsp_wc_active() === true ) {
+if ( ! class_exists( 'WP_Background_Process', false ) && vsp_wc_active() === true ) {
 	if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-background-process.php' ) ) {
 		include( WP_PLUGIN_DIR . '/woocommerce/includes/libraries/wp-background-process.php' );
 	}

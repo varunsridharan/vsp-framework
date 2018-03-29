@@ -82,8 +82,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$meta[ __( 'Bundled Libs', 'vsp-framework' ) ]         = array();
 			foreach ( $integrations as $k => $v ) {
 				$data = get_file_data( VSP_Autoloader::integration_path() . $v, [
-					'Name'    => 'Name',
-					'Version' => 'Version',
+					'Name'    => '@name',
+					'Version' => '@version',
 				], 'vsp' );
 
 				if ( count( array_filter( $data ) ) === 2 ) {

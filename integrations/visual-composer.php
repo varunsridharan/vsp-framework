@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:Visual Composer
- * Version:1.0
+ * @name: Visual Composer
+ * @version: 1.0
  *
  * @author     Varun Sridharan <varunsridharan23@gmail.com>
  * @since      1.0
