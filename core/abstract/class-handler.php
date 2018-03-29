@@ -213,11 +213,11 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 * @param bool   $with_args .
 		 * @param array  $extra_option .
 		 *
-		 * @return bool|mixed
+		 * @return object|VS_WP_Endpoint
 		 */
 		public function _instance( $class, $force_instance = false, $with_args = true, $extra_option = array() ) {
 			if ( $this->get_instance( $class ) === false ) {
-				$args = ( $with_args === true ) ? $this->get_common_args( $extra_option ) : $extra_option;
+				$args = ( true === $with_args ) ? $this->get_common_args( $extra_option ) : $extra_option;
 
 				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
 					$this->set_instance( $class, $class::instance( $args ) );
