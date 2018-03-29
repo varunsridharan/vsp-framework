@@ -77,7 +77,7 @@ class VS_WP_Endpoint {
 		add_action( 'init', array( &$this, 'on_wp_init' ) );
 		add_action( 'parse_request', array( $this, 'parse_request' ) );
 		add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0 );
-		add_action( 'wp_loaded', array( $this, 'flush' ) );
+		#add_action( 'wp_loaded', array( $this, 'flush' ) );
 	}
 
 	/**

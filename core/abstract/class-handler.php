@@ -148,7 +148,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
 		 *
-		 * @param string $key     .
+		 * @param string $key .
 		 * @param string $default .
 		 */
 		protected function _set_core( $key = '', $default = '' ) {
@@ -160,7 +160,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * Merges And sets the given args
 		 *
-		 * @param array $options  .
+		 * @param array $options .
 		 * @param array $defaults .
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
@@ -208,16 +208,16 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		}
 
 		/**
-		 * @param string $class          .
+		 * @param string $class .
 		 * @param bool   $force_instance .
-		 * @param bool   $with_args      .
-		 * @param array  $extra_option   .
+		 * @param bool   $with_args .
+		 * @param array  $extra_option .
 		 *
-		 * @return bool|mixed
+		 * @return object|VS_WP_Endpoint
 		 */
 		public function _instance( $class, $force_instance = false, $with_args = true, $extra_option = array() ) {
 			if ( $this->get_instance( $class ) === false ) {
-				$args = ( $with_args === true ) ? $this->get_common_args( $extra_option ) : $extra_option;
+				$args = ( true === $with_args ) ? $this->get_common_args( $extra_option ) : $extra_option;
 
 				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
 					$this->set_instance( $class, $class::instance( $args ) );
@@ -232,7 +232,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * VSP_Class_Handler constructor.
 		 *
-		 * @param array $options  .
+		 * @param array $options .
 		 * @param array $defaults .
 		 */
 		public function __construct( $options = array(), $defaults = array() ) {
@@ -242,7 +242,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * Merges given array
 		 *
-		 * @param array $new      .
+		 * @param array $new .
 		 * @param array $defaults .
 		 *
 		 * @return array
@@ -308,7 +308,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * Returns value from options array
 		 *
-		 * @param string $key     .
+		 * @param string $key .
 		 * @param bool   $default .
 		 *
 		 * @return bool|mixed
@@ -320,7 +320,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		/**
 		 * Sets given value for the option
 		 *
-		 * @param string                          $key   .
+		 * @param string                          $key .
 		 * @param string|object|array|int|integer $value .
 		 */
 		protected function set_option( $key, $value ) {
