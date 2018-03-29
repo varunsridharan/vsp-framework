@@ -392,20 +392,27 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 * Get the plugin url.
 		 *
 		 * @see \plugins_url()
+		 *
+		 * @param string $ex_path
+		 *
 		 * @return string
 		 */
-		public function plugin_url() {
-			return untrailingslashit( plugins_url( '/', $this->file() ) );
+		public function plugin_url( $ex_path = '/' ) {
+			return untrailingslashit( plugins_url( $ex_path, $this->file() ) );
 		}
 
 		/**
 		 * Get the plugin path.
 		 *
 		 * @see \plugin_dir_path()
+		 *
+		 * @param string $ex_path
+		 *
 		 * @return string
 		 */
-		public function plugin_path() {
-			return untrailingslashit( plugin_dir_path( $this->file() ) );
+		public function plugin_path( $ex_path = '' ) {
+			$path = untrailingslashit( plugin_dir_path( $this->file() ) );
+			return ( empty( $ex_path ) ) ? $path : $path . '/' . $ex_path;
 		}
 
 		/**
