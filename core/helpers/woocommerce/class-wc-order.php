@@ -44,7 +44,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order   order object
+		 * @param \WC_Order $order order object
 		 * @param string    $context if 'view' then the value will be filtered
 		 *
 		 * @return \WC_DateTime|null
@@ -58,7 +58,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order   order object
+		 * @param \WC_Order $order order object
 		 * @param string    $context if 'view' then the value will be filtered
 		 *
 		 * @return \WC_DateTime|null
@@ -72,7 +72,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order   order object
+		 * @param \WC_Order $order order object
 		 * @param string    $context if 'view' then the value will be filtered
 		 *
 		 * @return \WC_DateTime|null
@@ -86,7 +86,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order   order object
+		 * @param \WC_Order $order order object
 		 * @param string    $context if 'view' then the value will be filtered
 		 *
 		 * @return \WC_DateTime|null
@@ -102,8 +102,8 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order   order object
-		 * @param string    $type    type of date to get
+		 * @param \WC_Order $order order object
+		 * @param string    $type type of date to get
 		 * @param string    $context if 'view' then the value will be filtered
 		 *
 		 * @return \WC_DateTime|null
@@ -138,8 +138,8 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $object  the order object
-		 * @param string    $prop    the property name
+		 * @param \WC_Order $object the order object
+		 * @param string    $prop the property name
 		 * @param string    $context if 'view' then the value will be filtered
 		 * @param array     $compat_props
 		 *
@@ -168,8 +168,8 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $object       the order object
-		 * @param array     $props        the new properties as $key => $value
+		 * @param \WC_Order $object the order object
+		 * @param array     $props the new properties as $key => $value
 		 * @param array     $compat_props .
 		 *
 		 * @throws
@@ -184,9 +184,9 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order $order        the order object
-		 * @param array     $code         the coupon code
-		 * @param int       $discount     the discount amount.
+		 * @param \WC_Order $order the order object
+		 * @param array     $code the coupon code
+		 * @param int       $discount the discount amount.
 		 * @param int       $discount_tax the discount tax amount.
 		 *
 		 * @throws
@@ -216,7 +216,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Order $order the order object
-		 * @param object    $fee   the fee to add
+		 * @param object    $fee the fee to add
 		 *
 		 * @throws
 		 * @return int the order item ID
@@ -248,7 +248,7 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.7.0
 		 *
-		 * @param \WC_Order         $order         order object
+		 * @param \WC_Order         $order order object
 		 * @param \WC_Shipping_Rate $shipping_rate shipping rate to add
 		 *
 		 * @throws
@@ -284,9 +284,9 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.7.0
 		 *
-		 * @param \WC_Order     $order               order object
-		 * @param int           $tax_rate_id         tax rate ID
-		 * @param float|integer $tax_amount          cart tax amount
+		 * @param \WC_Order     $order order object
+		 * @param int           $tax_rate_id tax rate ID
+		 * @param float|integer $tax_amount cart tax amount
 		 * @param float|integer $shipping_tax_amount shipping tax amount
 		 *
 		 * @throws
@@ -316,13 +316,13 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order          $order        the order object
-		 * @param int|\WC_Order_Item $item         the order item ID
-		 * @param array              $args         {
+		 * @param \WC_Order          $order the order object
+		 * @param int|\WC_Order_Item $item the order item ID
+		 * @param array              $args {
 		 *                                         The coupon item args.
 		 *
-		 * @type string              $code         the coupon code
-		 * @type float               $discount     the coupon discount amount
+		 * @type string              $code the coupon code
+		 * @type float               $discount the coupon discount amount
 		 * @type float               $discount_tax the coupon discount tax amount
 		 * }
 		 * @throws
@@ -363,15 +363,15 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Order          $order      the order object
-		 * @param int|\WC_Order_Item $item       the order item ID
-		 * @param array              $args       {
+		 * @param \WC_Order          $order the order object
+		 * @param int|\WC_Order_Item $item the order item ID
+		 * @param array              $args {
 		 *                                       The fee item args.
 		 *
-		 * @type string              $name       the fee name
-		 * @type string              $tax_class  the fee's tax class
+		 * @type string              $name the fee name
+		 * @type string              $tax_class the fee's tax class
 		 * @type float               $line_total the fee total amount
-		 * @type float               $line_tax   the fee tax amount
+		 * @type float               $line_tax the fee tax amount
 		 * }
 		 * @return int|bool the order item ID or false on failure
 		 * @throws
@@ -456,13 +456,13 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 		 *
 		 * @since 4.6.5
 		 *
-		 * @param \WC_Order_Item|array $item        order item object or array
-		 * @param string               $hideprefix  prefix for meta that is considered hidden
+		 * @param \WC_Order_Item|array $item order item object or array
+		 * @param string               $hideprefix prefix for meta that is considered hidden
 		 * @param bool                 $include_all whether to include all meta (attributes, etc...), or just custom fields
 		 *
 		 * @return array $item_meta {
-		 * @type string                $label       meta field label
-		 * @type mixed                 $value       meta value
+		 * @type string                $label meta field label
+		 * @type mixed                 $value meta value
 		 * }
 		 */
 		public static function get_item_formatted_meta_data( $item, $hideprefix = '_', $include_all = false ) {

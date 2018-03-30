@@ -154,8 +154,8 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 		/**
 		 * Reads Addon File And Returns Doc Block
 		 *
-		 * @param string $file      .
-		 * @param bool   $markup    .
+		 * @param string $file .
+		 * @param bool   $markup .
 		 * @param bool   $translate .
 		 *
 		 * @return mixed
@@ -208,9 +208,9 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 		/**
 		 * Reads The File Header
 		 *
-		 * @param string $file            .
+		 * @param string $file .
 		 * @param array  $default_headers .
-		 * @param string $context         .
+		 * @param string $context .
 		 *
 		 * @return mixed
 		 */
@@ -267,7 +267,7 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 		 * Extract Screenshots
 		 *
 		 * @param array $content .
-		 * @param array $meta    .
+		 * @param array $meta .
 		 *
 		 * @return array
 		 */
@@ -369,7 +369,7 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 		 * Extracts Required Plugins Data From metadata
 		 *
 		 * @param string $content .
-		 * @param array  $meta    .
+		 * @param array  $meta .
 		 *
 		 * @return array
 		 * //preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content[5], $reg_shortcodes );

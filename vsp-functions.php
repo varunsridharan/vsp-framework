@@ -46,7 +46,7 @@ if ( ! function_exists( 'vsp_define' ) ) {
 	/**
 	 * Defines Give Values if not defined
 	 *
-	 * @param $key   .
+	 * @param $key .
 	 * @param $value .
 	 *
 	 * @return bool
@@ -60,7 +60,7 @@ if ( ! function_exists( "vsp_url" ) ) {
 	/**
 	 * Returns VSP Framework url
 	 *
-	 * @param string $extra  .
+	 * @param string $extra .
 	 * @param bool   $is_url .
 	 *
 	 * @return string
@@ -91,7 +91,7 @@ if ( ! function_exists( 'vsp_js' ) ) {
 	 * Returns VSP Framework assets/js Path / URL base on given values
 	 *
 	 * @param string $extra .
-	 * @param bool   $url   .
+	 * @param bool   $url .
 	 *
 	 * @return string
 	 */
@@ -108,7 +108,7 @@ if ( ! function_exists( 'vsp_css' ) ) {
 	 * Returns VSP Framework assets/css Path / URL base on given values
 	 *
 	 * @param string $extra .
-	 * @param bool   $url   .
+	 * @param bool   $url .
 	 *
 	 * @return string
 	 */
@@ -125,7 +125,7 @@ if ( ! function_exists( 'vsp_img' ) ) {
 	 * Returns VSP Framework assets/img Path / URL base on given values
 	 *
 	 * @param string $extra .
-	 * @param bool   $url   .
+	 * @param bool   $url .
 	 *
 	 * @return string
 	 */
@@ -143,8 +143,8 @@ if ( ! function_exists( 'vsp_debug_file' ) ) {
 	 * if WP_DEBUG / SCRIPT_DEBUG is set to true then it loads unminified files
 	 *
 	 * @param string $filename .
-	 * @param bool   $makeurl  .
-	 * @param bool   $is_url   .
+	 * @param bool   $makeurl .
+	 * @param bool   $is_url .
 	 *
 	 * @return mixed|null|string
 	 */

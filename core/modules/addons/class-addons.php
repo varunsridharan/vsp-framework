@@ -122,7 +122,7 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 		 * Handles Ajax Request Params For Addons
 		 *
 		 * @param string $request .
-		 * @param string $msg     .
+		 * @param string $msg .
 		 *
 		 * @return bool
 		 */
@@ -223,7 +223,7 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 		 * Activates Selected Addon.
 		 *
 		 * @param string $addons_slug .
-		 * @param string $pathid      .
+		 * @param string $pathid .
 		 *
 		 * @return bool
 		 */
@@ -242,7 +242,7 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 		 * Deactivates Selected Addon
 		 *
 		 * @param string $addons_slug .
-		 * @param string $pathid      .
+		 * @param string $pathid .
 		 *
 		 * @return bool
 		 */
@@ -262,7 +262,7 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 		/**
 		 * Checks if given addon is active
 		 *
-		 * @param string $slug      .
+		 * @param string $slug .
 		 * @param bool   $is_pathid .
 		 *
 		 * @return bool|mixed

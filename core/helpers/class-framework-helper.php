@@ -33,7 +33,7 @@ class VSP_Framework_Helper {
 	 * @since 2.2.0
 	 *
 	 * @param string $haystack .
-	 * @param string $needle   .
+	 * @param string $needle .
 	 *
 	 * @return bool
 	 */
@@ -89,7 +89,7 @@ class VSP_Framework_Helper {
 	 * @since 2.2.0
 	 *
 	 * @param string $haystack .
-	 * @param string $needle   .
+	 * @param string $needle .
 	 *
 	 * @return bool
 	 */
@@ -113,7 +113,7 @@ class VSP_Framework_Helper {
 	 * @since 2.2.0
 	 *
 	 * @param string $haystack .
-	 * @param string $needle   .
+	 * @param string $needle .
 	 *
 	 * @return bool
 	 */
@@ -139,8 +139,8 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param string $string   text to truncate .
-	 * @param int    $length   total desired length of string, including omission .
+	 * @param string $string text to truncate .
+	 * @param int    $length total desired length of string, including omission .
 	 * @param string $omission omission text, defaults to '...' .
 	 *
 	 * @return string
@@ -208,8 +208,8 @@ class VSP_Framework_Helper {
 	 *
 	 * @since 2.2.0
 	 *
-	 * @param \XMLWriter   $xml_writer    XML writer instance.
-	 * @param string|array $element_key   name for element, e.g. <per_page>.
+	 * @param \XMLWriter   $xml_writer XML writer instance.
+	 * @param string|array $element_key name for element, e.g. <per_page>.
 	 * @param string|array $element_value value for element, e.g. 100.
 	 *
 	 * @return string generated XML
@@ -553,7 +553,7 @@ class VSP_Framework_Helper {
 	 * @since 4.6.0
 	 *
 	 * @param string $message the error message.
-	 * @param int    $type    Optional. The error type. Defaults to E_USER_NOTICE.
+	 * @param int    $type Optional. The error type. Defaults to E_USER_NOTICE.
 	 */
 	public static function trigger_error( $message, $type = E_USER_NOTICE ) {
 		if ( is_callable( 'is_ajax' ) && is_ajax() ) {

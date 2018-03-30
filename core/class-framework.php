@@ -174,7 +174,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		/**
 		 * Define constant if not already set.
 		 *
-		 * @param string      $key   Constant name.
+		 * @param string      $key Constant name.
 		 * @param string|bool $value Constant value.
 		 */
 		public function define( $key, $value = '' ) {

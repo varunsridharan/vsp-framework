@@ -109,7 +109,7 @@ if ( ! class_exists( "WP_Background_Process", false ) ) {
 		/**
 		 * Update queue
 		 *
-		 * @param string $key  Key.
+		 * @param string $key Key.
 		 * @param array  $data Data.
 		 *
 		 * @return $this

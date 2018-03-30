@@ -53,9 +53,9 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Data $object       the data object, likely \WC_Order or \WC_Product
-		 * @param string   $prop         the property name
-		 * @param string   $context      if 'view' then the value will be filtered
+		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
+		 * @param string   $prop the property name
+		 * @param string   $context if 'view' then the value will be filtered
 		 * @param array    $compat_props Compatibility properties.
 		 *
 		 * @return mixed
@@ -91,8 +91,8 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Data $object       the data object, likely \WC_Order or \WC_Product
-		 * @param array    $props        the new properties as $key => $value
+		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
+		 * @param array    $props the new properties as $key => $value
 		 * @param array    $compat_props Compatibility properties.
 		 *
 		 * @return \WC_Data
@@ -117,9 +117,9 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Data $object  the data object, likely \WC_Order or \WC_Product
-		 * @param string   $key     the meta key
-		 * @param bool     $single  whether to get the meta as a single item. Defaults to `true`
+		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
+		 * @param string   $key the meta key
+		 * @param bool     $single whether to get the meta as a single item. Defaults to `true`
 		 * @param string   $context if 'view' then the value will be filtered
 		 *
 		 * @return mixed
@@ -146,8 +146,8 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
-		 * @param string   $key    the meta key
-		 * @param string   $value  the meta value
+		 * @param string   $key the meta key
+		 * @param string   $value the meta value
 		 * @param bool     $unique Optional. Whether the meta should be unique.
 		 */
 		public static function add_meta_data( $object, $key, $value, $unique = false ) {
@@ -171,9 +171,9 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Data   $object  the data object, likely \WC_Order or \WC_Product
-		 * @param string     $key     the meta key
-		 * @param string     $value   the meta value
+		 * @param \WC_Data   $object the data object, likely \WC_Order or \WC_Product
+		 * @param string     $key the meta key
+		 * @param string     $value the meta value
 		 * @param int|string $meta_id Optional. The specific meta ID to update
 		 */
 		public static function update_meta_data( $object, $key, $value, $meta_id = '' ) {
@@ -198,7 +198,7 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
-		 * @param string   $key    the meta key
+		 * @param string   $key the meta key
 		 */
 		public static function delete_meta_data( $object, $key ) {
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {

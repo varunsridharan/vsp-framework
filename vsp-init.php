@@ -141,7 +141,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * Stores Framework Version & its details
 		 *
 		 * @param string $version framework version.
-		 * @param array  $data    other information.
+		 * @param array  $data other information.
 		 *
 		 * @return $this
 		 */
@@ -168,8 +168,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		/**
 		 * Registers a plugin and stores its deta to $data
 		 *
-		 * @param string $plugin_path    Exact Plugin path.
-		 * @param array  $meta_data      Information such as Lib & Integrations which need to be loaded for this plugin.
+		 * @param string $plugin_path Exact Plugin path.
+		 * @param array  $meta_data Information such as Lib & Integrations which need to be loaded for this plugin.
 		 * @param string $framework_path Foldername of the framework path.
 		 *
 		 * @return $this
@@ -262,9 +262,9 @@ if ( ! function_exists( 'vsp_maybe_load' ) ) {
 	 * Adds Passed Plugin path to the list array which later used to compare and
 	 * load the framework from a plugin which has the latest version of framework
 	 *
-	 * @param string $plugin_path    Plugin Path To register With VSP.
-	 * @param array  $meta_data      Array of data like Libs & Integrations to load.
-	 * @param array  $callback       Custom function to callback when VSP is loaded.
+	 * @param string $plugin_path Plugin Path To register With VSP.
+	 * @param array  $meta_data Array of data like Libs & Integrations to load.
+	 * @param array  $callback Custom function to callback when VSP is loaded.
 	 * @param string $framework_path Exact path of the vsp framework in the plugin.
 	 */
 	function vsp_maybe_load( $plugin_path = '', $meta_data = [], $callback = [], $framework_path = '/vsp-framework/' ) {
@@ -288,14 +288,14 @@ if ( ! function_exists( 'vsp_register_plugin' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_maybe_framework_loader' ) ) {
+if ( ! function_exists( 'vsp_mayby_framework_loader' ) ) {
 	/**
 	 * Adds Passed Plugin path to the list array which later used to compare and
 	 * load the framework from a plugin which has the latest version of framework
 	 *
-	 * @param string $plugin_path    Plugin Path To register With VSP.
-	 * @param array  $meta_data      Array of data like Libs & Integrations to load.
-	 * @param array  $callback       Custom function to callback when VSP is loaded.
+	 * @param string $plugin_path Plugin Path To register With VSP.
+	 * @param array  $meta_data Array of data like Libs & Integrations to load.
+	 * @param array  $callback Custom function to callback when VSP is loaded.
 	 * @param string $framework_path Exact path of the vsp framework in the plugin.
 	 *
 	 * @deprecated This plugin has been deprecated instead use vsp_maybe_load

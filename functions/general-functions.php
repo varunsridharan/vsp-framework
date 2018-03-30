@@ -132,7 +132,7 @@ if ( ! function_exists( 'vsp_is_screen' ) ) {
 	/**
 	 * Checks if current screen is given screen
 	 *
-	 * @param string $check_screen   .
+	 * @param string $check_screen .
 	 * @param string $current_screen .
 	 *
 	 * @return bool
@@ -182,7 +182,7 @@ if ( ! function_exists( 'vsp_addons_extract_tags' ) ) {
 	/**
 	 * Extracts Addon Tags
 	 *
-	 * @param string $content             .
+	 * @param string $content .
 	 * @param bool   $is_addons_reqplugin .
 	 *
 	 * preg_match_all( '@\[([^<>&\[\]\x00-\x20=]++)@',$content, $reg_shortcodes ).
@@ -203,8 +203,8 @@ if ( ! function_exists( 'vsp_addons_extract_tags_pattern' ) ) {
 	/**
 	 * Extract Tags
 	 *
-	 * @param array|string $tags     .
-	 * @param string       $content  .
+	 * @param array|string $tags .
+	 * @param string       $content .
 	 * @param bool         $is_addon .
 	 *
 	 * @return mixed
@@ -325,7 +325,7 @@ if ( ! function_exists( 'vsp_get_cdn' ) ) {
 	/**
 	 * Gets CDN Data.
 	 *
-	 * @param string $part_url     .
+	 * @param string $part_url .
 	 * @param bool   $force_decode .
 	 *
 	 * @return array|mixed|object|\WP_Error
@@ -372,8 +372,8 @@ if ( ! function_exists( 'vsp_js_vars' ) ) {
 	/**
 	 * Generates Script Tag
 	 *
-	 * @param string $object_name     .
-	 * @param array  $l10n            .
+	 * @param string $object_name .
+	 * @param array  $l10n .
 	 * @param bool   $with_script_tag .
 	 *
 	 * @return string
@@ -408,7 +408,7 @@ if ( ! function_exists( 'vsp_is_user_role' ) ) {
 	/**
 	 * Checks if given user role is the same as current user role
 	 *
-	 * @param null $role         .
+	 * @param null $role .
 	 * @param null $current_role .
 	 *
 	 * @return bool
@@ -532,9 +532,9 @@ if ( ! function_exists( 'vsp_array_insert_before' ) ) {
 	/**
 	 * Inserts a new key/value before the key in the array.
 	 *
-	 * @param string $key       The key to insert before.
-	 * @param array  $array     An array to insert in to.
-	 * @param string $new_key   The key to insert.
+	 * @param string $key The key to insert before.
+	 * @param array  $array An array to insert in to.
+	 * @param string $new_key The key to insert.
 	 * @param mixed  $new_value An value to insert.
 	 *
 	 * @return array|boolean|bool The new array if the key exists, FALSE otherwise.
@@ -558,9 +558,9 @@ if ( ! function_exists( 'vsp_array_insert_after' ) ) {
 	/**
 	 * Inserts a new key/value after the key in the array.
 	 *
-	 * @param string $key       The key to insert after.
-	 * @param array  $array     An array to insert in to.
-	 * @param string $new_key   The key to insert.
+	 * @param string $key The key to insert after.
+	 * @param array  $array An array to insert in to.
+	 * @param string $new_key The key to insert.
 	 * @param mixed  $new_value An value to insert.
 	 *
 	 * @return array|mixed The new array if the key exists, FALSE otherwise.
@@ -635,9 +635,9 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	 * Send Json Callback array in ajax.
 	 * used for sweatalert / trigger custom js functions.
 	 *
-	 * @param bool  $status      .
-	 * @param array $functions   .
-	 * @param array $other_info  .
+	 * @param bool  $status .
+	 * @param array $functions .
+	 * @param array $other_info .
 	 * @param null  $status_code .
 	 */
 	function vsp_send_json_callback( $status = true, $functions = array(), $other_info = array(), $status_code = null ) {

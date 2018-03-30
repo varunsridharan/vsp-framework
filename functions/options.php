@@ -35,9 +35,9 @@ if ( ! function_exists( 'vsp_add_vars' ) ) {
 	 * Adds Given Key & values to the plugin's global variable
 	 *
 	 * @param string $plugin_name .
-	 * @param string $key         .
-	 * @param string $values      .
-	 * @param bool   $force_add   .
+	 * @param string $key .
+	 * @param string $values .
+	 * @param bool   $force_add .
 	 *
 	 * @return bool
 	 */
@@ -58,8 +58,8 @@ if ( ! function_exists( 'vsp_vars' ) ) {
 	 * Returns plugin's global variable
 	 *
 	 * @param string $plugin_name .
-	 * @param string $key         .
-	 * @param string $default     .
+	 * @param string $key .
+	 * @param string $default .
 	 *
 	 * @return string
 	 */
@@ -77,7 +77,7 @@ if ( ! function_exists( 'vsp_remove_vars' ) ) {
 	 * Removes a plugins global variable
 	 *
 	 * @param string $plugin_name .
-	 * @param string $key         .
+	 * @param string $key .
 	 *
 	 * @return bool
 	 */
@@ -98,7 +98,7 @@ if ( ! function_exists( 'vsp_option' ) ) {
 	 *
 	 * @param string $plugin_name .
 	 * @param string $option_name .
-	 * @param string $default     .
+	 * @param string $default .
 	 *
 	 * @return string
 	 */

@@ -37,9 +37,9 @@ if ( ! function_exists( 'vsp_unslashit' ) ) {
 if ( ! function_exists( 'vsp_register_script' ) ) {
 	/**
 	 * @param string $handle .
-	 * @param string $src    .
-	 * @param array  $deps   .
-	 * @param string $ver    .
+	 * @param string $src .
+	 * @param array  $deps .
+	 * @param string $ver .
 	 * @param bool   $footer .
 	 *
 	 * @return bool
@@ -53,10 +53,10 @@ if ( ! function_exists( 'vsp_register_script' ) ) {
 if ( ! function_exists( 'vsp_register_style' ) ) {
 	/**
 	 * @param string $handle .
-	 * @param string $src    .
-	 * @param array  $deps   .
-	 * @param string $ver    .
-	 * @param string $media  .
+	 * @param string $src .
+	 * @param array  $deps .
+	 * @param string $ver .
+	 * @param string $media .
 	 *
 	 * @return bool
 	 */
@@ -68,10 +68,10 @@ if ( ! function_exists( 'vsp_register_style' ) ) {
 
 if ( ! function_exists( 'vsp_load_script' ) ) {
 	/**
-	 * @param string $handle    .
-	 * @param string $src       .
-	 * @param array  $deps      .
-	 * @param string $ver       .
+	 * @param string $handle .
+	 * @param string $src .
+	 * @param array  $deps .
+	 * @param string $ver .
 	 * @param bool   $in_footer .
 	 */
 	function vsp_load_script( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
@@ -82,10 +82,10 @@ if ( ! function_exists( 'vsp_load_script' ) ) {
 
 if ( ! function_exists( 'vsp_load_style' ) ) {
 	/**
-	 * @param string $handle    .
-	 * @param string $src       .
-	 * @param array  $deps      .
-	 * @param string $ver       .
+	 * @param string $handle .
+	 * @param string $src .
+	 * @param array  $deps .
+	 * @param string $ver .
 	 * @param bool   $in_footer .
 	 */
 	function vsp_load_style( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
@@ -98,8 +98,8 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 	/**
 	 * @param      $plugin_file .
 	 * @param      $plugin_data .
-	 * @param bool $markup      .
-	 * @param bool $translate   .
+	 * @param bool $markup .
+	 * @param bool $translate .
 	 *
 	 * @return mixed
 	 */
@@ -217,8 +217,8 @@ if ( ! function_exists( "vsp_get_shortcode_regex" ) ) {
 if ( ! function_exists( "vsp_set_cache" ) ) {
 	/**
 	 * @param     $cache_name .
-	 * @param     $data       .
-	 * @param int $expiry     .
+	 * @param     $data .
+	 * @param int $expiry .
 	 *
 	 * @return bool
 	 */
@@ -263,8 +263,8 @@ if ( ! function_exists( "vsp_fix_title" ) ) {
 
 if ( ! function_exists( "vsp_update_term_meta" ) ) {
 	/**
-	 * @param        $term_id    .
-	 * @param        $meta_key   .
+	 * @param        $term_id .
+	 * @param        $meta_key .
 	 * @param        $meta_value .
 	 * @param string $prev_value .
 	 *
@@ -277,10 +277,10 @@ if ( ! function_exists( "vsp_update_term_meta" ) ) {
 
 if ( ! function_exists( "vsp_add_term_meta" ) ) {
 	/**
-	 * @param      $term_id    .
-	 * @param      $meta_key   .
+	 * @param      $term_id .
+	 * @param      $meta_key .
 	 * @param      $meta_value .
-	 * @param bool $unique     .
+	 * @param bool $unique .
 	 *
 	 * @return bool|int|\WP_Error
 	 */
@@ -291,8 +291,8 @@ if ( ! function_exists( "vsp_add_term_meta" ) ) {
 
 if ( ! function_exists( "vsp_delete_term_meta" ) ) {
 	/**
-	 * @param        $term_id    .
-	 * @param        $meta_key   .
+	 * @param        $term_id .
+	 * @param        $meta_key .
 	 * @param string $meta_value .
 	 * @param bool   $deprecated .
 	 *
@@ -306,8 +306,8 @@ if ( ! function_exists( "vsp_delete_term_meta" ) ) {
 if ( ! function_exists( "vsp_get_term_meta" ) ) {
 	/**
 	 * @param      $term_id .
-	 * @param      $key     .
-	 * @param bool $single  .
+	 * @param      $key .
+	 * @param bool $single .
 	 *
 	 * @return mixed|void
 	 */

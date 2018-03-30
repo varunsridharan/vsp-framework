@@ -26,8 +26,8 @@ class VSP_Cache {
 	 *
 	 * @uses \wp_cache_add()
 	 *
-	 * @param string $key    .
-	 * @param string $data   .
+	 * @param string $key .
+	 * @param string $data .
 	 * @param int    $expire .
 	 *
 	 * @return bool
@@ -48,8 +48,8 @@ class VSP_Cache {
 	/**
 	 * Set cache
 	 *
-	 * @param string $key    .
-	 * @param string $data   .
+	 * @param string $key .
+	 * @param string $data .
 	 * @param int    $expire .
 	 *
 	 * @return bool
@@ -61,7 +61,7 @@ class VSP_Cache {
 	/**
 	 * Get cache
 	 *
-	 * @param string $key      .
+	 * @param string $key .
 	 * @param bool   $is_found .
 	 *
 	 * @return bool|mixed
@@ -84,8 +84,8 @@ class VSP_Cache {
 	/**
 	 * Replace cache
 	 *
-	 * @param string $key    .
-	 * @param string $data   .
+	 * @param string $key .
+	 * @param string $data .
 	 * @param int    $expire .
 	 *
 	 * @return bool

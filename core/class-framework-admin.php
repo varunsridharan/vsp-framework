@@ -77,10 +77,10 @@ if ( ! class_exists( 'VSP_Framework_Admin' ) ) {
 		/**
 		 * Adds Action link
 		 *
-		 * @param array  $action      .
+		 * @param array  $action .
 		 * @param string $plugin_file .
 		 * @param array  $plugin_meta .
-		 * @param string $status      .
+		 * @param string $status .
 		 *
 		 * @return mixed
 		 */

@@ -30,7 +30,7 @@ class VSP_Addons_Detailed_View extends VSP_Addons_FileMeta {
 	 *
 	 * @param object $result .
 	 * @param string $action .
-	 * @param array  $args   .
+	 * @param array  $args .
 	 *
 	 * @return array|bool|mixed|object|\WP_Error
 	 */

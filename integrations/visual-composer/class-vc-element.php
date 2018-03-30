@@ -48,7 +48,7 @@ trait VSP_VC_Element {
 	 * Checks if google font is used.
 	 *
 	 * @param bool  $is_use .
-	 * @param array $fonts  .
+	 * @param array $fonts .
 	 *
 	 * @return bool
 	 */
@@ -72,7 +72,7 @@ trait VSP_VC_Element {
 	/**
 	 * Extracts Fonts Data.
 	 *
-	 * @param array $atts    .
+	 * @param array $atts .
 	 * @param array $options .
 	 *
 	 * @return array
@@ -109,7 +109,7 @@ trait VSP_VC_Element {
 	/**
 	 * Checks if given key exists in $this->_atts
 	 *
-	 * @param string $key     .
+	 * @param string $key .
 	 * @param mixed  $default .
 	 *
 	 * @return string
@@ -135,11 +135,11 @@ trait VSP_VC_Element {
 	/**
 	 * Extracts And Returns Formatted Element Style
 	 *
-	 * @param string $el_class            .
-	 * @param string $css                 .
-	 * @param array  $google_fonts_data   .
+	 * @param string $el_class .
+	 * @param string $css .
+	 * @param array  $google_fonts_data .
 	 * @param array  $font_container_data .
-	 * @param array  $atts                .
+	 * @param array  $atts .
 	 *
 	 * @return array
 	 */
@@ -153,9 +153,9 @@ trait VSP_VC_Element {
 	/**
 	 * Returns Elements Style.
 	 *
-	 * @param string $el_class        .
-	 * @param string $css             .
-	 * @param array  $font_data       .
+	 * @param string $el_class .
+	 * @param string $css .
+	 * @param array  $font_data .
 	 * @param bool   $use_theme_fonts .
 	 *
 	 * @return array
@@ -213,7 +213,7 @@ trait VSP_VC_Element {
 	/**
 	 * Returns Elements Links With Custom text
 	 *
-	 * @param string $key  .
+	 * @param string $key .
 	 * @param string $text .
 	 *
 	 * @return string
@@ -244,8 +244,8 @@ trait VSP_VC_Element {
 	 * Extracts Args
 	 *
 	 * @param bool   $shortcode .
-	 * @param array  $args      .
-	 * @param string $prefix    .
+	 * @param array  $args .
+	 * @param string $prefix .
 	 *
 	 * @return array
 	 */
@@ -273,8 +273,8 @@ trait VSP_VC_Element {
 	 * Renders Shortcode.
 	 *
 	 * @param string $shortcode_name .
-	 * @param array  $atts           .
-	 * @param null   $content        .
+	 * @param array  $atts .
+	 * @param null   $content .
 	 *
 	 * @return bool
 	 */

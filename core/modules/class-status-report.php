@@ -66,9 +66,9 @@ if ( ! class_exists( 'VSP_Status_Report' ) ) {
 		/**
 		 * Checks for Bool
 		 *
-		 * @param boolean|bool|string $check   .
+		 * @param boolean|bool|string $check .
 		 * @param string              $success .
-		 * @param string              $fail    .
+		 * @param string              $fail .
 		 *
 		 * @return string
 		 */
@@ -82,7 +82,7 @@ if ( ! class_exists( 'VSP_Status_Report' ) ) {
 		/**
 		 * Returns Theme Information
 		 *
-		 * @param  array|object $theme  .
+		 * @param  array|object $theme .
 		 * @param  string       $prefix .
 		 *
 		 * @return array

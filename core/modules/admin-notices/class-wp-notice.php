@@ -96,12 +96,12 @@ class VSP_WP_Notice {
 	/**
 	 *
 	 * @param string $content Content to be displayed
-	 * @param string $title   Title of the notice, optional default is empty string.
-	 * @param string $type    Type of the notice, must be one of {@link self::TYPE_UPDATED}, {@link self::TYPE_ERROR},
+	 * @param string $title Title of the notice, optional default is empty string.
+	 * @param string $type Type of the notice, must be one of {@link self::TYPE_UPDATED}, {@link self::TYPE_ERROR},
 	 *                        {@link self::TYPE_UPDATED_NAG}. Defaults to {@link self::TYPE_UPDATED}.
-	 * @param int    $times   How many times this notice will be displayed
+	 * @param int    $times How many times this notice will be displayed
 	 * @param array  $screens The admin screen ids this notice will be displayed into (empty for all screens)
-	 * @param array  $users   Array of user ids this notice concerns (empty for all users)
+	 * @param array  $users Array of user ids this notice concerns (empty for all users)
 	 */
 	public function __construct( $content = '', $title = '', $type = self::TYPE_UPDATED, $times = 1, $screens = array(), $users = array() ) {
 		$this->id = uniqid( md5( $content ), true );

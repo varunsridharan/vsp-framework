@@ -38,8 +38,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Product $object  the product object
-		 * @param string      $prop    the property name
+		 * @param \WC_Product $object the product object
+		 * @param string      $prop the property name
 		 * @param string      $context if 'view' then the value will be filtered
 		 *
 		 * @return mixed
@@ -60,8 +60,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 *
 		 * @since 4.6.0
 		 *
-		 * @param \WC_Product $object       the product object
-		 * @param array       $props        the new properties as $key => $value
+		 * @param \WC_Product $object the product object
+		 * @param array       $props the new properties as $key => $value
 		 * @param array       $compat_props .
 		 *
 		 * @return \WC_Product | \WC_Data
@@ -94,8 +94,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param int         $amount  Optional. The new stock quantity
-		 * @param string      $mode    Optional. Can be set, add, or subtract
+		 * @param int         $amount Optional. The new stock quantity
+		 * @param string      $mode Optional. Can be set, add, or subtract
 		 *
 		 * @return int
 		 */
@@ -130,8 +130,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param int         $qty     Optional. The quantity
-		 * @param string      $price   Optional. The product price
+		 * @param int         $qty Optional. The quantity
+		 * @param string      $price Optional. The product price
 		 *
 		 * @return string
 		 */
@@ -153,8 +153,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param int         $qty     Optional. The quantity
-		 * @param string      $price   Optional. The product price
+		 * @param int         $qty Optional. The quantity
+		 * @param string      $price Optional. The product price
 		 *
 		 * @return string
 		 */
@@ -175,8 +175,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param string      $price   Optional. The product price
-		 * @param int         $qty     Optional. The quantity
+		 * @param string      $price Optional. The product price
+		 * @param int         $qty Optional. The quantity
 		 *
 		 * @return string
 		 */
@@ -198,9 +198,9 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param string      $sep     Optional. The list separator
-		 * @param string      $before  Optional. To display before the list
-		 * @param string      $after   Optional. To display after the list
+		 * @param string      $sep Optional. The list separator
+		 * @param string      $before Optional. To display before the list
+		 * @param string      $after Optional. To display after the list
 		 *
 		 * @return string
 		 */
@@ -219,7 +219,7 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @since 4.6.0
 		 *
 		 * @param \WC_Product $product the product object
-		 * @param string      $rating  Optional. The product rating
+		 * @param string      $rating Optional. The product rating
 		 *
 		 * @return string
 		 */

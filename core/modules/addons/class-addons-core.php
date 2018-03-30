@@ -68,7 +68,7 @@ if ( ! class_exists( 'VSP_Addons_Core' ) ) {
 		 * Search And Gets A Single Addon
 		 *
 		 * @param string|boolean|bool $addon_slug .
-		 * @param string              $path_id    .
+		 * @param string              $path_id .
 		 *
 		 * @return array
 		 */
@@ -110,9 +110,9 @@ if ( ! class_exists( 'VSP_Addons_Core' ) ) {
 		/**
 		 * Search For Addons
 		 *
-		 * @param mixed  $search_path  .
+		 * @param mixed  $search_path .
 		 * @param bool   $single_addon .
-		 * @param string $subpath      .
+		 * @param string $subpath .
 		 *
 		 * @return array
 		 */
@@ -193,7 +193,7 @@ if ( ! class_exists( 'VSP_Addons_Core' ) ) {
 		 * Strips spaces from and end
 		 *
 		 * @param string $string .
-		 * @param string $char   .
+		 * @param string $char .
 		 *
 		 * @return string
 		 */

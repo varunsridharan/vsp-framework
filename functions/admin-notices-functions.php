@@ -49,8 +49,8 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 	 * Updates Database With Given Notices Details
 	 *
 	 * @param string $message .
-	 * @param string $type    .
-	 * @param array  $args    .
+	 * @param string $type .
+	 * @param array  $args .
 	 */
 	function vsp_notice( $message, $type = 'update', $args = array() ) {
 		$defaults  = array(
@@ -73,9 +73,9 @@ if ( ! function_exists( 'vsp_notice_error' ) ) {
 	 * Creates a error notice instances and saves in DB
 	 *
 	 * @param string $message .
-	 * @param int    $times   .
-	 * @param array  $screen  .
-	 * @param array  $args    .
+	 * @param int    $times .
+	 * @param array  $screen .
+	 * @param array  $args .
 	 */
 	function vsp_notice_error( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
@@ -92,9 +92,9 @@ if ( ! function_exists( 'vsp_notice_update' ) ) {
 	 * Creates a error update instances and saves in DB
 	 *
 	 * @param string $message .
-	 * @param int    $times   .
-	 * @param array  $screen  .
-	 * @param array  $args    .
+	 * @param int    $times .
+	 * @param array  $screen .
+	 * @param array  $args .
 	 */
 	function vsp_notice_update( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
@@ -111,9 +111,9 @@ if ( ! function_exists( 'vsp_notice_upgrade' ) ) {
 	 * Creates a error update instances and saves in DB
 	 *
 	 * @param string $message .
-	 * @param int    $times   .
-	 * @param array  $screen  .
-	 * @param array  $args    .
+	 * @param int    $times .
+	 * @param array  $screen .
+	 * @param array  $args .
 	 */
 	function vsp_notice_upgrade( $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['times']  = $times;
@@ -130,9 +130,9 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 	/**
 	 * Creats JS code to show SweatAlert
 	 *
-	 * @param string $title   .
-	 * @param string $text    .
-	 * @param string $type    .
+	 * @param string $title .
+	 * @param string $text .
+	 * @param string $type .
 	 * @param array  $options .
 	 *
 	 * @return string
@@ -172,8 +172,8 @@ if ( ! function_exists( 'vsp_js_alert_success' ) ) {
 	/**
 	 * JS Sucess Alert
 	 *
-	 * @param string $title   .
-	 * @param string $text    .
+	 * @param string $title .
+	 * @param string $text .
 	 * @param array  $options .
 	 *
 	 * @return string
@@ -187,8 +187,8 @@ if ( ! function_exists( 'vsp_js_alert_error' ) ) {
 	/**
 	 * JS Error Alert
 	 *
-	 * @param string $title   .
-	 * @param string $text    .
+	 * @param string $title .
+	 * @param string $text .
 	 * @param array  $options .
 	 *
 	 * @return string
@@ -202,8 +202,8 @@ if ( ! function_exists( 'vsp_js_alert_warning' ) ) {
 	/**
 	 * JS Warning Alert
 	 *
-	 * @param string $title   .
-	 * @param string $text    .
+	 * @param string $title .
+	 * @param string $text .
 	 * @param array  $options .
 	 *
 	 * @return string
@@ -217,8 +217,8 @@ if ( ! function_exists( 'vsp_js_alert_info' ) ) {
 	/**
 	 * JS Info Alert
 	 *
-	 * @param string $title   .
-	 * @param string $text    .
+	 * @param string $title .
+	 * @param string $text .
 	 * @param array  $options .
 	 *
 	 * @return string

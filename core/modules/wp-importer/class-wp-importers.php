@@ -38,11 +38,11 @@ if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 		/**
 		 * Registers Importers
 		 *
-		 * @param string $slug        .
-		 * @param string $name        .
+		 * @param string $slug .
+		 * @param string $name .
 		 * @param string $description .
-		 * @param string $file        .
-		 * @param bool   $wpsf        .
+		 * @param string $file .
+		 * @param bool   $wpsf .
 		 *
 		 * @return mixed
 		 */
@@ -83,11 +83,11 @@ if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 		/**
 		 * Registers Importers
 		 *
-		 * @param string $slug        .
-		 * @param string $title       .
+		 * @param string $slug .
+		 * @param string $title .
 		 * @param string $description .
-		 * @param string $file        .
-		 * @param bool   $wpsf        .
+		 * @param string $file .
+		 * @param bool   $wpsf .
 		 *
 		 * @return mixed
 		 */

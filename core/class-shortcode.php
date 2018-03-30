@@ -71,7 +71,7 @@ abstract class VSP_Shortcode extends VSP_Class_Handler {
 	/**
 	 * Renders Shortcode.
 	 *
-	 * @param mixed  $atts    .
+	 * @param mixed  $atts .
 	 * @param string $content .
 	 *
 	 * @return mixed
