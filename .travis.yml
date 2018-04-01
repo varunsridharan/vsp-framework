@@ -15,8 +15,8 @@ after_script:
           composer require apigen/apigen --dev
           cd $TRAVIS_REPO_SLUG
           mkdir ./docs/
-          ../../vendor/bin/apigen generate -s ../apigen-boilerplate/ --destination ../apigen-boilerplate/docs/
-          cd ../apigen-boilerplate/docs/
+          ../../vendor/bin/apigen generate -s ../vsp-framework/ --destination ../apigen-boilerplate/docs/
+          cd ../vsp-framework/docs/
           git init
           git remote add origin https://${GH_TOKEN}@github.com/vsp-libs/apigen-boilerplate.git
           git config --global user.email "travis@travis-ci.org"
