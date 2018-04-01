@@ -1,7 +1,5 @@
 language: php
-
 sudo: false
-
 php: 7.1
 
 script:
@@ -15,7 +13,7 @@ after_script:
           composer require apigen/apigen --dev
           cd $TRAVIS_REPO_SLUG
           mkdir ./docs/
-          ../../vendor/bin/apigen generate -s ../vsp-framework/ --destination ../apigen-boilerplate/docs/
+          ../../vendor/bin/apigen generate -s ../vsp-framework/ --destination ../vsp-framework/docs/
           cd ../vsp-framework/docs/
           git init
           git remote add origin https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git
