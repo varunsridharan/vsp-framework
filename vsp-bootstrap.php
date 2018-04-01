@@ -26,7 +26,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * Framework Name: VSP Framework
- * Version: 260320181112 - Build 1
+ * Version: 010420180654 - Build 1
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
@@ -49,7 +49,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @return string
 	 */
 	function vsp_version() {
-		return '260320181112';
+		return '010420180654-Build-1';
 	}
 
 	defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', vsp_version() );
