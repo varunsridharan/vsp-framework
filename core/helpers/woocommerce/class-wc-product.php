@@ -83,7 +83,12 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				$parent = wc_get_product( $product->get_parent_id() );
 			} else {
-				$parent = $product->is_type( 'variation' ) ? wc_get_product( $product->id ) : false;
+				if ( $product->is_type( 'variation' ) ) {
+					/** @noinspection Annotator */
+					$parent = wc_get_product( $product->id );
+				} else {
+					$parent = false;
+				}
 			}
 			return $parent;
 		}
