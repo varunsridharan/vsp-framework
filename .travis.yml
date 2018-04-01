@@ -1,0 +1,27 @@
+language: php
+
+sudo: false
+
+php: 7.1
+
+script:
+    # Turn off XDebug to make the rest faster
+    - phpenv config-rm xdebug.ini || return 0
+
+after_script:   
+    - |
+        if [[ $TRAVIS_BRANCH == "master" ]]; then
+          cd ../../
+          composer require apigen/apigen --dev
+          cd $TRAVIS_REPO_SLUG
+          mkdir ./docs/
+          ../../vendor/bin/apigen generate -s ../apigen-boilerplate/ --destination ../apigen-boilerplate/docs/
+          cd ../apigen-boilerplate/docs/
+          git init
+          git remote add origin https://${GH_TOKEN}@github.com/vsp-libs/apigen-boilerplate.git
+          git config --global user.email "travis@travis-ci.org"
+          git config --global user.name "Travis"
+          git add .
+          git commit -m "PHP Document Updated."
+          git push origin master:gh-pages -f
+        fi
