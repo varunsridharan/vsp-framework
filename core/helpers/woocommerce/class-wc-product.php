@@ -230,5 +230,17 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 				return $product->get_rating_html( $rating );
 			}
 		}
+
+		/**
+		 * Returns Product Type.
+		 *
+		 * @param \WC_Product $product
+		 *
+		 * @return mixed|string
+		 * @static
+		 */
+		public static function product_type( \WC_Product $product ) {
+			return ( VSP_WC_Helper::is_wc_version_gte_3_0() ) ? $product->get_type() : $product->product_type;
+		}
 	}
 }
