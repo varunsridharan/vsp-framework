@@ -4,14 +4,14 @@
  *
  * @name: VS WP Endpoint Handler.
  * @version: 1.0
- * @created_date 29-03-2018
- * @created_time 07:54 AM
- * @package      vs-wp-libs
- * @since        1.0
- * @github       https://github.com/varunsridharan/vs-wp-endpoint
- * @author       Varun Sridharan <varunsridharan23@gmail.com>
- * @copyright    2018 Varun Sridharan
- * @license      GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
+ * @Date      29-03-2018
+ * @Time      07:54 AM
+ * @github    https://github.com/varunsridharan/vs-wp-endpoint
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @package   vs-wp-libs
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
+ * @since     1.0
  */
 
 /**

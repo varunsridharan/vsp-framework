@@ -6,7 +6,7 @@
 /**
  * RapidAddon
  *
- * @package     WP All Import RapidAddon
+ * @package     wpallimport/rapidaddon
  * @copyright   Copyright (c) 2014, Soflyy
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @version     1.1.0
@@ -559,9 +559,9 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 				}
 			} elseif ( $field_params['type'] == 'title' ) {
 				?>
-                <h4 class="wpallimport-add-on-options-title"><?php _e( $field_params['name'], 'vsp-framework' ); ?><?php if ( ! empty( $field_params['tooltip'] ) ): ?>
-                    <a href="#help" class="wpallimport-help" title="<?php echo $field_params['tooltip']; ?>"
-                       style="position:relative; top: -1px;">?</a><?php endif; ?></h4>
+				<h4 class="wpallimport-add-on-options-title"><?php _e( $field_params['name'], 'vsp-framework' ); ?><?php if ( ! empty( $field_params['tooltip'] ) ): ?>
+					<a href="#help" class="wpallimport-help" title="<?php echo $field_params['tooltip']; ?>"
+					   style="position:relative; top: -1px;">?</a><?php endif; ?></h4>
 				<?php
 
 			} elseif ( $field_params['type'] == 'plain_text' ) {
@@ -569,7 +569,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 					echo $field_params['name'];
 				else:
 					?>
-                    <p style="margin: 0 0 12px 0;"><?php echo $field_params['name']; ?></p>
+					<p style="margin: 0 0 12px 0;"><?php echo $field_params['name']; ?></p>
 				<?php
 				endif;
 			}
@@ -1097,10 +1097,10 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 
 				?>
 
-                <div class="error notice is-dismissible wpallimport-dismissible" style="margin-top: 10px;"
-                     rel="<?php echo sanitize_key( $this->slug ); ?>">
-                    <p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'rapid_addon_' . $this->slug, 'vsp-framework' ); ?></p>
-                </div>
+				<div class="error notice is-dismissible wpallimport-dismissible" style="margin-top: 10px;"
+					 rel="<?php echo sanitize_key( $this->slug ); ?>">
+					<p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'rapid_addon_' . $this->slug, 'vsp-framework' ); ?></p>
+				</div>
 
 				<?php
 

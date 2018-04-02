@@ -5,8 +5,7 @@
  *
  * @author     Varun Sridharan <varunsridharan23@gmail.com>
  * @since      1.0
- * @package    vsp-framework
- * @subpackage vsp-framework/integrations/
+ * @package    vsp-framework/integrations
  * @copyright  GPL V3 Or greater
  */
 define( 'VSP_VC_PATH', plugin_dir_path( __FILE__ ) . 'visual-composer/' );

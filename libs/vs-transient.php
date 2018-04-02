@@ -6,6 +6,11 @@
  * User: varun
  * Date: 28-02-2018
  * Time: 03:50 PM
+ *
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @package   vs-wp-libs
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 /**

@@ -6,8 +6,10 @@
  * Date: 02-03-2018
  * Time: 03:15 PM
  *
- * @copyright GPLV3
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @package   vs-wp-libs
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -27,7 +29,7 @@ class VS_WP_Review_Me {
 	 *
 	 * @var string
 	 */
-	public $version = '1.2';
+	public $version = '1.3';
 
 	/**
 	 * linkid
@@ -219,7 +221,7 @@ class VS_WP_Review_Me {
 	 */
 	public function script() { ?>
 
-        <script>
+		<script>
             jQuery(document).ready(function ($) {
                 $('#<?php echo $this->link_id; ?>').on('click', wrmDismiss);
 
@@ -235,7 +237,7 @@ class VS_WP_Review_Me {
                     });
                 }
             });
-        </script>
+		</script>
 
 	<?php }
 
