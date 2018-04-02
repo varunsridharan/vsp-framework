@@ -145,7 +145,9 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			if ( false !== $this->option( 'settings_page' ) ) {
 				$this->settings_init_before();
 				$this->action( 'settings_init_before' );
-				$this->settings = $this->_instance( 'VSP_Settings_WPSF', false, true, $this->option( 'settings_page' ) );
+				$args                = $this->option( 'settings_page' );
+				$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
+				$this->settings      = $this->_instance( 'VSP_Settings_WPSF', false, true, $this->option( 'settings_page' ) );
 				$this->settings_init();
 				$this->action( 'settings_init' );
 			}
