@@ -16,12 +16,12 @@
  * versions in the future. If you wish to customize the plugin for your
  * needs please refer to http://www.skyverge.com
  *
- * @package   SkyVerge/WooCommerce/Compatibility
  * @author    SkyVerge
- * @copyright Copyright (c) 2013-2018, SkyVerge, Inc.
+ * @package   vsp-framework/core/helpers/woocommerce
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
-
 
 defined( 'ABSPATH' ) or exit;
 

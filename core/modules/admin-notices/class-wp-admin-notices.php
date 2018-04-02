@@ -7,6 +7,10 @@
  * Time: 8:30 μμ
  * Since: 2.0.0
  * Copyright: 2015 Panagiotis Vagenas
+ *
+ * @package vsp-framework/core/modules/admin-notices
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 /**

@@ -3,9 +3,11 @@
 /**
  * Class WordPress
  *
- * @package Pan\Notices\Formatters
  * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since   2.0.0
+ * @package vsp-framework/core/modules/admin-notices
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 class VSP_WordPress_Notice implements VSP_WP_Admin_Notice_Interface {
 	/**

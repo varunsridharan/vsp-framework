@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Class WordPressSticky
  *
  * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @since   TODO ${VERSION}
+ * @package vsp-framework/core/modules/admin-notices
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 	/**

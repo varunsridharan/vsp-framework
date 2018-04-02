@@ -9,8 +9,9 @@
  *
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
  * @since     1.0
- * @package   vsp-framework
- * @copyright GPL V3 Or greater
+ * @package   vsp-framework/core/helpers/woocommerce
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

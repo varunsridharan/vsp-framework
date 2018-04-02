@@ -5,10 +5,11 @@
  * Date: 28-03-2018
  * Time: 12:51 PM
  *
- * @author      Varun Sridharan <varunsridharan23@gmail.com>
- * @since       1.0
- * @package     vsp-framework
- * @copyright   GPL V3 Or greater
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @since     1.0
+ * @package   vsp-framework/core/helpers/woocommerce
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
