@@ -366,7 +366,7 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 * @return mixed
 		 */
 		private function action_filter( $type = '', $args = array() ) {
-			$args[0] = $this->slug( 'hook' ) . '_' . $args[0];
+			$args[0] = $this->slug( 'hook' ) . $args[0];
 			return call_user_func_array( $type, $args );
 		}
 
@@ -389,6 +389,28 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 */
 		public function action() {
 			return $this->action_filter( 'do_action', func_get_args() );
+		}
+
+
+		/**
+		 * Triggers add_filters
+		 *
+		 * @uses \add_filters()
+		 * @return mixed
+		 */
+		public function add_filter() {
+			return $this->action_filter( 'add_filter', func_get_args() );
+		}
+
+		/**
+		 * Triggers add_action
+		 *
+		 * @uses \add_action()
+		 *
+		 * @return mixed
+		 */
+		public function add_action() {
+			return $this->action_filter( 'add_action', func_get_args() );
 		}
 
 
