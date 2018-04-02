@@ -2,8 +2,8 @@
 /**
  * Class WordPressSticky
  *
- * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @package vsp-framework/core/modules/admin-notices
+ * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
+ * @package   vsp-framework/core/modules/admin-notices
  * @copyright 2018 Varun Sridharan
  * @license   GPLV3 Or Greater
  */

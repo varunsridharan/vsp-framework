@@ -8,17 +8,13 @@
  * Since: 2.0.0
  * Copyright: 2015 Panagiotis Vagenas
  *
- * @package vsp-framework/core/modules/admin-notices
+ * @package   vsp-framework/core/modules/admin-notices
  * @copyright 2018 Varun Sridharan
  * @license   GPLV3 Or Greater
  */
 
 /**
  * Class WP_Admin_Notices
- *
- * @package Pan\Notices
- * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @since   1.0.0
  */
 class VSP_WP_Admin_Notices {
 	/**
