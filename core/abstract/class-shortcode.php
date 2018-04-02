@@ -5,15 +5,14 @@
  * Date: 27-03-2018
  * Time: 11:49 AM
  *
- * @link: http://github.com/varunsridharan/vsp-framework
- * @version: 1.0
- * @since: 1.0
+ * @link    http://github.com/varunsridharan/vsp-framework/
+ * @version 1.0
+ * @since   1.0
  *
- * @package: vsp-framework
- * @subpackage: core
- * @author: Varun Sridharan <varunsridharan23@gmail.com>
- * @copyright: 2018 Varun Sridharan
- * @license: GPLV3 Or Greater
+ * @package   vsp-framework/core/abstract/
+ * @author    Varun Sridharan <varunsridharan23@gmail.com>
+ * @copyright 2018 Varun Sridharan
+ * @license   GPLV3 Or Greater
  */
 
 abstract class VSP_Shortcode extends VSP_Class_Handler {
