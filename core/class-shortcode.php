@@ -9,7 +9,7 @@
  * @version   : 1.0
  * @since     : 1.0
  *
- * @package: vsp-framework
+ * @package   : vsp-framework
  * @subpackage: core
  * @author    : Varun Sridharan <varunsridharan23@gmail.com>
  * @copyright : 2018 Varun Sridharan
