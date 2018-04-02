@@ -6,7 +6,7 @@
  * @version 1.0
  * @since   1.0
  *
- * @package   vsp-framework/core/abstract/
+ * @package   vsp-framework/core/abstract
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
  * @copyright 2018 Varun Sridharan
  * @license   GPLV3 Or Greater
