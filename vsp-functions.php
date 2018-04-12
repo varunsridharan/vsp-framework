@@ -183,19 +183,28 @@ if ( ! function_exists( "vsp_load_file" ) ) {
 	/**
 	 * Search and loads files based on the search parameter
 	 *
-	 * @param        $search_type
-	 * @param string $type
+	 * @param         $search_type
+	 * @param boolean $is_require
+	 * @param bool    $once
 	 *
 	 * @uses    vsp_get_file_paths
 	 * @example vsp_load_file("mypath/*.php")
 	 * @example vsp_load_file("mypath/class-*.php")
 	 */
-	function vsp_load_file( $search_type, $type = 'require' ) {
+	function vsp_load_file( $search_type, $is_require = true, $once = false ) {
 		foreach ( vsp_get_file_paths( $search_type ) as $files ) {
-			if ( 'require' === $type ) {
-				require_once $files;
-			} elseif ( 'include' === $type ) {
-				include_once $files;
+			if ( $is_require ) {
+				if ( $once ) {
+					require_once $files;
+				} else {
+					require $files;
+				}
+			} else {
+				if ( $once ) {
+					include_once $files;
+				} else {
+					include $files;
+				}
 			}
 		}
 	}

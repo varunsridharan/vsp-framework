@@ -624,9 +624,13 @@ if ( ! function_exists( 'vsp_print_r' ) ) {
 	 * @uses \print_r()
 	 *
 	 * @param mixed $debug .
+	 * @param bool  $is_exit .
 	 */
-	function vsp_print_r( $debug ) {
+	function vsp_print_r( $debug, $is_exit = false ) {
 		echo '<pre>' . print_r( $debug, true ) . '</pre>';
+		if ( $is_exit ) {
+			exit;
+		}
 	}
 }
 

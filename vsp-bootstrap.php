@@ -80,7 +80,9 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @since   1.0.0
 	 * @version 1.0.0
 	 */
-	load_textdomain( 'vsp-framework', VSP_PATH . '/languages/' . get_locale() . '.mo' );
+	if ( file_exists( VSP_PATH . '/languages/' . get_locale() . '.mo' ) ) {
+		load_textdomain( 'vsp-framework', VSP_PATH . '/languages/' . get_locale() . '.mo' );
+	}
 
 	do_action( 'vsp_framework_init' );
 }
