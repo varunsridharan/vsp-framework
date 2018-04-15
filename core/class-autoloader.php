@@ -48,12 +48,15 @@ final class VSP_Autoloader {
 	 * @var array
 	 */
 	private static $_loaded_libs = array();
+
 	/**
 	 * Loaded_integrations
 	 *
 	 * @var array
 	 */
 	private static $_loaded_integrations = array();
+
+	private static $core_folders = null;
 
 	/**
 	 * Loads A Class if its from VSP
@@ -107,32 +110,62 @@ final class VSP_Autoloader {
 	 * @param string $file_name
 	 */
 	public static function check_load( $classname = '', $file_name = '' ) {
+		$folders = self::get_folders( VSP_PATH . 'core' );
 
-		if ( file_exists( VSP_CORE . 'abstract/' . $file_name ) ) {
-			require_once VSP_CORE . 'abstract/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'trait/' . $file_name ) ) {
-			require_once VSP_CORE . 'trait/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'interface/' . $file_name ) ) {
-			require_once VSP_CORE . 'interface/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'helpers/' . $file_name ) ) {
-			require_once VSP_CORE . 'helpers/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'helpers/woocommerce/' . $file_name ) ) {
-			require_once VSP_CORE . 'helpers/woocommerce/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . '' . $file_name ) ) {
-			require_once VSP_CORE . '' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'modules/addons/' . $file_name ) ) {
-			require_once VSP_CORE . 'modules/addons/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'modules/admin-notices/' . $file_name ) ) {
-			require_once VSP_CORE . 'modules/admin-notices/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'modules/settings/' . $file_name ) ) {
-			require_once VSP_CORE . 'modules/settings/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'modules/wp-importer/' . $file_name ) ) {
-			require_once VSP_CORE . 'modules/wp-importer/' . $file_name;
-		} elseif ( file_exists( VSP_CORE . 'modules/' . $file_name ) ) {
-			require_once VSP_CORE . 'modules/' . $file_name;
-		} elseif ( has_action( 'vsp_load_' . $classname ) ) {
-			do_action( 'vsp_load_' . $classname, $classname, $file_name );
+		foreach ( $folders as $folder ) {
+			if ( file_exists( $folder . $file_name ) ) {
+				require_once $folder . $file_name;
+				break;
+			} elseif ( has_action( 'vsp_load_' . $classname ) ) {
+				do_action( 'vsp_load_' . $classname, $classname, $file_name );
+			}
 		}
+	}
+
+	/**
+	 * Saves & Returns Core Folders.
+	 *
+	 * @param string $path
+	 *
+	 * @return array|null|string
+	 * @static
+	 */
+	public static function get_folders( $path = '' ) {
+		if ( null === self::$core_folders ) {
+			self::$core_folders = self::search_folders( $path );
+		}
+
+		return self::$core_folders;
+	}
+
+	/**
+	 * Search folders & subfolders inside a given folder and returns it.
+	 *
+	 * @param string $path
+	 *
+	 * @return array|string
+	 * @static
+	 */
+	public static function search_folders( $path = '' ) {
+		$return       = array();
+		$base_folders = array_filter( vsp_get_file_paths( vsp_unslashit( $path ) . '/*' ), 'is_dir' );
+
+		if ( is_array( $base_folders ) && ! empty( $base_folders ) ) {
+			foreach ( $base_folders as $folder ) {
+				$_sub = self::search_folders( vsp_unslashit( $folder ) );
+
+				if ( is_array( $_sub ) && ! empty( $_sub ) ) {
+					$return = array_merge( $return, $_sub );
+				} elseif ( is_string( $_sub ) ) {
+					$return = array_merge( $return, array( $_sub ) );
+					$return = array_merge( $return, array( vsp_slashit( $path ) ) );
+				}
+			}
+		} else {
+			$return = vsp_slashit( $path );
+		}
+
+		return $return;
 	}
 
 	/**

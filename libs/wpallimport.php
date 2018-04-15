@@ -2,18 +2,22 @@
 /**
  * @name: WP-All-Import RapidAddon
  * @version: 1.1.0
- */
-/**
+ *
  * RapidAddon
  *
- * @package     wpallimport/rapidaddon
- * @copyright   Copyright (c) 2014, Soflyy
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @version     1.1.0
+ * @package vsp-framework/libs
+ * @copyright Copyright (c) 2014, Soflyy
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @version 1.1.0
  */
 
 if ( ! class_exists( 'RapidAddon' ) ) {
-
+	/**
+	 * Class RapidAddon
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
+	 */
 	class RapidAddon {
 
 		public $name;

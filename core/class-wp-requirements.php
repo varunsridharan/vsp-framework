@@ -1,8 +1,17 @@
 <?php
+/**
+ * @package vsp-framework/core
+ */
 if ( ! defined( "WPINC" ) ) {
 	die;
 }
 
+/**
+ * Class VSP_WP_Requirements
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
 Class VSP_WP_Requirements {
 	protected $php        = '5.5';
 	protected $wp         = '3.5';
@@ -84,6 +93,12 @@ Class VSP_WP_Requirements {
 	}
 }
 
+/**
+ * Class VS_PHP_Exts_Requirements
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
 Class VS_PHP_Exts_Requirements {
 	protected $exts                   = array();
 	protected $installed              = array();
@@ -153,6 +168,12 @@ Class VS_PHP_Exts_Requirements {
 
 }
 
+/**
+ * Class VS_Version_Compare
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
 Class VS_Version_Compare {
 
 	public function __construct( $version, $type = 'PHP', $current_version = '' ) {
@@ -190,6 +211,12 @@ Class VS_Version_Compare {
 	}
 }
 
+/**
+ * Class VS_WP_Plugin_Requirements
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
 Class VS_WP_Plugin_Requirements {
 	protected static $active_plugins = array();
 	protected static $_plugins       = array();

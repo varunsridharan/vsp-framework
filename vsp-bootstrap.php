@@ -52,18 +52,23 @@ if ( ! function_exists( 'vsp_version' ) ) {
 		return '010420180654-Build-1';
 	}
 
+	$upload_dir = wp_upload_dir( null, false );
 	defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', vsp_version() );
 	defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
 	defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 	defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
+	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
+
 
 	require_once VSP_CORE . 'class-autoloader.php';
 	require_once VSP_CORE . 'class-cache.php';
 	require_once VSP_PATH . 'vsp-functions.php';
+
 	require_once VSP_PATH . 'functions/options.php';
 	require_once VSP_PATH . 'functions/wp-replacement.php';
 	require_once VSP_PATH . 'functions/general-functions.php';
 	require_once VSP_PATH . 'functions/admin-notices-functions.php';
+	require_once VSP_CORE . 'class-base-setup.php';
 	require_once VSP_PATH . 'vsp-hooks.php';
 
 	do_action( 'vsp_framework_load_lib_integrations' );

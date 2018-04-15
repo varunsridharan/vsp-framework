@@ -673,3 +673,74 @@ function vsp_set_time_limit( $limit = 0 ) {
 		@set_time_limit( $limit );
 	}
 }
+
+/**
+ * Wrapper for vsp_doing_it_wrong.
+ *
+ * @param string $function Function used.
+ * @param string $message Message to log.
+ * @param string $version Version the message was added in.
+ */
+function vsp_doing_it_wrong( $function, $message, $version ) {
+	// @codingStandardsIgnoreStart
+	$message .= ' Backtrace: ' . wp_debug_backtrace_summary();
+
+	if ( is_ajax() ) {
+		do_action( 'doing_it_wrong_run', $function, $message, $version );
+		error_log( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
+	} else {
+		_doing_it_wrong( $function, $message, $version );
+	}
+	// @codingStandardsIgnoreEnd
+}
+
+
+/**
+ * Get a shared logger instance.
+ *
+ * Use the vsp_logging_class filter to change the logging class. You may provide one of the following:
+ *     - a class name which will be instantiated as `new $class` with no arguments
+ *     - an instance which will be used directly as the logger
+ * In either case, the class or instance *must* implement WC_Logger_Interface.
+ *
+ * @see VSP_Logger_Interface
+ *
+ * @return VSP_Logger
+ */
+if ( ! function_exists( 'vsp_get_logger' ) ) {
+	function vsp_get_logger( $subpath = false, $filesize = false ) {
+		static $logger = null;
+		if ( null === $logger ) {
+			$class      = apply_filters( 'vsp_logging_class', 'VSP_Logger' );
+			$implements = class_implements( $class );
+			if ( is_array( $implements ) && in_array( 'VSP_Logger_Interface', $implements ) ) {
+				if ( is_object( $class ) ) {
+					$logger = $class;
+				} else {
+					$logger = new $class( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
+				}
+			} else {
+				$smgs = sprintf( /* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
+					__( 'The class %1$s provided by %2$s filter must implement %3$s.', 'woocommerce' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>woocommerce_logging_class</code>', '<code>WC_Logger_Interface</code>' );
+				vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
+				$logger = new VSP_Logger( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
+			}
+		}
+		return $logger;
+	}
+}
+
+if ( ! function_exists( 'vsp_logger' ) ) {
+	/**
+	 * Returns An Valid Instance Of Logger To Handle Logs From VSP Framework.
+	 *
+	 * @return \VSP_Logger
+	 */
+	function vsp_logger() {
+		static $logger = null;
+		if ( null === $logger ) {
+			$logger = vsp_get_logger();
+		}
+		return $logger;
+	}
+}

@@ -2,8 +2,7 @@
 /**
  * @name    : WP Pointers
  * @version : 1.0
- */
-/**
+ *
  * @package   PointerPlus
  * @author    QueryLoop & Mte90
  * @license   GPL-3.0+
