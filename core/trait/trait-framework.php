@@ -110,4 +110,22 @@ trait VSP_Framework_Trait {
 	 */
 	public function frontend_assets() {
 	}
+
+	/**
+	 * VSP_Framework::__logging_init
+	 *
+	 * @see VSP_Framework::__logging_init
+	 */
+	public function logging_init_before() {
+
+	}
+
+	/**
+	 * VSP_Framework::__logging_init
+	 *
+	 * @see VSP_Framework::__logging_init
+	 */
+	public function logging_init() {
+
+	}
 }

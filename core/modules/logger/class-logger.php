@@ -80,8 +80,14 @@ class VSP_Logger implements VSP_Logger_Interface {
 	 */
 	public function log_errors() {
 		$error = error_get_last();
+
+
 		if ( E_ERROR === $error['type'] ) {
-			$this->critical( $error['message'] . PHP_EOL, array(
+			vsp_log_msg( __( 'File & Line No :' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
+				'source' => 'fatal-errors',
+			) );
+
+			vsp_log_msg( $error['message'], 'critical', false, array(
 				'source' => 'fatal-errors',
 			) );
 		}

@@ -776,6 +776,12 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 		if ( $handler instanceof VSP_Logger && method_exists( $handler, $type ) ) {
 			$handler->$type( $messages, $context );
 			return true;
+		} elseif ( vsp_logger() instanceof VSP_Logger && method_exists( vsp_logger(), $type ) ) {
+			$msg = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler' ) ), wp_debug_backtrace_summary( null, 0, false ) );
+			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
+			vsp_log_msg( $msg, 'critical', vsp_logger() );
+			vsp_log_msg( $messages, 'critical', vsp_logger() );
+			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
 		}
 		return false;
 	}

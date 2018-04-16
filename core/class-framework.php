@@ -32,6 +32,13 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		private $addons = null;
 
 		/**
+		 * Logging
+		 *
+		 * @var null|\VSP_Logger
+		 */
+		private $logging = null;
+
+		/**
 		 * Default_options
 		 *
 		 * @var array
@@ -39,6 +46,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		protected $default_options = array(
 			'settings_page' => true,
 			'reviewme'      => false,
+			'logging'       => false,
 			'addons'        => true,
 			'plugin_file'   => __FILE__,
 		);
@@ -51,7 +59,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		public function __construct( $options = array() ) {
 			parent::__construct( $options );
 			$this->__load_required_files();
-			add_action( 'vsp_framework_init', array( $this, '__init_plugin' ) );
+			add_action( 'vsp_framework_init', array( &$this, '__init_plugin' ) );
 		}
 
 		/**
@@ -77,20 +85,22 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @uses init_class
 		 */
 		private function __init_class() {
-			$this->review_me();
+			$this->__logging_init();
+			$this->__review_me_init();
 			$this->__addon_init();
 
 			if ( vsp_is_admin() ) {
 				$this->__settings_init();
 			}
+
 			$this->init_class();
 		}
 
 		/**
 		 * Adds Review Reminder Option
 		 */
-		protected function review_me() {
-			if ( $this->option( 'reviewme' ) !== false ) {
+		protected function __review_me_init() {
+			if ( false !== $this->option( 'reviewme' ) ) {
 				if ( vsp_is_admin() ) {
 					vsp_load_lib( 'wpreview' );
 					$this->_instance( 'VS_WP_Review_Me', false, true, $this->option( 'reviewme' ) );
@@ -183,6 +193,28 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			if ( ! defined( $key ) ) {
 				define( $key, $value );
 			}
+		}
+
+		/**
+		 * Inits Logger Instance.
+		 */
+		public function __logging_init() {
+			if ( false !== $this->option( 'logging' ) ) {
+				$this->logging_init_before();
+				$this->action( 'logging_init_before' );
+				$this->logging = vsp_get_logger( $this->slug() );
+				$this->logging_init();
+				$this->action( 'loggin_init' );
+			}
+		}
+
+		/**
+		 * Returns VSP Logger Instance.
+		 *
+		 * @return null|\VSP_Logger
+		 */
+		public function logger() {
+			return $this->logging;
 		}
 	}
 }
