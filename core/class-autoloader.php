@@ -175,8 +175,8 @@ final class VSP_Autoloader {
 	 *
 	 * @return bool
 	 */
-	public static function integration( $integration = '' ) {
-		$integration = strtolower( $integration );
+	public static function integration( $_integration = '' ) {
+		$integration = strtolower( $_integration );
 		if ( isset( self::$_integrations[ $integration ] ) && ! isset( self::$_loaded_integrations[ $integration ] ) ) {
 			if ( file_exists( self::integration_path() . self::$_integrations[ $integration ] ) ) {
 				require_once self::integration_path() . self::$_integrations[ $integration ];
@@ -187,6 +187,12 @@ final class VSP_Autoloader {
 				self::$_loaded_integrations[ $integration ] = $integration;
 				return true;
 			}
+		} elseif ( ! isset( self::$_loaded_integrations[ $integration ] ) ) {
+			vsp_log_msg( array(
+				sprintf( __( 'Failed To Load Requested Integration %s' ), $_integration ),
+				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::integration_path( true ) ),
+				sprintf( __( 'Tried Action %s', 'vsp-framework' ), 'vsp_lib_' . $integration ),
+			), 'critical' );
 		}
 		return false;
 	}
@@ -194,21 +200,29 @@ final class VSP_Autoloader {
 	/**
 	 * Returns Integration Path
 	 *
+	 * @param bool $is_censored_path
+	 *
 	 * @return string
+	 * @static
 	 */
-	public static function integration_path() {
-		return VSP_PATH . 'integrations/';
+	public static function integration_path( $is_censored_path = false ) {
+		$path = VSP_PATH . 'integrations/';
+		if ( true === $is_censored_path ) {
+			$path = basename( ABSPATH ) . str_replace( vsp_unslashit( ABSPATH ), '', $path );
+		}
+		return $path;
 	}
 
 	/**
 	 * Loads A lib
 	 *
-	 * @param string $lib .
+	 * @param string $_lib .
 	 *
 	 * @return bool
 	 */
-	public static function library( $lib = '' ) {
-		$lib = strtolower( $lib );
+	public static function library( $_lib = '' ) {
+		$lib = strtolower( $_lib );
+
 		if ( isset( self::$_libs[ $lib ] ) && ! isset( self::$_loaded_libs[ $lib ] ) ) {
 			if ( file_exists( self::lib_path() . self::$_libs[ $lib ] ) ) {
 				require_once self::lib_path() . self::$_libs[ $lib ];
@@ -219,17 +233,31 @@ final class VSP_Autoloader {
 				self::$_loaded_libs[ $lib ] = $lib;
 				return true;
 			}
+		} elseif ( ! isset( self::$_loaded_libs[ $lib ] ) ) {
+			vsp_log_msg( array(
+				sprintf( __( 'Failed To Load Requested Library %s' ), $_lib ),
+				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::lib_path( true ) ),
+				sprintf( __( 'Tried Action %s', 'vsp-framework' ), 'vsp_lib_' . $lib ),
+			), 'critical' );
 		}
+
 		return false;
 	}
 
 	/**
 	 * Returns Lib path
 	 *
+	 * @param bool $is_censored_path
+	 *
 	 * @return string
+	 * @static
 	 */
-	public static function lib_path() {
-		return VSP_PATH . 'libs/';
+	public static function lib_path( $is_censored_path = false ) {
+		$path = VSP_PATH . 'libs/';
+		if ( true === $is_censored_path ) {
+			$path = basename( ABSPATH ) . str_replace( vsp_unslashit( ABSPATH ), '', $path );
+		}
+		return $path;
 	}
 
 	/**

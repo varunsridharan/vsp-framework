@@ -53,12 +53,13 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 * @param int  $log_size_limit Optional. Size limit for log files. Default 5mb.
 	 */
 	public function __construct( $sub_path = false, $log_size_limit = null ) {
-		if ( null === $log_size_limit ) {
+		if ( null === $log_size_limit || false === $log_size_limit ) {
 			$log_size_limit = 5 * 1024 * 1024;
 		}
 		$this->log_size_limit = $log_size_limit;
 		self::$sub_path       = $sub_path;
-		add_action( 'plugins_loaded', array( $this, 'write_cached_logs' ) );
+
+		add_action( 'vsp_framework_init', array( $this, 'write_cached_logs' ), 1 );
 	}
 
 	/**

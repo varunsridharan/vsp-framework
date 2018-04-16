@@ -744,3 +744,39 @@ if ( ! function_exists( 'vsp_logger' ) ) {
 		return $logger;
 	}
 }
+
+if ( ! function_exists( 'vsp_log_msg' ) ) {
+	/**
+	 * Logs Give message to a given handler
+	 *
+	 * @param string|array $messages
+	 * @param string       $type
+	 * @param bool         $handler
+	 * @param array        $context
+	 *
+	 * @return bool
+	 */
+	function vsp_log_msg( $messages = '', $type = 'critical', $handler = false, $context = array() ) {
+		$types = array( 'critical', 'emergency', 'alert', 'error', 'warning', 'notice', 'info', 'debug' );
+
+		if ( ! in_array( $type, $types ) ) {
+			return false;
+		}
+
+		if ( is_array( $messages ) ) {
+			$messages = implode( PHP_EOL, $messages );
+		}
+
+		$messages .= PHP_EOL;
+
+		if ( false === $handler ) {
+			$handler = vsp_logger();
+		}
+
+		if ( $handler instanceof VSP_Logger && method_exists( $handler, $type ) ) {
+			$handler->$type( $messages, $context );
+			return true;
+		}
+		return false;
+	}
+}
