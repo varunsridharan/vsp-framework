@@ -26,7 +26,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * Framework Name: VSP Framework
- * Version: 010420180654 - Build 1
+ * Version: 190420180523 Build 1
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
