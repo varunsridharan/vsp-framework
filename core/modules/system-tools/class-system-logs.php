@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @version 1.0
  * @since 1.0
@@ -9,8 +7,8 @@
  * Date 17-04-2018
  * Time 02:20 PM
  *
- * @package
- * @link
+ * @package vsp-framework
+ * @link http://github.com/varunsridharan/vsp-framework
  * @copyright 2018 Varun Sridharan
  * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
  */
