@@ -14,7 +14,10 @@
  */
 
 /**
- * Class WP_Admin_Notices
+ * Class VSP_WP_Admin_Notices
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_WP_Admin_Notices {
 	/**

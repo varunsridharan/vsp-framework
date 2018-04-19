@@ -26,11 +26,12 @@
 defined( 'ABSPATH' ) or exit;
 
 if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
-
 	/**
+	 * VSP_WC_Data_Compatibility
 	 * WooCommerce data compatibility class.
 	 *
-	 * @since 4.6.0
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	abstract class VSP_WC_Data_Compatibility {
 

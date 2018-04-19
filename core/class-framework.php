@@ -13,6 +13,9 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 	/**
 	 * Class VSP_Framework
 	 * This class should be extened and used in a plugins class
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	abstract class VSP_Framework extends VSP_Framework_Admin implements VSP_Framework_Interface {
 		use VSP_Framework_Trait;

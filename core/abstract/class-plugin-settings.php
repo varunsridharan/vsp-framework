@@ -19,7 +19,10 @@
  */
 
 /**
- * Class VSP_Settings_Plugin
+ * Class VSP_Plugin_Settings
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 abstract class VSP_Plugin_Settings implements VSP_Plugin_Settings_Interface {
 	/**

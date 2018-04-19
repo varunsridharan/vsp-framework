@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 	/**
 	 * Class VSP_Settings_WPSF
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Settings_WPSF extends VSP_Class_Handler {
 		/**
@@ -29,7 +32,6 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 		 */
 		protected $default_options = array(
 			'show_faqs'         => true,
-			'status_page'       => true,
 			'menu_parent'       => false,
 			'menu_title'        => false,
 			'menu_type'         => false,
@@ -78,13 +80,6 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 		public $sections = array();
 
 		/**
-		 * Status_page
-		 *
-		 * @var null
-		 */
-		public $status_page = null;
-
-		/**
 		 * Page_config
 		 *
 		 * @var array
@@ -108,10 +103,9 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 			parent::__construct( $options );
 
 			if ( vsp_is_admin() || vsp_is_ajax() ) {
-				$this->pages       = array();
-				$this->fields      = array();
-				$this->sections    = array();
-				$this->status_page = null;
+				$this->pages    = array();
+				$this->fields   = array();
+				$this->sections = array();
 
 				add_action( 'vsp_sys_status_before_render', array( $this, 'add_settings_data' ) );
 				add_action( 'wpsf_framework_loaded', array( &$this, 'init_settings' ), 40 );
@@ -142,11 +136,6 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 			$this->settings_pages();
 			$this->settings_sections();
 			$this->settings_fields();
-
-			if ( false !== $this->option( 'status_page' ) && true === vsp_is_admin() ) {
-				$this->update_status_page();
-			}
-
 			$this->final_array();
 		}
 
@@ -175,7 +164,7 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 		 * Returns Settings Default Config
 		 */
 		public function get_settings_config() {
-			$defaults          = array(
+			$defaults = array(
 				'menu_parent',
 				'menu_title',
 				'menu_type',
@@ -194,6 +183,7 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 				'extra_js',
 				'buttons',
 			);
+
 			$this->page_config = array();
 			foreach ( $defaults as $op ) {
 				$this->page_config[ $op ] = $this->option( $op, '' );
@@ -274,42 +264,6 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 			) );
 			$adds = new VSP_Settings_Metabox( $args );
 			$adds->render_metaboxes();
-		}
-
-		/**
-		 * Renders Settings Sys Page Array
-		 */
-		private function update_status_page() {
-			$defaults    = array(
-				'name'  => 'sys-page',
-				'title' => __( 'System Status', 'vsp-framework' ),
-				'icon'  => 'fa fa-info-circle',
-			);
-			$status_page = $this->option( 'status_page' );
-			$status_page = ( false !== $status_page && ! is_array( $status_page ) ) ? array() : $status_page;
-			$status_page = $this->parse_args( $status_page, $defaults );
-
-			$this->pages[ $status_page['name'] ] = array(
-				'name'          => $status_page['name'],
-				'title'         => $status_page['title'],
-				'icon'          => $status_page['icon'],
-				'callback_hook' => 'vsp_show_sys_page',
-				'fields'        => array(),
-			);
-		}
-
-		/**
-		 * Renders Syspage HTML
-		 */
-		public function render_sys_page() {
-			echo '<style>
-				div#post-body.metabox-holder.columns-2{width:100%;} 
-#postbox-container-1,.wpsf-simple-footer{display:none;}
-div#wpsf-tab-sys-page .postbox {
-        background : transparent;  border     : none;
-    }</style>';
-			$html = VSP_Status_Report::instance();
-			echo $html->get_output();
 		}
 	}
 }

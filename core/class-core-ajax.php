@@ -13,7 +13,10 @@ if ( ! defined( 'VSP_PATH' ) ) {
 }
 if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 	/**
-	 * Class VSP_Framework_Core_Ajax
+	 * Class VSP_Core_Ajax
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Core_Ajax {
 		/**

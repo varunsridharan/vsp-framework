@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class VSP_WC_Helper
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_WC_Helper {
 

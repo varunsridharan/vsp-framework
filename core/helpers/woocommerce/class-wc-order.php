@@ -19,7 +19,8 @@ if ( ! class_exists( 'VSP_WC_Order' ) ) :
 	/**
 	 * WooCommerce order compatibility class.
 	 *
-	 * @since 4.6.0
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_WC_Order extends VSP_WC_Data_Compatibility {
 

@@ -56,7 +56,7 @@ if ( ! function_exists( 'vsp_define' ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_url" ) ) {
+if ( ! function_exists( 'vsp_url' ) ) {
 	/**
 	 * Returns VSP Framework url
 	 *
@@ -73,7 +73,7 @@ if ( ! function_exists( "vsp_url" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_path" ) ) {
+if ( ! function_exists( 'vsp_path' ) ) {
 	/**
 	 * Returns VSP Framework Full PATH
 	 *
@@ -179,7 +179,7 @@ if ( ! function_exists( 'vsp_debug_file' ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_load_file" ) ) {
+if ( ! function_exists( 'vsp_load_file' ) ) {
 	/**
 	 * Search and loads files based on the search parameter
 	 *

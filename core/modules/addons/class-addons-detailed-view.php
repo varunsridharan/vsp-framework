@@ -18,8 +18,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class VSP_Addons_Detailed_View
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_Addons_Detailed_View extends VSP_Addons_FileMeta {
+	/**
+	 * VSP_Addons_Detailed_View constructor.
+	 */
 	public function __construct() {
 		parent::__construct();
 		add_filter( 'plugins_api', array( $this, 'enable_addon_viewdetails' ), 10, 100 );

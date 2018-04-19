@@ -11,6 +11,9 @@
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
 	 * Class VSP_Framework_Loader
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	final class VSP_Framework_Loader {
 		/**
@@ -61,7 +64,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			add_action( 'vsp_framework_load_lib_integrations', [ &$this, 'load_libs_integrations' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ] );
 			if ( is_admin() ) {
-				add_filter( 'vsp_framework_syspage_framework_info', [ &$this, 'add_extra_info' ] );
 				add_filter( 'vsp_system_status_headers', array( &$this, 'add_sys_info_headers' ) );
 				add_filter( 'vsp_system_status_data', array( &$this, 'add_sys_info_data' ) );
 			}
@@ -101,7 +103,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$libs         = VSP_Autoloader::get_libs();
 			$vsp_loaded   = $this->loaded();
 
-
 			$meta[ __( 'Framework Version', 'vsp-framework' ) ]     = $vsp_loaded['Version'];
 			$meta[ __( 'Textdomain', 'vsp-framework' ) ]            = $vsp_loaded['TextDomain'];
 			$meta[ __( 'DomainPath', 'vsp-framework' ) ]            = $vsp_loaded['DomainPath'];
@@ -137,7 +138,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 					$meta[ __( 'Bundled Libs', 'vsp-framework' ) ][] = $k . ' - ' . $v;
 				}
 			}
-
 
 			$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ] = array(
 				'html_output' => 'table',

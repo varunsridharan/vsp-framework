@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'VSP_Addons' ) ) {
 	/**
 	 * Class VSP_Addons
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Addons extends VSP_Addons_Admin {
 

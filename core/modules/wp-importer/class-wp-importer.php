@@ -23,6 +23,9 @@ if ( ! class_exists( 'WP_Importer' ) ) {
 
 /**
  * Class VSP_WP_Importer
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 abstract class VSP_WP_Importer extends WP_Importer {
 	/**

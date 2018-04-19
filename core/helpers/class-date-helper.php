@@ -15,6 +15,9 @@
 
 /**
  * Class VSP_Date_Time
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_Date_Time extends \DateTime {
 

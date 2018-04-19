@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'VSP_Addons_Core' ) ) {
 	/**
 	 * Class VSP_Addons_Core
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Addons_Core extends VSP_Addons_Detailed_View {
 

@@ -15,6 +15,9 @@
 
 /**
  * Trait VSP_Framework_Trait
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 trait VSP_Framework_Trait {
 	/**

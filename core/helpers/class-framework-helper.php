@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class VSP_Framework_Helper
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_Framework_Helper {
 	/**

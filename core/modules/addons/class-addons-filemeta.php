@@ -15,6 +15,9 @@
 if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 	/**
 	 * Class VSP_Addons_FileMeta
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Addons_FileMeta extends VSP_Class_Handler {
 		/**

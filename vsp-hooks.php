@@ -75,7 +75,7 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 }
 
 
-if ( ! function_exists( "vsp_init_admin_notices" ) ) {
+if ( ! function_exists( 'vsp_init_admin_notices' ) ) {
 	/**
 	 * Creats A Instance Of Admin Notice Class
 	 *

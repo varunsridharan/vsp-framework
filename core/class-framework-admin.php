@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'VSP_Framework_Admin' ) ) {
 	/**
 	 * Class VSP_Framework_Admin
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Framework_Admin extends VSP_Class_Handler {
 

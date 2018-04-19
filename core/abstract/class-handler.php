@@ -18,7 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 	/**
-	 * Class VSP_Class_Handlers
+	 * Class VSP_Class_Handler
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Class_Handler {
 		/**

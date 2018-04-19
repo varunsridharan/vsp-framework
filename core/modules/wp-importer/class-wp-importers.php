@@ -19,6 +19,9 @@ if ( ! defined( 'VSP_PATH' ) ) {
 if ( ! class_exists( 'VSP_WP_Importers' ) ) {
 	/**
 	 * Class VSP_WP_Importers
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	final class VSP_WP_Importers extends VSP_Class_Handler {
 		/**

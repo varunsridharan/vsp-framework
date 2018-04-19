@@ -16,6 +16,9 @@
 
 /**
  * Interface VSP_WP_Admin_Notice_Interface
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 interface VSP_WP_Admin_Notice_Interface {
 	/**

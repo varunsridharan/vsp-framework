@@ -14,7 +14,10 @@
  */
 
 /**
- * Abstract class of a notice
+ * Class VSP_WP_Notice
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_WP_Notice {
 	/**

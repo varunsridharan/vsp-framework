@@ -15,6 +15,9 @@
 
 /**
  * Interface VSP_Plugin_Settings_Interface
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 interface VSP_Plugin_Settings_Interface {
 	/**

@@ -15,6 +15,9 @@
 
 /**
  * Class VSP_Autoloader
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 final class VSP_Autoloader {
 	/**

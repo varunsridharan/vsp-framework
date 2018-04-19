@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'VSP_Settings_Metabox' ) ) {
 	/**
 	 * Class VSP_Settings_Metabox
+	 *
+	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @since 1.0
 	 */
 	class VSP_Settings_Metabox extends VSP_Class_Handler {
 

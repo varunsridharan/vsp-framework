@@ -14,10 +14,13 @@
  */
 
 /**
+ * Class VSP_Cache
  * Uses WP_Object_Cache With a simple wrapper to manage for all our plugins
  *
  * @use WP_Object_Cache
- * Class VSP_Cache
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_Cache {
 

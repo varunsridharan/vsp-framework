@@ -15,6 +15,12 @@
  * @license   GPLV3 Or Greater
  */
 
+/**
+ * Class VSP_Shortcode
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
 abstract class VSP_Shortcode extends VSP_Class_Handler {
 	/**
 	 * Shortcode Name
