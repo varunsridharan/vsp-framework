@@ -48,6 +48,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			'reviewme'      => false,
 			'logging'       => false,
 			'addons'        => true,
+			'system_tools'  => false,
 			'plugin_file'   => __FILE__,
 		);
 
@@ -85,6 +86,7 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		 * @uses init_class
 		 */
 		private function __init_class() {
+			$this->__init_system_tools();
 			$this->__logging_init();
 			$this->__review_me_init();
 			$this->__addon_init();
@@ -94,6 +96,10 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 			}
 
 			$this->init_class();
+		}
+
+		protected function __init_system_tools() {
+			$this->_instance( 'VSP_System_Tools', false, true, array() );
 		}
 
 		/**

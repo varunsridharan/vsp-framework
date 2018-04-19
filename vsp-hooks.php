@@ -45,7 +45,6 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 			'framework'   => vsp_debug_file( 'vsp-framework.js', 'js' ),
 			'vuejs'       => vsp_js( 'vue.min.js' ),
 			'lodash'      => vsp_js( 'lodash.min.js' ),
-			'sweatalert'  => vsp_js( 'sweatAlert.min.js' ),
 			'wp-js-hooks' => vsp_debug_file( 'assets/vendors/wp-js-hooks/wp-js-hooks.min.js', 'url' ),
 			'utils'       => vsp_debug_file( 'assets/js/vsp-utils.js', 'url' ),
 		];
@@ -64,8 +63,7 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 		vsp_register_script( 'vsp-plugins', $js['plugins'], [ 'jquery' ], '1.0', true );
 		vsp_register_script( 'vuejs', $js['vuejs'], [], '1.3.8', true );
 		vsp_register_script( 'lodash', $js['lodash'], [], '1.3.8', true );
-		vsp_register_script( 'sweatalert', $js['sweatalert'], [], '2.1.0', true );
-		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'lodash', 'sweatalert' ], '1.0', false );
+		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'lodash' ], '1.0', false );
 		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery' ], '1.0', true );
 		vsp_register_style( 'vsp-plugins', $css['plugins'] );
 		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );

@@ -663,68 +663,68 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	}
 }
 
-/**
- * Wrapper for set_time_limit to see if it is enabled.
- *
- * @param int $limit Time limit.
- */
-function vsp_set_time_limit( $limit = 0 ) {
-	if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
-		@set_time_limit( $limit );
+if ( ! function_exists( 'vsp_set_time_limit' ) ) {
+	/**
+	 * Wrapper for set_time_limit to see if it is enabled.
+	 *
+	 * @param int $limit Time limit.
+	 */
+	function vsp_set_time_limit( $limit = 0 ) {
+		if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
+			@set_time_limit( $limit );
+		}
 	}
 }
 
-/**
- * Wrapper for vsp_doing_it_wrong.
- *
- * @param string $function Function used.
- * @param string $message Message to log.
- * @param string $version Version the message was added in.
- */
-function vsp_doing_it_wrong( $function, $message, $version ) {
-	// @codingStandardsIgnoreStart
-	$message .= ' Backtrace: ' . wp_debug_backtrace_summary();
+if ( ! function_exists( 'vsp_doing_it_wrong' ) ) {
+	/**
+	 * Wrapper for vsp_doing_it_wrong.
+	 *
+	 * @param string $function Function used.
+	 * @param string $message Message to log.
+	 * @param string $version Version the message was added in.
+	 */
+	function vsp_doing_it_wrong( $function, $message, $version ) {
+		// @codingStandardsIgnoreStart
+		$message .= ' Backtrace: ' . wp_debug_backtrace_summary();
 
-	if ( is_ajax() ) {
-		do_action( 'doing_it_wrong_run', $function, $message, $version );
-		error_log( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
-	} else {
-		_doing_it_wrong( $function, $message, $version );
+		if ( is_ajax() ) {
+			do_action( 'doing_it_wrong_run', $function, $message, $version );
+			error_log( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
+		} else {
+			_doing_it_wrong( $function, $message, $version );
+		}
+		// @codingStandardsIgnoreEnd
 	}
-	// @codingStandardsIgnoreEnd
 }
 
-
-/**
- * Get a shared logger instance.
- *
- * Use the vsp_logging_class filter to change the logging class. You may provide one of the following:
- *     - a class name which will be instantiated as `new $class` with no arguments
- *     - an instance which will be used directly as the logger
- * In either case, the class or instance *must* implement WC_Logger_Interface.
- *
- * @see VSP_Logger_Interface
- *
- * @return VSP_Logger
- */
 if ( ! function_exists( 'vsp_get_logger' ) ) {
+	/**
+	 * Get a shared logger instance.
+	 *
+	 * Use the vsp_logging_class filter to change the logging class. You may provide one of the following:
+	 *     - a class name which will be instantiated as `new $class` with no arguments
+	 *     - an instance which will be used directly as the logger
+	 * In either case, the class or instance *must* implement WC_Logger_Interface.
+	 *
+	 * @see VSP_Logger_Interface
+	 *
+	 * @return VSP_Logger
+	 */
 	function vsp_get_logger( $subpath = false, $filesize = false ) {
-		static $logger = null;
-		if ( null === $logger ) {
-			$class      = apply_filters( 'vsp_logging_class', 'VSP_Logger' );
-			$implements = class_implements( $class );
-			if ( is_array( $implements ) && in_array( 'VSP_Logger_Interface', $implements ) ) {
-				if ( is_object( $class ) ) {
-					$logger = $class;
-				} else {
-					$logger = new $class( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
-				}
+		$class      = apply_filters( 'vsp_logging_class', 'VSP_Logger' );
+		$implements = class_implements( $class );
+		if ( is_array( $implements ) && in_array( 'VSP_Logger_Interface', $implements ) ) {
+			if ( is_object( $class ) ) {
+				$logger = $class;
 			} else {
-				$smgs = sprintf( /* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
-					__( 'The class %1$s provided by %2$s filter must implement %3$s.', 'woocommerce' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>woocommerce_logging_class</code>', '<code>WC_Logger_Interface</code>' );
-				vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
-				$logger = new VSP_Logger( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
+				$logger = new $class( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
 			}
+		} else {
+			$smgs = sprintf( /* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
+				__( 'The class %1$s provided by %2$s filter must implement %3$s.', 'woocommerce' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>woocommerce_logging_class</code>', '<code>WC_Logger_Interface</code>' );
+			vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
+			$logger = new VSP_Logger( array( new VSP_Log_Handler_File( $subpath, $filesize ) ) );
 		}
 		return $logger;
 	}
@@ -739,7 +739,7 @@ if ( ! function_exists( 'vsp_logger' ) ) {
 	function vsp_logger() {
 		static $logger = null;
 		if ( null === $logger ) {
-			$logger = vsp_get_logger();
+			$logger = vsp_get_logger( false, false );
 		}
 		return $logger;
 	}
@@ -784,5 +784,60 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
 		}
 		return false;
+	}
+}
+
+if ( ! function_exists( 'vsp_date_format' ) ) {
+	/**
+	 * WooCommerce Date Format - Allows to change date format for everything WooCommerce.
+	 *
+	 * @return string
+	 */
+	function vsp_date_format() {
+		return apply_filters( 'vsp_date_format', get_option( 'date_format' ) );
+	}
+}
+
+if ( ! function_exists( 'vsp_time_format' ) ) {
+	/**
+	 * WooCommerce Time Format - Allows to change time format for everything WooCommerce.
+	 *
+	 * @return string
+	 */
+	function vsp_time_format() {
+		return apply_filters( 'vsp_time_format', get_option( 'time_format' ) );
+	}
+}
+
+if ( ! function_exists( 'vsp_censor_path' ) ) {
+	/**
+	 * Censors Actual Path and just provides path after that
+	 *
+	 * @example /var/www/html/wp-content/plugins will be returned as /wp-content/plugins
+	 *
+	 * @param string $path
+	 * @param bool   $actual_path
+	 *
+	 * @return mixed
+	 */
+	function vsp_censor_path( $path = '', $actual_path = false ) {
+		if ( false === $actual_path ) {
+			$actual_path = ABSPATH;
+		}
+		return str_replace( vsp_unslashit( ABSPATH ), '', $path );
+	}
+}
+
+if ( ! function_exists( 'vsp_ajax_url' ) ) {
+	/**
+	 * Returns Ajax URL.
+	 *
+	 * @param array $query_args
+	 *
+	 * @return string
+	 */
+	function vsp_ajax_url( $query_args = array() ) {
+		$admin_url = admin_url( 'admin-ajax.php' );
+		return add_query_arg( $query_args, $admin_url );
 	}
 }

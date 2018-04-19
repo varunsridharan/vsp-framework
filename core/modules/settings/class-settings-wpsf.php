@@ -249,6 +249,7 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 					}
 				}
 			}
+
 			$this->final_options = $pages;
 		}
 

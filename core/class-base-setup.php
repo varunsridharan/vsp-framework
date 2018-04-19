@@ -33,6 +33,8 @@ class VSP_Framework_Setup {
 	/**
 	 * Checks if file exists if not creates the folder.
 	 *
+	 * @param bool $dir
+	 *
 	 * @static
 	 */
 	public static function check_create_log_folder( $dir = false ) {

@@ -224,7 +224,33 @@
             allowPageScroll: false,
             alwaysVisible: true,
         });
-    }
+    };
+
+    $.VSPFRAMEWORK.init_inline_ajax = function (e) {
+        e.preventDefault();
+
+        if ( $(this).hasClass("disabled") || $(this).hasClass("in-process") ) {
+            return;
+        }
+
+        var $this = $(this),
+            url = $this.attr("href"),
+            method = $this.attr("data-method"),
+            trigger_code = $this.attr("data-triggername");
+
+        if ( method == undefined ) {
+            method = 'GET';
+        }
+
+        new VSPAjax({
+            url: url,
+            method: method,
+        }, {
+            trigger_code: trigger_code,
+            element: $this,
+            element_lock: true,
+        });
+    };
 
     $.fn.VSPFRAMEWORK_SELECT2 = function () {
         if ( !$.VSPFRAMEWORK.is_framework_exists('select2') ) {
@@ -399,6 +425,8 @@
                 }
             });
         }
+
+        $("body").on("click", 'a.vsp-inline-ajax, button.vsp-inline-ajax', $.VSPFRAMEWORK.init_inline_ajax);
     });
 
 } )(jQuery, window, document);

@@ -4,8 +4,7 @@
     function define_VSPAjax() {
         var VSPAjax = function (AjaxOptions, Options) {
             this.ajax(AjaxOptions, Options);
-            return this;
-        }
+        };
         return VSPAjax;
     }
 
@@ -152,25 +151,26 @@
         },
 
         _handle_callback: function (res) {
+            var $this = this;
             if ( res.data !== undefined ) {
                 if ( res.data.callback !== undefined ) {
                     if ( typeof res.data.callback == 'string' ) {
-                        this._string_function_callback(res.data.callback);
+                        $this._string_function_callback(res.data.callback);
                     } else if ( typeof res.data.callback == 'object' || typeof res.data.callback == 'array' ) {
 
                         jQuery.each(res.data.callback, function (key, value) {
                             if ( key == parseInt(key) ) {
                                 if ( typeof value == 'string' ) {
-                                    this._string_function_callback(value);
+                                    $this._string_function_callback(value);
                                 } else if ( typeof value == 'object' || typeof value == 'array' ) {
-                                    this._array_function_callback(value);
+                                    $this._array_function_callback(value);
                                 }
                             } else {
                                 try {
                                     var CB = new Function(key, value);
                                     CB();
                                 } catch ( arr ) {
-                                    console.log(err);
+                                    console.log(arr);
                                 }
                             }
                         })
@@ -215,12 +215,18 @@
                 $self._BodyTrigger("success");
 
                 $self._handle_response(res);
+
+                $self._handle_callback(res);
+
+
             });
 
             this._Ajax.fail(function (res) {
                 $self._elementLock('unblock');
 
                 $self._handle_response(res.responseJSON.data);
+
+                $self._handle_callback(res);
 
                 $self._FuncTrigger("onError", res);
 

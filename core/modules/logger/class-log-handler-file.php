@@ -23,7 +23,7 @@
  */
 class VSP_Log_Handler_File extends VSP_Log_Handler {
 
-	protected static $sub_path = false;
+	protected $sub_path = false;
 	/**
 	 * Stores open file handles.
 	 *
@@ -56,8 +56,9 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 		if ( null === $log_size_limit || false === $log_size_limit ) {
 			$log_size_limit = 5 * 1024 * 1024;
 		}
+
 		$this->log_size_limit = $log_size_limit;
-		self::$sub_path       = $sub_path;
+		$this->sub_path       = $sub_path;
 
 		add_action( 'vsp_framework_init', array( $this, 'write_cached_logs' ), 1 );
 	}
@@ -160,7 +161,7 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 * @return bool True if if should be rotated.
 	 */
 	protected function should_rotate( $handle ) {
-		$file = self::get_log_file_path( $handle );
+		$file = $this->get_log_file_path( $handle );
 		if ( $file ) {
 			if ( $this->is_open( $handle ) ) {
 				$file_stat = fstat( $this->handles[ $handle ] );
@@ -182,13 +183,13 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 *
 	 * @return bool|string The log file path or false if path cannot be determined.
 	 */
-	public static function get_log_file_path( $handle ) {
+	public function get_log_file_path( $handle ) {
 		if ( function_exists( 'wp_hash' ) ) {
-			if ( false !== self::$sub_path ) {
-				VSP_Framework_Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) . self::$sub_path );
-				return vsp_slashit( VSP_LOG_DIR ) . vsp_slashit( self::$sub_path ) . self::get_log_file_name( $handle );
+			if ( false !== $this->sub_path ) {
+				VSP_Framework_Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) . $this->sub_path );
+				return vsp_slashit( VSP_LOG_DIR ) . vsp_slashit( $this->sub_path ) . $this->get_log_file_name( $handle );
 			}
-			return vsp_slashit( VSP_LOG_DIR ) . self::get_log_file_name( $handle );
+			return vsp_slashit( VSP_LOG_DIR ) . $this->get_log_file_name( $handle );
 		} else {
 			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.0' );
 			return false;
@@ -204,9 +205,9 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 *
 	 * @return bool|string The log file name or false if cannot be determined.
 	 */
-	public static function get_log_file_name( $handle ) {
+	public function get_log_file_name( $handle ) {
 		if ( function_exists( 'wp_hash' ) ) {
-			return sanitize_file_name( $handle . '-' . wp_hash( $handle ) . '.log' );
+			return sanitize_file_name( $handle . '-' . wp_hash( $handle . '_' . $this->sub_path ) . '.log' );
 		} else {
 			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.3' );
 			return false;
@@ -261,8 +262,8 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 			$suffix      = '.' . $number;
 			$next_suffix = '.' . ( $number + 1 );
 		}
-		$rename_from = self::get_log_file_path( "{$handle}{$suffix}" );
-		$rename_to   = self::get_log_file_path( "{$handle}{$next_suffix}" );
+		$rename_from = $this->get_log_file_path( "{$handle}{$suffix}" );
+		$rename_to   = $this->get_log_file_path( "{$handle}{$next_suffix}" );
 		if ( $this->is_open( $rename_from ) ) {
 			$this->close( $rename_from );
 		}
@@ -301,7 +302,7 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 		if ( $this->is_open( $handle ) ) {
 			return true;
 		}
-		$file = self::get_log_file_path( $handle );
+		$file = $this->get_log_file_path( $handle );
 		if ( $file ) {
 			if ( ! file_exists( $file ) ) {
 				$temphandle = @fopen( $file, 'w+' );
@@ -363,7 +364,7 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 */
 	public function remove( $handle ) {
 		$removed = false;
-		$file    = self::get_log_file_path( $handle );
+		$file    = $this->get_log_file_path( $handle );
 		if ( $file ) {
 			if ( is_file( $file ) && is_writable( $file ) ) { // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.file_ops_is_writable
 				$this->close( $handle ); // Close first to be certain no processes keep it alive after it is unlinked.

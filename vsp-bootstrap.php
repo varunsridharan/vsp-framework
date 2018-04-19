@@ -70,6 +70,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	require_once VSP_PATH . 'functions/admin-notices-functions.php';
 	require_once VSP_CORE . 'class-base-setup.php';
 	require_once VSP_PATH . 'vsp-hooks.php';
+	require_once VSP_PATH . 'core/modules/system-tools/class-system-status-report.php';
 
 	do_action( 'vsp_framework_load_lib_integrations' );
 
