@@ -20,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
-
 	/**
 	 * Class VSP_System_Status_Report
 	 *
@@ -105,7 +104,7 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 		 */
 		public static function get_headers() {
 			return apply_filters( 'vsp_system_status_headers', array(
-				'wp-env'     => array(
+				'wp-env'      => array(
 					'name'   => '<i class="fa fa-wordpress"></i> ' . __( 'WordPress Environment' ),
 					'childs' => array(
 						'themes'  => '<i class="fa fa-paint-brush"></i> ' . __( 'Theme Info' ),
@@ -121,13 +120,17 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 						),
 					),
 				),
-				'server-env' => array(
+				'server-env'  => array(
 					'name'   => '<i class="fa fa-server"></i> ' . __( 'Server Environment' ),
 					'childs' => array(
 						'php-info' => '<i class="fa fa-info"></i> ' . __( 'PHP Info' ),
 						'php-exts' => '<i class="fa fa-puzzle-piece "></i> ' . __( 'PHP Extentions' ),
 						'session'  => '<i class="fa fa-sun-o "></i> ' . __( 'Session Configuration' ),
 					),
+				),
+				'vsp-plugins' => array(
+					'name'   => __( 'VSP Plugins' ),
+					'childs' => apply_filters( 'vsp_system_status_headers_vsp_plugins', array() ),
 				),
 				#'client-details' => __( 'Client Details' ),
 			) );
@@ -206,7 +209,7 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 				__( 'WP Table Prefix Lenght' ) => strlen( $wpdb->prefix ),
 				__( 'WP Table Prefix Status' ) => ( strlen( $wpdb->prefix ) > 16 ) ? __( 'Error : Too Long' ) : __( 'Ok' ),
 				__( 'WP Timezone' )            => get_option( 'timezone_string' ) . ', GMT : ' . get_option( 'gmt_offset' ),
-				__( 'WP Remote Post' )         => self::validate_post(),
+				#__( 'WP Remote Post' )         => self::validate_post(),
 				__( 'Permalink Structure' )    => get_option( 'permalink_structure' ),
 				__( 'Registered Post Stati' )  => get_post_stati(),
 				__( 'Show On Front' )          => get_option( 'show_on_front' ),
@@ -327,8 +330,9 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 		 * @return string
 		 * @static
 		 */
-		public static function text_output_content( $headers ) {
+		public static function text_output_content( $headers, $in_level = false ) {
 			$return = '';
+
 			foreach ( $headers as $slug => $header ) {
 				$title = $header;
 				if ( is_array( $header ) && isset( $header['name'] ) ) {
@@ -338,14 +342,27 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 				if ( isset( self::$data[ $slug ] ) ) {
 					$content = self::render_text( self::$data[ $slug ] );
 				}
-				if ( false !== $content ) {
-					$return .= '## ' . strip_tags( $title ) . ' ##' . PHP_EOL;
-					$return .= $content;
-					$return .= '## END OF ' . strip_tags( $title ) . ' ##' . PHP_EOL;
-					$return .= PHP_EOL . '----------------------------------------------------' . PHP_EOL . PHP_EOL;
+
+				if ( ( false === $content || empty( $content ) ) && ! isset( $header['childs'] ) ) {
+					continue;
 				}
+
+				if ( false === $in_level ) {
+					$return .= PHP_EOL . '## ' . strip_tags( $title ) . ' ##' . PHP_EOL;
+				} else {
+					$return .= PHP_EOL . '### ' . strip_tags( $title ) . ' ###' . PHP_EOL;
+				}
+
+				if ( false !== $content ) {
+					$return .= $content . PHP_EOL;
+				}
+
 				if ( isset( $header['childs'] ) ) {
-					$return .= self::text_output_content( $header['childs'] );
+					$return .= self::text_output_content( $header['childs'], $in_level + 1 );
+				}
+
+				if ( false === $in_level ) {
+					$return .= '---';
 				}
 			}
 			return $return;
@@ -358,13 +375,11 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 		 * @static
 		 */
 		public static function render_text( $data ) {
-			$return = '';
+			$return = array();
 			foreach ( $data as $title => $_data ) {
-				$return .= $title . ' : ' . self::handle_result_text( $_data ) . PHP_EOL;
+				$return[] = '* ' . $title . ' : ' . self::handle_result_text( $_data );
 			}
-
-			$return .= PHP_EOL;
-			return $return;
+			return implode( PHP_EOL, $return );
 		}
 
 		/**
@@ -545,7 +560,10 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 				}
 				return '&#10060;';
 			} elseif ( is_array( $result ) ) {
-				return wp_json_encode( $result ) . PHP_EOL;
+				$r = PHP_EOL . '```php' . PHP_EOL;
+				$r .= var_export( $result, true );
+				$r .= PHP_EOL . '```' . PHP_EOL;
+				return $r;
 			}
 
 			return $result;
@@ -591,29 +609,5 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 			$return .= '</table>';
 			return $return;
 		}
-
-		public static function init() {
-			add_action( 'template_redirect', array( __CLASS__, 'show' ) );
-		}
-
-		public static function show() {
-			if ( ! isset( $_GET['vsp-sys-info'] ) || empty( $_GET['vsp-sys-info'] ) ) {
-				return;
-			}
-
-			$query_value = $_GET['vsp-sys-info'];
-			$value       = vsp_get_cache( 'vsp-sysinfo-url' );
-
-			if ( $query_value == $value ) {
-				echo '<pre>';
-				echo esc_html( self::text_output() );
-				echo '</pre>';
-				exit();
-			}
-
-
-		}
 	}
-
-	VSP_System_Status_Report::init();
 }

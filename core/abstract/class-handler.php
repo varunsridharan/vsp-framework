@@ -352,11 +352,11 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		 */
 		public function get_common_args( $extra_options = array() ) {
 			return $this->parse_args( $extra_options, array(
-				'slug'        => $this->slug(),
-				'db_slug'     => $this->slug( 'db' ),
-				'hook_slug'   => $this->slug( 'hook' ),
-				'plugin_name' => $this->plugin_name(),
-				'file'        => $this->file(),
+				'slug'      => $this->slug(),
+				'db_slug'   => $this->slug( 'db' ),
+				'hook_slug' => $this->slug( 'hook' ),
+				'name'      => $this->plugin_name(),
+				'file'      => $this->file(),
 			) );
 		}
 

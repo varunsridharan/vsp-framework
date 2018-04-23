@@ -111,7 +111,11 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 			$currenturl = vsp_get_cache( 'vsp-sysinfo-url' );
 
 			$extra = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
-			$extra .= '<a id="vspsysinfocurl" href="' . home_url() . '/?vsp-sys-info=' . $currenturl . '">' . home_url() . '/?vsp-sys-info=' . $currenturl . '</a>';
+			$output = vsp_ajax_url( array(
+				'action'  => 'vsp-sys-info',
+				'vsp-key' => $currenturl,
+			) );
+			$extra .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
 
 			echo wpsf_add_element( array(
 				'id'              => 'report',

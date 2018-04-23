@@ -107,6 +107,9 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 				$this->fields   = array();
 				$this->sections = array();
 
+
+				add_filter( 'vsp_system_status_headers_vsp_plugins', array( &$this, 'set_sysinfo_headers' ) );
+				add_filter( 'vsp_system_status_data', array( &$this, 'set_sysinfo_data' ) );
 				add_action( 'vsp_sys_status_before_render', array( $this, 'add_settings_data' ) );
 				add_action( 'wpsf_framework_loaded', array( &$this, 'init_settings' ), 40 );
 				add_action( 'vsp_wp_settings_simple_footer', array( &$this, 'render_settings_metaboxes' ) );
@@ -117,10 +120,28 @@ if ( ! class_exists( 'VSP_Settings_WPSF' ) ) {
 		/**
 		 * Adds Settings Data to vsp Syspage
 		 *
-		 * @param object $class instanceof VSP_SYSPAGE.
-		 *
 		 * @uses \WPSFramework_Settings
 		 */
+		public function set_sysinfo_headers( $info ) {
+			if ( ! isset( $info[ $this->slug( 'slug' ) ] ) ) {
+				$info[ $this->slug( 'slug' ) ] = array(
+					'name'   => $this->plugin_name(),
+					'childs' => array(
+						$this->slug( 'slug' ) . '_settings' => __( 'Settings' ),
+					),
+				);
+			} elseif ( is_array( $info[ $this->slug( 'slug' ) ] ) ) {
+				$info[ $this->slug( 'slug' ) ]['childs'][ $this->slug( 'slug' ) . '_settings' ] = __( 'Settings' );
+			}
+			return $info;
+		}
+
+		public function set_sysinfo_data( $data ) {
+			$data[ $this->slug( 'slug' ) . '_settings' ] = $this->framework->get_db_options();
+			return $data;
+		}
+
+
 		public function add_settings_data( $class ) {
 			if ( ! isset( $class->vsp_settings ) ) {
 				$class->vsp_settings = array();
