@@ -5,29 +5,36 @@
 	$wpsf_submenus = array();
 	if ( ! empty( $title ) ) { ?> <h2><?php echo $title; ?> </h2> <?php } ?>
 
-    <h2 class="nav-tab-wrapper wpsf-main-nav">
+	<h2 class="nav-tab-wrapper wpsf-main-nav">
 		<?php
 		foreach ( $class->navs() as $nav ) {
-			$title     = ( isset( $nav['title'] ) ) ? $nav['title'] : "";
-			$href      = ( isset( $nav['href'] ) && $nav['href'] !== false ) ? $nav['href'] : '#';
-			$is_active = ( isset( $nav['is_active'] ) && $nav['is_active'] === true ) ? ' nav-tab-active ' : '';
-			if ( isset( $nav['is_separator'] ) && $nav['is_separator'] === true ) {
+			$title     = ( isset( $nav['title'] ) ) ? $nav['title'] : '';
+			$is_active = ( isset( $nav['is_active'] ) && true === $nav['is_active'] ) ? ' nav-tab-active ' : '';
+			$href      = '#';
+
+			if ( isset( $nav['href'] ) && ( false !== $nav['href'] && '#' !== $nav['href'] ) ) {
+				$href      = $nav['href'];
+				$is_active .= ' has-link ';
+			}
+
+			if ( isset( $nav['is_separator'] ) && true === $nav['is_separator'] ) {
 				continue;
 			}
+
 			echo '<a href="' . $href . '" class="nav-tab ' . $is_active . '" data-section="' . $nav['name'] . '">' . $class->icon( $nav ) . ' ' . $title . '</a>';
 			if ( isset( $nav['submenus'] ) ) {
 				wpsf_simple_render_submenus( $nav['submenus'], $nav['name'], $class );
 			}
 		}
 		?>
-    </h2>
+	</h2>
 
 
-    <div id="poststuff">
-        <div class="metabox-holder columns-2" id="post-body">
-            <div id="post-body-content">
-                <div class="wpsf-content">
-                    <div class="wpsf-sections">
+	<div id="poststuff">
+		<div class="metabox-holder columns-2" id="post-body">
+			<div id="post-body-content">
+				<div class="wpsf-content">
+					<div class="wpsf-sections">
 						<?php
 						foreach ( $class->options as $option ) {
 							if ( $single_page === 'no' && $option['name'] !== $class->active() ) {
@@ -78,20 +85,20 @@
 						}
 
 						?>
-                    </div>
-                    <div class="wpsf-sections">
-                        <div class="wpsf-simple-footer">
+					</div>
+					<div class="wpsf-sections">
+						<div class="wpsf-simple-footer">
 							<?php
 							if ( $ajax === 'yes' ) {
 								echo '<span id="wpsf-save-ajax">' . esc_html__( "Settings Saved", 'wpsf-framework', 'vsp-framework' ) . '</span>';
 							}
 							echo $class->get_settings_buttons(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<?php echo do_action( "vsp_wp_settings_simple_footer" ); ?>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
