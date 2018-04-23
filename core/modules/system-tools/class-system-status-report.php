@@ -542,7 +542,8 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 						return $data;
 					}
 				}
-				return implode( ' , ', $result );
+
+				return '<pre>' . print_r( $result, true ) . '</pre>';
 			}
 			return $result;
 		}

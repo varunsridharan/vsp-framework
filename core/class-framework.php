@@ -102,7 +102,9 @@ if ( ! class_exists( 'VSP_Framework' ) ) {
 		}
 
 		protected function __init_system_tools() {
-			$this->_instance( 'VSP_System_Tools', false, true, array() );
+			if ( false !== $this->option( 'system_tools' ) ) {
+				$this->_instance( 'VSP_System_Tools', false, true, $this->option( 'system_tools' ) );
+			}
 		}
 
 		/**
