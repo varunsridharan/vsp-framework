@@ -110,12 +110,12 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 
 			$currenturl = vsp_get_cache( 'vsp-sysinfo-url' );
 
-			$extra = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
+			$extra  = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
 			$output = vsp_ajax_url( array(
 				'action'  => 'vsp_sys_info',
 				'vsp-key' => $currenturl,
 			) );
-			$extra .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
+			$extra  .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
 
 			echo wpsf_add_element( array(
 				'id'              => 'report',
@@ -125,9 +125,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 				'fields'          => array(
 					array(
 						'type'    => 'content',
-						'content' => __( 'Users with this URL can view a plain-text version of your System Status.  
-				This link can be handy in support forums, as access to this information can be removed after you receive the help you need. <br/>
-				 Generating a new URL will safely void access to all who have the existing URL.', 'vsp-framework' ),
+						'content' => __( 'Users with this URL can view a plain-text version of your System Status. This link can be handy in support forums, as access to this information can be removed after you receive the help you need. <br/> Generating a new URL will safely void access to all who have the existing URL.', 'vsp-framework' ),
 						'after'   => '<br/> <br/> 
 <button href="' . $active_url . '" class="button button-primary vsp-inline-ajax" type="button">' . __( 'Generate New URL', 'vsp-framework' ) . '</button>
 <button href="' . $inactive_url . '" type="button"  class="button button-secondary vsp-inline-ajax" >' . __( 'Disable', 'vsp-framework' ) . '</button> <br/> <br/> ' . $extra,

@@ -1,10 +1,10 @@
-# Copyright (C) 2018 VSP Framework
-# This file is distributed under the same license as the VSP Framework package.
+# Copyright (C) 2018 {package-name}
+# This file is distributed under the same license as the {package-name} package.
 msgid ""
 msgstr ""
-"Project-Id-Version: VSP Framework 260320181112 - Build 1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/vsp-framework\n"
-"POT-Creation-Date: 2018-03-26 05:45:48+00:00\n"
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: https://make.wordpress.org/polyglots/\n"
+"POT-Creation-Date: 2018-04-25 11:28:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,489 +12,587 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: core/abstract/class-handler.php:122
+#: core/abstract/class-handler.php:129
 msgid "Cloning instances of the class is forbidden."
 msgstr ""
 
-#: core/abstract/class-handler.php:129
+#: core/abstract/class-handler.php:136
 msgid "Unserializing instances of the class is forbidden."
 msgstr ""
 
-#: core/class-wp-requirements.php:41
+#: core/class-autoloader.php:195
+msgid "Failed To Load Requested Integration %s"
+msgstr ""
+
+#: core/class-autoloader.php:196 core/class-autoloader.php:242
+msgid "Searched In Path %s"
+msgstr ""
+
+#: core/class-autoloader.php:197 core/class-autoloader.php:243
+msgid "Tried Action %s"
+msgstr ""
+
+#: core/class-autoloader.php:241
+msgid "Failed To Load Requested Library %s"
+msgstr ""
+
+#: core/class-core-ajax.php:80
+msgid "URL Generated"
+msgstr ""
+
+#: core/class-core-ajax.php:80
+msgid "Remote View URL Generated. due to security reasons this url will only be valid for 48hrs from now."
+msgstr ""
+
+#: core/class-core-ajax.php:93
+msgid "Remote URL Disabled"
+msgstr ""
+
+#: core/class-wp-requirements.php:50
 msgid "%s Plugin Could Not Be Activated / Loaded Due to the following reasons"
 msgstr ""
 
-#: core/class-wp-requirements.php:134
+#: core/class-wp-requirements.php:149
 msgid "Required PHP Extensitions :"
 msgstr ""
 
-#: core/class-wp-requirements.php:143
+#: core/class-wp-requirements.php:158
 msgid "PHP Extensitions Installed & Not Supported By This Plugin"
 msgstr ""
 
-#: core/class-wp-requirements.php:181
+#: core/class-wp-requirements.php:202
 msgid "Required %s : %s+ "
 msgstr ""
 
-#: core/class-wp-requirements.php:183
+#: core/class-wp-requirements.php:204
 msgid "Required %s : %s or lower"
 msgstr ""
 
-#: core/class-wp-requirements.php:185
+#: core/class-wp-requirements.php:206
 msgid "Required %s : %s "
 msgstr ""
 
-#: core/class-wp-requirements.php:188
+#: core/class-wp-requirements.php:209
 msgid "Detected : %s"
 msgstr ""
 
-#: core/class-wp-requirements.php:250
+#: core/class-wp-requirements.php:277
 msgid "%s Plugin Must Be Active"
 msgstr ""
 
-#: core/class-wp-requirements.php:283
+#: core/class-wp-requirements.php:310
 msgid "Version Compatibility"
 msgstr ""
 
-#: core/class-wp-requirements.php:292
+#: core/class-wp-requirements.php:319
 msgid "Inactive Plugins"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:77
+#: core/modules/addons/class-addons-admin.php:80
 msgid "Required Plugin"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:78
+#: core/modules/addons/class-addons-admin.php:81
 msgid "Above Mentioned Plugin name with version are Tested Upto"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:79
+#: core/modules/addons/class-addons-admin.php:82
 msgid "Activate"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:80
+#: core/modules/addons/class-addons-admin.php:83
 msgid "De Activate"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:85
-#: core/modules/addons/class-addons-core.php:32
-#: core/modules/addons/class-addons-core.php:292
+#: core/modules/addons/class-addons-admin.php:88
+#: core/modules/addons/class-addons-core.php:35
+#: core/modules/addons/class-addons-core.php:295
 msgid "In Active"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:86
-#: core/modules/addons/class-addons-core.php:295
+#: core/modules/addons/class-addons-admin.php:89
+#: core/modules/addons/class-addons-core.php:298
 msgid "Not Exist"
 msgstr ""
 
-#: core/modules/addons/class-addons-admin.php:87
-#: core/modules/addons/class-addons-core.php:31
-#: core/modules/addons/class-addons-core.php:298
+#: core/modules/addons/class-addons-admin.php:90
+#: core/modules/addons/class-addons-core.php:34
+#: core/modules/addons/class-addons-core.php:301
 msgid "Active"
 msgstr ""
 
-#: core/modules/addons/class-addons-core.php:30
+#: core/modules/addons/class-addons-core.php:33
 msgid "All"
 msgstr ""
 
-#: core/modules/addons/class-addons-filemeta.php:84
+#: core/modules/addons/class-addons-filemeta.php:87
 msgid "Duplicate Addon Found. Unable to load Please contact the developer with below information %s"
 msgstr ""
 
-#: core/modules/addons/class-addons-filemeta.php:245
+#: core/modules/addons/class-addons-filemeta.php:248
 msgid "Required Plugins"
 msgstr ""
 
-#: core/modules/addons/class-addons-filemeta.php:246
+#: core/modules/addons/class-addons-filemeta.php:249
 msgid "Screenshots"
 msgstr ""
 
-#: core/modules/addons/class-addons-filemeta.php:247
+#: core/modules/addons/class-addons-filemeta.php:250
 msgid "FAQ"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:86
+#: core/modules/addons/class-addons.php:89
 msgid "%s Has deactivated the following addons because its required plugins are deactivated"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:143
+#: core/modules/addons/class-addons.php:146
 msgid "Addon Action Not Provided"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:144
+#: core/modules/addons/class-addons.php:147
 msgid "No Addon Selected"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:145
+#: core/modules/addons/class-addons.php:148
 msgid "Unable To Process Your Request"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:147
+#: core/modules/addons/class-addons.php:150
 msgid "Invalid Addon"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:157
+#: core/modules/addons/class-addons.php:160
 msgid "Activation Failed"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:157
+#: core/modules/addons/class-addons.php:160
 msgid "Addon's Requried Plugins Not Active / Installed"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:166
+#: core/modules/addons/class-addons.php:169
 msgid "Addon Activated"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:171
+#: core/modules/addons/class-addons.php:174
 msgid "Addon Already Active"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:181
+#: core/modules/addons/class-addons.php:184
 msgid "Addon De-Activated"
 msgstr ""
 
-#: core/modules/addons/class-addons.php:186
+#: core/modules/addons/class-addons.php:189
 msgid "Addon Is Not Active"
 msgstr ""
 
-#: core/modules/class-status-report.php:93
-msgid "Theme Name"
+#: core/modules/admin-notices/class-wordpress-sticky-notice.php:30
+msgid "Hide Notice"
 msgstr ""
 
-#: core/modules/class-status-report.php:94
-msgid "Theme Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:95
-msgid "Theme URI"
-msgstr ""
-
-#: core/modules/class-status-report.php:96
-msgid "Theme Description"
-msgstr ""
-
-#: core/modules/class-status-report.php:97
-msgid "Theme Author"
-msgstr ""
-
-#: core/modules/class-status-report.php:98
-msgid "Theme AuthorURI"
-msgstr ""
-
-#: core/modules/class-status-report.php:99
-#: core/modules/class-status-report.php:201
-msgid "Parent Theme"
-msgstr ""
-
-#: core/modules/class-status-report.php:114
-msgid "Name"
-msgstr ""
-
-#: core/modules/class-status-report.php:115
-msgid "PluginURI"
-msgstr ""
-
-#: core/modules/class-status-report.php:116
-msgid "Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:117
-msgid "Author"
-msgstr ""
-
-#: core/modules/class-status-report.php:118
-msgid "AuthorURI"
-msgstr ""
-
-#: core/modules/class-status-report.php:165
-msgid "Home URL"
-msgstr ""
-
-#: core/modules/class-status-report.php:166
-msgid "Site URL"
-msgstr ""
-
-#: core/modules/class-status-report.php:167
-msgid "WP Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:168
-msgid "WP Language"
-msgstr ""
-
-#: core/modules/class-status-report.php:169
-msgid "Multisite"
-msgstr ""
-
-#: core/modules/class-status-report.php:170
-msgid "WP Memory Limit"
-msgstr ""
-
-#: core/modules/class-status-report.php:171
-msgid "WP Table Prefix"
-msgstr ""
-
-#: core/modules/class-status-report.php:172
-msgid "WP Timezone"
-msgstr ""
-
-#: core/modules/class-status-report.php:173
-msgid "WP Remote Post"
-msgstr ""
-
-#: core/modules/class-status-report.php:173
-msgid "Enabled"
-msgstr ""
-
-#: core/modules/class-status-report.php:173
-msgid "Disabled"
-msgstr ""
-
-#: core/modules/class-status-report.php:174
-msgid "Permalink Structure"
-msgstr ""
-
-#: core/modules/class-status-report.php:175
-msgid "Registered Post Stati"
-msgstr ""
-
-#: core/modules/class-status-report.php:176
-#: core/modules/class-status-report.php:178
-msgid "Show On Front"
-msgstr ""
-
-#: core/modules/class-status-report.php:177
-msgid "Page On Front"
-msgstr ""
-
-#: core/modules/class-status-report.php:179
-msgid "Server Info"
-msgstr ""
-
-#: core/modules/class-status-report.php:180
-msgid "Host"
-msgstr ""
-
-#: core/modules/class-status-report.php:181
-msgid "Default Timezone"
-msgstr ""
-
-#: core/modules/class-status-report.php:184
-#: core/modules/class-status-report.php:186
-msgid "MySql Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:197
-msgid "Is Child Theme"
-msgstr ""
-
-#: core/modules/class-status-report.php:197
-#: integrations/visual-composer/class-vc-fields.php:429
-msgid "Yes"
-msgstr ""
-
-#: core/modules/class-status-report.php:197
-msgid "No"
-msgstr ""
-
-#: core/modules/class-status-report.php:251
-msgid "PHP Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:252
-msgid "PHP Post Max Size"
-msgstr ""
-
-#: core/modules/class-status-report.php:253
-msgid "PHP Time Limit"
-msgstr ""
-
-#: core/modules/class-status-report.php:254
-msgid "PHP Max Input Vars"
-msgstr ""
-
-#: core/modules/class-status-report.php:255
-msgid "PHP Safe Mode"
-msgstr ""
-
-#: core/modules/class-status-report.php:256
-msgid "PHP Memory Limit"
-msgstr ""
-
-#: core/modules/class-status-report.php:257
-msgid "PHP Upload Max Size"
-msgstr ""
-
-#: core/modules/class-status-report.php:258
-msgid "PHP Arg Separator"
-msgstr ""
-
-#: core/modules/class-status-report.php:259
-msgid "PHP Allow URL File Open"
-msgstr ""
-
-#: core/modules/class-status-report.php:260
-msgid "Display Errors"
-msgstr ""
-
-#: core/modules/class-status-report.php:261
-msgid "FSOCKOPEN"
-msgstr ""
-
-#: core/modules/class-status-report.php:262
-msgid "cURL"
-msgstr ""
-
-#: core/modules/class-status-report.php:263
-msgid "SOAP Client"
-msgstr ""
-
-#: core/modules/class-status-report.php:264
-msgid "SUHOSIN"
-msgstr ""
-
-#: core/modules/class-status-report.php:265
-msgid "Session"
-msgstr ""
-
-#: core/modules/class-status-report.php:266
-msgid "Session Name"
-msgstr ""
-
-#: core/modules/class-status-report.php:267
-msgid "Cookie Path"
-msgstr ""
-
-#: core/modules/class-status-report.php:268
-msgid "Save Path"
-msgstr ""
-
-#: core/modules/class-status-report.php:269
-msgid "Use Cookies"
-msgstr ""
-
-#: core/modules/class-status-report.php:270
-msgid "Use Only Cookies"
-msgstr ""
-
-#: core/modules/class-status-report.php:280
-msgid "Framework Version"
-msgstr ""
-
-#: core/modules/class-status-report.php:281
-msgid "Textdomain"
-msgstr ""
-
-#: core/modules/class-status-report.php:282
-msgid "DomainPath"
-msgstr ""
-
-#: core/modules/class-status-report.php:283
-msgid "Framework Plugin Path"
-msgstr ""
-
-#: core/modules/class-status-report.php:284
-msgid "Framework Path"
-msgstr ""
-
-#: core/modules/class-status-report.php:308
-msgid "VSP Framework"
-msgstr ""
-
-#: core/modules/class-status-report.php:312
-msgid "WordPress Environment"
-msgstr ""
-
-#: core/modules/class-status-report.php:316
-msgid "VSP Plugin Settings"
-msgstr ""
-
-#: core/modules/class-status-report.php:320
-msgid "Server Environment"
-msgstr ""
+#. translators: 1: Site name 2: Maximum level 3: Log count
 
-#: core/modules/class-status-report.php:324
-msgid "PHP Environment"
-msgstr ""
+#: core/modules/logger/class-log-handler-email.php:179
+msgid "[%1$s] %2$s: %3$s log message"
+msgid_plural "[%1$s] %2$s: %3$s log messages"
+msgstr[0] ""
+msgstr[1] ""
 
-#: core/modules/class-status-report.php:328
-msgid "PHP Extenstions"
-msgstr ""
+#: core/modules/logger/class-log-handler-email.php:191
+msgid "You have received the following log message:"
+msgid_plural "You have received the following log messages:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: core/modules/class-status-report.php:332
-msgid "Session Config"
-msgstr ""
+#. translators: %s: Site name
 
-#: core/modules/class-status-report.php:336
-msgid "Active Theme"
+#: core/modules/logger/class-log-handler-email.php:191
+msgid "Visit %s admin area:"
 msgstr ""
 
-#: core/modules/class-status-report.php:340
-msgid "Active Plugins"
+#: core/modules/logger/class-log-handler-file.php:194
+#: core/modules/logger/class-log-handler-file.php:212
+msgid "This method should not be called before plugins_loaded."
 msgstr ""
 
-#: core/modules/class-status-report.php:344
-msgid "Muilti Site Plugins"
-msgstr ""
+#. translators: 1: class name 2: VSP_Log_Handler_Interface
 
-#: core/modules/class-status-report.php:348
-msgid "WordPress Must Use Plugins"
+#: core/modules/logger/class-logger.php:60
+msgid "The provided handler %1$s does not implement %2$s."
 msgstr ""
 
-#: core/modules/class-status-report.php:432
-msgid "To copy the System Status, click below then press Ctrl + C (PC) or Cmd + C (Mac)"
+#: core/modules/logger/class-logger.php:86
+msgid "File & Line No :"
 msgstr ""
 
-#: core/modules/class-status-report.php:434
-msgid "Please copy and paste this information in your ticket when contacting support: "
-msgstr ""
+#. translators: 1: VSP_Logger::log 2: level
 
-#: core/modules/class-status-report.php:437
-msgid "Get system report"
+#: core/modules/logger/class-logger.php:129
+msgid "%1$s was called with an invalid level \"%2$s\"."
 msgstr ""
 
-#: core/modules/settings/class-settings-metabox.php:117
+#: core/modules/settings/class-settings-metabox.php:120
 msgid "F A Q's"
 msgstr ""
 
-#: core/modules/settings/class-settings-wpsf.php:284
+#: core/modules/settings/class-settings-wpsf.php:130
+#: core/modules/settings/class-settings-wpsf.php:134
+msgid "Settings"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:108
+msgid "WordPress Environment"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:110
+msgid "Theme Info"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:112
+msgid "Plugins Information"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:115
+msgid "Must Use Plugins"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:116
+msgid "Active Plugins"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:117
+msgid "Installed Plugins"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:118
+msgid "MultiSite Plugins"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:124
+msgid "Server Environment"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:126
+msgid "PHP Info"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:127
+msgid "PHP Extentions"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:128
+msgid "Session Configuration"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:132
+msgid "VSP Plugins"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:150
+msgid "Page On Front : "
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:151
+msgid "Page For Posts:"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:168
+msgid "By %s"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:169
+msgid "Version %s"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:201
+msgid "Home URL"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:202
+msgid "Site URL"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:203
+msgid "WP Version"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:204
+msgid "WP_DEBUG"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:205
+msgid "WP_DEBUG_DISPLAY"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:206
+msgid "WP_DEBUG_LOG"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:207
+msgid "WP Language"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:208
+msgid "WP Multisite"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:209
+msgid "WP Memory Limit"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:210
+msgid "WP Table Prefix"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:211
+msgid "WP Table Prefix Lenght"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:212
+msgid "WP Table Prefix Status"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:212
+msgid "Error : Too Long"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:212
+#: functions/admin-notices-functions.php:174
+msgid "Ok"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:213
+msgid "WP Timezone"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:215
+msgid "Permalink Structure"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:216
+msgid "Registered Post Stati"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:217
+msgid "Show On Front"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:218
+msgid "Show On Front Info"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:222
+msgid "Theme Name"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:223
+msgid "Theme Version"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:224
+msgid "Theme Author"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:225
+msgid "Theme Author URI"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:226
+msgid "Is Child Theme"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:237
+msgid "Parent Theme"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:238
+msgid "Parent Theme Version"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:239
+msgid "Parent URI"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:240
+msgid "Parent Author URI"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:282
+msgid "Server Info"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:283
+msgid "Host"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:284
+msgid "Default Timezone"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:285
+msgid "MySQL Version"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:288
+msgid "PHP Version"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:289
+msgid "PHP Post Max Size"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:290
+msgid "PHP Time Limit"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:291
+msgid "PHP Max Input Vars"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:292
+msgid "PHP Safe Mode"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:293
+msgid "PHP Memory Limit"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:294
+msgid "PHP Upload Max Size"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:295
+msgid "PHP Upload Max Filesize"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:296
+msgid "PHP Arg Separator"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:297
+msgid "PHP Allow URL File Open"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:300
+msgid "DISPLAY ERRORS"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:301
+msgid "FSOCKOPEN"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:302
+msgid "cURL"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:303
+msgid "SOAP Client"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:304
+msgid "SUHOSIN"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:307
+msgid "Session"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:308
+msgid "Session Name"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:309
+msgid "Cookie Path"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:310
+msgid "Save Path"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:311
+msgid "Use Cookies"
+msgstr ""
+
+#: core/modules/system-tools/class-system-status-report.php:312
+msgid "Use Only Cookies"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:113
+msgid "Current URL : "
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:124
+msgid "Copy / Send System Report"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:128
+msgid "Users with this URL can view a plain-text version of your System Status. This link can be handy in support forums, as access to this information can be removed after you receive the help you need. <br/> Generating a new URL will safely void access to all who have the existing URL."
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:130
+msgid "Generate New URL"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:131
+msgid "Disable"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:136
+msgid "Please copy and paste this information in your ticket when contacting support:"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:209
+msgid "System Tools"
+msgstr ""
+
+#: core/modules/system-tools/class-system-tools.php:230
 msgid "System Status"
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:152
+#: core/modules/system-tools/class-system-tools.php:286
+msgid "System Logs"
+msgstr ""
+
+#: core/modules/wp-importer/class-wp-importer.php:155
 msgid "Before you can upload your import file, you will need to fix the following error:"
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:173
+#: core/modules/wp-importer/class-wp-importer.php:176
 msgid "Upload file and import"
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:250
+#: core/modules/wp-importer/class-wp-importer.php:253
 msgid "Sorry, there has been an error."
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:273
+#: core/modules/wp-importer/class-wp-importer.php:276
 msgid "The file does not exist, please try again."
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:287
+#: core/modules/wp-importer/class-wp-importer.php:290
 msgid "The CSV is invalid."
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:347
+#: core/modules/wp-importer/class-wp-importer.php:350
 msgid "Import completed"
 msgstr ""
 
-#: core/modules/wp-importer/class-wp-importer.php:357
+#: core/modules/wp-importer/class-wp-importer.php:360
 msgid "Import Errors - "
-msgstr ""
-
-#: functions/admin-notices-functions.php:148
-msgid "Ok"
 msgstr ""
 
 #: functions/general-functions.php:485
 msgid "Visitor / Logged-Out User"
+msgstr ""
+
+#. translators: 1: class name 2: woocommerce_logging_class 3:
+#. WC_Logger_Interface
+
+#: functions/general-functions.php:725
+msgid "The class %1$s provided by %2$s filter must implement %3$s."
+msgstr ""
+
+#: functions/general-functions.php:780
+msgid "Tried To Log A Message But Failed Got unknown Handler"
 msgstr ""
 
 #: functions/wp-replacement.php:169
@@ -568,273 +666,277 @@ msgstr ""
 msgid "%s or higher"
 msgstr ""
 
-#: functions/wp-replacement.php:481
+#: functions/wp-replacement.php:482
 msgid "Compatible up to:"
 msgstr ""
 
-#: functions/wp-replacement.php:484
-msgid "Active Installations:"
-msgstr ""
-
 #: functions/wp-replacement.php:486
-msgctxt "Active plugin installations"
-msgid "1+ Million"
+msgid "Active Installations:"
 msgstr ""
 
 #: functions/wp-replacement.php:488
 msgctxt "Active plugin installations"
+msgid "1+ Million"
+msgstr ""
+
+#: functions/wp-replacement.php:490
+msgctxt "Active plugin installations"
 msgid "Less Than 10"
 msgstr ""
 
-#: functions/wp-replacement.php:496
+#: functions/wp-replacement.php:498
 msgid "https://wordpress.org/plugins/"
 msgstr ""
 
-#: functions/wp-replacement.php:496
+#: functions/wp-replacement.php:498
 msgid "WordPress.org Plugin Page &#187;"
 msgstr ""
 
-#: functions/wp-replacement.php:501
+#: functions/wp-replacement.php:503
 msgid "Plugin Homepage &#187;"
 msgstr ""
 
-#: functions/wp-replacement.php:506 functions/wp-replacement.php:567
+#: functions/wp-replacement.php:508 functions/wp-replacement.php:569
 msgid "Donate to this plugin &#187;"
 msgstr ""
 
-#: functions/wp-replacement.php:511
+#: functions/wp-replacement.php:513
 msgid "Average Rating"
 msgstr ""
 
-#: functions/wp-replacement.php:518
+#: functions/wp-replacement.php:520
 msgid "(based on %s rating)"
 msgid_plural "(based on %s ratings)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/wp-replacement.php:522
+#: functions/wp-replacement.php:524
 msgid "Reviews"
 msgstr ""
 
-#: functions/wp-replacement.php:523
+#: functions/wp-replacement.php:525
 msgid "Read all reviews on WordPress.org or write your own!"
 msgstr ""
 
 #. translators: 1: number of stars (used to determine singular/plural), 2:
 #. number of reviews
 
-#: functions/wp-replacement.php:529
+#: functions/wp-replacement.php:531
 msgid "Reviews with %1$d star: %2$s. Opens in a new window."
 msgid_plural "Reviews with %1$d stars: %2$s. Opens in a new window."
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/wp-replacement.php:535
+#: functions/wp-replacement.php:537
 msgid "%d star"
 msgid_plural "%d stars"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/wp-replacement.php:546
+#: functions/wp-replacement.php:548
 msgid "Contributors"
 msgstr ""
 
-#: functions/wp-replacement.php:576
+#: functions/wp-replacement.php:578
 msgid "<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress."
 msgstr ""
 
-#: functions/wp-replacement.php:578
+#: functions/wp-replacement.php:580
 msgid "<strong>Warning:</strong> This plugin has <strong>not been marked as compatible</strong> with your version of WordPress."
 msgstr ""
 
-#: functions/wp-replacement.php:602
+#: functions/wp-replacement.php:604
 msgid "Install Now"
 msgstr ""
 
-#: functions/wp-replacement.php:607
+#: functions/wp-replacement.php:609
 msgid "Install Update Now"
 msgstr ""
 
 #. translators: %s: Plugin version
 
-#: functions/wp-replacement.php:612
+#: functions/wp-replacement.php:614
 msgid "Newer Version (%s) Installed"
 msgstr ""
 
-#: functions/wp-replacement.php:615
+#: functions/wp-replacement.php:617
 msgid "Latest Version Installed"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:48
-#: integrations/visual-composer/class-vc-fields.php:52
+#: integrations/visual-composer/class-vc-fields.php:50
+#: integrations/visual-composer/class-vc-fields.php:54
 msgid "Select Font Family"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:49
-#: integrations/visual-composer/class-vc-fields.php:53
+#: integrations/visual-composer/class-vc-fields.php:51
+#: integrations/visual-composer/class-vc-fields.php:55
 msgid "Select font styling"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:94
+#: integrations/visual-composer/class-vc-fields.php:96
 msgid "Select element tag."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:100
+#: integrations/visual-composer/class-vc-fields.php:102
 msgid "Enter font size"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:106
+#: integrations/visual-composer/class-vc-fields.php:108
 msgid "Italic"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:112
+#: integrations/visual-composer/class-vc-fields.php:114
 msgid "Bold"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:118
+#: integrations/visual-composer/class-vc-fields.php:120
 msgid "Font Family"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:124
+#: integrations/visual-composer/class-vc-fields.php:126
 msgid "Select font color."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:130
+#: integrations/visual-composer/class-vc-fields.php:132
 msgid "Enter line height."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:136
+#: integrations/visual-composer/class-vc-fields.php:138
 msgid "Select text alignment"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:142
-#: integrations/visual-composer/class-vc-fields.php:143
+#: integrations/visual-composer/class-vc-fields.php:144
+#: integrations/visual-composer/class-vc-fields.php:145
 msgid "Features Box"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:146
+#: integrations/visual-composer/class-vc-fields.php:148
 msgid "ClarUP"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:173
+#: integrations/visual-composer/class-vc-fields.php:175
 msgid "Icon library"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:176
+#: integrations/visual-composer/class-vc-fields.php:178
 msgid "Select icon library."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:208
+#: integrations/visual-composer/class-vc-fields.php:210
 msgid "Font Awesome"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:213
+#: integrations/visual-composer/class-vc-fields.php:215
 msgid "Open Iconic"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:218
+#: integrations/visual-composer/class-vc-fields.php:220
 msgid "Typicons"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:222
+#: integrations/visual-composer/class-vc-fields.php:224
 msgid "Entypo"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:227
+#: integrations/visual-composer/class-vc-fields.php:229
 msgid "Linecons"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:232
+#: integrations/visual-composer/class-vc-fields.php:234
 msgid "Mono Social"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:237
+#: integrations/visual-composer/class-vc-fields.php:239
 msgid "Material"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:276
+#: integrations/visual-composer/class-vc-fields.php:278
 msgid "Icon"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:281
+#: integrations/visual-composer/class-vc-fields.php:283
 msgid "Select icon from library."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:307
+#: integrations/visual-composer/class-vc-fields.php:309
 msgid "Heading2"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:320
+#: integrations/visual-composer/class-vc-fields.php:322
 msgid "Extra class name"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:335
+#: integrations/visual-composer/class-vc-fields.php:337
 msgid "Extra Class Name"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:337
+#: integrations/visual-composer/class-vc-fields.php:339
 msgid "Style particular content element differently - add a class name and refer to it in custom CSS."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:345
+#: integrations/visual-composer/class-vc-fields.php:347
 msgid "Element ID"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:347
+#: integrations/visual-composer/class-vc-fields.php:349
 msgid "Enter element ID (Note: make sure it is unique and valid according to <a href=\"%s\" target=\"_blank\">w3c specification</a>)."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:354
+#: integrations/visual-composer/class-vc-fields.php:356
 msgid "URL (Link)"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:356
+#: integrations/visual-composer/class-vc-fields.php:358
 msgid "Add link to custom heading."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:386
+#: integrations/visual-composer/class-vc-fields.php:388
 msgid "Image"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:388
+#: integrations/visual-composer/class-vc-fields.php:390
 msgid "Image Size must be at 210px by 210px."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:397
-#: integrations/visual-composer/class-vc-fields.php:408
+#: integrations/visual-composer/class-vc-fields.php:399
+#: integrations/visual-composer/class-vc-fields.php:410
 msgid "Text source"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:400
+#: integrations/visual-composer/class-vc-fields.php:402
 msgid "Custom text"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:401
+#: integrations/visual-composer/class-vc-fields.php:403
 msgid "Post or Page Title"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:412
+#: integrations/visual-composer/class-vc-fields.php:414
 msgid "Select text source."
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:418
-#: integrations/visual-composer/class-vc-fields.php:426
+#: integrations/visual-composer/class-vc-fields.php:420
+#: integrations/visual-composer/class-vc-fields.php:428
 msgid "Use theme default font family?"
 msgstr ""
 
-#: integrations/visual-composer/class-vc-fields.php:428
+#: integrations/visual-composer/class-vc-fields.php:430
 msgid "Use font family from the theme."
 msgstr ""
 
-#: integrations/wpsf.php:129
+#: integrations/visual-composer/class-vc-fields.php:431
+msgid "Yes"
+msgstr ""
+
+#: integrations/wpsf.php:128
 msgid "VSP Shortcodes"
 msgstr ""
 
-#: libs/review-me.php:66
+#: libs/review-me.php:93
 msgid "Hey! It&#039;s been a little while that you&#039;ve been using this product. You might not realize it, but user reviews are such a great help to us. We would be so grateful if you could take a minute to leave a review on WordPress.org. Many thanks in advance :)"
 msgstr ""
 
-#: libs/review-me.php:67
+#: libs/review-me.php:94
 msgid "Click here to leave your review"
 msgstr ""
 
@@ -842,16 +944,38 @@ msgstr ""
 msgid "Every %d minutes"
 msgstr ""
 
-#: libs/wp-pointers/wp-pointers.php:71
+#: libs/wp-pointers/wp-pointers.php:70
 msgid "Next"
 msgstr ""
 
-#: libs/wp-pointers/wp-pointers.php:115
+#: libs/wp-pointers/wp-pointers.php:114
 msgid "PointerPlus Error: post_type is not an array!"
 msgstr ""
 
-#: libs/wp-pointers/wp-pointers.php:139
+#: libs/wp-pointers/wp-pointers.php:138
 msgid "PointerPlus Error: pages is not an array!"
+msgstr ""
+
+#: views/log-viewer.php:42
+msgid "Delete log"
+msgstr ""
+
+#: views/log-viewer.php:53 vsp-init.php:81
+msgid "VSP Framework"
+msgstr ""
+
+#. translators: 1: last access date 2: last access time
+
+#: views/log-viewer.php:59
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: views/log-viewer.php:71
+msgid "View"
+msgstr ""
+
+#: views/log-viewer.php:81
+msgid "There are currently no logs to view."
 msgstr ""
 
 #: views/settings-add.php:10
@@ -874,45 +998,60 @@ msgstr ""
 msgid "View Plugin Page"
 msgstr ""
 
-#: views/simple.php:113
+#: views/simple.php:93
 msgid "Settings Saved"
 msgstr ""
 
-#: vsp-functions.php:256
+#: vsp-functions.php:265
 msgid "%s Requires %s WooCommerce %s to be installed & activated."
 msgstr ""
 
-#: vsp-init.php:79
+#: vsp-init.php:83
+msgid "VSP Logs"
+msgstr ""
+
+#: vsp-init.php:106
+msgid "Framework Version"
+msgstr ""
+
+#: vsp-init.php:107
+msgid "Textdomain"
+msgstr ""
+
+#: vsp-init.php:108
+msgid "DomainPath"
+msgstr ""
+
+#: vsp-init.php:109
+msgid "Framework Plugin Path"
+msgstr ""
+
+#: vsp-init.php:110
+msgid "Framework Path"
+msgstr ""
+
+#: vsp-init.php:111
 msgid "Loaded Library"
 msgstr ""
 
-#: vsp-init.php:80
+#: vsp-init.php:112
 msgid "Loaded Integration"
 msgstr ""
 
-#: vsp-init.php:81 vsp-init.php:90 vsp-init.php:92
+#: vsp-init.php:113 vsp-init.php:123 vsp-init.php:125 vsp-init.php:142
+#: vsp-init.php:144
 msgid "Bundled Integrations"
 msgstr ""
 
-#: vsp-init.php:82 vsp-init.php:102 vsp-init.php:104
+#: vsp-init.php:114 vsp-init.php:136 vsp-init.php:138 vsp-init.php:147
+#: vsp-init.php:149
 msgid "Bundled Libs"
 msgstr ""
 
-#: vsp-init.php:120
+#: vsp-init.php:164
 msgid "Unable To Load VSP Framework. Please Contact The Author"
 msgstr ""
 
-#: vsp-init.php:121
+#: vsp-init.php:165
 msgid "ERROR ID : "
-msgstr ""
-#. Plugin Name of the plugin/theme
-msgid "VSP Framework"
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Varun Sridharan"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://varunsridharan.in"
 msgstr ""
