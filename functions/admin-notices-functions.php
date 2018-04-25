@@ -53,22 +53,40 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 	 * @param array  $args .
 	 */
 	function vsp_notice( $message, $type = 'update', $args = array() ) {
-		$defaults  = array(
+		$defaults = array(
+			'title'  => false,
 			'times'  => 1,
 			'screen' => array(),
 			'users'  => array(),
 		);
-		$args      = wp_parse_args( $args, $defaults );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		if ( false !== $args['title'] && ( empty( $message ) || '' === $message ) ) {
+			$message       = $args['title'];
+			$args['title'] = false;
+		}
+
 		$_instance = vsp_notices( $type );
 		$_instance->setContent( $message )
-			->setScreens( $args['screen'] )
-			->addUsers( $args['users'] );
+			->setScreens( $args['screen'] );
+
+		if ( is_array( $args['users'] ) ) {
+			$_instance->addUsers( $args['users'] );
+		} else {
+			$_instance->addUser( $args['users'] );
+		}
 
 		if ( true === $args['times'] ) {
 			$_instance->setSticky( true );
 		} else {
 			$_instance->setTimes( $args['times'] );
 		}
+
+		if ( false !== $args['title'] ) {
+			$_instance->setTitle( $args['title'] );
+		}
+
 		vsp_notices()->addNotice( $_instance );
 	}
 }
@@ -82,7 +100,8 @@ if ( ! function_exists( 'vsp_notice_error' ) ) {
 	 * @param array  $screen .
 	 * @param array  $args .
 	 */
-	function vsp_notice_error( $message, $times = 1, $screen = array(), $args = array() ) {
+	function vsp_notice_error( $title = false, $message, $times = 1, $screen = array(), $args = array() ) {
+		$args['title']  = $title;
 		$args['times']  = $times;
 		$args['screen'] = $screen;
 		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
@@ -101,7 +120,8 @@ if ( ! function_exists( 'vsp_notice_update' ) ) {
 	 * @param array  $screen .
 	 * @param array  $args .
 	 */
-	function vsp_notice_update( $message, $times = 1, $screen = array(), $args = array() ) {
+	function vsp_notice_update( $title = false, $message, $times = 1, $screen = array(), $args = array() ) {
+		$args['title']  = $title;
 		$args['times']  = $times;
 		$args['screen'] = $screen;
 		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
@@ -120,7 +140,8 @@ if ( ! function_exists( 'vsp_notice_upgrade' ) ) {
 	 * @param array  $screen .
 	 * @param array  $args .
 	 */
-	function vsp_notice_upgrade( $message, $times = 1, $screen = array(), $args = array() ) {
+	function vsp_notice_upgrade( $title = false, $message, $times = 1, $screen = array(), $args = array() ) {
+		$args['title']  = $title;
 		$args['times']  = $times;
 		$args['screen'] = $screen;
 		if ( isset( $args['on_ajax'] ) && false === $args['on_ajax'] && vsp_is_ajax() ) {
