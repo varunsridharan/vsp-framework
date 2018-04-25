@@ -27,7 +27,7 @@ class VSP_WP_Admin_Notices {
 	/**
 	 * Ajax action that is responsible for dismissing sticky notices
 	 */
-	const KILL_STICKY_NTC_AJAX_ACTION = 'wp_notice_dismiss';
+	const KILL_STICKY_NTC_AJAX_ACTION = 'vsp_dismiss_notice';
 	/**
 	 *
 	 */
@@ -203,10 +203,9 @@ class VSP_WP_Admin_Notices {
 	public function ajaxDismissNotice() {
 		check_ajax_referer( self::KILL_STICKY_NTC_AJAX_ACTION, self::KILL_STICKY_NTC_AJAX_NONCE_VAR );
 
-		$noticeId = $_POST[ self::KILL_STICKY_NTC_AJAX_NTC_ID_VAR ];
+		$noticeId = $_REQUEST[ self::KILL_STICKY_NTC_AJAX_NTC_ID_VAR ];
 
 		if ( $notice = $this->getNotice( $noticeId ) ) {
-			/* @var VSP_WP_Notice $notice */
 			$notice->removeUser( get_current_user_id() );
 
 			if ( $notice->countUsers() === 0 ) {
