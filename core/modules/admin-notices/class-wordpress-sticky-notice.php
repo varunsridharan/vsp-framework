@@ -24,7 +24,10 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 		$out .= '<h4 style="margin-top: 4px; margin-bottom: 0;">' . $notice->getTitle() . '</h4>';
 		$out .= '<p>';
 		$out .= $notice->getContent();
-		$out .= '<a id="' . $ui_id . '" href="' . $this->get_url( $notice ) . '" style="font-size: 150%; position: absolute; right: 5px; top: -5px; text-decoration: none;">×</a>';
+		$out .= '</p>';
+
+		$out .= '<hr/><p >';
+		$out .= '<a id="' . $ui_id . '" href="' . $this->get_url( $notice ) . '" class="button button-secondary text-right">' . __( 'Hide Notice' ) . '</a>';
 		$out .= '</p>';
 		$out .= '</div>';
 		$out .= $this->dismissibleScript( $notice, $ui_id );
@@ -34,7 +37,7 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 	protected function get_url( VSP_WP_Notice $notice ) {
 		return vsp_ajax_url( array(
 			'action' => VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_ACTION,
-			
+
 			VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_NTC_ID_VAR => $notice->getId(),
 			VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_NONCE_VAR  => wp_create_nonce( VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_ACTION ),
 		) );
