@@ -98,7 +98,7 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 		} else {
 			foreach ( $this->actions as $action => $nopriv ) {
 				add_action( 'wp_ajax_' . $this->ajax_slug( $action ), array( &$this, 'ajax_request' ) );
-				if ( $nopriv ) {
+				if ( ( ! is_array( $nopriv ) && true === $nopriv ) || ( is_array( $nopriv ) && isset( $nopriv['auth'] ) && true === $nopriv['auth'] ) ) {
 					add_action( 'wp_ajax_nopriv_' . $this->ajax_slug( $action ), array( &$this, 'ajax_request' ) );
 				}
 			}
@@ -210,9 +210,13 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 		$_action = $this->extract_action_slug( $action );
 
 		if ( false !== $action && isset( $this->actions[ $_action ] ) ) {
-			$this->trigger_ajax_callback( $_action );
+			if ( is_array( $this->actions[ $_action ] ) && isset( $this->actions[ $_action ]['callback'] ) ) {
+				call_user_func( $this->actions[ $_action ]['callback'] );
+				wp_die();
+			} else {
+				$this->trigger_ajax_callback( $_action );
+			}
 		}
-
 		wp_die( 0 );
 	}
 
