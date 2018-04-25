@@ -8,8 +8,7 @@
  *
  * @author     Varun Sridharan <varunsridharan23@gmail.com>
  * @since      1.0
- * @package    vsp-framework
- * @subpackage integrations/visual-composer
+ * @package    vsp-framework/integrations/visual-composer
  * @copyright  GPL V3 Or greater
  */
 

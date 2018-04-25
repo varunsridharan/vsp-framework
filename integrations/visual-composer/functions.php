@@ -7,13 +7,18 @@
  *
  * @author     Varun Sridharan <varunsridharan23@gmail.com>
  * @since      1.0
- * @package    vsp-framework
- * @subpackage libs/visual-composer
+ * @package    vsp-framework/integrations/visual-composer
  * @copyright  GPL V3 Or greater
  */
 
 
 if ( ! function_exists( 'vc_map_shortcode_defaults' ) ) {
+	/**
+	 * @param array $args
+	 * @param array $defaults
+	 *
+	 * @return array|mixed
+	 */
 	function vc_map_shortcode_defaults( $args = array(), $defaults = array() ) {
 		$is_params = false;
 		$loop      = $args;
@@ -39,6 +44,11 @@ if ( ! function_exists( 'vc_map_shortcode_defaults' ) ) {
 }
 
 if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
+	/**
+	 * @param array $options
+	 *
+	 * @return string
+	 */
 	function vsp_vc_render_icon( $options = array() ) {
 		$options = wp_parse_args( $options, array(
 			'icon_color'        => '',
@@ -84,6 +94,13 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 }
 
 if ( ! function_exists( 'vsp_vc_remap_group' ) ) {
+	/**
+	 * @param array  $args
+	 * @param array  $remap_ids
+	 * @param string $group
+	 *
+	 * @return array|mixed
+	 */
 	function vsp_vc_remap_group( $args = array(), $remap_ids = array(), $group = '' ) {
 		$is_params = false;
 		$loop      = $args;

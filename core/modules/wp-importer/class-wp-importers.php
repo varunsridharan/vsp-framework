@@ -9,7 +9,7 @@
  *
  * @author    Varun Sridharan <varunsridharan23@gmail.com>
  * @since     1.0
- * @package   vsp-framework
+ * @package   vsp-framework/core/modules/wp-importer
  * @copyright GPL V3 Or greater
  */
 

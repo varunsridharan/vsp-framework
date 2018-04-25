@@ -9,7 +9,7 @@
  * Copyright: 2015 Panagiotis Vagenas
  * Ifc FormatterInterface
  *
- * @package vsp-framework
+ * @package   vsp-framework/core/interface
  * @author  Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @since   2.0.0
  */

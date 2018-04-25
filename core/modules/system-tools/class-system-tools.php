@@ -7,7 +7,7 @@
  * Date 17-04-2018
  * Time 10:23 AM
  *
- * @package vsp-framework
+ * @package   vsp-framework/core/modules/system-tools
  * @link http://github.com/varunsridharan/vsp-framework
  * @copyright 2018 Varun Sridharan
  * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)

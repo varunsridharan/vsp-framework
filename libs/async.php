@@ -2,6 +2,7 @@
 /**
  * @name: WP Async
  * @version: 1.0
+ * @package vsp-framework/libs
  */
 define( 'VSP_ASYNC_PATH', plugin_dir_path( __FILE__ ) );
 

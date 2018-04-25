@@ -9,7 +9,7 @@
  * Date 13-04-2018
  * Time 03:17 PM
  *
- * @package   vsp-framework/core/interface
+ * @package   vsp-framework/core/modules/logger
  * @link      http://github.com/varunsridharan/vsp-framework
  * @copyright 2018 Varun Sridharan
  * @license   GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
