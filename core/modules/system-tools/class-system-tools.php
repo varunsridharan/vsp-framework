@@ -99,12 +99,12 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 			echo '<div class="wpsf-framework-box">';
 
 			$active_url = vsp_ajax_url( array(
-				'action'         => 'vsp-sysinfo-remote',
+				'action'         => 'vsp_sysinfo_remote',
 				'sysinfo_action' => 'generate',
 			) );
 
 			$inactive_url = vsp_ajax_url( array(
-				'action'         => 'vsp-sysinfo-remote',
+				'action'         => 'vsp_sysinfo_remote',
 				'sysinfo_action' => 'disable',
 			) );
 
@@ -112,7 +112,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 
 			$extra = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
 			$output = vsp_ajax_url( array(
-				'action'  => 'vsp-sys-info',
+				'action'  => 'vsp_sys_info',
 				'vsp-key' => $currenturl,
 			) );
 			$extra .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
