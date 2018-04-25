@@ -161,7 +161,9 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 		 * @return array
 		 */
 		private static function get_plugin_information( $plugin ) {
-			unset( $plugin['Description'] );
+			if ( isset( $plugin['Description'] ) ) {
+				unset( $plugin['Description'] );
+			}
 			$html_output = sprintf( '<a href="%s" title="%s">%s</a>', $plugin['PluginURI'], $plugin['Name'], $plugin['Name'] );
 			$html_output .= ' | ' . sprintf( __( 'By %s' ), '<a href="' . $plugin['AuthorURI'] . '">' . $plugin['Author'] . '</a>' );
 			$html_output .= ' | ' . sprintf( __( 'Version %s' ), $plugin['Version'] );
