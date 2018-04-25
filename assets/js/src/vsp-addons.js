@@ -39,7 +39,7 @@ var $vsp_addons_list = new Vue({
                     addon_slug: file,
                     addon_action: $type,
                     addon_pathid: addon.addon_path_md5,
-                    action: "vsp-addon-action",
+                    action: "vsp_addon_action",
                 },
                 error: function (res) {
                     $.VSP_HELPER.ajax_callback(res);
