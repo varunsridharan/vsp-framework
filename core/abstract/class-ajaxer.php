@@ -55,6 +55,11 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 *          if value set to true then it runs for both loggedout / logged in users
 	 *          if value set to false then it runs only for the logged in user
 	 *
+	 * @example array('ajax_action_1' => array('auth' => false,'callback' => array(CLASSNAME,METHODNAME)))
+	 *          if auth value set to true then it runs for both loggedout / logged in users
+	 *          if auth value set to false then it runs only for the logged in user
+	 *          callback can either be a string,array or a actual dynamic function.
+	 *
 	 * @var array
 	 */
 	protected $actions = array();
