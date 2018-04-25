@@ -48,6 +48,11 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 		 * VSP_Core_Ajax constructor.
 		 */
 		public function __construct() {
+			$this->actions['dismiss_notice'] = array(
+				'auth'     => false,
+				'callback' => array( &$this, 'handle_admin_notices' ),
+			);
+
 			parent::__construct();
 		}
 
@@ -107,6 +112,11 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 			}
 
 
+			wp_die();
+		}
+
+		public function handle_admin_notices() {
+			vsp_notices()->ajaxDismissNotice();
 			wp_die();
 		}
 	}
