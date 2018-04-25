@@ -61,9 +61,14 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 		$args      = wp_parse_args( $args, $defaults );
 		$_instance = vsp_notices( $type );
 		$_instance->setContent( $message )
-			->setTimes( $args['times'] )
 			->setScreens( $args['screen'] )
 			->addUsers( $args['users'] );
+
+		if ( true === $args['times'] ) {
+			$_instance->setSticky( true );
+		} else {
+			$_instance->setTimes( $args['times'] );
+		}
 		vsp_notices()->addNotice( $_instance );
 	}
 }
