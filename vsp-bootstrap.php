@@ -49,7 +49,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @return string
 	 */
 	function vsp_version() {
-		return '230420181227-Build-1';
+		return '250420180347-Build-1';
 	}
 
 	$upload_dir = wp_upload_dir( null, false );
