@@ -11,6 +11,7 @@
 if ( ! defined( 'VSP_PATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 	/**
 	 * Class VSP_Core_Ajax
@@ -18,41 +19,42 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class VSP_Core_Ajax {
+	final class VSP_Core_Ajax extends VSP_Ajaxer {
 		/**
-		 * Instance
+		 * Ajax Action Prefix
 		 *
-		 * @var null
+		 * @example for wordpress_show_popup wordpress is the prefix
+		 *
+		 * @var string
 		 */
-		private static $_instance = null;
+		protected $action_prefix = 'vsp';
 
 		/**
-		 * Creates Instance for VSP_Core_Ajax
+		 * Array of ajax actions
 		 *
-		 * @return VSP_Core_Ajax
+		 * @example array('ajax_action_1' => true,'ajax_action_2' => false)
+		 *          if value set to true then it runs for both loggedout / logged in users
+		 *          if value set to false then it runs only for the logged in user
+		 *
+		 * @var array
 		 */
-		public static function instance() {
-			if ( null === self::$_instance ) {
-				self::$_instance = new self();
-			}
-
-			return self::$_instance;
-		}
+		protected $actions = array(
+			'addon_action'   => false,
+			'sysinfo_remote' => false,
+			'sys_info'       => true,
+		);
 
 		/**
 		 * VSP_Core_Ajax constructor.
 		 */
 		public function __construct() {
-			add_action( 'wp_ajax_vsp-addon-action', array( $this, 'handle_request' ) );
-			add_action( 'wp_ajax_vsp-sysinfo-remote', array( &$this, 'handle_sysurl_generate' ) );
-			add_action( 'wp_ajax_vsp-sys-info', array( &$this, 'render_sysinfo' ) );
-			add_action( 'wp_ajax_nopriv_vsp-sys-info', array( &$this, 'render_sysinfo' ) );
+			parent::__construct();
 		}
 
 		/**
 		 * Handles Ajax Request
 		 */
-		public function handle_request() {
+		public function addon_action() {
 			if ( isset( $_REQUEST['hook_slug'] ) ) {
 				do_action( $_REQUEST['hook_slug'] . 'handle_addon_request' );
 			}
@@ -60,11 +62,11 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 			wp_send_json_error();
 		}
 
-		public function handle_sysurl_generate() {
+		public function sysinfo_remote() {
 			if ( 'generate' === $_REQUEST['sysinfo_action'] ) {
 				$value  = wp_hash( microtime( true ) . wp_generate_password( 10, true ) );
 				$output = vsp_ajax_url( array(
-					'action'  => 'vsp-sys-info',
+					'action'  => 'vsp_sys_info',
 					'vsp-key' => $value,
 				) );
 
@@ -87,11 +89,9 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 					'changeURL' => 'jQuery("a#vspsysinfocurl").attr("href","#"); jQuery("a#vspsysinfocurl").text("#")',
 				) );
 			}
-
-
 		}
 
-		public function render_sysinfo() {
+		public function sys_info() {
 			if ( ! isset( $_GET['vsp-key'] ) || empty( $_GET['vsp-key'] ) ) {
 				return;
 			}
