@@ -143,4 +143,60 @@ class VSP_WPSF_Integration {
 
 }
 
+
+/**
+ * Class VSP_WPSF_Hook
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ */
+abstract class VSP_WPSF_Hook {
+	/**
+	 * VSP_WPSF_Hook constructor.
+	 */
+	public function __construct() {
+		add_filter( 'vsp_taxonomy_fields', array( &$this, 'taxonomy_fields' ) );
+		add_filter( 'vsp_metabox_fields', array( &$this, 'metabox_fields' ) );
+		add_filter( 'vsp_shortcode_fields', array( &$this, 'shortcode_fields' ) );
+		add_filter( 'vsp_wc_metabox_fields', array( &$this, 'wc_metabox_fields' ) );
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function taxonomy_fields( $data = array() ) {
+		return $data;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function metabox_fields( $data = array() ) {
+		return $data;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function shortcode_fields( $data = array() ) {
+		return $data;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function wc_metabox_fields( $data = array() ) {
+		return $data;
+	}
+
+}
+
 return VSP_WPSF_Integration::instance();
