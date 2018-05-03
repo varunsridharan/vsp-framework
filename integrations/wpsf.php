@@ -15,66 +15,69 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class VSP_WPSF_Integration
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
  */
 class VSP_WPSF_Integration {
 	/**
-	 * _instance
+	 * Instance
 	 *
 	 * @var null
 	 */
 	private static $_instance = null;
 
 	/**
-	 * tax_fields
+	 * Tax_fields
 	 *
 	 * @var array
 	 */
 	public $tax_fields = array();
 
 	/**
-	 * metabox_fields
+	 * Metabox_fields
 	 *
 	 * @var array
 	 */
 	public $metabox_fields = array();
 
 	/**
-	 * shortcode_fields
+	 * Shortcode_fields
 	 *
 	 * @var array
 	 */
 	public $shortcode_fields = array();
 
 	/**
-	 * wc_metabox_fields
+	 * WC_metabox_fields
 	 *
 	 * @var array
 	 */
 	public $wc_metabox_fields = array();
 
 	/**
-	 * tax_instance
+	 * Tax_instance
 	 *
 	 * @var null
 	 */
 	public $tax_instance = null;
 
 	/**
-	 * metabox_instance
+	 * Metabox_instance
 	 *
 	 * @var null
 	 */
 	public $metabox_instance = null;
 
 	/**
-	 * wc_metabox_instance
+	 * WC metabox_instance
 	 *
 	 * @var null
 	 */
 	public $wc_metabox_instance = null;
 
 	/**
-	 * shortcode_instance
+	 * Shortcode_instance
 	 *
 	 * @var null
 	 */
