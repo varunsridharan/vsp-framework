@@ -1,6 +1,6 @@
 <?php
 /**
- * VSP/WPSF Settings Metaboxes.
+ * VSP/WPOnion Settings Metaboxes.
  *
  * Created by PhpStorm.
  * User: varun

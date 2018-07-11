@@ -26,7 +26,7 @@ final class VSP_Autoloader {
 	 * @var array
 	 */
 	private static $_integrations = array(
-		'wpsf'            => 'wpsf.php',
+		//'wpsf'            => 'wpsf.php',
 		'visual-composer' => 'visual-composer.php',
 	);
 
@@ -38,11 +38,12 @@ final class VSP_Autoloader {
 	private static $_libs = array(
 		'wp-async'     => 'async.php',
 		'vs-transient' => 'vs-transient.php',
-		'wpsf'         => 'wpsf.php',
+		//'wpsf'         => 'wpsf.php',
 		'wpreview'     => 'review-me.php',
 		'wpallimport'  => 'wpallimport.php',
 		'wppointer'    => 'wp-pointers/wp-pointers.php',
 		'wp-endpoints' => 'vs-wp-endpoint.php',
+		'wponion'      => 'wponion.php',
 	);
 
 	/**

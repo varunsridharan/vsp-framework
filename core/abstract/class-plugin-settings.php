@@ -1,7 +1,7 @@
 <?php
 /**
  * VSP Plugin Settings Abstract Class
- * Used to auto hook with WPSF Integration
+ * Used to auto hook with WPOnion Integration
  *
  * Created by PhpStorm.
  * User: varun

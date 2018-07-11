@@ -210,7 +210,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	}
 
 	/**
-	 * Used to render fields usign WPSF
+	 * Used to render fields usign WPOnion
 	 *
 	 * @return array
 	 */
