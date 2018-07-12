@@ -113,6 +113,13 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		protected $db = false;
 
 		/**
+		 * Stores Multiple Class Instance.
+		 *
+		 * @var array
+		 */
+		protected static $_instances = array();
+
+		/**
 		 * Hook into queries, admin screens, and more!
 		 * VSP_DB_Table constructor.
 		 */
@@ -125,6 +132,22 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 			$this->set_wpdb_tables();
 			$this->set_schema();
 			$this->add_hooks();
+		}
+
+		/**
+		 * Returns Current Instance / create a new instance
+		 *
+		 * @return mixed
+		 */
+		public static function instance() {
+			if ( ! isset( self::$_instances[ static::class ] ) ) {
+				$args = func_get_args();
+				$arg1 = ( isset( $args[0] ) && ! empty( $args[0] ) ) ? $args[0] : array();
+				$arg2 = ( isset( $args[1] ) && ! empty( $args[1] ) ) ? $args[1] : array();
+
+				self::$_instances[ static::class ] = new static( $arg1, $arg2 );
+			}
+			return self::$_instances[ static::class ];
 		}
 
 		/**

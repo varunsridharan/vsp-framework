@@ -31,22 +31,22 @@ if ( ! class_exists( 'VSP_WP_Page' ) ) {
 		 */
 		public function __construct( array $options = array() ) {
 			parent::__construct( $options, array(
-				'submenu'    => false,
-				'menu_title' => false,
-				'page_title' => false,
-				'capability' => false,
-				'menu_slug'  => false,
-				'icon'       => false,
-				'position'   => false,
+				'submenu'       => false,
+				'menu_title'    => false,
+				'page_title'    => false,
+				'capability'    => false,
+				'menu_slug'     => false,
+				'icon'          => false,
+				'position'      => false,
+				'hook_priority' => 10,
 			) );
-
-			add_action( 'admin_menu', array( &$this, 'register_menu' ) );
+			add_action( 'admin_menu', array( &$this, 'register_menu' ), $this->option( 'hook_priority' ) );
 		}
 
 		/**
 		 * Registers WP Menu.
 		 */
-		public function reigster_menu() {
+		public function register_menu() {
 			$menu_slug = ( empty( $this->option( 'menu_slug' ) ) ) ? sanitize_title( $this->option( 'menu_title' ) ) : $this->option( 'menu_slug' );
 			if ( false === $this->option( 'submenu' ) ) {
 				$page_slug = add_menu_page( $this->option( 'page_title' ), $this->option( 'menu_title' ), $this->option( 'capability' ), $menu_slug, array(
@@ -62,10 +62,22 @@ if ( ! class_exists( 'VSP_WP_Page' ) ) {
 			add_action( 'load-' . $page_slug, array( &$this, 'on_page_load' ) );
 		}
 
+		public function on_page_load() {
+			add_action( 'admin_enqueue_scripts', array( &$this, 'handle_assets' ) );
+			$this->page_load();
+		}
+
 		/**
 		 * Runs On Page Load.
 		 */
-		abstract public function on_page_load();
+		abstract public function page_load();
+
+		/**
+		 * Handles Page Assets.
+		 *
+		 * @return mixed
+		 */
+		abstract public function handle_assets();
 
 		/**
 		 * Renders Page HTML.
