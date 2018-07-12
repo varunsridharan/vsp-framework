@@ -31,24 +31,17 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'show_faqs'         => true,
-			'menu_parent'       => false,
-			'menu_title'        => false,
-			'menu_type'         => false,
-			'menu_slug'         => false,
-			'menu_icon'         => false,
-			'menu_position'     => false,
-			'menu_capability'   => false,
-			'ajax_save'         => false,
-			'show_reset_all'    => false,
-			'framework_title'   => false,
-			'option_name'       => false,
-			'style'             => 'modern',
-			'override_location' => VSP_PATH . 'views/settings/',
-			'is_single_page'    => false,
-			'is_sticky_header'  => false,
-			'extra_css'         => array( 'vsp-plugins', 'vsp-framework' ),
-			'extra_js'          => array( 'vsp-plugins', 'vsp-framework' ),
+			'show_faqs'        => true,
+			'menu'             => array(),
+			'ajax_save'        => false,
+			'show_reset_all'   => false,
+			'framework_title'  => false,
+			'option_name'      => false,
+			'style'            => 'wp',
+			'is_single_page'   => false,
+			'is_sticky_header' => false,
+			'extra_css'        => array( 'vsp-plugins', 'vsp-framework' ),
+			'extra_js'         => array( 'vsp-plugins', 'vsp-framework' ),
 		);
 
 		/**
@@ -186,13 +179,7 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 */
 		public function get_settings_config() {
 			$defaults = array(
-				'menu_parent',
-				'menu_title',
-				'menu_type',
-				'menu_slug',
-				'menu_icon',
-				'menu_position',
-				'menu_capability',
+				'menu',
 				'ajax_save',
 				'show_reset_all',
 				'framework_title',

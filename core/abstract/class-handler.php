@@ -445,6 +445,17 @@ if ( ! class_exists( 'VSP_Class_Handler' ) ) {
 		}
 
 		/**
+		 * Loads A Required File.
+		 *
+		 * @param string $file
+		 * @param bool   $is_internal
+		 */
+		public function load_file( $file = '', $is_internal = true ) {
+			$file = ( $is_internal ) ? $this->plugin_path( $file ) : $file;
+			vsp_load_file( $file );
+		}
+
+		/**
 		 * Get Ajax URL.
 		 *
 		 * @see \admin_url()

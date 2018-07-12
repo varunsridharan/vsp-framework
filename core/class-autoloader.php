@@ -39,6 +39,7 @@ final class VSP_Autoloader {
 		'wp-async'     => 'async.php',
 		'vs-transient' => 'vs-transient.php',
 		//'wpsf'         => 'wpsf.php',
+		'wpdb'         => 'wpdb-helper.php',
 		'wpreview'     => 'review-me.php',
 		'wpallimport'  => 'wpallimport.php',
 		'wppointer'    => 'wp-pointers/wp-pointers.php',

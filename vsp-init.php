@@ -350,3 +350,15 @@ if ( ! function_exists( 'vsp_mayby_framework_loader' ) ) {
 			->register_callback( $callback );
 	}
 }
+
+if ( ! function_exists( 'vsp_force_load' ) ) {
+	/**
+	 * This function is used to force load framework @ anytime.
+	 * This should be mainly used on Plugin Activation and deactivation.
+	 * Should not be used anywhere else.
+	 */
+	function vsp_force_load() {
+		VSP_Framework_Loader::instance()
+			->load_framework();
+	}
+}
