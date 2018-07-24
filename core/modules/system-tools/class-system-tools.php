@@ -78,25 +78,25 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	public function output_sys_info() {
 		if ( $this->is_view( 'sysinfo' ) ) {
 			self::output_css( false );
-			echo '<style>#wpsf-tab-system-tools .inside {
+			echo '<style>#wponion-tab-system-tools .inside {
 			margin-top: 0px;
 			}
-			#wpsf-tab-system-tools .postbox{
+			#wponion-tab-system-tools .postbox{
 				border:0;
 				box-shadow: none;
 			}
 			
-			#wpsf-tab-system-tools-system-status > .log_wrap {
+			#wponion-tab-system-tools-system-status > .log_wrap {
 			padding-right:20px;
 			}
 			
-			#wpsf-tab-system-tools-system-status > .wpsf-framework-box > .wpsf-row {
+			#wponion-tab-system-tools-system-status > .wponion-framework-box > .wponion-row {
 			padding:0;
 			}
 			</style>';
 
 
-			echo '<div class="wpsf-framework-box">';
+			echo '<div class="wponion-framework-box">';
 
 			$active_url = vsp_ajax_url( array(
 				'action'         => 'vsp_sysinfo_remote',
@@ -117,7 +117,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 			) );
 			$extra  .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
 
-			echo wpsf_add_element( array(
+			echo wponion_add_element( array(
 				'id'              => 'report',
 				'type'            => 'accordion',
 				'open'            => true,
@@ -231,7 +231,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 				'icon'  => 'fa fa-info-circle',
 				'name'  => 'system-status',
 			) );
-			$menu['callback_hook'] = 'vsp_system_status_output';
+			$menu['callback'] = 'vsp_system_status_output';
 
 			if ( true === $is_page ) {
 				$args[ $menu['name'] ] = $menu;
@@ -287,7 +287,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
 			) );
-			$menu['callback_hook'] = 'vsp_system_logs_output';
+			$menu['callback'] = 'vsp_system_logs_output';
 
 			if ( true === $is_page ) {
 				$args[ $menu['name'] ] = $menu;

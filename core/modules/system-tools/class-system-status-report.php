@@ -378,8 +378,10 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 		 */
 		public static function render_text( $data ) {
 			$return = array();
-			foreach ( $data as $title => $_data ) {
-				$return[] = '* ' . $title . ' : ' . self::handle_result_text( $_data );
+			if ( ! empty( $data ) ) {
+				foreach ( $data as $title => $_data ) {
+					$return[] = '* ' . $title . ' : ' . self::handle_result_text( $_data );
+				}
 			}
 			return implode( PHP_EOL, $return );
 		}
@@ -509,7 +511,7 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 				'type'     => 'tab',
 				'sections' => self::wpsf_render_sections( $headers ),
 			);
-			echo wpsf_add_element( $wpsf_fields, false, '_' );
+			echo wponion_add_element( $wpsf_fields, false, '_' );
 		}
 
 		/**
