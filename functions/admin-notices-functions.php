@@ -165,16 +165,9 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 	 */
 	function vsp_js_alert( $title = '', $text = '', $type = '', $options = array() ) {
 		$defaults    = array(
-			'title'   => $title,
-			'text'    => $text,
-			'icon'    => $type,
-			'buttons' => array(
-				'confirm' => array(
-					'className' => 'btn-primary',
-					'text'      => __( 'Ok', 'vsp-framework' ),
-				),
-			),
-			'after'   => '',
+			'title' => $title,
+			'text'  => $text,
+			'type'  => $type,
 		);
 		$opts        = wp_parse_args( $options, $defaults );
 		$opts        = array_filter( $opts );
