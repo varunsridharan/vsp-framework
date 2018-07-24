@@ -169,7 +169,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 		if ( ! empty( $this->fields() ) ) {
 			foreach ( $this->fields() as $field ) {
 				$default = ( isset( $field['default'] ) ) ? $field['default'] : null;
-				echo wpsf_add_element( $field, $default );
+				echo wponion_add_element( $field, $default );
 			}
 		}
 
