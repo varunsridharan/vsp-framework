@@ -1,0 +1,137 @@
+.vsp-addons-search-form {
+  display : inline-block;
+  float   : right;
+  padding : 6px 0;
+  right   : 0;
+  width   : 200px;
+  .wp-filter-search {
+    line-height : 20px;
+    margin      : 0px 0;
+    padding     : 9px;
+    width       : 100%;
+  }
+}
+
+@keyframes vsp-spin {
+  100% {
+    transform : rotate(360deg);
+  }
+}
+
+.vsp_addon_listing {
+  .vsp-single-addon {
+    .blockUI.blockOverlay {
+      &::before {
+        height          : 1em;
+        width           : 1em;
+        display         : block;
+        position        : absolute;
+        top             : 50%;
+        left            : 50%;
+        margin-left     : -0.5em;
+        margin-top      : -0.5em;
+        content         : '';
+        animation       : vsp-spin 1s ease-in-out infinite;
+        background      : url('../img/loader.svg') center center;
+        background-size : cover;
+        line-height     : 1;
+        text-align      : center;
+        font-size       : 2em;
+        color           : rgba(#000, 0.75);
+      }
+    }
+    .plugin-card-top {
+      .column-name {
+        margin-right : 0 !important;
+        h3 {
+          img {
+            max-width     : 150px;
+            border        : 1px solid #ccc;
+            border-radius : 5px;
+          }
+        }
+      }
+      .column-description {
+        margin-right : 0;
+        cite {
+          display    : block;
+          text-align : right;
+          margin-top : 10px;
+        }
+      }
+    }
+    .vsp-addons-required-plugins {
+      padding-top : 10px;
+      h3 {
+        color         : #0b8c51;
+        font-size     : 15px;
+        margin-bottom : 0;
+      }
+
+      ul {
+        list-style    : inside none disc;
+        display       : inline-block;
+        margin-bottom : 10px;
+        margin-top    : 10px;
+        li {
+          padding : 0 10px;
+          &.required-notexist {
+            background  : #fbe5e5 none repeat scroll 0 0;
+            border      : 1px solid red;
+            font-weight : 700;
+            color       : #595959;
+          }
+
+          &.required-exists {
+            background : #e4e4e4 none repeat scroll 0 0;
+            border     : 1px solid #626262;
+            color      : #626262;
+          }
+          &.required-activated {
+            border      : 1px solid #1db724;
+            font-weight : 700;
+            color       : #626262;
+          }
+
+        }
+      }
+    }
+
+    .plugin-card-bottom {
+      .column-updated {
+        width : 150px;
+      }
+
+      .vsp_addon_ajax_response {
+        width     : 100%;
+        max-width : 70%;
+      }
+    }
+  }
+}
+
+div#wpsf-tab-addons {
+  display : inline-block;
+  width   : 100%;
+  div.addonsLoader {
+    position   : fixed;
+    width      : 90%;
+    height     : 100%;
+    background : #f1f1f1;
+    text-align : center;
+    z-index    : 1;
+    margin-top : -100px;
+    .loader {
+      animation           : vsp-spin 1s ease-in-out infinite;
+      background-image    : url('../img/loader.svg');
+      position            : absolute;
+      margin              : 0 auto;
+      margin-top          : 25%;
+      background-position : center center;
+      background-repeat   : no-repeat;
+      background-size     : auto 20px;
+      padding             : 30px;
+      background-color    : #f1f1f1;
+    }
+  }
+}

@@ -1,0 +1,219 @@
+.vsp_with_metaboxes {
+
+  #poststuff {
+    #post-body.columns-2 {
+      margin-right : 350px;
+
+      #postbox-container-1 {
+        margin-right : -350px;
+        width        : 330px;
+
+        #vsp-adds-sidebar {
+          .inside {
+            margin-bottom : 0;
+            padding       : 12px;
+            .owl-nav {
+              text-align : center;
+              margin-top : 20px;
+              > button {
+                padding        : 5px !important;
+                background     : #D6D6D6;
+                color          : #000;
+                border-radius  : 5px;
+                margin         : 0 15px;
+                width          : 50px;
+                height         : 25px;
+                vertical-align : middle;
+                font-size      : 11px;
+                padding-top    : 3px !important;
+                &:hover {
+                  background : #869791;
+                }
+
+              }
+            }
+          }
+        }
+        #vsp-settings-faq {
+          .inside {
+            padding : 12px;
+          }
+          .vsp-faq-list {
+            &.vsp-faq-global {
+              margin-top    : 0;
+              border-bottom : 1px solid #ccc;
+            }
+            list-style      : inside !important;
+            list-style-type : decimal !important;
+            padding-bottom  : 10px;
+            li {
+              margin-bottom : 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.vsp_settings_subtab {
+  float      : none;
+  margin-top : 0 !important;
+
+  li {
+    a {
+      padding   : 0 5px !important;
+      font-size : 14px;
+    }
+  }
+}
+
+.vsp_settings_content {
+  display    : inline-block;
+  float      : none;
+  margin-top : 10px;
+  width      : 100%;
+
+  > h2 {
+    display : none;
+  }
+}
+
+.vsp_ajax_error {
+  color       : red;
+  display     : block;
+  font-size   : 13px;
+  font-weight : bold;
+  margin-top  : 5px;
+}
+
+.vsp_ajax_success {
+  color       : green;
+  display     : block;
+  font-size   : 13px;
+  font-weight : bold;
+  margin-top  : 5px;
+}
+
+.vsp-single-add {
+  float      : left;
+  width      : 100%;
+  text-align : center;
+  .vsp-single-add-header {
+    float          : left;
+    width          : 100%;
+    margin-bottom  : 15px;
+    border-bottom  : 1px solid #ccc;
+    padding-bottom : 15px;
+    h3 {
+      margin-right : 5px !important;
+      margin-top   : 0 !important;
+      line-height  : 26px;
+    }
+
+    .vsp-add-meta {
+      > span {
+        margin-right : 10px;
+        > span {
+          margin-right : 4px;
+        }
+      }
+    }
+    img {
+      float        : left;
+      margin-right : 10px;
+      width        : 20% !important;
+      display      : inline-block;
+    }
+  }
+
+  .vsp-single-add-content {
+    float         : left;
+    width         : 100%;
+    margin-bottom : 15px;
+  }
+
+  .vsp-single-add-footer {
+    float : left;
+    width : 100%;
+  }
+}
+
+.popover {
+  .popover-title {
+    button.close {
+      float      : right;
+      background : transparent;
+      border     : none;
+      padding    : 0;
+      cursor     : pointer;
+
+      span {
+        font-size      : 20px;
+        color          : #ccc;
+        line-height    : 0;
+        vertical-align : middle;
+      }
+    }
+  }
+
+  .popover-content {
+    > p {
+
+      &:first-child {
+        margin-top : 0px;
+      }
+      &:last-child {
+        margin-bottom : 0px;
+      }
+    }
+
+    pre {
+      display          : block;
+      padding          : 9.5px;
+      margin           : 0 0 10px;
+      font-size        : 13px;
+      line-height      : 1.42857143;
+      color            : #333;
+      word-break       : break-all;
+      word-wrap        : break-word;
+      background-color : #f5f5f5;
+      border           : 1px solid #ccc;
+      border-radius    : 4px;
+      overflow         : auto;
+    }
+
+    code {
+      padding          : 2px 4px;
+      font-size        : 90%;
+      color            : #c7254e;
+      background-color : #f9f2f4;
+      border-radius    : 4px;
+      font-family      : Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    blockquote {
+      padding     : 10px 20px;
+      margin      : 0 0 20px;
+      font-size   : 17.5px;
+      border-left : 5px solid #eee;
+      > p {
+
+        &:first-child {
+          margin-top : 0px;
+        }
+        &:last-child {
+          margin-bottom : 0px;
+        }
+      }
+    }
+
+    table {
+      width : 100%;
+    }
+
+    iframe {
+      width : 100%;
+    }
+  }
+}
