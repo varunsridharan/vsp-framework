@@ -1,18 +1,1 @@
-( function (window, document, $, wph) {
-    'use strict';
-
-    wph.addAction('wpsf_modal_search_ajax_start', function (baseHandler) {
-        baseHandler.$response.block({
-            message: null,
-            overlayCSS: {
-                background: '#fff',
-                opacity: 0.8
-            }
-        })
-    });
-
-    wph.addAction('wpsf_modal_search_ajax_end', function (baseHandler) {
-        baseHandler.$response.unblock();
-    });
-
-} )(window, document, jQuery, wp.hooks);
+!function(o,n,a,s){"use strict";s.addAction("wpsf_modal_search_ajax_start",function(o){o.$response.block({message:null,overlayCSS:{background:"#fff",opacity:.8}})}),s.addAction("wpsf_modal_search_ajax_end",function(o){o.$response.unblock()})}(window,document,jQuery,wp.hooks);
