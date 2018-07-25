@@ -1,111 +1,98 @@
-<div id="vspAddonListing">
-
-</div>
+<div id="vspAddonListing"></div>
 
 <script type="text/x-template" id="VSPAddonsListingTemplate">
-    <div>
-        <div class="wp-filter">
-            <ul class="filter-links vsp-addons-category-listing">
-                <li v-on:click='change_category(slug)' v-bind:class="slug === current_category ? 'current' : ''"
-                    v-for="(name,slug) in cats"
-                    class="vsp-addon-category" data-category="slug">
-                    <a href="javascript:void(0)">{{name}}</a>
-                </li>
-            </ul>
-        </div>
+	<div>
+		<div class="wp-filter">
+			<ul class="filter-links vsp-addons-category-listing">
+				<li v-on:click='change_category(slug)' v-bind:class="slug === current_category ? 'current' : ''"
+					v-for="(name,slug) in cats"
+					class="vsp-addon-category" data-category="slug">
+					<a href="javascript:void(0)">{{name}}</a>
+				</li>
+			</ul>
+		</div>
 
 
-        <div class="wp-list-table widefat plugin-install">
-            <div class="the-list vsp_addon_listing">
-                <div :id="addon.addon_path_md5" v-show="is_show_cateogry(addon)"
-                     v-for="(addon,slug) in pdata"
-                     v-bind:class="['plugin-card vsp-single-addon ', 'plugin-card-' + addon.addon_slug , addon.is_active === true ? 'addon-active' : 'addon-inactive']">
-                    <div class="plugin-card-top">
-                        <div class="name column-name">
-                            <h3>
-                                <a :href="pluginViewUrl(addon,slug)" class="thickbox open-plugin-details-modal"
-                                   :title="addon.Name">
-                                    {{addon.Name}}
-                                    <span v-if="addon.Version !== ''">[<small>V{{addon.Version}}</small>]</span>
-                                </a>
+		<div class="wp-list-table widefat plugin-install">
+			<div class="the-list vsp_addon_listing">
+				<div :id="addon.addon_path_md5" v-show="is_show_cateogry(addon)"
+					 v-for="(addon,slug) in pdata"
+					 v-bind:class="['plugin-card vsp-single-addon ', 'plugin-card-' + addon.addon_slug , addon.is_active === true ? 'addon-active' : 'addon-inactive']">
+					<div class="plugin-card-top">
+						<div class="name column-name">
+							<h3>
+								<a :href="pluginViewUrl(addon,slug)" class="thickbox open-plugin-details-modal"
+								   :title="addon.Name">
+									{{addon.Name}}
+									<span v-if="addon.Version !== ''">[<small>V{{addon.Version}}</small>]</span>
+								</a>
 
-                                <a :href='addon.icon' :data-fancybox="addon.addon_slug + '-gallery'">
-                                    <img :src="addon.icon" class="plugin-icon addon-icon"/>
-                                </a>
-                            </h3>
-                        </div>
+								<a :href='addon.icon' :data-fancybox="addon.addon_slug + '-gallery'">
+									<img :src="addon.icon" class="plugin-icon addon-icon"/>
+								</a>
+							</h3>
+						</div>
 
-                        <div v-if="addon.screenshots !== ''" v-for="screen in addon.screenshots" class="hidden"
-                             style="visibility: hidden">
-                            <a :data-caption='screen.title' :title='screen.title' :href='screen.url'
-                               :data-fancybox="addon.addon_slug + '-gallery'"
-                               v-if="typeof screen == 'object'">{{screen.title}}</a>
+						<div v-if="addon.screenshots !== ''" v-for="screen in addon.screenshots" class="hidden"
+							 style="visibility: hidden">
+							<a :data-caption='screen.title' :title='screen.title' :href='screen.url'
+							   :data-fancybox="addon.addon_slug + '-gallery'"
+							   v-if="typeof screen == 'object'">{{screen.title}}</a>
 
-                            <a :href='screen' :data-fancybox="addon.addon_slug + '-gallery'" v-else>screen</a>
-                        </div>
+							<a :href='screen' :data-fancybox="addon.addon_slug + '-gallery'" v-else>screen</a>
+						</div>
 
-                        <div class="desc column-description">
-                            <p v-html="addon.Description"></p>
-                        </div>
-                    </div>
+						<div class="desc column-description">
+							<p v-html="addon.Description"></p>
+						</div>
+					</div>
 
 
-                    <div class="plugin-card-top vsp-addons-required-plugins"
-                         v-if="addon.required_plugins !== undefined">
-                        <h3>{{text.required_plugin}}</h3>
-                        <ul class="required_plugins">
-                            <li v-for="(plugin,slug) in addon.required_plugins.plugins"
-                                :class="'required-'+plugin.status+' addon-status-inactive'">
-                                <a :href="plugin.url">{{plugin.name}}</a> [{{plugin.required_version}}] <span
-                                    v-html="getPluginStatusLabel(plugin.status)"></span>
+					<div class="plugin-card-top vsp-addons-required-plugins"
+						 v-if="addon.required_plugins !== undefined">
+						<h3>{{text.required_plugin}}</h3>
+						<ul class="required_plugins">
+							<li v-for="(plugin,slug) in addon.required_plugins.plugins"
+								:class="'required-'+plugin.status+' addon-status-inactive'">
+								<a :href="plugin.url">{{plugin.name}}</a> [{{plugin.required_version}}] <span
+									v-html="getPluginStatusLabel(plugin.status)"></span>
+							</li>
+						</ul>
+						<p>{{text.required_desc}}</p>
+					</div>
 
-                            </li>
-
-                        </ul>
-
-                        <p>{{text.required_desc}}</p>
-
-                    </div>
-
-                    <div class="plugin-card-bottom">
-                        <div class="column-updated">
-
-                            <button v-on:click="addonHandleButton(addon,slug,'activate')"
-                                    v-show="addon.is_active === false"
-                                    type="button"
-                                    :data-filename="slug"
-                                    class="button button-primary">{{text.activate_btn}}
-                            </button>
-
-                            <button v-on:click="addonHandleButton(addon,slug,'deactivate')"
-                                    v-show="addon.is_active === true" type="button" :data-filename="slug"
-                                    class="button button-secondary">{{text.deactivate_btn}}
-                            </button>
-
-                        </div>
-                        <div class="column-downloaded vsp_addon_ajax_response"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="plugin-card-bottom">
+						<div class="column-updated">
+							<button v-on:click="addonHandleButton(addon,slug,'activate')"
+									v-show="addon.is_active === false"
+									type="button"
+									:data-filename="slug"
+									class="button button-primary">{{text.activate_btn}}
+							</button>
+							<button v-on:click="addonHandleButton(addon,slug,'deactivate')"
+									v-show="addon.is_active === true" type="button" :data-filename="slug"
+									class="button button-secondary">{{text.deactivate_btn}}
+							</button>
+						</div>
+						<div class="column-downloaded vsp_addon_ajax_response"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </script>
 
 <style>
-    .vsp_with_metaboxes #poststuff #post-body.columns-2 {
-        margin-right : 0;
-    }
+	.vsp_with_metaboxes #poststuff #post-body.columns-2 {
+		margin-right: 0;
+	}
 
-    div#postbox-container-1 {
-        display : none;
-    }
+	div#postbox-container-1 {
+		display: none;
+	}
 
-    div.wpsf-simple-footer {
-        display : none;
-    }
-
-    div#wpsf-tab-addons .postbox {
-        background : transparent;
-        border     : none;
-    }
+	div#wponion-tab-addons .postbox {
+		background: transparent;
+		border:     none;
+	}
 </style>

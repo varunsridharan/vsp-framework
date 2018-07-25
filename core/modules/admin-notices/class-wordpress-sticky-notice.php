@@ -25,7 +25,6 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 		$out .= '<p>';
 		$out .= $notice->getContent();
 		$out .= '</p>';
-
 		$out .= '<hr/><p >';
 		$out .= '<a id="' . $ui_id . '" href="' . $this->get_url( $notice ) . '" class="button button-secondary text-right">' . __( 'Hide Notice' ) . '</a>';
 		$out .= '</p>';
@@ -36,8 +35,7 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 
 	protected function get_url( VSP_WP_Notice $notice ) {
 		return vsp_ajax_url( array(
-			'action' => VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_ACTION,
-
+			'action'                                              => VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_ACTION,
 			VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_NTC_ID_VAR => $notice->getId(),
 			VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_NONCE_VAR  => wp_create_nonce( VSP_WP_Admin_Notices::KILL_STICKY_NTC_AJAX_ACTION ),
 		) );
@@ -52,8 +50,7 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 	 * @since  TODO ${VERSION}
 	 */
 	protected function dismissibleScript( VSP_WP_Notice $notice, $ui_id ) {
-		return '
-		<script type="text/javascript">
+		return '<script type="text/javascript">
 		jQuery(document).on("ready",function(){
 			jQuery("#' . $ui_id . '").click(function(e){
 				e.preventDefault();				
@@ -61,8 +58,7 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 				jQuery.post(jQuery(this).attr("href"),"",function(){$notice.slideUp();});
 			})
 		})
-		</script> 
-		';
+		</script>';
 
 	}
 }

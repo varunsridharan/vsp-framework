@@ -24,14 +24,17 @@ class VSP_WP_Notice {
 	 * Notice Type Error
 	 */
 	const TYPE_ERROR = 'error';
+
 	/**
 	 * Notice Type Updated
 	 */
 	const TYPE_UPDATED = 'updated';
+
 	/**
 	 *  Notice Type Updated Nag
 	 */
 	const TYPE_UPDATED_NAG = 'update-nag';
+
 	/**
 	 * Notice message to be displayed
 	 *
@@ -222,7 +225,6 @@ class VSP_WP_Notice {
 	}
 
 	/**
-	 *
 	 * @param string $content
 	 *
 	 * @return $this
@@ -320,7 +322,6 @@ class VSP_WP_Notice {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	public function getUsers() {
@@ -379,7 +380,6 @@ class VSP_WP_Notice {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	public function getId() {
@@ -387,7 +387,6 @@ class VSP_WP_Notice {
 	}
 
 	/**
-	 *
 	 * @return int
 	 */
 	public function getTimes() {
@@ -395,7 +394,6 @@ class VSP_WP_Notice {
 	}
 
 	/**
-	 *
 	 * @param int $times
 	 *
 	 * @return $this
@@ -464,6 +462,9 @@ class VSP_WP_Notice {
 		return $this->type;
 	}
 
+	/**
+	 * @param $type
+	 */
 	public function setType( $type ) {
 		$this->type = $type;
 	}

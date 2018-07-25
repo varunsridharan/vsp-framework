@@ -284,5 +284,4 @@ trait VSP_VC_Element {
 		}
 		return false;
 	}
-
 }

@@ -87,16 +87,14 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	 * @param array $options .
 	 */
 	public function __construct( $options = array() ) {
-		$options = wp_parse_args( $options, array(
+		$options           = wp_parse_args( $options, array(
 			'page'   => false,
 			'fields' => array(),
 			'title'  => '',
 			'icon'   => '',
 		) );
-
 		$this->import_page = $options['page'];
 		$this->options     = $options;
-
 		parent::__construct();
 	}
 
@@ -164,7 +162,7 @@ abstract class VSP_WP_Importer extends WP_Importer {
 	 */
 	public function greet() {
 		echo '<div class="vsp-wp-importer-wrap">
-<div class="wpsf-content"> <form enctype="multipart/form-data" id="import-upload-form" method="post" action="' . esc_attr( wp_nonce_url( $this->step_url( 1 ), 'import-upload' ) ) . '">
+<div class="wponion-content"> <form enctype="multipart/form-data" id="import-upload-form" method="post" action="' . esc_attr( wp_nonce_url( $this->step_url( 1 ), 'import-upload' ) ) . '">
 <input type="hidden" name="action" value="save" /> <input type="hidden" name="max_file_size" value="' . esc_attr( $this->upload_size( true ) ) . '" />';
 		if ( ! empty( $this->fields() ) ) {
 			foreach ( $this->fields() as $field ) {
@@ -173,14 +171,10 @@ abstract class VSP_WP_Importer extends WP_Importer {
 			}
 		}
 
-		echo '<div class="wpsf-element"><p class="submit"> <input type="submit" class="button" value="' . esc_html( __( 'Upload file and import', 'vsp-framework' ) ) . '" /> </p></div> </form>';
+		echo '<div class="wponion-element"><p class="submit"> <input type="submit" class="button" value="' . esc_html( __( 'Upload file and import', 'vsp-framework' ) ) . '" /> </p></div> </form>';
 		echo '</div>';
 		echo '</div>';
-		echo '<style>
-                .vsp-wp-importer-wrap form > .wpsf-element { padding: 15px 0; } 
-                .wpsf-element > p.submit{margin:0;padding:0;} 
-                .vsp-wp-importer-wrap form > .wpsf-element .wpsf-fieldset{margin-left:0;} 
-            </style>';
+		echo '<style> .vsp-wp-importer-wrap form > .wponion-element { padding: 15px 0; } .wponion-element > p.submit{margin:0;padding:0;} .vsp-wp-importer-wrap form > .wponion-element .wponion-fieldset{margin-left:0;} </style>';
 	}
 
 	/**

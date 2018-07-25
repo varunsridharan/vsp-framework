@@ -98,24 +98,13 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 
 			echo '<div class="wponion-framework-box">';
 
-			$active_url = vsp_ajax_url( array(
-				'action'         => 'vsp_sysinfo_remote',
-				'sysinfo_action' => 'generate',
-			) );
+			$active_url   = vsp_ajax_url( array( 'action' => 'vsp_sysinfo_remote', 'sysinfo_action' => 'generate' ) );
+			$inactive_url = vsp_ajax_url( array( 'action' => 'vsp_sysinfo_remote', 'sysinfo_action' => 'disable' ) );
+			$currenturl   = vsp_get_cache( 'vsp-sysinfo-url' );
+			$extra        = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
+			$output       = vsp_ajax_url( array( 'action' => 'vsp_sys_info', 'vsp-key' => $currenturl ) );
 
-			$inactive_url = vsp_ajax_url( array(
-				'action'         => 'vsp_sysinfo_remote',
-				'sysinfo_action' => 'disable',
-			) );
-
-			$currenturl = vsp_get_cache( 'vsp-sysinfo-url' );
-
-			$extra  = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
-			$output = vsp_ajax_url( array(
-				'action'  => 'vsp_sys_info',
-				'vsp-key' => $currenturl,
-			) );
-			$extra  .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
+			$extra .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
 
 			echo wponion_add_element( array(
 				'id'              => 'report',
@@ -140,9 +129,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 			), array( 'report' => VSP_System_Status_Report::text_output() ) );
 
 			echo '</div>';
-
 			echo '<div class="log_wrap">';
-
 			echo VSP_System_Status_Report::output();
 			echo '</div>';
 		}
@@ -166,19 +153,15 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	 * Outputs Custom CSS Required For Settings Page.
 	 */
 	public static function output_css( $force = true ) {
-		echo '<style> 
-			div#post-body.metabox-holder.columns-2{width:100%;} 
-			#postbox-container-1,.wpsf-simple-footer{display:none;}
-			
-		</style>';
+		echo '<style> div#post-body.metabox-holder.columns-2{width:100%;} #postbox-container-1,.wponion-simple-footer{display:none;}</style>';
 		if ( $force ) {
-			echo '<style>#wpsf-tab-system-tools .inside {
+			echo '<style>#wponion-tab-system-tools .inside {
 				background: #f1f1f1;
 				padding: 15px 0px;
 				margin-top: 0px;
 				border-top: 1px solid #e4e4e4;
 			}
-			#wpsf-tab-system-tools .postbox{
+			#wponion-tab-system-tools .postbox{
 				border:0;
 				box-shadow: none;
 			}</style>';
@@ -226,7 +209,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	 */
 	protected function system_status_menu( $args = array(), $is_page = true ) {
 		if ( false !== $this->option( 'system_status' ) ) {
-			$menu                  = $this->menu_data( $this->option( 'system_status' ), array(
+			$menu             = $this->menu_data( $this->option( 'system_status' ), array(
 				'title' => __( 'System Status', 'vsp-framework' ),
 				'icon'  => 'fa fa-info-circle',
 				'name'  => 'system-status',
@@ -282,7 +265,7 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	 */
 	protected function system_logs_menu( $args = array(), $is_page = true ) {
 		if ( false !== $this->option( 'logging' ) ) {
-			$menu                  = $this->menu_data( $this->option( 'logging' ), array(
+			$menu             = $this->menu_data( $this->option( 'logging' ), array(
 				'title' => __( 'System Logs', 'vsp-framework' ),
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
@@ -329,5 +312,4 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 		}
 		return $fields;
 	}
-
 }

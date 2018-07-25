@@ -53,16 +53,8 @@ class VSP_Framework_Setup {
 	 */
 	public static function create_folders( $dir ) {
 		$files = array(
-			array(
-				'base'    => $dir,
-				'file'    => '.htaccess',
-				'content' => 'deny from all',
-			),
-			array(
-				'base'    => $dir,
-				'file'    => 'index.html',
-				'content' => '',
-			),
+			array( 'base' => $dir, 'file' => '.htaccess', 'content' => 'deny from all' ),
+			array( 'base' => $dir, 'file' => 'index.html', 'content' => '' ),
 		);
 
 		foreach ( $files as $file ) {

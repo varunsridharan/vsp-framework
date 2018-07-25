@@ -101,9 +101,7 @@ abstract class VSP_Shortcode extends VSP_Class_Handler {
 	/**
 	 * Triggers Once $this->options isset.
 	 */
-	protected function after_merge() {
-
-	}
+	protected function after_merge() {}
 
 	/**
 	 * Hookable Function to render shortcode HTML.

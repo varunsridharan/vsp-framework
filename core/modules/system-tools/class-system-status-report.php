@@ -349,23 +349,14 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 					continue;
 				}
 
-				if ( false === $in_level ) {
-					$return .= PHP_EOL . '## ' . strip_tags( $title ) . ' ##' . PHP_EOL;
-				} else {
-					$return .= PHP_EOL . '### ' . strip_tags( $title ) . ' ###' . PHP_EOL;
-				}
-
-				if ( false !== $content ) {
-					$return .= $content . PHP_EOL;
-				}
-
-				if ( isset( $header['childs'] ) ) {
-					$return .= self::text_output_content( $header['childs'], $in_level + 1 );
-				}
-
-				if ( false === $in_level ) {
-					$return .= '---';
-				}
+				$return .= PHP_EOL;
+				$return .= ( false === $in_level ) ? '##' : '###';
+				$return .= strip_tags( $title );
+				$return .= ( false === $in_level ) ? '##' : '###';
+				$return .= PHP_EOL;
+				$return .= ( false !== $content ) ? $content . PHP_EOL : '';
+				$return .= ( isset( $header['childs'] ) ) ? self::text_output_content( $header['childs'], $in_level + 1 ) : '';
+				$return .= ( false === $in_level ) ? '---' : '';
 			}
 			return $return;
 		}

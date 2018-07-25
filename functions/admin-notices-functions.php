@@ -53,35 +53,22 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 	 * @param array  $args .
 	 */
 	function vsp_notice( $message, $type = 'update', $args = array() ) {
-		$defaults = array(
-			'title'  => false,
-			'times'  => 1,
-			'screen' => array(),
-			'users'  => array(),
-		);
-
-		$args = wp_parse_args( $args, $defaults );
+		$defaults = array( 'title' => false, 'times' => 1, 'screen' => array(), 'users' => array() );
+		$args     = wp_parse_args( $args, $defaults );
 
 		if ( false !== $args['title'] && ( empty( $message ) || '' === $message ) ) {
 			$message       = $args['title'];
 			$args['title'] = false;
 		}
 
-		$_instance = vsp_notices( $type );
-		$_instance->setContent( $message )
-			->setScreens( $args['screen'] );
+		$method        = ( is_array( $args['users'] ) ) ? 'addUsers' : 'addUser';
+		$sticky_method = ( true === $args['times'] ) ? 'setSticky' : 'setTimes';
+		$_instance     = vsp_notices( $type );
 
-		if ( is_array( $args['users'] ) ) {
-			$_instance->addUsers( $args['users'] );
-		} else {
-			$_instance->addUser( $args['users'] );
-		}
-
-		if ( true === $args['times'] ) {
-			$_instance->setSticky( true );
-		} else {
-			$_instance->setTimes( $args['times'] );
-		}
+		$_instance->setContent( $message );
+		$_instance->setScreens( $args['screen'] );
+		$_instance->$method( $args['users'] );
+		$_instance->$sticky_method( $args['times'] );
 
 		if ( false !== $args['title'] ) {
 			$_instance->setTitle( $args['title'] );
@@ -164,11 +151,7 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 	 * @return string
 	 */
 	function vsp_js_alert( $title = '', $text = '', $type = '', $options = array() ) {
-		$defaults    = array(
-			'title' => $title,
-			'text'  => $text,
-			'type'  => $type,
-		);
+		$defaults    = array( 'title' => $title, 'text' => $text, 'type' => $type );
 		$opts        = wp_parse_args( $options, $defaults );
 		$opts        = array_filter( $opts );
 		$after       = isset( $opts['after'] ) ? $opts['after'] : '';

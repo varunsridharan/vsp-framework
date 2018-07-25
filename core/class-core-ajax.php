@@ -23,7 +23,7 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 		/**
 		 * Ajax Action Prefix
 		 *
-		 * @example for wordpress_show_popup wordpress is the prefix
+		 * @example for wordpress_show_popup WordPress is the prefix
 		 *
 		 * @var string
 		 */
@@ -70,20 +70,12 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 		public function sysinfo_remote() {
 			if ( 'generate' === $_REQUEST['sysinfo_action'] ) {
 				$value  = wp_hash( microtime( true ) . wp_generate_password( 10, true ) );
-				$output = vsp_ajax_url( array(
-					'action'  => 'vsp_sys_info',
-					'vsp-key' => $value,
-				) );
+				$output = vsp_ajax_url( array( 'action' => 'vsp_sys_info', 'vsp-key' => $value ) );
 
 				vsp_set_cache( 'vsp-sysinfo-url', $value, '2_days' );
 				vsp_send_json_callback( true, array(
 					'success'   => vsp_js_alert_success( __( 'URL Generated', 'vsp-framework' ), __( 'Remote View URL Generated. due to security reasons this url will only be valid for 48hrs from now.', 'vsp-framework' ), array(
-						'content' => array(
-							'element'    => 'input',
-							'attributes' => array(
-								'value' => $output,
-							),
-						),
+						'content' => array( 'element' => 'input', 'attributes' => array( 'value' => $output ) ),
 					) ),
 					'changeURL' => 'jQuery("a#vspsysinfocurl").attr("href","' . $output . '"); jQuery("a#vspsysinfocurl").text("' . $output . '")',
 				) );
@@ -110,8 +102,6 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 				echo '</pre>';
 				exit();
 			}
-
-
 			wp_die();
 		}
 

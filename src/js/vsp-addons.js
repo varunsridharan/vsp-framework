@@ -4,8 +4,7 @@
 	$( 'div.wponion-framework.wponion-framework-bootstrap' ).removeClass( 'wponion-framework-bootstrap' );
 	$( 'div.wponion-form-actions' ).remove();
 
-	$.VSP_ADDONS = $.VSP_ADDONS || {};
-
+	$.VSP_ADDONS         = $.VSP_ADDONS || {};
 	var $vsp_addons_list = new Vue( {
 		el: "#vspAddonListing",
 		template: '#VSPAddonsListingTemplate',
@@ -26,14 +25,17 @@
 				} else if ( this.current_category === 'active' && addon.is_active === true ) {
 					return true;
 				} else if ( addon.category !== undefined ) {
-					return _.hasIn( addon.category, this.current_category );
+					if ( addon.category[ this.current_category ] !== undefined ) {
+						return true;
+					}
 				}
 
 				return false;
 			},
 			pluginViewUrl: function ( addon, file ) {
-				var $data = _.replace( this.text.plugin_view_url, '{{slug}}', file );
-				$data     = _.replace( $data, '{{addon.addon_path_md5}}', addon.addon_path_md5 );
+				var $data = this.text.plugin_view_url,
+					$data = $data.replace( '{{slug}}', file ),
+					$data = $data.replace( '{{addon.addon_path_md5}}', addon.addon_path_md5 );
 				return $data;
 			},
 			addonHandleButton: function ( addon, file, $type ) {
@@ -70,20 +72,23 @@
 				if ( this.categoires === undefined ) {
 					var $arr  = this.pdata;
 					var $cats = this.default_cats;
-					_.forEach( $arr, function ( value, key ) {
-						if ( typeof value.category !== undefined ) {
-							_.merge( $cats, value.category );
+					var $e    = '';
+					for ( $e in $arr ) {
+						if ( typeof $arr[ $e ].category !== undefined ) {
+							var $c = '';
+							for ( $c in $arr[ $e ].category ) {
+								if ( $cats[ $c ] === undefined ) {
+									$cats[ $c ] = $arr[ $e ].category[ $c ];
+								}
+							}
 						}
-					} );
-
+					}
 					this.categoires       = $cats;
-					this.category_slugs   = _.keys( $cats );
-					this.current_category = _.head( this.category_slugs );
+					this.category_slugs   = Object.keys( $cats );
+					this.current_category = this.category_slugs[ 0 ];
 					return $cats;
 				}
-
 				return this.categoires;
-
 			}
 		},
 		data: {
@@ -96,7 +101,6 @@
 			text: vsp_addons_settings.texts,
 		},
 	} );
-
 	$.VSP_ADDONS.blockUI = function ( id ) {
 		$( 'div#' + id ).toggleClass( "vsp-requested" );
 		$( 'div#' + id ).block( {
@@ -107,7 +111,6 @@
 			}
 		} );
 	};
-
 	$.VSP_ADDONS.unblock = function ( id ) {
 		$( 'div#' + id ).toggleClass( "vsp-requested" );
 		$( 'div#' + id ).unblock();

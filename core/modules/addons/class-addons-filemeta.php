@@ -136,7 +136,6 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 			}
 
 			foreach ( $addons_files as $addon_file ) {
-
 				if ( isset( $this->addon_metadatas[ $addon_file['sub_folder'] . $addon_file['file_name'] ] ) ) {
 					$this->__addon_duplicate_msg( $addon_file );
 					continue;
@@ -146,8 +145,7 @@ if ( ! class_exists( 'VPS_Addons_FileMeta' ) ) {
 					continue;
 				}
 
-				$meta_data = $this->get_file_metadata( $addon_file );
-
+				$meta_data                                              = $this->get_file_metadata( $addon_file );
 				$this->addon_metadatas[ $meta_data['addon_file_slug'] ] = $meta_data;
 			}
 

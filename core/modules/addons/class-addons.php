@@ -67,10 +67,6 @@ if ( ! class_exists( 'VSP_Addons' ) ) {
 
 			if ( vsp_is_admin() ) {
 				add_action( $this->slug( 'hook' ) . 'settings_pages', array( $this, 'set_settings_page' ), 99, 100 );
-				/*add_action( 'vsp_render_' . $this->slug( 'hook' ) . 'addons_list', array(
-					$this,
-					'render_addons_page',
-				), 10, 2 );*/
 			}
 
 			if ( vsp_is_ajax() ) {

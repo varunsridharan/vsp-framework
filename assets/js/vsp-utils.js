@@ -1,1 +1,0 @@
-!function(o,n,a,s){"use strict";s.addAction("wpsf_modal_search_ajax_start",function(o){o.$response.block({message:null,overlayCSS:{background:"#fff",opacity:.8}})}),s.addAction("wpsf_modal_search_ajax_end",function(o){o.$response.unblock()})}(window,document,jQuery,wp.hooks);

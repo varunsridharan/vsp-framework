@@ -99,13 +99,10 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 				$this->pages    = array();
 				$this->fields   = array();
 				$this->sections = array();
-
-
 				add_filter( 'vsp_system_status_headers_vsp_plugins', array( &$this, 'set_sysinfo_headers' ) );
 				add_filter( 'vsp_system_status_data', array( &$this, 'set_sysinfo_data' ) );
 				add_action( 'vsp_sys_status_before_render', array( $this, 'add_settings_data' ) );
 				add_action( 'wponion_loaded', array( &$this, 'init_settings' ), 40 );
-				add_action( 'vsp_wp_settings_simple_footer', array( &$this, 'render_settings_metaboxes' ) );
 				add_action( 'vsp_show_sys_page', array( &$this, 'render_sys_page' ) );
 			}
 		}
@@ -119,9 +116,7 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 			if ( ! isset( $info[ $this->slug( 'slug' ) ] ) ) {
 				$info[ $this->slug( 'slug' ) ] = array(
 					'name'   => $this->plugin_name(),
-					'childs' => array(
-						$this->slug( 'slug' ) . '_settings' => __( 'Settings' ),
-					),
+					'childs' => array( $this->slug( 'slug' ) . '_settings' => __( 'Settings' ) ),
 				);
 			} elseif ( is_array( $info[ $this->slug( 'slug' ) ] ) ) {
 				$info[ $this->slug( 'slug' ) ]['childs'][ $this->slug( 'slug' ) . '_settings' ] = __( 'Settings' );
@@ -129,12 +124,19 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 			return $info;
 		}
 
+		/**
+		 * @param $data
+		 *
+		 * @return mixed
+		 */
 		public function set_sysinfo_data( $data ) {
 			$data[ $this->slug( 'slug' ) . '_settings' ] = $this->framework->get_db_options();
 			return $data;
 		}
 
-
+		/**
+		 * @param $class
+		 */
 		public function add_settings_data( $class ) {
 			if ( ! isset( $class->vsp_settings ) ) {
 				$class->vsp_settings = array();
@@ -224,14 +226,9 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 
 
 			foreach ( $this->fields as $id => $fields ) {
-				$section = null;
 				$page    = explode( '/', $id );
-
-				if ( isset( $page[1] ) ) {
-					$section = $page[1];
-				}
-
-				$page = $page[0];
+				$section = isset( $page[1] ) ? $page[1] : null;
+				$page    = $page[0];
 
 				if ( null === $section ) {
 					if ( isset( $pages[ $page ] ) && ! isset( $pages['section'] ) ) {
@@ -262,21 +259,7 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 */
 		public function init_settings() {
 			$this->make_settings_arr();
-			#$this->framework = new WPSFramework_Settings( $this->page_config, $this->final_options );
 			$this->framework = new \WPOnion\Modules\Settings( $this->page_config, $this->final_options );
-		}
-
-		/**
-		 * Outputs Settings Metabox
-		 *
-		 * @uses VSP_Settings_Metabox
-		 */
-		public function render_settings_metaboxes() {
-			$args = $this->get_common_args( array(
-				'show_faqs' => $this->option( 'show_faqs' ),
-			) );
-			$adds = new VSP_Settings_Metabox( $args );
-			$adds->render_metaboxes();
 		}
 	}
 }

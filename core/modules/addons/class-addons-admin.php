@@ -48,9 +48,9 @@ if ( ! class_exists( 'VSP_Addons_Admin' ) ) {
 				'title'     => $this->option( 'addon_listing_tab_title' ),
 				'icon'      => $this->option( 'addon_listing_tab_icon' ),
 				'with_wrap' => false,
-				#'callback_hook' => 'vsp_render_' . $this->slug( 'hook' ) . 'addons_list',
 				'callback'  => array( &$this, 'render_addons_page' ),
 			);
+
 			return $pages;
 		}
 

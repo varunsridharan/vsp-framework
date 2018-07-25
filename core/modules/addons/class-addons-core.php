@@ -29,18 +29,13 @@ if ( ! class_exists( 'VSP_Addons_Core' ) ) {
 		 * VSP_Addons_Core constructor.
 		 */
 		public function __construct() {
-			$this->default_cats = array(
+			$this->default_cats      = array(
 				'all'      => __( 'All', 'vsp-framework' ),
 				'active'   => __( 'Active', 'vsp-framework' ),
 				'inactive' => __( 'In Active', 'vsp-framework' ),
 			);
-			$this->addon_cats   = $this->default_cats;
-
-			$this->addons_cats_count = array(
-				'all'      => 0,
-				'active'   => 0,
-				'inactive' => 0,
-			);
+			$this->addon_cats        = $this->default_cats;
+			$this->addons_cats_count = array( 'all' => 0, 'active' => 0, 'inactive' => 0 );
 			parent::__construct();
 		}
 

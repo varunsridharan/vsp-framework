@@ -194,7 +194,6 @@
 				$self._FuncTrigger( "AjaxQ" );
 				$self._BodyTrigger( "always" );
 			} );
-
 			this._FuncTrigger( "after" );
 			this._BodyTrigger( "after" );
 		}

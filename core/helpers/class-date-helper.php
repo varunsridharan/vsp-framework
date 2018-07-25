@@ -20,7 +20,6 @@
  * @since 1.0
  */
 class VSP_Date_Time extends \DateTime {
-
 	/**
 	 * UTC Offset, if needed. Only used when a timezone is not set. When
 	 * timezones are used this will equal 0.
@@ -117,5 +116,4 @@ class VSP_Date_Time extends \DateTime {
 		$this->utc_offset = 0;
 		return parent::setTimezone( $timezone );
 	}
-
 }

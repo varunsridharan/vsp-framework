@@ -22,20 +22,27 @@
  * @since 1.0
  */
 class VSP_Log_Handler_File extends VSP_Log_Handler {
-
+	/**
+	 * sub_path
+	 *
+	 * @var bool
+	 */
 	protected $sub_path = false;
+
 	/**
 	 * Stores open file handles.
 	 *
 	 * @var array
 	 */
 	protected $handles = array();
+
 	/**
 	 * File size limit for log files in bytes.
 	 *
 	 * @var int
 	 */
 	protected $log_size_limit;
+
 	/**
 	 * Cache logs that could not be written.
 	 *
@@ -59,7 +66,6 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 
 		$this->log_size_limit = $log_size_limit;
 		$this->sub_path       = $sub_path;
-
 		add_action( 'vsp_framework_init', array( $this, 'write_cached_logs' ), 1 );
 	}
 
@@ -168,12 +174,9 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 				return $file_stat['size'] > $this->log_size_limit;
 			} elseif ( file_exists( $file ) ) {
 				return filesize( $file ) > $this->log_size_limit;
-			} else {
-				return false;
 			}
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -342,12 +345,7 @@ class VSP_Log_Handler_File extends VSP_Log_Handler {
 	 */
 	public function clear( $handle ) {
 		$result = false;
-		// Close the file if it's already open.
 		$this->close( $handle );
-		/**
-		 * $this->open( $handle, 'w' ) == Open the file for writing only. Place the file pointer at
-		 * the beginning of the file, and truncate the file to zero length.
-		 */
 		if ( $this->open( $handle, 'w' ) && is_resource( $this->handles[ $handle ] ) ) {
 			$result = true;
 		}

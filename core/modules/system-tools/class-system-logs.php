@@ -46,7 +46,6 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 		public static function render() {
 			self::scan_log_files();
 
-
 			if ( ! empty( $_REQUEST['log_file'] ) && isset( self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ] ) ) {
 				$viewed_log = self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ];
 			} elseif ( ! empty( self::$logs ) ) {
@@ -143,5 +142,4 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 			return substr( $filename, 0, strlen( $filename ) > 37 ? strlen( $filename ) - 37 : strlen( $filename ) - 4 );
 		}
 	}
-
 }

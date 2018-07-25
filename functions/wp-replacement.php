@@ -68,11 +68,11 @@ if ( ! function_exists( 'vsp_register_style' ) ) {
 
 if ( ! function_exists( 'vsp_load_script' ) ) {
 	/**
-	 * @param string $handle .
-	 * @param string $src .
-	 * @param array  $deps .
-	 * @param string $ver .
-	 * @param bool   $in_footer .
+	 * @param string $handle
+	 * @param string $src
+	 * @param array  $deps
+	 * @param string $ver
+	 * @param bool   $in_footer
 	 */
 	function vsp_load_script( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
 		$src = vsp_debug_file( $src );
@@ -143,17 +143,14 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 
 		// Name is marked up inside <a> tags. Don't allow these.
 		// Author is too, but some plugins have used <a> here (omitting Author URI).
-		$plugin_data['Name']   = wp_kses( $plugin_data['Name'], $allowed_tags_in_links );
-		$plugin_data['Author'] = wp_kses( $plugin_data['Author'], $allowed_tags );
-
+		$plugin_data['Name']        = wp_kses( $plugin_data['Name'], $allowed_tags_in_links );
+		$plugin_data['Author']      = wp_kses( $plugin_data['Author'], $allowed_tags );
 		$plugin_data['Description'] = wp_kses( $plugin_data['Description'], $allowed_tags );
 		$plugin_data['Version']     = wp_kses( $plugin_data['Version'], $allowed_tags );
-
-		$plugin_data['PluginURI'] = esc_url( $plugin_data['PluginURI'] );
-		$plugin_data['AuthorURI'] = esc_url( $plugin_data['AuthorURI'] );
-
-		$plugin_data['Title']      = $plugin_data['Name'];
-		$plugin_data['AuthorName'] = $plugin_data['Author'];
+		$plugin_data['PluginURI']   = esc_url( $plugin_data['PluginURI'] );
+		$plugin_data['AuthorURI']   = esc_url( $plugin_data['AuthorURI'] );
+		$plugin_data['Title']       = $plugin_data['Name'];
+		$plugin_data['AuthorName']  = $plugin_data['Author'];
 
 		// Apply markup
 		if ( $markup ) {
@@ -173,7 +170,7 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_get_shortcode_regex" ) ) {
+if ( ! function_exists( 'vsp_get_shortcode_regex' ) ) {
 
 	/**
 	 * @param null $tagnames
@@ -214,7 +211,7 @@ if ( ! function_exists( "vsp_get_shortcode_regex" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_set_cache" ) ) {
+if ( ! function_exists( 'vsp_set_cache' ) ) {
 	/**
 	 * @param     $cache_name .
 	 * @param     $data .
@@ -228,7 +225,7 @@ if ( ! function_exists( "vsp_set_cache" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_get_cache" ) ) {
+if ( ! function_exists( 'vsp_get_cache' ) ) {
 	/**
 	 * @param $cache_name .
 	 *
@@ -239,7 +236,7 @@ if ( ! function_exists( "vsp_get_cache" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_delete_cache" ) ) {
+if ( ! function_exists( 'vsp_delete_cache' ) ) {
 	/**
 	 * @param $cache_name .
 	 *
@@ -250,7 +247,7 @@ if ( ! function_exists( "vsp_delete_cache" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_fix_title" ) ) {
+if ( ! function_exists( 'vsp_fix_title' ) ) {
 	/**
 	 * @param $title .
 	 *
@@ -261,7 +258,7 @@ if ( ! function_exists( "vsp_fix_title" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_update_term_meta" ) ) {
+if ( ! function_exists( 'vsp_update_term_meta' ) ) {
 	/**
 	 * @param        $term_id .
 	 * @param        $meta_key .
@@ -275,7 +272,7 @@ if ( ! function_exists( "vsp_update_term_meta" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_add_term_meta" ) ) {
+if ( ! function_exists( 'vsp_add_term_meta' ) ) {
 	/**
 	 * @param      $term_id .
 	 * @param      $meta_key .
@@ -289,7 +286,7 @@ if ( ! function_exists( "vsp_add_term_meta" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_delete_term_meta" ) ) {
+if ( ! function_exists( 'vsp_delete_term_meta' ) ) {
 	/**
 	 * @param        $term_id .
 	 * @param        $meta_key .
@@ -303,7 +300,7 @@ if ( ! function_exists( "vsp_delete_term_meta" ) ) {
 	}
 }
 
-if ( ! function_exists( "vsp_get_term_meta" ) ) {
+if ( ! function_exists( 'vsp_get_term_meta' ) ) {
 	/**
 	 * @param      $term_id .
 	 * @param      $key .
@@ -315,7 +312,6 @@ if ( ! function_exists( "vsp_get_term_meta" ) ) {
 		return function_exists( 'get_term_meta' ) ? get_term_meta( $term_id, $key, $single ) : get_option( 'vsp_tm_' . $term_id . '_' . $key );
 	}
 }
-
 
 if ( ! function_exists( 'vsp_addon_information' ) ) {
 	/**
@@ -410,17 +406,17 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 			$low          = empty( $api->banners['low'] ) ? $api->banners['high'] : $api->banners['low'];
 			$high         = empty( $api->banners['high'] ) ? $api->banners['low'] : $api->banners['high'];
 			?>
-            <style type="text/css">
-                #plugin-information-title.with-banner {
-                    background-image : url( <?php echo esc_url( $low ); ?> );
-                }
+			<style type="text/css">
+				#plugin-information-title.with-banner {
+					background-image: url( <?php echo esc_url( $low ); ?> );
+				}
 
-                @media only screen and ( -webkit-min-device-pixel-ratio : 1.5 ) {
-                    #plugin-information-title.with-banner {
-                        background-image : url( <?php echo esc_url( $high ); ?> );
-                    }
-                }
-            </style>
+				@media only screen and ( -webkit-min-device-pixel-ratio: 1.5 ) {
+					#plugin-information-title.with-banner {
+						background-image: url( <?php echo esc_url( $high ); ?> );
+					}
+				}
+			</style>
 			<?php
 		}
 
@@ -449,41 +445,41 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 		echo "</div>\n";
 
 		?>
-    <div id="<?php echo $_tab; ?>-content" class='<?php echo $_with_banner; ?>'>
-        <div class="fyi">
-            <ul>
+	<div id="<?php echo $_tab; ?>-content" class='<?php echo $_with_banner; ?>'>
+		<div class="fyi">
+			<ul>
 				<?php if ( ! empty( $api->version ) ) { ?>
-                    <li><strong><?php _e( 'Version:', 'vsp-framework' ); ?></strong> <?php echo $api->version; ?></li>
+					<li><strong><?php _e( 'Version:', 'vsp-framework' ); ?></strong> <?php echo $api->version; ?></li>
 				<?php }
 				if ( ! empty( $api->author ) ) { ?>
-                    <li>
-                        <strong><?php _e( 'Author:', 'vsp-framework' ); ?></strong> <?php echo links_add_target( $api->author, '_blank' ); ?>
-                    </li>
+					<li>
+						<strong><?php _e( 'Author:', 'vsp-framework' ); ?></strong> <?php echo links_add_target( $api->author, '_blank' ); ?>
+					</li>
 				<?php }
 				if ( ! empty( $api->last_updated ) ) { ?>
-                    <li><strong><?php _e( 'Last Updated:', 'vsp-framework' ); ?></strong>
+					<li><strong><?php _e( 'Last Updated:', 'vsp-framework' ); ?></strong>
 						<?php
 						/* translators: %s: Time since the last update */
 						printf( __( '%s ago', 'vsp-framework' ), human_time_diff( strtotime( $api->last_updated ) ) );
 						?>
-                    </li>
+					</li>
 				<?php }
 				if ( ! empty( $api->requires ) ) { ?>
-                    <li>
-                        <strong><?php _e( 'Requires WordPress Version:', 'vsp-framework' ); ?></strong>
+					<li>
+						<strong><?php _e( 'Requires WordPress Version:', 'vsp-framework' ); ?></strong>
 						<?php
 						/* translators: %s: WordPress version */
 						printf( __( '%s or higher', 'vsp-framework' ), $api->requires );
 						?>
-                    </li>
+					</li>
 				<?php }
 				if ( ! empty( $api->tested ) ) { ?>
-                    <li>
-                        <strong><?php _e( 'Compatible up to:', 'vsp-framework' ); ?></strong> <?php echo $api->tested; ?>
-                    </li>
+					<li>
+						<strong><?php _e( 'Compatible up to:', 'vsp-framework' ); ?></strong> <?php echo $api->tested; ?>
+					</li>
 				<?php }
 				if ( isset( $api->active_installs ) ) { ?>
-                    <li><strong><?php _e( 'Active Installations:', 'vsp-framework' ); ?></strong> <?php
+					<li><strong><?php _e( 'Active Installations:', 'vsp-framework' ); ?></strong> <?php
 						if ( $api->active_installs >= 1000000 ) {
 							_ex( '1+ Million', 'Active plugin installations', 'vsp-framework' );
 						} elseif ( 0 == $api->active_installs ) {
@@ -494,35 +490,35 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 						?></li>
 				<?php }
 				if ( ! empty( $api->slug ) && empty( $api->external ) ) { ?>
-                    <li><a target="_blank"
-                           href="<?php echo __( 'https://wordpress.org/plugins/', 'vsp-framework' ) . $api->slug; ?>/"><?php _e( 'WordPress.org Plugin Page &#187;', 'vsp-framework' ); ?></a>
-                    </li>
+					<li><a target="_blank"
+						   href="<?php echo __( 'https://wordpress.org/plugins/', 'vsp-framework' ) . $api->slug; ?>/"><?php _e( 'WordPress.org Plugin Page &#187;', 'vsp-framework' ); ?></a>
+					</li>
 				<?php }
 				if ( ! empty( $api->homepage ) ) { ?>
-                    <li><a target="_blank"
-                           href="<?php echo esc_url( $api->homepage ); ?>"><?php _e( 'Plugin Homepage &#187;', 'vsp-framework' ); ?></a>
-                    </li>
+					<li><a target="_blank"
+						   href="<?php echo esc_url( $api->homepage ); ?>"><?php _e( 'Plugin Homepage &#187;', 'vsp-framework' ); ?></a>
+					</li>
 				<?php }
 				if ( ! empty( $api->donate_link ) && empty( $api->contributors ) ) { ?>
-                    <li><a target="_blank"
-                           href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
-                    </li>
+					<li><a target="_blank"
+						   href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
+					</li>
 				<?php } ?>
-            </ul>
+			</ul>
 			<?php if ( ! empty( $api->rating ) ) { ?>
-                <h3><?php _e( 'Average Rating', 'vsp-framework' ); ?></h3>
+				<h3><?php _e( 'Average Rating', 'vsp-framework' ); ?></h3>
 				<?php wp_star_rating( array(
 					'rating' => $api->rating,
 					'type'   => 'percent',
 					'number' => $api->num_ratings,
 				) ); ?>
-                <p aria-hidden="true"
-                   class="fyi-description"><?php printf( _n( '(based on %s rating)', '(based on %s ratings)', $api->num_ratings, 'vsp-framework' ), number_format_i18n( $api->num_ratings ) ); ?></p>
+				<p aria-hidden="true"
+				   class="fyi-description"><?php printf( _n( '(based on %s rating)', '(based on %s ratings)', $api->num_ratings, 'vsp-framework' ), number_format_i18n( $api->num_ratings ) ); ?></p>
 			<?php }
 
 			if ( ! empty( $api->ratings ) && array_sum( (array) $api->ratings ) > 0 ) { ?>
-                <h3><?php _e( 'Reviews', 'vsp-framework' ); ?></h3>
-                <p class="fyi-description"><?php _e( 'Read all reviews on WordPress.org or write your own!', 'vsp-framework' ); ?></p>
+				<h3><?php _e( 'Reviews', 'vsp-framework' ); ?></h3>
+				<p class="fyi-description"><?php _e( 'Read all reviews on WordPress.org or write your own!', 'vsp-framework' ); ?></p>
 				<?php
 				foreach ( $api->ratings as $key => $ratecount ) {
 					// Avoid div-by-zero.
@@ -530,23 +526,23 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 					/* translators: 1: number of stars (used to determine singular/plural), 2: number of reviews */
 					$aria_label = esc_attr( sprintf( _n( 'Reviews with %1$d star: %2$s. Opens in a new window.', 'Reviews with %1$d stars: %2$s. Opens in a new window.', $key, 'vsp-framework' ), $key, number_format_i18n( $ratecount ) ) );
 					?>
-                    <div class="counter-container">
+					<div class="counter-container">
 						<span class="counter-label"><a
-                                    href="https://wordpress.org/support/plugin/<?php echo $api->slug; ?>/reviews/?filter=<?php echo $key; ?>"
-                                    target="_blank"
-                                    aria-label="<?php echo $aria_label; ?>"><?php printf( _n( '%d star', '%d stars', $key, 'vsp-framework' ), $key ); ?></a></span>
-                        <span class="counter-back">
+									href="https://wordpress.org/support/plugin/<?php echo $api->slug; ?>/reviews/?filter=<?php echo $key; ?>"
+									target="_blank"
+									aria-label="<?php echo $aria_label; ?>"><?php printf( _n( '%d star', '%d stars', $key, 'vsp-framework' ), $key ); ?></a></span>
+						<span class="counter-back">
 							<span class="counter-bar" style="width: <?php echo 92 * $_rating; ?>px;"></span>
 						</span>
-                        <span class="counter-count"
-                              aria-hidden="true"><?php echo number_format_i18n( $ratecount ); ?></span>
-                    </div>
+						<span class="counter-count"
+							  aria-hidden="true"><?php echo number_format_i18n( $ratecount ); ?></span>
+					</div>
 					<?php
 				}
 			}
 			if ( ! empty( $api->contributors ) ) { ?>
-                <h3><?php _e( 'Contributors', 'vsp-framework' ); ?></h3>
-                <ul class="contributors">
+				<h3><?php _e( 'Contributors', 'vsp-framework' ); ?></h3>
+				<ul class="contributors">
 					<?php
 					foreach ( (array) $api->contributors as $contrib_username => $contrib_profile ) {
 						if ( empty( $contrib_username ) && empty( $contrib_profile ) ) {
@@ -563,14 +559,14 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 						}
 					}
 					?>
-                </ul>
+				</ul>
 				<?php if ( ! empty( $api->donate_link ) ) { ?>
-                    <a target="_blank"
-                       href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
+					<a target="_blank"
+					   href="<?php echo esc_url( $api->donate_link ); ?>"><?php _e( 'Donate to this plugin &#187;', 'vsp-framework' ); ?></a>
 				<?php } ?>
 			<?php } ?>
-        </div>
-        <div id="section-holder" class="wrap">
+		</div>
+		<div id="section-holder" class="wrap">
 		<?php
 		$wp_version = get_bloginfo( 'version' );
 
@@ -581,12 +577,10 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 		}
 
 		foreach ( (array) $api->sections as $section_name => $content ) {
-			$content = links_add_base_url( $content, 'https://wordpress.org/plugins/' . $api->slug . '/' );
-			$content = links_add_target( $content, '_blank' );
-
+			$content     = links_add_base_url( $content, 'https://wordpress.org/plugins/' . $api->slug . '/' );
+			$content     = links_add_target( $content, '_blank' );
 			$san_section = esc_attr( $section_name );
-
-			$display = ( $section_name === $section ) ? 'block' : 'none';
+			$display     = ( $section_name === $section ) ? 'block' : 'none';
 
 			echo "\t<div id='section-{$san_section}' class='section' style='display: {$display};'>\n";
 			echo $content;
@@ -623,5 +617,4 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 		iframe_footer();
 		exit;
 	}
-
 }

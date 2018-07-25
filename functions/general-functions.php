@@ -142,9 +142,7 @@ if ( ! function_exists( 'vsp_is_screen' ) ) {
 			return false;
 		}
 
-		if ( empty( $current_screen ) ) {
-			$current_screen = vsp_current_screen( true );
-		}
+		$current_screen = ( empty( $current_screen ) ) ? vsp_current_screen( true ) : $current_screen;
 
 		if ( is_array( $check_screen ) ) {
 			if ( in_array( $current_screen, $check_screen, true ) ) {
@@ -190,11 +188,8 @@ if ( ! function_exists( 'vsp_addons_extract_tags' ) ) {
 	 * @return mixed
 	 */
 	function vsp_addons_extract_tags( $content, $is_addons_reqplugin = false ) {
-		if ( false === $is_addons_reqplugin ) {
-			preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $reg_shortcodes );
-		} else {
-			preg_match_all( '@\[(\w[^<>&\[\]\x00-\x20=]++)@', $content, $reg_shortcodes );
-		}
+		$pattern = ( false === $is_addons_reqplugin ) ? '@\[([^<>&/\[\]\x00-\x20=]++)@' : '@\[(\w[^<>&\[\]\x00-\x20=]++)@';
+		preg_match_all( $pattern, $content, $reg_shortcodes );
 		return $reg_shortcodes;
 	}
 }
@@ -231,20 +226,20 @@ if ( ! function_exists( 'vsp_current_page_url' ) ) {
 	 * @return string
 	 */
 	function vsp_current_page_url() {
-		$pageURL = 'http';
-		if ( isset( $_SERVER['HTTPS'] ) AND 'on' === $_SERVER['HTTPS'] ) {
-			$pageURL .= 's';
+		$page_url = 'http';
+		if ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) {
+			$page_url .= 's';
 		}
 
-		$pageURL .= '://';
+		$page_url .= '://';
 
-		if ( isset( $_SERVER['SERVER_PORT'] ) AND '80' !== $_SERVER['SERVER_PORT'] ) {
-			$pageURL .= $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+		if ( isset( $_SERVER['SERVER_PORT'] ) && '80' !== $_SERVER['SERVER_PORT'] ) {
+			$page_url .= $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
 		} else {
-			$pageURL .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			$page_url .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		}
 
-		return $pageURL;
+		return $page_url;
 	}
 }
 
@@ -645,20 +640,13 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	 * @param null  $status_code .
 	 */
 	function vsp_send_json_callback( $status = true, $functions = array(), $other_info = array(), $status_code = null ) {
-		$function = 'wp_send_json_error';
-		if ( $status ) {
-			$function = 'wp_send_json_success';
-		}
+		$function = ( true === $status ) ? 'wp_send_json_success' : 'wp_send_json_error';
 
 		if ( is_string( $functions ) ) {
 			$functions = array( $functions );
 		}
 
-		$data = array(
-			'callback' => $functions,
-		);
-
-		$data = array_merge( $data, $other_info );
+		$data = array_merge( array( 'callback' => $functions ), $other_info );
 		$function( $data, $status_code );
 	}
 }

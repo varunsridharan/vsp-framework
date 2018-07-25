@@ -26,7 +26,6 @@ final class VSP_Autoloader {
 	 * @var array
 	 */
 	private static $_integrations = array(
-		//'wpsf'            => 'wpsf.php',
 		'visual-composer' => 'visual-composer.php',
 	);
 
@@ -38,13 +37,11 @@ final class VSP_Autoloader {
 	private static $_libs = array(
 		'wp-async'     => 'async.php',
 		'vs-transient' => 'vs-transient.php',
-		//'wpsf'         => 'wpsf.php',
 		'wpdb'         => 'wpdb-helper.php',
 		'wpreview'     => 'review-me.php',
 		'wpallimport'  => 'wpallimport.php',
 		'wppointer'    => 'wp-pointers/wp-pointers.php',
 		'wp-endpoints' => 'vs-wp-endpoint.php',
-		'wponion'      => 'wponion.php',
 	);
 
 	/**
@@ -61,6 +58,11 @@ final class VSP_Autoloader {
 	 */
 	private static $_loaded_integrations = array();
 
+	/**
+	 * core_folders
+	 *
+	 * @var null
+	 */
 	private static $core_folders = null;
 
 	/**
@@ -139,7 +141,6 @@ final class VSP_Autoloader {
 		if ( null === self::$core_folders ) {
 			self::$core_folders = self::search_folders( $path );
 		}
-
 		return self::$core_folders;
 	}
 

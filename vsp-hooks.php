@@ -41,13 +41,11 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 			'addons'    => vsp_js( 'vsp-addons.js', true ),
 			'plugins'   => vsp_js( 'vsp-plugins.js', true ),
 			'framework' => vsp_js( 'vsp-framework.js', true ),
-			'vuejs'     => vsp_js( 'vue.min.js' ),
-			'lodash'    => vsp_js( 'lodash.min.js' ),
+			'vuejs'     => 'https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js',
 		];
 
 		$css = [
 			'framework' => vsp_css( 'vsp-framework.css', true ),
-			#'plugins'   => vsp_css( 'vsp-plugins.css', true ),
 			'fancybox'  => vsp_url( 'assets/vendors/fancybox/jquery.fancybox.min.css', true ),
 			'addons'    => vsp_css( 'vsp-addons.css', true ),
 		];
@@ -55,10 +53,8 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 		vsp_register_script( 'vsp-ajax', $js['vspajax'], [ 'jquery' ], '1.0', true );
 		vsp_register_script( 'vsp-plugins', $js['plugins'], [ 'jquery' ], '1.0', true );
 		vsp_register_script( 'vuejs', $js['vuejs'], [], '1.3.8', true );
-		vsp_register_script( 'lodash', $js['lodash'], [], '1.3.8', true );
-		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'lodash', 'jquery' ], '1.0', false );
+		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'jquery' ], '1.0', false );
 		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery' ], '1.0', true );
-		#vsp_register_style( 'vsp-plugins', $css['plugins'] );
 		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
 		vsp_register_style( 'vsp-addons', $css['addons'], [], '1.0' );
 		vsp_register_style( 'vsp-fancybox', $css['fancybox'], [], '1.0' );
