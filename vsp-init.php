@@ -87,7 +87,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		}
 
 		public function add_sys_info_data( $data ) {
-			$data['vsp-framework'] = $this->add_extra_info();
+			$data[ __( 'VSP Framework' ) ] = $this->add_extra_info();
 			return $data;
 		}
 
@@ -139,15 +139,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 				}
 			}
 
-			$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ] = array(
-				'html_output' => 'table',
-				'data'        => $meta[ __( 'Bundled Integrations', 'vsp-framework' ) ],
-			);
-
-			$meta[ __( 'Bundled Libs', 'vsp-framework' ) ] = array(
-				'html_output' => 'table',
-				'data'        => $meta[ __( 'Bundled Libs', 'vsp-framework' ) ],
-			);
 			return $meta;
 		}
 
