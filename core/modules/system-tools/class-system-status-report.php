@@ -141,8 +141,7 @@ if ( ! class_exists( 'VSP_System_Status_Report' ) ) {
 			self::$data[ __( 'Plugins' ) ]            = array();
 			self::$data[ __( 'Active Plugins' ) ]     = array();
 			self::$data[ __( 'Multisite Plugins' ) ]  = array();
-
-
+			
 			if ( is_child_theme() ) {
 				$parent_theme                       = wp_get_theme( $active_theme->Template );
 				$pt                                 = array();
