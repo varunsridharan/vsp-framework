@@ -192,6 +192,7 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 				'extra_css',
 				'extra_js',
 				'buttons',
+				'theme',
 			);
 
 			$this->page_config = array();
