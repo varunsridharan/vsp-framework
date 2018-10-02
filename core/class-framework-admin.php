@@ -47,7 +47,7 @@ if ( ! class_exists( 'VSP_Framework_Admin' ) ) {
 		 * @see \VSP_Framework::__register_hooks
 		 */
 		public function __register_admin_hooks() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ), 99 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ), 1 );
 			add_action( 'admin_init', array( $this, 'wp_admin_init' ) );
 			add_filter( 'plugin_row_meta', array( $this, 'row_links' ), 10, 2 );
 			add_filter( 'plugin_action_links_' . $this->file(), array( $this, 'action_links' ), 10, 10 );
