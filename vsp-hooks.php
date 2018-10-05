@@ -34,9 +34,7 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 	 * @uses admin_enqueue_scripts
 	 */
 	function vsp_register_assets() {
-
 		$js = [
-			'vspajax'   => vsp_debug_file( 'vendors/vspajax/jquery.vsp-ajax.js', 'assets' ),
 			'fancybox'  => vsp_url( 'assets/vendors/fancybox/jquery.fancybox.min.js', true ),
 			'addons'    => vsp_js( 'vsp-addons.js', true ),
 			'plugins'   => vsp_js( 'vsp-plugins.js', true ),
@@ -50,15 +48,16 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 			'addons'    => vsp_css( 'vsp-addons.css', true ),
 		];
 
-		vsp_register_script( 'vsp-ajax', $js['vspajax'], [ 'jquery' ], '1.0', true );
 		vsp_register_script( 'vsp-plugins', $js['plugins'], [ 'jquery' ], '1.0', true );
 		vsp_register_script( 'vuejs', $js['vuejs'], [], '1.3.8', true );
 		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'jquery' ], '1.0', false );
-		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery' ], '1.0', true );
+		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery', 'vsp-plugins' ], '1.0', true );
+		vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
+
 		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
 		vsp_register_style( 'vsp-addons', $css['addons'], [], '1.0' );
 		vsp_register_style( 'vsp-fancybox', $css['fancybox'], [], '1.0' );
-		vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
+
 	}
 }
 
