@@ -41,6 +41,13 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		private $js_args = array();
 
 		/**
+		 * translations
+		 *
+		 * @var array
+		 */
+		private $translations = array();
+
+		/**
 		 * scripts_check
 		 *
 		 * @var array
@@ -99,7 +106,7 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 * @return bool
 		 */
 		public function add( $object_id = '', $args = array(), $merge = true ) {
-			$args = $this->handle_js_function( $args );
+			$args = self::handle_js_function( $args );
 			if ( true === $merge && isset( $this->js_args[ $object_id ] ) ) {
 				$this->js_args[ $object_id ] = $this->parse_args( $args, $this->js_args[ $object_id ] );
 			} else {
@@ -115,12 +122,12 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 *
 		 * @return mixed
 		 */
-		protected function handle_js_function( $args ) {
+		public static function handle_js_function( $args ) {
 			foreach ( $args as $i => $ar ) {
 				if ( is_array( $ar ) ) {
-					$args[ $i ] = $this->handle_js_function( $ar );
+					$args[ $i ] = self::handle_js_function( $ar );
 				} elseif ( is_string( $ar ) ) {
-					$re = '/\bfunction(\(((?>[^()]+|(?-2))*)\))(\{((?>[^{}]+|(?-2))*)\})/';
+					$re = '/\bfunction[ ]{0,1}(\(((?>[^()]+|(?-2))*)\))(\{((?>[^{}]+|(?-2))*)\})/';
 					preg_match_all( $re, $ar, $matches, PREG_SET_ORDER, 0 );
 
 					if ( is_array( $matches ) && ! empty( array_filter( $matches ) ) ) {
@@ -142,6 +149,7 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			return $args;
 		}
 
+
 		/**
 		 * Custom Text which will be used in JS.
 		 *
@@ -151,10 +159,7 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 * @return $this
 		 */
 		public function text( $key = '', $value = '' ) {
-			if ( ! isset( $this->js_args[ $this->slug . '_i18n' ] ) ) {
-				$this->js_args[ $this->slug . '_i18n' ] = array();
-			}
-			$this->js_args[ $this->slug . '_i18n' ][ $key ] = $value;
+			$this->translations[ $key ] = $value;
 			return $this;
 		}
 
@@ -162,6 +167,7 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 * Renders JS Args.
 		 */
 		public function render_js_args() {
+			do_action( $this->slug . '_before_render_js_args' );
 			if ( ! empty( $this->scripts_check ) ) {
 				foreach ( $this->scripts_check as $script ) {
 					if ( true === wp_script_is( $script ) && false === wp_script_is( $script, 'done' ) ) {
@@ -181,10 +187,12 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 * @return bool
 		 */
 		private function localize_script( $handle = '' ) {
-			foreach ( $this->js_args as $key => $value ) {
+			wp_localize_script( $handle, $this->slug, $this->js_args );
+			wp_localize_script( $handle, $this->slug . '_i18n', $this->translations );
+			/*foreach ( $this->js_args as $key => $value ) {
 				$key = str_replace( '-', '_', $key );
 				wp_localize_script( $handle, $key, $value );
-			}
+			}*/
 			return true;
 		}
 
@@ -205,15 +213,20 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			$h = "<script type='text/javascript' id='" . $this->slug . "_field_js_vars'>\n"; // CDATA and type='text/javascript' is not needed for HTML 5
 
 			$h .= "/* <![CDATA[ */\n";
-			foreach ( $this->js_args as $key => $value ) {
+			/*foreach ( $this->js_args as $key => $value ) {
 				$h .= vsp_js_vars( $key, $value, false );
-			}
+			}*/
+			$h .= vsp_js_vars( $this->slug, $this->js_args, false );
+			$h .= vsp_js_vars( $this->slug . '_i18n', $this->translations, false );
 			$h .= "/* ]]> */\n";
 			$h .= "</script>\n";
 			echo $h;
 			return true;
 		}
 
+		/**
+		 * Prints Few JS Functions.
+		 */
 		public function print_functions() {
 			$h = "<script type='text/javascript' id='" . $this->slug . "_functions'>\n"; // CDATA and type='text/javascript' is not needed for HTML 5
 
@@ -221,10 +234,10 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			function ' . $this->slug . '_option($var_id,$default){
 				$default = $default || {};
 				if ( $var_id ) {
-					if ( typeof window[ $var_id ] === "undefined" || window[ $var_id ] === undefined ) {
+					if ( typeof window["' . $this->slug . '"][$var_id] === "undefined" || window["' . $this->slug . '"][ $var_id ] === undefined ) {
 						return $default;
 					}
-					return JSON.parse( JSON.stringify(window[ $var_id ] ) );
+					return JSON.parse( JSON.stringify(window["' . $this->slug . '"][$var_id] ) );
 				}
 				
 				return $default;
@@ -232,8 +245,9 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			
 			function ' . $this->slug . '_text($key,$default){
 				$default = $default || "string_default_not_found";
-				return ( ' . $this->slug . '_i18n' . '[ $key ] !== undefined ) ? ' . $this->slug . '_i18n' . '[ $key ] : $default;
+				return ( window["' . $this->slug . '_i18n' . '"][ $key ] !== undefined ) ?  window["' . $this->slug . '_i18n' . '"][ $key ] : $default;
 			}';
+
 
 			$h .= "</script>\n";
 			echo $h;
