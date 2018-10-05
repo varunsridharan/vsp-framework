@@ -74,7 +74,7 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 
 
 				vsp_set_cache( 'vsp-sysinfo-url', $value, '2_days' );
-				vsp_send_json_callback( true, array(
+				vsp_send_callback_success( array(
 					'success'    => swal_success( __( 'URL Generated' ), __( 'Remote View URL Generated. due to security reasons this url will only be valid for 48hrs from now.', 'vsp-framework' ), array(
 						'input'      => 'text',
 						'inputValue' => $output,
@@ -85,7 +85,7 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 			} else {
 				$output = vsp_ajax_url( array( 'action' => 'vsp_sys_info' ) );
 				vsp_delete_cache( 'vsp-sysinfo-url' );
-				vsp_send_json_callback( true, array(
+				vsp_send_callback_success( array(
 					'success'   => swal_success( __( 'Remote URL Disabled' ) ),
 					'changeURL' => 'jQuery("a#vspsysinfocurl").attr("href","' . $output . '"); jQuery("a#vspsysinfocurl").text("' . $output . '")',
 				) );
