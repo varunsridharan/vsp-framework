@@ -147,7 +147,9 @@
 									var CB = new Function( key, value );
 									CB();
 								} catch ( arr ) {
-									console.log( arr );
+									console.log( 'New Error Occured :' + value );
+									console.log(arr);
+									//console.log( arr );
 								}
 							}
 						} )
