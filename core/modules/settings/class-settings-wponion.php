@@ -31,17 +31,21 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'show_faqs'        => true,
-			'menu'             => array(),
-			'ajax_save'        => false,
-			'show_reset_all'   => false,
-			'framework_title'  => false,
-			'option_name'      => false,
-			'style'            => 'wp',
-			'is_single_page'   => false,
-			'is_sticky_header' => false,
 			'extra_css'        => array( 'vsp-plugins', 'vsp-framework' ),
 			'extra_js'         => array( 'vsp-plugins', 'vsp-framework' ),
+			'option_name'      => false,
+			'plugin_id'        => null,
+			'theme'            => 'wp',
+			'template_path'    => false,
+			'is_single_page'   => false,
+			'is_sticky_header' => false,
+			'menu'             => array(),
+			'buttons'          => array(
+				'save'    => 'Save Settings',
+				'restore' => false,
+				'reset'   => false,
+			),
+
 		);
 
 		/**
@@ -180,20 +184,7 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * Returns Settings Default Config
 		 */
 		public function get_settings_config() {
-			$defaults = array(
-				'menu',
-				'ajax_save',
-				'show_reset_all',
-				'framework_title',
-				'option_name',
-				'style',
-				'is_single_page',
-				'is_sticky_header',
-				'extra_css',
-				'extra_js',
-				'buttons',
-				'theme',
-			);
+			$defaults = array_keys( $this->default_options );
 
 			$this->page_config = array();
 			foreach ( $defaults as $op ) {
@@ -204,8 +195,17 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 				unset( $this->page_config['buttons'] );
 			}
 
-			if ( ! isset( $this->page_config['override_location'] ) || empty( $this->page_config['override_location'] ) ) {
-				$this->page_config['override_location'] = VSP_PATH . 'views/';
+
+			if ( isset( $this->page_config['extra_js'] ) && is_array( $this->page_config['extra_js'] ) && false === in_array( 'vsp-framework', $this->page_config['extra_js'] ) ) {
+				$this->page_config['extra_js'][] = 'vsp-framework';
+			} else {
+				$this->page_config['extra_js'][] = 'vsp-framework';
+			}
+
+			if ( isset( $this->page_config['extra_css'] ) && is_array( $this->page_config['extra_css'] ) && false === in_array( 'vsp-framework', $this->page_config['extra_css'] ) ) {
+				$this->page_config['extra_css'][] = 'vsp-framework';
+			} else {
+				$this->page_config['extra_js'][] = 'vsp-framework';
 			}
 		}
 
