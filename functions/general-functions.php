@@ -20,7 +20,6 @@ if ( ! function_exists( 'vsp_ajax_action' ) ) {
 		if ( vsp_is_request( 'ajax' ) ) {
 			return ( isset( $_REQUEST['action'] ) ) ? $_REQUEST['action'] : false;
 		}
-
 		return false;
 	}
 }
@@ -629,28 +628,6 @@ if ( ! function_exists( 'vsp_print_r' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_send_json_callback' ) ) {
-	/**
-	 * Send Json Callback array in ajax.
-	 * used for sweatalert / trigger custom js functions.
-	 *
-	 * @param bool  $status .
-	 * @param array $functions .
-	 * @param array $other_info .
-	 * @param null  $status_code .
-	 */
-	function vsp_send_json_callback( $status = true, $functions = array(), $other_info = array(), $status_code = null ) {
-		$function = ( true === $status ) ? 'wp_send_json_success' : 'wp_send_json_error';
-
-		if ( is_string( $functions ) ) {
-			$functions = array( $functions );
-		}
-
-		$data = array_merge( array( 'callback' => $functions ), $other_info );
-		$function( $data, $status_code );
-	}
-}
-
 if ( ! function_exists( 'vsp_set_time_limit' ) ) {
 	/**
 	 * Wrapper for set_time_limit to see if it is enabled.
@@ -816,16 +793,3 @@ if ( ! function_exists( 'vsp_censor_path' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_ajax_url' ) ) {
-	/**
-	 * Returns Ajax URL.
-	 *
-	 * @param array $query_args
-	 *
-	 * @return string
-	 */
-	function vsp_ajax_url( $query_args = array() ) {
-		$admin_url = admin_url( 'admin-ajax.php' );
-		return add_query_arg( $query_args, $admin_url );
-	}
-}
