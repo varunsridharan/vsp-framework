@@ -65,6 +65,8 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	require_once VSP_PATH . 'vsp-functions.php';
 
 	require_once VSP_PATH . 'functions/options.php';
+	require_once VSP_PATH . 'functions/ajax-functions.php';
+	require_once VSP_PATH . 'functions/sweatalert2-functions.php';
 	require_once VSP_PATH . 'functions/wp-replacement.php';
 	require_once VSP_PATH . 'functions/general-functions.php';
 	require_once VSP_PATH . 'functions/admin-notices-functions.php';
