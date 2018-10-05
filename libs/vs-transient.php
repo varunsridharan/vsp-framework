@@ -323,7 +323,7 @@ abstract class VS_Transient_Api extends VS_Transient_WP_Api {
 	protected static $_instances = array();
 
 	/**
-	 * @return mixed
+	 * @return \VS_Transient_Api
 	 * @static
 	 */
 	public static function instance() {
