@@ -269,7 +269,7 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 *
 	 * @return bool|mixed
 	 */
-	protected function get( $key = '', $default = false ) {
+	public function get( $key = '', $default = false ) {
 		return $this->get_post_request( $key, $default, 'get' );
 	}
 
@@ -284,7 +284,8 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 */
 	private function get_post_request( $key, $default, $type ) {
 		$return = $default;
-		if ( true === $this->has( $key, $type ) ) {
+
+		if ( false !== $this->has( $key, $type ) ) {
 			switch ( $type ) {
 				case 'GET':
 				case 'get':
@@ -316,12 +317,14 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 *
 	 * @return bool
 	 */
-	protected function has( $key = '', $type = 'GET' ) {
+	public function has( $key = '', $type = 'GET' ) {
 		switch ( $type ) {
 			case 'GET':
+			case 'get':
 				$has = ( isset( $_GET[ $key ] ) ) ? $_GET[ $key ] : false;
 				break;
 			case 'POST':
+			case 'post':
 				$has = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : false;
 				break;
 			default:
@@ -339,7 +342,7 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 *
 	 * @return bool|mixed
 	 */
-	protected function post( $key = '', $default = false ) {
+	public function post( $key = '', $default = false ) {
 		return $this->get_post_request( $key, $default, 'post' );
 	}
 
@@ -351,7 +354,7 @@ abstract class VSP_Ajaxer extends VSP_Class_Handler {
 	 *
 	 * @return bool|mixed
 	 */
-	protected function request( $key = '', $default = false ) {
+	public function request( $key = '', $default = false ) {
 		return $this->get_post_request( $key, $default, 'request' );
 	}
 }
