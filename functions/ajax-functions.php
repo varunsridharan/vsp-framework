@@ -34,16 +34,19 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	function vsp_send_json_callback( $status = true, $functions = array(), $other_info = array(), $status_code = null ) {
 		$function = ( true === $status ) ? 'wp_send_json_success' : 'wp_send_json_error';
 
-		if ( is_string( $functions ) ) {
+		if ( is_object( $functions ) ) {
+			$functions = array( $functions );
+		} elseif ( is_string( $functions ) ) {
 			$functions = array( $functions );
 		}
 
 		foreach ( $functions as $fid => $val ) {
 			if ( is_numeric( $fid ) ) {
 				unset( $functions[ $fid ] );
-				$fid = 'VSPJS' . md5( wp_json_encode( $val ) ) . 'FUNCTION';
+				$fid = 'vspjs' . md5( wp_json_encode( $val ) . '-' . microtime() ) . 'function';
 			}
 			$functions[ $fid ] = trim( $val );
+			$functions[ $fid ] = str_replace( array( "\n", "\r" ), ' ', $functions[ $fid ] );
 		}
 
 		$data = array_merge( array( 'callback' => $functions ), $other_info );

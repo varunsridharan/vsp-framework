@@ -43,7 +43,8 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 	 * - Tables upgrade via independent upgrade abstract methods
 	 * - Multisite friendly - site tables switch on "switch_blog" action
 	 */
-	abstract class VSP_DB_Table extends WPDB_Helper {
+	abstract class VSP_DB_Table extends \TheLeague\Database\Query_Builder {
+
 		/**
 		 * Table name, without the global table prefix
 		 *
@@ -80,13 +81,6 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		protected $db_version = 0;
 
 		/**
-		 * Table name
-		 *
-		 * @var string
-		 */
-		protected $table_name = '';
-
-		/**
 		 * Table schema
 		 *
 		 * @var string
@@ -108,7 +102,7 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		/**
 		 * WPDB Database object (usually $GLOBALS['wpdb'])
 		 *
-		 * @var bool
+		 * @var \wpdb
 		 */
 		protected $db = false;
 
@@ -124,28 +118,39 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		 * VSP_DB_Table constructor.
 		 */
 		public function __construct() {
+			$table_name = $this->table_name();
+			if ( ! empty( $table_name ) ) {
+				$this->name = $table_name;
+			}
+
+			$db_version = $this->table_version();
+			if ( ! empty( $db_version ) ) {
+				$this->db_version = $db_version;
+			}
+
 			$this->setup();
 			if ( empty( $this->name ) || empty( $this->db_version_key ) ) {
 				return;
 			}
 			$this->get_db_version();
 			$this->set_wpdb_tables();
-			$this->set_schema();
+
+			$set_schema = $this->set_schema();
+			if ( ! empty( $set_schema ) ) {
+				$this->schema = $set_schema;
+			}
+
 			$this->add_hooks();
 		}
 
 		/**
 		 * Returns Current Instance / create a new instance
 		 *
-		 * @return mixed
+		 * @return self
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
-				$args = func_get_args();
-				$arg1 = ( isset( $args[0] ) && ! empty( $args[0] ) ) ? $args[0] : array();
-				$arg2 = ( isset( $args[1] ) && ! empty( $args[1] ) ) ? $args[1] : array();
-
-				self::$_instances[ static::class ] = new static( $arg1, $arg2 );
+				self::$_instances[ static::class ] = new static();
 			}
 			return self::$_instances[ static::class ];
 		}
@@ -165,6 +170,20 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		protected abstract function upgrade();
 
 		/**
+		 * Provides Table Name.
+		 *
+		 * @return mixed
+		 */
+		protected abstract function table_name();
+
+		/**
+		 * Provides Table Version Number.
+		 *
+		 * @return mixed
+		 */
+		protected abstract function table_version();
+
+		/**
 		 * Update table version & references.
 		 *
 		 * Hooked to the "switch_blog" action.
@@ -177,7 +196,6 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 			if ( ! $this->is_global() ) {
 				$this->db_version = get_blog_option( $site_id, $this->db_version_key, false );
 			}
-
 			$this->set_wpdb_tables();
 		}
 
@@ -253,7 +271,7 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 				$this->db->tables[]      = $this->name;
 			}
 
-			$this->table_name = $this->db->{$this->name};
+			$this->table = $this->db->{$this->name};
 
 			if ( ! empty( $this->db->charset ) ) {
 				$this->charset_collation = "DEFAULT CHARACTER SET {$this->db->charset}";
@@ -310,9 +328,18 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 				return false;
 			}
 
-			$query   = "CREATE TABLE {$this->table_name} ( {$this->schema} ) {$this->charset_collation};";
+			$query   = "CREATE TABLE {$this->table} ( {$this->schema} ) {$this->charset_collation};";
 			$created = dbDelta( array( $query ) );
+			if ( ! empty( $created ) ) {
+				$this->after_table_created();
+			}
 			return ! empty( $created );
+		}
+
+		/**
+		 * Works As A Built In Hook To Provide a Option to run after table is created.
+		 */
+		protected function after_table_created() {
 		}
 
 		/**
@@ -324,7 +351,7 @@ if ( ! class_exists( 'VSP_DB_Table' ) ) {
 		 */
 		private function exists() {
 			$query       = 'SHOW TABLES LIKE %s';
-			$like        = $this->db->esc_like( $this->table_name );
+			$like        = $this->db->esc_like( $this->table );
 			$prepared    = $this->db->prepare( $query, $like );
 			$table_exist = $this->db->get_var( $prepared );
 			return ! empty( $table_exist );
