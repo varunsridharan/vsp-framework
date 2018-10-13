@@ -86,7 +86,7 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 
 		$options['attributes']['class'] .= ' ' . $options['icon'];
 
-		$attr_html = vsp_array_to_html_attributes( array_filter( $options['attributes'] ) );
+		$attr_html = VSP_Helper::array_to_html_attr( array_filter( $options['attributes'] ) );
 
 
 		return '<i ' . $attr_html . '> </i>';
