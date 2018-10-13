@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $vsp_plugins;
 $vsp_plugins = array();
 
+/**
+ * @uses \VSP_Autoloader::load()
+ */
 spl_autoload_register( 'VSP_Autoloader::load' );
 
 if ( ! function_exists( 'vsp_load_integration' ) ) {
@@ -267,3 +270,5 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 		vsp_notice_error( false, $msg );
 	}
 }
+
+vsp_load_file( VSP_PATH . 'functions/*.php' );
