@@ -24,9 +24,8 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 	 * @since 1.0
 	 */
 	class VSP_WC_Product extends VSP_WC_Data_Compatibility {
-		/**
-		 * @var array mapped compatibility properties, as `$new_prop => $old_prop`
-		 */
+
+		/** @var array mapped compatibility properties, as `$new_prop => $old_prop` */
 		protected static $compat_props = array(
 			'catalog_visibility' => 'visibility',
 			'date_on_sale_from'  => 'sale_price_dates_from',
@@ -34,6 +33,7 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 			'gallery_image_ids'  => 'product_image_gallery',
 			'cross_sell_ids'     => 'crosssell_ids',
 		);
+
 
 		/**
 		 * Gets a product property.
@@ -47,13 +47,16 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return mixed
 		 */
 		public static function get_prop( $object, $prop, $context = 'edit', $compat_props = array() ) {
+
 			// backport 'WC_Product::get_parent_id()' to pre-3.0
 			if ( VSP_WC_Helper::is_wc_version_lt_3_0() && 'parent_id' === $prop ) {
 				$prop    = 'id';
 				$context = $object->is_type( 'variation' ) ? 'raw' : $context;
 			}
+
 			return parent::get_prop( $object, $prop, $context, self::$compat_props );
 		}
+
 
 		/**
 		 * Sets an products's properties.
@@ -64,13 +67,15 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 *
 		 * @param \WC_Product $object the product object
 		 * @param array       $props the new properties as $key => $value
-		 * @param array       $compat_props .
 		 *
-		 * @return \WC_Product | \WC_Data
+		 * @throws
+		 * @return \WC_Product
 		 */
 		public static function set_props( $object, $props, $compat_props = array() ) {
+
 			return parent::set_props( $object, $props, self::$compat_props );
 		}
+
 
 		/**
 		 * Gets a product's parent product.
@@ -82,18 +87,16 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return \WC_Product|bool
 		 */
 		public static function get_parent( \WC_Product $product ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				$parent = wc_get_product( $product->get_parent_id() );
 			} else {
-				if ( $product->is_type( 'variation' ) ) {
-					/** @noinspection Annotator */
-					$parent = wc_get_product( $product->id );
-				} else {
-					$parent = false;
-				}
+				$parent = $product->is_type( 'variation' ) ? wc_get_product( $product->{'id'} ) : false;
 			}
+
 			return $parent;
 		}
+
 
 		/**
 		 * Backports wc_update_product_stock() to pre-3.0.
@@ -104,15 +107,18 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @param int         $amount Optional. The new stock quantity
 		 * @param string      $mode Optional. Can be set, add, or subtract
 		 *
+		 * @throws
 		 * @return int
 		 */
 		public static function wc_update_product_stock( \WC_Product $product, $amount = null, $mode = 'set' ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				return wc_update_product_stock( $product, $amount, $mode );
 			} else {
 				return $product->set_stock( $amount, $mode );
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_price_html_from_text() to pre-3.0.
@@ -124,12 +130,14 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_price_html_from_text( \WC_Product $product ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				return wc_get_price_html_from_text();
 			} else {
 				return $product->get_price_html_from_text();
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_price_including_tax() to pre-3.0.
@@ -143,16 +151,20 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_price_including_tax( \WC_Product $product, $qty = 1, $price = '' ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
+
 				return wc_get_price_including_tax( $product, array(
 					'qty'   => $qty,
 					'price' => $price,
 				) );
 
 			} else {
+
 				return $product->get_price_including_tax( $qty, $price );
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_price_excluding_tax() to pre-3.0.
@@ -166,15 +178,20 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_price_excluding_tax( \WC_Product $product, $qty = 1, $price = '' ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
+
 				return wc_get_price_excluding_tax( $product, array(
 					'qty'   => $qty,
 					'price' => $price,
 				) );
+
 			} else {
+
 				return $product->get_price_excluding_tax( $qty, $price );
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_price_to_display() to pre-3.0.
@@ -188,16 +205,20 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_price_to_display( \WC_Product $product, $price = '', $qty = 1 ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
+
 				return wc_get_price_to_display( $product, array(
 					'qty'   => $qty,
 					'price' => $price,
 				) );
 
 			} else {
+
 				return $product->get_display_price( $price, $qty );
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_product_category_list() to pre-3.0.
@@ -212,13 +233,19 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_product_category_list( \WC_Product $product, $sep = ', ', $before = '', $after = '' ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
+
 				$id = $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id();
+
 				return wc_get_product_category_list( $id, $sep, $before, $after );
+
 			} else {
+
 				return $product->get_categories( $sep, $before, $after );
 			}
 		}
+
 
 		/**
 		 * Backports wc_get_rating_html() to pre-3.0.
@@ -231,23 +258,12 @@ if ( ! class_exists( 'VSP_WC_Product' ) ) {
 		 * @return string
 		 */
 		public static function wc_get_rating_html( \WC_Product $product, $rating = null ) {
+
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				return wc_get_rating_html( $rating );
 			} else {
 				return $product->get_rating_html( $rating );
 			}
-		}
-
-		/**
-		 * Returns Product Type.
-		 *
-		 * @param \WC_Product $product
-		 *
-		 * @return mixed|string
-		 * @static
-		 */
-		public static function product_type( \WC_Product $product ) {
-			return ( VSP_WC_Helper::is_wc_version_gte_3_0() ) ? $product->get_type() : $product->product_type;
 		}
 	}
 }

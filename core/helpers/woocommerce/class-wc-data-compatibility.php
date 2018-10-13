@@ -34,21 +34,6 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 	 * @since 1.0
 	 */
 	abstract class VSP_WC_Data_Compatibility {
-
-		/**
-		 * @param \WC_Data|\WC_Product|\WC_Order $object
-		 *
-		 * @return mixed
-		 * @static
-		 */
-		public static function get_id( $object ) {
-			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
-				return $object->get_id();
-			}
-			return $object->id;
-		}
-
-
 		/**
 		 * Gets an object property.
 		 *
@@ -72,7 +57,6 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 				if ( isset( $compat_props[ $prop ] ) ) {
 					$prop = $compat_props[ $prop ];
 				}
-
 				// if this is the 'view' context and there is an accessor method, use it
 				if ( is_callable( array( $object, "get_{$prop}" ) ) && 'view' === $context ) {
 					$value = $object->{"get_{$prop}"}();
@@ -80,23 +64,21 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 					$value = $object->$prop;
 				}
 			}
-
 			return $value;
 		}
-
 
 		/**
 		 * Sets an object's properties.
 		 *
 		 * Note that this does not save any data to the database.
 		 *
-		 * @since 4.6.0
-		 *
 		 * @param \WC_Data $object the data object, likely \WC_Order or \WC_Product
 		 * @param array    $props the new properties as $key => $value
 		 * @param array    $compat_props Compatibility properties.
 		 *
 		 * @return \WC_Data
+		 * @throws
+		 * @static
 		 */
 		public static function set_props( $object, $props, $compat_props = array() ) {
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
@@ -111,7 +93,6 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 			}
 			return $object;
 		}
-
 
 		/**
 		 * Gets an object's stored meta value.
@@ -129,17 +110,11 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 			if ( VSP_WC_Helper::is_wc_version_gte_3_0() ) {
 				$value = $object->get_meta( $key, $single, $context );
 			} else {
-				if ( is_callable( array( $object, 'get_id' ) ) ) {
-					$object_id = $object->get_id();
-				} else {
-					/** @noinspection Annotator */
-					$object_id = $object->id;
-				}
-				$value = get_post_meta( $object_id, $key, $single );
+				$object_id = is_callable( array( $object, 'get_id' ) ) ? $object->get_id() : $object->{'id'};
+				$value     = get_post_meta( $object_id, $key, $single );
 			}
 			return $value;
 		}
-
 
 		/**
 		 * Stores an object meta value.
@@ -156,16 +131,10 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 				$object->add_meta_data( $key, $value, $unique );
 				$object->save_meta_data();
 			} else {
-				if ( is_callable( array( $object, 'get_id' ) ) ) {
-					$object_id = $object->get_id();
-				} else {
-					/** @noinspection Annotator */
-					$object_id = $object->id;
-				}
+				$object_id = is_callable( array( $object, 'get_id' ) ) ? $object->get_id() : $object->{'id'};
 				add_post_meta( $object_id, $key, $value, $unique );
 			}
 		}
-
 
 		/**
 		 * Updates an object's stored meta value.
@@ -182,16 +151,10 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 				$object->update_meta_data( $key, $value, $meta_id );
 				$object->save_meta_data();
 			} else {
-				if ( is_callable( array( $object, 'get_id' ) ) ) {
-					$object_id = $object->get_id();
-				} else {
-					/** @noinspection Annotator */
-					$object_id = $object->id;
-				}
+				$object_id = is_callable( array( $object, 'get_id' ) ) ? $object->get_id() : $object->{'id'};
 				update_post_meta( $object_id, $key, $value );
 			}
 		}
-
 
 		/**
 		 * Deletes an object's stored meta value.
@@ -206,12 +169,7 @@ if ( ! class_exists( 'VSP_WC_Data_Compatibility' ) ) :
 				$object->delete_meta_data( $key );
 				$object->save_meta_data();
 			} else {
-				if ( is_callable( array( $object, 'get_id' ) ) ) {
-					$object_id = $object->get_id();
-				} else {
-					/** @noinspection Annotator */
-					$object_id = $object->id;
-				}
+				$object_id = is_callable( array( $object, 'get_id' ) ) ? $object->get_id() : $object->{'id'};
 				delete_post_meta( $object_id, $key );
 			}
 		}
