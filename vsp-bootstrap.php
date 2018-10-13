@@ -59,17 +59,10 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
 	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
 
-
 	require_once VSP_CORE . 'class-autoloader.php';
 	require_once VSP_CORE . 'class-cache.php';
 	require_once VSP_PATH . 'vsp-functions.php';
-
-	require_once VSP_PATH . 'functions/options.php';
-	require_once VSP_PATH . 'functions/ajax-functions.php';
-	require_once VSP_PATH . 'functions/sweatalert2-functions.php';
-	require_once VSP_PATH . 'functions/wp-replacement.php';
-	require_once VSP_PATH . 'functions/general-functions.php';
-	require_once VSP_PATH . 'functions/admin-notices-functions.php';
+	require_once VSP_PATH . 'core/class-helper.php';
 	require_once VSP_CORE . 'class-base-setup.php';
 	require_once VSP_PATH . 'vsp-hooks.php';
 	require_once VSP_PATH . 'core/modules/system-tools/class-system-status-report.php';
