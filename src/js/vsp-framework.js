@@ -8,7 +8,43 @@ function vsp_js_function ( $data ) {
 	return $e;
 }
 
+/**
+ * VSP Framework Helper.
+ * @type {{js_callback: (function(*=): *), init_wponion: VSP_HELPER.init_wponion, set_window_args: VSP_HELPER.set_window_args}}
+ */
+let VSP_HELPER = {
+	/**
+	 * Handles Javascript Callback.
+	 * @param $data
+	 * @returns {*}
+	 */
+	js_callback: function ( $data ) {
+		var $e = jQuery.VSPFRAMEWORK.validate_js_function( $data );
+		return $e;
+	},
 
+	/**
+	 * Inits WPOnion Framework if exists.
+	 * @param $place
+	 */
+	init_wponion: ( $place ) => {
+		wponion_field( $place ).reload();
+	},
+
+	/**
+	 * Converts JSON into Parseable Window Args.
+	 * @param $args
+	 */
+	set_window_args: ( $args ) => {
+		jQuery.each( $args, function ( $key, $value ) {
+			window[ $key ] = $value;
+		} )
+	},
+};
+
+/**
+ * Basic VSP Framework Setup.
+ */
 ( function ( $, window, document ) {
 	$.VSPFRAMEWORK = $.VSPFRAMEWORK || {};
 
@@ -34,7 +70,6 @@ function vsp_js_function ( $data ) {
 
 		new VSPAjax( { url: url, method: method }, { trigger_code: trigger_code, element: $this, element_lock: true } );
 	};
-
 
 	/**
 	 * Converts Simple function string into JS functions.
