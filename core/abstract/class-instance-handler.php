@@ -38,7 +38,6 @@ if ( ! class_exists( 'VSP_Class_Instance_Handler' ) ) {
 		 */
 		protected $instances = array();
 
-
 		/**
 		 * Clone
 		 */
