@@ -982,6 +982,7 @@ if ( ! function_exists( 'swal_question' ) ) {
 		return swal( $title, $content, 'question', $args );
 	}
 }
+
 if ( ! function_exists( 'swal_warning' ) ) {
 	/**
 	 * @param string $title

@@ -157,7 +157,7 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 		$return_html = '';
 		$name        = 'swal' . rand( 1, 100 );
 		$opts        = VSP_Localize_API::handle_js_function( $opts );
-		$return_html .= vsp_js_vars( $name, $opts, false );
+		$return_html .= VSP_Helper::php_to_js( $name, $opts, false );
 		$return_html .= 'swal(vsp_js_function(' . $name . '))';
 
 		if ( ! empty( $queue ) ) {

@@ -61,7 +61,7 @@ if ( ! function_exists( 'vsp_vars' ) ) {
 	 * @param string $key .
 	 * @param string $default .
 	 *
-	 * @return string
+	 * @return string|array
 	 */
 	function vsp_vars( $plugin_name = '', $key = '', $default = '' ) {
 		$variable =& vsp_check_global_vars( $plugin_name );
@@ -90,7 +90,6 @@ if ( ! function_exists( 'vsp_remove_vars' ) ) {
 		return false;
 	}
 }
-
 
 if ( ! function_exists( 'vsp_option' ) ) {
 	/**
