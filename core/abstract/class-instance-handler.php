@@ -39,20 +39,6 @@ if ( ! class_exists( 'VSP_Class_Instance_Handler' ) ) {
 		protected $instances = array();
 
 		/**
-		 * Clone
-		 */
-		public function __clone() {
-			vsp_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
-		}
-
-		/**
-		 * WakeUp
-		 */
-		public function __wakeup() {
-			vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
-		}
-
-		/**
 		 * Returns Current Instance / create a new instance
 		 *
 		 * @return mixed
