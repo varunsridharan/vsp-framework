@@ -213,11 +213,8 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			$h = "<script type='text/javascript' id='" . $this->slug . "_field_js_vars'>\n"; // CDATA and type='text/javascript' is not needed for HTML 5
 
 			$h .= "/* <![CDATA[ */\n";
-			/*foreach ( $this->js_args as $key => $value ) {
-				$h .= vsp_js_vars( $key, $value, false );
-			}*/
-			$h .= vsp_js_vars( $this->slug, $this->js_args, false );
-			$h .= vsp_js_vars( $this->slug . '_i18n', $this->translations, false );
+			$h .= VSP_Helper::php_to_js( $this->slug, $this->js_args, false );
+			$h .= VSP_Helper::php_to_js( $this->slug . '_i18n', $this->translations, false );
 			$h .= "/* ]]> */\n";
 			$h .= "</script>\n";
 			echo $h;
