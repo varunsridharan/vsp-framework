@@ -41,6 +41,4 @@ trait VSP_IP_Trait {
 		}
 		return false;
 	}
-
-
 }
