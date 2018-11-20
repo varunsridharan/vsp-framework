@@ -166,13 +166,14 @@ trait VSP_String_Trait {
 	 * @static
 	 */
 	public static function to_bool( $str ) {
+		$return = false;
 		switch ( strtolower( $str ) ) {
 			case 'on':
 			case '1':
 			case 'yes':
 			case 'true':
 			case true:
-				return true;
+				$return = true;
 				break;
 			case 'off':
 			case '0':
@@ -180,8 +181,45 @@ trait VSP_String_Trait {
 			case 'false':
 			case false:
 			case null:
-				return false;
+				$return = false;
 				break;
+		}
+		return $return;
+	}
+
+	/**
+	 * Converts Numeric Value into Human Readable View
+	 *
+	 * @example 1024B => 1KB | 1024KB => 1MB | 1024MB => 1GB
+	 *
+	 * @param     $bytes
+	 * @param int $precision
+	 *
+	 * @return string
+	 * @static
+	 */
+	public static function to_human_bytes( $bytes, $precision = 2 ) {
+		$kilobyte = 1024;
+		$megabyte = $kilobyte * 1024;
+		$gigabyte = $megabyte * 1024;
+		$terabyte = $gigabyte * 1024;
+
+		if ( ( $bytes >= 0 ) && ( $bytes < $kilobyte ) ) {
+			return $bytes . ' B';
+
+		} elseif ( ( $bytes >= $kilobyte ) && ( $bytes < $megabyte ) ) {
+			return round( $bytes / $kilobyte, $precision ) . ' KB';
+
+		} elseif ( ( $bytes >= $megabyte ) && ( $bytes < $gigabyte ) ) {
+			return round( $bytes / $megabyte, $precision ) . ' MB';
+
+		} elseif ( ( $bytes >= $gigabyte ) && ( $bytes < $terabyte ) ) {
+			return round( $bytes / $gigabyte, $precision ) . ' GB';
+
+		} elseif ( $bytes >= $terabyte ) {
+			return round( $bytes / $terabyte, $precision ) . ' TB';
+		} else {
+			return $bytes . ' B';
 		}
 	}
 }
