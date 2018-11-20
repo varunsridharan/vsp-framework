@@ -26,7 +26,7 @@ class VSP_WordPress_Sticky_Notice implements VSP_WP_Admin_Notice_Interface {
 		$out .= $notice->getContent();
 		$out .= '</p>';
 		$out .= '<hr/><p >';
-		$out .= '<a id="' . $ui_id . '" href="' . $this->get_url( $notice ) . '" class="button button-secondary text-right">' . __( 'Hide Notice' ) . '</a>';
+		$out .= '<a id="' . $ui_id . '" href="' . $this->get_url( $notice ) . '" class="button button-secondary text-right">' . __( 'Hide Notice', 'vsp-framework' ) . '</a>';
 		$out .= '</p>';
 		$out .= '</div>';
 		$out .= $this->dismissibleScript( $notice, $ui_id );

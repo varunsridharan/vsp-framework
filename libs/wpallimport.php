@@ -1103,7 +1103,7 @@ if ( ! class_exists( 'RapidAddon' ) ) {
 
 				<div class="error notice is-dismissible wpallimport-dismissible" style="margin-top: 10px;"
 					 rel="<?php echo sanitize_key( $this->slug ); ?>">
-					<p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'rapid_addon_' . $this->slug, 'vsp-framework' ); ?></p>
+					<p><?php _e( sprintf( $notice_text, '?' . $this->slug . '_ignore=0' ), 'vsp-framework' ); ?></p>
 				</div>
 
 				<?php

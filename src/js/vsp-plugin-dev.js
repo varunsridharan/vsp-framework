@@ -1,1 +1,1 @@
-//@codekit-append ../vendors/vspajax/jquery.vsp-ajax.min.js
+//@vsp-append ../vendors/vspajax/jquery.vsp-ajax.min.js
