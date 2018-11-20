@@ -35,7 +35,19 @@ if ( ! class_exists( 'VSP_Helper' ) ) {
 		use VSP_MimeType_Trait;
 		use VSP_String_Trait;
 
+		/**
+		 * load_time
+		 *
+		 * @var array
+		 */
 		protected static $load_time = array();
+
+		/**
+		 * human_time_translations
+		 *
+		 * @var null
+		 */
+		protected static $human_time_translations = null;
 
 		/**
 		 * Gets the key value from globals.
@@ -355,6 +367,69 @@ if ( ! class_exists( 'VSP_Helper' ) ) {
 				$countries = array_flip( $countries );
 			}
 			return isset( $countries[ $code ] ) ? $countries[ $code ] : $code;
+		}
+
+		/**
+		 * Generates A Rand MD5 String and returns it.
+		 *
+		 * @return string
+		 * @static
+		 */
+		public static function rand_md5() {
+			return md5( time() . '-' . uniqid( rand(), true ) . '-' . mt_rand( 1, 1000 ) );
+		}
+
+		/**
+		 * Convert number of seconds to 'X {units}'
+		 *
+		 * E.g. 123 => '2 minutes'
+		 * then you can use this string how you want, for e.g. append ' ago' => '2 minutes ago'
+		 *
+		 * @param int $seconds
+		 *
+		 * @return string
+		 */
+		function human_time( $seconds ) {
+			if ( null === self::$human_time_translations ) {
+				self::$human_time_translations = array(
+					'year'    => __( 'year' ),
+					'years'   => __( 'years' ),
+					'month'   => __( 'month' ),
+					'months'  => __( 'months' ),
+					'week'    => __( 'week' ),
+					'weeks'   => __( 'weeks' ),
+					'day'     => __( 'day' ),
+					'days'    => __( 'days' ),
+					'hour'    => __( 'hour' ),
+					'hours'   => __( 'hours' ),
+					'minute'  => __( 'minute' ),
+					'minutes' => __( 'minutes' ),
+					'second'  => __( 'second' ),
+					'seconds' => __( 'seconds' ),
+				);
+			}
+
+			$tokens = array(
+				31536000 => 'year',
+				2592000  => 'month',
+				604800   => 'week',
+				86400    => 'day',
+				3600     => 'hour',
+				60       => 'minute',
+				1        => 'second',
+			);
+
+			foreach ( $tokens as $unit => $translation_key ) {
+				if ( $seconds < $unit ) {
+					continue;
+				}
+
+				$number_of_units = floor( $seconds / $unit );
+
+				$key = ( 1 !== $number_of_units ) ? 's' : '';
+				return $number_of_units . ' ' . self::$human_time_translations[ $translation_key . $key ];
+			}
+			return false;
 		}
 	}
 }
