@@ -178,23 +178,6 @@ if ( ! function_exists( 'vsp_validate_css_unit' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_print_r' ) ) {
-	/**
-	 * Simple Debug Function
-	 *
-	 * @uses \print_r()
-	 *
-	 * @param mixed $debug .
-	 * @param bool  $is_exit .
-	 */
-	function vsp_print_r( $debug, $is_exit = false ) {
-		echo '<pre>' . print_r( $debug, true ) . '</pre>';
-		if ( $is_exit ) {
-			exit;
-		}
-	}
-}
-
 if ( ! function_exists( 'vsp_set_time_limit' ) ) {
 	/**
 	 * Wrapper for set_time_limit to see if it is enabled.
@@ -363,3 +346,121 @@ if ( ! function_exists( 'vsp_censor_path' ) ) {
 	}
 }
 
+if ( ! function_exists( 'vsp_json_last_error' ) ) {
+	/**
+	 * @return string|null
+	 * @since 2.4.10
+	 */
+	function vsp_json_last_error() {
+		switch ( function_exists( 'json_last_error' ) ? json_last_error() : -1 ) {
+			case JSON_ERROR_NONE:
+				return null; // __('No errors', 'fw');
+				break;
+			case JSON_ERROR_DEPTH:
+				return __( 'Maximum stack depth exceeded' );
+				break;
+			case JSON_ERROR_STATE_MISMATCH:
+				return __( 'Underflow or the modes mismatch' );
+				break;
+			case JSON_ERROR_CTRL_CHAR:
+				return __( 'Unexpected control character found' );
+				break;
+			case JSON_ERROR_SYNTAX:
+				return __( 'Syntax error, malformed JSON' );
+				break;
+			case JSON_ERROR_UTF8:
+				return __( 'Malformed UTF-8 characters, possibly incorrectly encoded' );
+				break;
+			default:
+				return __( 'Unknown error' );
+				break;
+		}
+	}
+}
+
+if ( ! function_exists( 'vsp_print_r' ) ) {
+	/**
+	 * print_r() alternative
+	 *
+	 * @param mixed $value Value to debug
+	 */
+	function vsp_print_r( $value ) {
+		static $first_time = true;
+		if ( $first_time ) {
+			ob_start();
+			echo '<style type="text/css">
+		div.vsp_print_r {
+			max-height: 500px;
+			overflow-y: scroll;
+			background: #23282d;
+			margin: 10px 30px;
+			padding: 0;
+			border: 1px solid #F5F5F5;
+			border-radius: 3px;
+			position: relative;
+			z-index: 11111;
+		}
+		div.vsp_print_r pre {
+			color: #78FF5B;
+			background: #23282d;
+			text-shadow: 1px 1px 0 #000;
+			font-family: Consolas, monospace;
+			font-size: 12px;
+			margin: 0;
+			padding: 5px;
+			display: block;
+			line-height: 16px;
+			text-align: left;
+		}
+		div.vsp_print_r_group {
+			background: #f1f1f1;
+			margin: 10px 30px;
+			padding: 1px;
+			border-radius: 5px;
+			position: relative;
+			z-index: 11110;
+		}
+		div.vsp_print_r_group div.vsp_print_r {
+			margin: 9px;
+			border-width: 0;
+		}
+		</style>';
+			echo str_replace( array( '  ', "\n" ), '', ob_get_clean() );
+			$first_time = false;
+		}
+		if ( func_num_args() == 1 ) {
+			echo '<div class="vsp_print_r"><pre>';
+			echo htmlspecialchars( VSP_Dumper::dump( $value ), ENT_QUOTES, 'UTF-8' );
+			echo '</pre></div>';
+		} else {
+			echo '<div class="vsp_print_r_group">';
+			foreach ( func_get_args() as $param ) {
+				vsp_print_r( $param );
+			}
+			echo '</div>';
+		}
+	}
+}
+
+if ( ! function_exists( 'vsp_debug' ) ) {
+	/**
+	 * Alias for vsp_print
+	 *
+	 * @see vsp_print()
+	 */
+	function vsp_debug() {
+		call_user_func_array( 'vsp_print_r', func_get_args() );
+	}
+}
+
+if ( ! function_exists( 'vsp_debug_die' ) ) {
+	/**
+	 * Alias for vsp_print
+	 *
+	 * @see vsp_print()
+	 */
+	function vsp_debug_die() {
+		call_user_func_array( 'vsp_print_r', func_get_args() );
+		exit;
+	}
+}
