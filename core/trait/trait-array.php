@@ -207,7 +207,7 @@ trait VSP_Array_Trait {
 	 *
 	 * @return array|object  $output                 Merged user defined values with defaults.
 	 */
-	function parse_args( $args, $defaults, $deep = false, $preserve_type = true, $preserve_integer_keys = false ) {
+	public static function parse_args( $args, $defaults, $deep = false, $preserve_type = true, $preserve_integer_keys = false ) {
 		if ( false === $deep ) {
 			return wp_parse_args( $args, $defaults );
 		}
@@ -226,5 +226,171 @@ trait VSP_Array_Trait {
 		}
 		return ( $preserve_type && ( is_object( $args ) || is_object( $defaults ) ) ) ? (object) $output : $output;
 	}
+
+	/**
+	 * Recursively find a key's value in array
+	 *
+	 * @param string       $keys 'a/b/c'
+	 * @param array|object $array_or_object
+	 * @param null|mixed   $default_value
+	 * @param string       $keys_delimiter
+	 *
+	 * @return null|mixed
+	 */
+	public static function akg( $keys, $array_or_object, $default_value = null, $keys_delimiter = '/' ) {
+		if ( ! is_array( $keys ) ) {
+			$keys = explode( $keys_delimiter, (string) $keys );
+		}
+
+		$array_or_object = ( vsp_is_callable( $array_or_object ) ) ? vsp_callback( $array_or_object ) : $array_or_object;
+		$key_or_property = array_shift( $keys );
+
+		if ( null === $key_or_property ) {
+			return ( vsp_is_callable( $default_value ) ) ? vsp_callback( $default_value ) : $default_value;
+		}
+
+		$is_object = is_object( $array_or_object );
+
+		if ( $is_object ) {
+			if ( ! property_exists( $array_or_object, $key_or_property ) ) {
+				return ( vsp_is_callable( $default_value ) ) ? vsp_callback( $default_value ) : $default_value;
+			}
+		} else {
+			if ( ! is_array( $array_or_object ) || ! array_key_exists( $key_or_property, $array_or_object ) ) {
+				return ( vsp_is_callable( $default_value ) ) ? vsp_callback( $default_value ) : $default_value;
+			}
+		}
+
+		if ( isset( $keys[0] ) ) { // not used count() for performance reasons
+			if ( $is_object ) {
+				return self::akg( $keys, $array_or_object->{$key_or_property}, $default_value );
+			} else {
+				return self::akg( $keys, $array_or_object[ $key_or_property ], $default_value );
+			}
+		} else {
+			if ( $is_object ) {
+				return $array_or_object->{$key_or_property};
+			} else {
+				return $array_or_object[ $key_or_property ];
+			}
+		}
+	}
+
+	/**
+	 * Set (or create if not exists) value for specified key in some array level
+	 *
+	 * @param string       $keys 'a/b/c', or 'a/b/c/' equivalent to: $arr['a']['b']['c'][] = $val;
+	 * @param mixed        $value
+	 * @param array|object $array_or_object
+	 * @param string       $keys_delimiter
+	 *
+	 * @return array|object
+	 */
+	public static function aks( $keys, $value, &$array_or_object, $keys_delimiter = '/' ) {
+		if ( ! is_array( $keys ) ) {
+			$keys = explode( $keys_delimiter, (string) $keys );
+		}
+
+		$key_or_property = array_shift( $keys );
+		if ( null === $key_or_property ) {
+			return $array_or_object;
+		}
+
+		$is_object = is_object( $array_or_object );
+
+		if ( $is_object ) {
+			if ( ! property_exists( $array_or_object, $key_or_property ) || ! ( is_array( $array_or_object->{$key_or_property} ) || is_object( $array_or_object->{$key_or_property} ) ) ) {
+				if ( '' === $key_or_property ) {
+					// this happens when use 'empty keys' like: abc/d/e////i/j//foo/
+					trigger_error( 'Cannot push value to object like in array ($arr[] = $val)', E_USER_WARNING );
+				} else {
+					$array_or_object->{$key_or_property} = array();
+				}
+			}
+		} else {
+			if ( ! is_array( $array_or_object ) ) {
+				$array_or_object = array();
+			}
+
+			if ( ! array_key_exists( $key_or_property, $array_or_object ) || ! is_array( $array_or_object[ $key_or_property ] ) ) {
+				if ( '' === $key_or_property ) {
+					// this happens when use 'empty keys' like: abc.d.e....i.j..foo.
+					$array_or_object[] = array();
+
+					// get auto created key (last)
+					end( $array_or_object );
+					$key_or_property = key( $array_or_object );
+				} else {
+					$array_or_object[ $key_or_property ] = array();
+				}
+			}
+		}
+
+		if ( isset( $keys[0] ) ) { // not used count() for performance reasons
+			if ( $is_object ) {
+				self::aks( $keys, $value, $array_or_object->{$key_or_property} );
+			} else {
+				self::aks( $keys, $value, $array_or_object[ $key_or_property ] );
+			}
+		} else {
+			if ( $is_object ) {
+				$array_or_object->{$key_or_property} = $value;
+			} else {
+				$array_or_object[ $key_or_property ] = $value;
+			}
+		}
+
+		return $array_or_object;
+	}
+
+	/**
+	 * Unset specified key in some array level
+	 *
+	 * @param string       $keys 'a/b/c' -> unset($arr['a']['b']['c']);
+	 * @param array|object $array_or_object
+	 * @param string       $keys_delimiter
+	 *
+	 * @return array|object
+	 */
+	public static function aku( $keys, &$array_or_object, $keys_delimiter = '/' ) {
+		if ( ! is_array( $keys ) ) {
+			$keys = explode( $keys_delimiter, (string) $keys );
+		}
+
+		$key_or_property = array_shift( $keys );
+		if ( null === $key_or_property || '' === $key_or_property ) {
+			return $array_or_object;
+		}
+
+		$is_object = is_object( $array_or_object );
+
+		if ( $is_object ) {
+			if ( ! property_exists( $array_or_object, $key_or_property ) ) {
+				return $array_or_object;
+			}
+		} else {
+			if ( ! is_array( $array_or_object ) || ! array_key_exists( $key_or_property, $array_or_object ) ) {
+				return $array_or_object;
+			}
+		}
+
+		if ( isset( $keys[0] ) ) { // not used count() for performance reasons
+			if ( $is_object ) {
+				self::aku( $keys, $array_or_object->{$key_or_property} );
+			} else {
+				self::aku( $keys, $array_or_object[ $key_or_property ] );
+			}
+		} else {
+			if ( $is_object ) {
+				unset( $array_or_object->{$key_or_property} );
+			} else {
+				unset( $array_or_object[ $key_or_property ] );
+			}
+		}
+
+		return $array_or_object;
+	}
+
+
 }
 
