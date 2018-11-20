@@ -354,7 +354,7 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 	function vsp_json_last_error() {
 		switch ( function_exists( 'json_last_error' ) ? json_last_error() : -1 ) {
 			case JSON_ERROR_NONE:
-				return null; // __('No errors', 'fw');
+				return null; // __('No errors');
 				break;
 			case JSON_ERROR_DEPTH:
 				return __( 'Maximum stack depth exceeded' );
@@ -462,5 +462,54 @@ if ( ! function_exists( 'vsp_debug_die' ) ) {
 	function vsp_debug_die() {
 		call_user_func_array( 'vsp_print_r', func_get_args() );
 		exit;
+	}
+}
+
+if ( ! function_exists( 'vsp_is_callable' ) ) {
+	/**
+	 * @param $callback
+	 *
+	 * @return bool
+	 */
+	function vsp_is_callable( $callback ) {
+		if ( is_callable( $callback ) ) {
+			return true;
+		}
+		if ( is_string( $callback ) && has_action( $callback ) ) {
+			return true;
+		}
+		if ( is_string( $callback ) && has_filter( $callback ) ) {
+			return true;
+		}
+		return false;
+	}
+}
+
+if ( ! function_exists( 'vsp_callback' ) ) {
+	/**
+	 * @param       $callback
+	 * @param array $args
+	 *
+	 * @return bool|false|mixed|string
+	 */
+	function vsp_callback( $callback, $args = array() ) {
+		$data = false;
+		try {
+			if ( is_callable( $callback ) ) {
+				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
+				$data = call_user_func_array( $callback, $args );
+			} elseif ( is_string( $callback ) && has_filter( $callback ) ) {
+				$data = call_user_func_array( 'apply_filters', array_merge( array( $callback ), $args ) );
+			} elseif ( is_string( $callback ) && has_action( $callback ) ) {
+				ob_start();
+				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
+				echo call_user_func_array( 'do_action', array_merge( array( $callback ), $args ) );
+				$data = ob_get_clean();
+				ob_flush();
+			}
+		} catch ( Exception $exception ) {
+			$data = false;
+		}
+		return $data;
 	}
 }
