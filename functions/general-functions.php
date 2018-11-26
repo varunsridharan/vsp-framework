@@ -16,7 +16,7 @@ if ( ! function_exists( 'vsp_current_screen' ) ) {
 	 *
 	 * @param bool $only_id .
 	 *
-	 * @return bool|null|string|\WP_Screen
+	 * @return bool|string|\WP_Screen
 	 */
 	function vsp_current_screen( $only_id = true ) {
 		$screen = get_current_screen();
@@ -30,7 +30,7 @@ if ( ! function_exists( 'vsp_current_screen' ) ) {
 
 if ( ! function_exists( 'vsp_is_screen' ) ) {
 	/**
-	 * Checks if current screen is given screen
+	 * Checks provided Screen ID if its current screen.
 	 *
 	 * @param string $check_screen .
 	 * @param string $current_screen .

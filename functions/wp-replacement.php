@@ -76,7 +76,7 @@ if ( ! function_exists( 'vsp_load_script' ) ) {
 	 */
 	function vsp_load_script( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
 		$src = vsp_debug_file( $src );
-		return wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
+		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 }
 
@@ -90,7 +90,7 @@ if ( ! function_exists( 'vsp_load_style' ) ) {
 	 */
 	function vsp_load_style( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
 		$src = vsp_debug_file( $src );
-		return wp_enqueue_style( $handle, $src, $deps, $ver, $in_footer );
+		wp_enqueue_style( $handle, $src, $deps, $ver, $in_footer );
 	}
 }
 
@@ -189,7 +189,7 @@ if ( ! function_exists( 'vsp_get_term_meta' ) ) {
 	 * @param      $key .
 	 * @param bool $single .
 	 *
-	 * @return mixed|void
+	 * @return mixed
 	 */
 	function vsp_get_term_meta( $term_id, $key, $single = true ) {
 		return function_exists( 'get_term_meta' ) ? get_term_meta( $term_id, $key, $single ) : get_option( 'vsp_tm_' . $term_id . '_' . $key );

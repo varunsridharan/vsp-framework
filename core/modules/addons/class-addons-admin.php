@@ -44,11 +44,10 @@ if ( ! class_exists( 'VSP_Addons_Admin' ) ) {
 		 */
 		public function set_settings_page( $pages ) {
 			$pages[ $this->option( 'addon_listing_tab_name' ) ] = array(
-				'name'      => $this->option( 'addon_listing_tab_name' ),
-				'title'     => $this->option( 'addon_listing_tab_title' ),
-				'icon'      => $this->option( 'addon_listing_tab_icon' ),
-				'with_wrap' => false,
-				'callback'  => array( &$this, 'render_addons_page' ),
+				'name'     => $this->option( 'addon_listing_tab_name' ),
+				'title'    => $this->option( 'addon_listing_tab_title' ),
+				'icon'     => $this->option( 'addon_listing_tab_icon' ),
+				'callback' => array( &$this, 'render_addons_page' ),
 			);
 
 			return $pages;

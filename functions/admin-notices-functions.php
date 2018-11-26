@@ -53,7 +53,12 @@ if ( ! function_exists( 'vsp_notice' ) ) {
 	 * @param array  $args .
 	 */
 	function vsp_notice( $message, $type = 'update', $args = array() ) {
-		$defaults = array( 'title' => false, 'times' => 1, 'screen' => array(), 'users' => array() );
+		$defaults = array(
+			'title'  => false,
+			'times'  => 1,
+			'screen' => array(),
+			'users'  => array(),
+		);
 		$args     = wp_parse_args( $args, $defaults );
 
 		if ( false !== $args['title'] && ( empty( $message ) || '' === $message ) ) {
@@ -107,7 +112,7 @@ if ( ! function_exists( 'vsp_notice_update' ) ) {
 	 * @param array  $screen .
 	 * @param array  $args .
 	 */
-	function vsp_notice_update( $title = false, $message, $times = 1, $screen = array(), $args = array() ) {
+	function vsp_notice_update( $title, $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['title']  = $title;
 		$args['times']  = $times;
 		$args['screen'] = $screen;
@@ -127,7 +132,7 @@ if ( ! function_exists( 'vsp_notice_upgrade' ) ) {
 	 * @param array  $screen .
 	 * @param array  $args .
 	 */
-	function vsp_notice_upgrade( $title = false, $message, $times = 1, $screen = array(), $args = array() ) {
+	function vsp_notice_upgrade( $title, $message, $times = 1, $screen = array(), $args = array() ) {
 		$args['title']  = $title;
 		$args['times']  = $times;
 		$args['screen'] = $screen;
@@ -146,17 +151,23 @@ if ( ! function_exists( 'vsp_js_alert' ) ) {
 	 * @param string $text .
 	 * @param string $type .
 	 * @param array  $options .
+	 * @param mixed  $queue .
 	 *
 	 * @return string
 	 */
 	function vsp_js_alert( $title = '', $text = '', $type = '', $options = array(), $queue = '' ) {
-		$defaults    = array( 'title' => $title, 'text' => $text, 'type' => $type );
+		$defaults    = array(
+			'title' => $title,
+			'text'  => $text,
+			'type'  => $type,
+		);
 		$opts        = wp_parse_args( $options, $defaults );
 		$opts        = array_filter( $opts );
 		$after       = isset( $opts['after'] ) ? $opts['after'] : '';
 		$return_html = '';
 		$name        = 'swal' . rand( 1, 100 );
 		$opts        = VSP_Localize_API::handle_js_function( $opts );
+
 		$return_html .= VSP_Helper::php_to_js( $name, $opts, false );
 		$return_html .= 'swal(vsp_js_function(' . $name . '))';
 

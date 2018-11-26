@@ -245,7 +245,6 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 				return ( window["' . $this->slug . '_i18n' . '"][ $key ] !== undefined ) ?  window["' . $this->slug . '_i18n' . '"][ $key ] : $default;
 			}';
 
-
 			$h .= "</script>\n";
 			echo $h;
 		}
