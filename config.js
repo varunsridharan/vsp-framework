@@ -38,9 +38,9 @@ $_json.js           = {
 		combine_files: false,
 		concat_dev: 'vsp-framework.js',
 		concat: 'vsp-framework.js',
-		webpack: false,
-		babel: true,
-		webpack_dev: false,
+		webpack: true,
+		babel: false,
+		webpack_dev: true,
 	},
 	'./src/js/vsp-plugin-dev.js': {
 		dist: 'assets/js',
