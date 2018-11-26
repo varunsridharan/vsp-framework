@@ -42,6 +42,7 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 			'addon_action'   => false,
 			'sysinfo_remote' => false,
 			'sys_info'       => true,
+			'download_log'   => true,
 		);
 
 		/**
@@ -111,6 +112,15 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 
 		public function handle_admin_notices() {
 			vsp_notices()->ajaxDismissNotice();
+			wp_die();
+		}
+
+		public function download_log() {
+			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
+				\VSP_System_Logs::download_log( $_REQUEST['handle'] );
+			} else {
+				echo '<h2>' . __( 'Log File Not Found' ) . '</h2>';
+			}
 			wp_die();
 		}
 	}
