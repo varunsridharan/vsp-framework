@@ -43,6 +43,7 @@
 		"rollup-plugin-babel": "^4.0.3",
 		"rollup-plugin-node-resolve": "^3.4.0",
 		"run-sequence": "^2.2.1",
+		"vsp-js-helper": "^1.0.17",
 		"webpack": "^4.22.0",
 		"webpack-stream": "^5.1.1"
 	}
