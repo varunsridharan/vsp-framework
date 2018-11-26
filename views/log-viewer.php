@@ -11,72 +11,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <?php if ( self::$logs ) : ?>
-
-	<style>
-		#log-viewer {
-			padding:       10px;
-			background:    white;
-			border:        1px solid #dedede;
-			border-radius: 5px;
-			margin-top:    10px;
-		}
-
-		#log-viewer pre {
-			margin:  0;
-			padding: 5px;
-		}
-
-		#log-viewer-select .alignleft h2 {
-			font-size:   16px;
-			font-weight: bold;
-		}
-
-	</style>
-	<div id="log-viewer-select">
-		<div class="alignleft">
-			<h2>
-				<?php echo esc_html( $viewed_log ); ?>
-				<?php if ( ! empty( $handle ) ) : ?>
-					<a class="page-title-action"
-					   href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'handle' => $handle ), admin_url( 'admin.php?page=wc-status&tab=logs' ) ), 'remove_log' ) ); ?>"
-					   class="button"><?php esc_html_e( 'Delete log', 'woocommerce' ); ?></a>
-				<?php endif; ?>
-			</h2>
-		</div>
-		<div class="alignright">
-			</form>
-			<form method="post">
+	<div id="vsp-log-view-wrap">
+		<div class="log-header">
+			<div class="log-center">
 				<select name="log_file">
-
 					<?php
-					foreach ( self::$actual_logs as $group => $logs ):
+					foreach ( self::$actual_logs as $group => $log ) {
 						$group = ( '' === $group ) ? __( 'VSP Framework', 'vsp-framework' ) : $group;
 						echo '<optgroup label="' . $group . '">';
-						foreach ( $logs as $key => $log_file ):
-							$_file = ( isset( self::$logs[ $key ] ) ) ? self::$logs[ $key ] : $log_file;
+						foreach ( $log as $key => $file ) {
+							$_file     = ( isset( self::$logs[ $key ] ) ) ? self::$logs[ $key ] : $file;
 							$timestamp = filemtime( VSP_LOG_DIR . $_file );
 							/* translators: 1: last access date 2: last access time */
 							$date = sprintf( __( '%1$s at %2$s', 'vsp-framework' ), date_i18n( vsp_date_format(), $timestamp ), date_i18n( vsp_time_format(), $timestamp ) );
-							?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( sanitize_title( $viewed_log ), $key ); ?>><?php echo esc_html( $log_file ); ?>
-								(<?php echo esc_html( $date ); ?>)
-							</option>
-						<?php
-						endforeach;
+							echo '<option value="' . esc_attr( $key ) . '" ' . selected( sanitize_title( $viewed_log ), $key ) . '>' . esc_html( $file ) . '(' . esc_html( $date ) . ')</option>';
+						}
 						echo '</optgroup>';
-					endforeach;
+					}
 					?>
 				</select>
-				<button type="submit" class="button"
-						value="<?php esc_attr_e( 'View', 'vsp-framework' ); ?>"><?php esc_html_e( 'View', 'vsp-framework' ); ?></button>
-			</form>
+				<?php
+				if ( ! empty( $viewed_log ) ) {
+					$href = wp_nonce_url( add_query_arg( 'handle', $viewed_log ), 'remove_log' );
+					echo ' <a href="' . $href . '" class="button log-delete-handle text-danger">' . __( 'Delete Log' ) . '</a>';
+				}
+				?>
+			</div>
+
+			<div class="log-center">
+				<h2><?php echo $viewed_log; ?></h2>
+				<?php
+				if ( ! empty( $handle ) ) {
+					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $viewed_log ), 'download_log' );
+					echo ' <a href="' . $href . '" target="_blank" class="button log-download-handle">' . __( 'Download' ) . '</a>';
+				}
+				?>
+			</div>
 		</div>
-		<div class="clear"></div>
-	</div>
-	<div id="log-viewer">
-		<pre><?php echo esc_html( file_get_contents( VSP_LOG_DIR . $viewed_log ) ); ?></pre>
+		<div class="log-viewer">
+			<pre><?php echo esc_html( self::read_file( VSP_LOG_DIR . $viewed_log, 1000 ) ); ?></pre>
+		</div>
 	</div>
 <?php else : ?>
-	<div class="updated woocommerce-message inline">
-		<p><?php esc_html_e( 'There are currently no logs to view.', 'vsp-framework' ); ?></p></div>
+	<div class="notice inline notice-success notice-large notice-alt" style="margin: 0;">
+		<p><?php esc_html_e( 'There Are No Logs Generated', 'vsp-framework' ); ?></p></div>
 <?php endif; ?>
