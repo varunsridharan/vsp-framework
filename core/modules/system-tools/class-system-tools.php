@@ -49,13 +49,6 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	private $mp_slug = null;
 
 	/**
-	 * Handles Current View.
-	 *
-	 * @var null
-	 */
-	private $current_view = null;
-
-	/**
 	 * VSP_System_Tools constructor.
 	 *
 	 * @param array $options
@@ -65,115 +58,14 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 		parent::__construct( $options, $defaults );
 		add_filter( $this->slug( 'hook' ) . 'settings_pages', array( &$this, 'add_pages' ), 999 );
 		add_filter( $this->slug( 'hook' ) . 'settings_sections', array( &$this, 'add_sections' ), 999 );
-		add_filter( $this->slug( 'hook' ) . 'settings_fields', array( &$this, 'add_fields' ), 999 );
-		add_action( 'vsp_system_status_output', array( $this, 'output_sys_info' ) );
-		add_action( 'vsp_system_logs_output', array( &$this, 'output_logs_info' ) );
 	}
 
 	/**
-	 * Outputs Sys Info Page.
-	 *
-	 * @static
+	 * Outputs Logs View.
 	 */
-	public function output_sys_info() {
-		if ( $this->is_view( 'sysinfo' ) ) {
-			self::output_css( false );
-			echo '<style>#wponion-tab-system-tools .inside {
-			margin-top: 0px;
-			}
-			#wponion-tab-system-tools .postbox{
-				border:0;
-				box-shadow: none;
-			}
-			
-			#wponion-tab-system-tools-system-status > .log_wrap {
-			padding-right:20px;
-			}
-			
-			#wponion-tab-system-tools-system-status > .wponion-framework-box > .wponion-row {
-			padding:0;
-			}
-			</style>';
-
-
-			echo '<div class="wponion-framework-box">';
-
-			$active_url   = vsp_ajax_url( array( 'action' => 'vsp_sysinfo_remote', 'sysinfo_action' => 'generate' ) );
-			$inactive_url = vsp_ajax_url( array( 'action' => 'vsp_sysinfo_remote', 'sysinfo_action' => 'disable' ) );
-			$currenturl   = vsp_get_cache( 'vsp-sysinfo-url' );
-			$extra        = '<strong>' . __( 'Current URL : ', 'vsp-framework' ) . '</strong>';
-			$output       = vsp_ajax_url( array( 'action' => 'vsp_sys_info', 'vsp-key' => $currenturl ) );
-
-			$extra .= '<a id="vspsysinfocurl" href="' . $output . '">' . $output . '</a>';
-
-			echo wponion_add_element( array(
-				'id'              => 'report',
-				'type'            => 'accordion',
-				'open'            => true,
-				'accordion_title' => __( 'Copy / Send System Report', 'vsp-framework' ),
-				'fields'          => array(
-					array(
-						'type'    => 'content',
-						'content' => __( 'Users with this URL can view a plain-text version of your System Status. This link can be handy in support forums, as access to this information can be removed after you receive the help you need. <br/> Generating a new URL will safely void access to all who have the existing URL.', 'vsp-framework' ),
-						'after'   => '<br/> <br/> 
-<button href="' . $active_url . '" class="button button-primary vsp-inline-ajax" type="button">' . __( 'Generate New URL', 'vsp-framework' ) . '</button>
-<button href="' . $inactive_url . '" type="button"  class="button button-secondary vsp-inline-ajax" >' . __( 'Disable', 'vsp-framework' ) . '</button> <br/> <br/> ' . $extra,
-					),
-
-					array(
-						'id'     => 'report',
-						'before' => __( 'Please copy and paste this information in your ticket when contacting support:', 'vsp-framework' ),
-						'type'   => 'textarea',
-					),
-				),
-			), array( 'report' => VSP_System_Status_Report::text_output() ) );
-
-			echo '</div>';
-			echo '<div class="log_wrap">';
-			echo VSP_System_Status_Report::output();
-			echo '</div>';
-		}
-	}
-
-	/**
-	 * Checks if current view is same as the given view.
-	 *
-	 * @param $is
-	 *
-	 * @return bool
-	 */
-	public function is_view( $is ) {
-		if ( $is === $this->current_view ) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Outputs Custom CSS Required For Settings Page.
-	 */
-	public static function output_css( $force = true ) {
-		echo '<style> div#post-body.metabox-holder.columns-2{width:100%;} #postbox-container-1,.wponion-simple-footer{display:none;}</style>';
-		if ( $force ) {
-			echo '<style>#wponion-tab-system-tools .inside {
-				background: #f1f1f1;
-				padding: 15px 0px;
-				margin-top: 0px;
-				border-top: 1px solid #e4e4e4;
-			}
-			#wponion-tab-system-tools .postbox{
-				border:0;
-				box-shadow: none;
-			}</style>';
-		}
-	}
-
 	public function output_logs_info() {
-		if ( $this->is_view( 'logs' ) ) {
-			self::output_css();
-			$instance = $this->_instance( 'VSP_System_Logs', false, true, array() );
-			$instance::render();
-		}
+		$instance = $this->_instance( 'VSP_System_Logs', false, true, array() );
+		$instance::render();
 	}
 
 	/**
@@ -210,16 +102,16 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	protected function system_status_menu( $args = array(), $is_page = true ) {
 		if ( false !== $this->option( 'system_status' ) ) {
 			$menu             = $this->menu_data( $this->option( 'system_status' ), array(
-				'title' => __( 'System Status', 'vsp-framework' ),
-				'icon'  => 'fa fa-info-circle',
-				'name'  => 'system-status',
+				'title'          => __( 'System Status', 'vsp-framework' ),
+				'icon'           => 'fa fa-info-circle',
+				'name'           => 'system-status',
+				'custom_reports' => array( $this, 'custom_sysinfo_reports' ),
 			) );
-			$menu['callback'] = 'vsp_system_status_output';
+			$menu['callback'] = 'wponion_sysinfo';
 
 			if ( true === $is_page ) {
 				$args[ $menu['name'] ] = $menu;
 			} else {
-				$menu['query_args']                           = $this->menu_query_args( $menu, array( 'vsp-view' => 'sysinfo' ) );
 				$args[ $this->mp_slug . '/' . $menu['name'] ] = $menu;
 			}
 		}
@@ -245,19 +137,6 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	}
 
 	/**
-	 * @param array $menu
-	 * @param array $extra_args
-	 *
-	 * @return array
-	 */
-	protected function menu_query_args( $menu = array(), $extra_args = array() ) {
-		return array_merge( array(
-			'wpsf-parent-id'  => $this->mp_slug,
-			'wpsf-section-id' => $menu['name'],
-		), $extra_args );
-	}
-
-	/**
 	 * @param array $args
 	 * @param bool  $is_page
 	 *
@@ -270,16 +149,24 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
 			) );
-			$menu['callback'] = 'vsp_system_logs_output';
+			$menu['callback'] = array( &$this, 'output_logs_info' );
 
 			if ( true === $is_page ) {
 				$args[ $menu['name'] ] = $menu;
 			} else {
-				$menu['query_args']                           = $this->menu_query_args( $menu, array( 'vsp-view' => 'logs' ) );
 				$args[ $this->mp_slug . '/' . $menu['name'] ] = $menu;
 			}
 		}
 		return $args;
+	}
+
+	/**
+	 * Custom Hook To Add Custom Sys Info Datas.
+	 *
+	 * @return mixed
+	 */
+	public function custom_sysinfo_reports() {
+		return apply_filters( 'vsp_system_status_data', array() );
 	}
 
 	/**
@@ -297,19 +184,8 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 		return $sections;
 	}
 
-	/**
-	 * Adds Fields To Settings.
-	 *
-	 * @param array $fields
-	 *
-	 * @return mixed
-	 */
 	public function add_fields( $fields = array() ) {
-		if ( isset( $_REQUEST['vsp-view'] ) && ! empty( $_REQUEST['vsp-view'] ) ) {
-			$this->current_view = $_REQUEST['vsp-view'];
-		} else {
-			$this->current_view = 'sysinfo';
-		}
-		return $fields;
+		// TODO: Implement add_fields() method.
 	}
+
 }

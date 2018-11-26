@@ -39,6 +39,51 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 		}
 
 		/**
+		 * @param      $filepath
+		 * @param int  $lines
+		 * @param bool $adaptive
+		 *
+		 * @return bool|string
+		 * @static
+		 */
+		public static function read_file( $filepath, $lines = 1, $adaptive = true ) {
+			// Open file
+			$f = @fopen( $filepath, 'rb' );
+
+			if ( false === $f ) {
+				return false;
+			}
+
+			if ( ! $adaptive ) {
+				$buffer = 4096;
+			} else {
+				$buffer = ( $lines < 2 ? 64 : ( $lines < 10 ? 512 : 4096 ) );
+			}
+
+			fseek( $f, -1, SEEK_END );
+			if ( fread( $f, 1 ) != "\n" ) {
+				$lines -= 1;
+			}
+
+			$output = '';
+			$chunk  = '';
+			while ( ftell( $f ) > 0 && $lines >= 0 ) {
+				$seek = min( ftell( $f ), $buffer );
+				fseek( $f, -$seek, SEEK_CUR );
+				$chunk  = fread( $f, $seek );
+				$output = $chunk . $output;
+				fseek( $f, -mb_strlen( $chunk, '8bit' ), SEEK_CUR );
+				$lines -= substr_count( $chunk, "\n" );
+			}
+
+			while ( $lines++ < 0 ) {
+				$output = substr( $output, strpos( $output, "\n" ) + 1 );
+			}
+			fclose( $f );
+			return trim( $output );
+		}
+
+		/**
 		 * Outputs HTML.
 		 *
 		 * @static
@@ -56,7 +101,6 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 			include( VSP_PATH . 'views/log-viewer.php' );
 
 		}
-
 
 		/**
 		 * Scan the log files.
@@ -140,6 +184,22 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 		 */
 		public static function get_log_file_handle( $filename ) {
 			return substr( $filename, 0, strlen( $filename ) > 37 ? strlen( $filename ) - 37 : strlen( $filename ) - 4 );
+		}
+
+		public static function download_log( $file ) {
+			self::scan_log_files();
+			foreach ( self::$actual_logs as $files ) {
+				foreach ( $files as $k => $v ) {
+					$size = filesize( VSP_LOG_DIR . $file );
+					if ( $v === $v ) {
+						header( 'Cache-Control: private' );
+						header( 'Content-Type: application/stream' );
+						header( 'Content-Length: ' . $size );
+						header( "Content-Disposition: attachment; filename=$file" );
+						readfile( VSP_LOG_DIR . $file );
+					}
+				}
+			}
 		}
 	}
 }
