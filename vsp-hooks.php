@@ -61,6 +61,21 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 	}
 }
 
+if ( ! function_exists( 'vsp_load_core_assets' ) ) {
+	/**
+	 * Custom Function To Load All Core Assets.
+	 */
+	function vsp_load_core_assets() {
+		if ( wp_style_is( 'vsp-framework', 'registered' ) && false === wp_style_is( 'vsp-framework' ) ) {
+			wp_enqueue_style( 'vsp-framework' );
+		}
+
+		if ( wp_script_is( 'vsp-framework', 'registered' ) && false === wp_script_is( 'vsp-framework' ) ) {
+			wp_enqueue_script( 'vsp-framework' );
+		}
+	}
+}
+
 
 if ( ! function_exists( 'vsp_init_admin_notices' ) ) {
 	/**
