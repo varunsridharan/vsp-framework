@@ -31,21 +31,13 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'extra_css'        => array( 'vsp-plugins', 'vsp-framework' ),
-			'extra_js'         => array( 'vsp-plugins', 'vsp-framework' ),
-			'option_name'      => false,
-			'plugin_id'        => null,
-			'theme'            => 'wp',
-			'template_path'    => false,
-			'is_single_page'   => false,
-			'is_sticky_header' => false,
-			'menu'             => array(),
-			'buttons'          => array(
-				'save'    => 'Save Settings',
-				'restore' => false,
-				'reset'   => false,
-			),
-
+			'extra_css'      => array(),
+			'extra_js'       => array(),
+			'option_name'    => false,
+			'plugin_id'      => null,
+			'is_single_page' => false,
+			'menu'           => array(),
+			'theme'          => 'wp',
 		);
 
 		/**
@@ -134,7 +126,10 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * @return mixed
 		 */
 		public function set_sysinfo_data( $data ) {
-			$data[ $this->slug( 'slug' ) . '_settings' ] = $this->framework->get_db_options();
+			$settings = $this->framework->get_db_options();
+			if ( $settings ) {
+				$data[ $this->slug( 'slug' ) . '_settings' ] = $this->framework->get_db_options();
+			}
 			return $data;
 		}
 
@@ -195,17 +190,10 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 				unset( $this->page_config['buttons'] );
 			}
 
-
-			if ( isset( $this->page_config['extra_js'] ) && is_array( $this->page_config['extra_js'] ) && false === in_array( 'vsp-framework', $this->page_config['extra_js'] ) ) {
-				$this->page_config['extra_js'][] = 'vsp-framework';
+			if ( isset( $this->page_config['extra_js'] ) && is_array( $this->page_config['extra_js'] ) ) {
+				$this->page_config['extra_js'][] = 'vsp_load_core_assets';
 			} else {
-				$this->page_config['extra_js'][] = 'vsp-framework';
-			}
-
-			if ( isset( $this->page_config['extra_css'] ) && is_array( $this->page_config['extra_css'] ) && false === in_array( 'vsp-framework', $this->page_config['extra_css'] ) ) {
-				$this->page_config['extra_css'][] = 'vsp-framework';
-			} else {
-				$this->page_config['extra_js'][] = 'vsp-framework';
+				$this->page_config['extra_js'] = array( $this->page_config['extra_js'], 'vsp_load_core_assets' );
 			}
 		}
 
@@ -224,7 +212,6 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 					$pages[ $page ]['sections'][ $section ] = $v;
 				}
 			}
-
 
 			foreach ( $this->fields as $id => $fields ) {
 				$page    = explode( '/', $id );
