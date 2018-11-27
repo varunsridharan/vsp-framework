@@ -25,7 +25,14 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 	 * @since 1.0
 	 */
 	class VSP_System_Logs extends VSP_Class_Handler {
-		protected static $logs        = array();
+		/**
+		 * @var array
+		 */
+		protected static $logs = array();
+
+		/**
+		 * @var array
+		 */
 		protected static $actual_logs = array();
 
 		/**
@@ -47,6 +54,8 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 		 * @static
 		 */
 		public static function read_file( $filepath, $lines = 1, $adaptive = true ) {
+			$filepath = ( isset( self::$logs[ $filepath ] ) ) ? self::$logs[ $filepath ] : $filepath;
+			$filepath = VSP_LOG_DIR . $filepath;
 			// Open file
 			$f = @fopen( $filepath, 'rb' );
 
@@ -90,16 +99,48 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 		 */
 		public static function render() {
 			self::scan_log_files();
-
+			$file_removed = false;
 			if ( ! empty( $_REQUEST['log_file'] ) && isset( self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ] ) ) {
-				$viewed_log = self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ];
+				$viewed_log = sanitize_title( $_REQUEST['log_file'] );
 			} elseif ( ! empty( self::$logs ) ) {
-				$viewed_log = current( self::$logs );
+				$viewed_log = current( array_keys( self::$logs ) );
 			}
-			$handle = ! empty( $viewed_log ) ? self::get_log_file_handle( $viewed_log ) : '';
+
+			if ( isset( $_REQUEST['delete-handle'] ) && ! empty( $_REQUEST['delete-handle'] ) ) {
+				self::remove_log();
+				$file_removed = true;
+			}
 
 			include( VSP_PATH . 'views/log-viewer.php' );
 
+		}
+
+		/**
+		 * Deletes A File.
+		 */
+		public static function remove_log() {
+			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'remove_log' ) ) { // WPCS: input var ok, sanitization ok.
+				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.' ) );
+			}
+
+			if ( ! empty( $_REQUEST['delete-handle'] ) ) {  // WPCS: input var ok.
+				if ( isset( self::$logs[ $_REQUEST['delete-handle'] ] ) ) {
+					$file = self::$logs[ $_REQUEST['delete-handle'] ];
+
+					foreach ( self::$actual_logs as $group => $data ) {
+						if ( isset( $data[ $_REQUEST['delete-handle'] ] ) ) {
+							unset( $data[ $_REQUEST['delete-handle'] ] );
+							self::$actual_logs[ $group ] = $data;
+							break;
+						}
+					}
+					if ( file_exists( VSP_LOG_DIR . $file ) ) {
+						unlink( VSP_LOG_DIR . $file );
+					}
+				}
+			}
+			wp_safe_redirect( esc_url_raw( remove_query_arg( array( 'delete-handle', '_wpnonce' ) ) ) );
+			exit();
 		}
 
 		/**
@@ -186,6 +227,11 @@ if ( ! class_exists( 'VSP_System_Logs' ) ) {
 			return substr( $filename, 0, strlen( $filename ) > 37 ? strlen( $filename ) - 37 : strlen( $filename ) - 4 );
 		}
 
+		/**
+		 * Forces a log file as downloadable.
+		 *
+		 * @param $file
+		 */
 		public static function download_log( $file ) {
 			self::scan_log_files();
 			foreach ( self::$actual_logs as $files ) {

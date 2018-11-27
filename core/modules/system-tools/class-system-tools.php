@@ -92,6 +92,24 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 	}
 
 	/**
+	 * @param       $given_data
+	 * @param array $default
+	 *
+	 * @return array
+	 */
+	private function menu_data( $given_data, $default = array() ) {
+		if ( is_bool( $given_data ) ) {
+			return $default;
+		} elseif ( is_string( $given_data ) ) {
+			$default['title'] = $given_data;
+			$default['name']  = sanitize_title( $given_data );
+		} elseif ( is_array( $given_data ) ) {
+			$default = array_merge( $default, $given_data );
+		}
+		return $default;
+	}
+
+	/**
 	 * Adds System Status Admin Page & Section Based on the settings.
 	 *
 	 * @param array $args
@@ -116,24 +134,6 @@ class VSP_System_Tools extends VSP_Class_Handler implements VSP_Plugin_Settings_
 			}
 		}
 		return $args;
-	}
-
-	/**
-	 * @param       $given_data
-	 * @param array $default
-	 *
-	 * @return array
-	 */
-	private function menu_data( $given_data, $default = array() ) {
-		if ( is_bool( $given_data ) ) {
-			return $default;
-		} elseif ( is_string( $given_data ) ) {
-			$default['title'] = $given_data;
-			$default['name']  = sanitize_title( $given_data );
-		} elseif ( is_array( $given_data ) ) {
-			$default = array_merge( $default, $given_data );
-		}
-		return $default;
 	}
 
 	/**
