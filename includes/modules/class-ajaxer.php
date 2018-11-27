@@ -83,13 +83,6 @@ abstract class Ajaxer extends \VSP\Base {
 	protected $is_single = false;
 
 	/**
-	 * Provide a action key if $this->is_single is set to true
-	 *
-	 * @var string
-	 */
-	protected $single_ajax_key = '';
-
-	/**
 	 * VSP_Ajaxer constructor.
 	 *
 	 * @param array $options
@@ -145,13 +138,11 @@ abstract class Ajaxer extends \VSP\Base {
 	 * ajax_action will be replaced with {$this->action}-action from url
 	 */
 	public function ajax_request_single() {
-		$key = $this->action;
-
 		$action = false;
-		if ( isset( $_REQUEST[ $key . '-action' ] ) && ! empty( $_REQUEST[ $key . '-action' ] ) ) {
-			$action = $_REQUEST[ $key . '-action' ];
-		} elseif ( isset( $_REQUEST[ $this->action . '-action' ] ) && ! empty( $_REQUEST[ $this->action . '-action' ] ) ) {
+		if ( isset( $_REQUEST[ $this->action . '-action' ] ) && ! empty( $_REQUEST[ $this->action . '-action' ] ) ) {
 			$action = $_REQUEST[ $this->action . '-action' ];
+		} elseif ( isset( $_REQUEST[ $this->action ] ) && ! empty( $_REQUEST[ $this->action ] ) ) {
+			$action = $_REQUEST[ $this->action ];
 		}
 
 		$_action = $this->extract_action_slug( $action );
