@@ -234,16 +234,14 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 */
 		public static function download_log( $file ) {
 			self::scan_log_files();
-			foreach ( self::$actual_logs as $files ) {
-				foreach ( $files as $k => $v ) {
-					$size = filesize( VSP_LOG_DIR . $file );
-					if ( $v === $v ) {
-						header( 'Cache-Control: private' );
-						header( 'Content-Type: application/stream' );
-						header( 'Content-Length: ' . $size );
-						header( "Content-Disposition: attachment; filename=$file" );
-						readfile( VSP_LOG_DIR . $file );
-					}
+			foreach ( self::$logs as $file_key => $_file ) {
+				$size = filesize( VSP_LOG_DIR . $_file );
+				if ( $file === $file_key ) {
+					header( 'Cache-Control: private' );
+					header( 'Content-Type: application/stream' );
+					header( 'Content-Length: ' . $size );
+					header( "Content-Disposition: attachment; filename=$file" );
+					readfile( VSP_LOG_DIR . $_file );
 				}
 			}
 		}
