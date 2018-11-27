@@ -132,9 +132,11 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			add_action( 'init', array( $this, '__wp_init' ), 20 );
 			add_filter( 'load_textdomain_mofile', array( $this, 'load_textdomain' ), 10, 2 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_assets' ) );
+			add_action( 'wponion_loaded', array( $this, 'wponion_loaded' ) );
 
 			if ( vsp_is_admin() ) {
 				$this->__register_admin_hooks();
+				$this->admin_init();
 			}
 			$this->register_hooks();
 		}
@@ -169,11 +171,13 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			if ( false !== $this->option( 'settings_page' ) ) {
 				$this->settings_init_before();
 				$this->action( 'settings_init_before' );
-				$args                = $this->option( 'settings_page' );
-				$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
-				$this->settings      = $this->_instance( 'VSP_Settings_WPOnion', false, true, $this->option( 'settings_page' ) );
-				$this->settings_init();
-				$this->action( 'settings_init' );
+				$args = $this->option( 'settings_page' );
+				if ( is_array( $args ) ) {
+					$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
+					$this->settings      = $this->_instance( 'VSP\Modules\WPOnion', false, true, $this->option( 'settings_page' ) );
+					$this->settings_init();
+					$this->action( 'settings_init' );
+				}
 			}
 		}
 
