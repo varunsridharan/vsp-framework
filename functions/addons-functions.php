@@ -106,33 +106,38 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 
 		// Translate fields
 		if ( $translate ) {
-			if ( $textdomain = $plugin_data['TextDomain'] ) {
-				if ( ! is_textdomain_loaded( $textdomain ) ) {
+			$text_domain = $plugin_data['TextDomain'];
+			if ( $text_domain ) {
+				if ( ! is_textdomain_loaded( $text_domain ) ) {
 					if ( $plugin_data['DomainPath'] ) {
-						load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) . $plugin_data['DomainPath'] );
+						load_plugin_textdomain( $text_domain, false, dirname( $plugin_file ) . $plugin_data['DomainPath'] );
 					} else {
-						load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) );
+						load_plugin_textdomain( $text_domain, false, dirname( $plugin_file ) );
 					}
 				}
 			} elseif ( 'hello.php' == basename( $plugin_file ) ) {
-				$textdomain = 'default';
+				$text_domain = 'default';
 			}
-			if ( $textdomain ) {
+			if ( $text_domain ) {
 				foreach ( array( 'Name', 'PluginURI', 'Description', 'Author', 'AuthorURI', 'Version' ) as $field ) {
-					$plugin_data[ $field ] = translate( $plugin_data[ $field ], $textdomain );
+					$plugin_data[ $field ] = translate( $plugin_data[ $field ], $text_domain );
 				}
 			}
 		}
 
 		// Sanitize fields
-		$allowed_tags      = $allowed_tags_in_links = array(
+		$allowed_tags_in_links = array(
 			'abbr'    => array( 'title' => true ),
 			'acronym' => array( 'title' => true ),
 			'code'    => true,
 			'em'      => true,
 			'strong'  => true,
 		);
-		$allowed_tags['a'] = array( 'href' => true, 'title' => true );
+		$allowed_tags          = $allowed_tags_in_links;
+		$allowed_tags['a']     = array(
+			'href'  => true,
+			'title' => true,
+		);
 
 		// Name is marked up inside <a> tags. Don't allow these.
 		// Author is too, but some plugins have used <a> here (omitting Author URI).
@@ -147,16 +152,19 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 
 		// Apply markup
 		if ( $markup ) {
-			if ( $plugin_data['PluginURI'] && $plugin_data['Name'] )
+			if ( $plugin_data['PluginURI'] && $plugin_data['Name'] ) {
 				$plugin_data['Title'] = '<a href="' . $plugin_data['PluginURI'] . '">' . $plugin_data['Name'] . '</a>';
+			}
 
-			if ( $plugin_data['AuthorURI'] && $plugin_data['Author'] )
+			if ( $plugin_data['AuthorURI'] && $plugin_data['Author'] ) {
 				$plugin_data['Author'] = '<a href="' . $plugin_data['AuthorURI'] . '">' . $plugin_data['Author'] . '</a>';
+			}
 
 			$plugin_data['Description'] = wptexturize( $plugin_data['Description'] );
 
-			if ( $plugin_data['Author'] )
+			if ( $plugin_data['Author'] ) {
 				$plugin_data['Description'] .= ' <cite>' . sprintf( __( 'By %s.', 'vsp-framework' ), $plugin_data['Author'] ) . '</cite>';
+			}
 		}
 
 		return $plugin_data;
@@ -255,19 +263,16 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 			$_with_banner = 'with-banner';
 			$low          = empty( $api->banners['low'] ) ? $api->banners['high'] : $api->banners['low'];
 			$high         = empty( $api->banners['high'] ) ? $api->banners['low'] : $api->banners['high'];
-			?>
-			<style type="text/css">
-				#plugin-information-title.with-banner {
-					background-image: url( <?php echo esc_url( $low ); ?> );
-				}
-
-				@media only screen and ( -webkit-min-device-pixel-ratio: 1.5 ) {
-					#plugin-information-title.with-banner {
-						background-image: url( <?php echo esc_url( $high ); ?> );
-					}
-				}
-			</style>
-			<?php
+			echo '<style type="text/css">
+#plugin-information-title.with-banner {
+	background-image: url( "' . esc_url( $low ) . '");
+}
+@media only screen and ( -webkit-min-device-pixel-ratio: 1.5 ) {
+	#plugin-information-title.with-banner {
+		background-image: url("' . $high . '" );
+	}
+}
+</style>';
 		}
 
 		echo '<div id="plugin-information-scrollable">';
@@ -286,7 +291,10 @@ if ( ! function_exists( 'vsp_addon_information' ) ) {
 			}
 
 			$class       = ( $section_name === $section ) ? ' class="current"' : '';
-			$href        = add_query_arg( array( 'tab' => $tab, 'section' => $section_name ) );
+			$href        = add_query_arg( array(
+				'tab'     => $tab,
+				'section' => $section_name,
+			) );
 			$href        = esc_url( $href );
 			$san_section = esc_attr( $section_name );
 			echo "\t<a name='$san_section' href='$href' $class>$title</a>\n";
