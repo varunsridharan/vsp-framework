@@ -39,10 +39,8 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 		 * @var array
 		 */
 		protected $actions = array(
-			'addon_action'   => false,
-			'sysinfo_remote' => false,
-			'sys_info'       => true,
-			'download_log'   => true,
+			'addon_action' => false,
+			'download_log' => true,
 		);
 
 		/**
@@ -66,48 +64,6 @@ if ( ! class_exists( 'VSP_Core_Ajax' ) ) {
 			}
 
 			wp_send_json_error();
-		}
-
-		public function sysinfo_remote() {
-			if ( 'generate' === $_REQUEST['sysinfo_action'] ) {
-				$value  = wp_hash( microtime( true ) . wp_generate_password( 10, true ) );
-				$output = vsp_ajax_url( array( 'action' => 'vsp_sys_info', 'vsp-key' => $value ) );
-
-
-				vsp_set_cache( 'vsp-sysinfo-url', $value, '2_days' );
-				vsp_send_callback_success( array(
-					'success'    => swal_success( __( 'URL Generated' ), __( 'Remote View URL Generated. due to security reasons this url will only be valid for 48hrs from now.', 'vsp-framework' ), array(
-						'input'      => 'text',
-						'inputValue' => $output,
-					) ),
-					'changeURL'  => 'jQuery("a#vspsysinfocurl").attr("href","' . $output . '"); jQuery("a#vspsysinfocurl").text("' . $output . '")',
-					'selectText' => 'jQuery("input.swal2-input").on("click",function(){this.select(); document.execCommand("copy");})',
-				) );
-			} else {
-				$output = vsp_ajax_url( array( 'action' => 'vsp_sys_info' ) );
-				vsp_delete_cache( 'vsp-sysinfo-url' );
-				vsp_send_callback_success( array(
-					'success'   => swal_success( __( 'Remote URL Disabled' ) ),
-					'changeURL' => 'jQuery("a#vspsysinfocurl").attr("href","' . $output . '"); jQuery("a#vspsysinfocurl").text("' . $output . '")',
-				) );
-			}
-		}
-
-		public function sys_info() {
-			if ( ! isset( $_GET['vsp-key'] ) || empty( $_GET['vsp-key'] ) ) {
-				return;
-			}
-
-			$query_value = $_GET['vsp-key'];
-			$value       = vsp_get_cache( 'vsp-sysinfo-url' );
-
-			if ( $query_value == $value ) {
-				echo '<pre>';
-				echo esc_html( VSP_System_Status_Report::text_output() );
-				echo '</pre>';
-				exit();
-			}
-			wp_die();
 		}
 
 		public function handle_admin_notices() {
