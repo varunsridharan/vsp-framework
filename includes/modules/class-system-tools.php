@@ -38,10 +38,10 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 * @var array
 	 */
 	protected $default_options = array(
-		'system_tools_menu' => true,
-		'menu'              => true,
-		'system_status'     => true,
-		'logging'           => true,
+		'system_tools'  => true,
+		'menu'          => true,
+		'system_status' => true,
+		'logging'       => true,
 	);
 
 	/**
@@ -67,7 +67,7 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 * Outputs Logs View.
 	 */
 	public function output_logs_info() {
-		$instance = $this->_instance( 'VSP_System_Logs', false, true, array() );
+		$instance = $this->_instance( '\VSP\Modules\System_Logs', false, true, array() );
 		$instance::render();
 	}
 
@@ -79,7 +79,7 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 * @return mixed
 	 */
 	public function add_pages( $pages = array() ) {
-		if ( false === $this->option( 'system_tools_menu' ) ) {
+		if ( false === $this->option( 'system_tools' ) ) {
 			$pages = $this->system_status_menu( $pages, true );
 			$pages = $this->system_logs_menu( $pages, true );
 		} else {
@@ -180,7 +180,7 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 * @return mixed
 	 */
 	public function add_sections( $sections = array() ) {
-		if ( false !== $this->option( 'system_tools_menu' ) && ! is_null( $this->mp_slug ) ) {
+		if ( false !== $this->option( 'system_tools' ) && ! is_null( $this->mp_slug ) ) {
 			$sections = $this->system_status_menu( $sections, false );
 			$sections = $this->system_logs_menu( $sections, false );
 		}
