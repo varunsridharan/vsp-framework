@@ -18,7 +18,7 @@ if ( ! function_exists( 'vsp_on_framework_loaded' ) ) {
 	 * Creates A Instances For WP Importers
 	 */
 	function vsp_on_framework_loaded() {
-		VSP_WP_Importers::instance();
+		\VSP\Modules\WordPress\Importers::instance();
 	}
 }
 

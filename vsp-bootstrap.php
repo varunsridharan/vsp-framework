@@ -60,19 +60,19 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
 	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
 
-	require_once VSP_CORE . 'class-autoloader.php';
-	require_once VSP_CORE . 'class-cache.php';
-	require_once VSP_PATH . 'vsp-functions.php';
-	require_once VSP_PATH . 'core/class-helper.php';
-	require_once VSP_CORE . 'class-base-setup.php';
-	require_once VSP_PATH . 'vsp-hooks.php';
+	require_once __DIR__ . '/includes/class-autoloader.php';
+	require_once __DIR__ . '/includes/modules/class-cache.php';
+	require_once __DIR__ . '/vsp-functions.php';
+	require_once __DIR__ . '/includes/class-helper.php';
+	require_once __DIR__ . '/includes/class-base.php';
+	require_once __DIR__ . '/vsp-hooks.php';
 
 	do_action( 'vsp_framework_load_lib_integrations' );
 
 	do_action( 'vsp_framework_loaded' );
 
 	if ( vsp_is_ajax() ) {
-		require_once VSP_CORE . 'class-core-ajax.php';
+		require_once __DIR__ . '/includes/class-ajax.php';
 	}
 
 	/**

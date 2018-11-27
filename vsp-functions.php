@@ -17,7 +17,7 @@ $vsp_plugins = array();
 /**
  * @uses \VSP_Autoloader::load()
  */
-spl_autoload_register( 'VSP_Autoloader::load' );
+spl_autoload_register( '\VSP\Autoloader::load' );
 
 if ( ! function_exists( 'vsp_load_integration' ) ) {
 	/**
@@ -28,7 +28,7 @@ if ( ! function_exists( 'vsp_load_integration' ) ) {
 	 * @return bool
 	 */
 	function vsp_load_integration( $type = '' ) {
-		return VSP_Autoloader::integration( $type );
+		return \VSP\Autoloader::integration( $type );
 	}
 }
 
@@ -41,7 +41,7 @@ if ( ! function_exists( 'vsp_load_lib' ) ) {
 	 * @return bool
 	 */
 	function vsp_load_lib( $type = '' ) {
-		return VSP_Autoloader::library( $type );
+		return \VSP\Autoloader::library( $type );
 	}
 }
 
@@ -241,7 +241,7 @@ if ( ! function_exists( 'vsp_is_plugin_active' ) ) {
 	 * @return bool
 	 */
 	function vsp_is_plugin_active( $file = '' ) {
-		return VSP_Dependencies::active_check( $file );
+		return \VSP\Helper\Dependencies::active_check( $file );
 	}
 }
 
@@ -271,4 +271,4 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	}
 }
 
-vsp_load_file( VSP_PATH . 'functions/*.php' );
+vsp_load_file( VSP_PATH . 'includes/functions/*.php' );
