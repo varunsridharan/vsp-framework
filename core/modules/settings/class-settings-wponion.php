@@ -31,13 +31,8 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'extra_css'      => array(),
-			'extra_js'       => array(),
-			'option_name'    => false,
-			'plugin_id'      => null,
-			'is_single_page' => false,
-			'menu'           => array(),
-			'theme'          => 'wp',
+			'option_name' => false,
+			'theme'       => 'wp',
 		);
 
 		/**
@@ -179,21 +174,14 @@ if ( ! class_exists( 'VSP_Settings_WPOnion' ) ) {
 		 * Returns Settings Default Config
 		 */
 		public function get_settings_config() {
-			$defaults = array_keys( $this->default_options );
-
-			$this->page_config = array();
-			foreach ( $defaults as $op ) {
-				$this->page_config[ $op ] = $this->option( $op, '' );
-			}
-
-			if ( empty( $this->page_config['buttons'] ) ) {
-				unset( $this->page_config['buttons'] );
-			}
+			$this->page_config = $this->options;
 
 			if ( isset( $this->page_config['extra_js'] ) && is_array( $this->page_config['extra_js'] ) ) {
 				$this->page_config['extra_js'][] = 'vsp_load_core_assets';
-			} else {
+			} elseif ( isset( $this->page_config['extra_js'] ) ) {
 				$this->page_config['extra_js'] = array( $this->page_config['extra_js'], 'vsp_load_core_assets' );
+			} elseif ( ! isset( $this->page_config['extra_js'] ) ) {
+				$this->page_config['extra_js'] = array( 'vsp_load_core_assets' );
 			}
 		}
 
