@@ -104,4 +104,11 @@ trait Framework {
 	 */
 	public function logging_init() {
 	}
+
+	/**
+	 * @see \VSP_Framework::register_hooks()
+	 */
+	public function wponion_loaded() {
+
+	}
 }
