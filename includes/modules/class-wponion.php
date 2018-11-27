@@ -91,7 +91,7 @@ if ( ! class_exists( 'WPOnion' ) ) {
 				$this->sections = array();
 				add_filter( 'vsp_system_status_headers_vsp_plugins', array( &$this, 'set_sysinfo_headers' ) );
 				add_filter( 'vsp_system_status_data', array( &$this, 'set_sysinfo_data' ) );
-				add_action( 'wponion_loaded', array( &$this, 'init_settings' ), 40 );
+				add_action( 'wponion_loaded', array( &$this, 'init_settings' ) );
 				add_action( 'vsp_show_sys_page', array( &$this, 'render_sys_page' ) );
 			}
 		}
