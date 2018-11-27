@@ -55,6 +55,11 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		private $scripts_check = array();
 
 		/**
+		 * @var array
+		 */
+		public static $instance = array();
+
+		/**
 		 * VSP_Localize_API constructor.
 		 *
 		 * @param string $slug
@@ -63,8 +68,9 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 		 * @param bool   $print_functions
 		 */
 		public function __construct( $slug = '', $scripts_check = array(), $frontend = false, $print_functions = true ) {
-			$this->slug          = $slug;
-			$this->scripts_check = $scripts_check;
+			$this->slug              = $slug;
+			$this->scripts_check     = $scripts_check;
+			self::$instance[ $slug ] = &$this;
 			add_action( 'admin_footer', array( &$this, 'render_js_args' ) );
 			add_action( 'customize_controls_print_footer_scripts', array( &$this, 'render_js_args' ), 9999999999999 );
 
@@ -79,6 +85,22 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 					add_action( 'wp_footer', array( &$this, 'print_functions' ) );
 				}
 			}
+		}
+
+		/**
+		 * Checks and returns an active instance.
+		 * VSP_Localize_API::get('your-plugin-slug')
+		 *
+		 * @param $key
+		 *
+		 * @return self
+		 */
+		public static function get( $key ) {
+			if ( isset( self::$instance[ $key ] ) && self::$instance[ $key ] instanceof self ) {
+				return self::$instance[ $key ];
+			}
+			self::$instance[ $key ] = new self();
+			return self::$instance[ $key ];
 		}
 
 		/**
@@ -148,7 +170,6 @@ if ( ! class_exists( 'VSP_Localize_API' ) ) {
 			}
 			return $args;
 		}
-
 
 		/**
 		 * Custom Text which will be used in JS.
