@@ -74,6 +74,9 @@ if ( ! class_exists( 'Ajax' ) ) {
 			wp_die();
 		}
 
+		/**
+		 * Handles Log Download.
+		 */
 		public function download_log() {
 			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
 				Modules\System_Logs::download_log( $_REQUEST['handle'] );
