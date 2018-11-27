@@ -8,7 +8,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 ?>
 <?php if ( self::$logs ) : ?>
 	<div id="vsp-log-view-wrap">
@@ -17,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<select name="log_file">
 					<?php
 					foreach ( self::$actual_logs as $group => $log ) {
+						if ( empty( $log ) ) {
+							continue;
+						}
 						$group = ( '' === $group ) ? __( 'VSP Framework', 'vsp-framework' ) : $group;
 						echo '<optgroup label="' . $group . '">';
 						foreach ( $log as $key => $file ) {
@@ -32,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</select>
 				<?php
 				if ( ! empty( $viewed_log ) ) {
-					$href = wp_nonce_url( add_query_arg( 'handle', $viewed_log ), 'remove_log' );
+					$href = wp_nonce_url( add_query_arg( 'delete-handle', $viewed_log ), 'remove_log' );
 					echo ' <a href="' . $href . '" class="button log-delete-handle text-danger">' . __( 'Delete Log' ) . '</a>';
 				}
 				?>
@@ -41,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="log-center">
 				<h2><?php echo $viewed_log; ?></h2>
 				<?php
-				if ( ! empty( $handle ) ) {
+				if ( ! empty( $viewed_log ) ) {
 					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $viewed_log ), 'download_log' );
 					echo ' <a href="' . $href . '" target="_blank" class="button log-download-handle">' . __( 'Download' ) . '</a>';
 				}
@@ -49,7 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 		<div class="log-viewer">
-			<pre><?php echo esc_html( self::read_file( VSP_LOG_DIR . $viewed_log, 1000 ) ); ?></pre>
+			<pre><?php echo esc_html( self::read_file( $viewed_log, 1000 ) ); ?></pre>
 		</div>
 	</div>
 <?php else : ?>
