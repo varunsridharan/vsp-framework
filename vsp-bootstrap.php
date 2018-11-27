@@ -50,7 +50,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @return string
 	 */
 	function vsp_version() {
-		return '250720180427';
+		return '250720180428';
 	}
 
 	$upload_dir = wp_upload_dir( null, false );
