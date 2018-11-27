@@ -93,6 +93,15 @@ trait VSP_Validate_Trait {
 		return filter_var( $domain, FILTER_VALIDATE_DOMAIN ) ? true : false;
 	}
 
+	/**
+	 * Validates if Given url is a proper bool value.
+	 * true => true|'true'|1|on|yes
+	 * false => ''|false|0|'false'|null|no|off
+	 *
+	 * @param $value
+	 *
+	 * @return bool
+	 */
 	public static function is_bool( $value ) {
 		return ! in_array( strtolower( $value ), array( '', 'false', '0', 'no', 'off', null ) );
 	}

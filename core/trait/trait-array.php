@@ -390,7 +390,5 @@ trait VSP_Array_Trait {
 
 		return $array_or_object;
 	}
-
-
 }
 

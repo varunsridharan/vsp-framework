@@ -336,7 +336,6 @@ trait VSP_MimeType_Trait {
 		'.mny'         => 'application/x-msmoney',
 		'.mods'        => 'application/mods+xml',
 		'.movie'       => 'video/x-sgi-movie',
-		'.mp4'         => 'application/mp4',
 		'.mp4'         => 'video/mp4',
 		'.mp4a'        => 'audio/mp4',
 		'.mpc'         => 'application/vnd.mophun.certificate',
