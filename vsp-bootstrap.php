@@ -66,7 +66,6 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	require_once VSP_PATH . 'core/class-helper.php';
 	require_once VSP_CORE . 'class-base-setup.php';
 	require_once VSP_PATH . 'vsp-hooks.php';
-	require_once VSP_PATH . 'core/modules/system-tools/class-system-status-report.php';
 
 	do_action( 'vsp_framework_load_lib_integrations' );
 
