@@ -168,7 +168,11 @@ abstract class Ajaxer extends \VSP\Base {
 	protected function extract_action_slug( $action ) {
 		$action = str_replace( $this->action_prefix, '', $action );
 		$action = str_replace( $this->action_surfix, '', $action );
-		return vsp_fix_slug( $action );
+		$action = ltrim( $action, ' ' );
+		$action = ltrim( $action, '_' );
+		$action = rtrim( $action, ' ' );
+		$action = rtrim( $action, '_' );
+		return $action;
 	}
 
 	/**

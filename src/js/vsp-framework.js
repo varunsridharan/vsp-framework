@@ -1,6 +1,5 @@
-window.vsp_helper = require( 'vsp-js-helper/index' );
-
 module.exports = ( ( $, window, document, wp ) => {
+	window.vsp_helper    = window.$wponion_helper;
 	window.VSP_FRAMEWORK = ( typeof Object.create !== 'undefined' ) ? Object.create( null ) : {};
 
 	$.VSP_FRAMEWORK = {};

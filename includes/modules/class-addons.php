@@ -115,7 +115,7 @@ if ( ! class_exists( 'Addons' ) ) {
 
 			if ( ! empty( $deactivated_plugins ) ) {
 				$msg = $msg . '<ul>' . $deactivated_plugins . '</ul>';
-				vsp_notice_error( false, $msg );
+				wponion_error_admin_notice( false, $msg );
 			}
 		}
 

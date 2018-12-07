@@ -93,7 +93,10 @@ if ( ! class_exists( 'File_Meta' ) ) {
 			$data = wp_json_encode( $addon_file );
 			$msg  = sprintf( __( 'Duplicate Addon Found. Unable to load Please contact the developer with below information %s', 'vsp-framework' ), date( 'h:i:s' ) );
 			$msg  = $msg . '<br/> <pre><code>' . $data . '</code></pre>';
-			vsp_notice_error( $msg, 1, '', array( $this->settings_pagehook ) );
+			wponion_error_admin_notice( $msg, false, array(
+				'screens' => $this->settings_pagehook,
+				'times'   => 1,
+			) );
 		}
 
 		/**

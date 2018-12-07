@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-add_action( 'vsp_framework_loaded', 'vsp_init_admin_notices', 1 );
+
 add_action( 'vsp_framework_loaded', 'vsp_on_framework_loaded' );
 
 if ( ! function_exists( 'vsp_on_framework_loaded' ) ) {
@@ -72,20 +72,6 @@ if ( ! function_exists( 'vsp_load_core_assets' ) ) {
 
 		if ( wp_script_is( 'vsp-framework', 'registered' ) && false === wp_script_is( 'vsp-framework' ) ) {
 			wp_enqueue_script( 'vsp-framework' );
-		}
-	}
-}
-
-
-if ( ! function_exists( 'vsp_init_admin_notices' ) ) {
-	/**
-	 * Creats A Instance Of Admin Notice Class
-	 *
-	 * @use vsp_framework_init
-	 */
-	function vsp_init_admin_notices() {
-		if ( vsp_is_admin() || vsp_is_ajax() ) {
-			vsp_notices();
 		}
 	}
 }

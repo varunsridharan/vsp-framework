@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'vsp_current_screen' ) ) {
 	/**
-	 * Gets current screen ID
+	 * Returns Either Full Screen Object or just the screen id.
 	 *
 	 * @param bool $only_id .
 	 *
@@ -50,23 +50,6 @@ if ( ! function_exists( 'vsp_is_screen' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_fix_slug' ) ) {
-	/**
-	 * Fix Slug
-	 *
-	 * @param string $name .
-	 *
-	 * @return string
-	 */
-	function vsp_fix_slug( $name ) {
-		$name = ltrim( $name, ' ' );
-		$name = ltrim( $name, '_' );
-		$name = rtrim( $name, ' ' );
-		$name = rtrim( $name, '_' );
-		return $name;
-	}
-}
-
 if ( ! function_exists( 'vsp_current_page_url' ) ) {
 	/**
 	 * Returns Current Page URL
@@ -95,6 +78,8 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 	/**
 	 * Returns Cache Time in numeric values
 	 *
+	 * @example vsp_get_time_in_seconds('1_minute') => 60
+	 *
 	 * @param string $time .
 	 *
 	 * @return float|int
@@ -116,20 +101,24 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 			case 'sec':
 				$time = $time_limit;
 				break;
+
 			case 'minute':
 			case 'minutes':
 			case 'min':
 				$time = $time_limit * MINUTE_IN_SECONDS;
 				break;
+
 			case 'hour':
 			case 'hours':
 			case 'hrs':
 				$time = $time_limit * HOUR_IN_SECONDS;
 				break;
+
 			case 'days':
 			case 'day':
 				$time = $time_limit * DAY_IN_SECONDS;
 				break;
+
 			case 'weeks':
 			case 'week':
 				$time = $time_limit * WEEK_IN_SECONDS;
@@ -139,6 +128,7 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 			case 'months':
 				$time = $time_limit * MONTH_IN_SECONDS;
 				break;
+
 			case 'year':
 			case 'years':
 				$time = $time_limit * YEAR_IN_SECONDS;
