@@ -39,7 +39,11 @@ if ( ! class_exists( 'Core' ) ) {
 				'inactive' => __( 'In Active', 'vsp-framework' ),
 			);
 			$this->addon_cats        = $this->default_cats;
-			$this->addons_cats_count = array( 'all' => 0, 'active' => 0, 'inactive' => 0 );
+			$this->addons_cats_count = array(
+				'all'      => 0,
+				'active'   => 0,
+				'inactive' => 0,
+			);
 			parent::__construct();
 		}
 

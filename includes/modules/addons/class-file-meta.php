@@ -155,7 +155,8 @@ if ( ! class_exists( 'File_Meta' ) ) {
 					continue;
 				}
 
-				$meta_data                                              = $this->get_file_metadata( $addon_file );
+				$meta_data = $this->get_file_metadata( $addon_file );
+
 				$this->addon_metadatas[ $meta_data['addon_file_slug'] ] = $meta_data;
 			}
 

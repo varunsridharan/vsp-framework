@@ -39,9 +39,9 @@ abstract class Detailed_View extends File_Meta {
 	/**
 	 * Renders Addons Full Detail View
 	 *
-	 * @param object $result .
-	 * @param string $action .
-	 * @param object $args .
+	 * @param object $result
+	 * @param string $action
+	 * @param object $args
 	 *
 	 * @return array|bool|mixed|object|\WP_Error
 	 */

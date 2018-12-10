@@ -26,7 +26,7 @@ if ( ! class_exists( 'Product' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class Product extends \VSP\Helper\WC\Data_Compatibility {
+	class Product extends Data_Compatibility {
 
 		/** @var array mapped compatibility properties, as `$new_prop => $old_prop` */
 		protected static $compat_props = array(

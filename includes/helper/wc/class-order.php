@@ -27,8 +27,7 @@ if ( ! class_exists( 'Order' ) ) :
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class Order extends \VSP\Helper\WC\Data_Compatibility {
-
+	class Order extends Data_Compatibility {
 
 		/** @var array mapped compatibility properties, as `$new_prop => $old_prop` */
 		protected static $compat_props = array(
