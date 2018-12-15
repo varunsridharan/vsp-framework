@@ -4,12 +4,16 @@
   "homepage"    : "https://github.com/varunsridharan/vsp-framework",
   "license"     : "GPL-3.0+",
   "authors"     : [
-	{
-	  "name" : "Varun Sridharan", "homepage" : "https://varunsridharan.in/"
-	}
+    {
+      "name"     : "Varun Sridharan",
+      "email"    : "varunsridharan23@gmail.com",
+      "homepage" : "https://varunsridharan.in",
+      "role"     : "Developer"
+    }
   ],
-  "require"     : { },
-  "require-dev" : { },
-  "autoload"    : { },
-  "suggest"     : { }
+  "autoload"    : {
+    "files" : [
+      "vsp-init.php"
+    ]
+  },
 }
