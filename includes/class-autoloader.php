@@ -41,13 +41,15 @@ final class Autoloader {
 	 * @var array
 	 */
 	private static $_libs = array(
-		'wp-async'     => 'async.php',
-		'vs-transient' => 'vs-transient.php',
-		'wpdb'         => 'wpdb-helper.php',
-		'wpreview'     => 'review-me.php',
-		'wpallimport'  => 'wpallimport.php',
-		'wppointer'    => 'wp-pointers/wp-pointers.php',
-		'wp-endpoints' => 'vs-wp-endpoint.php',
+		'wp-async'      => 'a5hleyrich/wp-background-processing/wp-background-processing.php',
+		'wp-pointer'    => 'wpbp/pointerplus/pointerplus.php',
+		'wp-ajaxer'     => 'varunsridharan/wp-ajaxer/class-ajaxer.php',
+		'wp-endpoint'   => 'varunsridharan/wp-endpoint/class-endpoint.php',
+		'wp-post'       => 'varunsridharan/wp-post/class-post.php',
+		'wp-review-me'  => 'varunsridharan/wp-review-me/class-wp-review-me.php',
+		'wp-transient'  => 'varunsridharan/wp-transient-api/class-transient-wp-api.php',
+		'wp-db-table'   => 'varunsridharan/wp-db-table/class-db-table.php',
+		'wp-all-import' => 'soflyy/wp-all-import-rapid-addon/rapid-addon.php',
 	);
 
 	/**
@@ -74,7 +76,9 @@ final class Autoloader {
 	/**
 	 * Loads A Class if its from VSP
 	 *
-	 * @param string $class Class Name.
+	 * @param string $req_class
+	 *
+	 * @static
 	 */
 	public static function load( $req_class = '' ) {
 		if ( strpos( $req_class, 'VSP\\' ) !== false ) {
@@ -188,10 +192,9 @@ final class Autoloader {
 	}
 
 	/**
-	 * Loads An Integration
+	 * @param string $_integration
 	 *
-	 * @param string $integration .
-	 *
+	 * @static
 	 * @return bool
 	 */
 	public static function integration( $_integration = '' ) {
@@ -208,8 +211,11 @@ final class Autoloader {
 			}
 		} elseif ( ! isset( self::$_loaded_integrations[ $integration ] ) ) {
 			vsp_log_msg( array(
+				/* translators: Adds integration Name */
 				sprintf( __( 'Failed To Load Requested Integration %s' ), $_integration ),
+				/* translators: Adds integration Name */
 				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::integration_path( true ) ),
+				/* translators: Adds integration Action Name */
 				sprintf( __( 'Tried Action %s', 'vsp-framework' ), 'vsp_lib_' . $integration ),
 			), 'critical' );
 		}
@@ -233,10 +239,9 @@ final class Autoloader {
 	}
 
 	/**
-	 * Loads A lib
+	 * @param string $_lib
 	 *
-	 * @param string $_lib .
-	 *
+	 * @static
 	 * @return bool
 	 */
 	public static function library( $_lib = '' ) {
@@ -254,8 +259,11 @@ final class Autoloader {
 			}
 		} elseif ( ! isset( self::$_loaded_libs[ $lib ] ) ) {
 			vsp_log_msg( array(
+				/* translators: Adds Library Name */
 				sprintf( __( 'Failed To Load Requested Library %s' ), $_lib ),
+				/* translators: Adds Library Search Path */
 				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::lib_path( true ) ),
+				/* translators: Adds Library Triggered Action */
 				sprintf( __( 'Tried Action %s', 'vsp-framework' ), 'vsp_lib_' . $lib ),
 			), 'critical' );
 		}
@@ -272,7 +280,7 @@ final class Autoloader {
 	 * @static
 	 */
 	public static function lib_path( $is_censored_path = false ) {
-		$path = VSP_PATH . 'libs/';
+		$path = VSP_PATH . 'vendor/';
 		if ( true === $is_censored_path ) {
 			$path = basename( ABSPATH ) . str_replace( vsp_unslashit( ABSPATH ), '', $path );
 		}
