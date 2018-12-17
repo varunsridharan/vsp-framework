@@ -15,7 +15,7 @@ global $vsp_plugins;
 $vsp_plugins = array();
 
 /**
- * @uses \VSP_Autoloader::load()
+ * @uses \VSP\Autoloader::load()
  */
 spl_autoload_register( '\VSP\Autoloader::load' );
 
@@ -265,7 +265,8 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	 * @param string $plugin_name .
 	 */
 	function vsp_add_wc_required_notice( $plugin_name = '' ) {
-		$msg = __( '%s Requires %s WooCommerce %s to be installed & activated.', 'vsp-framework' );
+		/* translators: Adds Plugin Name & HTML Tags. */
+		$msg = __( '%1$s Requires %2$s WooCommerce %3$s to be installed & activated.', 'vsp-framework' );
 		$msg = sprintf( $msg, '<strong>' . $plugin_name . '</strong>', '<strong><i>', '</i></strong>' );
 		wponion_error_admin_notice( $msg );
 	}
