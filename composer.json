@@ -5,15 +5,15 @@
   "homepage"    : "https://github.com/varunsridharan/vsp-framework",
   "license"     : "GPL-3.0+",
   "require"     : {
-	"wpbp/pointerplus"                          : "dev-master",
-	"varunsridharan/wp-all-import-rapid-addon " : "dev-master",
-	"varunsridharan/wp-ajaxer"                  : "^1.0",
-	"varunsridharan/wp-endpoint"                : "^1.0",
-	"varunsridharan/wp-post"                    : "^1.0",
-	"varunsridharan/wp-review-me"               : "1.0",
-	"varunsridharan/wp-transient-api"           : "^1.0",
-	"varunsridharan/wp-db-table"                : "dev-master",
-	"a5hleyrich/wp-background-processing"       : "^1.0.1"
+	"wpbp/pointerplus"                      : "dev-master",
+	"varunsridharan/wpallimport_rapidaddon" : "dev-master",
+	"varunsridharan/wp-ajaxer"              : "^1.0",
+	"varunsridharan/wp-endpoint"            : "^1.0",
+	"varunsridharan/wp-post"                : "^1.0",
+	"varunsridharan/wp-review-me"           : "1.0",
+	"varunsridharan/wp-transient-api"       : "^1.0",
+	"varunsridharan/wp-db-table"            : "dev-master",
+	"a5hleyrich/wp-background-processing"   : "^1.0.1"
   },
   "authors"     : [
 	{
