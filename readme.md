@@ -29,57 +29,116 @@ require __DIR__ . '/vsp-framework/vsp-init.php
 ```
 
 
-## Included Frameworks
-- WPOnion - http://github.com/WPONION/
+## Included Libs / Frameworks
+```json
+{
+    "require" : {
+        "wpbp/pointerplus"                      : "dev-master",
+        "varunsridharan/wpallimport_rapidaddon" : "dev-master",
+        "varunsridharan/wp-ajaxer"              : "^1.0",
+        "varunsridharan/wp-endpoint"            : "^1.0",
+        "varunsridharan/wp-post"                : "^1.0",
+        "varunsridharan/wp-review-me"           : "^1.0",
+        "varunsridharan/wp-transient-api"       : "^1.0",
+        "varunsridharan/wp-db-table"            : "dev-master",
+        "a5hleyrich/wp-background-processing"   : "^1.0.1"
+    }
+}
+```
 
-# PHP Args
-
+## Configs
 ```php
+$config = array();
+```
 
-<?php
-
-$plugin_settings = array(
-    'version' => '1.0',
-    'plugin_file' => __FILE__,
-    'settings_page_slug' => '',
-    'plugin_slug' => '',
-    'db_slug' => '',
-    'plugin_name' => '',
-    'hook_slug' => '',
-    
-    'settings_page' => array(
-        'menu_parent' => false,
-        'menu_title' => false,
-        'menu_type' => false,
-        'menu_slug' => false,
-        'menu_icon' => false,
-        'menu_position' => false,
-        'menu_capability' => false,
-        'ajax_save' => false,
-        'show_reset_all' => false,
-        'framework_title' => false,
-        'options_name' => false,
-        'style' => 'modern',
-        'is_single_page' => false,
-        'is_sticky_header' => false,
-        
-        'status_page' => array(
-            'name' => '',
-            'title' => '',
-            'icon' => '',
-        ),
-
-        'show_adds' => true,
-        'show_faqs' => true,
+### Addons Module.
+```php
+/**
+ * Plugin's Addon Module Configuration.
+ * Config Options
+ * array(
+ *    'base_path'               => '',
+ *    'base_url'                => '',
+ *    'addon_listing_tab_name'  => 'addons',
+ *    'addon_listing_tab_title' => 'Addons',
+ *    'addon_listing_tab_icon'  => 'fa fa-plus',
+ *    'file_headers'            => array(),
+ *    'show_category_count'     => true,
+ * )
+ */
+$config['addons'] = true;
+```
+### Settings / WPOnion Module
+```php
+/**
+ * Settings Page Configuration.
+ * Below arguments are related to WPOnion.
+ * please refer https://github.com/wponion/wponion | https://docs.wponion.com for options informations.
+ * basic required ars
+ * array(
+ *    'option_name' => '',
+ *    'theme' => 'modern', #modern|fresh|your-theme
+ * )
+ *
+ */
+$config['settings_page'] = array(
+    'option_name'     => 'vsp_sample_settings',
+    'theme'           => 'modern',
+    'menu'            => array(
+        'menu_title' => __( 'VSP Sample' ),
+        'page_title' => __( 'VSP Sample Plugin' ),
+        'submenu'    => true,
     ),
-    
-    'addons' => array(
-        'addon_listing_tab_name' => 'addons',
-        'addon_listing_tab_title' => 'addons',
-        'addon_listing_tab_icon' => 'fa fa-plus',
-        'file_headers' => array(),
-        'show_category_count' => true,
-    )
-
+    'framework_title' => __( 'Settings Page' ),
 );
+```
+
+### System Tool Module
+```php
+/**
+ * Config for system tools.
+ * Possible Values : true / false / array()
+ * array(
+ *    'system_tools_menu' => true, # true/false/array of values
+ *    'menu'              => true, # true/false
+ *    'system_status'     => true, #true/false/array of values
+ *    'logging'           => true, #true/false/array of values
+ * )
+ *
+ * system_status /logging / system_tool_menu array data can be like below
+ * array(
+ *    'name' => '',
+ *    'title' => '',
+ *    'icon'=>''
+ * )
+ * The above array is related to WPOnion Page Argument.
+ *
+ * $config['system_tools'] = true;
+ * $config['system_tools'] = false;
+ * $config['system_tools'] = array(
+ *    'menu' => array(
+ *        'title' => __( 'Sys Tools' ),
+ *    ),
+ * );
+ *
+ */
+$config['system_tools'] = true;
+```
+
+### WP Review Me Module
+```php
+/**
+ * Custom Lib To popup a alert after x number of days to ask for plugin review.
+ * please refer https://github.com/varunsridharan/wp-review-me for options informations.
+ */
+$config['VS_WP_Review_Me'] = true;
+```
+
+### Logging Module
+```php
+/**
+ * Config to enable logging option.
+ * if set to true. then it create a custom logger instance and saves it.
+ */
+$config['logging'] = true;
 ```
