@@ -414,3 +414,34 @@ if ( ! function_exists( 'vsp_callback' ) ) {
 		return $data;
 	}
 }
+
+
+if ( ! function_exists( 'vsp_is_json' ) ) {
+	/**
+	 * Checks If Given String is JSON.
+	 *
+	 * @param string $string
+	 *
+	 * @return bool
+	 */
+	function vsp_is_json( $string = '' ) {
+		if ( is_string( $string ) ) {
+			json_decode( $string );
+			return ( json_last_error() == JSON_ERROR_NONE );
+		}
+		return false;
+	}
+}
+
+if ( ! function_exists( 'vsp_is_error' ) ) {
+	/**
+	 * Checks if given instance is a \VSP_Error Instance.
+	 *
+	 * @param $thing
+	 *
+	 * @return bool
+	 */
+	function vsp_is_error( $thing ) {
+		return ( $thing instanceof \VSP\Error );
+	}
+}
