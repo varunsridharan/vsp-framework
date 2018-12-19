@@ -64,13 +64,13 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 		$style = '';
 		if ( false !== $options['customize'] ) {
 			if ( ! empty( $options['icon_color'] ) ) {
-				$icon_color = ( $options['icon_color'] === 'custom' ) ? $options['icon_custom_color'] : $options['icon_color'];
-				$style      .= ' color:' . $icon_color . '; ';
+				$icon_color = ( 'custom' === $options['icon_color'] ) ? $options['icon_custom_color'] : $options['icon_color'];
+				$style      = $style . ' color:' . $icon_color . '; ';
 			}
 
 			if ( ! empty( $options['icon_size'] ) ) {
 				$icon_size = $options['icon_size'];
-				$style     .= ' size:' . $icon_size . '; ';
+				$style     = $style . ' size:' . $icon_size . '; ';
 			}
 		}
 
@@ -86,9 +86,7 @@ if ( ! function_exists( 'vsp_vc_render_icon' ) ) {
 
 		$options['attributes']['class'] .= ' ' . $options['icon'];
 
-		$attr_html = VSP_Helper::array_to_html_attr( array_filter( $options['attributes'] ) );
-
-
+		$attr_html = \VSP\Helper::array_to_html_attr( array_filter( $options['attributes'] ) );
 		return '<i ' . $attr_html . '> </i>';
 	}
 }

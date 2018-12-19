@@ -18,14 +18,21 @@ class VSP_VC_Elements_Loader {
 	 *
 	 * @var array
 	 */
-	public $instance = array();
+	public $instances = array();
 
 	/**
-	 * LoopupKeys
+	 * args
 	 *
 	 * @var array
 	 */
-	public $loopupKeys = array();
+	public $args = array();
+
+	/**
+	 * lookup_keys
+	 *
+	 * @var array
+	 */
+	public $lookup_keys = array();
 
 	/**
 	 * VSP_VC_Elements_Loader constructor.
@@ -33,9 +40,7 @@ class VSP_VC_Elements_Loader {
 	 * @param array $args
 	 */
 	public function __construct( $args = array() ) {
-		$this->instances  = array();
-		$this->lookupKeys = array();
-		$this->args       = wp_parse_args( $args, array(
+		$this->args = wp_parse_args( $args, array(
 			'class_prefix'      => '',
 			'filename_prefix'   => '',
 			'vc_path'           => '',
@@ -69,11 +74,9 @@ class VSP_VC_Elements_Loader {
 			$class_name = untrailingslashit( str_replace( $this->args['vc_path'], '', $file ) );
 			$class_name = ltrim( $class_name, '/' );
 			$class_name = rtrim( $class_name, '/' );
-			$class_name = str_replace( array( $this->args['filename_prefix'], '.php', '-', ), array(
-				'',
-				'',
-				'_',
-			), $class_name );
+			$search     = array( $this->args['filename_prefix'], '.php', '-' );
+			$replace    = array( '', '', '_' );
+			$class_name = str_replace( $search, $replace, $class_name );
 			$class_name = $this->args['class_prefix'] . $class_name;
 
 			require_once( $file );
@@ -81,6 +84,7 @@ class VSP_VC_Elements_Loader {
 			$this->instances( $return );
 		}
 		do_action( $this->args['callback_hook'] );
+		return true;
 	}
 
 	/**
@@ -92,8 +96,8 @@ class VSP_VC_Elements_Loader {
 	 */
 	public function instances( $instance ) {
 		if ( is_string( $instance ) ) {
-			if ( isset( $this->lookupKeys[ $instance ] ) ) {
-				$instance = $this->lookupKeys[ $instance ];
+			if ( isset( $this->lookup_keys[ $instance ] ) ) {
+				$instance = $this->lookup_keys[ $instance ];
 			}
 
 			if ( isset( $this->instances[ $instance ] ) ) {
@@ -103,7 +107,7 @@ class VSP_VC_Elements_Loader {
 			return false;
 		} elseif ( is_object( $instance ) ) {
 			$this->instances[ get_class( $instance ) ] = get_class( $instance );
-			$this->lookupKeys[ $instance->base ]       = get_class( $instance );
+			$this->lookup_keys[ $instance->base ]      = get_class( $instance );
 		}
 		return false;
 	}

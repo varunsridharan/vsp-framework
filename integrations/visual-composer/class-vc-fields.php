@@ -11,6 +11,9 @@
 /**
  * Class VSP_VC_Fields
  *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 1.0
+ *
  * @method set_tag
  * @method set_font_size
  * @method set_font_style_italic
@@ -39,7 +42,57 @@
  * @method set_google_fonts
  */
 class VSP_VC_Fields {
+	/**
+	 * @var null
+	 * @access
+	 */
+	protected $icon_list_filed = null;
 
+	/**
+	 * @var string
+	 * @access
+	 */
+	protected $icon_list_field = 'type';
+
+	/**
+	 * @var array
+	 * @access
+	 */
+	protected $icon_settings = array();
+
+	/**
+	 * @var string
+	 * @access
+	 */
+	protected $form_group = '';
+
+	/**
+	 * @var array
+	 * @access
+	 */
+	protected $font_container = array();
+
+	/**
+	 * @var array
+	 * @access
+	 */
+	protected $settings_array = array();
+
+	/**
+	 * @var array
+	 * @access
+	 */
+	protected $default_google_titles = array();
+
+	/**
+	 * @var array
+	 * @access
+	 */
+	protected $google_titles = array();
+
+	/**
+	 * VSP_VC_Fields constructor.
+	 */
 	public function __construct() {
 		$this->icon_list_field       = 'type';
 		$this->icon_settings         = array();
@@ -47,17 +100,17 @@ class VSP_VC_Fields {
 		$this->font_container        = array();
 		$this->settings_array        = array();
 		$this->default_google_titles = array(
-			'font_family' => __( "Select Font Family", 'vsp-framework' ),
-			'font_style'  => __( "Select font styling", 'vsp-framework' ),
+			'font_family' => __( 'Select Font Family', 'vsp-framework' ),
+			'font_style'  => __( 'Select font styling', 'vsp-framework' ),
 		);
 		$this->google_titles         = array(
-			'font_family' => __( "Select Font Family", 'vsp-framework' ),
-			'font_style'  => __( "Select font styling", 'vsp-framework' ),
+			'font_family' => __( 'Select Font Family', 'vsp-framework' ),
+			'font_style'  => __( 'Select font styling', 'vsp-framework' ),
 		);
 	}
 
 	public function __call( $name, $arguments ) {
-		$func_name = str_replace( "set_", '', $name );
+		$func_name = str_replace( 'set_', '', $name );
 		if ( method_exists( $this, $func_name ) ) {
 			$data = call_user_func_array( array( $this, $func_name ), $arguments );
 			$this->add_setting( $data );
@@ -206,43 +259,70 @@ class VSP_VC_Fields {
 			$this->icon_settings = apply_filters( 'vsp_vc_icon_types', array(
 				'fontawesome' => array(
 					'value'    => 'fa fa-adjust',
-					'settings' => array( 'emptyIcon' => false, 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'iconsPerPage' => 4000,
+					),
 					'name'     => __( 'Font Awesome', 'vsp-framework' ),
 				),
 				'openiconic'  => array(
 					'value'    => 'vc-oi vc-oi-dial',
-					'settings' => array( 'emptyIcon' => false, 'type' => 'openiconic', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'openiconic',
+						'iconsPerPage' => 4000,
+					),
 					'name'     => __( 'Open Iconic', 'vsp-framework' ),
 				),
 				'typicons'    => array(
 					'value'    => 'typcn typcn-adjust-brightness',
-					'settings' => array( 'emptyIcon' => false, 'type' => 'typicons', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'typicons',
+						'iconsPerPage' => 4000,
+					),
 					'name'     => __( 'Typicons', 'vsp-framework' ),
 				),
 				'entypo'      => array(
 					'value'    => 'entypo-icon entypo-icon-note',
 					'name'     => __( 'Entypo', 'vsp-framework' ),
-					'settings' => array( 'emptyIcon' => false, 'type' => 'entypo', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'entypo',
+						'iconsPerPage' => 4000,
+					),
 				),
 				'linecons'    => array(
 					'value'    => 'vc_li vc_li-heart',
 					'name'     => __( 'Linecons', 'vsp-framework' ),
-					'settings' => array( 'emptyIcon' => false, 'type' => 'linecons', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'linecons',
+						'iconsPerPage' => 4000,
+					),
 				),
 				'monosocial'  => array(
 					'value'    => 'vc-mono vc-mono-fivehundredpx',
 					'name'     => __( 'Mono Social', 'vsp-framework' ),
-					'settings' => array( 'emptyIcon' => false, 'type' => 'monosocial', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'monosocial',
+						'iconsPerPage' => 4000,
+					),
 				),
 				'material'    => array(
 					'value'    => 'vc-material vc-material-cake',
 					'name'     => __( 'Material', 'vsp-framework' ),
-					'settings' => array( 'emptyIcon' => false, 'type' => 'material', 'iconsPerPage' => 4000, ),
+					'settings' => array(
+						'emptyIcon'    => false,
+						'type'         => 'material',
+						'iconsPerPage' => 4000,
+					),
 				),
 			) );
 		}
 
-		if ( $is_options === true ) {
+		if ( true === $is_options ) {
 			$r = array();
 			foreach ( $this->icon_settings as $key => $val ) {
 				$r[ $val['name'] ] = $key;
@@ -279,7 +359,10 @@ class VSP_VC_Fields {
 			'param_name'  => 'icon_' . $icon_type,
 			'value'       => $this->get_icon_value( $icon_type, 'value', $args ),
 			'settings'    => $this->get_icon_value( $icon_type, 'settings', $args ),
-			'dependency'  => array( 'element' => $this->icon_list_field, 'value' => $icon_type, ),
+			'dependency'  => array(
+				'element' => $this->icon_list_field,
+				'value'   => $icon_type,
+			),
 			'description' => __( 'Select icon from library.', 'vsp-framework' ),
 		);
 
@@ -299,14 +382,17 @@ class VSP_VC_Fields {
 			return $args[ $key ];
 		}
 
-		$final = array( 'settings' => array(), 'value' => '' );
-		return isset( $final[ $key ] ) ? $final[ $key ] : "";
+		$final = array(
+			'settings' => array(),
+			'value'    => '',
+		);
+		return isset( $final[ $key ] ) ? $final[ $key ] : '';
 	}
 
 	public function textarea( $args = array() ) {
 		return $this->_merge( $args, array(
 			'type'       => 'textarea',
-			'heading'    => __( 'Heading2', 'vsp-framework' ),
+			'heading'    => __( 'Heading2', 'vsp - framework' ),
 			'param_name' => 'feature_text',
 		) );
 	}
@@ -319,7 +405,7 @@ class VSP_VC_Fields {
 	public function textfield( $args = array() ) {
 		return $this->_merge( $args, array(
 			'type'       => 'textfield',
-			'heading'    => __( 'Extra class name', 'vsp-framework' ),
+			'heading'    => __( 'Extra class name', 'vsp - framework' ),
 			'param_name' => 'el_class',
 		) );
 	}
@@ -334,9 +420,9 @@ class VSP_VC_Fields {
 
 	public function element_class( $args = array() ) {
 		$args = $this->_merge( $args, array(
-			'heading'     => __( "Extra Class Name", 'vsp-framework' ),
+			'heading'     => __( 'Extra Class Name', 'vsp - framework' ),
 			'param_name'  => 'el_class',
-			'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'vsp-framework' ),
+			'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS . ', 'vsp - framework' ),
 		) );
 		return $this->textfield( $args );
 	}
@@ -344,9 +430,10 @@ class VSP_VC_Fields {
 	public function element_id( $args = array() ) {
 		return $this->_merge( $args, array(
 			'type'        => 'el_id',
-			'heading'     => __( 'Element ID', 'vsp-framework' ),
+			'heading'     => __( 'Element ID', 'vsp - framework' ),
 			'param_name'  => 'el_id',
-			'description' => sprintf( __( 'Enter element ID (Note: make sure it is unique and valid according to <a href="%s" target="_blank">w3c specification</a>).', 'vsp-framework' ), 'http://www.w3schools.com/tags/att_global_id.asp' ),
+			/* translators: */
+			'description' => sprintf( __( 'Enter element ID( Note: make sure it is unique and valid according to < a href = "%s" target = "_blank" > w3c specification </a >).', 'vsp - framework' ), 'http://www.w3schools.com/tags/att_global_id.asp' ),
 		) );
 	}
 
@@ -396,7 +483,9 @@ class VSP_VC_Fields {
 	}
 
 	public function text_source( $args = array() ) {
-		$defaults = array( 'heading' => __( "Text source", 'vsp-framework' ) );
+		$defaults = array(
+			'heading' => __( 'Text source', 'vsp-framework' ),
+		);
 		$args     = $this->_merge( $args, $defaults );
 		return $this->dropdown( $args, array(
 			__( 'Custom text', 'vsp-framework' )        => '',
@@ -417,7 +506,7 @@ class VSP_VC_Fields {
 
 	public function use_theme_fonts( $args = array() ) {
 		return $this->checkbox( $this->_merge( $args, array(
-			'heading'    => __( "Use theme default font family?", 'vsp-framework' ),
+			'heading'    => __( 'Use theme default font family ?', 'vsp-framework' ),
 			'param_name' => 'use_theme_fonts',
 		) ) );
 	}

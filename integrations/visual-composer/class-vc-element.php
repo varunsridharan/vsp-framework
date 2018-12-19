@@ -198,7 +198,6 @@ trait VSP_VC_Element {
 			$styles[]            = 'font-style:' . $google_fonts_styles[2];
 		}
 
-
 		//@todo check for custom class option
 		//$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'booss_styled_heading ' . $el_class . vc_shortcode_custom_css_class($css, ' '), $this->settings['base'], $atts);
 		$css_class = $el_class . vc_shortcode_custom_css_class( $css, ' ' );
