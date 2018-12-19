@@ -24,11 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Recommended usage example:
  *  try {
- *      $value = VSP_Cache::get('some/key');
+ *      $value = \VSP\Cache::get('some/key');
  *  } catch(Cache_Not_Found_Exception $e) {
  *      $value = get_value_from_somewhere();
  *
- *      VSP_Cache::set('some/key', $value);
+ *      \VSP\Cache::set('some/key', $value);
  *
  *      // (!) after set, do not do this:
  *      $value = VSP_Cache::get('some/key');
