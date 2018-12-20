@@ -210,8 +210,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * @return $this
 		 */
 		public function register_plugin( $plugin_path = '', $meta_data = [], $framework_path = '/vsp-framework/' ) {
-			$plugin_path    = rtrim( $plugin_path, '/' );
-			$framework_path = $plugin_path . $framework_path;
+			$plugin_path    = trailingslashit( $plugin_path );
+			$framework_path = trailingslashit( $plugin_path . $framework_path );
 
 			if ( file_exists( $framework_path . 'vsp-bootstrap.php' ) ) {
 				$info                   = get_file_data( $framework_path . 'vsp-bootstrap.php', [
@@ -220,7 +220,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 					'TextDomain' => 'Text Domain',
 					'DomainPath' => 'Domain Path',
 				] );
-				$info['plugin_path']    = $plugin_path . '/';
+				$info['plugin_path']    = trailingslashit( $plugin_path );
 				$info['framework_path'] = $framework_path;
 				self::add( $info['Version'], $info );
 			}
