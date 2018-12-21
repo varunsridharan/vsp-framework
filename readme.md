@@ -40,6 +40,7 @@ require __DIR__ . '/vsp-framework/vsp-init.php
         "varunsridharan/wp-post"                : "^1.0",
         "varunsridharan/wp-review-me"           : "^1.0",
         "varunsridharan/wp-transient-api"       : "^1.0",
+        "varunsridharan/php-autoloader"         : "^1.0",
         "varunsridharan/wp-db-table"            : "dev-master",
         "a5hleyrich/wp-background-processing"   : "^1.0.1"
     }
@@ -142,3 +143,22 @@ $config['VS_WP_Review_Me'] = true;
  */
 $config['logging'] = true;
 ```
+
+### Autoloader Module
+```php
+/**
+ * Config To enable Autoloader PHP Lib
+ *
+ * @uses \Varunsridharan\PHP\Autoloader https://github.com/varunsridharan/php-autoloader
+ *
+ * array(
+ *    'namespace' => 'somename',
+ *    'basepath' => __DIR__.'/includes/',
+ *    'remaps' => array(),
+ *    'prepend'=> false,
+ * )
+ */
+$config['autoloader'] = array(
+    'namespace' => '\MyPlugin\Admin',
+    'basepath'  => __DIR__ . '/includes/admin/',
+);```
