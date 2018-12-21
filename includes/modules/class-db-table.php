@@ -25,13 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'DB_Table' ) ) {
-	vsp_load_file( VSP_PATH . 'vendor/thewpleague/wp-query-builder/src/traits/*.php' );
-	require_once VSP_PATH . 'vendor/thewpleague/wp-query-builder/src/class-query-builder.php';
-	vsp_load_lib( 'wp-db-table' );
-
 	/**
-	 * Class VSP_DB_Table
+	 * Class DB_Table
 	 *
+	 * @package VSP\Modules
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 *
