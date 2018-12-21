@@ -60,30 +60,23 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
 	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
 
-	require_once __DIR__ . '/includes/class-autoloader.php';
-	require_once __DIR__ . '/includes/modules/class-cache.php';
-	require_once __DIR__ . '/vsp-functions.php';
-	require_once __DIR__ . '/includes/class-helper.php';
-	require_once __DIR__ . '/includes/class-base.php';
-	require_once __DIR__ . '/vsp-hooks.php';
+	try {
+		$autoloader = new \Varunsridharan\PHP\Autoloader( 'VSP', VSP_PATH . 'includes/', array(), true );
 
-	do_action( 'vsp_framework_load_lib_integrations' );
+		require_once __DIR__ . '/vsp-functions.php';
+		require_once __DIR__ . '/vsp-hooks.php';
 
-	do_action( 'vsp_framework_loaded' );
+		do_action( 'vsp_framework_load_lib_integrations' );
+		do_action( 'vsp_framework_loaded' );
 
-	if ( vsp_is_ajax() ) {
-		require_once __DIR__ . '/includes/class-ajax.php';
+		if ( vsp_is_ajax() ) {
+			require_once __DIR__ . '/includes/class-ajax.php';
+		}
+
+		do_action( 'vsp_framework_init' );
+	} catch ( Exception $exception ) {
+		$msg = '<h4>' . __( 'Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured' ) . '</h4>';
+		$msg = $msg . $exception->getMessage();
+		wp_die( $msg );
 	}
-
-	/**
-	 * Framework load text domain
-	 *
-	 * @since   1.0.0
-	 * @version 1.0.0
-	 */
-	if ( file_exists( VSP_PATH . '/languages/' . get_locale() . '.mo' ) ) {
-		load_textdomain( 'vsp-framework', VSP_PATH . '/languages/' . get_locale() . '.mo' );
-	}
-
-	do_action( 'vsp_framework_init' );
 }

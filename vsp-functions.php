@@ -14,11 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $vsp_plugins;
 $vsp_plugins = array();
 
-/**
- * @uses \VSP\Autoloader::load()
- */
-spl_autoload_register( '\VSP\Autoloader::load' );
-
 if ( ! function_exists( 'vsp_load_integration' ) ) {
 	/**
 	 * Loads Given Integration File

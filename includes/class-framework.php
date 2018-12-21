@@ -17,6 +17,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 	 * Class VSP_Framework
 	 * This class should be extened and used in a plugins class
 	 *
+	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
@@ -29,6 +30,13 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 * @var null
 		 */
 		private $settings = null;
+
+		/**
+		 * Autoloader.
+		 *
+		 * @var null|\Varunsridharan\PHP\Autoloader
+		 */
+		private $autoloader = null;
 
 		/**
 		 * Addons
@@ -52,6 +60,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		protected $default_options = array(
 			'settings_page' => true,
 			'reviewme'      => false,
+			'autoloader'    => false,
 			'logging'       => false,
 			'addons'        => true,
 			'system_tools'  => false,
@@ -79,6 +88,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 */
 		public function __init_plugin() {
 			$this->plugin_init_before();
+			$this->__autoloader_init();
 			$this->__init_class();
 			$this->__register_hooks();
 			$this->plugin_init();
@@ -104,6 +114,11 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			$this->init_class();
 		}
 
+		/**
+		 * Inits System Tools Class
+		 *
+		 * @uses \VSP\Modules\System_Tools
+		 */
 		protected function __init_system_tools() {
 			if ( false !== $this->option( 'system_tools' ) ) {
 				$this->_instance( '\VSP\Modules\System_Tools', false, true, $this->option( 'system_tools' ) );
@@ -112,12 +127,14 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 
 		/**
 		 * Adds Review Reminder Option
+		 *
+		 * @uses \Varunsridharan\WordPress\Review_Me
 		 */
 		protected function __review_me_init() {
 			if ( false !== $this->option( 'reviewme' ) ) {
 				if ( vsp_is_admin() ) {
 					vsp_load_lib( 'wpreview' );
-					$this->_instance( 'VS_WP_Review_Me', false, true, $this->option( 'reviewme' ) );
+					$this->_instance( '\Varunsridharan\WordPress\Review_Me', false, true, $this->option( 'reviewme' ) );
 				}
 			}
 		}
@@ -156,6 +173,23 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 				$this->addons = $this->_instance( '\VSP\Modules\Addons', false, true, $this->option( 'addons' ) );
 				$this->addon_init();
 				$this->action( 'addons_init' );
+			}
+		}
+
+		/**
+		 * Handles Autoloader.
+		 *
+		 * @uses \Varunsridharan\PHP\Autoloader
+		 */
+		private function __autoloader_init() {
+			if ( false !== $this->option( 'autoloader' ) ) {
+				$args             = $this->parse_args( $this->option( 'autoloader' ), array(
+					'namespace' => false,
+					'base_path' => $this->plugin_path(),
+					'remaps'    => array(),
+					'prepend'   => false,
+				) );
+				$this->autoloader = $this->_instance( '\Varunsridharan\PHP\Autoloader', false, false, $args );
 			}
 		}
 
@@ -215,6 +249,8 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 
 		/**
 		 * Inits Logger Instance.
+		 *
+		 * @uses \vsp_get_logger()
 		 */
 		public function __logging_init() {
 			if ( false !== $this->option( 'logging' ) ) {
@@ -233,6 +269,15 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 */
 		public function logger() {
 			return $this->logging;
+		}
+
+		/**
+		 * Returns An Active Autoloader Instance.
+		 *
+		 * @return \Varunsridharan\PHP\Autoloader|null
+		 */
+		public function autoloader() {
+			return $this->autoloader;
 		}
 	}
 }
