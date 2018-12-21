@@ -17,6 +17,7 @@
 	"varunsridharan/wp-post"                : "^1.0",
 	"varunsridharan/wp-review-me"           : "^1.0",
 	"varunsridharan/wp-transient-api"       : "^1.0",
+	"varunsridharan/php-autoloader"         : "^1.0",
 	"varunsridharan/wp-db-table"            : "dev-master",
 	"a5hleyrich/wp-background-processing"   : "^1.0.1"
   },
