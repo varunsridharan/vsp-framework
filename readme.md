@@ -161,4 +161,5 @@ $config['logging'] = true;
 $config['autoloader'] = array(
     'namespace' => '\MyPlugin\Admin',
     'basepath'  => __DIR__ . '/includes/admin/',
-);```
+);
+```
