@@ -10,7 +10,6 @@
 	]
   },
   "require"     : {
-	"wpbp/pointerplus"                      : "dev-master",
 	"varunsridharan/wpallimport_rapidaddon" : "dev-master",
 	"varunsridharan/wp-ajaxer"              : "^1.0",
 	"varunsridharan/wp-endpoint"            : "^1.0",
