@@ -74,6 +74,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 */
 		public function __construct( $options = array() ) {
 			parent::__construct( $options );
+			$this->__autoloader_init();
 			$this->__load_required_files();
 			add_action( 'vsp_framework_init', array( &$this, '__init_plugin' ) );
 		}
@@ -88,7 +89,6 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 */
 		public function __init_plugin() {
 			$this->plugin_init_before();
-			$this->__autoloader_init();
 			$this->__init_class();
 			$this->__register_hooks();
 			$this->plugin_init();
@@ -189,7 +189,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 					'remaps'    => array(),
 					'prepend'   => false,
 				) );
-				$this->autoloader = $this->_instance( '\Varunsridharan\PHP\Autoloader', false, false, $args );
+				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['remaps'], $args['prepend'] );
 			}
 		}
 
