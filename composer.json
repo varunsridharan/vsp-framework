@@ -10,7 +10,7 @@
 	]
   },
   "require"     : {
-	"varunsridharan/wpallimport_rapidaddon" : "dev-master as 1.0.0",
+	"varunsridharan/wpallimport_rapidaddon" : "^100419061953",
 	"varunsridharan/wp-ajaxer"              : "^1.0",
 	"varunsridharan/wp-endpoint"            : "^1.0",
 	"varunsridharan/wp-post"                : "^1.0",
