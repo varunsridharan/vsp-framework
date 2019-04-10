@@ -10,14 +10,14 @@
 	]
   },
   "require"     : {
-	"varunsridharan/wpallimport_rapidaddon" : "dev-master",
+	"varunsridharan/wpallimport_rapidaddon" : "dev-master as 1.0.0",
 	"varunsridharan/wp-ajaxer"              : "^1.0",
 	"varunsridharan/wp-endpoint"            : "^1.0",
 	"varunsridharan/wp-post"                : "^1.0",
 	"varunsridharan/wp-review-me"           : "^1.0",
 	"varunsridharan/wp-transient-api"       : "^1.0",
 	"varunsridharan/php-autoloader"         : "^1.0",
-	"varunsridharan/wp-db-table"            : "dev-master",
+	"varunsridharan/wp-db-table"            : "^1.2.1",
 	"a5hleyrich/wp-background-processing"   : "^1.0.1"
   },
   "authors"     : [
