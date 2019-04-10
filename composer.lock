@@ -1,0 +1,469 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "45868e1335c524dcb397d51de1d73336",
+    "packages": [
+        {
+            "name": "a5hleyrich/wp-background-processing",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/A5hleyRich/wp-background-processing.git",
+                "reference": "1f070aab5058dbaf45d5435a343033ddd8a641b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/A5hleyRich/wp-background-processing/zipball/1f070aab5058dbaf45d5435a343033ddd8a641b1",
+                "reference": "1f070aab5058dbaf45d5435a343033ddd8a641b1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Ashley Rich",
+                    "email": "hello@ashleyrich.com"
+                }
+            ],
+            "description": "WP Background Processing can be used to fire off non-blocking asynchronous requests or as a background processing tool, allowing you to queue tasks.",
+            "time": "2018-02-12T09:24:05+00:00"
+        },
+        {
+            "name": "thewpleague/wp-query-builder",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/meshakeeb/wp-query-builder.git",
+                "reference": "ca21fc9e523e25567d068a26a4b1c10488da50f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/meshakeeb/wp-query-builder/zipball/ca21fc9e523e25567d068a26a4b1c10488da50f8",
+                "reference": "ca21fc9e523e25567d068a26a4b1c10488da50f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TheLeague\\Database\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shakeeb Ahmed",
+                    "email": "me@shakeebahmed.com"
+                }
+            ],
+            "description": "A WordPress Query builder",
+            "time": "2018-08-09T09:44:40+00:00"
+        },
+        {
+            "name": "varunsridharan/php-autoloader",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/php-autoloader.git",
+                "reference": "b1fa6309d68645ad1d26c63f1d9667d0c818af2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/php-autoloader/zipball/b1fa6309d68645ad1d26c63f1d9667d0c818af2b",
+                "reference": "b1fa6309d68645ad1d26c63f1d9667d0c818af2b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\PHP\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight PSR-4 PHP Autoloader Class.",
+            "time": "2019-03-31T14:10:32+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-ajaxer",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-ajaxer.git",
+                "reference": "9c89b67dca6529adb78a3b79c2aebeeaee803439"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-ajaxer/zipball/9c89b67dca6529adb78a3b79c2aebeeaee803439",
+                "reference": "9c89b67dca6529adb78a3b79c2aebeeaee803439",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
+            "keywords": [
+                "ajax",
+                "ajax-handler",
+                "ajax-library",
+                "library",
+                "php",
+                "vsp-libs",
+                "vsp-wp-ajaxer",
+                "wordpress",
+                "wordpress-ajax",
+                "wordpress-development",
+                "wordpress-plugin",
+                "wordpress-plugin-library",
+                "wordpress-theme",
+                "wordpress-theme-library",
+                "wp-ajax",
+                "wp-ajax-handler",
+                "wp-developers",
+                "wp-library",
+                "wp-theme"
+            ],
+            "time": "2019-01-14T07:54:31+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-db-table",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-db-table.git",
+                "reference": "0f978e575e20832e22e7214c12ba1b811e787551"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-db-table/zipball/0f978e575e20832e22e7214c12ba1b811e787551",
+                "reference": "0f978e575e20832e22e7214c12ba1b811e787551",
+                "shasum": ""
+            },
+            "require": {
+                "thewpleague/wp-query-builder": "^1.0.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun Sridharan",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A base WordPress database table class with query builder",
+            "time": "2018-12-21T02:04:52+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-endpoint",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-endpoint.git",
+                "reference": "adc55276ebd62cf62a14712bb96c9619be7a422d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-endpoint/zipball/adc55276ebd62cf62a14712bb96c9619be7a422d",
+                "reference": "adc55276ebd62cf62a14712bb96c9619be7a422d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Lib To Handle Creation of Custom Endpoints Or Rewrites in WordPress ",
+            "keywords": [
+                "php",
+                "rewrites",
+                "vsp-libs",
+                "wordpress",
+                "wordpress-development",
+                "wordpress-development-kit",
+                "wordpress-endpoint",
+                "wordpress-library",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-plugin-addon",
+                "wordpress-plugin-development",
+                "wordpress-plugin-library",
+                "wordpress-plugins",
+                "wordpress-router",
+                "wp-endpoint"
+            ],
+            "time": "2019-01-14T07:58:05+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-post",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-post.git",
+                "reference": "c920ee0e49c51d92950f027223ed952f6d04383f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-post/zipball/c920ee0e49c51d92950f027223ed952f6d04383f",
+                "reference": "c920ee0e49c51d92950f027223ed952f6d04383f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple WP Post Class With Advanced Options.",
+            "keywords": [
+                "vsp-libs",
+                "wordpress",
+                "wordpress-database",
+                "wordpress-db",
+                "wordpress-development",
+                "wordpress-library",
+                "wordpress-module",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-plugin-development",
+                "wordpress-plugin-library",
+                "wordpress-post-handler",
+                "wordpress-posts",
+                "wordpress-theme",
+                "wordpress-theme-development",
+                "wp-developers",
+                "wp-library",
+                "wp-plugin",
+                "wp-posts",
+                "wp-theme"
+            ],
+            "time": "2019-01-14T07:42:19+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-review-me",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-review-me.git",
+                "reference": "4ff5c99a851dd26441a6b2b59ccb81d48ce02c8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-review-me/zipball/4ff5c99a851dd26441a6b2b59ccb81d48ce02c8e",
+                "reference": "4ff5c99a851dd26441a6b2b59ccb81d48ce02c8e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This library provides developers to ask end user to review their product (theme / plugin)",
+            "keywords": [
+                "codecanyon",
+                "envato",
+                "envato-market",
+                "paid themes",
+                "plugin review",
+                "review",
+                "templatemonster",
+                "theme review",
+                "themeforest",
+                "wordpress",
+                "wordpress plugin",
+                "wordpress review",
+                "wordpress theme"
+            ],
+            "time": "2019-01-14T08:00:25+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-transient-api",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-transient-api.git",
+                "reference": "5564a928d3de87601ac86f7a882dd7f47d62181b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-transient-api/zipball/5564a928d3de87601ac86f7a882dd7f47d62181b",
+                "reference": "5564a928d3de87601ac86f7a882dd7f47d62181b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides Option to store Transient / options with version management.",
+            "keywords": [
+                "transient-handler",
+                "transients",
+                "vsp-libs",
+                "wordpress",
+                "wordpress-cache",
+                "wordpress-data",
+                "wordpress-development",
+                "wordpress-library",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-plugin-development",
+                "wordpress-plugin-library",
+                "wordpress-plugins",
+                "wordpress-theme",
+                "wordpress-transients",
+                "wp-library",
+                "wp-plugin",
+                "wp-theme"
+            ],
+            "time": "2019-01-14T07:56:37+00:00"
+        },
+        {
+            "name": "varunsridharan/wpallimport_rapidaddon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
+                "reference": "0fe8e22d261dc9441b8a079e3159c89c1146b003"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/0fe8e22d261dc9441b8a079e3159c89c1146b003",
+                "reference": "0fe8e22d261dc9441b8a079e3159c89c1146b003",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com"
+                }
+            ],
+            "time": "2019-01-14T08:02:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "varunsridharan/wpallimport_rapidaddon": 20,
+        "varunsridharan/wp-db-table": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
