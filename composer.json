@@ -1,26 +1,32 @@
 {
-  "name"        : "varunsridharan/vsp-framework",
-  "type"        : "library",
-  "description" : "Simple & Lightweight WP Plugin Framework",
-  "homepage"    : "https://github.com/varunsridharan/vsp-framework",
-  "license"     : "GPL-3.0+",
-  "autoload"    : {
+  "name"         : "varunsridharan/vsp-framework",
+  "type"         : "library",
+  "description"  : "Simple & Lightweight WP Plugin Framework",
+  "homepage"     : "https://github.com/varunsridharan/vsp-framework",
+  "license"      : "GPL-3.0+",
+  "autoload"     : {
 	"files" : [
 	  "vsp-init.php"
 	]
   },
-  "require"     : {
-	"varunsridharan/wpallimport_rapidaddon" : "^100419061953",
-	"varunsridharan/wp-ajaxer"              : "^1.0",
-	"varunsridharan/wp-endpoint"            : "^1.0",
-	"varunsridharan/wp-post"                : "^1.0",
-	"varunsridharan/wp-review-me"           : "^1.0",
-	"varunsridharan/wp-transient-api"       : "^1.0",
-	"varunsridharan/php-autoloader"         : "^1.0",
-	"varunsridharan/wp-db-table"            : "^1.2.1",
-	"a5hleyrich/wp-background-processing"   : "^1.0.1"
+  "require"      : {
+	"varunsridharan/wp-ajaxer"            : "^1.0",
+	"varunsridharan/wp-endpoint"          : "^1.0",
+	"varunsridharan/wp-post"              : "^1.0",
+	"varunsridharan/wp-review-me"         : "^1.0",
+	"varunsridharan/wp-transient-api"     : "^1.0",
+	"varunsridharan/php-autoloader"       : "^1.0",
+	"varunsridharan/wp-db-table"          : "^1.2.1",
+	"a5hleyrich/wp-background-processing" : "^1.0.1",
+	"soflyy/wp-all-import-rapid-addon"    : "dev-master"
   },
-  "authors"     : [
+  "repositories" : [
+	{
+	  "type" : "vcs",
+	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon"
+	}
+  ],
+  "authors"      : [
 	{
 	  "name"     : "Varun Sridharan",
 	  "email"    : "varunsridharan23@gmail.com",
