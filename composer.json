@@ -22,7 +22,7 @@
   },
   "repositories" : [
 	{
-	  "type" : "vcs",
+	  "type" : "git",
 	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon"
 	}
   ],
