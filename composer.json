@@ -11,8 +11,8 @@
   },
   "repositories" : [
 	{
-	  "type" : "github",
-	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon"
+	  "type" : "git",
+	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon.git"
 	}
   ],
   "require"      : {
