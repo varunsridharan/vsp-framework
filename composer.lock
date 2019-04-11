@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8c0a95f3f8edeb32335272ef754e0b6",
+    "content-hash": "5994b641d5b40cab191cad7bc3d7c8dc",
     "packages": [
         {
             "name": "a5hleyrich/wp-background-processing",
@@ -47,24 +47,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/soflyy/wp-all-import-rapid-addon.git",
+                "url": "https://github.com/soflyy/wp-all-import-rapid-addon",
                 "reference": "78cfe11e8903a031240861377c3a9779f600f8df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/soflyy/wp-all-import-rapid-addon/zipball/78cfe11e8903a031240861377c3a9779f600f8df",
-                "reference": "78cfe11e8903a031240861377c3a9779f600f8df",
-                "shasum": ""
             },
             "type": "library",
             "license": [
                 "GPL 2.0"
             ],
             "description": "Rapid Add-On API for WP All Import",
-            "support": {
-                "source": "https://github.com/soflyy/wp-all-import-rapid-addon/tree/master",
-                "issues": "https://github.com/soflyy/wp-all-import-rapid-addon/issues"
-            },
             "time": "2019-02-27T20:04:39+00:00"
         },
         {
@@ -449,35 +439,6 @@
                 "wp-theme"
             ],
             "time": "2019-01-14T07:56:37+00:00"
-        },
-        {
-            "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "100419061649",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
-                "reference": "a518d18e7459c7057de0cd44d85c199e39f73b14"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/a518d18e7459c7057de0cd44d85c199e39f73b14",
-                "reference": "a518d18e7459c7057de0cd44d85c199e39f73b14",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "\\": "./src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Varun",
-                    "email": "varunsridharan23@gmail.com"
-                }
-            ],
-            "time": "2019-04-10T06:16:01+00:00"
         }
     ],
     "packages-dev": [],
