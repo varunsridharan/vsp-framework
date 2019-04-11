@@ -9,6 +9,12 @@
 	  "vsp-init.php"
 	]
   },
+  "repositories" : [
+	{
+	  "type" : "git",
+	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon"
+	}
+  ],
   "require"      : {
 	"varunsridharan/wp-ajaxer"            : "^1.0",
 	"varunsridharan/wp-endpoint"          : "^1.0",
@@ -20,12 +26,6 @@
 	"a5hleyrich/wp-background-processing" : "^1.0.1",
 	"soflyy/wp-all-import-rapid-addon"    : "dev-master"
   },
-  "repositories" : [
-	{
-	  "type" : "git",
-	  "url"  : "https://github.com/soflyy/wp-all-import-rapid-addon"
-	}
-  ],
   "authors"      : [
 	{
 	  "name"     : "Varun Sridharan",
