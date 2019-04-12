@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c893268f53f054e4a47fd740fe47a392",
+    "content-hash": "c9a9f002acfed8db6f8c7e5c3a408c17",
     "packages": [
         {
             "name": "a5hleyrich/wp-background-processing",
@@ -209,6 +209,64 @@
             ],
             "description": "A base WordPress database table class with query builder",
             "time": "2018-12-20T10:24:34+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-dependencies",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-dependencies.git",
+                "reference": "f799a2ead007c0849612095f38fd62f7e15a0647"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-dependencies/zipball/f799a2ead007c0849612095f38fd62f7e15a0647",
+                "reference": "f799a2ead007c0849612095f38fd62f7e15a0647",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./src/dependencies.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun Sridharan",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "http://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides Function To Check if a plugin is active/inactive & function to compare versions.",
+            "homepage": "https://github.com/varunsridharan/wp-dependencies/",
+            "keywords": [
+                "dependencies",
+                "vsp-libs",
+                "wordpress",
+                "wordpress-dependencies",
+                "wordpress-development",
+                "wordpress-library",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-plugin-development",
+                "wordpress-plugin-library",
+                "wordpress-plugins",
+                "wordpress-theme",
+                "wordpress-theme-development",
+                "wordpress-theme-library",
+                "wp",
+                "wp-addon",
+                "wp-dependencies",
+                "wp-library",
+                "wp-plugin",
+                "wp-theme"
+            ],
+            "time": "2019-01-15T09:43:32+00:00"
         },
         {
             "name": "varunsridharan/wp-endpoint",
