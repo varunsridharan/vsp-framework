@@ -212,12 +212,12 @@ if ( ! function_exists( 'vsp_get_file_paths' ) ) {
 	/**
 	 * Returns files in a given path
 	 *
-	 * @example vsp_load_file("mypath/*.php")
-	 * @example vsp_load_file("mypath/class-*.php")
-	 *
 	 * @param $path .
 	 *
 	 * @return array
+	 * @example vsp_load_file("mypath/*.php")
+	 * @example vsp_load_file("mypath/class-*.php")
+	 *
 	 */
 	function vsp_get_file_paths( $path ) {
 		return glob( $path );
@@ -234,9 +234,11 @@ if ( ! function_exists( 'vsp_is_plugin_active' ) ) {
 	 * @param string $file .
 	 *
 	 * @return bool
+	 * @deprecated deprecated since 0.1.4 | Please use wp-dependencies Library (https://git.io/fjqdU)
+	 *
 	 */
 	function vsp_is_plugin_active( $file = '' ) {
-		return \VSP\Helper\Dependencies::active_check( $file );
+		return wp_is_plugin_active( $file );
 	}
 }
 
@@ -245,8 +247,9 @@ if ( ! function_exists( 'vsp_wc_active' ) ) {
 	 * Checks if woocommerce is active
 	 * in current wp instance
 	 *
-	 * @example if(vsp_wc_active()){echo "Yes";}else{echo "No"}
 	 * @return bool
+	 * @example if(vsp_wc_active()){echo "Yes";}else{echo "No"}
+	 * @deprecated deprecated since 0.1.4 | Please use wp-dependencies Library (https://git.io/fjqdU)
 	 */
 	function vsp_wc_active() {
 		return vsp_is_plugin_active( 'woocommerce/woocommerce.php' );
