@@ -188,10 +188,10 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 				$args             = $this->parse_args( $this->option( 'autoloader' ), array(
 					'namespace' => false,
 					'base_path' => $this->plugin_path(),
-					'remaps'    => array(),
+					'options'   => array(),
 					'prepend'   => false,
 				) );
-				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['remaps'], $args['prepend'] );
+				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'], $args['prepend'] );
 			}
 		}
 
