@@ -58,19 +58,21 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array(
-			'settings_page' => true,
+			'settings_page' => false,
 			'reviewme'      => false,
 			'autoloader'    => false,
 			'logging'       => false,
-			'addons'        => true,
+			'addons'        => false,
 			'system_tools'  => false,
 			'plugin_file'   => __FILE__,
 		);
 
 		/**
-		 * VSP_Framework constructor.
+		 * Framework constructor.
 		 *
-		 * @param array $options .
+		 * @param array $options
+		 *
+		 * @throws \Exception
 		 */
 		public function __construct( $options = array() ) {
 			parent::__construct( $options );
