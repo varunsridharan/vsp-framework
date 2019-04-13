@@ -56,7 +56,7 @@ if ( ! class_exists( 'Core' ) ) {
 		 */
 		public function search_get_addons( $single_addon = false ) {
 			$this->addon_metadatas = array();
-			$dirs                  = apply_filters( $this->slug( 'hook' ) . 'addons_dirs', array() );
+			$dirs                  = apply_filters( $this->slug( 'hook' ) . '_addons_dirs', array() );
 			$internal_addons       = $this->search_plugins( $this->option( 'base_path' ), $single_addon );
 			$this->get_metadata( $internal_addons );
 

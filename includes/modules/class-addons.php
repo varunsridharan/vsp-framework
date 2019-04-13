@@ -68,11 +68,11 @@ if ( ! class_exists( 'Addons' ) ) {
 			parent::__construct();
 
 			if ( vsp_is_admin() ) {
-				add_action( $this->slug( 'hook' ) . 'settings_pages', array( $this, 'set_settings_page' ), 99, 100 );
+				add_action( $this->slug( 'hook' ) . '_settings_pages', array( $this, 'set_settings_page' ), 99, 100 );
 			}
 
 			if ( vsp_is_ajax() ) {
-				add_action( $this->slug( 'hook' ) . 'handle_addon_request', array( $this, 'handle_ajax_request' ) );
+				add_action( $this->slug( 'hook' ) . '_handle_addon_request', array( $this, 'handle_ajax_request' ) );
 			}
 
 			$this->load_active_addons();
@@ -200,7 +200,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function get_active_addons() {
 			if ( empty( $this->active_addons ) ) {
-				$this->active_addons = get_option( $this->slug( 'db' ) . 'active_addons', array() );
+				$this->active_addons = get_option( $this->slug( 'db' ) . '_active_addons', array() );
 			}
 
 			$this->active_addons = is_array( $this->active_addons ) ? $this->active_addons : array();
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @return array
 		 */
 		public function update_active_addons( $addons ) {
-			update_option( $this->slug( 'db' ) . 'active_addons', $addons );
+			update_option( $this->slug( 'db' ) . '_active_addons', $addons );
 			$this->active_addons = $addons;
 			return $this->active_addons;
 		}

@@ -59,8 +59,8 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 */
 	public function __construct( $options = array(), $defaults = array() ) {
 		parent::__construct( $options, $defaults );
-		add_filter( $this->slug( 'hook' ) . 'settings_pages', array( &$this, 'add_pages' ), 999 );
-		add_filter( $this->slug( 'hook' ) . 'settings_sections', array( &$this, 'add_sections' ), 999 );
+		add_filter( $this->slug( 'hook' ) . '_settings_pages', array( &$this, 'add_pages' ), 999 );
+		add_filter( $this->slug( 'hook' ) . '_settings_sections', array( &$this, 'add_sections' ), 999 );
 	}
 
 	/**

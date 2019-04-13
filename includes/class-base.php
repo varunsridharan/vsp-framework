@@ -290,15 +290,15 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return mixed
 		 */
 		private function action_filter( $type = '', $args = array() ) {
-			$args[0] = $this->slug( 'hook' ) . $args[0];
+			$args[0] = $this->slug( 'hook' ) . '_' . $args[0];
 			return call_user_func_array( $type, $args );
 		}
 
 		/**
 		 * Triggers apply_filters
 		 *
-		 * @uses \apply_filters()
 		 * @return mixed
+		 * @uses \apply_filters()
 		 */
 		public function filter() {
 			return $this->action_filter( 'apply_filters', func_get_args() );
@@ -307,9 +307,9 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Triggers do_action
 		 *
+		 * @return mixed
 		 * @uses \do_action()
 		 *
-		 * @return mixed
 		 */
 		public function action() {
 			return $this->action_filter( 'do_action', func_get_args() );
@@ -319,8 +319,8 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Triggers add_filters
 		 *
-		 * @uses \add_filters()
 		 * @return mixed
+		 * @uses \add_filters()
 		 */
 		public function add_filter() {
 			return $this->action_filter( 'add_filter', func_get_args() );
@@ -329,9 +329,9 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Triggers add_action
 		 *
+		 * @return mixed
 		 * @uses \add_action()
 		 *
-		 * @return mixed
 		 */
 		public function add_action() {
 			return $this->action_filter( 'add_action', func_get_args() );
@@ -341,11 +341,11 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Get the plugin url.
 		 *
-		 * @see \plugins_url()
-		 *
 		 * @param string $ex_path
 		 *
 		 * @return string
+		 * @see \plugins_url()
+		 *
 		 */
 		public function plugin_url( $ex_path = '/' ) {
 			return untrailingslashit( plugins_url( $ex_path, $this->file() ) );
@@ -354,11 +354,11 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Get the plugin path.
 		 *
-		 * @see \plugin_dir_path()
-		 *
 		 * @param string $ex_path
 		 *
 		 * @return string
+		 * @see \plugin_dir_path()
+		 *
 		 */
 		public function plugin_path( $ex_path = '' ) {
 			$path = untrailingslashit( plugin_dir_path( $this->file() ) );
@@ -379,12 +379,12 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Get Ajax URL.
 		 *
-		 * @see \admin_url()
-		 *
 		 * @param array  $query_args
 		 * @param string $scheme
 		 *
 		 * @return string
+		 * @see \admin_url()
+		 *
 		 */
 		public function ajax_url( $query_args = array(), $scheme = 'relative' ) {
 			if ( is_array( $query_args ) ) {
