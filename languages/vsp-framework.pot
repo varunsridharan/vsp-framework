@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-04-14T01:49:07+00:00\n"
+"POT-Creation-Date: 2019-04-14T07:37:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
@@ -115,15 +115,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: includes/modules/class-system-tools.php:87
+#: includes/modules/class-system-tools.php:80
 msgid "System Tools"
 msgstr ""
 
-#: includes/modules/class-system-tools.php:126
-msgid "System Status"
-msgstr ""
-
-#: includes/modules/class-system-tools.php:151
+#: includes/modules/class-system-tools.php:117
 msgid "System Logs"
 msgstr ""
 
@@ -535,50 +531,50 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: vsp-init.php:106
+#: vsp-init.php:80
 msgid "Framework Version"
 msgstr ""
 
-#: vsp-init.php:107
+#: vsp-init.php:81
 msgid "Textdomain"
 msgstr ""
 
-#: vsp-init.php:108
+#: vsp-init.php:82
 msgid "DomainPath"
 msgstr ""
 
-#: vsp-init.php:109
+#: vsp-init.php:83
 msgid "Framework Plugin Path"
 msgstr ""
 
-#: vsp-init.php:110
+#: vsp-init.php:84
 msgid "Framework Path"
 msgstr ""
 
-#: vsp-init.php:111
+#: vsp-init.php:85
 msgid "Loaded Library"
 msgstr ""
 
-#: vsp-init.php:112
+#: vsp-init.php:86
 msgid "Loaded Integration"
 msgstr ""
 
-#: vsp-init.php:113
-#: vsp-init.php:123
-#: vsp-init.php:125
+#: vsp-init.php:87
+#: vsp-init.php:97
+#: vsp-init.php:99
 msgid "Bundled Integrations"
 msgstr ""
 
-#: vsp-init.php:114
-#: vsp-init.php:136
-#: vsp-init.php:138
+#: vsp-init.php:88
+#: vsp-init.php:110
+#: vsp-init.php:112
 msgid "Bundled Libs"
 msgstr ""
 
-#: vsp-init.php:155
+#: vsp-init.php:129
 msgid "Unable To Load VSP Framework. Please Contact The Author"
 msgstr ""
 
-#: vsp-init.php:156
+#: vsp-init.php:130
 msgid "ERROR ID : "
 msgstr ""
