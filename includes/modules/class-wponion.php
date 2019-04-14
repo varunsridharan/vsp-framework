@@ -133,31 +133,15 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		 */
 		private function make_settings_arr() {
 			$this->get_settings_config();
-			$this->settings_pages();
-			$this->settings_sections();
-			$this->settings_fields();
 			$this->final_array();
 		}
 
 		/**
 		 * Captures Settings Pages Array
 		 */
-		public function settings_pages() {
-			$this->pages = $this->filter( 'settings_pages', $this->pages );
-		}
-
-		/**
-		 * Captures Settings Sections Array
-		 */
-		public function settings_sections() {
-			$this->sections = $this->filter( 'settings_sections', $this->sections );
-		}
-
-		/**
-		 * Captures Settings Fields Array
-		 */
-		public function settings_fields() {
-			$this->fields = $this->filter( 'settings_fields', $this->fields );
+		public function final_array() {
+			$this->final_options = wponion_builder();
+			$this->action( 'settings_options', $this->final_options );
 		}
 
 		/**
@@ -176,56 +160,15 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		}
 
 		/**
-		 * Returns All Final Array
-		 */
-		public function final_array() {
-			$pages = $this->pages;
-			foreach ( $this->sections as $i => $v ) {
-				list( $page, $section ) = explode( '/', $i );
-				if ( isset( $pages[ $page ] ) ) {
-					if ( ! isset( $pages[ $page ]['sections'] ) ) {
-						$pages[ $page ]['sections'] = array();
-					}
-
-					$pages[ $page ]['sections'][ $section ] = $v;
-				}
-			}
-
-			foreach ( $this->fields as $id => $fields ) {
-				$page    = explode( '/', $id );
-				$section = isset( $page[1] ) ? $page[1] : null;
-				$page    = $page[0];
-
-				if ( null === $section ) {
-					if ( isset( $pages[ $page ] ) && ! isset( $pages['section'] ) ) {
-						if ( ! isset( $pages[ $page ]['fields'] ) ) {
-							$pages[ $page ]['fields'] = array();
-						}
-
-						$pages[ $page ]['fields'] = array_merge( $pages[ $page ]['fields'], $fields );
-					}
-				} else {
-					if ( isset( $pages[ $page ] ) && ! isset( $pages['fields'] ) ) {
-						if ( ! isset( $pages[ $page ]['sections'][ $section ]['fields'] ) ) {
-							$pages[ $page ]['sections'][ $section ]['fields'] = array();
-						}
-
-						$pages[ $page ]['sections'][ $section ]['fields'] = array_merge( $pages[ $page ]['sections'][ $section ]['fields'], $fields );
-					}
-				}
-			}
-
-			$this->final_options = $pages;
-		}
-
-		/**
 		 * Inits \WPOnion\Modules\Settings Class
 		 *
 		 * @uses \WPOnion\Modules\Settings
 		 */
 		public function init_settings() {
 			$this->make_settings_arr();
-			$this->framework = new \WPOnion\Modules\Settings( $this->page_config, $this->final_options );
+			if ( $this->final_options instanceof \WPO\Builder ) {
+				$this->framework = new \WPOnion\Modules\Settings( $this->page_config, $this->final_options );
+			}
 		}
 	}
 }

@@ -37,8 +37,6 @@ abstract class Plugin_Settings implements \VSP\Core\Interfaces\Plugin_Settings {
 	 * @param string $hook_slug .
 	 */
 	public function __construct( $hook_slug = '' ) {
-		add_filter( $hook_slug . 'settings_pages', array( &$this, 'add_pages' ) );
-		add_filter( $hook_slug . 'settings_sections', array( &$this, 'add_sections' ) );
-		add_filter( $hook_slug . 'settings_fields', array( &$this, 'add_fields' ) );
+		add_action( $hook_slug . '_settings_options', array( &$this, 'options' ) );
 	}
 }

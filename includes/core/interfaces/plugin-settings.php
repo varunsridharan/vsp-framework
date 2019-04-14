@@ -27,29 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 interface Plugin_Settings {
 	/**
-	 * Add Pages
+	 * Settings Args
 	 *
-	 * @param array $pages .
-	 *
-	 * @return mixed
-	 */
-	public function add_pages( $pages = array() );
-
-	/**
-	 * Add Sections
-	 *
-	 * @param array $sections .
+	 * @param array|\WPO\Builder $builder .
 	 *
 	 * @return mixed
 	 */
-	public function add_sections( $sections = array() );
-
-	/**
-	 * Add Fields
-	 *
-	 * @param array $fields .
-	 *
-	 * @return mixed
-	 */
-	public function add_fields( $fields = array() );
+	public function options( $builder );
 }
