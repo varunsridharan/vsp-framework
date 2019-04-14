@@ -13,7 +13,6 @@
  * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
  */
 
-
 namespace VSP\Modules;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,17 +30,15 @@ if ( class_exists( '\VSP\Modules\System_Tools' ) ) {
  * @since 1.0
  */
 class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Settings {
-
 	/**
 	 * Default_options
 	 *
 	 * @var array
 	 */
 	protected $default_options = array(
-		'system_tools'  => true,
-		'menu'          => true,
-		'system_status' => true,
-		'logging'       => true,
+		'system_tools' => true,
+		'menu'         => true,
+		'logging'      => true,
 	);
 
 	/**
@@ -59,8 +56,7 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 */
 	public function __construct( $options = array(), $defaults = array() ) {
 		parent::__construct( $options, $defaults );
-		add_filter( $this->slug( 'hook' ) . '_settings_pages', array( &$this, 'add_pages' ), 999 );
-		add_filter( $this->slug( 'hook' ) . '_settings_sections', array( &$this, 'add_sections' ), 999 );
+		add_action( $this->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ), 999 );
 	}
 
 	/**
@@ -74,24 +70,21 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	/**
 	 * Adds Pages To Settings.
 	 *
-	 * @param array $pages
-	 *
-	 * @return mixed
+	 * @param array|\WPO\Container $builder
 	 */
-	public function add_pages( $pages = array() ) {
+	public function options( $builder ) {
 		if ( false === $this->option( 'system_tools' ) ) {
-			$pages = $this->system_status_menu( $pages, true );
-			$pages = $this->system_logs_menu( $pages, true );
+			$this->system_logs_menu( $builder, true );
 		} else {
-			$menu                   = $this->menu_data( $this->option( 'menu' ), array(
+			$menu = $this->menu_data( $this->option( 'menu' ), array(
 				'title' => __( 'System Tools', 'vsp-framework' ),
 				'icon'  => 'fa fa-gear',
 				'name'  => 'system-tools',
 			) );
-			$pages[ $menu['name'] ] = $menu;
-			$this->mp_slug          = $menu['name'];
+			$builder->container( $menu['name'], $menu['title'], $menu['icon'] );
+			$this->mp_slug = $menu['name'];
+			$this->system_logs_menu( $builder, false );
 		}
-		return $pages;
 	}
 
 	/**
@@ -113,82 +106,29 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	}
 
 	/**
-	 * Adds System Status Admin Page & Section Based on the settings.
-	 *
-	 * @param array $args
-	 * @param bool  $is_page
-	 *
-	 * @return array
-	 */
-	protected function system_status_menu( $args = array(), $is_page = true ) {
-		if ( false !== $this->option( 'system_status' ) ) {
-			$menu             = $this->menu_data( $this->option( 'system_status' ), array(
-				'title'          => __( 'System Status', 'vsp-framework' ),
-				'icon'           => 'fa fa-info-circle',
-				'name'           => 'system-status',
-				'custom_reports' => array( $this, 'custom_sysinfo_reports' ),
-			) );
-			$menu['callback'] = 'wponion_sysinfo';
-
-			if ( true === $is_page ) {
-				$args[ $menu['name'] ] = $menu;
-			} else {
-				$args[ $this->mp_slug . '/' . $menu['name'] ] = $menu;
-			}
-		}
-		return $args;
-	}
-
-	/**
-	 * @param array $args
-	 * @param bool  $is_page
+	 * @param array|\WPO\Builder $args
+	 * @param bool               $is_page
 	 *
 	 * @return array
 	 */
 	protected function system_logs_menu( $args = array(), $is_page = true ) {
 		if ( false !== $this->option( 'logging' ) ) {
-			$menu             = $this->menu_data( $this->option( 'logging' ), array(
+			$menu = $this->menu_data( $this->option( 'logging' ), array(
 				'title' => __( 'System Logs', 'vsp-framework' ),
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
 			) );
-			$menu['callback'] = array( &$this, 'output_logs_info' );
-
 			if ( true === $is_page ) {
-				$args[ $menu['name'] ] = $menu;
+				$args->container( $menu['name'], $menu['title'], $menu['icon'] )
+					->set_callback( array( &$this, 'output_logs_info' ) );
 			} else {
-				$args[ $this->mp_slug . '/' . $menu['name'] ] = $menu;
+				$base = $args->container( $this->mp_slug );
+				if ( $base instanceof \WPO\Container ) {
+					$base->container( $menu['name'], $menu['title'], $menu['icon'] )
+						->set_callback( array( &$this, 'output_logs_info' ) );
+				}
 			}
 		}
 		return $args;
 	}
-
-	/**
-	 * Custom Hook To Add Custom Sys Info Datas.
-	 *
-	 * @return mixed
-	 */
-	public function custom_sysinfo_reports() {
-		return apply_filters( 'vsp_system_status_data', array() );
-	}
-
-	/**
-	 * Adds Sections To Settings.
-	 *
-	 * @param array $sections
-	 *
-	 * @return mixed
-	 */
-	public function add_sections( $sections = array() ) {
-		if ( false !== $this->option( 'system_tools' ) && ! is_null( $this->mp_slug ) ) {
-			$sections = $this->system_status_menu( $sections, false );
-			$sections = $this->system_logs_menu( $sections, false );
-		}
-		return $sections;
-	}
-
-	public function add_fields( $fields = array() ) {
-		// TODO: Implement add_fields() method.
-	}
-
 }
