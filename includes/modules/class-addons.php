@@ -68,7 +68,7 @@ if ( ! class_exists( 'Addons' ) ) {
 			parent::__construct();
 
 			if ( vsp_is_admin() ) {
-				add_action( $this->slug( 'hook' ) . '_settings_pages', array( $this, 'set_settings_page' ), 99, 100 );
+				add_action( $this->slug( 'hook' ) . '_settings_options', array( $this, 'set_settings_page' ), 99, 100 );
 			}
 
 			if ( vsp_is_ajax() ) {

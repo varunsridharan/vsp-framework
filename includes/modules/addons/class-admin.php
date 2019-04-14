@@ -41,19 +41,13 @@ if ( ! class_exists( 'Admin' ) ) {
 		/**
 		 * Sets Settings Page to show adddons
 		 *
-		 * @param array $pages .
+		 * @param array|\WPO\Builder $pages
 		 *
 		 * @return mixed
 		 */
 		public function set_settings_page( $pages ) {
-			$pages[ $this->option( 'addon_listing_tab_name' ) ] = array(
-				'name'     => $this->option( 'addon_listing_tab_name' ),
-				'title'    => $this->option( 'addon_listing_tab_title' ),
-				'icon'     => $this->option( 'addon_listing_tab_icon' ),
-				'callback' => array( &$this, 'render_addons_page' ),
-			);
-
-			return $pages;
+			$pages->container( $this->option( 'addon_listing_tab_name' ), $this->option( 'addon_listing_tab_title' ), $this->option( 'addon_listing_tab_icon' ) )
+				->set_callback( array( &$this, 'render_addons_page' ) );
 		}
 
 		/**
