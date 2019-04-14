@@ -63,32 +63,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			add_action( 'plugins_loaded', [ &$this, 'load_framework' ], 0 );
 			add_action( 'vsp_framework_load_lib_integrations', [ &$this, 'load_libs_integrations' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ] );
-			if ( is_admin() ) {
-				add_filter( 'vsp_system_status_headers', array( &$this, 'add_sys_info_headers' ) );
-				add_filter( 'vsp_system_status_data', array( &$this, 'add_sys_info_data' ) );
-			}
-		}
-
-		/**
-		 * Adds Framework Information header To SYS Info Page.
-		 *
-		 * @param $headers
-		 *
-		 * @return mixed
-		 */
-		public function add_sys_info_headers( $headers ) {
-			$headers['vsp-framework'] = array(
-				'name'   => '<span class="dashicons dashicons-admin-settings"></span>' . __( 'VSP Framework' ),
-				'childs' => array(
-					'vsp-logs' => __( 'VSP Logs' ),
-				),
-			);
-			return $headers;
-		}
-
-		public function add_sys_info_data( $data ) {
-			$data[ __( 'VSP Framework' ) ] = $this->add_extra_info();
-			return $data;
 		}
 
 		/**
