@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-04-12T04:21:28+00:00\n"
+"POT-Creation-Date: 2019-04-13T05:20:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
@@ -27,74 +27,55 @@ msgstr ""
 msgid "http://varunsridharan.in"
 msgstr ""
 
+#. translators: 1: last access date 2: last access time
+#: views/log-viewer.php:28
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: views/log-viewer.php:59
+msgid "There Are No Logs Generated"
+msgstr ""
+
+#: includes/class-base.php:117
+msgid "Cloning instances of the class is forbidden."
+msgstr ""
+
+#: includes/class-base.php:124
+msgid "Unserializing instances of the class is forbidden."
+msgstr ""
+
 #: includes/core/traits/class-wp.php:132
 msgid "Visitor / Logged-Out User"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:156
-msgid "Before you can upload your import file, you will need to fix the following error:"
+#. translators: Adds integration Name
+#. translators: Adds Library Search Path
+#: includes/class-autoloader.php:92
+#: includes/class-autoloader.php:140
+msgid "Searched In Path %s"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:177
-msgid "Upload file and import"
+#. translators: Adds integration Action Name
+#. translators: Adds Library Triggered Action
+#: includes/class-autoloader.php:94
+#: includes/class-autoloader.php:142
+msgid "Tried Action %s"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:250
-msgid "Sorry, there has been an error."
+#: includes/modules/addons/class-file-meta.php:94
+msgid "Duplicate Addon Found. Unable to load Please contact the developer with below information %s"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:273
-msgid "The file does not exist, please try again."
+#: includes/modules/addons/class-file-meta.php:256
+msgid "Required Plugins"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:287
-msgid "The CSV is invalid."
+#: includes/modules/addons/class-file-meta.php:257
+msgid "Screenshots"
 msgstr ""
 
-#: includes/modules/wordpress/class-importer.php:347
-msgid "Import completed"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:357
-msgid "Import Errors - "
-msgstr ""
-
-#. translators: 1: class name 2: VSP_Log_Handler_Interface
-#: includes/modules/class-logger.php:66
-msgid "The provided handler %1$s does not implement %2$s."
-msgstr ""
-
-#. translators: 1: VSP_Logger::log 2: level
-#: includes/modules/class-logger.php:135
-msgid "%1$s was called with an invalid level \"%2$s\"."
-msgstr ""
-
-#: includes/modules/class-system-tools.php:87
-msgid "System Tools"
-msgstr ""
-
-#: includes/modules/class-system-tools.php:126
-msgid "System Status"
-msgstr ""
-
-#: includes/modules/class-system-tools.php:151
-msgid "System Logs"
-msgstr ""
-
-#. translators: 1: Site name 2: Maximum level 3: Log count
-#: includes/modules/logger/class-email-handler.php:182
-msgid "[%1$s] %2$s: %3$s log message"
-msgid_plural "[%1$s] %2$s: %3$s log messages"
-msgstr[0] ""
-
-#: includes/modules/logger/class-email-handler.php:194
-msgid "You have received the following log message:"
-msgid_plural "You have received the following log messages:"
-msgstr[0] ""
-
-#: includes/modules/logger/class-file-handler.php:203
-#: includes/modules/logger/class-file-handler.php:221
-msgid "This method should not be called before plugins_loaded."
+#: includes/modules/addons/class-file-meta.php:258
+msgid "FAQ"
 msgstr ""
 
 #: includes/modules/addons/class-admin.php:84
@@ -130,24 +111,20 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: includes/modules/addons/class-file-meta.php:94
-msgid "Duplicate Addon Found. Unable to load Please contact the developer with below information %s"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:256
-msgid "Required Plugins"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:257
-msgid "Screenshots"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:258
-msgid "FAQ"
-msgstr ""
-
 #: includes/modules/addons/class-core.php:37
 msgid "All"
+msgstr ""
+
+#: includes/modules/class-system-tools.php:87
+msgid "System Tools"
+msgstr ""
+
+#: includes/modules/class-system-tools.php:126
+msgid "System Status"
+msgstr ""
+
+#: includes/modules/class-system-tools.php:151
+msgid "System Logs"
 msgstr ""
 
 #: includes/modules/class-addons.php:87
@@ -194,26 +171,58 @@ msgstr ""
 msgid "Addon Is Not Active"
 msgstr ""
 
-#: includes/class-base.php:117
-msgid "Cloning instances of the class is forbidden."
+#. translators: 1: class name 2: VSP_Log_Handler_Interface
+#: includes/modules/class-logger.php:66
+msgid "The provided handler %1$s does not implement %2$s."
 msgstr ""
 
-#: includes/class-base.php:124
-msgid "Unserializing instances of the class is forbidden."
+#. translators: 1: VSP_Logger::log 2: level
+#: includes/modules/class-logger.php:135
+msgid "%1$s was called with an invalid level \"%2$s\"."
 msgstr ""
 
-#. translators: Adds integration Name
-#. translators: Adds Library Search Path
-#: includes/class-autoloader.php:92
-#: includes/class-autoloader.php:140
-msgid "Searched In Path %s"
+#: includes/modules/wordpress/class-importer.php:156
+msgid "Before you can upload your import file, you will need to fix the following error:"
 msgstr ""
 
-#. translators: Adds integration Action Name
-#. translators: Adds Library Triggered Action
-#: includes/class-autoloader.php:94
-#: includes/class-autoloader.php:142
-msgid "Tried Action %s"
+#: includes/modules/wordpress/class-importer.php:177
+msgid "Upload file and import"
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:250
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:273
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:287
+msgid "The CSV is invalid."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:347
+msgid "Import completed"
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:357
+msgid "Import Errors - "
+msgstr ""
+
+#. translators: 1: Site name 2: Maximum level 3: Log count
+#: includes/modules/logger/class-email-handler.php:182
+msgid "[%1$s] %2$s: %3$s log message"
+msgid_plural "[%1$s] %2$s: %3$s log messages"
+msgstr[0] ""
+
+#: includes/modules/logger/class-email-handler.php:194
+msgid "You have received the following log message:"
+msgid_plural "You have received the following log messages:"
+msgstr[0] ""
+
+#: includes/modules/logger/class-file-handler.php:203
+#: includes/modules/logger/class-file-handler.php:221
+msgid "This method should not be called before plugins_loaded."
 msgstr ""
 
 #: includes/functions/addons-functions.php:166
@@ -382,63 +391,6 @@ msgstr ""
 msgid "%1$s Requires %2$s WooCommerce %3$s to be installed & activated."
 msgstr ""
 
-#: vsp-init.php:106
-msgid "Framework Version"
-msgstr ""
-
-#: vsp-init.php:107
-msgid "Textdomain"
-msgstr ""
-
-#: vsp-init.php:108
-msgid "DomainPath"
-msgstr ""
-
-#: vsp-init.php:109
-msgid "Framework Plugin Path"
-msgstr ""
-
-#: vsp-init.php:110
-msgid "Framework Path"
-msgstr ""
-
-#: vsp-init.php:111
-msgid "Loaded Library"
-msgstr ""
-
-#: vsp-init.php:112
-msgid "Loaded Integration"
-msgstr ""
-
-#: vsp-init.php:113
-#: vsp-init.php:123
-#: vsp-init.php:125
-msgid "Bundled Integrations"
-msgstr ""
-
-#: vsp-init.php:114
-#: vsp-init.php:136
-#: vsp-init.php:138
-msgid "Bundled Libs"
-msgstr ""
-
-#: vsp-init.php:155
-msgid "Unable To Load VSP Framework. Please Contact The Author"
-msgstr ""
-
-#: vsp-init.php:156
-msgid "ERROR ID : "
-msgstr ""
-
-#. translators: 1: last access date 2: last access time
-#: views/log-viewer.php:28
-msgid "%1$s at %2$s"
-msgstr ""
-
-#: views/log-viewer.php:59
-msgid "There Are No Logs Generated"
-msgstr ""
-
 #: integrations/visual-composer/class-vc-fields.php:103
 #: integrations/visual-composer/class-vc-fields.php:107
 msgid "Select Font Family"
@@ -581,4 +533,52 @@ msgstr ""
 
 #: integrations/visual-composer/class-vc-fields.php:520
 msgid "Yes"
+msgstr ""
+
+#: vsp-init.php:106
+msgid "Framework Version"
+msgstr ""
+
+#: vsp-init.php:107
+msgid "Textdomain"
+msgstr ""
+
+#: vsp-init.php:108
+msgid "DomainPath"
+msgstr ""
+
+#: vsp-init.php:109
+msgid "Framework Plugin Path"
+msgstr ""
+
+#: vsp-init.php:110
+msgid "Framework Path"
+msgstr ""
+
+#: vsp-init.php:111
+msgid "Loaded Library"
+msgstr ""
+
+#: vsp-init.php:112
+msgid "Loaded Integration"
+msgstr ""
+
+#: vsp-init.php:113
+#: vsp-init.php:123
+#: vsp-init.php:125
+msgid "Bundled Integrations"
+msgstr ""
+
+#: vsp-init.php:114
+#: vsp-init.php:136
+#: vsp-init.php:138
+msgid "Bundled Libs"
+msgstr ""
+
+#: vsp-init.php:155
+msgid "Unable To Load VSP Framework. Please Contact The Author"
+msgstr ""
+
+#: vsp-init.php:156
+msgid "ERROR ID : "
 msgstr ""
