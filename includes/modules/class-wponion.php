@@ -34,7 +34,6 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		 */
 		protected $default_options = array(
 			'option_name' => false,
-			'theme'       => 'wp',
 		);
 
 		/**
@@ -43,27 +42,6 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		 * @var array
 		 */
 		private $final_options = array();
-
-		/**
-		 * Pages
-		 *
-		 * @var array
-		 */
-		public $pages = array();
-
-		/**
-		 * Fields
-		 *
-		 * @var array
-		 */
-		public $fields = array();
-
-		/**
-		 * Sections
-		 *
-		 * @var array
-		 */
-		public $sections = array();
 
 		/**
 		 * Page_config
@@ -84,56 +62,9 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		 */
 		public function __construct( $options = array() ) {
 			parent::__construct( $options );
-
 			if ( vsp_is_admin() || vsp_is_ajax() ) {
-				$this->pages    = array();
-				$this->fields   = array();
-				$this->sections = array();
-				add_filter( 'vsp_system_status_headers_vsp_plugins', array( &$this, 'set_sysinfo_headers' ) );
-				add_filter( 'vsp_system_status_data', array( &$this, 'set_sysinfo_data' ) );
 				add_action( 'wponion_loaded', array( &$this, 'init_settings' ) );
-				add_action( 'vsp_show_sys_page', array( &$this, 'render_sys_page' ) );
 			}
-		}
-
-		/**
-		 * Adds Settings Data to vsp Syspage
-		 *
-		 * @param $info
-		 *
-		 * @return mixed
-		 */
-		public function set_sysinfo_headers( $info ) {
-			if ( ! isset( $info[ $this->slug( 'slug' ) ] ) ) {
-				$info[ $this->slug( 'slug' ) ] = array(
-					'name'   => $this->plugin_name(),
-					'childs' => array( $this->slug( 'slug' ) . '_settings' => __( 'Settings' ) ),
-				);
-			} elseif ( is_array( $info[ $this->slug( 'slug' ) ] ) ) {
-				$info[ $this->slug( 'slug' ) ]['childs'][ $this->slug( 'slug' ) . '_settings' ] = __( 'Settings' );
-			}
-			return $info;
-		}
-
-		/**
-		 * @param $data
-		 *
-		 * @return mixed
-		 */
-		public function set_sysinfo_data( $data ) {
-			$settings = get_option( $this->option( 'option_name' ), true );
-			if ( ! empty( $settings ) ) {
-				$data[ $this->slug( 'slug' ) . '_settings' ] = $settings;
-			}
-			return $data;
-		}
-
-		/**
-		 * Renders Settings Page Array
-		 */
-		private function make_settings_arr() {
-			$this->get_settings_config();
-			$this->final_array();
 		}
 
 		/**
@@ -165,7 +96,8 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		 * @uses \WPOnion\Modules\Settings
 		 */
 		public function init_settings() {
-			$this->make_settings_arr();
+			$this->get_settings_config();
+			$this->final_array();
 			if ( $this->final_options instanceof \WPO\Builder ) {
 				$this->framework = new \WPOnion\Modules\Settings( $this->page_config, $this->final_options );
 			}
