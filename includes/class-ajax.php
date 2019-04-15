@@ -80,4 +80,4 @@ if ( ! class_exists( 'Ajax' ) ) {
 	}
 }
 
-return Ajax::instance();
+return new Ajax();
