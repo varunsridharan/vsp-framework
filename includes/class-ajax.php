@@ -11,6 +11,8 @@
 
 namespace VSP;
 
+use Varunsridharan\WordPress\Ajaxer;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -22,7 +24,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	final class Ajax extends Modules\Ajaxer {
+	final class Ajax extends Ajaxer {
 		/**
 		 * Ajax Action Prefix
 		 *
