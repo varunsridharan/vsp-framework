@@ -43,15 +43,14 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		/**
 		 * Returns Current Instance / create a new instance
 		 *
-		 * @todo Rework full function to handle x number arguments.
-		 * @return static
+		 * @static
+		 * @return mixed
+		 * @throws \ReflectionException
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
-				$args                              = func_get_args();
-				$arg1                              = ( isset( $args[0] ) && ! empty( $args[0] ) ) ? $args[0] : array();
-				$arg2                              = ( isset( $args[1] ) && ! empty( $args[1] ) ) ? $args[1] : array();
-				self::$_instances[ static::class ] = new static( $arg1, $arg2 );
+				$refl                              = new \ReflectionClass( static::class );
+				self::$_instances[ static::class ] = $refl->newInstanceArgs( func_get_args() );
 			}
 			return self::$_instances[ static::class ];
 		}
