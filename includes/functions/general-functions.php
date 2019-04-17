@@ -78,11 +78,11 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 	/**
 	 * Returns Cache Time in numeric values
 	 *
-	 * @example vsp_get_time_in_seconds('1_minute') => 60
-	 *
 	 * @param string $time .
 	 *
 	 * @return float|int
+	 * @example vsp_get_time_in_seconds('1_minute') => 60
+	 *
 	 */
 	function vsp_get_time_in_seconds( $time ) {
 		$times = explode( '_', $time );
@@ -212,12 +212,12 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 	 *     - an instance which will be used directly as the logger
 	 * In either case, the class or instance *must* implement WC_Logger_Interface.
 	 *
-	 * @see VSP_Logger_Interface
-	 *
 	 * @param bool $subpath
 	 * @param bool $filesize
 	 *
 	 * @return mixed|\VSP\Modules\Logger
+	 * @see VSP_Logger_Interface
+	 *
 	 */
 	function vsp_get_logger( $subpath = false, $filesize = false ) {
 		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
@@ -321,12 +321,12 @@ if ( ! function_exists( 'vsp_censor_path' ) ) {
 	/**
 	 * Censors Actual Path and just provides path after that
 	 *
-	 * @example /var/www/html/wp-content/plugins will be returned as /wp-content/plugins
-	 *
 	 * @param string $path
 	 * @param bool   $actual_path
 	 *
 	 * @return mixed
+	 * @example /var/www/html/wp-content/plugins will be returned as /wp-content/plugins
+	 *
 	 */
 	function vsp_censor_path( $path = '', $actual_path = false ) {
 		$actual_path = ( false === $actual_path ) ? ABSPATH : $actual_path;
@@ -415,7 +415,6 @@ if ( ! function_exists( 'vsp_callback' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'vsp_is_json' ) ) {
 	/**
 	 * Checks If Given String is JSON.
@@ -443,5 +442,22 @@ if ( ! function_exists( 'vsp_is_error' ) ) {
 	 */
 	function vsp_is_error( $thing ) {
 		return ( $thing instanceof \VSP\Error );
+	}
+}
+
+if ( ! function_exists( 'vsp_localizer' ) ) {
+	/**
+	 * Returns / Gets An Instance of VSP\Modules\Localizer
+	 *
+	 * @param string $slug
+	 * @param array  $scripts_check
+	 * @param bool   $frontend
+	 * @param bool   $print_functions
+	 *
+	 * @return \VSP\Modules\Localizer
+	 * @throws \ReflectionException
+	 */
+	function vsp_localizer( $slug = '', $scripts_check = array(), $frontend = false, $print_functions = true ) {
+		return \VSP\Modules\Localizer::get( $slug, $scripts_check, $frontend, $print_functions );
 	}
 }

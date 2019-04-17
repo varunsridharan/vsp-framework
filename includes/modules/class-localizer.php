@@ -98,7 +98,7 @@ if ( ! class_exists( 'Localizer' ) ) {
 		 * @param bool   $print_functions
 		 *
 		 * @static
-		 * @return mixed
+		 * @return \VSP\Modules\Localizer
 		 * @throws \ReflectionException
 		 */
 		public static function get( $slug = '', $scripts_check = array(), $frontend = false, $print_functions = true ) {
