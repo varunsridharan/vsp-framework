@@ -58,6 +58,13 @@ trait Framework {
 	}
 
 	/**
+	 * @see VSP_Framework::__settings_init
+	 */
+	public function settings_init_before() {
+
+	}
+
+	/**
 	 * @see \VSP_Framework::__wp_init
 	 */
 	public function wp_init() {
@@ -106,9 +113,8 @@ trait Framework {
 	}
 
 	/**
-	 * @see \VSP_Framework::register_hooks()
+	 * @see VSP_Framework::__init_plugin() .
 	 */
-	public function wponion_loaded() {
-
+	public function plugin_init() {
 	}
 }

@@ -20,7 +20,8 @@ if ( ! class_exists( '\VSP\Framework_Admin' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class Framework_Admin extends Base {
+	abstract class Framework_Admin extends Base implements Core\Interfaces\Framework_Interface {
+		use Core\Traits\Framework;
 
 		/**
 		 * Row_actions

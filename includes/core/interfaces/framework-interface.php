@@ -27,22 +27,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 interface Framework_Interface {
 	/**
-	 * @see VSP_Framework::__init_plugin() .
-	 */
-	public function plugin_init();
-
-	/**
 	 * @see   VSP_Framework::__register_hooks
 	 */
 	public function register_hooks();
 
 	/**
-	 * @see VSP_Framework::__settings_init
-	 */
-	public function settings_init_before();
-
-	/**
 	 * @see \VSP_Framework::__load_required_files
 	 */
 	public function load_files();
+
+	/**
+	 * @see \VSP_Framework::register_hooks()
+	 */
+	public function wponion_loaded();
 }
