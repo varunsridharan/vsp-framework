@@ -92,16 +92,23 @@ if ( ! class_exists( 'Localizer' ) ) {
 		 * Checks and returns an active instance.
 		 * VSP_Localize_API::get('your-plugin-slug')
 		 *
-		 * @param $key
+		 * @param string $slug
+		 * @param array  $scripts_check
+		 * @param bool   $frontend
+		 * @param bool   $print_functions
 		 *
-		 * @return self
+		 * @static
+		 * @return mixed
+		 * @throws \ReflectionException
 		 */
-		public static function get( $key ) {
-			if ( isset( self::$instance[ $key ] ) && self::$instance[ $key ] instanceof self ) {
-				return self::$instance[ $key ];
+		public static function get( $slug = '', $scripts_check = array(), $frontend = false, $print_functions = true ) {
+			if ( isset( self::$instance[ $slug ] ) && self::$instance[ $slug ] instanceof self ) {
+				return self::$instance[ $slug ];
 			}
-			self::$instance[ $key ] = new self();
-			return self::$instance[ $key ];
+
+			$refl                    = new \ReflectionClass( static::class );
+			self::$instance[ $slug ] = $refl->newInstanceArgs( func_get_args() );
+			return self::$instance[ $slug ];
 		}
 
 		/**
