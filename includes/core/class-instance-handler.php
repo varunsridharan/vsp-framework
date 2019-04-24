@@ -44,33 +44,18 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		 * Returns Current Instance / create a new instance
 		 *
 		 * @static
-		 * @return mixed
-		 * @throws \ReflectionException
+		 * @return bool|mixed
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
-				$refl                              = new \ReflectionClass( static::class );
-				self::$_instances[ static::class ] = $refl->newInstanceArgs( func_get_args() );
-			}
-			return self::$_instances[ static::class ];
-		}
+				try {
+					$refl                              = new \ReflectionClass( static::class );
+					self::$_instances[ static::class ] = $refl->newInstanceArgs( func_get_args() );
+				} catch ( \ReflectionException $exception ) {
 
-		/**
-		 * Returns a new instance of a current class multiple time with new instance every time.
-		 *
-		 * @static
-		 */
-		public static function create() {
-			$args = func_get_args();
-			$id   = md5( wp_json_encode( $args ) );
-
-			if ( ! isset( self::$_instances[ $id ] ) ) {
-				$args                    = func_get_args();
-				$arg1                    = ( isset( $args[0] ) && ! empty( $args[0] ) ) ? $args[0] : array();
-				$arg2                    = ( isset( $args[1] ) && ! empty( $args[1] ) ) ? $args[1] : array();
-				self::$_instances[ $id ] = new static( $arg1, $arg2 );
+				}
 			}
-			return self::$_instances[ $id ];
+			return isset( self::$_instances[ static::class ] ) ? self::$_instances[ static::class ] : false;
 		}
 
 		/**
