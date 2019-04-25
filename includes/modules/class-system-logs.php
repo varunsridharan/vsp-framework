@@ -98,8 +98,8 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 *
 		 * @static
 		 */
-		public static function render() {
-			self::scan_log_files();
+		public static function render( $custom_path = false ) {
+			self::scan_log_files( $custom_path );
 			$file_removed = false;
 			if ( ! empty( $_REQUEST['log_file'] ) && isset( self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ] ) ) {
 				$viewed_log = sanitize_title( $_REQUEST['log_file'] );
@@ -144,14 +144,20 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		}
 
 		/**
-		 * Scan the log files.
+		 * Scan For Log Files.
 		 *
+		 * @param $custom_path
+		 *
+		 * @static
 		 * @return array
 		 */
-		public static function scan_log_files() {
-			$logs = array( '' => self::get_log_files( VSP_LOG_DIR ) );
-			$logs = array_merge( self::get_nested_logs( VSP_LOG_DIR ), $logs );
-
+		public static function scan_log_files( $custom_path = false ) {
+			if ( false === $custom_path ) {
+				$logs = array( '' => self::get_log_files( VSP_LOG_DIR ) );
+				$logs = array_merge( self::get_nested_logs( VSP_LOG_DIR ), $logs );
+			} else {
+				$logs = array( $custom_path => self::get_log_files( VSP_LOG_DIR . $custom_path ) );
+			}
 			$fixed_logs = array();
 
 			foreach ( $logs as $p => $ls ) {
