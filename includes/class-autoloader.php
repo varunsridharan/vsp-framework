@@ -40,17 +40,7 @@ final class Autoloader {
 	 *
 	 * @var array
 	 */
-	private static $_libs = array(
-		'wp-async'      => 'a5hleyrich/wp-background-processing/wp-background-processing.php',
-		'wp-pointer'    => 'wpbp/pointerplus/pointerplus.php',
-		'wp-ajaxer'     => 'varunsridharan/wp-ajaxer/class-ajaxer.php',
-		'wp-endpoint'   => 'varunsridharan/wp-endpoint/class-endpoint.php',
-		'wp-post'       => 'varunsridharan/wp-post/class-post.php',
-		'wp-review-me'  => 'varunsridharan/wp-review-me/class-wp-review-me.php',
-		'wp-transient'  => 'varunsridharan/wp-transient-api/class-transient-wp-api.php',
-		'wp-db-table'   => 'varunsridharan/wp-db-table/class-db-table.php',
-		'wp-all-import' => 'soflyy/wp-all-import-rapid-addon/rapid-addon.php',
-	);
+	private static $_libs = array();
 
 	/**
 	 * Loaded_libs

@@ -40,18 +40,6 @@ trait Framework {
 	}
 
 	/**
-	 * @see VSP_Framework::__addon_init
-	 */
-	public function addon_init_before() {
-	}
-
-	/**
-	 * @see VSP_Framework::__addon_init
-	 */
-	public function addon_init() {
-	}
-
-	/**
 	 * @see VSP_Framework::__settings_init
 	 */
 	public function settings_init() {
@@ -98,18 +86,6 @@ trait Framework {
 	 * @see \VSP_Framework::register_hooks()
 	 */
 	public function frontend_assets() {
-	}
-
-	/**
-	 * @see VSP_Framework::__logging_init
-	 */
-	public function logging_init_before() {
-	}
-
-	/**
-	 * @see VSP_Framework::__logging_init
-	 */
-	public function logging_init() {
 	}
 
 	/**

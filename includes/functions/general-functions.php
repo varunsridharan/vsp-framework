@@ -444,20 +444,3 @@ if ( ! function_exists( 'vsp_is_error' ) ) {
 		return ( $thing instanceof \VSP\Error );
 	}
 }
-
-if ( ! function_exists( 'vsp_localizer' ) ) {
-	/**
-	 * Returns / Gets An Instance of VSP\Modules\Localizer
-	 *
-	 * @param string $slug
-	 * @param array  $scripts_check
-	 * @param bool   $frontend
-	 * @param bool   $print_functions
-	 *
-	 * @return \VSP\Modules\Localizer
-	 * @throws \ReflectionException
-	 */
-	function vsp_localizer( $slug = '', $scripts_check = array(), $frontend = false, $print_functions = true ) {
-		return \VSP\Modules\Localizer::get( $slug, $scripts_check, $frontend, $print_functions );
-	}
-}
