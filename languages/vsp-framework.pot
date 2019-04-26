@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-04-26T04:25:55+00:00\n"
+"POT-Creation-Date: 2019-04-26T05:27:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
@@ -50,15 +50,15 @@ msgstr ""
 
 #. translators: Adds integration Name
 #. translators: Adds Library Search Path
-#: includes/class-autoloader.php:92
-#: includes/class-autoloader.php:140
+#: includes/class-autoloader.php:82
+#: includes/class-autoloader.php:130
 msgid "Searched In Path %s"
 msgstr ""
 
 #. translators: Adds integration Action Name
 #. translators: Adds Library Triggered Action
-#: includes/class-autoloader.php:94
-#: includes/class-autoloader.php:142
+#: includes/class-autoloader.php:84
+#: includes/class-autoloader.php:132
 msgid "Tried Action %s"
 msgstr ""
 
@@ -204,17 +204,6 @@ msgstr ""
 #: includes/modules/wordpress/class-importer.php:357
 msgid "Import Errors - "
 msgstr ""
-
-#. translators: 1: Site name 2: Maximum level 3: Log count
-#: includes/modules/logger/class-email-handler.php:182
-msgid "[%1$s] %2$s: %3$s log message"
-msgid_plural "[%1$s] %2$s: %3$s log messages"
-msgstr[0] ""
-
-#: includes/modules/logger/class-email-handler.php:194
-msgid "You have received the following log message:"
-msgid_plural "You have received the following log messages:"
-msgstr[0] ""
 
 #: includes/modules/logger/class-file-handler.php:203
 #: includes/modules/logger/class-file-handler.php:221
