@@ -96,7 +96,7 @@ if ( ! function_exists( 'vsp_get_log_file_title' ) ) {
 
 					$href = wp_nonce_url( add_query_arg( 'delete-handle', $viewed_log ), 'remove_log' );
 					echo wponion_tooltip( __( 'Delete Log' ), array(
-						'element' => ' <a href="' . $href . '" target="_blank"  class="btn btn-danger log-delete-handle"><span class="dashicons dashicons-trash"></span></a>',
+						'element' => ' <a href="' . $href . '" class="btn btn-danger log-delete-handle"><span class="dashicons dashicons-trash"></span></a>',
 					) );
 				}
 				?>
