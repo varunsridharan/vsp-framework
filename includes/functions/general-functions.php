@@ -213,26 +213,27 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 	 * In either case, the class or instance *must* implement WC_Logger_Interface.
 	 *
 	 * @param bool $subpath
+	 * @param bool $file_name
 	 * @param bool $filesize
 	 *
 	 * @return mixed|\VSP\Modules\Logger
 	 * @see VSP_Logger_Interface
 	 *
 	 */
-	function vsp_get_logger( $subpath = false, $filesize = false ) {
+	function vsp_get_logger( $subpath = false, $file_name = null, $filesize = false ) {
 		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
 		$implements = class_implements( $class );
 		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements ) ) {
 			if ( is_object( $class ) ) {
 				$logger = $class;
 			} else {
-				$logger = new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $filesize ) ) );
+				$logger = new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 			}
 		} else {
 			/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
 			$smgs = sprintf( __( 'The class %1$s provided by %2$s filter must implement %3$s.' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>vsp_logging_class</code>', '<code>\VSP\Core\Interfaces\Logger</code>' );
 			vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
-			$logger = new \VSP\Modules\Logger( array( new  \VSP\Modules\Logger\File_Handler( $subpath, $filesize ) ) );
+			$logger = new \VSP\Modules\Logger( array( new  \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 		}
 		return $logger;
 	}
@@ -247,7 +248,7 @@ if ( ! function_exists( 'vsp_logger' ) ) {
 	function vsp_logger() {
 		static $logger = null;
 		if ( null === $logger ) {
-			$logger = vsp_get_logger( false, false );
+			$logger = vsp_get_logger( false, null, false );
 		}
 		return $logger;
 	}

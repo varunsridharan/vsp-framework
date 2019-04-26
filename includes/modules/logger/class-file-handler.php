@@ -60,18 +60,26 @@ class File_Handler extends \VSP\Core\Abstracts\Log_Handler {
 	protected $cached_logs = array();
 
 	/**
+	 * @var null
+	 * @access
+	 */
+	protected $file_name = null;
+
+	/**
 	 * VSP_Log_Handler_File constructor.
 	 *
-	 * @param bool $sub_path
-	 * @param int  $log_size_limit Optional. Size limit for log files. Default 5mb.
+	 * @param bool                $sub_path
+	 * @param string|boolean|null $file_name
+	 * @param int                 $log_size_limit Optional. Size limit for log files. Default 5mb.
 	 */
-	public function __construct( $sub_path = false, $log_size_limit = null ) {
+	public function __construct( $sub_path = false, $file_name = null, $log_size_limit = null ) {
 		if ( null === $log_size_limit || false === $log_size_limit ) {
 			$log_size_limit = 5 * 1024 * 1024;
 		}
 
 		$this->log_size_limit = $log_size_limit;
 		$this->sub_path       = $sub_path;
+		$this->file_name      = $file_name;
 		add_action( 'vsp_framework_init', array( $this, 'write_cached_logs' ), 1 );
 	}
 
@@ -208,15 +216,19 @@ class File_Handler extends \VSP\Core\Abstracts\Log_Handler {
 	/**
 	 * Get a log file name.
 	 *
-	 * @since 3.3
-	 *
 	 * @param string $handle Log name.
 	 *
 	 * @return bool|string The log file name or false if cannot be determined.
+	 * @since 3.3
+	 *
 	 */
 	public function get_log_file_name( $handle ) {
 		if ( function_exists( 'wp_hash' ) ) {
-			return sanitize_file_name( $handle . '-' . wp_hash( $handle . '_' . $this->sub_path ) . '.log' );
+			if ( empty( $this->file_name ) ) {
+				return sanitize_file_name( $handle . '-' . wp_hash( $handle . '_' . $this->sub_path ) . '.log' );
+			} else {
+				return sanitize_file_name( $this->file_name . '-' . wp_hash( $handle . '_' . $this->sub_path ) . '.log' );
+			}
 		} else {
 			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.3' );
 			return false;

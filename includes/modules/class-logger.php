@@ -34,6 +34,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @var array
 	 */
 	protected $handlers;
+
 	/**
 	 * Minimum log level this handler will process.
 	 *
@@ -87,7 +88,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	public function log_errors() {
 		$error = error_get_last();
 
-
 		if ( E_ERROR === $error['type'] ) {
 			vsp_log_msg( __( 'File & Line No :' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
 				'source' => 'fatal-errors',
@@ -108,11 +108,14 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param string $message
 	 * @param array  $context
 	 *
+	 * @return $this
+	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function critical( $message, $context = array() ) {
 		$this->log( Logger\Levels::CRITICAL, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -129,6 +132,8 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 *     'debug': Debug-level messages.
 	 * @param string|array $message Log message.
 	 * @param array        $context Optional. Additional information for log handlers.
+	 *
+	 * @return $this
 	 */
 	public function log( $level, $message, $context = array() ) {
 		if ( ! Logger\Levels::is_valid_level( $level ) ) {
@@ -147,6 +152,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 				$handler->handle( $timestamp, $level, $message, $context );
 			}
 		}
+		return $this;
 	}
 
 	/**
@@ -164,39 +170,20 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	}
 
 	/**
-	 * Add a log entry.
-	 *
-	 * This is not the preferred method for adding log messages. Please use log() or any one of
-	 * the level methods (debug(), info(), etc.). This method may be deprecated in the future.
-	 *
-	 * @param string $handle
-	 * @param string $message
-	 * @param string $level
-	 *
-	 * @return bool
-	 */
-	public function add( $handle, $message, $level = Logger\Levels::NOTICE ) {
-		$message = apply_filters( 'vsp_logger_add_message', $message, $handle );
-		$this->log( $level, $message, array(
-			'source'  => $handle,
-			'_legacy' => true,
-		) );
-		return true;
-	}
-
-	/**
 	 * Adds an emergency level message.
 	 *
 	 * System is unusable.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
-	 *
 	 */
 	public function emergency( $message, $context = array() ) {
 		$this->log( Logger\Levels::EMERGENCY, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -206,13 +193,16 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * Example: Entire website down, database unavailable, etc.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function alert( $message, $context = array() ) {
 		$this->log( Logger\Levels::ALERT, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -222,13 +212,16 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * and monitored.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function error( $message, $context = array() ) {
 		$this->log( Logger\Levels::ERROR, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -240,13 +233,16 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * necessarily wrong.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function warning( $message, $context = array() ) {
 		$this->log( Logger\Levels::WARNING, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -255,13 +251,16 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * Normal but significant events.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function notice( $message, $context = array() ) {
 		$this->log( Logger\Levels::NOTICE, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -271,13 +270,16 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * Example: User logs in, SQL logs.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function info( $message, $context = array() ) {
 		$this->log( Logger\Levels::INFO, $message, $context );
+		return $this;
 	}
 
 	/**
@@ -286,12 +288,15 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * Detailed debug information.
 	 *
 	 * @param string|array $message
-	 * @param array  $context
+	 * @param array        $context
+	 *
+	 * @return $this
 	 *
 	 * @see VSP_Logger::log
 	 *
 	 */
 	public function debug( $message, $context = array() ) {
 		$this->log( Logger\Levels::DEBUG, $message, $context );
+		return $this;
 	}
 }

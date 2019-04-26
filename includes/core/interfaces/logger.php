@@ -28,21 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 interface Logger {
-
-	/**
-	 * Add a log entry.
-	 *
-	 * This is not the preferred method for adding log messages. Please use log() or any one of
-	 * the level methods (debug(), info(), etc.). This method may be deprecated in the future.
-	 *
-	 * @param string $handle File handle.
-	 * @param string $message Log message.
-	 * @param string $level Log level.
-	 *
-	 * @return bool True if log was added, otherwise false.
-	 */
-	public function add( $handle, $message, $level = \VSP\Modules\Logger\Levels::NOTICE );
-
 	/**
 	 * Add a log entry.
 	 *

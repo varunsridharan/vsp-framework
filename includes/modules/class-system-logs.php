@@ -30,22 +30,18 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		/**
 		 * @var array
 		 */
-		protected static $logs = array();
+		protected $logs = array();
 
 		/**
 		 * @var array
 		 */
-		protected static $actual_logs = array();
+		protected $actual_logs = array();
 
 		/**
-		 * VSP_System_Logs constructor.
-		 *
-		 * @param array $options
-		 * @param array $defaults
+		 * @var bool
+		 * @access
 		 */
-		public function __construct( $options = array(), $defaults = array() ) {
-			parent::__construct( $options, $defaults );
-		}
+		protected $subpath = false;
 
 		/**
 		 * @param      $filepath
@@ -55,8 +51,8 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 * @return bool|string
 		 * @static
 		 */
-		public static function read_file( $filepath, $lines = 1, $adaptive = true ) {
-			$filepath = ( isset( self::$logs[ $filepath ] ) ) ? self::$logs[ $filepath ] : $filepath;
+		public function read_file( $filepath, $lines = 1, $adaptive = true ) {
+			$filepath = ( isset( $this->logs[ $filepath ] ) ) ? $this->logs[ $filepath ] : $filepath;
 			$filepath = VSP_LOG_DIR . $filepath;
 			// Open file
 			$f = @fopen( $filepath, 'rb' );
@@ -96,19 +92,20 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		/**
 		 * Outputs HTML.
 		 *
-		 * @static
+		 * @param bool $custom_path
 		 */
-		public static function render( $custom_path = false ) {
-			self::scan_log_files( $custom_path );
+		public function render( $custom_path = false ) {
+			$this->subpath = $custom_path;
+			$this->scan_log_files();
 			$file_removed = false;
-			if ( ! empty( $_REQUEST['log_file'] ) && isset( self::$logs[ sanitize_title( $_REQUEST['log_file'] ) ] ) ) {
-				$viewed_log = sanitize_title( $_REQUEST['log_file'] );
-			} elseif ( ! empty( self::$logs ) ) {
-				$viewed_log = current( array_keys( self::$logs ) );
+			if ( ! empty( $_REQUEST['log_files'] ) && isset( $this->logs[ sanitize_title( $_REQUEST['log_files'] ) ] ) ) {
+				$viewed_log = sanitize_title( $_REQUEST['log_files'] );
+			} elseif ( ! empty( $this->logs ) ) {
+				$viewed_log = current( array_keys( $this->logs ) );
 			}
 
 			if ( isset( $_REQUEST['delete-handle'] ) && ! empty( $_REQUEST['delete-handle'] ) ) {
-				self::remove_log();
+				$this->remove_log();
 				$file_removed = true;
 			}
 
@@ -118,19 +115,19 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		/**
 		 * Deletes A File.
 		 */
-		public static function remove_log() {
+		public function remove_log() {
 			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'remove_log' ) ) { // WPCS: input var ok, sanitization ok.
 				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.' ) );
 			}
 
 			if ( ! empty( $_REQUEST['delete-handle'] ) ) {  // WPCS: input var ok.
-				if ( isset( self::$logs[ $_REQUEST['delete-handle'] ] ) ) {
-					$file = self::$logs[ $_REQUEST['delete-handle'] ];
+				if ( isset( $this->logs[ $_REQUEST['delete-handle'] ] ) ) {
+					$file = $this->logs[ $_REQUEST['delete-handle'] ];
 
-					foreach ( self::$actual_logs as $group => $data ) {
+					foreach ( $this->actual_logs as $group => $data ) {
 						if ( isset( $data[ $_REQUEST['delete-handle'] ] ) ) {
 							unset( $data[ $_REQUEST['delete-handle'] ] );
-							self::$actual_logs[ $group ] = $data;
+							$this->actual_logs[ $group ] = $data;
 							break;
 						}
 					}
@@ -151,24 +148,36 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 * @static
 		 * @return array
 		 */
-		public static function scan_log_files( $custom_path = false ) {
-			if ( false === $custom_path ) {
-				$logs = array( '' => self::get_log_files( VSP_LOG_DIR ) );
-				$logs = array_merge( self::get_nested_logs( VSP_LOG_DIR ), $logs );
+		public function scan_log_files( $custom_path = false ) {
+			if ( false === $this->subpath ) {
+				$logs = array( '' => $this->get_log_files( VSP_LOG_DIR ) );
+				$logs = array_merge( $this->get_nested_logs( VSP_LOG_DIR ), $logs );
 			} else {
-				$logs = array( $custom_path => self::get_log_files( VSP_LOG_DIR . $custom_path ) );
+				$logs = array( $this->subpath => $this->get_log_files( VSP_LOG_DIR . $this->subpath, true ) );
 			}
 			$fixed_logs = array();
 
-			foreach ( $logs as $p => $ls ) {
-				foreach ( $ls as $f => $n ) {
-					$fixed_logs[ $f ] = trim( vsp_slashit( $p ) . $n, '/' );
+			foreach ( $logs as $group => $files ) {
+				if ( is_array( $files ) ) {
+					foreach ( $files as $file_name => $file ) {
+						if ( is_array( $file ) ) {
+							foreach ( $file as $file_id => $_file ) {
+								$fixed_logs[ $file_id ] = trim( vsp_slashit( $group ) . vsp_slashit( $file_name ) . $_file );
+							}
+						} else {
+							if ( ! empty( $group ) ) {
+								$fixed_logs[ $file_name ] = trim( vsp_slashit( $group ) . $file );
+							} else {
+								$fixed_logs[ $file_name ] = trim( $file );
+							}
+						}
+					}
 				}
 			}
 
-			self::$logs        = $fixed_logs;
-			self::$actual_logs = $logs;
-			return self::$actual_logs;
+			$this->logs        = $fixed_logs;
+			$this->actual_logs = $logs;
+			return $this->actual_logs;
 		}
 
 		/**
@@ -180,7 +189,7 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 * @return array
 		 * @static
 		 */
-		public static function get_log_files( $path = '', $nested = false ) {
+		public function get_log_files( $path = '', $nested = false ) {
 			$files  = @scandir( $path );
 			$result = array();
 
@@ -188,9 +197,9 @@ if ( ! class_exists( 'System_Logs' ) ) {
 				foreach ( $files as $key => $value ) {
 					if ( ! in_array( $value, array( '.', '..' ) ) ) {
 						if ( ! is_dir( $value ) && strstr( $value, '.log' ) ) {
-							$result[ sanitize_title( basename( $path ) . '/' . $value ) ] = $value;
-						} elseif ( is_dir( VSP_LOG_DIR . $value ) && true === $nested ) {
-							$result[ $value ] = self::get_log_files( VSP_LOG_DIR . $value );
+							$result[ md5( $nested . '/' . basename( $path ) . '/' . $value ) ] = $value;
+						} elseif ( is_dir( trailingslashit( $path ) . $value ) && false !== $nested ) {
+							$result[ $value ] = self::get_log_files( trailingslashit( $path ) . $value, basename( $path ) );
 						}
 					}
 				}
@@ -206,7 +215,7 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 * @return array
 		 * @static
 		 */
-		public static function get_nested_logs( $path = '' ) {
+		public function get_nested_logs( $path = '' ) {
 			$files  = @scandir( $path );
 			$result = array();
 
@@ -214,7 +223,7 @@ if ( ! class_exists( 'System_Logs' ) ) {
 				foreach ( $files as $key => $value ) {
 					if ( ! in_array( $value, array( '.', '..' ) ) ) {
 						if ( is_dir( VSP_LOG_DIR . $value ) ) {
-							$result[ $value ] = self::get_log_files( VSP_LOG_DIR . $value, true );
+							$result[ $value ] = $this->get_log_files( VSP_LOG_DIR . $value, true );
 						}
 					}
 				}
@@ -229,8 +238,12 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 *
 		 * @return string
 		 */
-		public static function get_log_file_handle( $filename ) {
+		public function get_log_file_handle( $filename ) {
 			return substr( $filename, 0, strlen( $filename ) > 37 ? strlen( $filename ) - 37 : strlen( $filename ) - 4 );
+		}
+
+		public function get_logs() {
+			return $this->logs;
 		}
 
 		/**
@@ -239,8 +252,9 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 * @param $file
 		 */
 		public static function download_log( $file ) {
-			self::scan_log_files();
-			foreach ( self::$logs as $file_key => $_file ) {
+			$instance = new self();
+			$instance->scan_log_files();
+			foreach ( $instance->get_logs() as $file_key => $_file ) {
 				$size = filesize( VSP_LOG_DIR . $_file );
 				if ( $file === $file_key ) {
 					header( 'Cache-Control: private' );
