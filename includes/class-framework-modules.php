@@ -8,6 +8,8 @@
 
 namespace VSP;
 
+use Varunsridharan\WordPress\Localizer;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,27 +24,6 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 	 * @since 1.0
 	 */
 	abstract class Framework_Modules extends Framework_Admin {
-		/**
-		 * Settings
-		 *
-		 * @var null
-		 */
-		private $settings = null;
-
-		/**
-		 * Autoloader.
-		 *
-		 * @var null|\Varunsridharan\PHP\Autoloader
-		 */
-		private $autoloader = null;
-
-		/**
-		 * Addons
-		 *
-		 * @var null|\VSP\Modules\Addons
-		 */
-		private $addons = null;
-
 		/**
 		 * Logging
 		 *
@@ -84,21 +65,10 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 */
 		protected function __addon_init() {
 			if ( false !== $this->option( 'addons' ) ) {
-				$this->addon_init_before();
 				$this->action( 'addons_init_before' );
-				$this->addons = $this->_instance( '\VSP\Modules\Addons', false, true, $this->option( 'addons' ) );
-				$this->addon_init();
+				$this->_instance( '\VSP\Modules\Addons', false, true, $this->option( 'addons' ) );
 				$this->action( 'addons_init' );
 			}
-		}
-
-		/**
-		 * Returns Active Addon Instance.
-		 *
-		 * @return \VSP\Modules\Addons
-		 */
-		public function addons() {
-			return $this->addons;
 		}
 
 		/**
@@ -116,7 +86,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 				$args = $this->option( 'settings_page' );
 				if ( is_array( $args ) ) {
 					$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
-					$this->settings      = $this->_instance( 'VSP\Modules\WPOnion', false, true, $this->option( 'settings_page' ) );
+					$this->_instance( 'VSP\Modules\WPOnion', false, true, $this->option( 'settings_page' ) );
 					$this->settings_init();
 					$this->action( 'settings_init' );
 				}
@@ -130,12 +100,40 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 */
 		public function __logging_init() {
 			if ( false !== $this->option( 'logging' ) ) {
-				$this->logging_init_before();
 				$this->action( 'logging_init_before' );
 				$this->logging = vsp_get_logger( $this->slug() );
-				$this->logging_init();
 				$this->action( 'loggin_init' );
 			}
+		}
+
+		/**
+		 * Handles Autoloader.
+		 *
+		 * @throws \Exception
+		 * @uses \Varunsridharan\PHP\Autoloader
+		 */
+		protected function __autoloader_init() {
+			if ( false !== $this->option( 'autoloader' ) ) {
+				$args = $this->parse_args( $this->option( 'autoloader' ), array(
+					'namespace' => false,
+					'base_path' => $this->plugin_path(),
+					'options'   => array(),
+					'prepend'   => false,
+				) );
+				new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'], $args['prepend'] );
+			}
+		}
+
+		/**
+		 * Inits WP Localizer.
+		 *
+		 * @return bool|\Varunsridharan\WordPress\Localizer
+		 */
+		public function localizer() {
+			if ( false !== $this->option( 'localizer' ) ) {
+				return Localizer::instance( $this->option( 'localizer' ) );
+			}
+			return false;
 		}
 
 		/**
@@ -147,30 +145,5 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 			return $this->logging;
 		}
 
-		/**
-		 * Handles Autoloader.
-		 *
-		 * @uses \Varunsridharan\PHP\Autoloader
-		 */
-		protected function __autoloader_init() {
-			if ( false !== $this->option( 'autoloader' ) ) {
-				$args             = $this->parse_args( $this->option( 'autoloader' ), array(
-					'namespace' => false,
-					'base_path' => $this->plugin_path(),
-					'options'   => array(),
-					'prepend'   => false,
-				) );
-				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'], $args['prepend'] );
-			}
-		}
-
-		/**
-		 * Returns An Active Autoloader Instance.
-		 *
-		 * @return \Varunsridharan\PHP\Autoloader|null
-		 */
-		public function autoloader() {
-			return $this->autoloader;
-		}
 	}
 }

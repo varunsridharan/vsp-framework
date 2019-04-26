@@ -22,19 +22,40 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 	 * @since 1.0
 	 */
 	abstract class Framework extends Framework_Modules {
-
 		/**
 		 * Default_options
 		 *
 		 * @var array
 		 */
 		protected $default_options = array(
+			/**
+			 * @see https://docs.wponion.com/modules/settings
+			 */
 			'settings_page' => false,
+			/**
+			 * @see http://github.com/varunsridharan/wp-review-me
+			 */
 			'reviewme'      => false,
+			/**
+			 * @see http://github.com/varunsridharan/php-autoloader
+			 */
 			'autoloader'    => false,
+			/**
+			 * True / False
+			 */
 			'logging'       => false,
+			/**
+			 * @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-addons.php#L43-L51
+			 */
 			'addons'        => false,
+			/**
+			 * @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-system-tools.php#L38-L41
+			 */
 			'system_tools'  => false,
+			/**
+			 * @see https://github.com/varunsridharan/wp-localizer
+			 */
+			'localizer'     => false,
 			'plugin_file'   => __FILE__,
 		);
 
@@ -75,6 +96,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 * @uses init_class
 		 */
 		private function __init_class() {
+			$this->localizer();
 			$this->__init_system_tools();
 			$this->__logging_init();
 			$this->__review_me_init();
