@@ -37,7 +37,6 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 		$js = [
 			'fancybox'  => vsp_url( 'assets/vendors/fancybox/jquery.fancybox.min.js', true ),
 			'addons'    => vsp_js( 'vsp-addons.js', true ),
-			'plugins'   => vsp_js( 'vsp-plugins.js', true ),
 			'framework' => vsp_js( 'vsp-framework.js', true ),
 			'vuejs'     => 'https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js',
 		];
@@ -48,10 +47,9 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 			'addons'    => vsp_css( 'vsp-addons.css', true ),
 		];
 
-		vsp_register_script( 'vsp-plugins', $js['plugins'], [ 'jquery', 'wponion-core' ], '1.0', true );
 		vsp_register_script( 'vuejs', $js['vuejs'], [], '1.3.8', true );
 		vsp_register_script( 'vsp-addons', $js['addons'], [ 'vuejs', 'jquery' ], '1.0', false );
-		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery', 'vsp-plugins' ], '1.0', true );
+		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery', 'wponion-core' ], '1.0', true );
 		vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
 
 		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
