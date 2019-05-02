@@ -43,7 +43,7 @@ if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 		if ( ! empty( $window_args ) ) {
 			foreach ( $window_args as $key => $args ) {
 				if ( is_array( $args ) ) {
-					$window_args[ $key ] = 'VSP_HELPER.set_window_args(' . \VSP\Helper::array_to_json( $args ) . ')';
+					$window_args[ $key ] = 'window.vsp_js_helper.window_arg(' . \VSP\Helper::array_to_json( $args ) . ')';
 				}
 			}
 			$functions = array_merge( $functions, $window_args );

@@ -45,6 +45,8 @@ if ( ! function_exists( 'vsp_define' ) ) {
 	 * @param $value .
 	 *
 	 * @return bool
+	 *
+	 * @uses \define()
 	 */
 	function vsp_define( $key, $value ) {
 		return defined( $key ) ? define( $key, $value ) : false;
@@ -61,10 +63,7 @@ if ( ! function_exists( 'vsp_url' ) ) {
 	 * @return string
 	 */
 	function vsp_url( $extra = '', $is_url = true ) {
-		if ( true === $is_url ) {
-			return VSP_URL . $extra;
-		}
-		return vsp_path( $extra );
+		return ( true === $is_url ) ? VSP_URL . $extra : vsp_path( $extra );
 	}
 }
 
@@ -91,10 +90,7 @@ if ( ! function_exists( 'vsp_js' ) ) {
 	 * @return string
 	 */
 	function vsp_js( $extra = '', $url = true ) {
-		if ( true === $url ) {
-			return vsp_url( 'assets/js/' . $extra );
-		}
-		return vsp_path( 'assets/js/' . $extra );
+		return ( true === $url ) ? vsp_url( 'assets/js/' . $extra ) : vsp_path( 'assets/js/' . $extra );
 	}
 }
 
@@ -108,10 +104,7 @@ if ( ! function_exists( 'vsp_css' ) ) {
 	 * @return string
 	 */
 	function vsp_css( $extra = '', $url = true ) {
-		if ( true === $url ) {
-			return vsp_url( 'assets/css/' . $extra );
-		}
-		return vsp_path( 'assets/css/' . $extra );
+		return ( true === $url ) ? vsp_url( 'assets/css/' . $extra ) : vsp_path( 'assets/css/' . $extra );
 	}
 }
 
@@ -125,10 +118,7 @@ if ( ! function_exists( 'vsp_img' ) ) {
 	 * @return string
 	 */
 	function vsp_img( $extra = '', $url = true ) {
-		if ( true === $url ) {
-			return vsp_url( 'assets/img/' . $extra );
-		}
-		return vsp_path( 'assets/img/' . $extra );
+		return ( true === $url ) ? vsp_url( 'assets/img/' . $extra ) : vsp_path( 'assets/img/' . $extra );
 	}
 }
 
@@ -240,35 +230,6 @@ if ( ! function_exists( 'vsp_list_files' ) ) {
 /**
  * WordPress Specific Functions
  */
-if ( ! function_exists( 'vsp_is_plugin_active' ) ) {
-	/**
-	 * Checks if given plugin file is active in WordPress
-	 *
-	 * @param string $file .
-	 *
-	 * @return bool
-	 * @deprecated deprecated since 0.1.4 | Please use wp-dependencies Library (https://git.io/fjqdU)
-	 *
-	 */
-	function vsp_is_plugin_active( $file = '' ) {
-		return wp_is_plugin_active( $file );
-	}
-}
-
-if ( ! function_exists( 'vsp_wc_active' ) ) {
-	/**
-	 * Checks if woocommerce is active
-	 * in current wp instance
-	 *
-	 * @return bool
-	 * @example if(vsp_wc_active()){echo "Yes";}else{echo "No"}
-	 * @deprecated deprecated since 0.1.4 | Please use wp-dependencies Library (https://git.io/fjqdU)
-	 */
-	function vsp_wc_active() {
-		return vsp_is_plugin_active( 'woocommerce/woocommerce.php' );
-	}
-}
-
 if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	/**
 	 * Adds WooCommerce Required Notice
