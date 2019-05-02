@@ -60,76 +60,9 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 	 */
 	function vsp_addon_data_markup( $plugin_file, $plugin_data, $markup = true, $translate = true ) {
 		if ( function_exists( '_get_plugin_data_markup_translate' ) ) {
-			return _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup, $translate );
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-
-		// Sanitize the plugin filename to a WP_PLUGIN_DIR relative path
-		$plugin_file = plugin_basename( $plugin_file );
-
-		// Translate fields
-		if ( $translate ) {
-			$text_domain = $plugin_data['TextDomain'];
-			if ( $text_domain ) {
-				if ( ! is_textdomain_loaded( $text_domain ) ) {
-					if ( $plugin_data['DomainPath'] ) {
-						load_plugin_textdomain( $text_domain, false, dirname( $plugin_file ) . $plugin_data['DomainPath'] );
-					} else {
-						load_plugin_textdomain( $text_domain, false, dirname( $plugin_file ) );
-					}
-				}
-			} elseif ( 'hello.php' == basename( $plugin_file ) ) {
-				$text_domain = 'default';
-			}
-			if ( $text_domain ) {
-				foreach ( array( 'Name', 'PluginURI', 'Description', 'Author', 'AuthorURI', 'Version' ) as $field ) {
-					$plugin_data[ $field ] = translate( $plugin_data[ $field ], $text_domain );
-				}
-			}
-		}
-
-		// Sanitize fields
-		$allowed_tags_in_links = array(
-			'abbr'    => array( 'title' => true ),
-			'acronym' => array( 'title' => true ),
-			'code'    => true,
-			'em'      => true,
-			'strong'  => true,
-		);
-		$allowed_tags          = $allowed_tags_in_links;
-		$allowed_tags['a']     = array(
-			'href'  => true,
-			'title' => true,
-		);
-
-		// Name is marked up inside <a> tags. Don't allow these.
-		// Author is too, but some plugins have used <a> here (omitting Author URI).
-		$plugin_data['Name']        = wp_kses( $plugin_data['Name'], $allowed_tags_in_links );
-		$plugin_data['Author']      = wp_kses( $plugin_data['Author'], $allowed_tags );
-		$plugin_data['Description'] = wp_kses( $plugin_data['Description'], $allowed_tags );
-		$plugin_data['Version']     = wp_kses( $plugin_data['Version'], $allowed_tags );
-		$plugin_data['PluginURI']   = esc_url( $plugin_data['PluginURI'] );
-		$plugin_data['AuthorURI']   = esc_url( $plugin_data['AuthorURI'] );
-		$plugin_data['Title']       = $plugin_data['Name'];
-		$plugin_data['AuthorName']  = $plugin_data['Author'];
-
-		// Apply markup
-		if ( $markup ) {
-			if ( $plugin_data['PluginURI'] && $plugin_data['Name'] ) {
-				$plugin_data['Title'] = '<a href="' . $plugin_data['PluginURI'] . '">' . $plugin_data['Name'] . '</a>';
-			}
-
-			if ( $plugin_data['AuthorURI'] && $plugin_data['Author'] ) {
-				$plugin_data['Author'] = '<a href="' . $plugin_data['AuthorURI'] . '">' . $plugin_data['Author'] . '</a>';
-			}
-
-			$plugin_data['Description'] = wptexturize( $plugin_data['Description'] );
-
-			if ( $plugin_data['Author'] ) {
-				$plugin_data['Description'] .= ' <cite>' . sprintf( __( 'By %s.', 'vsp-framework' ), $plugin_data['Author'] ) . '</cite>';
-			}
-		}
-
-		return $plugin_data;
+		return _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup, $translate );
 	}
 }
 
