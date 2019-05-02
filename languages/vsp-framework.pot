@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-04-26T05:56:31+00:00\n"
+"POT-Creation-Date: 2019-04-26T14:35:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
 
 #. Plugin Name of the plugin
-#: views/log-viewer.php:22
+#: views/log-viewer.php:56
 msgid "VSP Framework"
 msgstr ""
 
@@ -27,12 +27,11 @@ msgstr ""
 msgid "http://varunsridharan.in"
 msgstr ""
 
-#. translators: 1: last access date 2: last access time
-#: views/log-viewer.php:28
-msgid "%1$s at %2$s"
+#: views/log-viewer.php:15
+msgid " ( %1$s at %2$s )"
 msgstr ""
 
-#: views/log-viewer.php:59
+#: views/log-viewer.php:111
 msgid "There Are No Logs Generated"
 msgstr ""
 
@@ -168,12 +167,12 @@ msgid "Addon Is Not Active"
 msgstr ""
 
 #. translators: 1: class name 2: VSP_Log_Handler_Interface
-#: includes/modules/class-logger.php:66
+#: includes/modules/class-logger.php:67
 msgid "The provided handler %1$s does not implement %2$s."
 msgstr ""
 
 #. translators: 1: VSP_Logger::log 2: level
-#: includes/modules/class-logger.php:136
+#: includes/modules/class-logger.php:141
 msgid "%1$s was called with an invalid level \"%2$s\"."
 msgstr ""
 
@@ -205,8 +204,8 @@ msgstr ""
 msgid "Import Errors - "
 msgstr ""
 
-#: includes/modules/logger/class-file-handler.php:203
-#: includes/modules/logger/class-file-handler.php:221
+#: includes/modules/logger/class-file-handler.php:211
+#: includes/modules/logger/class-file-handler.php:233
 msgid "This method should not be called before plugins_loaded."
 msgstr ""
 
