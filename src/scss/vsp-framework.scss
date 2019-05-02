@@ -43,6 +43,20 @@
   position: relative;
   width:    100%;
 
+  #templateside {
+    width: 25em;
+
+    ul {
+      position: relative;
+    }
+  }
+
+  #template {
+    display:        block;
+    width:          calc(100% - 25em);
+    vertical-align: top;
+  }
+
   .log-header {
     margin-bottom: 10px;
 
@@ -58,21 +72,9 @@
         margin-right:   10px;
       }
     }
-  }
 
-  .log-viewer {
-    border:     1px solid #ddd;
-    overflow:   scroll;
-    max-height: 600px;
-    float:      left;
-    width:      100%;
-
-    pre {
-      float:      left;
-      width:      10px;
-      display:    inline-block;
-      padding:    10px;
-      margin-top: 0;
+    .wpo-btn {
+      text-decoration: none;
     }
   }
 }

@@ -1,100 +1,55 @@
 <?php
-/**
- * Admin View: Page - Status Logs
- *
- * @package WooCommerce/Admin/Logs
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-if ( ! function_exists( 'vsp_get_log_file_title' ) ) {
-	function vsp_get_log_file_title( $file ) {
-		$timestamp = filemtime( VSP_LOG_DIR . $file );
-		return sprintf( __( ' ( %1$s at %2$s )', 'vsp-framework' ), date_i18n( vsp_date_format(), $timestamp ), date_i18n( vsp_time_format(), $timestamp ) );
-
+global $current_file;
+$plugin_files          = vsp_list_log_files( $this->custom_path );
+$plugin_editable_files = array();
+$filetoedit            = false;
+foreach ( $plugin_files as $plugin_file ) {
+	if ( preg_match( '/\.([^.]+)$/', $plugin_file, $matches ) && in_array( $matches[1], array( 'log', 'txt' ) ) ) {
+		$plugin_editable_files[] = $plugin_file;
+		if ( false !== $this->current && md5( $plugin_file ) === $this->current ) {
+			$filetoedit = $plugin_file;
+		}
 	}
 }
-?>
-<?php if ( $this->logs ) : ?>
+
+if ( empty( $plugin_editable_files ) ) {
+	echo '<div class="vsp_nothing_found_wrap">
+		<div class="vsp_nothing_found">
+			<span class="dashicons dashicons-welcome-write-blog"></span>
+			<h2>' . __( 'No Logs Found' ) . '</h2>
+		</div>
+	</div>';
+} else {
+
+	$filetoedit = ( false !== $filetoedit ) ? $filetoedit : $plugin_editable_files[0];
+	$tree       = vsp_make_log_list_tree( $plugin_editable_files );
+	$file       = validate_file_to_edit( $filetoedit, $plugin_files );
+	$real_file  = VSP_LOG_DIR . $file;
+	$content    = $this->read_file( $real_file, 1000 );
+	$args       = wp_enqueue_code_editor( array(
+		'file'        => $file,
+		'lineNumbers' => false,
+		'codemirror'  => array( 'readOnly' => true ),
+	) );
+
+	wp_enqueue_script( 'wp-theme-plugin-editor' );
+	wp_add_inline_script( 'wp-theme-plugin-editor', sprintf( 'jQuery( function( $ ) { wp.themePluginEditor.init( $( "#template" ), %s ); } )', wp_json_encode( array(
+		'codeEditor' => $args,
+	) ) ) );
+	wp_add_inline_script( 'wp-theme-plugin-editor', sprintf( 'wp.themePluginEditor.themeOrPlugin = "n";' ) );
+	?>
 	<div id="vsp-log-view-wrap">
 		<div class="log-header">
-			<style>
-				.log-center div {
-					padding: 0 !important;
-					margin: 0 !important;
-				}
-
-				.btn {
-					text-decoration: none;
-				}
-			</style>
 			<div class="log-center">
-
+				<h2><?php echo $file; ?></h2>
 				<?php
-				echo wponion_add_element( array(
-					'type'    => 'select',
-					'name'    => 'log_files',
-					'options' => function () {
-						if ( false !== $this->subpath ) {
-							$logs = isset( $this->actual_logs[ $this->subpath ] ) ? array_filter( $this->actual_logs[ $this->subpath ] ) : array();
-							foreach ( $logs as $id => $val ) {
-								if ( is_array( $val ) ) {
-									foreach ( $val as $in => $v ) {
-										$_file              = ( isset( $this->logs[ $in ] ) ) ? $this->logs[ $in ] : $in;
-										$logs[ $id ][ $in ] = $v . vsp_get_log_file_title( $_file );
-									}
-								} else {
-									$_file       = ( isset( $this->logs[ $id ] ) ) ? $this->logs[ $id ] : $id;
-									$logs[ $id ] = $val . vsp_get_log_file_title( $_file );
-								}
-							}
-							return $logs;
-						} else {
-							$return = array();
-							$main   = __( 'VSP Framework', 'vsp-framework' );
-							foreach ( $this->actual_logs as $group => $logs ) {
-								$group = ( empty( $group ) ) ? $main : $group;
-								foreach ( $logs as $file_id => $files ) {
-									if ( is_array( $files ) ) {
-										foreach ( $files as $i => $f ) {
-											$logs[ $i ] = $file_id . ' / ' . $f;
-										}
-										unset( $logs[ $file_id ] );
-									} else {
-										foreach ( $logs as $fi => $name ) {
-											$_file       = ( isset( $this->logs[ $fi ] ) ) ? $this->logs[ $fi ] : $fi;
-											$logs[ $fi ] = $name . vsp_get_log_file_title( $_file );
-										}
-									}
-								}
-								$return[ $group ] = $logs;
-							}
-							return $return;
-						}
-					},
-				) );
-				?>
-			</div>
-
-			<div class="log-center">
-				<h2>
-					<?php
-					if ( ! empty( $viewed_log ) ) {
-						$_file = ( isset( $this->logs[ $viewed_log ] ) ) ? $this->logs[ $viewed_log ] : $viewed_log;
-						echo $_file;
-					}
-					?>
-				</h2>
-				<?php
-				if ( ! empty( $viewed_log ) ) {
-					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $viewed_log ), 'download_log' );
+				if ( ! empty( $file ) ) {
+					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $file ), 'download_log' );
 					echo wponion_tooltip( __( 'Download' ), array(
 						'element' => '<a href="' . $href . '" target="_blank" class="wpo-btn wpo-btn-secondary wpo-btn-sm log-download-handle"><span class="dashicons dashicons-download"></span></a>',
 					) );
 
-					$href = wp_nonce_url( add_query_arg( 'delete-handle', $viewed_log ), 'remove_log' );
+					$href = wp_nonce_url( add_query_arg( 'delete-handle', $file ), 'remove_log' );
 					echo wponion_tooltip( __( 'Delete Log' ), array(
 						'element' => ' <a href="' . $href . '" class="wpo-btn wpo-btn-danger wpo-btn-sm log-delete-handle"><span class="dashicons dashicons-trash"></span></a>',
 					) );
@@ -102,18 +57,12 @@ if ( ! function_exists( 'vsp_get_log_file_title' ) ) {
 				?>
 			</div>
 		</div>
-		<div class="log-viewer">
-			<pre><?php echo esc_html( $this->read_file( $viewed_log, 1000 ) ); ?></pre>
+		<div id="templateside">
+			<ul role="tree"
+				aria-labelledby="plugin-files-label"><?php vsp_print_log_files_ui( $tree, $file ); ?></ul>
 		</div>
+		<div id="template"><textarea name="newcontent" id="newcontent"><?php echo $content; ?></textarea></div>
 	</div>
-<?php else : ?>
-
-	<div class="vsp_nothing_found_wrap">
-		<div class="vsp_nothing_found">
-			<span class="dashicons dashicons-welcome-write-blog"></span>
-			<h2><?php _e( 'No Logs Found' ); ?></h2>
-		</div>
-	</div>
-
-
-<?php endif; ?>
+	<?php
+	wp_print_file_editor_templates();
+}
