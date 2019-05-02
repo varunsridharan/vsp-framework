@@ -11,9 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-global $vsp_plugins;
-$vsp_plugins = array();
-
 if ( ! function_exists( 'vsp_load_integration' ) ) {
 	/**
 	 * Loads Given Integration File
@@ -221,6 +218,22 @@ if ( ! function_exists( 'vsp_get_file_paths' ) ) {
 	 */
 	function vsp_get_file_paths( $path ) {
 		return glob( $path );
+	}
+}
+
+if ( ! function_exists( 'vsp_list_files' ) ) {
+	/**
+	 * @param       $path
+	 * @param int   $levels
+	 * @param array $exclusions
+	 *
+	 * @return bool|string[]
+	 */
+	function vsp_list_files( $path, $levels = 100, $exclusions = array() ) {
+		if ( ! function_exists( 'list_files' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		return list_files( $path, $levels, $exclusions );
 	}
 }
 
