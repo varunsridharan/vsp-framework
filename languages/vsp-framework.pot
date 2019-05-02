@@ -9,13 +9,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-04-26T14:35:47+00:00\n"
+"POT-Creation-Date: 2019-05-02T08:24:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
 
 #. Plugin Name of the plugin
-#: views/log-viewer.php:56
 msgid "VSP Framework"
 msgstr ""
 
@@ -25,14 +24,6 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "http://varunsridharan.in"
-msgstr ""
-
-#: views/log-viewer.php:15
-msgid " ( %1$s at %2$s )"
-msgstr ""
-
-#: views/log-viewer.php:111
-msgid "There Are No Logs Generated"
 msgstr ""
 
 #: includes/class-base.php:117
@@ -371,7 +362,7 @@ msgid "Latest Version Installed"
 msgstr ""
 
 #. translators: Adds Plugin Name & HTML Tags.
-#: vsp-functions.php:267
+#: vsp-functions.php:280
 msgid "%1$s Requires %2$s WooCommerce %3$s to be installed & activated."
 msgstr ""
 
