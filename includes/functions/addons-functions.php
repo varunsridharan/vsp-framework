@@ -59,7 +59,7 @@ if ( ! function_exists( 'vsp_addon_data_markup' ) ) {
 	 * @return mixed
 	 */
 	function vsp_addon_data_markup( $plugin_file, $plugin_data, $markup = true, $translate = true ) {
-		if ( function_exists( '_get_plugin_data_markup_translate' ) ) {
+		if ( ! function_exists( '_get_plugin_data_markup_translate' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		return _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup, $translate );
