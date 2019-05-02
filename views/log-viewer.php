@@ -91,12 +91,12 @@ if ( ! function_exists( 'vsp_get_log_file_title' ) ) {
 				if ( ! empty( $viewed_log ) ) {
 					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $viewed_log ), 'download_log' );
 					echo wponion_tooltip( __( 'Download' ), array(
-						'element' => '<a href="' . $href . '" target="_blank" class="btn btn-secondary log-download-handle"><span class="dashicons dashicons-download"></span></a>',
+						'element' => '<a href="' . $href . '" target="_blank" class="wpo-btn wpo-btn-secondary wpo-btn-sm log-download-handle"><span class="dashicons dashicons-download"></span></a>',
 					) );
 
 					$href = wp_nonce_url( add_query_arg( 'delete-handle', $viewed_log ), 'remove_log' );
 					echo wponion_tooltip( __( 'Delete Log' ), array(
-						'element' => ' <a href="' . $href . '" class="btn btn-danger log-delete-handle"><span class="dashicons dashicons-trash"></span></a>',
+						'element' => ' <a href="' . $href . '" class="wpo-btn wpo-btn-danger wpo-btn-sm log-delete-handle"><span class="dashicons dashicons-trash"></span></a>',
 					) );
 				}
 				?>
@@ -107,6 +107,13 @@ if ( ! function_exists( 'vsp_get_log_file_title' ) ) {
 		</div>
 	</div>
 <?php else : ?>
-	<div class="notice inline notice-success notice-large notice-alt" style="margin: 0;">
-		<p><?php esc_html_e( 'There Are No Logs Generated', 'vsp-framework' ); ?></p></div>
+
+	<div class="vsp_nothing_found_wrap">
+		<div class="vsp_nothing_found">
+			<span class="dashicons dashicons-welcome-write-blog"></span>
+			<h2><?php _e( 'No Logs Found' ); ?></h2>
+		</div>
+	</div>
+
+
 <?php endif; ?>

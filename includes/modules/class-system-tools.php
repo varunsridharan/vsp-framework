@@ -64,7 +64,7 @@ class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Sett
 	 */
 	public function output_logs_info() {
 		$instance = $this->_instance( '\VSP\Modules\System_Logs', false, true, array() );
-		$instance::render();
+		$instance->render();
 	}
 
 	/**
