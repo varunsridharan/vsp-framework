@@ -75,12 +75,10 @@ if ( ! function_exists( 'vsp_get_shortcode_regex' ) ) {
 	 * @return string
 	 */
 	function vsp_get_shortcode_regex( $tagnames = null, $is_addon = false ) {
-		function vsp_get_shortcode_regex( $tagnames = null, $is_addon = false ) {
-			global $shortcode_tags;
-			$tagnames = empty( $tagnames ) ? array_keys( $shortcode_tags ) : $tagnames;
-			$tagnames = ( false === $is_addon ) ? array_map( 'preg_quote', $tagnames ) : $tagnames;
-			$rx       = join( '|', $tagnames );
-			return '\\[(\\[?)(' . $rx . ')(?![\\w-])([^\\]\\/]*(?:\\/(?!\\])[^\\]\\/]*)*?)(?:(\\/)\\]|\\](?:([^\\[]*+(?:\\[(?!\\/\\2\\])[^\\[]*+)*+)\\[\\/\\2\\])?)(\\]?)';
-		}
+		global $shortcode_tags;
+		$tagnames = empty( $tagnames ) ? array_keys( $shortcode_tags ) : $tagnames;
+		$tagnames = ( false === $is_addon ) ? array_map( 'preg_quote', $tagnames ) : $tagnames;
+		$rx       = join( '|', $tagnames );
+		return '\\[(\\[?)(' . $rx . ')(?![\\w-])([^\\]\\/]*(?:\\/(?!\\])[^\\]\\/]*)*?)(?:(\\/)\\]|\\](?:([^\\[]*+(?:\\[(?!\\/\\2\\])[^\\[]*+)*+)\\[\\/\\2\\])?)(\\]?)';
 	}
 }
