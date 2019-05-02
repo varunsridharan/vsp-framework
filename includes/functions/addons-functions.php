@@ -142,34 +142,12 @@ if ( ! function_exists( 'vsp_get_shortcode_regex' ) ) {
 	 * @return string
 	 */
 	function vsp_get_shortcode_regex( $tagnames = null, $is_addon = false ) {
-		global $shortcode_tags;
-
-		if ( empty( $tagnames ) ) {
-			$tagnames = array_keys( $shortcode_tags );
+		function vsp_get_shortcode_regex( $tagnames = null, $is_addon = false ) {
+			global $shortcode_tags;
+			$tagnames = empty( $tagnames ) ? array_keys( $shortcode_tags ) : $tagnames;
+			$tagnames = ( false === $is_addon ) ? array_map( 'preg_quote', $tagnames ) : $tagnames;
+			$rx       = join( '|', $tagnames );
+			return '\\[(\\[?)(' . $rx . ')(?![\\w-])([^\\]\\/]*(?:\\/(?!\\])[^\\]\\/]*)*?)(?:(\\/)\\]|\\](?:([^\\[]*+(?:\\[(?!\\/\\2\\])[^\\[]*+)*+)\\[\\/\\2\\])?)(\\]?)';
 		}
-
-		if ( false === $is_addon ) {
-			$tagnames = array_map( 'preg_quote', $tagnames );
-		}
-
-		$tagregexp = join( '|', $tagnames );
-
-		return '\\['                              // Opening bracket
-			. '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
-			. "($tagregexp)"                     // 2: Shortcode name
-			. '(?![\\w-])'                       // Not followed by word character or hyphen
-			. '('                                // 3: Unroll the loop: Inside the opening shortcode tag
-			. '[^\\]\\/]*'                   // Not a closing bracket or forward slash
-			. '(?:' . '\\/(?!\\])'               // A forward slash not followed by a closing bracket
-			. '[^\\]\\/]*'               // Not a closing bracket or forward slash
-			. ')*?' . ')' . '(?:' . '(\\/)'                        // 4: Self closing tag ...
-			. '\\]'                          // ... and closing bracket
-			. '|' . '\\]'                          // Closing bracket
-			. '(?:' . '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
-			. '[^\\[]*+'             // Not an opening bracket
-			. '(?:' . '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
-			. '[^\\[]*+'         // Not an opening bracket
-			. ')*+' . ')' . '\\[\\/\\2\\]'             // Closing shortcode tag
-			. ')?' . ')' . '(\\]?)';                          // 6: Optional second closing brocket for escaping shortcodes: [[tag]]
 	}
 }
