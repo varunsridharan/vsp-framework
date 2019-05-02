@@ -85,7 +85,7 @@ if ( ! class_exists( 'System_Logs' ) ) {
 				$this->remove_log();
 			}
 
-			include( VSP_PATH . 'views/log-viewer-new.php' );
+			include( VSP_PATH . 'views/log-viewer.php' );
 		}
 
 		/**
