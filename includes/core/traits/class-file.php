@@ -15,8 +15,6 @@
 
 namespace VSP\Core\Traits;
 
-use VSP\Cache;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -29,5 +27,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 trait File {
+	/**
+	 * Returns File Contents.
+	 *
+	 * @param $file
+	 *
+	 * @static
+	 * @return bool|false|string
+	 */
+	public static function get_contents( $file ) {
+		try {
+			return @file_get_contents( $file );
+		} catch ( \ErrorException $exception ) {
 
+		}
+		return false;
+	}
 }

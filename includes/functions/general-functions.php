@@ -23,7 +23,6 @@ if ( ! function_exists( 'vsp_current_screen' ) ) {
 		if ( false === $only_id ) {
 			return $screen;
 		}
-
 		return isset( $screen->id ) ? $screen->id : false;
 	}
 }
@@ -57,20 +56,9 @@ if ( ! function_exists( 'vsp_current_page_url' ) ) {
 	 * @return string
 	 */
 	function vsp_current_page_url() {
-		$page_url = 'http';
-		if ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) {
-			$page_url .= 's';
-		}
-
-		$page_url .= '://';
-
-		if ( isset( $_SERVER['SERVER_PORT'] ) && '80' !== $_SERVER['SERVER_PORT'] ) {
-			$page_url .= $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
-		} else {
-			$page_url .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-		}
-
-		return $page_url;
+		$page_url = ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) ? 'https' : 'http';
+		$port     = ( isset( $_SERVER['SERVER_PORT'] ) && '80' !== $_SERVER['SERVER_PORT'] ) ? ':' . $_SERVER['SERVER_PORT'] : '';
+		return $page_url . '://' . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
 	}
 }
 
@@ -92,7 +80,6 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 
 		$time_limit = $times[0];
 		$type       = $times[1];
-
 		$time_limit = intval( $time_limit );
 
 		switch ( $type ) {
@@ -192,7 +179,6 @@ if ( ! function_exists( 'vsp_doing_it_wrong' ) ) {
 	function vsp_doing_it_wrong( $function, $message, $version ) {
 		// @codingStandardsIgnoreStart
 		$message .= ' Backtrace: ' . wp_debug_backtrace_summary();
-
 		if ( is_ajax() ) {
 			do_action( 'doing_it_wrong_run', $function, $message, $version );
 			error_log( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
@@ -224,11 +210,7 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
 		$implements = class_implements( $class );
 		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements ) ) {
-			if ( is_object( $class ) ) {
-				$logger = $class;
-			} else {
-				$logger = new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
-			}
+			$logger = ( is_object( $class ) ) ? $class : new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 		} else {
 			/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
 			$smgs = sprintf( __( 'The class %1$s provided by %2$s filter must implement %3$s.' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>vsp_logging_class</code>', '<code>\VSP\Core\Interfaces\Logger</code>' );

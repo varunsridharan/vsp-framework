@@ -34,7 +34,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		use Core\Traits\IP;
 		use Core\Traits\URL;
 		use Core\Traits\File;
-		use Core\Traits\MimeType;
 		use Core\Traits\String_Helper;
 
 		/**
