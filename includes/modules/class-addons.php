@@ -27,14 +27,6 @@ if ( ! class_exists( 'Addons' ) ) {
 	 * @since 1.0
 	 */
 	class Addons extends Addons\Admin {
-
-		/**
-		 * User_options
-		 *
-		 * @var array
-		 */
-		protected $user_options = array();
-
 		/**
 		 * Default_options
 		 *
@@ -46,16 +38,10 @@ if ( ! class_exists( 'Addons' ) ) {
 			'addon_listing_tab_name'  => 'addons',
 			'addon_listing_tab_title' => 'Addons',
 			'addon_listing_tab_icon'  => 'fa fa-plus',
-			'file_headers'            => array(),
+			'headers'                 => array(),
 			'show_category_count'     => true,
+			'hook_priority'           => 99,
 		);
-
-		/**
-		 * Active_addons
-		 *
-		 * @var array
-		 */
-		public $active_addons = array();
 
 		/**
 		 * VSP_Addons constructor.
@@ -63,60 +49,129 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @param array $options .
 		 */
 		public function __construct( $options = array() ) {
-			$this->active_addons = array();
-			$this->user_options  = $options;
-			parent::__construct();
+			self::$default_addon_cats      = array(
+				'all'      => __( 'All' ),
+				'active'   => __( 'Active' ),
+				'inactive' => __( 'Inactive' ),
+				'general'  => __( 'General' ),
+			);
+			self::$required_plugins_status = array(
+				'notexists' => __( 'Not Installed' ),
+				'exists'    => __( 'In Active' ),
+				'active'    => __( 'Active' ),
+			);
+			parent::__construct( $options );
 
+			$this->headers = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
+			$slug          = $this->slug( 'hook' );
+			$hook          = $this->option( 'hook_priority' );
+			$this->active_addons();
+			add_action( 'wponion_loaded', array( $this, 'load_active_addons' ) );
 			if ( vsp_is_admin() ) {
-				add_action( $this->slug( 'hook' ) . '_settings_options', array( $this, 'set_settings_page' ), 99, 100 );
+				add_action( $slug . '_settings_options', array( $this, 'link_with_wponion' ), $hook );
 			}
 
 			if ( vsp_is_ajax() ) {
-				add_action( $this->slug( 'hook' ) . '_handle_addon_request', array( $this, 'handle_ajax_request' ) );
+				add_action( $slug . '_handle_addon_request', array( $this, 'handle_ajax_request' ) );
 			}
-
-			$this->load_active_addons();
 		}
 
 		/**
-		 * Loads Active Addons
+		 * Handles Ajax Requests For Addons
 		 */
-		public function load_active_addons() {
-			$active_addons = $this->get_active_addons();
+		public function handle_ajax_request() {
+			if ( isset( $_REQUEST['addon_action'] ) ) {
+				$action = $this->handle_ajax_params( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
+				$addon  = $this->handle_ajax_params( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
+				if ( empty( $addon ) ) {
+					wp_send_json_error( __( 'Invalid Addon', 'vsp-framework' ) );
+				}
 
-			$msg = sprintf( __( '%s Has deactivated the following addons because its required plugins are deactivated', 'vsp-framework' ), '<strong>' . $this->option( 'plugin_name' ) . '</strong>' );
+				if ( ! in_array( $action, array( 'activate', 'deactivate' ) ) ) {
+					wp_send_json_error( __( 'Invalid Addon Action', 'vsp-framework' ) );
+				}
 
-			$deactivated_plugins = '';
+				switch ( $action ) {
+					case 'activate':
+						if ( ! $this->is_active( $addon ) ) {
+							$data = $this->search_addon( $addon );
 
-			if ( ! empty( $active_addons ) ) {
-				foreach ( $active_addons as $pathid => $addon_slug ) {
-					$is_active = $this->is_active( $pathid, true );
-					if ( false !== $is_active ) {
-						$addon_data = $this->search_get_addon( $addon_slug, $pathid );
-						if ( empty( $addon_data ) ) {
-							$deactivated_plugins .= '<li>' . $addon_slug . '</li>';
-							$this->deactivate_addon( $addon_slug, $pathid );
-							continue;
-						}
+							if ( ! is_array( $data ) ) {
+								vsp_send_callback_error( swal2_error( __( 'Addon Not Found' ), __( 'Selected Addon Not Found. Please Contact The Developer' ) ) );
+							}
 
-						if ( isset( $addon_data['required_plugins'] ) && is_array( $addon_data['required_plugins'] ) ) {
-							if ( true !== $addon_data['required_plugins']['fulfilled'] ) {
-								$deactivated_plugins .= '<li>' . $addon_data['Name'] . '</li>';
-								$this->deactivate_addon( $addon_slug, $pathid );
-								continue;
+							if ( isset( $data['required_plugins'] ) && is_array( $data['required_plugins'] ) && ! empty( $data['required_plugins'] ) && true !== $data['required_plugins_fulfilled'] ) {
+								$msg = swal2_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) );
+								vsp_send_callback_error( $msg );
+							}
+
+							if ( $this->activate_addon( $addon ) ) {
+								vsp_send_callback_success( swal2_success( __( 'Addon Activated', 'vsp-framework' ) ) );
 							}
 						}
+						vsp_send_callback_error( swal2_warning( __( 'Addon Already Active', 'vsp-framework' ) ) );
+						break;
+					case 'deactivate':
+						if ( $this->is_active( $addon ) && $this->deactivate_addon( $addon ) ) {
+							vsp_send_callback_success( swal2_warning( __( 'Addon De-Activated', 'vsp-framework' ) ) );
+						}
+						vsp_send_callback_error( swal2_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ) );
+						break;
+				}
+			}
+			wp_send_json_error();
+			wp_die();
+		}
 
-						$full_path = $addon_data['addon_path'] . $addon_data['addon_file'];
+		/**
+		 * Loads Active Addons.
+		 */
+		public function load_active_addons() {
+			$active_addons       = $this->active_addons();
+			$msg                 = __( 'Following addons are deactivated because some of its required plugins are deactivated / uninstalled', 'vsp-framework' );
+			$deactivated_plugins = '';
+			if ( ! empty( $active_addons ) ) {
+				foreach ( $active_addons as $pathid ) {
+					$is_active = $this->is_active( $pathid );
+					if ( false !== $is_active ) {
+						$addon_data = $this->search_addon( $pathid );
+						if ( empty( $addon_data ) ) {
+							$deactivated_plugins .= '<li>' . vsp_slashit( basename( $addon_data['addon_path'] ) ) . $addon_data['file'] . '</li>';
+							$this->deactivate_addon( $pathid );
+							continue;
+						}
+						if ( isset( $addon_data['required_plugins'] ) && is_array( $addon_data['required_plugins'] ) && ! empty( $addon_data['required_plugins'] ) && true !== $addon_data['required_plugins_fulfilled'] ) {
+							$deactivated_plugins .= '<li>' . $addon_data['name'] . '</li>';
+							$this->deactivate_addon( $pathid );
+							continue;
+						}
+						$full_path = vsp_slashit( $addon_data['addon_path'] ) . $addon_data['file'];
 						vsp_load_file( $full_path );
 					}
 				}
 			}
-
 			if ( ! empty( $deactivated_plugins ) ) {
-				$msg = $msg . '<ul>' . $deactivated_plugins . '</ul>';
-				wponion_error_admin_notice( false, $msg );
+				$title = '<strong>' . $this->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons' );
+				$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
+				$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It' ) . '</button></p>';
+
+				wponion_error_admin_notice( $msg, $title, array(
+					'large' => true,
+				) )->setSticky( true );
 			}
+		}
+
+		/**
+		 * Returns All Active Addons For current plugin
+		 *
+		 * @return array|false
+		 */
+		public function active_addons() {
+			if ( false === $this->active_addons ) {
+				$this->active_addons = get_option( $this->slug( 'db' ) . '_active_addons', false );
+				$this->active_addons = ( is_array( $this->active_addons ) && ! empty( $this->active_addons ) ) ? $this->active_addons : array();
+			}
+			return $this->active_addons;
 		}
 
 		/**
@@ -128,83 +183,11 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @return bool
 		 */
 		public function handle_ajax_params( $request, $msg ) {
-			if ( isset( $_REQUEST[ $request ] ) ) {
-				return $_REQUEST[ $request ];
+			if ( isset( $_POST[ $request ] ) ) {
+				return $_POST[ $request ];
 			}
-
-			wp_send_json_error( array( 'msg' => $msg ) );
+			wp_send_json_error( $msg );
 			return false;
-		}
-
-		/**
-		 * Handles Ajax Requests For Addons
-		 */
-		public function handle_ajax_request() {
-			if ( isset( $_REQUEST['addon_action'] ) ) {
-				$action = $this->handle_ajax_params( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
-				$addon  = urldecode( $this->handle_ajax_params( 'addon_slug', __( 'No Addon Selected', 'vsp-framework' ) ) );
-				$pathid = $this->handle_ajax_params( 'addon_pathid', __( 'Unable To Process Your Request', 'vsp-framework' ) );
-				if ( empty( $addon ) ) {
-					wp_send_json_error( array( 'msg' => __( 'Invalid Addon', 'vsp-framework' ) ) );
-				}
-
-				if ( 'activate' === $action ) {
-					if ( ! $this->is_active( $addon ) ) {
-						$addon_data = $this->search_get_addon( $addon, $pathid );
-
-						if ( isset( $addon_data['required_plugins'] ) && is_array( $addon_data['required_plugins'] ) ) {
-							if ( true !== $addon_data['required_plugins']['fulfilled'] ) {
-								vsp_send_callback_error( array(
-									'process_failed' => swal2_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) ),
-								) );
-							}
-						}
-
-						$slug = $this->activate_addon( $addon, $pathid );
-
-						if ( $slug ) {
-							vsp_send_callback_success( array(
-								'process_success' => swal2_success( __( 'Addon Activated', 'vsp-framework' ) ),
-							) );
-						}
-					} else {
-						vsp_send_callback_error( array(
-							'process_warning' => swal2_warning( __( 'Addon Already Active', 'vsp-framework' ) ),
-						) );
-					}
-				}
-
-				if ( 'deactivate' === $action ) {
-					if ( $this->is_active( $addon ) ) {
-						$slug = $this->deactivate_addon( $addon, $pathid );
-						if ( $slug ) {
-							vsp_send_callback_success( array(
-								'process_success' => swal2_warning( __( 'Addon De-Activated', 'vsp-framework' ) ),
-							) );
-						}
-					} else {
-						vsp_send_callback_error( array(
-							'process_error' => swal2_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ),
-						) );
-					}
-				}
-			}
-			wp_die();
-		}
-
-
-		/**
-		 * Returns All Active Addons For current plugin
-		 *
-		 * @return array|false
-		 */
-		public function get_active_addons() {
-			if ( empty( $this->active_addons ) ) {
-				$this->active_addons = get_option( $this->slug( 'db' ) . '_active_addons', array() );
-			}
-
-			$this->active_addons = is_array( $this->active_addons ) ? $this->active_addons : array();
-			return $this->active_addons;
 		}
 
 		/**
@@ -223,65 +206,51 @@ if ( ! class_exists( 'Addons' ) ) {
 		/**
 		 * Activates Selected Addon.
 		 *
-		 * @param string $addons_slug .
-		 * @param string $pathid .
+		 * @param string $addon_uid Addons MD5 Unique ID
 		 *
 		 * @return bool
 		 */
-		public function activate_addon( $addons_slug = '', $pathid = '' ) {
-			$active_addons = $this->get_active_addons();
-			if ( ! isset( $active_addons[ $pathid ] ) ) {
-				$active_addons[ $pathid ] = $addons_slug;
+		public function activate_addon( $addon_uid = '' ) {
+			$active_addons = $this->active_addons();
+			if ( ! in_array( $addon_uid, $active_addons ) ) {
+				$active_addons[] = $addon_uid;
 				$this->update_active_addons( $active_addons );
 				return true;
 			}
-
 			return false;
 		}
 
 		/**
 		 * Deactivates Selected Addon
 		 *
-		 * @param string $addons_slug .
-		 * @param string $pathid .
+		 * @param string $addon_uid Addons MD5 Unique ID
 		 *
 		 * @return bool
 		 */
-		public function deactivate_addon( $addons_slug = '', $pathid = '' ) {
-			$active_addons = $this->get_active_addons();
-			if ( isset( $active_addons[ $pathid ] ) ) {
-				if ( $active_addons[ $pathid ] === $addons_slug ) {
-					unset( $active_addons[ $pathid ] );
-					$this->update_active_addons( $active_addons );
-					return true;
+		public function deactivate_addon( $addon_uid = '' ) {
+			$active_addons = $this->active_addons();
+			if ( in_array( $addon_uid, $active_addons ) ) {
+				foreach ( $active_addons as $k => $id ) {
+					if ( $id === $addon_uid ) {
+						unset( $active_addons[ $k ] );
+					}
 				}
+				$this->update_active_addons( $active_addons );
+				return true;
 			}
-
 			return false;
 		}
 
 		/**
 		 * Checks if given addon is active
 		 *
-		 * @param string $slug .
-		 * @param bool   $is_pathid .
+		 * @param string $addon_uid Addons MD5 Unique ID
 		 *
 		 * @return bool|mixed
 		 */
-		public function is_active( $slug, $is_pathid = false ) {
-			$addons = $this->get_active_addons();
-
-			if ( true === $is_pathid ) {
-				if ( isset( $addons[ $slug ] ) ) {
-					return $addons[ $slug ];
-				}
-			} else {
-				if ( in_array( $slug, $addons ) ) {
-					return $slug;
-				}
-			}
-
-			return false;
+		public function is_active( $addon_uid = '' ) {
+			$addons = $this->active_addons();
+			return ( in_array( $addon_uid, $addons, true ) );
 		}
 	}
 }

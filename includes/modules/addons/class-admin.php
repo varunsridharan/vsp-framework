@@ -22,74 +22,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Admin' ) ) {
 	/**
-	 * Class VSP_Addons_Admin
+	 * Class Admin
 	 *
+	 * @package VSP\Modules\Addons
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
 	abstract class Admin extends Core {
 
 		/**
-		 * VSP_Addons_Admin constructor.
-		 */
-		public function __construct() {
-			parent::__construct();
-			$this->addons_list       = array();
-			$this->settings_pagehook = '';
-		}
-
-		/**
 		 * Sets Settings Page to show adddons
 		 *
 		 * @param array|\WPO\Builder $pages
-		 *
-		 * @return mixed
 		 */
-		public function set_settings_page( $pages ) {
+		public function link_with_wponion( $pages ) {
 			$pages->container( $this->option( 'addon_listing_tab_name' ), $this->option( 'addon_listing_tab_title' ), $this->option( 'addon_listing_tab_icon' ) )
-				->set_callback( array( &$this, 'render_addons_page' ) );
+				->set_callback( array( &$this, 'render_page' ) );
 		}
 
 		/**
 		 * Renders Admin Addons Page in settings framework
 		 */
-		public function render_addons_page() {
-			$this->addons_list = $this->search_get_addons();
+		public function render_page() {
+			$this->addons       = false;
+			$this->in_display   = true;
+			$this->addon_cats   = self::$default_addon_cats;
+			$this->addon_counts = array_combine( array_keys( $this->addon_cats ), array_fill( 0, count( $this->addon_cats ), 0 ) );
+			$this->search_addons();
 
-			foreach ( $this->addons_list as $id => $data ) {
-				$this->addons_list[ $id ]['is_active'] = ( $this->is_active( $id, $data['addon_path_md5'] ) === false ) ? false : true;
-				unset( $this->addons_list[ $id ]['addon_path'] );
-			}
+			$this->addon_counts['all']      = count( $this->addons );
+			$this->addon_counts['active']   = count( $this->active_addons );
+			$this->addon_counts['inactive'] = count( $this->addons ) - count( $this->active_addons );
 
-			vsp_load_script( 'vsp-addons' );
-			vsp_load_style( 'vsp-addons' );
+			vsp_load_script( 'vsp-framework' );
+			vsp_load_style( 'vsp-framework' );
 			wp_enqueue_style( 'vsp-fancybox' );
 			wp_enqueue_script( 'vsp-fancybox' );
-			wp_enqueue_script( 'plugin-install' );
 
-			add_thickbox();
-
-			wp_localize_script( 'vsp-addons', 'vsp_addons_settings', array(
-				'hook_slug'     => $this->slug( 'hook' ),
-				'save_slug'     => $this->slug( 'db' ),
-				'plugin_data'   => $this->addons_list,
-				'default_cats'  => $this->default_cats,
-				'texts'         => array(
-					'required_plugin' => __( 'Required Plugin', 'vsp-framework' ),
-					'required_desc'   => __( 'Above Mentioned Plugin name with version are Tested Upto', 'vsp-framework' ),
-					'activate_btn'    => __( 'Activate', 'vsp-framework' ),
-					'deactivate_btn'  => __( 'De Activate', 'vsp-framework' ),
-					'admin_url'       => admin_url(),
-					'plugin_view_url' => admin_url( 'plugin-install.php?&isvspaddon=true&tab=plugin-information&plugin={{slug}}&pathid={{addon.addon_path_md5}}&TB_iframe=true&width=600&height=800' ),
-				),
-				'plugin_status' => array(
-					'exists'    => __( 'In Active', 'vsp-framework' ),
-					'notexist'  => __( 'Not Exist', 'vsp-framework' ),
-					'activated' => __( 'Active', 'vsp-framework' ),
-				),
-			) );
-
-			include __DIR__ . '/page-template.html';
+			include VSP_PATH . 'views/addon-page.php';
 		}
 	}
 }

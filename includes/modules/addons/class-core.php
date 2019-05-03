@@ -19,291 +19,353 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-
 if ( ! class_exists( 'Core' ) ) {
 	/**
-	 * Class VSP_Addons_Core
+	 * Class Core
 	 *
+	 * @package VSP\Modules\Addons
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	abstract class Core extends Detailed_View {
-
+	abstract class Core extends \VSP\Base {
 		/**
-		 * VSP_Addons_Core constructor.
-		 */
-		public function __construct() {
-			$this->default_cats      = array(
-				'all'      => __( 'All', 'vsp-framework' ),
-				'active'   => __( 'Active', 'vsp-framework' ),
-				'inactive' => __( 'In Active', 'vsp-framework' ),
-			);
-			$this->addon_cats        = $this->default_cats;
-			$this->addons_cats_count = array(
-				'all'      => 0,
-				'active'   => 0,
-				'inactive' => 0,
-			);
-			parent::__construct();
-		}
-
-		/**
-		 * Search And returns addons
+		 * Set To True If its in Display Mode.
 		 *
-		 * @param bool $single_addon .
+		 * @var bool
+		 * @access
+		 */
+		protected $in_display = false;
+
+		/**
+		 * Stores Default Categories.
+		 *
+		 * @var array
+		 * @access
+		 * @static
+		 */
+		protected static $default_addon_cats = array();
+
+		/**
+		 * Stores Required Plugins Status.
+		 *
+		 * @var array
+		 * @access
+		 * @static
+		 */
+		protected static $required_plugins_status = array();
+
+		/**
+		 * @var array
+		 * @access
+		 */
+		protected $addon_cats = array();
+
+		/**
+		 * @var array
+		 * @access
+		 */
+		protected $addon_counts = array();
+
+		/**
+		 * Stores All Addon Information
+		 *
+		 * @var array
+		 * @access
+		 */
+		protected $addons = array();
+
+		/**
+		 * Stores Default Headers.
+		 *
+		 * @var array
+		 * @access
+		 */
+		protected $default_headers = array(
+			'file'             => false,
+			'name'             => '',
+			'url'              => '',
+			'version'          => '',
+			'description'      => '',
+			'author'           => '',
+			'author_url'       => '',
+			'last_updated'     => '',
+			'category'         => '',
+			'required_plugins' => array(),
+			'screenshots'      => array(),
+		);
+
+		/**
+		 * Stores All Active Addons.
+		 *
+		 * @var array
+		 * @access
+		 */
+		protected $active_addons = false;
+
+		/**
+		 * @var array
+		 * @access
+		 */
+		protected $headers = array();
+
+		/**
 		 *
 		 * @return array
 		 */
-		public function search_get_addons( $single_addon = false ) {
-			$this->addon_metadatas = array();
-			$dirs                  = apply_filters( $this->slug( 'hook' ) . '_addons_dirs', array() );
-			$internal_addons       = $this->search_plugins( $this->option( 'base_path' ), $single_addon );
-			$this->get_metadata( $internal_addons );
+		protected function search_addons() {
+			$dirs = apply_filters( $this->slug( 'hook' ) . '_addons_dirs', array( $this->option( 'base_path' ) ) );
 
 			if ( ! empty( $dirs ) ) {
 				foreach ( $dirs as $dir ) {
-					$addons = $this->search_plugins( $dir, $single_addon );
-					$this->get_metadata( $addons );
-				}
-			}
-
-			return $this->addon_metadatas;
-		}
-
-		/**
-		 * Search And Gets A Single Addon
-		 *
-		 * @param string|boolean|bool $addon_slug .
-		 * @param string              $path_id .
-		 *
-		 * @return array
-		 */
-		public function search_get_addon( $addon_slug = false, $path_id = '' ) {
-			$addons      = $this->search_get_addons( $addon_slug );
-			$return_data = array();
-			if ( ! empty( $addons ) ) {
-				foreach ( $addons as $slug => $data ) {
-					if ( $slug === $addon_slug ) {
-						if ( md5( $data['addon_path'] ) === $path_id ) {
-							$return_data = $data;
-							break;
-						}
+					$addons = $this->search_addon_folder( $dir );
+					if ( ! empty( $addons ) ) {
+						$this->get_addons_informations( $addons );
 					}
 				}
 			}
-
-			return $return_data;
+			return $this->addons;
 		}
 
 		/**
-		 * Extract Category From Addons Data
+		 * Returns Only Selected Addon.
 		 *
-		 * @param string $category .
+		 * @param $addon
+		 *
+		 * @return bool|mixed
+		 */
+		protected function search_addon( $addon ) {
+			$this->search_addons();
+			return ( isset( $this->addons[ $addon ] ) ) ? $this->addons[ $addon ] : false;
+		}
+
+		/**
+		 * Search For Addons in given folder.
+		 *
+		 * @param      $dir
 		 *
 		 * @return array
 		 */
-		protected function handle_addon_category( $category ) {
-			$category = explode( ',', $category );
-			$return   = array();
-			foreach ( $category as $cat ) {
-				$cat             = $this->strip_space( $cat, ' ' );
-				$slug            = sanitize_title( $cat );
-				$return[ $slug ] = $cat;
+		protected function search_addon_folder( $dir ) {
+			$is_internal = ( vsp_unslashit( $dir ) === vsp_unslashit( $this->option( 'base_path' ) ) );
+			$files       = vsp_get_file_paths( vsp_slashit( $dir ) . '*/addon.json' );
+			$return      = array();
+			foreach ( $files as $file ) {
+				$dir = plugin_dir_path( $file );
+				$url = plugin_dir_url( $file );
+				$uid = md5( $dir );
+
+				$return[ $uid ] = array(
+					'uid'         => $uid, // Plugin UID MD5 Path
+					'addon_url'   => $url, // Addon URL
+					'addon_path'  => $dir, // Addon Path
+					'is_internal' => $is_internal, //if the addon is an internal addon found in the main plugin itself
+				);
 			}
 			return $return;
 		}
 
 		/**
-		 * Search For Addons
+		 * Checks and returns addon information.
 		 *
-		 * @param mixed  $search_path .
-		 * @param bool   $single_addon .
-		 * @param string $subpath .
-		 *
-		 * @return array
+		 * @param $addons
 		 */
-		public function search_plugins( $search_path, $single_addon = false, $subpath = '' ) {
-			$search_path = rtrim( $search_path, '/' );
-			$subpath     = rtrim( $subpath, '/' );
-			$r           = array();
-
-			if ( ! empty( $search_path ) ) {
-				$_dir = @ opendir( $search_path . $subpath );
-
-				if ( $_dir ) {
-					while ( false !== ( $file = readdir( $_dir ) ) ) {
-						if ( substr( $file, 0, 1 ) === '.' ) {
-							continue;
-						}
-
-						$_ipath = $search_path . '/' . $file;
-						if ( is_dir( $_ipath ) ) {
-							$r = array_merge( $r, $this->search_plugins( $search_path, $single_addon, '/' . $file ) );
-						} else {
-							if ( false !== $single_addon ) {
-								$single_addon = ltrim( $single_addon, '/' );
-								if ( $search_path . $subpath . '/' . $file !== $search_path . '/' . $single_addon ) {
-									continue;
-								}
-							}
-
-							if ( substr( $file, -4 ) === '.php' ) {
-								$r[] = array(
-									'full_path'  => $search_path . $subpath . '/' . $file,
-									'sub_folder' => $subpath . '/',
-									'file_name'  => $file,
-								);
+		protected function get_addons_informations( $addons ) {
+			if ( ! empty( $addons ) ) {
+				foreach ( $addons as $addon ) {
+					if ( isset( $addon['addon_path'] ) ) {
+						$data = $this->get_addon_information( $addon );
+						if ( ! empty( $data ) ) {
+							if ( ! isset( $this->addons[ $data['uid'] ] ) ) {
+								$this->addons[ $data['uid'] ] = $data;
 							}
 						}
 					}
-					closedir( $_dir );
 				}
 			}
-
-			return $r;
 		}
 
 		/**
-		 * Returns Default Headers for addons.
+		 * @param $addon
 		 *
 		 * @return array
 		 */
-		protected function get_default_headers() {
-			return array(
-				'Name'         => 'Addon Name',
-				'addon_url'    => 'Addon URI',
-				'icon'         => 'Addon icon',
-				'Version'      => 'Version',
-				'Description'  => 'Description',
-				'Author'       => 'Author',
-				'AuthorURI'    => 'Author URI',
-				'last_updated' => 'Last updated',
-				'created_on'   => 'Created On',
-				'category'     => 'Category',
-			);
-		}
+		protected function get_addon_information( $addon ) {
+			$data = $this->read_addon_json( $addon['addon_path'] );
+			if ( ! empty( $data ) && ! empty( $data['file'] ) ) {
+				$data                               = $this->parse_args( $data, $addon );
+				$data['required_plugins']           = ( isset( $data['required_plugins'] ) ) ? $data['required_plugins'] : array();
+				$data['required_plugins']           = $this->handle_required_plugins( $data['required_plugins'] );
+				$data['required_plugins_fulfilled'] = 0;
+				$total                              = count( $data['required_plugins'] );
+				foreach ( $data['required_plugins'] as $plugins ) {
+					if ( 'active' === $plugins['status'] ) {
+						$data['required_plugins_fulfilled'] = $data['required_plugins_fulfilled'] + 1;
+					}
+				}
+				$data['required_plugins_fulfilled'] = ( $data['required_plugins_fulfilled'] > 0 && $total === $data['required_plugins_fulfilled'] );
 
-		/**
-		 * Extract Addons Required Plugins
-		 *
-		 * @param array $meta .
-		 *
-		 * @return mixed
-		 */
-		protected function fix_addon_metadata( $meta ) {
-			$meta = $this->__extract_required_plugins( $meta );
-			return $meta;
-		}
-
-		/**
-		 * Strips spaces from and end
-		 *
-		 * @param string $string .
-		 * @param string $char .
-		 *
-		 * @return string
-		 */
-		protected function strip_space( $string, $char ) {
-			$string = ltrim( $string, $char );
-			$string = rtrim( $string, $char );
-			return $string;
-		}
-
-		/**
-		 * Checks Required Plugin Status
-		 *
-		 * @param string $slug .
-		 *
-		 * @return bool|string
-		 */
-		protected function check_plugin_status( $slug ) {
-			if ( ! function_exists( 'validate_plugin' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/plugin.php';
-			}
-			$val_plugin = validate_plugin( $slug );
-			if ( is_wp_error( $val_plugin ) ) {
-				return 'notexist';
-			} elseif ( is_plugin_active( $slug ) ) {
-				return 'activated';
-			} elseif ( is_plugin_inactive( $slug ) ) {
-				return 'exists';
-			}
-			return false;
-		}
-
-		/**
-		 * Extracts Required Plugin Information
-		 *
-		 * @param array $meta .
-		 *
-		 * @return mixed
-		 */
-		protected function __extract_required_plugins( $meta ) {
-			if ( empty( $meta['rplugins'] ) ) {
-				$_rplugins = array();
-				$_rpc      = 1;
-				$_apc      = 1;
+				if ( $this->in_display ) {
+					$data['category']     = ( isset( $data['category'] ) ) ? $data['category'] : array();
+					$data['category']     = $this->handle_category( $data['category'] );
+					$data['screenshots']  = ( isset( $data['screenshots'] ) ) ? $data['screenshots'] : array();
+					$data['screenshots']  = $this->handle_screenshots( $data['screenshots'], $data );
+					$data['icon']         = ( isset( $data['icon'] ) ) ? $data['icon'] : false;
+					$data['icon']         = $this->handle_icon( $data['icon'], $addon );
+					$data['last_updated'] = $this->handle_last_updated( $data['last_updated'] );
+				}
 			} else {
-				$rplugins    = $meta['rplugins'];
-				$_rpc        = count( $rplugins );
-				$_apc        = 1;
-				$r_plugins_a = explode( ',', $rplugins );
-				$_rplugins   = array();
-				foreach ( $r_plugins_a as $r_plugin ) {
-					$r_plugin = $this->strip_space( $r_plugin, ' ' );
-					$r_plugin = $this->strip_space( $r_plugin, ']' );
-					$r_plugin = $this->strip_space( $r_plugin, '[' );
-					$r_plugin = $this->strip_space( $r_plugin, ' ' );
-
-					$r_plugin = explode( '|', $r_plugin );
-					if ( is_array( $r_plugin ) ) {
-						$pd = array();
-						foreach ( $r_plugin as $data ) {
-							$data = $this->strip_space( $data, ' ' );
-							$data = explode( ':', $data, 2 );
-
-							if ( count( $data ) > 1 ) {
-								if ( isset( $data[0] ) ) {
-									$key        = strtolower( $this->strip_space( $data[0], ' ' ) );
-									$value      = $this->strip_space( $data[1], ' ' );
-									$pd[ $key ] = $value;
-								}
-							}
-						}
-
-						if ( ! empty( $pd ) ) {
-							$pd['status'] = $this->check_plugin_status( $pd['slug'] );
-							if ( 'activated' === $pd['status'] ) {
-								$_apc++;
-							}
-							$_rplugins[ $pd['slug'] ] = $pd;
-						}
-					}
-				}
+				return array();
 			}
-			$meta['rplugins']              = $_rplugins;
-			$meta['requirement_fullfiled'] = ( $_rpc === $_apc );
-			return $meta;
+			return $data;
 		}
 
 		/**
-		 * Returns Status Labels
+		 * Handles Date Format.
 		 *
-		 * @param string|bool $status .
+		 * @param $last_updated
 		 *
-		 * @return bool|string
+		 * @return false|string
 		 */
-		protected function get_plugin_status_label( $status = false ) {
-			if ( 'exists' === $status ) {
-				return __( 'In Active', 'vsp-framework' );
+		protected function handle_last_updated( $last_updated ) {
+			return ( ! empty( $last_updated ) ) ? date( vsp_date_format(), strtotime( $last_updated ) ) : $last_updated;
+		}
+
+		/**
+		 * Handles Addon Icon.
+		 *
+		 * @param $icon
+		 * @param $addon
+		 *
+		 * @return mixed|string
+		 */
+		protected function handle_icon( $icon, $addon ) {
+			if ( $icon ) {
+				if ( true !== wponion_is_url( $icon ) && file_exists( $addon['addon_path'] . $icon ) ) {
+					return $addon['addon_path'] . $icon;
+				} elseif ( true === wponion_is_url( $icon ) ) {
+					return $icon;
+				}
 			}
-			if ( 'notexist' === $status ) {
-				return __( 'Not Exist', 'vsp-framework' );
+			return vsp_placeholder_img();
+		}
+
+		/**
+		 * Handles Each Addons Required Plugins.
+		 *
+		 * @param $plugins
+		 *
+		 * @return mixed
+		 */
+		protected function handle_required_plugins( $plugins ) {
+			if ( ! empty( $plugins ) ) {
+				foreach ( $plugins as $slug => $plugin ) {
+					$plugins[ $slug ] = $this->parse_args( $plugin, array(
+						'name'    => null,
+						'author'  => null,
+						'version' => null,
+						'url'     => null,
+					) );
+
+					if ( false === wp_is_plugin_installed( $slug ) ) {
+						$plugins[ $slug ]['status'] = 'notexists';
+					} elseif ( wp_is_plugin_inactive( $slug ) ) {
+						$plugins[ $slug ]['status'] = 'exists';
+					} elseif ( wp_is_plugin_active( $slug ) ) {
+						$plugins[ $slug ]['status'] = 'active';
+					}
+				}
 			}
-			if ( 'activated' === $status ) {
-				return __( 'Active', 'vsp-framework' );
+			return $plugins;
+		}
+
+		/**
+		 * Handles Addon Category.
+		 *
+		 * @param $category
+		 *
+		 * @return array
+		 */
+		protected function handle_category( $category ) {
+			if ( empty( $category ) ) {
+				return array( 'general', 'all' );
 			}
-			return false;
+			$category = ( is_string( $category ) ) ? explode( ',', $category ) : $category;
+			$new      = array( 'all' );
+
+			foreach ( $category as $cat ) {
+				$sub_cats = explode( ',', $cat );
+				foreach ( $sub_cats as $_cat ) {
+					$_cat = trim( $_cat );
+					$slug = sanitize_title( $_cat );
+					if ( ! isset( $this->addon_cats[ $slug ] ) ) {
+						$this->addon_cats[ $slug ]   = $_cat;
+						$this->addon_counts[ $slug ] = 0;
+					}
+					$this->addon_counts[ $slug ]++;
+					$new[] = $slug;
+				}
+			}
+			return array_unique( $new );
+		}
+
+		/**
+		 * Handles Addon Screenshots.
+		 *
+		 * @param $screenshots
+		 * @param $addon
+		 *
+		 * @return mixed
+		 */
+		protected function handle_screenshots( $screenshots, $addon ) {
+			if ( ! empty( $screenshots ) && is_array( $screenshots ) ) {
+				$return = array();
+				foreach ( $screenshots as $key => $screenshot ) {
+					$s       = explode( '|', $screenshot, 2 );
+					$src     = false;
+					$content = false;
+					if ( isset( $s[0] ) && isset( $s[1] ) ) {
+						$content = $s[1];
+						if ( true !== wponion_is_url( $s[0] ) && file_exists( $addon['addon_path'] . $s[0] ) ) {
+							$src = $addon['addon_url'] . $s[0];
+						} elseif ( true === wponion_is_url( $s[0] ) ) {
+							$src = $s[0];
+						}
+					} elseif ( isset( $s[0] ) && ! isset( $s[1] ) ) {
+						if ( true !== wponion_is_url( $s[0] ) && file_exists( $addon['addon_path'] . $s[0] ) ) {
+							$src = $addon['addon_url'] . $s[0];
+						} elseif ( true === wponion_is_url( $s[0] ) ) {
+							$src = $s[0];
+						}
+					}
+
+					$return[] = array(
+						'src'     => $src,
+						'content' => $content,
+					);
+				}
+				return $return;
+			}
+			return $screenshots;
+		}
+
+		/**
+		 * @param      $path
+		 * @param bool $raw If set to true then it returns raw information that is passed in addon.json
+		 *
+		 * @return array|mixed|object
+		 */
+		protected function read_addon_json( $path, $raw = false ) {
+			$return = array();
+			try {
+				if ( file_exists( vsp_slashit( $path ) . 'addon.json' ) ) {
+					$return = json_decode( @file_get_contents( vsp_slashit( $path ) . 'addon.json' ), true );
+					if ( false === $raw && is_array( $return ) && ! empty( $return ) ) {
+						$return = $this->parse_args( $return, $this->headers );
+					}
+				}
+			} catch ( \ErrorException $exception ) {
+			}
+			return ( is_array( $return ) && ! empty( $return ) ) ? $return : array();
 		}
 	}
 }
