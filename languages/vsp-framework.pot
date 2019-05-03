@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-05-02T10:56:01+00:00\n"
+"POT-Creation-Date: 2019-05-03T12:17:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
@@ -52,59 +52,6 @@ msgstr ""
 msgid "Tried Action %s"
 msgstr ""
 
-#: includes/modules/addons/class-file-meta.php:94
-msgid "Duplicate Addon Found. Unable to load Please contact the developer with below information %s"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:256
-msgid "Required Plugins"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:257
-msgid "Screenshots"
-msgstr ""
-
-#: includes/modules/addons/class-file-meta.php:258
-msgid "FAQ"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:78
-msgid "Required Plugin"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:79
-msgid "Above Mentioned Plugin name with version are Tested Upto"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:80
-msgid "Activate"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:81
-msgid "De Activate"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:86
-#: includes/modules/addons/class-core.php:39
-#: includes/modules/addons/class-core.php:298
-msgid "In Active"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:87
-#: includes/modules/addons/class-core.php:301
-msgid "Not Exist"
-msgstr ""
-
-#: includes/modules/addons/class-admin.php:88
-#: includes/modules/addons/class-core.php:38
-#: includes/modules/addons/class-core.php:304
-msgid "Active"
-msgstr ""
-
-#: includes/modules/addons/class-core.php:37
-msgid "All"
-msgstr ""
-
 #: includes/modules/class-system-tools.php:80
 msgid "System Tools"
 msgstr ""
@@ -113,48 +60,48 @@ msgstr ""
 msgid "System Logs"
 msgstr ""
 
-#: includes/modules/class-addons.php:87
-msgid "%s Has deactivated the following addons because its required plugins are deactivated"
-msgstr ""
-
-#: includes/modules/class-addons.php:144
+#: includes/modules/class-addons.php:84
 msgid "Addon Action Not Provided"
 msgstr ""
 
-#: includes/modules/class-addons.php:145
-msgid "No Addon Selected"
-msgstr ""
-
-#: includes/modules/class-addons.php:146
+#: includes/modules/class-addons.php:85
 msgid "Unable To Process Your Request"
 msgstr ""
 
-#: includes/modules/class-addons.php:148
+#: includes/modules/class-addons.php:87
 msgid "Invalid Addon"
 msgstr ""
 
-#: includes/modules/class-addons.php:158
+#: includes/modules/class-addons.php:91
+msgid "Invalid Addon Action"
+msgstr ""
+
+#: includes/modules/class-addons.php:104
 msgid "Activation Failed"
 msgstr ""
 
-#: includes/modules/class-addons.php:158
+#: includes/modules/class-addons.php:104
 msgid "Addon's Requried Plugins Not Active / Installed"
 msgstr ""
 
-#: includes/modules/class-addons.php:167
+#: includes/modules/class-addons.php:109
 msgid "Addon Activated"
 msgstr ""
 
-#: includes/modules/class-addons.php:172
+#: includes/modules/class-addons.php:112
 msgid "Addon Already Active"
 msgstr ""
 
-#: includes/modules/class-addons.php:182
+#: includes/modules/class-addons.php:116
 msgid "Addon De-Activated"
 msgstr ""
 
-#: includes/modules/class-addons.php:187
+#: includes/modules/class-addons.php:118
 msgid "Addon Is Not Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:131
+msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
 msgstr ""
 
 #. translators: 1: class name 2: VSP_Log_Handler_Interface
