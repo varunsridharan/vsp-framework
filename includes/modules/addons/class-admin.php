@@ -56,8 +56,8 @@ if ( ! class_exists( 'Admin' ) ) {
 
 			vsp_load_script( 'vsp-framework' );
 			vsp_load_style( 'vsp-framework' );
-			wp_enqueue_style( 'vsp-fancybox' );
-			wp_enqueue_script( 'vsp-fancybox' );
+			//wp_enqueue_style( 'vsp-fancybox' );
+			//wp_enqueue_script( 'vsp-fancybox' );
 
 			include VSP_PATH . 'views/addon-page.php';
 		}
