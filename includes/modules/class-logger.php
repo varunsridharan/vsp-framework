@@ -89,7 +89,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 		$error = error_get_last();
 
 		if ( E_ERROR === $error['type'] ) {
-			vsp_log_msg( __( 'File & Line No :' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
+			vsp_log_msg( __( 'File & Line No :', 'vsp-framework' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
 				'source' => 'fatal-errors',
 			) );
 

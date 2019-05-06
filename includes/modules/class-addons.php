@@ -50,15 +50,15 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function __construct( $options = array() ) {
 			self::$default_addon_cats      = array(
-				'all'      => __( 'All' ),
-				'active'   => __( 'Active' ),
-				'inactive' => __( 'Inactive' ),
-				'general'  => __( 'General' ),
+				'all'      => __( 'All', 'vsp-framework' ),
+				'active'   => __( 'Active', 'vsp-framework' ),
+				'inactive' => __( 'Inactive', 'vsp-framework' ),
+				'general'  => __( 'General', 'vsp-framework' ),
 			);
 			self::$required_plugins_status = array(
-				'notexists' => __( 'Not Installed' ),
-				'exists'    => __( 'In Active' ),
-				'active'    => __( 'Active' ),
+				'notexists' => __( 'Not Installed', 'vsp-framework' ),
+				'exists'    => __( 'In Active', 'vsp-framework' ),
+				'active'    => __( 'Active', 'vsp-framework' ),
 			);
 			parent::__construct( $options );
 
@@ -97,7 +97,7 @@ if ( ! class_exists( 'Addons' ) ) {
 							$data = $this->search_addon( $addon );
 
 							if ( ! is_array( $data ) ) {
-								vsp_send_callback_error( swal2_error( __( 'Addon Not Found' ), __( 'Selected Addon Not Found. Please Contact The Developer' ) ) );
+								vsp_send_callback_error( swal2_error( __( 'Addon Not Found', 'vsp-framework' ), __( 'Selected Addon Not Found. Please Contact The Developer', 'vsp-framework' ) ) );
 							}
 
 							if ( isset( $data['required_plugins'] ) && is_array( $data['required_plugins'] ) && ! empty( $data['required_plugins'] ) && true !== $data['required_plugins_fulfilled'] ) {
@@ -151,9 +151,9 @@ if ( ! class_exists( 'Addons' ) ) {
 				}
 			}
 			if ( ! empty( $deactivated_plugins ) ) {
-				$title = '<strong>' . $this->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons' );
+				$title = '<strong>' . $this->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
 				$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
-				$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It' ) . '</button></p>';
+				$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 
 				wponion_error_admin_notice( $msg, $title, array(
 					'large' => true,

@@ -213,7 +213,7 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 			$logger = ( is_object( $class ) ) ? $class : new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 		} else {
 			/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
-			$smgs = sprintf( __( 'The class %1$s provided by %2$s filter must implement %3$s.' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>vsp_logging_class</code>', '<code>\VSP\Core\Interfaces\Logger</code>' );
+			$smgs = sprintf( __( 'The class %1$s provided by %2$s filter must implement %3$s.', 'vsp-framework' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>vsp_logging_class</code>', '<code>\VSP\Core\Interfaces\Logger</code>' );
 			vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
 			$logger = new \VSP\Modules\Logger( array( new  \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 		}
@@ -268,7 +268,7 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 			$handler->$type( $messages, $context );
 			return true;
 		} elseif ( vsp_logger() instanceof \VSP\Modules\Logger && method_exists( vsp_logger(), $type ) ) {
-			$msg = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler' ) ), wp_debug_backtrace_summary( null, 0, false ) );
+			$msg = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler', 'vsp-framework' ) ), wp_debug_backtrace_summary( null, 0, false ) );
 			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
 			vsp_log_msg( $msg, 'critical', vsp_logger() );
 			vsp_log_msg( $messages, 'critical', vsp_logger() );
@@ -328,22 +328,22 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 				return null; // __('No errors');
 				break;
 			case JSON_ERROR_DEPTH:
-				return __( 'Maximum stack depth exceeded' );
+				return __( 'Maximum stack depth exceeded', 'vsp-framework' );
 				break;
 			case JSON_ERROR_STATE_MISMATCH:
-				return __( 'Underflow or the modes mismatch' );
+				return __( 'Underflow or the modes mismatch', 'vsp-framework' );
 				break;
 			case JSON_ERROR_CTRL_CHAR:
-				return __( 'Unexpected control character found' );
+				return __( 'Unexpected control character found', 'vsp-framework' );
 				break;
 			case JSON_ERROR_SYNTAX:
-				return __( 'Syntax error, malformed JSON' );
+				return __( 'Syntax error, malformed JSON', 'vsp-framework' );
 				break;
 			case JSON_ERROR_UTF8:
-				return __( 'Malformed UTF-8 characters, possibly incorrectly encoded' );
+				return __( 'Malformed UTF-8 characters, possibly incorrectly encoded', 'vsp-framework' );
 				break;
 			default:
-				return __( 'Unknown error' );
+				return __( 'Unknown error', 'vsp-framework' );
 				break;
 		}
 	}

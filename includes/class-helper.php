@@ -125,20 +125,20 @@ if ( ! class_exists( 'Helper' ) ) {
 		public static function human_time( $seconds ) {
 			if ( null === self::$human_time_translations ) {
 				self::$human_time_translations = array(
-					'year'    => __( 'year' ),
-					'years'   => __( 'years' ),
-					'month'   => __( 'month' ),
-					'months'  => __( 'months' ),
-					'week'    => __( 'week' ),
-					'weeks'   => __( 'weeks' ),
-					'day'     => __( 'day' ),
-					'days'    => __( 'days' ),
-					'hour'    => __( 'hour' ),
-					'hours'   => __( 'hours' ),
-					'minute'  => __( 'minute' ),
-					'minutes' => __( 'minutes' ),
-					'second'  => __( 'second' ),
-					'seconds' => __( 'seconds' ),
+					'year'    => __( 'year', 'vsp-framework' ),
+					'years'   => __( 'years', 'vsp-framework' ),
+					'month'   => __( 'month', 'vsp-framework' ),
+					'months'  => __( 'months', 'vsp-framework' ),
+					'week'    => __( 'week', 'vsp-framework' ),
+					'weeks'   => __( 'weeks', 'vsp-framework' ),
+					'day'     => __( 'day', 'vsp-framework' ),
+					'days'    => __( 'days', 'vsp-framework' ),
+					'hour'    => __( 'hour', 'vsp-framework' ),
+					'hours'   => __( 'hours', 'vsp-framework' ),
+					'minute'  => __( 'minute', 'vsp-framework' ),
+					'minutes' => __( 'minutes', 'vsp-framework' ),
+					'second'  => __( 'second', 'vsp-framework' ),
+					'seconds' => __( 'seconds', 'vsp-framework' ),
 				);
 			}
 

@@ -77,7 +77,7 @@ final class Autoloader {
 		} elseif ( ! isset( self::$_loaded_integrations[ $integration ] ) ) {
 			vsp_log_msg( array(
 				/* translators: Adds integration Name */
-				sprintf( __( 'Failed To Load Requested Integration %s' ), $_integration ),
+				sprintf( __( 'Failed To Load Requested Integration %s', 'vsp-framework' ), $_integration ),
 				/* translators: Adds integration Name */
 				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::integration_path( true ) ),
 				/* translators: Adds integration Action Name */
@@ -125,7 +125,7 @@ final class Autoloader {
 		} elseif ( ! isset( self::$_loaded_libs[ $lib ] ) ) {
 			vsp_log_msg( array(
 				/* translators: Adds Library Name */
-				sprintf( __( 'Failed To Load Requested Library %s' ), $_lib ),
+				sprintf( __( 'Failed To Load Requested Library %s', 'vsp-framework' ), $_lib ),
 				/* translators: Adds Library Search Path */
 				sprintf( __( 'Searched In Path %s', 'vsp-framework' ), self::lib_path( true ) ),
 				/* translators: Adds Library Triggered Action */

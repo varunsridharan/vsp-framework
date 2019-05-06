@@ -93,7 +93,7 @@ if ( ! class_exists( 'System_Logs' ) ) {
 		 */
 		public function remove_log() {
 			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'remove_log' ) ) { // WPCS: input var ok, sanitization ok.
-				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.' ) );
+				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'vsp-framework' ) );
 			}
 			if ( ! empty( $_REQUEST['delete-handle'] ) ) {  // WPCS: input var ok.
 				$file = $_REQUEST['delete-handle'];

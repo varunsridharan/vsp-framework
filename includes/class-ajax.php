@@ -73,7 +73,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
 				Modules\System_Logs::download_log( $_REQUEST['handle'] );
 			} else {
-				echo '<h2>' . __( 'Log File Not Found' ) . '</h2>';
+				echo '<h2>' . __( 'Log File Not Found', 'vsp-framework' ) . '</h2>';
 			}
 			wp_die();
 		}

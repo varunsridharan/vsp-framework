@@ -2,9 +2,9 @@
 /**
  * @var \VSP\Modules\Addons $this
  */
-$req_title    = __( 'Required Plugin' );
-$last_updated = __( 'Last Updated' );
-$req_desc     = __( 'Above Mentioned Plugin name with version are Tested Upto' );
+$req_title    = __( 'Required Plugin', 'vsp-framework' );
+$last_updated = __( 'Last Updated', 'vsp-framework' );
+$req_desc     = __( 'Above Mentioned Plugin name with version are Tested Upto', 'vsp-framework' );
 $ajax_args    = array(
 	'method'  => 'post',
 	'success' => '',
@@ -31,8 +31,8 @@ $ajax_args    = array(
 		<div class="the-list addon_listing">
 			<?php
 			foreach ( $this->addons as $addon ) {
-				$activate   = '<button type="button" class="button button-primary activate actions">' . __( 'Activate' ) . '</button>';
-				$deactivate = '<button type="button" class="button button-secondary deactivate actions">' . __( 'De-Activate' ) . '</button>';
+				$activate   = '<button type="button" class="button button-primary activate actions">' . __( 'Activate', 'vsp-framework' ) . '</button>';
+				$deactivate = '<button type="button" class="button button-secondary deactivate actions">' . __( 'De-Activate', 'vsp-framework' ) . '</button>';
 				$uid        = $addon['uid'];
 				$title      = $addon['name'];
 				$author     = $addon['author'];

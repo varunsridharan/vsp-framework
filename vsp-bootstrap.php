@@ -75,7 +75,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 
 		do_action( 'vsp_framework_init' );
 	} catch ( Exception $exception ) {
-		$msg = '<h4>' . __( 'Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured' ) . '</h4>';
+		$msg = '<h4>' . __( 'Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured', 'vsp-framework' ) . '</h4>';
 		$msg = $msg . $exception->getMessage();
 		wp_die( $msg );
 	}
