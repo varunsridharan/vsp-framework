@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-05-06T11:16:47+00:00\n"
+"POT-Creation-Date: 2019-05-06T11:18:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: vsp-framework\n"
@@ -26,6 +26,38 @@ msgstr ""
 msgid "http://varunsridharan.in"
 msgstr ""
 
+#: views/addon-page.php:5
+msgid "Required Plugin"
+msgstr ""
+
+#: views/addon-page.php:6
+msgid "Last Updated"
+msgstr ""
+
+#: views/addon-page.php:7
+msgid "Above Mentioned Plugin name with version are Tested Upto"
+msgstr ""
+
+#: views/addon-page.php:34
+msgid "Activate"
+msgstr ""
+
+#: views/addon-page.php:35
+msgid "De-Activate"
+msgstr ""
+
+#: views/log-viewer.php:19
+msgid "No Logs Found"
+msgstr ""
+
+#: views/log-viewer.php:48
+msgid "Download"
+msgstr ""
+
+#: views/log-viewer.php:53
+msgid "Delete Log"
+msgstr ""
+
 #: includes/class-base.php:117
 msgid "Cloning instances of the class is forbidden."
 msgstr ""
@@ -36,6 +68,15 @@ msgstr ""
 
 #: includes/core/traits/class-wp.php:132
 msgid "Visitor / Logged-Out User"
+msgstr ""
+
+#: includes/class-ajax.php:76
+msgid "Log File Not Found"
+msgstr ""
+
+#. translators: Adds integration Name
+#: includes/class-autoloader.php:80
+msgid "Failed To Load Requested Integration %s"
 msgstr ""
 
 #. translators: Adds integration Name
@@ -52,12 +93,98 @@ msgstr ""
 msgid "Tried Action %s"
 msgstr ""
 
+#. translators: Adds Library Name
+#: includes/class-autoloader.php:128
+msgid "Failed To Load Requested Library %s"
+msgstr ""
+
+#: includes/class-helper.php:128
+msgid "year"
+msgstr ""
+
+#: includes/class-helper.php:129
+msgid "years"
+msgstr ""
+
+#: includes/class-helper.php:130
+msgid "month"
+msgstr ""
+
+#: includes/class-helper.php:131
+msgid "months"
+msgstr ""
+
+#: includes/class-helper.php:132
+msgid "week"
+msgstr ""
+
+#: includes/class-helper.php:133
+msgid "weeks"
+msgstr ""
+
+#: includes/class-helper.php:134
+msgid "day"
+msgstr ""
+
+#: includes/class-helper.php:135
+msgid "days"
+msgstr ""
+
+#: includes/class-helper.php:136
+msgid "hour"
+msgstr ""
+
+#: includes/class-helper.php:137
+msgid "hours"
+msgstr ""
+
+#: includes/class-helper.php:138
+msgid "minute"
+msgstr ""
+
+#: includes/class-helper.php:139
+msgid "minutes"
+msgstr ""
+
+#: includes/class-helper.php:140
+msgid "second"
+msgstr ""
+
+#: includes/class-helper.php:141
+msgid "seconds"
+msgstr ""
+
 #: includes/modules/class-system-tools.php:80
 msgid "System Tools"
 msgstr ""
 
 #: includes/modules/class-system-tools.php:117
 msgid "System Logs"
+msgstr ""
+
+#: includes/modules/class-addons.php:53
+msgid "All"
+msgstr ""
+
+#: includes/modules/class-addons.php:54
+#: includes/modules/class-addons.php:61
+msgid "Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:55
+msgid "Inactive"
+msgstr ""
+
+#: includes/modules/class-addons.php:56
+msgid "General"
+msgstr ""
+
+#: includes/modules/class-addons.php:59
+msgid "Not Installed"
+msgstr ""
+
+#: includes/modules/class-addons.php:60
+msgid "In Active"
 msgstr ""
 
 #: includes/modules/class-addons.php:84
@@ -74,6 +201,14 @@ msgstr ""
 
 #: includes/modules/class-addons.php:91
 msgid "Invalid Addon Action"
+msgstr ""
+
+#: includes/modules/class-addons.php:100
+msgid "Addon Not Found"
+msgstr ""
+
+#: includes/modules/class-addons.php:100
+msgid "Selected Addon Not Found. Please Contact The Developer"
 msgstr ""
 
 #: includes/modules/class-addons.php:104
@@ -104,9 +239,21 @@ msgstr ""
 msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
 msgstr ""
 
+#: includes/modules/class-addons.php:154
+msgid " Has Deactivated Some of its addons"
+msgstr ""
+
+#: includes/modules/class-addons.php:156
+msgid "I Understand. Will Fix It"
+msgstr ""
+
 #. translators: 1: class name 2: VSP_Log_Handler_Interface
 #: includes/modules/class-logger.php:67
 msgid "The provided handler %1$s does not implement %2$s."
+msgstr ""
+
+#: includes/modules/class-logger.php:92
+msgid "File & Line No :"
 msgstr ""
 
 #. translators: 1: VSP_Logger::log 2: level
@@ -147,9 +294,54 @@ msgstr ""
 msgid "This method should not be called before plugins_loaded."
 msgstr ""
 
+#: includes/modules/class-system-logs.php:96
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#. translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface
+#: includes/functions/general-functions.php:216
+msgid "The class %1$s provided by %2$s filter must implement %3$s."
+msgstr ""
+
+#: includes/functions/general-functions.php:271
+msgid "Tried To Log A Message But Failed Got unknown Handler"
+msgstr ""
+
+#: includes/functions/general-functions.php:331
+msgid "Maximum stack depth exceeded"
+msgstr ""
+
+#: includes/functions/general-functions.php:334
+msgid "Underflow or the modes mismatch"
+msgstr ""
+
+#: includes/functions/general-functions.php:337
+msgid "Unexpected control character found"
+msgstr ""
+
+#: includes/functions/general-functions.php:340
+msgid "Syntax error, malformed JSON"
+msgstr ""
+
+#: includes/functions/general-functions.php:343
+msgid "Malformed UTF-8 characters, possibly incorrectly encoded"
+msgstr ""
+
+#: includes/functions/general-functions.php:346
+msgid "Unknown error"
+msgstr ""
+
+#: includes/functions/logger-functions.php:27
+msgid "folder"
+msgstr ""
+
 #. translators: Adds Plugin Name & HTML Tags.
 #: vsp-functions.php:241
 msgid "%1$s Requires %2$s WooCommerce %3$s to be installed & activated."
+msgstr ""
+
+#: vsp-bootstrap.php:78
+msgid "Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured"
 msgstr ""
 
 #: vsp-init.php:80
