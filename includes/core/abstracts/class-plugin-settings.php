@@ -25,16 +25,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class VSP_Plugin_Settings
+ * Class Plugin_Settings
  *
+ * @package VSP\Core\Abstracts
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
 abstract class Plugin_Settings implements \VSP\Core\Interfaces\Plugin_Settings {
 	/**
-	 * VSP_Settings_Plugin constructor.
+	 * Plugin_Settings constructor.
 	 *
-	 * @param string $hook_slug .
+	 * @param string $hook_slug
 	 */
 	public function __construct( $hook_slug = '' ) {
 		add_action( $hook_slug . '_settings_options', array( &$this, 'options' ) );
