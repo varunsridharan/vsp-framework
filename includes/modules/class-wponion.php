@@ -51,7 +51,7 @@ if ( ! class_exists( 'WPOnion' ) ) {
 		protected $page_config = array();
 
 		/**
-		 * @var \WPOnion\Modules\Settings
+		 * @var \WPOnion\Modules\Settings\Settings
 		 */
 		protected $framework = null;
 
@@ -99,7 +99,7 @@ if ( ! class_exists( 'WPOnion' ) ) {
 			$this->get_settings_config();
 			$this->final_array();
 			if ( $this->final_options instanceof \WPO\Builder ) {
-				$this->framework = new \WPOnion\Modules\Settings( $this->page_config, $this->final_options );
+				$this->framework = wponion_settings( $this->page_config, $this->final_options );
 			}
 		}
 	}
