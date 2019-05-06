@@ -44,7 +44,7 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		 * Returns Current Instance / create a new instance
 		 *
 		 * @static
-		 * @return bool|mixed
+		 * @return bool|$this|static
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
