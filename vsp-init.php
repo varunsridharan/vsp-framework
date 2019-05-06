@@ -124,7 +124,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$latest_version = max( array_keys( $frameworks ) );
 			$info           = ( isset( $frameworks[ $latest_version ] ) ) ? $frameworks[ $latest_version ] : [];
 			if ( empty( $info ) ) {
-
 				$msg = base64_encode( wp_json_encode( self::$data ) );
 				$ms  = __( 'Unable To Load VSP Framework. Please Contact The Author', 'vsp-framework' );
 				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . __( 'ERROR ID : ', 'vsp-framework' ) . '</strong>' . $msg . '</p>';
@@ -276,7 +275,8 @@ if ( ! function_exists( 'vsp_maybe_load' ) ) {
 	 * @param array  $callback Custom function to callback when VSP is loaded.
 	 * @param string $framework_path Exact path of the vsp framework in the plugin.
 	 */
-	function vsp_maybe_load( $plugin_path = '', $meta_data = [], $callback = [], $framework_path = '/vsp-framework/' ) {
+	function vsp_maybe_load( $callback = [], $meta_data = [], $plugin_path = '', $framework_path = '' ) {
+		$plugin_path = ( ! empty( $plugin_path ) ) ? $plugin_path : __DIR__ . '/';
 		VSP_Framework_Loader::instance()
 			->register_plugin( $plugin_path, $meta_data, $framework_path )
 			->register_callback( $callback );
@@ -294,25 +294,6 @@ if ( ! function_exists( 'vsp_register_plugin' ) ) {
 	function vsp_register_plugin( $callback = [] ) {
 		$framework = VSP_Framework_Loader::instance();
 		return $framework->register_callback( $callback );
-	}
-}
-
-if ( ! function_exists( 'vsp_mayby_framework_loader' ) ) {
-	/**
-	 * Adds Passed Plugin path to the list array which later used to compare and
-	 * load the framework from a plugin which has the latest version of framework
-	 *
-	 * @param string $plugin_path Plugin Path To register With VSP.
-	 * @param array  $meta_data Array of data like Libs & Integrations to load.
-	 * @param array  $callback Custom function to callback when VSP is loaded.
-	 * @param string $framework_path Exact path of the vsp framework in the plugin.
-	 *
-	 * @deprecated This plugin has been deprecated instead use vsp_maybe_load
-	 */
-	function vsp_mayby_framework_loader( $plugin_path = '', $meta_data = [], $callback = [], $framework_path = '/vsp-framework/' ) {
-		VSP_Framework_Loader::instance()
-			->register_plugin( $plugin_path, $meta_data, $framework_path )
-			->register_callback( $callback );
 	}
 }
 

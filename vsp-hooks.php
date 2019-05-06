@@ -45,9 +45,8 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 		];
 
 		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery', 'wponion-core' ], '1.0', true );
-		vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
-
-		//vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
+		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
+		//vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
 		//vsp_register_style( 'vsp-fancybox', $css['fancybox'], [], '1.0' );
 
 	}
