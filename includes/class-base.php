@@ -165,6 +165,20 @@ if ( ! class_exists( 'Base' ) ) {
 		 */
 		public function __construct( $options = array(), $defaults = array() ) {
 			$this->set_args( $options, $defaults );
+			$this->class_init();
+			add_action( 'wponion_loaded', array( &$this, 'wponion_loaded' ) );
+		}
+
+		/**
+		 * On WPOnion Loaded.
+		 */
+		public function wponion_loaded() {
+		}
+
+		/**
+		 * Runs Once __construct is done.
+		 */
+		public function class_init() {
 		}
 
 		/**
@@ -176,9 +190,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return array
 		 */
 		protected function parse_args( $new = array(), $defaults = array() ) {
-			if ( ! is_array( $new ) ) {
-				$new = array();
-			}
+			$new = ( ! is_array( $new ) ) ? array() : $new;
 			return wp_parse_args( $new, $defaults );
 		}
 
@@ -188,7 +200,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return string
 		 */
 		public function file() {
-			return $this->file;
+			return empty( $this->file ) ? __FILE__ : $this->file;
 		}
 
 		/**
@@ -379,18 +391,15 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Get Ajax URL.
 		 *
-		 * @param array  $query_args
+		 * @param array  $query
 		 * @param string $scheme
 		 *
 		 * @return string
 		 * @see \admin_url()
 		 *
 		 */
-		public function ajax_url( $query_args = array(), $scheme = 'relative' ) {
-			if ( is_array( $query_args ) ) {
-				return add_query_arg( $query_args, admin_url( 'admin-ajax.php', $scheme ) );
-			}
-			return admin_url( 'admin-ajax.php?' . $query_args, $scheme );
+		public function ajax_url( $query = array(), $scheme = 'relative' ) {
+			return ( is_array( $query ) ) ? add_query_arg( $query, admin_url( 'admin-ajax.php', $scheme ) ) : admin_url( 'admin-ajax.php?' . $query, $scheme );
 		}
 	}
 }
