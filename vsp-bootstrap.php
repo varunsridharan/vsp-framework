@@ -68,7 +68,9 @@ if ( ! function_exists( 'vsp_version' ) ) {
 		if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 			throw new ErrorException( __( 'Framework Autoloader Not Found' ) );
 		}
-		$autoloader = new \Varunsridharan\PHP\Autoloader( 'VSP', VSP_PATH . 'includes/', array(), true );
+		$autoloader = new \Varunsridharan\PHP\Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
+			'prepend' => true,
+		) );
 
 		require_once __DIR__ . '/vsp-functions.php';
 		require_once __DIR__ . '/vsp-hooks.php';

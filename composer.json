@@ -16,7 +16,7 @@
 	"varunsridharan/wp-post"                : "^1.0",
 	"varunsridharan/wp-review-me"           : "^1.0",
 	"varunsridharan/wp-transient-api"       : "^1.0",
-	"varunsridharan/php-autoloader"         : "^1.0",
+	"varunsridharan/php-autoloader"         : "^2.0",
 	"varunsridharan/wp-dependencies"        : "^1.3",
 	"varunsridharan/wp-db-table"            : "^1.2.1",
 	"varunsridharan/wp-localizer"           : "^1.0",
