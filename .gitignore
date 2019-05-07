@@ -4,7 +4,7 @@
 
 ### Composer ###
 composer.phar
-# /vendor/
+
 /vendor/*.gitignore
 /vendor/*.json
 /vendor/*~license.txt
