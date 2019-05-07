@@ -61,6 +61,13 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
 
 	try {
+		if ( file_exists( VSP_PATH . 'vendor/autoload.php' ) ) {
+			require_once VSP_PATH . 'vendor/autoload.php';
+		}
+
+		if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
+			throw new ErrorException( __( 'Framework Autoloader Not Found' ) );
+		}
 		$autoloader = new \Varunsridharan\PHP\Autoloader( 'VSP', VSP_PATH . 'includes/', array(), true );
 
 		require_once __DIR__ . '/vsp-functions.php';
