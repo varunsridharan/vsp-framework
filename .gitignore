@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/git,node,macos,grunt,eclipse,gitbook,windows,composer,wordpress,sublimetext,phpstorm+all,webstorm+all,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=git,node,macos,grunt,eclipse,gitbook,windows,composer,wordpress,sublimetext,phpstorm+all,webstorm+all,visualstudio,visualstudiocode
 
@@ -7,7 +6,7 @@ composer.phar
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-composer.lock
+# composer.lock
 
 ### Eclipse ###
 
