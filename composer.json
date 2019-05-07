@@ -10,7 +10,6 @@
 	]
   },
   "require"     : {
-	"varunsridharan/wpallimport_rapidaddon" : "^110419014856",
 	"varunsridharan/sweetalert2-php"        : "^1.0",
 	"varunsridharan/wp-ajaxer"              : "^1.0",
 	"varunsridharan/wp-post"                : "^1.0",
@@ -19,12 +18,7 @@
 	"varunsridharan/php-autoloader"         : "^1.0",
 	"varunsridharan/wp-dependencies"        : "^1.3",
 	"varunsridharan/wp-db-table"            : "^1.2.1",
-	"varunsridharan/wp-localizer"           : "^1.0",
-	"a5hleyrich/wp-background-processing"   : "^1.0.1"
-  },
-  "config"      : {
-	"process-timeout" : 1800,
-	"vendor-dir"      : "./vsp-vendors/"
+	"varunsridharan/wp-localizer"           : "^1.0"
   },
   "authors"     : [
 	{
