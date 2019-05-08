@@ -15,6 +15,8 @@
 
 namespace VSP;
 
+use WP_Error;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,7 +29,7 @@ if ( ! class_exists( '\VSP\Error' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class Error extends \WP_Error {
+	class Error extends WP_Error {
 		/**
 		 * Checks And Returns If This class has errors stored.
 		 *

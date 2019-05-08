@@ -83,7 +83,7 @@ class WC {
 			if ( ! $format ) {
 				$format = wc_date_format();
 			}
-			if ( ! is_a( $date, '\\SkyVerge\\WooCommerce\\PluginFramework\\v5_4_0\\SV_WC_DateTime' ) ) { // TODO: verify this {CW 2017-07-18}
+			if ( ! is_a( $date, '\VSP\Helper\Date_Time' ) ) {
 				return '';
 			}
 			return $date->date_i18n( $format );

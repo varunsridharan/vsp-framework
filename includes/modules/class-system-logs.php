@@ -16,6 +16,8 @@
 
 namespace VSP\Modules;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -26,8 +28,17 @@ if ( ! class_exists( 'System_Logs' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class System_Logs extends \VSP\Base {
-		protected $current     = false;
+	class System_Logs extends Base {
+		/**
+		 * @var bool
+		 * @access
+		 */
+		protected $current = false;
+
+		/**
+		 * @var null
+		 * @access
+		 */
 		protected $custom_path = null;
 
 		/**
@@ -51,7 +62,8 @@ if ( ! class_exists( 'System_Logs' ) ) {
 			}
 
 			fseek( $f, -1, SEEK_END );
-			if ( fread( $f, 1 ) != "\n" ) {
+
+			if ( fread( $f, 1 ) !== "\n" ) {
 				$lines -= 1;
 			}
 

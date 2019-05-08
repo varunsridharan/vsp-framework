@@ -25,6 +25,8 @@
 
 namespace VSP\Helper\WC;
 
+use VSP\Helper\WC;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -53,7 +55,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 */
 		public static function get_prop( $object, $prop, $context = 'edit', $compat_props = array() ) {
 			$value = '';
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				if ( is_callable( array( $object, "get_{$prop}" ) ) ) {
 					$value = $object->{"get_{$prop}"}( $context );
 				}
@@ -86,7 +88,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 * @static
 		 */
 		public static function set_props( $object, $props, $compat_props = array() ) {
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				$object->set_props( $props );
 			} else {
 				foreach ( $props as $prop => $value ) {
@@ -112,7 +114,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 * @return mixed
 		 */
 		public static function get_meta( $object, $key = '', $single = true, $context = 'edit' ) {
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				$value = $object->get_meta( $key, $single, $context );
 			} else {
 				$object_id = is_callable( array( $object, 'get_id' ) ) ? $object->get_id() : $object->{'id'};
@@ -132,7 +134,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 * @param bool     $unique Optional. Whether the meta should be unique.
 		 */
 		public static function add_meta_data( $object, $key, $value, $unique = false ) {
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				$object->add_meta_data( $key, $value, $unique );
 				$object->save_meta_data();
 			} else {
@@ -152,7 +154,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 * @param int|string $meta_id Optional. The specific meta ID to update
 		 */
 		public static function update_meta_data( $object, $key, $value, $meta_id = '' ) {
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				$object->update_meta_data( $key, $value, $meta_id );
 				$object->save_meta_data();
 			} else {
@@ -170,7 +172,7 @@ if ( ! class_exists( 'Data_Compatibility' ) ) :
 		 * @param string   $key the meta key
 		 */
 		public static function delete_meta_data( $object, $key ) {
-			if ( \VSP\Helper\WC::is_wc_version_gte_3_0() ) {
+			if ( WC::is_wc_version_gte_3_0() ) {
 				$object->delete_meta_data( $key );
 				$object->save_meta_data();
 			} else {

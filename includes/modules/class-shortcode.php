@@ -17,6 +17,8 @@
 
 namespace VSP\Modules;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-abstract class Shortcode extends \VSP\Base {
+abstract class Shortcode extends Base {
 	/**
 	 * Shortcode Name
 	 *

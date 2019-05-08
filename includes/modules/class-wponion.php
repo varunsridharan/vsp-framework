@@ -15,6 +15,8 @@
 
 namespace VSP\Modules;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -26,7 +28,7 @@ if ( ! class_exists( 'WPOnion' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	class WPOnion extends \VSP\Base {
+	class WPOnion extends Base {
 		/**
 		 * Default_options
 		 *

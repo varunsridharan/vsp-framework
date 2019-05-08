@@ -15,6 +15,9 @@
 
 namespace VSP\Modules;
 
+use VSP\Base;
+use VSP\Core\Interfaces\Plugin_Settings;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -29,7 +32,7 @@ if ( class_exists( '\VSP\Modules\System_Tools' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-class System_Tools extends \VSP\Base implements \VSP\Core\Interfaces\Plugin_Settings {
+class System_Tools extends Base implements Plugin_Settings {
 	/**
 	 * Default_options
 	 *

@@ -87,7 +87,7 @@ if ( ! class_exists( 'Addons' ) ) {
 					wp_send_json_error( __( 'Invalid Addon', 'vsp-framework' ) );
 				}
 
-				if ( ! in_array( $action, array( 'activate', 'deactivate' ) ) ) {
+				if ( ! in_array( $action, array( 'activate', 'deactivate' ), true ) ) {
 					wp_send_json_error( __( 'Invalid Addon Action', 'vsp-framework' ) );
 				}
 
@@ -212,7 +212,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function activate_addon( $addon_uid = '' ) {
 			$active_addons = $this->active_addons();
-			if ( ! in_array( $addon_uid, $active_addons ) ) {
+			if ( ! in_array( $addon_uid, $active_addons, true ) ) {
 				$active_addons[] = $addon_uid;
 				$this->update_active_addons( $active_addons );
 				return true;
@@ -229,7 +229,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function deactivate_addon( $addon_uid = '' ) {
 			$active_addons = $this->active_addons();
-			if ( in_array( $addon_uid, $active_addons ) ) {
+			if ( in_array( $addon_uid, $active_addons, true ) ) {
 				foreach ( $active_addons as $k => $id ) {
 					if ( $id === $addon_uid ) {
 						unset( $active_addons[ $k ] );

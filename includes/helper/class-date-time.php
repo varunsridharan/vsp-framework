@@ -15,6 +15,8 @@
 
 namespace VSP\Helper;
 
+use DateTime;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -25,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-class Date_Time extends \DateTime {
+class Date_Time extends DateTime {
 	/**
 	 * UTC Offset, if needed. Only used when a timezone is not set. When
 	 * timezones are used this will equal 0.

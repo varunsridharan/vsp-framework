@@ -17,6 +17,9 @@
 
 namespace VSP\Modules\Logger;
 
+use VSP\Core\Abstracts\Log_Handler;
+use VSP\Setup;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-class File_Handler extends \VSP\Core\Abstracts\Log_Handler {
+class File_Handler extends Log_Handler {
 	/**
 	 * sub_path
 	 *
@@ -203,7 +206,7 @@ class File_Handler extends \VSP\Core\Abstracts\Log_Handler {
 	public function get_log_file_path( $handle ) {
 		if ( function_exists( 'wp_hash' ) ) {
 			if ( false !== $this->sub_path ) {
-				\VSP\Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) . $this->sub_path );
+				Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) . $this->sub_path );
 				return vsp_slashit( VSP_LOG_DIR ) . vsp_slashit( $this->sub_path ) . $this->get_log_file_name( $handle );
 			}
 			return vsp_slashit( VSP_LOG_DIR ) . $this->get_log_file_name( $handle );

@@ -60,7 +60,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 		if ( ! empty( $handlers ) && is_array( $handlers ) ) {
 			foreach ( $handlers as $handler ) {
 				$implements = class_implements( $handler );
-				if ( is_object( $handler ) && is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Log_Handler', $implements ) ) {
+				if ( is_object( $handler ) && is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Log_Handler', $implements, true ) ) {
 					$register_handlers[] = $handler;
 				} else {
 					/* translators: 1: class name 2: VSP_Log_Handler_Interface */

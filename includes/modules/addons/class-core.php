@@ -15,6 +15,8 @@
 
 namespace VSP\Modules\Addons;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,7 +29,7 @@ if ( ! class_exists( 'Core' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	abstract class Core extends \VSP\Base {
+	abstract class Core extends Base {
 		/**
 		 * Set To True If its in Display Mode.
 		 *
@@ -356,14 +358,11 @@ if ( ! class_exists( 'Core' ) ) {
 		 */
 		protected function read_addon_json( $path, $raw = false ) {
 			$return = array();
-			try {
-				if ( file_exists( vsp_slashit( $path ) . 'addon.json' ) ) {
-					$return = json_decode( @file_get_contents( vsp_slashit( $path ) . 'addon.json' ), true );
-					if ( false === $raw && is_array( $return ) && ! empty( $return ) ) {
-						$return = $this->parse_args( $return, $this->headers );
-					}
+			if ( file_exists( vsp_slashit( $path ) . 'addon.json' ) ) {
+				$return = json_decode( @file_get_contents( vsp_slashit( $path ) . 'addon.json' ), true );
+				if ( false === $raw && is_array( $return ) && ! empty( $return ) ) {
+					$return = $this->parse_args( $return, $this->headers );
 				}
-			} catch ( \ErrorException $exception ) {
 			}
 			return ( is_array( $return ) && ! empty( $return ) ) ? $return : array();
 		}

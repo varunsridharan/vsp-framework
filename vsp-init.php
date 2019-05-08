@@ -8,6 +8,8 @@
  * @copyright GPL V3 Or greater
  */
 
+use VSP\Autoloader;
+
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
 	 * Class VSP_Framework_Loader
@@ -73,8 +75,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * @return array
 		 */
 		public function add_extra_info( $meta = array() ) {
-			$integrations = \VSP\Autoloader::get_integrations();
-			$libs         = \VSP\Autoloader::get_libs();
+			$integrations = Autoloader::get_integrations();
+			$libs         = Autoloader::get_libs();
 			$vsp_loaded   = $this->loaded();
 
 			$meta[ __( 'Framework Version', 'vsp-framework' ) ]     = $vsp_loaded['Version'];
@@ -88,7 +90,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$meta[ __( 'Bundled Libs', 'vsp-framework' ) ]          = array();
 
 			foreach ( $integrations as $k => $v ) {
-				$data = get_file_data( \VSP\Autoloader::integration_path() . $v, [
+				$data = get_file_data( Autoloader::integration_path() . $v, [
 					'Name'    => '@name',
 					'Version' => '@version',
 				], 'vsp' );
@@ -101,7 +103,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			}
 
 			foreach ( $libs as $k => $v ) {
-				$data = get_file_data( \VSP\Autoloader::lib_path() . $v, [
+				$data = get_file_data( Autoloader::lib_path() . $v, [
 					'Name'    => 'Name',
 					'Version' => 'Version',
 				], 'vsp' );

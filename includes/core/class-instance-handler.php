@@ -14,6 +14,9 @@
 
 namespace VSP\Core;
 
+use ReflectionClass;
+use ReflectionException;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -49,9 +52,9 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
 				try {
-					$refl                              = new \ReflectionClass( static::class );
+					$refl                              = new ReflectionClass( static::class );
 					self::$_instances[ static::class ] = $refl->newInstanceArgs( func_get_args() );
-				} catch ( \ReflectionException $exception ) {
+				} catch ( ReflectionException $exception ) {
 
 				}
 			}
