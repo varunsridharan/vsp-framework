@@ -29,7 +29,7 @@ if ( ! class_exists( '\VSP\Framework_Admin' ) ) {
 		 *
 		 * @see \VSP_Framework::__register_hooks
 		 */
-		public function __register_admin_hooks() {
+		public function _register_admin_hooks() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ), 1 );
 			add_action( 'admin_init', array( $this, 'wp_admin_init' ) );
 		}

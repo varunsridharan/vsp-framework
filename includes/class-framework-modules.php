@@ -36,7 +36,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 *
 		 * @uses \VSP\Modules\System_Tools
 		 */
-		protected function __init_system_tools() {
+		protected function _init_system_tools() {
 			if ( false !== $this->option( 'system_tools' ) ) {
 				$this->_instance( '\VSP\Modules\System_Tools', false, true, $this->option( 'system_tools' ) );
 			}
@@ -47,7 +47,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 *
 		 * @uses \Varunsridharan\WordPress\Review_Me
 		 */
-		protected function __review_me_init() {
+		protected function _review_me_init() {
 			if ( false !== $this->option( 'reviewme' ) ) {
 				if ( vsp_is_admin() ) {
 					$this->_instance( '\Varunsridharan\WordPress\Review_Me', false, true, $this->option( 'reviewme' ) );
@@ -63,7 +63,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 * @hook addons_init_before
 		 * @hook addons_inti
 		 */
-		protected function __addon_init() {
+		protected function _addon_init() {
 			if ( false !== $this->option( 'addons' ) ) {
 				$this->action( 'addons_init_before' );
 				$this->_instance( '\VSP\Modules\Addons', false, true, $this->option( 'addons' ) );
@@ -79,7 +79,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 * @hook settings_init_before
 		 * @hook settings_init
 		 */
-		protected function __settings_init() {
+		protected function _settings_init() {
 			if ( false !== $this->option( 'settings_page' ) ) {
 				$this->settings_init_before();
 				$this->action( 'settings_init_before' );
@@ -98,7 +98,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 *
 		 * @uses \vsp_get_logger()
 		 */
-		public function __logging_init() {
+		public function _logging_init() {
 			if ( false !== $this->option( 'logging' ) ) {
 				$this->action( 'logging_init_before' );
 				$this->logging = vsp_get_logger( $this->slug() );
@@ -112,7 +112,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 * @throws \Exception
 		 * @uses \Varunsridharan\PHP\Autoloader
 		 */
-		protected function __autoloader_init() {
+		protected function _autoloader_init() {
 			if ( false !== $this->option( 'autoloader' ) ) {
 				$args = $this->parse_args( $this->option( 'autoloader' ), array(
 					'namespace' => false,

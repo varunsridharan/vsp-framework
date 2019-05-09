@@ -209,7 +209,7 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 	function vsp_get_logger( $subpath = false, $file_name = null, $filesize = false ) {
 		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
 		$implements = class_implements( $class );
-		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements ) ) {
+		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements, true ) ) {
 			$logger = ( is_object( $class ) ) ? $class : new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
 		} else {
 			/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
@@ -250,7 +250,7 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 	function vsp_log_msg( $messages = '', $type = 'critical', $handler = false, $context = array() ) {
 		$types = array( 'critical', 'emergency', 'alert', 'error', 'warning', 'notice', 'info', 'debug' );
 
-		if ( ! in_array( $type, $types ) ) {
+		if ( ! in_array( $type, $types, true ) ) {
 			return false;
 		}
 
@@ -409,7 +409,7 @@ if ( ! function_exists( 'vsp_is_json' ) ) {
 	function vsp_is_json( $string = '' ) {
 		if ( is_string( $string ) ) {
 			json_decode( $string );
-			return ( json_last_error() == JSON_ERROR_NONE );
+			return ( json_last_error() === JSON_ERROR_NONE );
 		}
 		return false;
 	}

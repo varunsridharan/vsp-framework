@@ -273,7 +273,7 @@ abstract class Impoter extends \WP_Importer {
 			$this->import_error( __( 'The file does not exist, please try again.', 'vsp-framework' ) );
 		}
 
-		$this->__import_start();
+		$this->_import_start();
 		$loop = 0;
 
 		if ( false !== ( $handle = fopen( $file, 'r' ) ) ) {
@@ -288,13 +288,13 @@ abstract class Impoter extends \WP_Importer {
 			}
 			fclose( $handle );
 		}
-		$this->__import_end();
+		$this->_import_end();
 	}
 
 	/**
 	 * Import is starting.
 	 */
-	private function __import_start() {
+	private function _import_start() {
 		if ( function_exists( 'gc_enable' ) ) {
 			gc_enable();
 		}
@@ -324,7 +324,7 @@ abstract class Impoter extends \WP_Importer {
 	/**
 	 * Runs once the import is finished
 	 */
-	public function __import_end() {
+	public function _import_end() {
 		$this->after_import();
 		$this->show_success();
 		$this->show_errors();
