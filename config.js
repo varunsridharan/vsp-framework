@@ -7,7 +7,7 @@ module.exports = {
 		},
 	},
 	files: {
-		'src/scss/vsp-framework.scss': {
+		'assets_src/scss/vsp-framework.scss': {
 			scss: true,
 			autoprefixer: true,
 			minify: true,
@@ -15,7 +15,7 @@ module.exports = {
 			dist: 'assets/css',
 			rename: 'vsp-framework.css',
 		},
-		'src/js/vsp-framework.js': {
+		'assets_src/js/vsp-framework.js': {
 			dist: 'assets/js',
 			//babel: true,
 			webpack: true,
