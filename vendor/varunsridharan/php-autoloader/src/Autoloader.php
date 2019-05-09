@@ -11,6 +11,9 @@
  */
 
 namespace Varunsridharan\PHP;
+
+use Exception;
+
 if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 	/**
 	 * Class Autoloader
@@ -122,7 +125,7 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 		protected function register() {
 			try {
 				spl_autoload_register( array( &$this, 'autoload' ), true, $this->option( 'prepend' ) );
-			} catch ( \Exception $exception ) {
+			} catch ( Exception $exception ) {
 				return false;
 			}
 			return true;
@@ -163,10 +166,10 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 		 * @param $class
 		 */
 		public function autoload( $class ) {
-			$is_loaded = false;
 			if ( true === $this->is_valid_lookup( $class ) ) {
 				$filenames = null;
 				$folders   = null;
+				$is_loaded = false;
 
 				/**
 				 * Checks and loads file if given class exists in mapping array.
@@ -343,7 +346,6 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 		 * @return array|boolean
 		 *
 		 * @example array (size=3)
-		 *    0 => string '/'
 		 *    1 => string '/path1/path1_base/path2/' (length=24)
 		 *    2 => string '/path1/path1-base/path2/' (length=24)
 		 *    3 => string 'your_class' (length=10)
@@ -376,7 +378,6 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 				str_replace( '_', '-', $folder_class ),
 				$class_name,
 				str_replace( '_', '-', $class_name ),
-				'/',
 			) ) );
 		}
 
