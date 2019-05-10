@@ -359,7 +359,12 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 			}
 
 			$_class = explode( '\\', $class );
-			$_keys  = array_keys( $_class );
+
+			if ( 2 === count( $_class ) ) {
+				return array( '/' );
+			}
+
+			$_keys = array_keys( $_class );
 			if ( ! empty( $_keys ) ) {
 				$end = end( $_keys );
 				if ( ! empty( $end ) ) {

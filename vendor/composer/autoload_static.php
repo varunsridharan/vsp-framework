@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbff326815e537cd48b6e3db65b905e73
+class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
 {
     public static $files = array (
         'cf65e956ef36045d86a2d654adf24874' => __DIR__ . '/..' . '/varunsridharan/sweetalert2-php/sweetalert2.php',
@@ -68,9 +68,9 @@ class ComposerStaticInitbff326815e537cd48b6e3db65b905e73
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbff326815e537cd48b6e3db65b905e73::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbff326815e537cd48b6e3db65b905e73::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitbff326815e537cd48b6e3db65b905e73::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit57b358ef600d04aab79c92228719c7ad::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit57b358ef600d04aab79c92228719c7ad::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit57b358ef600d04aab79c92228719c7ad::$classMap;
 
         }, null, ClassLoader::class);
     }
