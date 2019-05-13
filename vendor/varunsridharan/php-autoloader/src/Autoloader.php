@@ -360,10 +360,6 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 
 			$_class = explode( '\\', $class );
 
-			if ( 2 === count( $_class ) ) {
-				return array( '/' );
-			}
-
 			$_keys = array_keys( $_class );
 			if ( ! empty( $_keys ) ) {
 				$end = end( $_keys );
@@ -383,6 +379,7 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 				str_replace( '_', '-', $folder_class ),
 				$class_name,
 				str_replace( '_', '-', $class_name ),
+				'/',
 			) ) );
 		}
 
