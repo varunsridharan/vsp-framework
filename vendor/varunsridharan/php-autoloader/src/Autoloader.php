@@ -390,11 +390,10 @@ if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 		 * @return bool
 		 */
 		protected function load_file( $path, $class ) {
-			if ( file_exists( $path ) ) {
-				require_once $path;
-				return ( class_exists( $class, false ) );
+			if ( is_readable( $path ) ) {
+				include_once $path;
 			}
-			return false;
+			return ( class_exists( $class, false ) || trait_exists( $class, false ) || interface_exists( $class, false ) );
 		}
 
 		/**
