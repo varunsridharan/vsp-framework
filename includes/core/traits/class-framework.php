@@ -77,12 +77,6 @@ trait Framework {
 	}
 
 	/**
-	 * @see \VSP_Framework::_register_hooks()
-	 */
-	public function load_textdomain() {
-	}
-
-	/**
 	 * @see \VSP_Framework::register_hooks()
 	 */
 	public function frontend_assets() {
