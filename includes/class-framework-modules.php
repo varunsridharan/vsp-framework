@@ -118,9 +118,8 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 					'namespace' => false,
 					'base_path' => $this->plugin_path(),
 					'options'   => array(),
-					'prepend'   => false,
 				) );
-				new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'], $args['prepend'] );
+				new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'] );
 			}
 		}
 
