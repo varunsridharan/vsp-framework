@@ -230,6 +230,7 @@ if ( ! function_exists( 'vsp_list_files' ) ) {
 /**
  * WordPress Specific Functions
  */
+
 if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 	/**
 	 * @param array $args
@@ -239,7 +240,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 	function vsp_validate_required_plugin( $args = array() ) {
 		$msg  = false;
 		$args = wp_parse_args( $args, array(
-			'plugin_name'     => false,// Your Plugin Name.
+			'plugin_name'     => false, // Your Plugin Name.
 			'req_plugin'      => false, // Plugin File Eg : woocommerce/woocommerce.php
 			'req_plugin_name' => false, // Name of the plugin.
 			'version'         => false, // Plugin Version
@@ -247,6 +248,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 		) );
 
 		if ( ! wp_is_plugin_active( $args['req_plugin'] ) ) {
+			// translators: Add Requested Plugin Name & Required Plugin Name
 			$msg = __( '%1$s Requires %2$s to be installed & activated.', 'vsp-framework' );
 			$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong><i>' . $args['req_plugin_name'] . '</i></strong>' );
 		}
@@ -255,21 +257,24 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 			switch ( $args['compare'] ) {
 				case 'gte':
 				case '>=':
-					if ( plugin_version_gte( $args['req_plugin'], $args['version'] ) ) {
+					if ( ! plugin_version_gte( $args['req_plugin'], $args['version'] ) ) {
+						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
 						$msg = __( '%1$s Requires %2$s Version %3$s Or Higher. Please Update Your %2$s To %3$s' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;
 				case 'gt':
 				case '>':
-					if ( plugin_version_gt( $args['req_plugin'], $args['version'] ) ) {
+					if ( ! plugin_version_gt( $args['req_plugin'], $args['version'] ) ) {
+						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
 						$msg = __( '%1$s Requires %2$s Version %3$s. Please Update Your %2$s To %3$s' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;
 				case 'lt':
 				case '<':
-					if ( plugin_version_lt( $args['req_plugin'], $args['version'] ) ) {
+					if ( ! plugin_version_lt( $args['req_plugin'], $args['version'] ) ) {
+						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
 						$msg = __( '%1$s Requires %2$s Version %3$s. Please Downgrade Your %2$s' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
@@ -277,7 +282,8 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 
 				case 'lte':
 				case '<=':
-					if ( plugin_version_lte( $args['req_plugin'], $args['version'] ) ) {
+					if ( ! plugin_version_lte( $args['req_plugin'], $args['version'] ) ) {
+						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
 						$msg = __( '%1$s Requires %2$s Version %3$s Or Lower. Please Downgrade Your %2$s To %3$s' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
@@ -318,6 +324,5 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 
 	}
 }
-
 
 vsp_load_file( VSP_PATH . 'includes/functions/*.php' );
