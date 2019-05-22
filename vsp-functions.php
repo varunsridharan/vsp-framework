@@ -230,18 +230,94 @@ if ( ! function_exists( 'vsp_list_files' ) ) {
 /**
  * WordPress Specific Functions
  */
-if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
+if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 	/**
-	 * Adds WooCommerce Required Notice
+	 * @param array $args
 	 *
-	 * @param string $plugin_name .
+	 * @return bool
 	 */
-	function vsp_add_wc_required_notice( $plugin_name = '' ) {
-		/* translators: Adds Plugin Name & HTML Tags. */
-		$msg = __( '%1$s Requires %2$s WooCommerce %3$s to be installed & activated.', 'vsp-framework' );
-		$msg = sprintf( $msg, '<strong>' . $plugin_name . '</strong>', '<strong><i>', '</i></strong>' );
-		wponion_error_admin_notice( $msg );
+	function vsp_validate_required_plugin( $args = array() ) {
+		$msg  = false;
+		$args = wp_parse_args( $args, array(
+			'plugin_name'     => false,// Your Plugin Name.
+			'req_plugin'      => false, // Plugin File Eg : woocommerce/woocommerce.php
+			'req_plugin_name' => false, // Name of the plugin.
+			'version'         => false, // Plugin Version
+			'compare'         => 'gte', // Eg : gte,gt.lt,lte
+		) );
+
+		if ( ! wp_is_plugin_active( $args['req_plugin'] ) ) {
+			$msg = __( '%1$s Requires %2$s to be installed & activated.', 'vsp-framework' );
+			$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong><i>' . $args['req_plugin_name'] . '</i></strong>' );
+		}
+
+		if ( false !== $args['version'] && false === $msg ) {
+			switch ( $args['compare'] ) {
+				case 'gte':
+				case '>=':
+					if ( plugin_version_gte( $args['req_plugin'], $args['version'] ) ) {
+						$msg = __( '%1$s Requires %2$s Version %3$s Or Higher. Please Update Your %2$s To %3$s' );
+						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
+					}
+					break;
+				case 'gt':
+				case '>':
+					if ( plugin_version_gt( $args['req_plugin'], $args['version'] ) ) {
+						$msg = __( '%1$s Requires %2$s Version %3$s. Please Update Your %2$s To %3$s' );
+						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
+					}
+					break;
+				case 'lt':
+				case '<':
+					if ( plugin_version_lt( $args['req_plugin'], $args['version'] ) ) {
+						$msg = __( '%1$s Requires %2$s Version %3$s. Please Downgrade Your %2$s' );
+						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
+					}
+					break;
+
+				case 'lte':
+				case '<=':
+					if ( plugin_version_lte( $args['req_plugin'], $args['version'] ) ) {
+						$msg = __( '%1$s Requires %2$s Version %3$s Or Lower. Please Downgrade Your %2$s To %3$s' );
+						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
+					}
+					break;
+			}
+		}
+
+		if ( false !== $msg ) {
+			if ( ! did_action( 'wponion_loaded' ) ) {
+				$add_error = function () use ( $msg ) {
+					wponion_error_admin_notice( $msg );
+				};
+				add_action( 'wponion_loaded', $add_error );
+			} else {
+				wponion_error_admin_notice( $msg );
+			}
+		}
+		return ( false !== $msg ) ? true : false;
 	}
 }
+
+if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
+	/**
+	 * @param string $plugin_name
+	 * @param string $wc_version
+	 * @param string $wc_compare
+	 *
+	 * @return bool
+	 */
+	function vsp_add_wc_required_notice( $plugin_name = '', $wc_version = '3.0', $wc_compare = '>=' ) {
+		return vsp_validate_required_plugin( array(
+			'plugin_name'     => $plugin_name,// Your Plugin Name.
+			'req_plugin'      => 'woocommerce/woocommerce.php', // Plugin File Eg : woocommerce/woocommerce.php
+			'req_plugin_name' => 'WooCommerce', // Name of the plugin.
+			'version'         => $wc_version, // Plugin Version
+			'compare'         => $wc_compare, // Eg : gte,gt.lt,lte
+		) );
+
+	}
+}
+
 
 vsp_load_file( VSP_PATH . 'includes/functions/*.php' );

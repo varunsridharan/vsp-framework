@@ -33,7 +33,8 @@ if ( ! function_exists( 'wp_query_builder' ) ) {
 	/**
 	 * Make wp query builder as global scope.
 	 *
-	 * @param  string $table_name A Database instance id.
+	 * @param string $table_name A Database instance id.
+	 *
 	 * @return Database Database object instance.
 	 */
 	function wp_query_builder( $table_name ) {

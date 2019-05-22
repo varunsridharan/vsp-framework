@@ -19,14 +19,14 @@ trait Where {
 	 *     ->where('age', '>', 18)
 	 *     ->where('name', 'in', ['charles', 'john', 'jeffry'])
 	 *
-	 * @throws \Exception If $type is not 'and', 'or', 'where'.
-	 *
 	 * @param mixed  $column The SQL column.
 	 * @param mixed  $param1 Operator or value depending if $param2 isset.
 	 * @param mixed  $param2 The value if $param1 is an operator.
 	 * @param string $type the where type ( and, or ).
 	 *
 	 * @return self The current query builder.
+	 * @throws \Exception If $type is not 'and', 'or', 'where'.
+	 *
 	 */
 	public function where( $column, $param1 = null, $param2 = null, $type = 'and' ) {
 
@@ -79,7 +79,7 @@ trait Where {
 	 *
 	 *     ->whereIn('id', [42, 38, 12])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -97,7 +97,7 @@ trait Where {
 	 *
 	 *     ->orWhereIn('id', [42, 38, 12])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -115,7 +115,7 @@ trait Where {
 	 *
 	 *     ->whereNotIn('id', [42, 38, 12])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -133,7 +133,7 @@ trait Where {
 	 *
 	 *     ->orWhereNotIn('id', [42, 38, 12])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -151,7 +151,7 @@ trait Where {
 	 *
 	 *     ->whereBetween('id', [10, 100])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -169,7 +169,7 @@ trait Where {
 	 *
 	 *     ->orWhereBetween('id', [10, 100])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -187,7 +187,7 @@ trait Where {
 	 *
 	 *     ->whereNotBetween('id', [10, 100])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -205,7 +205,7 @@ trait Where {
 	 *
 	 *     ->orWhereNotBetween('id', [10, 100])
 	 *
-	 * @param string $column  The SQL column.
+	 * @param string $column The SQL column.
 	 * @param array  $options Array of values for in statement.
 	 *
 	 * @return self The current query builder.
@@ -224,9 +224,9 @@ trait Where {
 	 *     ->whereLike('id', 'value')
 	 *
 	 * @param string $column The SQL column.
-	 * @param string $value  Value for like statement.
-	 * @param string $start  (Optional) The start of like query.
-	 * @param string $end    (Optional) The end of like query.
+	 * @param string $value Value for like statement.
+	 * @param string $start (Optional) The start of like query.
+	 * @param string $end (Optional) The end of like query.
 	 *
 	 * @return self The current query builder.
 	 */
@@ -240,9 +240,9 @@ trait Where {
 	 *     ->orWhereLike('id', 'value')
 	 *
 	 * @param string $column The SQL column.
-	 * @param string $value  Value for like statement.
-	 * @param string $start  (Optional) The start of like query.
-	 * @param string $end    (Optional) The end of like query.
+	 * @param string $value Value for like statement.
+	 * @param string $start (Optional) The start of like query.
+	 * @param string $end (Optional) The end of like query.
 	 *
 	 * @return self The current query builder.
 	 */
@@ -256,9 +256,9 @@ trait Where {
 	 *     ->whereNotLike('id', 'value' )
 	 *
 	 * @param string $column The SQL column.
-	 * @param mixed  $value  Value for like statement.
-	 * @param string $start  (Optional) The start of like query.
-	 * @param string $end    (Optional) The end of like query.
+	 * @param mixed  $value Value for like statement.
+	 * @param string $start (Optional) The start of like query.
+	 * @param string $end (Optional) The end of like query.
 	 *
 	 * @return self The current query builder.
 	 */
@@ -272,9 +272,9 @@ trait Where {
 	 *     ->orWhereNotLike('id', 'value' )
 	 *
 	 * @param string $column The SQL column.
-	 * @param mixed  $value  Value for like statement.
-	 * @param string $start  (Optional) The start of like query.
-	 * @param string $end    (Optional) The end of like query.
+	 * @param mixed  $value Value for like statement.
+	 * @param string $start (Optional) The start of like query.
+	 * @param string $end (Optional) The end of like query.
 	 *
 	 * @return self The current query builder.
 	 */

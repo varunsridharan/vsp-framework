@@ -88,7 +88,7 @@ trait Select {
 	/**
 	 * Shortcut to add a function
 	 *
-	 * @param string $func  Function name.
+	 * @param string $func Function name.
 	 * @param string $field Column name.
 	 * @param string $alias (Optional) Column alias.
 	 *
