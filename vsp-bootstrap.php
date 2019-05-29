@@ -27,7 +27,7 @@
  *
  * Framework Name: VSP Framework
  * Plugin Name: VSP Framework
- * Version: 0.1.5.7
+ * Version: 0.1.5.8
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
@@ -50,7 +50,7 @@ if ( ! function_exists( 'vsp_version' ) ) {
 	 * @return string
 	 */
 	function vsp_version() {
-		return '0.1.5.7';
+		return '0.1.5.8';
 	}
 
 	$upload_dir = wp_upload_dir( null, false );
