@@ -64,7 +64,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			];
 			add_action( 'plugins_loaded', [ &$this, 'load_framework' ], 0 );
 			add_action( 'vsp_framework_load_lib_integrations', [ &$this, 'load_libs_integrations' ], 0 );
-			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ] );
+			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
 		}
 
 		/**
@@ -272,12 +272,12 @@ if ( ! function_exists( 'vsp_maybe_load' ) ) {
 	 * Adds Passed Plugin path to the list array which later used to compare and
 	 * load the framework from a plugin which has the latest version of framework
 	 *
-	 * @param string $plugin_path Plugin Path To register With VSP.
-	 * @param array  $meta_data Array of data like Libs & Integrations to load.
 	 * @param array  $callback Custom function to callback when VSP is loaded.
+	 * @param string $plugin_path Plugin Path To register With VSP.
 	 * @param string $framework_path Exact path of the vsp framework in the plugin.
+	 * @param array  $meta_data Array of data like Libs & Integrations to load.
 	 */
-	function vsp_maybe_load( $callback = [], $meta_data = [], $plugin_path = '', $framework_path = '' ) {
+	function vsp_maybe_load( $callback = [], $plugin_path = '', $framework_path = 'vsp-framework', $meta_data = [] ) {
 		$plugin_path = ( ! empty( $plugin_path ) ) ? $plugin_path : __DIR__ . '/';
 		VSP_Framework_Loader::instance()
 			->register_plugin( $plugin_path, $meta_data, $framework_path )
