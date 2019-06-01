@@ -118,7 +118,6 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		private function _register_hooks() {
 			add_action( 'init', array( $this, '_wp_init' ), 20 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_assets' ) );
-			add_action( 'wponion_loaded', array( $this, 'wponion_loaded' ) );
 
 			if ( vsp_is_admin() ) {
 				$this->_register_admin_hooks();

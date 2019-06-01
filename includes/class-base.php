@@ -166,13 +166,18 @@ if ( ! class_exists( 'Base' ) ) {
 		public function __construct( $options = array(), $defaults = array() ) {
 			$this->set_args( $options, $defaults );
 			$this->class_init();
-			add_action( 'wponion_loaded', array( &$this, 'wponion_loaded' ) );
+
+			if ( did_action( 'wponion_loaded' ) ) {
+				$this->wponion();
+			} else {
+				add_action( 'wponion_loaded', array( &$this, 'wponion' ) );
+			}
 		}
 
 		/**
 		 * On WPOnion Loaded.
 		 */
-		public function wponion_loaded() {
+		public function wponion() {
 		}
 
 		/**
