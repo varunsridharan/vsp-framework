@@ -84,8 +84,11 @@ if ( ! function_exists( 'vsp_version' ) ) {
 
 		do_action( 'vsp_framework_init' );
 	} catch ( Exception $exception ) {
-		$msg = '<h4>' . __( 'Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured', 'vsp-framework' ) . '</h4>';
-		$msg = $msg . $exception->getMessage();
+		$path = str_replace( untrailingslashit( ABSPATH ), '', plugin_dir_path( __DIR__ ) );
+		$msg  = '<h4 style="text-align: center">' . __( 'Autoloder For VSP-Framework Not Found.', 'vsp-framework' ) . '</h4>';
+		$msg  .= '<i style="text-align: center; display: block;">' . __( 'Please Contact The Author Of The Plugin' ) . '</i><br/>';
+		$msg  .= '<strong>' . __( 'Plugin Path :' ) . '</strong>' . ' <code style="padding: 2px 5px;background: #ffe6ee;border: 1px solid #ffb3cb;border-radius: 5px;margin-left: 10px;">' . $path . '</code> <br/> <br/>';
+		$msg  .= '<strong style="font-style: italic; color:red;">' . __( 'Error : ' ) . ' </strong> ' . $exception->getMessage();
 		wp_die( $msg );
 	}
 }
