@@ -8,7 +8,6 @@
  * @copyright GPL V3 Or greater
  */
 
-use VSP\Autoloader;
 
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
@@ -65,57 +64,28 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			add_action( 'plugins_loaded', [ &$this, 'load_framework' ], 0 );
 			add_action( 'vsp_framework_load_lib_integrations', [ &$this, 'load_libs_integrations' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
+			add_action( 'wponion_sysinfo_final', [ &$this, 'add_extra_info' ] );
 		}
 
 		/**
 		 * Adds Custom Information To SysPage.
 		 *
-		 * @param array $meta .
+		 * @param array $_meta .
 		 *
 		 * @return array
 		 */
-		public function add_extra_info( $meta = array() ) {
-			$integrations = Autoloader::get_integrations();
-			$libs         = Autoloader::get_libs();
-			$vsp_loaded   = $this->loaded();
+		public function add_extra_info( $_meta = array() ) {
+			$meta       = array();
+			$vsp_loaded = $this->loaded();
 
 			$meta[ __( 'Framework Version', 'vsp-framework' ) ]     = $vsp_loaded['Version'];
 			$meta[ __( 'Textdomain', 'vsp-framework' ) ]            = $vsp_loaded['TextDomain'];
 			$meta[ __( 'DomainPath', 'vsp-framework' ) ]            = $vsp_loaded['DomainPath'];
 			$meta[ __( 'Framework Plugin Path', 'vsp-framework' ) ] = vsp_censor_path( $vsp_loaded['plugin_path'] );
 			$meta[ __( 'Framework Path', 'vsp-framework' ) ]        = vsp_censor_path( $vsp_loaded['framework_path'] );
-			$meta[ __( 'Loaded Library', 'vsp-framework' ) ]        = self::$meta_data['lib'];
-			$meta[ __( 'Loaded Integration', 'vsp-framework' ) ]    = self::$meta_data['integrations'];
-			$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ]  = array();
-			$meta[ __( 'Bundled Libs', 'vsp-framework' ) ]          = array();
-
-			foreach ( $integrations as $k => $v ) {
-				$data = get_file_data( Autoloader::integration_path() . $v, [
-					'Name'    => '@name',
-					'Version' => '@version',
-				], 'vsp' );
-
-				if ( count( array_filter( $data ) ) === 2 ) {
-					$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
-				} else {
-					$meta[ __( 'Bundled Integrations', 'vsp-framework' ) ][] = $k . ' - ' . $v;
-				}
-			}
-
-			foreach ( $libs as $k => $v ) {
-				$data = get_file_data( Autoloader::lib_path() . $v, [
-					'Name'    => 'Name',
-					'Version' => 'Version',
-				], 'vsp' );
-
-				if ( count( array_filter( $data ) ) === 2 ) {
-					$meta[ __( 'Bundled Libs', 'vsp-framework' ) ][] = $data['Name'] . ' - ' . $data['Version'] . ' - ' . $v;
-				} else {
-					$meta[ __( 'Bundled Libs', 'vsp-framework' ) ][] = $k . ' - ' . $v;
-				}
-			}
-
-			return $meta;
+			$meta[ __( 'Framework Included' ) ]                     = self::$data;
+			$_meta[ __( 'VSP Framework' ) ]                         = $meta;
+			return $_meta;
 		}
 
 		/**
