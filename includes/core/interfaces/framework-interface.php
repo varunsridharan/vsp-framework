@@ -35,9 +35,4 @@ interface Framework_Interface {
 	 * @see \VSP_Framework::__load_required_files
 	 */
 	public function load_files();
-
-	/**
-	 * @see \VSP_Framework::register_hooks()
-	 */
-	public function wponion_loaded();
 }
