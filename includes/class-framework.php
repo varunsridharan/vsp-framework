@@ -158,5 +158,16 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			}
 		}
 
+		/**
+		 * @see   VSP_Framework::__register_hooks
+		 */
+		protected function register_hooks() {
+		}
+
+		/**
+		 * @see \VSP_Framework::__load_required_files
+		 */
+		protected function load_files() {
+		}
 	}
 }

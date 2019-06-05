@@ -26,13 +26,5 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 interface Framework_Interface {
-	/**
-	 * @see   VSP_Framework::__register_hooks
-	 */
-	public function register_hooks();
 
-	/**
-	 * @see \VSP_Framework::__load_required_files
-	 */
-	public function load_files();
 }

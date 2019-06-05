@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'WPOnion' ) ) {
+if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 	/**
 	 * Class VSP_Settings_WPOnion
 	 *
