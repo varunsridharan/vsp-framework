@@ -35,6 +35,15 @@ trait WP {
 	protected static $user_roles = array();
 
 	/**
+	 * Stores User Role Options.
+	 *
+	 * @var array
+	 * @access
+	 * @static
+	 */
+	protected static $user_role_options = array();
+
+	/**
 	 * Checks if given user role is the same as current user role
 	 *
 	 * @param null $role
@@ -111,11 +120,28 @@ trait WP {
 	 * @return array
 	 */
 	public static function user_roles_lists( $only_slug = false ) {
-		$return = array();
-		foreach ( self::get_user_roles() as $slug => $data ) {
-			$return[ $slug ] = $data['name'];
+		if ( empty( self::$user_role_options ) ) {
+			$return = array();
+			foreach ( self::get_user_roles() as $slug => $data ) {
+				$return[ $slug ] = $data['name'];
+			}
+			self::$user_role_options = $return;
 		}
-		return ( true === $only_slug ) ? array_keys( $return ) : $return;
+		return ( true === $only_slug ) ? array_keys( self::$user_role_options ) : self::$user_role_options;
+	}
+
+	/**
+	 * Returns User Role's title for the given user slug.
+	 *
+	 * @param string|bool $slug
+	 * @param string|bool $default
+	 *
+	 * @static
+	 * @return mixed
+	 */
+	public static function user_role_title( $slug, $default = false ) {
+		$roles = self::user_roles_lists();
+		return ( isset( $roles[ $slug ] ) ) ? $roles[ $slug ] : $default;
 	}
 
 	/**
@@ -147,8 +173,8 @@ trait WP {
 	 * This is helpful for retrieving the actual site name instead of the
 	 * network name on multisite installations.
 	 *
-	 * @since 4.6.0
 	 * @return string
+	 * @since 4.6.0
 	 */
 	public static function get_site_name() {
 		return ( is_multisite() ) ? get_blog_details()->blogname : get_bloginfo( 'name' );
