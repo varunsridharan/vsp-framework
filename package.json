@@ -3,7 +3,9 @@
 	"version": "0.0.1",
 	"description": "A Lightweight and easy-to-use WordPress Plugin/Theme Framework",
 	"main": "gulpfile.js",
-	"scripts": {},
+    "scripts": {
+      "makepot": "wp-cli i18n make-pot . languages/vsp-framework.pot --exclude=\"assets/,src/,node_modules/,vendor/\""
+    },
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/varunsridharan/vsp-framework.git"

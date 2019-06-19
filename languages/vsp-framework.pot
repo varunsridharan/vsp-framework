@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-05-07T01:54:04+00:00\n"
+"POT-Creation-Date: 2019-06-19T16:42:26+05:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.1.0\n"
+"X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: vsp-framework\n"
 
 #. Plugin Name of the plugin
@@ -24,6 +24,259 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "http://varunsridharan.in"
+msgstr ""
+
+#: includes/class-ajax.php:67
+msgid "Log File Not Found"
+msgstr ""
+
+#: includes/class-base.php:56
+msgid "Cloning instances of the class is forbidden."
+msgstr ""
+
+#: includes/class-base.php:63
+msgid "Unserializing instances of the class is forbidden."
+msgstr ""
+
+#: includes/class-helper.php:82
+msgid "year"
+msgstr ""
+
+#: includes/class-helper.php:83
+msgid "years"
+msgstr ""
+
+#: includes/class-helper.php:84
+msgid "month"
+msgstr ""
+
+#: includes/class-helper.php:85
+msgid "months"
+msgstr ""
+
+#: includes/class-helper.php:86
+msgid "week"
+msgstr ""
+
+#: includes/class-helper.php:87
+msgid "weeks"
+msgstr ""
+
+#: includes/class-helper.php:88
+msgid "day"
+msgstr ""
+
+#: includes/class-helper.php:89
+msgid "days"
+msgstr ""
+
+#: includes/class-helper.php:90
+msgid "hour"
+msgstr ""
+
+#: includes/class-helper.php:91
+msgid "hours"
+msgstr ""
+
+#: includes/class-helper.php:92
+msgid "minute"
+msgstr ""
+
+#: includes/class-helper.php:93
+msgid "minutes"
+msgstr ""
+
+#: includes/class-helper.php:94
+msgid "second"
+msgstr ""
+
+#: includes/class-helper.php:95
+msgid "seconds"
+msgstr ""
+
+#: includes/core/traits/class-wp.php:135
+msgid "Visitor / Logged-Out User"
+msgstr ""
+
+#. translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface
+#: includes/functions/general-functions.php:192
+msgid "The class %1$s provided by %2$s filter must implement %3$s."
+msgstr ""
+
+#: includes/functions/general-functions.php:247
+msgid "Tried To Log A Message But Failed Got unknown Handler"
+msgstr ""
+
+#: includes/functions/general-functions.php:307
+msgid "Maximum stack depth exceeded"
+msgstr ""
+
+#: includes/functions/general-functions.php:310
+msgid "Underflow or the modes mismatch"
+msgstr ""
+
+#: includes/functions/general-functions.php:313
+msgid "Unexpected control character found"
+msgstr ""
+
+#: includes/functions/general-functions.php:316
+msgid "Syntax error, malformed JSON"
+msgstr ""
+
+#: includes/functions/general-functions.php:319
+msgid "Malformed UTF-8 characters, possibly incorrectly encoded"
+msgstr ""
+
+#: includes/functions/general-functions.php:322
+msgid "Unknown error"
+msgstr ""
+
+#: includes/functions/logger-functions.php:27
+msgid "folder"
+msgstr ""
+
+#: includes/modules/class-addons.php:40
+msgid "All"
+msgstr ""
+
+#: includes/modules/class-addons.php:41
+#: includes/modules/class-addons.php:48
+msgid "Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:42
+msgid "Inactive"
+msgstr ""
+
+#: includes/modules/class-addons.php:43
+msgid "General"
+msgstr ""
+
+#: includes/modules/class-addons.php:46
+msgid "Not Installed"
+msgstr ""
+
+#: includes/modules/class-addons.php:47
+msgid "In Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:71
+msgid "Addon Action Not Provided"
+msgstr ""
+
+#: includes/modules/class-addons.php:72
+msgid "Unable To Process Your Request"
+msgstr ""
+
+#: includes/modules/class-addons.php:74
+msgid "Invalid Addon"
+msgstr ""
+
+#: includes/modules/class-addons.php:78
+msgid "Invalid Addon Action"
+msgstr ""
+
+#: includes/modules/class-addons.php:87
+msgid "Addon Not Found"
+msgstr ""
+
+#: includes/modules/class-addons.php:87
+msgid "Selected Addon Not Found. Please Contact The Developer"
+msgstr ""
+
+#: includes/modules/class-addons.php:91
+msgid "Activation Failed"
+msgstr ""
+
+#: includes/modules/class-addons.php:91
+msgid "Addon's Requried Plugins Not Active / Installed"
+msgstr ""
+
+#: includes/modules/class-addons.php:96
+msgid "Addon Activated"
+msgstr ""
+
+#: includes/modules/class-addons.php:99
+msgid "Addon Already Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:103
+msgid "Addon De-Activated"
+msgstr ""
+
+#: includes/modules/class-addons.php:105
+msgid "Addon Is Not Active"
+msgstr ""
+
+#: includes/modules/class-addons.php:118
+msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
+msgstr ""
+
+#: includes/modules/class-addons.php:141
+msgid " Has Deactivated Some of its addons"
+msgstr ""
+
+#: includes/modules/class-addons.php:143
+msgid "I Understand. Will Fix It"
+msgstr ""
+
+#. translators: 1: class name 2: VSP_Log_Handler_Interface
+#: includes/modules/class-logger.php:52
+msgid "The provided handler %1$s does not implement %2$s."
+msgstr ""
+
+#: includes/modules/class-logger.php:77
+msgid "File & Line No :"
+msgstr ""
+
+#. translators: 1: VSP_Logger::log 2: level
+#: includes/modules/class-logger.php:126
+msgid "%1$s was called with an invalid level \"%2$s\"."
+msgstr ""
+
+#: includes/modules/class-system-logs.php:94
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: includes/modules/class-system-tools.php:70
+msgid "System Tools"
+msgstr ""
+
+#: includes/modules/class-system-tools.php:107
+msgid "System Logs"
+msgstr ""
+
+#: includes/modules/logger/class-file-handler.php:199
+#: includes/modules/logger/class-file-handler.php:221
+msgid "This method should not be called before plugins_loaded."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:142
+msgid "Before you can upload your import file, you will need to fix the following error:"
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:163
+msgid "Upload file and import"
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:236
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:259
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:273
+msgid "The CSV is invalid."
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:333
+msgid "Import completed"
+msgstr ""
+
+#: includes/modules/wordpress/class-importer.php:343
+msgid "Import Errors - "
 msgstr ""
 
 #: views/addon-page.php:5
@@ -58,336 +311,11 @@ msgstr ""
 msgid "Delete Log"
 msgstr ""
 
-#: includes/class-base.php:117
-msgid "Cloning instances of the class is forbidden."
+#: vsp-bootstrap.php:83
+msgid "Autoloder For VSP-Framework Not Found."
 msgstr ""
 
-#: includes/class-base.php:124
-msgid "Unserializing instances of the class is forbidden."
-msgstr ""
-
-#: includes/core/traits/class-wp.php:132
-msgid "Visitor / Logged-Out User"
-msgstr ""
-
-#: includes/class-ajax.php:76
-msgid "Log File Not Found"
-msgstr ""
-
-#. translators: Adds integration Name
-#: includes/class-autoloader.php:80
-msgid "Failed To Load Requested Integration %s"
-msgstr ""
-
-#. translators: Adds integration Name
-#. translators: Adds Library Search Path
-#: includes/class-autoloader.php:82
-#: includes/class-autoloader.php:130
-msgid "Searched In Path %s"
-msgstr ""
-
-#. translators: Adds integration Action Name
-#. translators: Adds Library Triggered Action
-#: includes/class-autoloader.php:84
-#: includes/class-autoloader.php:132
-msgid "Tried Action %s"
-msgstr ""
-
-#. translators: Adds Library Name
-#: includes/class-autoloader.php:128
-msgid "Failed To Load Requested Library %s"
-msgstr ""
-
-#: includes/class-helper.php:128
-msgid "year"
-msgstr ""
-
-#: includes/class-helper.php:129
-msgid "years"
-msgstr ""
-
-#: includes/class-helper.php:130
-msgid "month"
-msgstr ""
-
-#: includes/class-helper.php:131
-msgid "months"
-msgstr ""
-
-#: includes/class-helper.php:132
-msgid "week"
-msgstr ""
-
-#: includes/class-helper.php:133
-msgid "weeks"
-msgstr ""
-
-#: includes/class-helper.php:134
-msgid "day"
-msgstr ""
-
-#: includes/class-helper.php:135
-msgid "days"
-msgstr ""
-
-#: includes/class-helper.php:136
-msgid "hour"
-msgstr ""
-
-#: includes/class-helper.php:137
-msgid "hours"
-msgstr ""
-
-#: includes/class-helper.php:138
-msgid "minute"
-msgstr ""
-
-#: includes/class-helper.php:139
-msgid "minutes"
-msgstr ""
-
-#: includes/class-helper.php:140
-msgid "second"
-msgstr ""
-
-#: includes/class-helper.php:141
-msgid "seconds"
-msgstr ""
-
-#: includes/modules/class-system-tools.php:80
-msgid "System Tools"
-msgstr ""
-
-#: includes/modules/class-system-tools.php:117
-msgid "System Logs"
-msgstr ""
-
-#: includes/modules/class-addons.php:53
-msgid "All"
-msgstr ""
-
-#: includes/modules/class-addons.php:54
-#: includes/modules/class-addons.php:61
-msgid "Active"
-msgstr ""
-
-#: includes/modules/class-addons.php:55
-msgid "Inactive"
-msgstr ""
-
-#: includes/modules/class-addons.php:56
-msgid "General"
-msgstr ""
-
-#: includes/modules/class-addons.php:59
-msgid "Not Installed"
-msgstr ""
-
-#: includes/modules/class-addons.php:60
-msgid "In Active"
-msgstr ""
-
-#: includes/modules/class-addons.php:84
-msgid "Addon Action Not Provided"
-msgstr ""
-
-#: includes/modules/class-addons.php:85
-msgid "Unable To Process Your Request"
-msgstr ""
-
-#: includes/modules/class-addons.php:87
-msgid "Invalid Addon"
-msgstr ""
-
-#: includes/modules/class-addons.php:91
-msgid "Invalid Addon Action"
-msgstr ""
-
-#: includes/modules/class-addons.php:100
-msgid "Addon Not Found"
-msgstr ""
-
-#: includes/modules/class-addons.php:100
-msgid "Selected Addon Not Found. Please Contact The Developer"
-msgstr ""
-
-#: includes/modules/class-addons.php:104
-msgid "Activation Failed"
-msgstr ""
-
-#: includes/modules/class-addons.php:104
-msgid "Addon's Requried Plugins Not Active / Installed"
-msgstr ""
-
-#: includes/modules/class-addons.php:109
-msgid "Addon Activated"
-msgstr ""
-
-#: includes/modules/class-addons.php:112
-msgid "Addon Already Active"
-msgstr ""
-
-#: includes/modules/class-addons.php:116
-msgid "Addon De-Activated"
-msgstr ""
-
-#: includes/modules/class-addons.php:118
-msgid "Addon Is Not Active"
-msgstr ""
-
-#: includes/modules/class-addons.php:131
-msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
-msgstr ""
-
-#: includes/modules/class-addons.php:154
-msgid " Has Deactivated Some of its addons"
-msgstr ""
-
-#: includes/modules/class-addons.php:156
-msgid "I Understand. Will Fix It"
-msgstr ""
-
-#. translators: 1: class name 2: VSP_Log_Handler_Interface
-#: includes/modules/class-logger.php:67
-msgid "The provided handler %1$s does not implement %2$s."
-msgstr ""
-
-#: includes/modules/class-logger.php:92
-msgid "File & Line No :"
-msgstr ""
-
-#. translators: 1: VSP_Logger::log 2: level
-#: includes/modules/class-logger.php:141
-msgid "%1$s was called with an invalid level \"%2$s\"."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:156
-msgid "Before you can upload your import file, you will need to fix the following error:"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:177
-msgid "Upload file and import"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:250
-msgid "Sorry, there has been an error."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:273
-msgid "The file does not exist, please try again."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:287
-msgid "The CSV is invalid."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:347
-msgid "Import completed"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:357
-msgid "Import Errors - "
-msgstr ""
-
-#: includes/modules/logger/class-file-handler.php:211
-#: includes/modules/logger/class-file-handler.php:233
-msgid "This method should not be called before plugins_loaded."
-msgstr ""
-
-#: includes/modules/class-system-logs.php:96
-msgid "Action failed. Please refresh the page and retry."
-msgstr ""
-
-#. translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface
-#: includes/functions/general-functions.php:216
-msgid "The class %1$s provided by %2$s filter must implement %3$s."
-msgstr ""
-
-#: includes/functions/general-functions.php:271
-msgid "Tried To Log A Message But Failed Got unknown Handler"
-msgstr ""
-
-#: includes/functions/general-functions.php:331
-msgid "Maximum stack depth exceeded"
-msgstr ""
-
-#: includes/functions/general-functions.php:334
-msgid "Underflow or the modes mismatch"
-msgstr ""
-
-#: includes/functions/general-functions.php:337
-msgid "Unexpected control character found"
-msgstr ""
-
-#: includes/functions/general-functions.php:340
-msgid "Syntax error, malformed JSON"
-msgstr ""
-
-#: includes/functions/general-functions.php:343
-msgid "Malformed UTF-8 characters, possibly incorrectly encoded"
-msgstr ""
-
-#: includes/functions/general-functions.php:346
-msgid "Unknown error"
-msgstr ""
-
-#: includes/functions/logger-functions.php:27
-msgid "folder"
-msgstr ""
-
-#. translators: Adds Plugin Name & HTML Tags.
-#: vsp-functions.php:241
-msgid "%1$s Requires %2$s WooCommerce %3$s to be installed & activated."
-msgstr ""
-
-#: vsp-bootstrap.php:78
-msgid "Unable To Load VSP Framework. PHP Autoloader Not Found / Some Error Occured"
-msgstr ""
-
-#: vsp-init.php:80
-msgid "Framework Version"
-msgstr ""
-
-#: vsp-init.php:81
-msgid "Textdomain"
-msgstr ""
-
-#: vsp-init.php:82
-msgid "DomainPath"
-msgstr ""
-
-#: vsp-init.php:83
-msgid "Framework Plugin Path"
-msgstr ""
-
-#: vsp-init.php:84
-msgid "Framework Path"
-msgstr ""
-
-#: vsp-init.php:85
-msgid "Loaded Library"
-msgstr ""
-
-#: vsp-init.php:86
-msgid "Loaded Integration"
-msgstr ""
-
-#: vsp-init.php:87
-#: vsp-init.php:97
-#: vsp-init.php:99
-msgid "Bundled Integrations"
-msgstr ""
-
-#: vsp-init.php:88
-#: vsp-init.php:110
-#: vsp-init.php:112
-msgid "Bundled Libs"
-msgstr ""
-
-#: vsp-init.php:128
-msgid "Unable To Load VSP Framework. Please Contact The Author"
-msgstr ""
-
-#: vsp-init.php:129
-msgid "ERROR ID : "
+#. translators: Add Requested Plugin Name & Required Plugin Name
+#: vsp-functions.php:220
+msgid "%1$s Requires %2$s to be installed & activated."
 msgstr ""
