@@ -27,55 +27,6 @@ if ( ! class_exists( 'Base' ) ) {
 	 */
 	class Base extends Core\Instance_Handler {
 		/**
-		 * Text_domain
-		 *
-		 * @var null
-		 */
-		public $text_domain = null;
-
-		/**
-		 * Version
-		 *
-		 * @var null
-		 */
-		public $version = null;
-
-		/**
-		 * File
-		 *
-		 * @var null
-		 */
-		public $file = null;
-
-		/**
-		 * Plugin Slug
-		 *
-		 * @var null
-		 */
-		public $slug = null;
-
-		/**
-		 * DB_slug
-		 *
-		 * @var null
-		 */
-		public $db_slug = null;
-
-		/**
-		 * Name
-		 *
-		 * @var null
-		 */
-		public $name = null;
-
-		/**
-		 * Hook_slug
-		 *
-		 * @var null
-		 */
-		public $hook_slug = null;
-
-		/**
 		 * Options
 		 *
 		 * @var array
@@ -124,19 +75,6 @@ if ( ! class_exists( 'Base' ) ) {
 			vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
 		}
 
-
-		/**
-		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
-		 *
-		 * @param string $key .
-		 * @param string $default .
-		 */
-		protected function _set_core( $key = '', $default = '' ) {
-			if ( empty( $this->$key ) || is_null( $this->$key ) ) {
-				$this->$key = $default;
-			}
-		}
-
 		/**
 		 * Merges And sets the given args
 		 *
@@ -144,17 +82,10 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @param array $defaults .
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
-			$defaults = empty( $defaults ) ? $this->default_options : $defaults;
-			$defaults = $this->parse_args( $defaults, $this->base_defaults );
-			$options  = empty( $options ) ? $this->user_options : $options;
-			$options  = $this->parse_args( $options, $defaults );
-			$this->_set_core( 'version', $options['version'] );
-			$this->_set_core( 'file', $options['file'] );
-			$this->_set_core( 'slug', $options['slug'] );
-			$this->_set_core( 'db_slug', $options['db_slug'] );
-			$this->_set_core( 'hook_slug', $options['hook_slug'] );
-			$this->_set_core( 'name', $options['name'] );
-			$this->options = $options;
+			$defaults      = empty( $defaults ) ? $this->default_options : $defaults;
+			$defaults      = $this->parse_args( $defaults, $this->base_defaults );
+			$options       = empty( $options ) ? $this->user_options : $options;
+			$this->options = $this->parse_args( $options, $defaults );
 		}
 
 		/**
@@ -205,7 +136,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return string
 		 */
 		public function file() {
-			return empty( $this->file ) ? __FILE__ : $this->file;
+			return empty( $this->option( 'file' ) ) ? __FILE__ : $this->option( 'file' );
 		}
 
 		/**
@@ -214,7 +145,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return bool|mixed
 		 */
 		public function version() {
-			return $this->version;
+			return $this->option( 'version' );
 		}
 
 		/**
@@ -229,13 +160,13 @@ if ( ! class_exists( 'Base' ) ) {
 			$return = false;
 			switch ( $type ) {
 				case 'slug':
-					$return = $this->slug;
+					$return = $this->option( 'slug' );
 					break;
 				case 'db':
-					$return = $this->db_slug;
+					$return = $this->option( 'db_slug' );
 					break;
 				case 'hook':
-					$return = $this->hook_slug;
+					$return = $this->option( 'hook_slug' );
 					break;
 			}
 			return $return;
@@ -247,7 +178,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return bool|mixed
 		 */
 		public function plugin_name() {
-			return $this->name;
+			return $this->option( 'name' );
 		}
 
 		/**
@@ -270,15 +201,6 @@ if ( ! class_exists( 'Base' ) ) {
 		 */
 		protected function set_option( $key, $value ) {
 			$this->options[ $key ] = $value;
-		}
-
-		/**
-		 * Updates Options array.
-		 *
-		 * @param array $array .
-		 */
-		protected function update_option( $array ) {
-			$this->options = $array;
 		}
 
 		/**
@@ -332,7 +254,6 @@ if ( ! class_exists( 'Base' ) ) {
 			return $this->action_filter( 'do_action', func_get_args() );
 		}
 
-
 		/**
 		 * Triggers add_filters
 		 *
@@ -353,7 +274,6 @@ if ( ! class_exists( 'Base' ) ) {
 		public function add_action() {
 			return $this->action_filter( 'add_action', func_get_args() );
 		}
-
 
 		/**
 		 * Get the plugin url.
