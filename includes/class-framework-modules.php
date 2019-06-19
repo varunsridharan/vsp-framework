@@ -32,6 +32,14 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		private $logging = null;
 
 		/**
+		 * Stores Autoloader
+		 *
+		 * @var null
+		 * @access
+		 */
+		private $autoloader = null;
+
+		/**
 		 * Inits System Tools Class
 		 *
 		 * @uses \VSP\Modules\System_Tools
@@ -114,12 +122,12 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 */
 		protected function _autoloader_init() {
 			if ( false !== $this->option( 'autoloader' ) ) {
-				$args = $this->parse_args( $this->option( 'autoloader' ), array(
+				$args             = $this->parse_args( $this->option( 'autoloader' ), array(
 					'namespace' => false,
 					'base_path' => $this->plugin_path(),
 					'options'   => array(),
 				) );
-				new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'] );
+				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'] );
 			}
 		}
 
@@ -142,6 +150,13 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 */
 		public function logger() {
 			return $this->logging;
+		}
+
+		/**
+		 * @return \Varunsridharan\PHP\Autoloader
+		 */
+		public function autoloader() {
+			return $this->autoloader;
 		}
 
 	}
