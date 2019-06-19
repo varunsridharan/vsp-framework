@@ -14,9 +14,9 @@ if ( ! function_exists( 'vsp_slashit' ) ) {
 	/**
 	 * @param string $path .
 	 *
+	 * @return string
 	 * @uses trailingslashit
 	 *
-	 * @return string
 	 */
 	function vsp_slashit( $path ) {
 		return trailingslashit( $path );
@@ -96,37 +96,57 @@ if ( ! function_exists( 'vsp_load_style' ) ) {
 
 if ( ! function_exists( 'vsp_set_cache' ) ) {
 	/**
-	 * @param     $cache_name .
-	 * @param     $data .
-	 * @param int $expiry .
+	 * @param string $key
+	 * @param mixed  $value
 	 *
-	 * @return bool
+	 * @return mixed
 	 */
-	function vsp_set_cache( $cache_name, $data, $expiry = 0 ) {
-		$expiry = vsp_get_time_in_seconds( $expiry );
-		return set_transient( $cache_name, $data, $expiry );
+	function vsp_set_cache( $key, $value ) {
+		return wponion_set_cache( $key, $value );
+	}
+}
+
+if ( ! function_exists( 'vsp_get_cache_defaults' ) ) {
+	/**
+	 * @param string     $key
+	 * @param bool|mixed $defaults
+	 *
+	 * @return bool|mixed
+	 */
+	function vsp_get_cache_defaults( $key, $defaults = false ) {
+		return wponion_get_cache_defaults( $key, $defaults );
 	}
 }
 
 if ( ! function_exists( 'vsp_get_cache' ) ) {
 	/**
-	 * @param $cache_name .
+	 * @param string $key
+	 *
+	 * @return mixed
+	 * @throws \WPOnion\Cache_Not_Found
+	 */
+	function vsp_get_cache( $key ) {
+		return wponion_get_cache( $key );
+	}
+}
+
+if ( ! function_exists( 'vsp_has_cache' ) ) {
+	/**
+	 * @param string $key
 	 *
 	 * @return mixed
 	 */
-	function vsp_get_cache( $cache_name ) {
-		return get_transient( $cache_name );
+	function vsp_has_cache( $key ) {
+		return wponion_has_cache( $key );
 	}
 }
 
 if ( ! function_exists( 'vsp_delete_cache' ) ) {
 	/**
-	 * @param $cache_name .
-	 *
-	 * @return bool
+	 * @param string $key
 	 */
-	function vsp_delete_cache( $cache_name ) {
-		return delete_transient( $cache_name );
+	function vsp_delete_cache( $key ) {
+		wponion_delete_cache( $key );
 	}
 }
 

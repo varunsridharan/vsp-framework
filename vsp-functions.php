@@ -106,6 +106,8 @@ if ( ! function_exists( 'vsp_debug_file' ) ) {
 	 * @param bool   $is_url .
 	 *
 	 * @return mixed|null|string
+	 *
+	 * @todo Check and remove
 	 */
 	function vsp_debug_file( $filename, $makeurl = false, $is_url = true ) {
 		if ( empty( $filename ) ) {
@@ -289,7 +291,7 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	 */
 	function vsp_add_wc_required_notice( $plugin_name = '', $wc_version = '3.0', $wc_compare = '>=' ) {
 		return vsp_validate_required_plugin( array(
-			'plugin_name'     => $plugin_name,// Your Plugin Name.
+			'plugin_name'     => $plugin_name, // Your Plugin Name.
 			'req_plugin'      => 'woocommerce/woocommerce.php', // Plugin File Eg : woocommerce/woocommerce.php
 			'req_plugin_name' => 'WooCommerce', // Name of the plugin.
 			'version'         => $wc_version, // Plugin Version
