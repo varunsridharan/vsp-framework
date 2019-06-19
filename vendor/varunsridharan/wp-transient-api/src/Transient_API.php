@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( '\Varunsridharan\WordPress\Transient_WP_Api' ) ) {
+if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 	/**
 	 * Class Transient_WP_Api
 	 *
@@ -22,7 +22,14 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_WP_Api' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	abstract class Transient_WP_Api {
+	class Transient_Api {
+		/**
+		 * _instances
+		 *
+		 * @var array
+		 */
+		protected static $_instances = array();
+
 		/**
 		 * is_option
 		 *
@@ -99,6 +106,34 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_WP_Api' ) ) {
 		 * @var bool
 		 */
 		protected $transient_auto_delete = false;
+
+		/**
+		 * Transient_Api constructor.
+		 *
+		 * @param array $options
+		 */
+		public function __construct( $options = array() ) {
+			$options = wp_parse_args( $options, array(
+				// Transients
+				'transient_version'     => 1.0,
+				'transient_auto_delete' => false,
+				'transient_surfix'      => '',
+				'transient_prefix'      => '',
+				// WP DB Options
+				'option_auto_delete'    => false,
+				'option_version'        => 1.0,
+				'option_surfix'         => '',
+				'option_prefix'         => '',
+				// Global Config.
+				'is_option'             => false,
+			) );
+
+			foreach ( $options as $k => $v ) {
+				if ( isset( $this->{$k} ) ) {
+					$this->{$k} = $v;
+				}
+			}
+		}
 
 		/**
 		 * Returns a Unique Key.
@@ -296,36 +331,20 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_WP_Api' ) ) {
 
 			return version_compare( $this->transient_version, $value, '=' );
 		}
-	}
-}
-
-if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
-	/**
-	 * Class Transient_Api
-	 *
-	 * @package Varunsridharan\WordPress
-	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
-	 */
-	abstract class Transient_Api extends Transient_WP_Api {
-		/**
-		 * _instances
-		 *
-		 * @var array
-		 */
-		protected static $_instances = array();
 
 		/**
-		 * Creates & Returns A Static Instance.
+		 * @param bool  $key
+		 * @param array $args
 		 *
 		 * @static
 		 * @return \Varunsridharan\WordPress\Transient_Api
 		 */
-		public static function instance() {
-			if ( ! isset( self::$_instances[ static::class ] ) ) {
-				self::$_instances[ static::class ] = new static();
+		public static function instance( $key = false, $args = array() ) {
+			$key = ( false === $key ) ? static::class : $key;
+			if ( ! isset( self::$_instances[ $key ] ) ) {
+				self::$_instances[ $key ] = new static( $args );
 			}
-			return self::$_instances[ static::class ];
+			return self::$_instances[ $key ];
 		}
 
 		/**
@@ -360,12 +379,16 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 
 		/**
 		 * @param $_key
+		 *
+		 * @return bool
 		 */
 		public function delete_transient( $_key ) {
 			$key         = $this->key( $_key, false );
 			$version_key = $this->get_version_key( $key );
-			$this->wp_delete_transient( $key );
-			$this->wp_delete_transient( $version_key );
+			if ( $this->wp_delete_transient( $key ) ) {
+				return ( $this->wp_delete_transient( $version_key ) ) ? true : false;
+			}
+			return false;
 		}
 
 		/**
@@ -461,6 +484,8 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 
 		/**
 		 * @param $key
+		 *
+		 * @return bool|void
 		 */
 		public function delete( $key ) {
 			if ( true === $this->is_option ) {
@@ -471,12 +496,16 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 
 		/**
 		 * @param $_key
+		 *
+		 * @return bool
 		 */
 		public function delete_option( $_key ) {
 			$key         = $this->key( $_key, true );
 			$version_key = $this->get_version_key( $key );
-			$this->wp_delete_option( $key );
-			$this->wp_delete_option( $version_key );
+			if ( $this->wp_delete_option( $key ) ) {
+				return ( $this->wp_delete_option( $version_key ) ) ? true : false;
+			}
+			return false;
 		}
 
 		/**
@@ -499,7 +528,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param        $key
 		 * @param string $type
 		 *
-		 * @return mixed
+		 * @return bool
 		 */
 		protected function delete_version_issue( $key, $type = '' ) {
 			if ( true === $this->option_auto_delete && 'option' === $type ) {

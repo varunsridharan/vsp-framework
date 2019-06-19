@@ -39,8 +39,7 @@ class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
             1 => __DIR__ . '/..' . '/varunsridharan/wp-db-table/src',
             2 => __DIR__ . '/..' . '/varunsridharan/wp-localizer/src',
             3 => __DIR__ . '/..' . '/varunsridharan/wp-post/src',
-            4 => __DIR__ . '/..' . '/varunsridharan/wp-review-me/src',
-            5 => __DIR__ . '/..' . '/varunsridharan/wp-transient-api/src',
+            4 => __DIR__ . '/..' . '/varunsridharan/wp-transient-api/src',
         ),
         'Varunsridharan\\PHP\\' => 
         array (
