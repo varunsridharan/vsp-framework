@@ -14,7 +14,6 @@
 	"varunsridharan/sweetalert2-php"        : ">=1.0",
 	"varunsridharan/wp-ajaxer"              : ">=1.0",
 	"varunsridharan/wp-post"                : ">=1.0",
-	"varunsridharan/wp-review-me"           : ">=1.0",
 	"varunsridharan/wp-transient-api"       : ">=1.0",
 	"varunsridharan/php-autoloader"         : "*",
 	"varunsridharan/wp-dependencies"        : ">=1.3",

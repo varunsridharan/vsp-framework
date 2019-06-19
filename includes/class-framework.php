@@ -27,10 +27,6 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			 */
 			'settings_page' => false,
 			/**
-			 * @see http://github.com/varunsridharan/wp-review-me
-			 */
-			'reviewme'      => false,
-			/**
 			 * @see http://github.com/varunsridharan/php-autoloader
 			 */
 			'autoloader'    => false,
@@ -93,7 +89,6 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 			$this->localizer();
 			$this->_init_system_tools();
 			$this->_logging_init();
-			$this->_review_me_init();
 			$this->_addon_init();
 
 			if ( vsp_is_admin() ) {

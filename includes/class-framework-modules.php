@@ -45,19 +45,6 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		}
 
 		/**
-		 * Adds Review Reminder Option
-		 *
-		 * @uses \Varunsridharan\WordPress\Review_Me
-		 */
-		protected function _review_me_init() {
-			if ( false !== $this->option( 'reviewme' ) ) {
-				if ( vsp_is_admin() ) {
-					$this->_instance( '\Varunsridharan\WordPress\Review_Me', false, true, $this->option( 'reviewme' ) );
-				}
-			}
-		}
-
-		/**
 		 * Function Used to init Addons Module
 		 *
 		 * @uses VSP_Framework::addons_init_before
