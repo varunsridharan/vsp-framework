@@ -409,9 +409,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 		 * Schedule cron healthcheck
 		 *
 		 * @access public
-		 *
 		 * @param mixed $schedules Schedules.
-		 *
 		 * @return mixed
 		 */
 		public function schedule_cron_healthcheck( $schedules ) {

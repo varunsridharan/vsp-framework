@@ -24,7 +24,7 @@ trait OrderBy {
 	 *     // muliple order statements with diffrent directions
 	 *     ->orderBy(['firstname' => 'asc', 'lastname' => 'desc'])
 	 *
-	 * @param array|string $columns Columns.
+	 * @param array|string $columns   Columns.
 	 * @param string       $direction Direction.
 	 *
 	 * @return self The current query builder.

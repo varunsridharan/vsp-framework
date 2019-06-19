@@ -118,12 +118,12 @@ class Query_Builder {
 	/**
 	 * Insert a row into a table
 	 *
-	 * @param array $data Data to insert (in column => value pairs). Both $data columns and $data values should be "raw" (neither should be SQL escaped).
+	 * @see wpdb::insert()
+	 *
+	 * @param array $data   Data to insert (in column => value pairs). Both $data columns and $data values should be "raw" (neither should be SQL escaped).
 	 * @param array $format (Optional) An array of formats to be mapped to each of the value in $data.
 	 *
 	 * @return mixed
-	 * @see wpdb::insert()
-	 *
 	 */
 	public function insert( $data, $format = null ) {
 		global $wpdb;
@@ -182,11 +182,11 @@ class Query_Builder {
 	/**
 	 * Perform a MySQL database query, using current database connection.
 	 *
+	 * @see wpdb::query
+	 *
 	 * @param string $query Database query.
 	 *
 	 * @return int|false Number of rows affected|selected or false on error.
-	 * @see wpdb::query
-	 *
 	 */
 	public function query( $query ) {
 		global $wpdb;
@@ -198,7 +198,7 @@ class Query_Builder {
 	/**
 	 * Set the limit clause.
 	 *
-	 * @param int $limit Limit size.
+	 * @param int $limit  Limit size.
 	 * @param int $offset Offeset.
 	 *
 	 * @return self The current query builder.
@@ -233,7 +233,7 @@ class Query_Builder {
 	/**
 	 * Set values for insert/update
 	 *
-	 * @param string|array $name Key of pair.
+	 * @param string|array $name  Key of pair.
 	 * @param string|array $value Value of pair.
 	 *
 	 * @return self The current query builder.
