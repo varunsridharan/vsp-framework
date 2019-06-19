@@ -38,39 +38,6 @@ trait JS {
 	 * @return string
 	 */
 	public static function php_to_js( $object_name, $l10n, $with_script_tag = true ) {
-		$l10n = self::js_args_encode( $l10n );
-
-		$script = 'var ' . $object_name . ' = ' . wp_json_encode( $l10n ) . ';';
-		if ( ! empty( $after ) ) {
-			$script .= "\n$after;";
-		}
-
-		if ( $with_script_tag ) {
-			$script = '<script type="text/javascript">' . $script . '</script>';
-		}
-		return $script;
-	}
-
-	/**
-	 * Encodes PHP Array in JSString.
-	 *
-	 * @param $l10n
-	 *
-	 * @return array|string
-	 * @static
-	 */
-	public static function js_args_encode( $l10n ) {
-		if ( is_array( $l10n ) ) {
-			foreach ( (array) $l10n as $key => $value ) {
-				if ( ! is_scalar( $value ) ) {
-					continue;
-				}
-
-				$l10n[ $key ] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8' );
-			}
-		} else {
-			$l10n = html_entity_decode( (string) $l10n, ENT_QUOTES, 'UTF-8' );
-		}
-		return $l10n;
+		return wponion_js_vars( $object_name, $l10n, $with_script_tag );
 	}
 }
