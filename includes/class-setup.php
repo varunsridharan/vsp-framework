@@ -1,15 +1,4 @@
 <?php
-/**
- * VSP Framework Base Setup.
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * Date 14-04-2018
- * Time 10:36 AM
- * @package vsp-framework/core
- * @copyright 2018 Varun Sridharan
- * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
- */
 
 namespace VSP;
 

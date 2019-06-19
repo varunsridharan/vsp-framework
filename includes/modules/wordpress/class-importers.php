@@ -1,17 +1,4 @@
 <?php
-/**
- * WP Importers Loader
- *
- * Created by PhpStorm.
- * User: varun
- * Date: 20-03-2018
- * Time: 11:43 AM
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework/core/modules/wp-importer
- * @copyright GPL V3 Or greater
- */
 
 namespace VSP\Modules\WordPress;
 

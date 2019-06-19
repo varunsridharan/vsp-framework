@@ -1,18 +1,4 @@
 <?php
-/**
- * WP Importer Handler
- *
- * Created by PhpStorm.
- * User: varun
- * Date: 20-03-2018
- * Time: 11:08 AM
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework/core/modules/wp-importer
- * @copyright GPL V3 Or greater
- */
-
 
 namespace VSP\Modules\WordPress;
 
@@ -244,7 +230,7 @@ abstract class Impoter extends \WP_Importer {
 	/**
 	 * Show import error and quit.
 	 *
-	 * @param  string $message .
+	 * @param string $message .
 	 */
 	private function import_error( $message = '' ) {
 		echo '<p><strong>' . __( 'Sorry, there has been an error.', 'vsp-framework' ) . '</strong><br />';
@@ -363,7 +349,7 @@ abstract class Impoter extends \WP_Importer {
 	/**
 	 * Added to http_request_timeout filter to force timeout at 60 seconds during import.
 	 *
-	 * @param  int $val .
+	 * @param int $val .
 	 *
 	 * @return int 60
 	 */

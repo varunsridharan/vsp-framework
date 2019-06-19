@@ -24,7 +24,7 @@ if ( ! function_exists( 'vsp_print_log_files_ui' ) ) {
 					aria-setsize="<?php echo esc_attr( $size ); ?>"
 					aria-posinset="<?php echo esc_attr( $index ); ?>">
 					<span class="folder-label"><?php echo esc_html( $label ); ?> <span
-								class="screen-reader-text"><?php _e( 'folder', 'vsp-framework' ); ?></span>
+							class="screen-reader-text"><?php _e( 'folder', 'vsp-framework' ); ?></span>
 						<span aria-hidden="true" class="icon"></span></span>
 					<ul role="group" class="tree-folder">
 						<?php vsp_print_log_files_ui( $plugin_file, $current_file, $level + 1, $index, $size ); ?>

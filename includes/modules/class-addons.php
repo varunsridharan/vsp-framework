@@ -1,17 +1,4 @@
 <?php
-/**
- * VSP Plugin Addons Class.
- *
- * Created by PhpStorm.
- * User: varun
- * Date: 27-02-2018
- * Time: 09:11 AM
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework/core/modules/addons
- * @copyright GPL V3 Or greater
- */
 
 namespace VSP\Modules;
 

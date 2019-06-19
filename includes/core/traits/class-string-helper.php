@@ -1,17 +1,4 @@
 <?php
-/**
- * VSP Framework Trait
- *
- * Created by PhpStorm.
- * User: varun
- * Date : 13-10-2018
- * Time : 01:42 PM
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework/core/trait
- * @copyright GPL V3 Or greater
- */
 
 namespace VSP\Core\Traits;
 
@@ -31,14 +18,12 @@ trait String_Helper {
 	 *
 	 * @var string
 	 */
-	protected static $MB_ENCODING = 'UTF-8';
+	protected static $mb_encoding = 'UTF-8';
 
 	/**
 	 * Returns true if the haystack string starts with needle
 	 *
 	 * Note: case-sensitive
-	 *
-	 * @since 2.2.0
 	 *
 	 * @param string $haystack
 	 * @param string $needle
@@ -50,7 +35,7 @@ trait String_Helper {
 			if ( '' === $needle ) {
 				return true;
 			}
-			return 0 === mb_strpos( $haystack, $needle, 0, self::$MB_ENCODING );
+			return 0 === mb_strpos( $haystack, $needle, 0, self::$mb_encoding );
 		} else {
 			$needle = self::str_to_ascii( $needle );
 			if ( '' === $needle ) {
@@ -66,11 +51,11 @@ trait String_Helper {
 	 * safely handle UTF-8. Note this only allows ASCII chars in the range
 	 * 33-126 (newlines/carriage returns are stripped)
 	 *
-	 * @since 2.2.0
-	 *
 	 * @param string $string string to make ASCII
 	 *
 	 * @return string
+	 * @since 2.2.0
+	 *
 	 */
 	public static function str_to_ascii( $string ) {
 		// strip ASCII chars 32 and under
@@ -84,19 +69,19 @@ trait String_Helper {
 	 *
 	 * Note: case-sensitive
 	 *
-	 * @since 2.2.0
-	 *
 	 * @param string $haystack
 	 * @param string $needle
 	 *
 	 * @return bool
+	 * @since 2.2.0
+	 *
 	 */
 	public static function str_ends_with( $haystack, $needle ) {
 		if ( '' === $needle ) {
 			return true;
 		}
 		if ( self::multibyte_loaded() ) {
-			return mb_substr( $haystack, -mb_strlen( $needle, self::$MB_ENCODING ), null, self::$MB_ENCODING ) === $needle;
+			return mb_substr( $haystack, -mb_strlen( $needle, self::$mb_encoding ), null, self::$mb_encoding ) === $needle;
 		} else {
 			$haystack = self::str_to_ascii( $haystack );
 			$needle   = self::str_to_ascii( $needle );
@@ -109,19 +94,19 @@ trait String_Helper {
 	 *
 	 * Note: case-sensitive
 	 *
-	 * @since 2.2.0
-	 *
 	 * @param string $haystack
 	 * @param string $needle
 	 *
 	 * @return bool
+	 * @since 2.2.0
+	 *
 	 */
 	public static function str_exists( $haystack, $needle ) {
 		if ( self::multibyte_loaded() ) {
 			if ( '' === $needle ) {
 				return false;
 			}
-			return false !== mb_strpos( $haystack, $needle, 0, self::$MB_ENCODING );
+			return false !== mb_strpos( $haystack, $needle, 0, self::$mb_encoding );
 		} else {
 			$needle = self::str_to_ascii( $needle );
 			if ( '' === $needle ) {
@@ -136,22 +121,22 @@ trait String_Helper {
 	 * $length. The last characters will be replaced with the $omission string
 	 * for a total length not exceeding $length
 	 *
-	 * @since 2.2.0
-	 *
 	 * @param string $string text to truncate
 	 * @param int    $length total desired length of string, including omission
 	 * @param string $omission omission text, defaults to '...'
 	 *
 	 * @return string
+	 * @since 2.2.0
+	 *
 	 */
 	public static function str_truncate( $string, $length, $omission = '...' ) {
 		if ( self::multibyte_loaded() ) {
 			// bail if string doesn't need to be truncated
-			if ( mb_strlen( $string, self::$MB_ENCODING ) <= $length ) {
+			if ( mb_strlen( $string, self::$mb_encoding ) <= $length ) {
 				return $string;
 			}
-			$length -= mb_strlen( $omission, self::$MB_ENCODING );
-			return mb_substr( $string, 0, $length, self::$MB_ENCODING ) . $omission;
+			$length -= mb_strlen( $omission, self::$mb_encoding );
+			return mb_substr( $string, 0, $length, self::$mb_encoding ) . $omission;
 		} else {
 			$string = self::str_to_ascii( $string );
 			// bail if string doesn't need to be truncated
@@ -196,13 +181,13 @@ trait String_Helper {
 	/**
 	 * Converts Numeric Value into Human Readable View
 	 *
-	 * @example 1024B => 1KB | 1024KB => 1MB | 1024MB => 1GB
-	 *
 	 * @param     $bytes
 	 * @param int $precision
 	 *
 	 * @return string
 	 * @static
+	 * @example 1024B => 1KB | 1024KB => 1MB | 1024MB => 1GB
+	 *
 	 */
 	public static function to_human_bytes( $bytes, $precision = 2 ) {
 		$kilobyte = 1024;

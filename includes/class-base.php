@@ -1,16 +1,4 @@
 <?php
-/**
- * VSP Framework Commom Functions for all class. (VSP_Class_Handler).
- *
- * @link    http://github.com/varunsridharan/vsp-framework/
- * @version 1.0
- * @since   1.0
- *
- * @package   vsp-framework/core/abstract
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @copyright 2018 Varun Sridharan
- * @license   GPLV3 Or Greater
- */
 
 namespace VSP;
 

@@ -1,14 +1,4 @@
 <?php
-/**
- * VSP Framework INIT File.
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework
- * @copyright GPL V3 Or greater
- * @version 0.1.5.10
- */
-
 
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
@@ -70,13 +60,13 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$meta       = array();
 			$vsp_loaded = $this->loaded();
 
-			$meta[ __( 'Framework Version', 'vsp-framework' ) ]     = $vsp_loaded['Version'];
-			$meta[ __( 'Textdomain', 'vsp-framework' ) ]            = $vsp_loaded['TextDomain'];
-			$meta[ __( 'DomainPath', 'vsp-framework' ) ]            = $vsp_loaded['DomainPath'];
-			$meta[ __( 'Framework Plugin Path', 'vsp-framework' ) ] = vsp_censor_path( $vsp_loaded['plugin_path'] );
-			$meta[ __( 'Framework Path', 'vsp-framework' ) ]        = vsp_censor_path( $vsp_loaded['framework_path'] );
-			$meta[ __( 'Framework Included' ) ]                     = self::$data;
-			$_meta[ __( 'VSP Framework' ) ]                         = $meta;
+			$meta['Framework Version']     = $vsp_loaded['Version'];
+			$meta['Textdomain']            = $vsp_loaded['TextDomain'];
+			$meta['DomainPath']            = $vsp_loaded['DomainPath'];
+			$meta['Framework Plugin Path'] = vsp_censor_path( $vsp_loaded['plugin_path'] );
+			$meta['Framework Path']        = vsp_censor_path( $vsp_loaded['framework_path'] );
+			$meta['Framework Included']    = self::$data;
+			$_meta['VSP Framework']        = $meta;
 			return $_meta;
 		}
 
@@ -89,8 +79,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$info           = ( isset( $frameworks[ $latest_version ] ) ) ? $frameworks[ $latest_version ] : [];
 			if ( empty( $info ) ) {
 				$msg = base64_encode( wp_json_encode( self::$data ) );
-				$ms  = __( 'Unable To Load VSP Framework. Please Contact The Author', 'vsp-framework' );
-				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . __( 'ERROR ID : ', 'vsp-framework' ) . '</strong>' . $msg . '</p>';
+				$ms  = 'Unable To Load VSP Framework. Please Contact The Author';
+				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . 'ERROR ID : ' . '</strong>' . $msg . '</p>';
 				wp_die( $ms );
 			}
 			self::$_loaded = $info;

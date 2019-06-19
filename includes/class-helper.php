@@ -1,17 +1,4 @@
 <?php
-/**
- * VSP Helper.
- *
- * Created by PhpStorm.
- * User: varun
- * Date : 13-10-2018
- * Time : 01:48 PM
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework/core
- * @copyright GPL V3 Or greater
- */
 
 namespace VSP;
 

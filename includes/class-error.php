@@ -1,17 +1,4 @@
 <?php
-/**
- *
- * Project : wcisms
- * Date : 13-10-2018
- * Time : 06:39 AM
- * File : class-error.php
- *
- * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @version 1.0
- * @package wcisms
- * @copyright 2018 Varun Sridharan
- * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
- */
 
 namespace VSP;
 

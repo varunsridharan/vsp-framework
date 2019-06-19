@@ -1,12 +1,4 @@
 <?php
-/**
- * VSP Framework Basic Setup / Hooks To WP
- *
- * @author    Varun Sridharan <varunsridharan23@gmail.com>
- * @since     1.0
- * @package   vsp-framework
- * @copyright GPL V3 Or greater
- */
 
 use VSP\Modules\WordPress\Importers;
 
