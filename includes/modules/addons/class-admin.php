@@ -37,7 +37,7 @@ if ( ! class_exists( 'Admin' ) ) {
 		 */
 		public function link_with_wponion( $pages ) {
 			$pages->container( $this->option( 'addon_listing_tab_name' ), $this->option( 'addon_listing_tab_title' ), $this->option( 'addon_listing_tab_icon' ) )
-				->set_callback( array( &$this, 'render_page' ) );
+				->callback( array( &$this, 'render_page' ) );
 		}
 
 		/**
