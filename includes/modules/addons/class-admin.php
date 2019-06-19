@@ -29,7 +29,6 @@ if ( ! class_exists( 'Admin' ) ) {
 	 * @since 1.0
 	 */
 	abstract class Admin extends Core {
-
 		/**
 		 * Sets Settings Page to show adddons
 		 *
@@ -49,16 +48,11 @@ if ( ! class_exists( 'Admin' ) ) {
 			$this->addon_cats   = self::$default_addon_cats;
 			$this->addon_counts = array_combine( array_keys( $this->addon_cats ), array_fill( 0, count( $this->addon_cats ), 0 ) );
 			$this->search_addons();
-
 			$this->addon_counts['all']      = count( $this->addons );
 			$this->addon_counts['active']   = count( $this->active_addons );
 			$this->addon_counts['inactive'] = count( $this->addons ) - count( $this->active_addons );
-
 			vsp_load_script( 'vsp-framework' );
 			vsp_load_style( 'vsp-framework' );
-			//wp_enqueue_style( 'vsp-fancybox' );
-			//wp_enqueue_script( 'vsp-fancybox' );
-
 			include VSP_PATH . 'views/addon-page.php';
 		}
 	}

@@ -1,9 +1,7 @@
-module.exports = ( ( $, window, document, wp ) => {
-	window.vsp_helper    = window.$wponion_helper;
+module.exports = ( ( $, window ) => {
 	window.VSP_FRAMEWORK = ( typeof Object.create !== 'undefined' ) ? Object.create( null ) : {};
-
-	$.VSP_FRAMEWORK  = {};
-	window.VSP_ADDON = {
+	$.VSP_FRAMEWORK      = {};
+	window.VSP_ADDON     = {
 		elem: $( '#vsp_addons_listing_container' ),
 
 		error_popup: ( title ) => {
@@ -29,9 +27,6 @@ module.exports = ( ( $, window, document, wp ) => {
 			} );
 		},
 
-		actions: () => {
-		},
-
 		init: () => {
 			window.VSP_ADDON.category();
 			window.VSP_ADDON.elem.find( '.the-list.addon_listing > .addon.active' ).find( 'button.activate' ).hide();
@@ -39,7 +34,6 @@ module.exports = ( ( $, window, document, wp ) => {
 				  .find( 'button.deactivate' )
 				  .hide();
 			jQuery( 'li.addon-category.all' ).click();
-			window.VSP_ADDON.actions();
 		},
 	};
 
@@ -48,7 +42,7 @@ module.exports = ( ( $, window, document, wp ) => {
 		$( '.wponion-form' ).removeAttr( 'action' ).submit();
 	};
 
-	window.vsp_js_function = ( $data ) => window.vsp_helper.to_js_func( $data );
+	window.vsp_js_function = ( $data ) => window.window.vsp_js_helper.to_js_func( $data );
 
 	$( () => {
 		if( $( '#vsp-log-view-wrap' ).length > 0 ) {

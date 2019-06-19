@@ -37,21 +37,11 @@ if ( ! function_exists( 'vsp_register_assets' ) ) {
 	 * @uses admin_enqueue_scripts
 	 */
 	function vsp_register_assets() {
-		$js = [
-			//'fancybox'  => vsp_url( 'assets/vendors/fancybox/jquery.fancybox.min.js', true ),
-			'framework' => vsp_js( 'vsp-framework.js', true ),
-		];
-
-		$css = [
-			'framework' => vsp_css( 'vsp-framework.css', true ),
-			//'fancybox'  => vsp_url( 'assets/vendors/fancybox/jquery.fancybox.min.css', true ),
-		];
+		$js  = [ 'framework' => vsp_js( 'vsp-framework.js', true ) ];
+		$css = [ 'framework' => vsp_css( 'vsp-framework.css', true ) ];
 
 		vsp_register_script( 'vsp-framework', $js['framework'], [ 'jquery', 'wponion-core' ], '1.0', true );
 		vsp_register_style( 'vsp-framework', $css['framework'], [], '1.0' );
-		//vsp_register_script( 'vsp-fancybox', $js['fancybox'], [ 'jquery' ], '1.0.16', true );
-		//vsp_register_style( 'vsp-fancybox', $css['fancybox'], [], '1.0' );
-
 	}
 }
 

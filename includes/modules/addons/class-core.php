@@ -111,7 +111,7 @@ if ( ! class_exists( 'Core' ) ) {
 		protected $headers = array();
 
 		/**
-		 *
+		 * Searchs For Addons.
 		 * @return array
 		 */
 		protected function search_addons() {

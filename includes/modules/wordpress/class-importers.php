@@ -15,6 +15,8 @@
 
 namespace VSP\Modules\WordPress;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -25,7 +27,7 @@ if ( ! class_exists( '\VSP\Modules\WordPress\Importers' ) ) {
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
 	 * @since 1.0
 	 */
-	final class Importers extends \VSP\Base {
+	final class Importers extends Base {
 		/**
 		 * Importers
 		 *
@@ -69,10 +71,6 @@ if ( ! class_exists( '\VSP\Modules\WordPress\Importers' ) ) {
 			if ( isset( $_GET['import'] ) ) {
 				$importer = $_GET['import'];
 				if ( isset( self::$_importers[ $importer ] ) ) {
-					if ( true === self::$_importers[ $importer ]['wpsf'] ) {
-						vsp_load_lib( 'wpsf' );
-						//@todo load WPOnion Assets.
-					}
 					$class = include self::$_importers[ $importer ]['file'];
 					$class->dispatch();
 				}
