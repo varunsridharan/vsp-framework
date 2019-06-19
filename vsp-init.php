@@ -63,7 +63,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 				'integrations' => [],
 			];
 			add_action( 'plugins_loaded', [ &$this, 'load_framework' ], 0 );
-			add_action( 'vsp_framework_load_lib_integrations', [ &$this, 'load_libs_integrations' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
 			add_action( 'wponion_sysinfo_final', [ &$this, 'add_extra_info' ] );
 		}
@@ -191,25 +190,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 */
 		public function loaded() {
 			return self::$_loaded;
-		}
-
-		/**
-		 * Loads Required Libs & Integrations files.
-		 *
-		 * @hook vsp_framework_load_lib_integrations
-		 */
-		public function load_libs_integrations() {
-			if ( ! empty( self::$meta_data['lib'] ) ) {
-				foreach ( self::$meta_data['lib'] as $lib ) {
-					vsp_load_lib( $lib );
-				}
-			}
-
-			if ( ! empty( self::$meta_data['integrations'] ) ) {
-				foreach ( self::$meta_data['integrations'] as $lib ) {
-					vsp_load_integration( $lib );
-				}
-			}
 		}
 
 		/**

@@ -11,32 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'vsp_load_integration' ) ) {
-	/**
-	 * Loads Given Integration File
-	 *
-	 * @param string $type Integration Name.
-	 *
-	 * @return bool
-	 */
-	function vsp_load_integration( $type = '' ) {
-		return \VSP\Autoloader::integration( $type );
-	}
-}
-
-if ( ! function_exists( 'vsp_load_lib' ) ) {
-	/**
-	 * Loads Given Library
-	 *
-	 * @param string $type Lib Name.
-	 *
-	 * @return bool
-	 */
-	function vsp_load_lib( $type = '' ) {
-		return \VSP\Autoloader::library( $type );
-	}
-}
-
 if ( ! function_exists( 'vsp_define' ) ) {
 	/**
 	 * Defines Give Values if not defined
