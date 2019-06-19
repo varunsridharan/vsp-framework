@@ -137,24 +137,6 @@ if ( ! function_exists( 'vsp_placeholder_img' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_validate_css_unit' ) ) {
-	/**
-	 * Validates CSS Units.
-	 *
-	 * @param string $value .
-	 *
-	 * @return string
-	 */
-	function vsp_validate_css_unit( $value ) {
-		$pattern = '/^(\d*(?:\.\d+)?)\s*(px|\%|in|cm|mm|em|rem|ex|pt|pc|vw|vh|vmin|vmax)?$/';
-		// allowed metrics: http://www.w3schools.com/cssref/css_units.asp.
-		preg_match( $pattern, $value, $matches );
-		$value = isset( $matches[1] ) ? (float) $matches[1] : (float) $value;
-		$unit  = isset( $matches[2] ) ? $matches[2] : 'px';
-		return $value . $unit;
-	}
-}
-
 if ( ! function_exists( 'vsp_set_time_limit' ) ) {
 	/**
 	 * Wrapper for set_time_limit to see if it is enabled.
@@ -346,55 +328,6 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 				return __( 'Unknown error', 'vsp-framework' );
 				break;
 		}
-	}
-}
-
-if ( ! function_exists( 'vsp_is_callable' ) ) {
-	/**
-	 * @param $callback
-	 *
-	 * @return bool
-	 */
-	function vsp_is_callable( $callback ) {
-		if ( is_callable( $callback ) ) {
-			return true;
-		}
-		if ( is_string( $callback ) && has_action( $callback ) ) {
-			return true;
-		}
-		if ( is_string( $callback ) && has_filter( $callback ) ) {
-			return true;
-		}
-		return false;
-	}
-}
-
-if ( ! function_exists( 'vsp_callback' ) ) {
-	/**
-	 * @param       $callback
-	 * @param array $args
-	 *
-	 * @return bool|false|mixed|string
-	 */
-	function vsp_callback( $callback, $args = array() ) {
-		$data = false;
-		try {
-			if ( is_callable( $callback ) ) {
-				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
-				$data = call_user_func_array( $callback, $args );
-			} elseif ( is_string( $callback ) && has_filter( $callback ) ) {
-				$data = call_user_func_array( 'apply_filters', array_merge( array( $callback ), $args ) );
-			} elseif ( is_string( $callback ) && has_action( $callback ) ) {
-				ob_start();
-				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
-				echo call_user_func_array( 'do_action', array_merge( array( $callback ), $args ) );
-				$data = ob_get_clean();
-				ob_flush();
-			}
-		} catch ( Exception $exception ) {
-			$data = false;
-		}
-		return $data;
 	}
 }
 
