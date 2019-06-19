@@ -40,14 +40,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		public static $data = array();
 
 		/**
-		 * Array of Libs & Integrations to be loaded after vsp framework loaded
-		 * array collected when plugin registers with vsp
-		 *
-		 * @var array
-		 */
-		public static $meta_data = array();
-
-		/**
 		 * Array of callback to init all plugins after vsp_framework loaded
 		 *
 		 * @var array
@@ -131,30 +123,14 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		}
 
 		/**
-		 * Merges With $meta_data (libs & Integrations) request
-		 *
-		 * @param array $data Array of Libs & Integrations.
-		 */
-		public function manage_meta_data( $data = array() ) {
-			if ( isset( $data['lib'] ) && ! empty( $data['lib'] ) ) {
-				self::$meta_data['lib'] = array_merge( self::$meta_data['lib'], $data['lib'] );
-			}
-
-			if ( isset( $data['integrations'] ) && ! empty( $data['integrations'] ) ) {
-				self::$meta_data['integrations'] = array_merge( self::$meta_data['integrations'], $data['integrations'] );
-			}
-		}
-
-		/**
 		 * Registers a plugin and stores its deta to $data
 		 *
 		 * @param string $plugin_path Exact Plugin path.
-		 * @param array  $meta_data Information such as Lib & Integrations which need to be loaded for this plugin.
 		 * @param string $framework_path Foldername of the framework path.
 		 *
 		 * @return $this
 		 */
-		public function register_plugin( $plugin_path = '', $meta_data = [], $framework_path = '/vsp-framework/' ) {
+		public function register_plugin( $plugin_path = '', $framework_path = '/vsp-framework/' ) {
 			$plugin_path    = trailingslashit( $plugin_path );
 			$framework_path = trailingslashit( $plugin_path . $framework_path );
 
@@ -169,8 +145,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 				$info['framework_path'] = $framework_path;
 				self::add( $info['Version'], $info );
 			}
-
-			$this->manage_meta_data( $meta_data );
 			return $this;
 		}
 
@@ -226,12 +200,11 @@ if ( ! function_exists( 'vsp_maybe_load' ) ) {
 	 * @param array  $callback Custom function to callback when VSP is loaded.
 	 * @param string $plugin_path Plugin Path To register With VSP.
 	 * @param string $framework_path Exact path of the vsp framework in the plugin.
-	 * @param array  $meta_data Array of data like Libs & Integrations to load.
 	 */
-	function vsp_maybe_load( $callback = [], $plugin_path = '', $framework_path = 'vsp-framework', $meta_data = [] ) {
+	function vsp_maybe_load( $callback = [], $plugin_path = '', $framework_path = 'vsp-framework' ) {
 		$plugin_path = ( ! empty( $plugin_path ) ) ? $plugin_path : __DIR__ . '/';
 		VSP_Framework_Loader::instance()
-			->register_plugin( $plugin_path, $meta_data, $framework_path )
+			->register_plugin( $plugin_path, $framework_path )
 			->register_callback( $callback );
 	}
 }
