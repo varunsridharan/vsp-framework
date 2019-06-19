@@ -15,6 +15,8 @@
 
 namespace VSP\Core\Traits;
 
+use WPOnion\Cache_Not_Found;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,22 +29,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 trait WP {
-	/**
-	 * user_roles
-	 *
-	 * @var array
-	 */
-	protected static $user_roles = array();
-
-	/**
-	 * Stores User Role Options.
-	 *
-	 * @var array
-	 * @access
-	 * @static
-	 */
-	protected static $user_role_options = array();
-
 	/**
 	 * Checks if given user role is the same as current user role
 	 *
@@ -120,14 +106,16 @@ trait WP {
 	 * @return array
 	 */
 	public static function user_roles_lists( $only_slug = false ) {
-		if ( empty( self::$user_role_options ) ) {
-			$return = array();
+		try {
+			$user_roles = vsp_get_cache( 'vsp/user_roles/options' );
+		} catch ( Cache_Not_Found $exception ) {
+			$user_roles = array();
 			foreach ( self::get_user_roles() as $slug => $data ) {
-				$return[ $slug ] = $data['name'];
+				$user_roles[ $slug ] = $data['name'];
 			}
-			self::$user_role_options = $return;
+			vsp_set_cache( 'vsp/user_roles/options', $user_roles );
 		}
-		return ( true === $only_slug ) ? array_keys( self::$user_role_options ) : self::$user_role_options;
+		return ( true === $only_slug ) ? array_keys( $user_roles ) : $user_roles;
 	}
 
 	/**
@@ -151,20 +139,22 @@ trait WP {
 	 * @static
 	 */
 	public static function get_user_roles( $only_wp = false ) {
-		if ( empty( self::$user_roles ) ) {
-			self::$user_roles = array();
+		try {
+			$user_roles = vsp_get_cache( 'vsp/user_roles/list' );
+		} catch ( Cache_Not_Found $exception ) {
+			$user_roles = array();
 			if ( function_exists( 'wp_roles' ) ) {
-				self::$user_roles            = wp_roles()->roles;
-				self::$user_roles['visitor'] = array( 'name' => __( 'Visitor / Logged-Out User', 'vsp-framework' ) );
+				$user_roles            = wp_roles()->roles;
+				$user_roles['visitor'] = array( 'name' => __( 'Visitor / Logged-Out User', 'vsp-framework' ) );
 			}
+			vsp_set_cache( 'vsp/user_roles/list', $user_roles );
 		}
 
 		if ( true === $only_wp ) {
-			$roles = self::$user_roles;
-			unset( $roles['visitor'] );
-			return $roles;
+			unset( $user_roles['visitor'] );
+			return $user_roles;
 		}
-		return self::$user_roles;
+		return $user_roles;
 	}
 
 	/**

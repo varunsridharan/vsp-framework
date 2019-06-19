@@ -15,6 +15,8 @@
 
 namespace VSP;
 
+use WPOnion\Cache_Not_Found;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -35,22 +37,14 @@ if ( ! class_exists( 'Helper' ) ) {
 		use Core\Traits\File;
 		use Core\Traits\String_Helper;
 
-
-		/**
-		 * human_time_translations
-		 *
-		 * @var null
-		 */
-		protected static $human_time_translations = null;
-
 		/**
 		 * Gets the key value from globals.
-		 *
-		 * @since 1.1.4
 		 *
 		 * @param string $key
 		 *
 		 * @return string|boolean|bool
+		 * @since 1.1.4
+		 *
 		 */
 		protected static function global_vars( $key ) {
 			if ( isset( $_SERVER[ $key ] ) ) {
@@ -66,8 +60,8 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * Helper method to check if the multibyte extension is loaded, which
 		 * indicates it's safe to use the mb_*() string methods
 		 *
-		 * @since 2.2.0
 		 * @return bool
+		 * @since 2.2.0
 		 */
 		public static function multibyte_loaded() {
 			return extension_loaded( 'mbstring' );
@@ -94,8 +88,10 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * @return string
 		 */
 		public static function human_time( $seconds ) {
-			if ( null === self::$human_time_translations ) {
-				self::$human_time_translations = array(
+			try {
+				$translation = vsp_get_cache( 'vsp/human_time' );
+			} catch ( Cache_Not_Found $exception ) {
+				$translation = array(
 					'year'    => __( 'year', 'vsp-framework' ),
 					'years'   => __( 'years', 'vsp-framework' ),
 					'month'   => __( 'month', 'vsp-framework' ),
@@ -111,6 +107,7 @@ if ( ! class_exists( 'Helper' ) ) {
 					'second'  => __( 'second', 'vsp-framework' ),
 					'seconds' => __( 'seconds', 'vsp-framework' ),
 				);
+				vsp_set_cache( 'vsp/humna_time', $translation );
 			}
 
 			$tokens = array(
@@ -131,7 +128,7 @@ if ( ! class_exists( 'Helper' ) ) {
 				$number_of_units = floor( $seconds / $unit );
 
 				$key = ( 1 !== $number_of_units ) ? 's' : '';
-				return $number_of_units . ' ' . self::$human_time_translations[ $translation_key . $key ];
+				return $number_of_units . ' ' . $translation[ $translation_key . $key ];
 			}
 			return false;
 		}

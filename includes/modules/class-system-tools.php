@@ -123,12 +123,12 @@ class System_Tools extends Base implements Plugin_Settings {
 			) );
 			if ( true === $is_page ) {
 				$args->container( $menu['name'], $menu['title'], $menu['icon'] )
-					->set_callback( array( &$this, 'output_logs_info' ) );
+					->callback( array( &$this, 'output_logs_info' ) );
 			} else {
 				$base = $args->container( $this->mp_slug );
 				if ( $base instanceof \WPO\Container ) {
 					$base->container( $menu['name'], $menu['title'], $menu['icon'] )
-						->set_callback( array( &$this, 'output_logs_info' ) );
+						->callback( array( &$this, 'output_logs_info' ) );
 				}
 			}
 		}
