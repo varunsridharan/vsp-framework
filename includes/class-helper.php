@@ -36,12 +36,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		use Core\Traits\File;
 		use Core\Traits\String_Helper;
 
-		/**
-		 * load_time
-		 *
-		 * @var array
-		 */
-		protected static $load_time = array();
 
 		/**
 		 * human_time_translations
@@ -67,28 +61,6 @@ if ( ! class_exists( 'Helper' ) ) {
 				return $_ENV[ $key ];
 			}
 			return false;
-		}
-
-		/**
-		 * Calculate load time of pages or scripts.
-		 *
-		 * @param      $key
-		 * @param bool $is_end
-		 *
-		 * @return bool|float
-		 * @static
-		 */
-		public static function load_time( $key, $is_end = false ) {
-			if ( false === $is_end ) {
-				self::$load_time[ $key ] = microtime( true );
-				$time                    = self::$load_time[ $key ];
-			} else {
-				if ( isset( self::$load_time[ $key ] ) ) {
-					$time = round( microtime( true ) - self::$load_time, 4 );
-					unset( self::$load_time[ $key ] );
-				}
-			}
-			return isset( $time ) ? $time : false;
 		}
 
 		/**
