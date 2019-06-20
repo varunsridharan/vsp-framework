@@ -23,18 +23,9 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		protected $default_options = array( 'option_name' => false );
 
 		/**
-		 * Inits Class
-		 */
-		public function class_init() {
-			if ( vsp_is_admin() || vsp_is_ajax() ) {
-				add_action( 'wponion_loaded', array( &$this, 'init_settings' ) );
-			}
-		}
-
-		/**
 		 * @uses \WPOnion\Modules\Settings
 		 */
-		public function init_settings() {
+		public function wponion() {
 			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
 			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
 			$this->options['extra_js'][] = 'vsp_load_core_assets';

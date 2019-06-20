@@ -2,6 +2,8 @@
 
 namespace VSP\Core\Abstracts;
 
+use VSP\Base;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -13,28 +15,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-abstract class Plugin_Settings implements \VSP\Core\Interfaces\Plugin_Settings {
+abstract class Plugin_Settings extends Base {
 	/**
-	 * Stores Builder.
-	 *
-	 * @var bool|\WPO\Builder
-	 * @access
+	 * @var \WPO\Builder
 	 */
 	protected $builder = false;
 
 	/**
 	 * Plugin_Settings constructor.
-	 *
-	 * @param string $hook_slug
 	 */
-	public function __construct( $hook_slug = '' ) {
-		add_action( $hook_slug . '_settings_options', array( &$this, 'options' ) );
+	public function __construct() {
+		$slug = $this->plugin();
+		add_action( $slug->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ) );
 	}
 
 	/**
-	 * @param array|\WPO\Builder $builder
-	 *
-	 * @return mixed|void
+	 * @param \WPO\Builder $builder
 	 */
 	public function options( $builder ) {
 		$this->builder = $builder;
@@ -42,8 +38,7 @@ abstract class Plugin_Settings implements \VSP\Core\Interfaces\Plugin_Settings {
 	}
 
 	/**
-	 * INITS Settings Fields.
+	 * Inits Fields
 	 */
-	protected function fields() {
-	}
+	abstract protected function fields();
 }

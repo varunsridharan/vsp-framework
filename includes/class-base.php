@@ -48,7 +48,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @param array $options .
 		 * @param array $defaults .
 		 */
-		public function set_args( $options = array(), $defaults = array() ) {
+		protected function set_args( $options = array(), $defaults = array() ) {
 			$defaults      = empty( $defaults ) ? $this->default_options : $defaults;
 			$this->options = empty( $options ) ? array() : $options;
 			$this->options = $this->parse_args( $this->options, $defaults );
@@ -61,7 +61,6 @@ if ( ! class_exists( 'Base' ) ) {
 		 */
 		public function __construct( $options = array() ) {
 			$this->set_args( $options );
-			$this->class_init();
 
 			if ( did_action( 'wponion_loaded' ) ) {
 				$this->wponion();
@@ -76,11 +75,6 @@ if ( ! class_exists( 'Base' ) ) {
 		public function wponion() {
 		}
 
-		/**
-		 * Runs Once __construct is done.
-		 */
-		public function class_init() {
-		}
 
 		/**
 		 * Merges given array
