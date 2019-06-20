@@ -138,9 +138,11 @@ if ( ! function_exists( 'vsp_set_time_limit' ) ) {
 	 * @param int $limit Time limit.
 	 */
 	function vsp_set_time_limit( $limit = 0 ) {
+		// @codingStandardsIgnoreStart
 		if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
 			@set_time_limit( $limit );
 		}
+		// @codingStandardsIgnoreEnd
 	}
 }
 
@@ -157,7 +159,7 @@ if ( ! function_exists( 'vsp_doing_it_wrong' ) ) {
 		$message .= ' Backtrace: ' . wp_debug_backtrace_summary();
 		if ( is_ajax() ) {
 			do_action( 'doing_it_wrong_run', $function, $message, $version );
-			error_log( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
+			vsp_log_msg( "{$function} was called incorrectly. {$message}. This message was added in version {$version}." );
 		} else {
 			_doing_it_wrong( $function, $message, $version );
 		}

@@ -37,8 +37,7 @@ if ( ! class_exists( 'Admin' ) ) {
 			$this->addon_counts['all']      = ( is_array( $this->addons ) ) ? count( $this->addons ) : 0;
 			$this->addon_counts['active']   = ( is_array( $this->active_addons ) ) ? count( $this->active_addons ) : 0;
 			$this->addon_counts['inactive'] = ( is_array( $this->addons ) && is_array( $this->active_addons ) ) ? count( $this->addons ) - count( $this->active_addons ) : 0;
-			vsp_load_script( 'vsp-framework' );
-			vsp_load_style( 'vsp-framework' );
+			vsp_load_core_assets();
 			include VSP_PATH . 'views/addon-page.php';
 		}
 	}

@@ -3,33 +3,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'vsp_define' ) ) {
-	/**
-	 * Defines Give Values if not defined
-	 *
-	 * @param $key .
-	 * @param $value .
-	 *
-	 * @return bool
-	 *
-	 * @uses \define()
-	 */
-	function vsp_define( $key, $value ) {
-		return defined( $key ) ? define( $key, $value ) : false;
-	}
-}
-
 if ( ! function_exists( 'vsp_url' ) ) {
 	/**
 	 * Returns VSP Framework url
 	 *
-	 * @param string $extra .
-	 * @param bool   $is_url .
+	 * @param string $extra
+	 * @param bool   $is_url
 	 *
 	 * @return string
 	 */
 	function vsp_url( $extra = '', $is_url = true ) {
-		return ( true === $is_url ) ? VSP_URL . $extra : vsp_path( $extra );
+		return ( $is_url ) ? VSP_URL . $extra : vsp_path( $extra );
 	}
 }
 
@@ -37,7 +21,7 @@ if ( ! function_exists( 'vsp_path' ) ) {
 	/**
 	 * Returns VSP Framework Full PATH
 	 *
-	 * @param string $extra .
+	 * @param string $extra
 	 *
 	 * @return string
 	 */
@@ -50,13 +34,13 @@ if ( ! function_exists( 'vsp_js' ) ) {
 	/**
 	 * Returns VSP Framework assets/js Path / URL base on given values
 	 *
-	 * @param string $extra .
-	 * @param bool   $url .
+	 * @param string $extra
+	 * @param bool   $url
 	 *
 	 * @return string
 	 */
 	function vsp_js( $extra = '', $url = true ) {
-		return ( true === $url ) ? vsp_url( 'assets/js/' . $extra ) : vsp_path( 'assets/js/' . $extra );
+		return ( $url ) ? vsp_url( 'assets/js/' . $extra ) : vsp_path( 'assets/js/' . $extra );
 	}
 }
 
@@ -64,13 +48,13 @@ if ( ! function_exists( 'vsp_css' ) ) {
 	/**
 	 * Returns VSP Framework assets/css Path / URL base on given values
 	 *
-	 * @param string $extra .
-	 * @param bool   $url .
+	 * @param string $extra
+	 * @param bool   $url
 	 *
 	 * @return string
 	 */
 	function vsp_css( $extra = '', $url = true ) {
-		return ( true === $url ) ? vsp_url( 'assets/css/' . $extra ) : vsp_path( 'assets/css/' . $extra );
+		return ( $url ) ? vsp_url( 'assets/css/' . $extra ) : vsp_path( 'assets/css/' . $extra );
 	}
 }
 
@@ -84,51 +68,7 @@ if ( ! function_exists( 'vsp_img' ) ) {
 	 * @return string
 	 */
 	function vsp_img( $extra = '', $url = true ) {
-		return ( true === $url ) ? vsp_url( 'assets/img/' . $extra ) : vsp_path( 'assets/img/' . $extra );
-	}
-}
-
-if ( ! function_exists( 'vsp_debug_file' ) ) {
-	/**
-	 * Makes .min.css / .min.js file based on WordPress config
-	 * if WP_DEBUG / SCRIPT_DEBUG is set to true then it loads unminified files
-	 *
-	 * @param string $filename .
-	 * @param bool   $makeurl .
-	 * @param bool   $is_url .
-	 *
-	 * @return mixed|null|string
-	 *
-	 * @todo Check and remove
-	 */
-	function vsp_debug_file( $filename, $makeurl = false, $is_url = true ) {
-		if ( empty( $filename ) ) {
-			return null;
-		}
-
-		if ( ! ( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ) ) {
-			$filename = str_replace( array( '.min.css', '.min.js' ), array( '.css', '.js' ), $filename );
-			$filename = str_replace( '.css', '.min.css', $filename );
-			$filename = str_replace( '.js', '.min.js', $filename );
-		}
-
-		if ( 'js' === $makeurl ) {
-			return vsp_js( $filename, $is_url );
-		}
-
-		if ( 'css' === $makeurl ) {
-			return vsp_css( $filename, $is_url );
-		}
-
-		if ( 'assets' === $makeurl ) {
-			return vsp_url( $makeurl . '/' . $filename, $is_url );
-		}
-
-		if ( 'url' === $makeurl ) {
-			return vsp_url( $filename, $is_url );
-		}
-
-		return $filename;
+		return ( $url ) ? vsp_url( 'assets/img/' . $extra ) : vsp_path( 'assets/img/' . $extra );
 	}
 }
 
@@ -185,7 +125,7 @@ if ( ! function_exists( 'vsp_list_files' ) ) {
 	 * @param int   $levels
 	 * @param array $exclusions
 	 *
-	 * @return bool|string[]
+	 * @return bool|string|array
 	 */
 	function vsp_list_files( $path, $levels = 100, $exclusions = array() ) {
 		if ( ! function_exists( 'list_files' ) ) {

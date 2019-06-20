@@ -28,66 +28,6 @@ if ( ! function_exists( 'vsp_unslashit' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_register_script' ) ) {
-	/**
-	 * @param string $handle .
-	 * @param string $src .
-	 * @param array  $deps .
-	 * @param string $ver .
-	 * @param bool   $footer .
-	 *
-	 * @return bool
-	 */
-	function vsp_register_script( $handle = '', $src = '', $deps = array(), $ver = '1.0', $footer = true ) {
-		$src = vsp_debug_file( $src );
-		return wp_register_script( $handle, $src, $deps, $ver, $footer );
-	}
-}
-
-if ( ! function_exists( 'vsp_register_style' ) ) {
-	/**
-	 * @param string $handle .
-	 * @param string $src .
-	 * @param array  $deps .
-	 * @param string $ver .
-	 * @param string $media .
-	 *
-	 * @return bool
-	 */
-	function vsp_register_style( $handle = '', $src = '', $deps = array(), $ver = '1.0', $media = 'all' ) {
-		$src = vsp_debug_file( $src );
-		return wp_register_style( $handle, $src, $deps, $ver, $media );
-	}
-}
-
-if ( ! function_exists( 'vsp_load_script' ) ) {
-	/**
-	 * @param string $handle
-	 * @param string $src
-	 * @param array  $deps
-	 * @param string $ver
-	 * @param bool   $in_footer
-	 */
-	function vsp_load_script( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
-		$src = vsp_debug_file( $src );
-		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
-	}
-}
-
-if ( ! function_exists( 'vsp_load_style' ) ) {
-	/**
-	 * @param string $handle .
-	 * @param string $src .
-	 * @param array  $deps .
-	 * @param string $ver .
-	 * @param bool   $in_footer .
-	 */
-	function vsp_load_style( $handle = '', $src = '', $deps = array(), $ver = '', $in_footer = false ) {
-		$src = vsp_debug_file( $src );
-		wp_enqueue_style( $handle, $src, $deps, $ver, $in_footer );
-	}
-}
-
 if ( ! function_exists( 'vsp_set_cache' ) ) {
 	/**
 	 * @param string $key
