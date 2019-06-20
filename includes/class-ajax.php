@@ -50,11 +50,13 @@ if ( ! class_exists( 'Ajax' ) ) {
 		 * Handles Ajax Request
 		 */
 		public function addon_action() {
-			if ( isset( $_REQUEST['hook_slug'] ) ) {
-				do_action( $_REQUEST['hook_slug'] . '_handle_addon_request' );
+			if ( $this->has_request( 'hook_slug' ) ) {
+				$this->validate_request( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
+				$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
+				do_action( $_REQUEST['hook_slug'] . '_handle_addon_request', $this );
 			}
 
-			wp_send_json_error();
+			$this->json_error();
 		}
 
 		/**

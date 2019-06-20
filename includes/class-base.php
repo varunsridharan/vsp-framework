@@ -58,10 +58,9 @@ if ( ! class_exists( 'Base' ) ) {
 		 * VSP_Class_Handler constructor.
 		 *
 		 * @param array $options .
-		 * @param array $defaults .
 		 */
-		public function __construct( $options = array(), $defaults = array() ) {
-			$this->set_args( $options, $defaults );
+		public function __construct( $options = array() ) {
+			$this->set_args( $options );
 			$this->class_init();
 
 			if ( did_action( 'wponion_loaded' ) ) {

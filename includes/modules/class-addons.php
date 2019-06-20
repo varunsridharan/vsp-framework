@@ -65,50 +65,47 @@ if ( ! class_exists( 'Addons' ) ) {
 		}
 
 		/**
-		 * Handles Ajax Requests For Addons
+		 * @param \VSP\Ajax $ajax
 		 */
-		public function handle_ajax_request() {
-			if ( isset( $_REQUEST['addon_action'] ) ) {
-				$action = $this->handle_ajax_params( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
-				$addon  = $this->handle_ajax_params( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
-				if ( empty( $addon ) ) {
-					wp_send_json_error( __( 'Invalid Addon', 'vsp-framework' ) );
-				}
+		public function handle_ajax_request( $ajax ) {
+			$addon  = $ajax->post( 'addon' );
+			$action = $ajax->request( 'addon_action' );
 
-				if ( ! in_array( $action, array( 'activate', 'deactivate' ), true ) ) {
-					wp_send_json_error( __( 'Invalid Addon Action', 'vsp-framework' ) );
-				}
-
-				switch ( $action ) {
-					case 'activate':
-						if ( ! $this->is_active( $addon ) ) {
-							$data = $this->search_addon( $addon );
-
-							if ( ! is_array( $data ) ) {
-								vsp_send_callback_error( swal2_error( __( 'Addon Not Found', 'vsp-framework' ), __( 'Selected Addon Not Found. Please Contact The Developer', 'vsp-framework' ) ) );
-							}
-
-							if ( isset( $data['required_plugins'] ) && is_array( $data['required_plugins'] ) && ! empty( $data['required_plugins'] ) && true !== $data['required_plugins_fulfilled'] ) {
-								$msg = swal2_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) );
-								vsp_send_callback_error( $msg );
-							}
-
-							if ( $this->activate_addon( $addon ) ) {
-								vsp_send_callback_success( swal2_success( __( 'Addon Activated', 'vsp-framework' ) ) );
-							}
-						}
-						vsp_send_callback_error( swal2_warning( __( 'Addon Already Active', 'vsp-framework' ) ) );
-						break;
-					case 'deactivate':
-						if ( $this->is_active( $addon ) && $this->deactivate_addon( $addon ) ) {
-							vsp_send_callback_success( swal2_warning( __( 'Addon De-Activated', 'vsp-framework' ) ) );
-						}
-						vsp_send_callback_error( swal2_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ) );
-						break;
-				}
+			if ( !empty( $addon ) ) {
+				$ajax->error( __( 'Invalid Addon', 'vsp-framework' ) );
 			}
-			wp_send_json_error();
-			wp_die();
+
+			if ( ! in_array( $action, array( 'activate', 'deactivate' ), true ) ) {
+				$ajax->error( __( 'Invalid Addon Action', 'vsp-framework' ) );
+			}
+
+			switch ( $action ) {
+				case 'activate':
+					if ( ! $this->is_active( $addon ) ) {
+						$data = $this->search_addon( $addon );
+
+						if ( ! is_array( $data ) ) {
+							vsp_send_callback_error( swal2_error( __( 'Addon Not Found', 'vsp-framework' ), __( 'Selected Addon Not Found. Please Contact The Developer', 'vsp-framework' ) ) );
+						}
+
+						if ( isset( $data['required_plugins'] ) && is_array( $data['required_plugins'] ) && ! empty( $data['required_plugins'] ) && true !== $data['required_plugins_fulfilled'] ) {
+							$msg = swal2_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) );
+							vsp_send_callback_error( $msg );
+						}
+
+						if ( $this->activate_addon( $addon ) ) {
+							vsp_send_callback_success( swal2_success( __( 'Addon Activated', 'vsp-framework' ) ) );
+						}
+					}
+					vsp_send_callback_error( swal2_warning( __( 'Addon Already Active', 'vsp-framework' ) ) );
+					break;
+				case 'deactivate':
+					if ( $this->is_active( $addon ) && $this->deactivate_addon( $addon ) ) {
+						vsp_send_callback_success( swal2_warning( __( 'Addon De-Activated', 'vsp-framework' ) ) );
+					}
+					vsp_send_callback_error( swal2_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ) );
+					break;
+			}
 		}
 
 		/**
@@ -139,7 +136,8 @@ if ( ! class_exists( 'Addons' ) ) {
 				}
 			}
 			if ( ! empty( $deactivated_plugins ) ) {
-				$title = '<strong>' . $this->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
+				$title = '<strong>' . $this->plugin()
+						->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
 				$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
 				$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 

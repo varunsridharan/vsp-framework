@@ -7,7 +7,7 @@ use VSP\Base;
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-if ( ! class_exists( 'System_Logs' ) ) {
+if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 	/**
 	 * Class VSP_System_Logs
 	 *

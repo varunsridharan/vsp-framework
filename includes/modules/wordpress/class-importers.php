@@ -26,7 +26,7 @@ if ( ! class_exists( '\VSP\Modules\WordPress\Importers' ) ) {
 		 * VSP_WP_Importers constructor.
 		 */
 		public function __construct() {
-			parent::__construct( array(), array() );
+			parent::__construct();
 		}
 
 		/**

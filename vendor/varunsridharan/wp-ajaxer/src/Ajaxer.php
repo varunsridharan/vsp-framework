@@ -103,7 +103,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return string
 		 */
-		protected function ajax_slug( $action ) {
+		final protected function ajax_slug( $action ) {
 			$action = ( ! empty( $this->action_prefix ) ) ? $this->action_prefix . '_' . $action : $action;
 			$action = ( ! empty( $this->action_surfix ) ) ? $action . '_' . $this->action_surfix : $action;
 			return $action;
@@ -119,7 +119,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @hook ajax_{ajax_action}
 		 * ajax_action will be replaced with {$this->action}-action from url
 		 */
-		public function ajax_request_single() {
+		final public function ajax_request_single() {
 			$action     = false;
 			$action_key = ( true === $this->is_single ) ? $this->action : $this->is_single;
 
@@ -149,7 +149,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return string
 		 */
-		protected function extract_action_slug( $action ) {
+		final protected function extract_action_slug( $action ) {
 			return trim( trim( str_replace( array(
 				$this->action_prefix,
 				$this->action_surfix,
@@ -181,7 +181,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		/**
 		 * Handles Multiple Ajax Requests.
 		 */
-		public function ajax_request() {
+		final public function ajax_request() {
 			$action  = ( isset( $_REQUEST['action'] ) && ! empty( $_REQUEST['action'] ) ) ? $_REQUEST['action'] : false;
 			$_action = $this->extract_action_slug( $action );
 
@@ -204,7 +204,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return string
 		 */
-		public function request_type( $type = null ) {
+		protected function request_type( $type = null ) {
 			$type = ( ! is_array( $type ) ) ? array( $type ) : $type;
 			if ( ! is_null( $type ) && is_array( $type ) ) {
 				return in_array( $_SERVER['REQUEST_METHOD'], array_map( 'strtoupper', $type ), true );
@@ -268,7 +268,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function has( $key = '', $type = 'GET' ) {
+		protected function has( $key = '', $type = 'GET' ) {
 			switch ( $type ) {
 				case 'GET':
 					$has = ( isset( $_GET[ $key ] ) ) ? $_GET[ $key ] : false;
@@ -281,6 +281,33 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 					break;
 			}
 			return $has;
+		}
+
+		/**
+		 * @param $key
+		 *
+		 * @return bool
+		 */
+		public function has_get( $key ) {
+			return $this->has( $key, 'GET' );
+		}
+
+		/**
+		 * @param $key
+		 *
+		 * @return bool
+		 */
+		public function has_post( $key ) {
+			return $this->has( $key, 'POST' );
+		}
+
+		/**
+		 * @param $key
+		 *
+		 * @return bool
+		 */
+		public function has_request( $key ) {
+			return $this->has( $key, 'REQUEST' );
 		}
 
 		/**
@@ -304,7 +331,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @return bool|mixed
 		 */
 		public function post( $key = '', $default = false ) {
-			return $this->get_post_request( $key, $default, 'post' );
+			return $this->get_post_request( $key, $default, 'POST' );
 		}
 
 		/**
@@ -316,7 +343,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @return bool|mixed
 		 */
 		public function request( $key = '', $default = false ) {
-			return $this->get_post_request( $key, $default, 'request' );
+			return $this->get_post_request( $key, $default, 'REQUEST' );
 		}
 
 		/**
@@ -349,7 +376,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @param mixed $data
 		 * @param null  $status_code
 		 */
-		protected function json_error( $data = null, $status_code = null ) {
+		public function json_error( $data = null, $status_code = null ) {
 			wp_send_json_error( $data, $status_code );
 		}
 
@@ -357,7 +384,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @param mixed $data
 		 * @param null  $status_code
 		 */
-		protected function json_success( $data = null, $status_code = null ) {
+		public function json_success( $data = null, $status_code = null ) {
 			wp_send_json_success( $data, $status_code );
 		}
 
@@ -384,7 +411,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @param string|bool $error_message
 		 * @param array       $args
 		 */
-		protected function error( $error_title = false, $error_message = false, $args = array() ) {
+		public function error( $error_title = false, $error_message = false, $args = array() ) {
 			$this->json_error( wp_parse_args( $args, $this->error_message( $error_title, $error_message ) ) );
 		}
 
@@ -393,7 +420,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 * @param bool|string $success_message
 		 * @param array       $args
 		 */
-		protected function success( $success_title = false, $success_message = false, $args = array() ) {
+		public function success( $success_title = false, $success_message = false, $args = array() ) {
 			$this->json_success( wp_parse_args( $args, $this->success_message( $success_title, $success_message ) ) );
 		}
 
@@ -404,7 +431,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return bool|mixed
 		 */
-		protected function validate_post( $key, $error_title = false, $error_message = false ) {
+		public function validate_post( $key, $error_title = false, $error_message = false ) {
 			return $this->validate( $key, $error_title, $error_message, 'POST' );
 		}
 
@@ -415,8 +442,19 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 *
 		 * @return bool|mixed
 		 */
-		protected function validate_get( $key, $error_title = false, $error_message = false ) {
+		public function validate_get( $key, $error_title = false, $error_message = false ) {
 			return $this->validate( $key, $error_title, $error_message, 'GET' );
+		}
+
+		/**
+		 * @param string      $key
+		 * @param string|bool $error_title
+		 * @param string|bool $error_message
+		 *
+		 * @return bool|mixed
+		 */
+		public function validate_request( $key, $error_title = false, $error_message = false ) {
+			return $this->validate( $key, $error_title, $error_message, 'REQUEST' );
 		}
 	}
 }

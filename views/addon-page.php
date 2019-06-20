@@ -8,6 +8,7 @@ $req_desc     = __( 'Above Mentioned Plugin name with version are Tested Upto', 
 $ajax_args    = array(
 	'method'  => 'post',
 	'success' => '',
+	'error'   => 'function(res){ window.wponion_error_swal(res).fire(); }',
 	'data'    => array(
 		'hook_slug'    => $this->plugin()
 			->slug( 'hook' ),

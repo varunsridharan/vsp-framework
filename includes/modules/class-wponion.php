@@ -17,64 +17,31 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 	 */
 	class WPOnion extends Base {
 		/**
-		 * Default_options
-		 *
 		 * @var array
+		 * @access
 		 */
-		protected $default_options = array(
-			'option_name' => false,
-		);
+		protected $default_options = array( 'option_name' => false );
 
 		/**
-		 * Page_config
-		 *
-		 * @var array
+		 * Inits Class
 		 */
-		protected $page_config = array();
-
-		/**
-		 * @var \WPOnion\Modules\Settings\Settings
-		 */
-		protected $framework = null;
-
-		/**
-		 * VSP_Settings_WPOnion constructor.
-		 *
-		 * @param array $options .
-		 */
-		public function __construct( $options = array() ) {
-			parent::__construct( $options );
+		public function class_init() {
 			if ( vsp_is_admin() || vsp_is_ajax() ) {
 				add_action( 'wponion_loaded', array( &$this, 'init_settings' ) );
 			}
 		}
 
 		/**
-		 * Returns Settings Default Config
-		 */
-		public function get_settings_config() {
-			$this->page_config = $this->options;
-
-			if ( isset( $this->page_config['extra_js'] ) && is_array( $this->page_config['extra_js'] ) ) {
-				$this->page_config['extra_js'][] = 'vsp_load_core_assets';
-			} elseif ( isset( $this->page_config['extra_js'] ) ) {
-				$this->page_config['extra_js'] = array( $this->page_config['extra_js'], 'vsp_load_core_assets' );
-			} elseif ( ! isset( $this->page_config['extra_js'] ) ) {
-				$this->page_config['extra_js'] = array( 'vsp_load_core_assets' );
-			}
-		}
-
-		/**
-		 * Inits \WPOnion\Modules\Settings Class
-		 *
 		 * @uses \WPOnion\Modules\Settings
 		 */
 		public function init_settings() {
-			$this->get_settings_config();
-			$options = wponion_builder();
+			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
+			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
+			$this->options['extra_js'][] = 'vsp_load_core_assets';
+			$options                     = wponion_builder();
 			$this->action( 'settings_options', $options );
 			if ( $options instanceof \WPO\Builder ) {
-				$this->framework = wponion_settings( $this->page_config, $options );
+				wponion_settings( $this->options, $options );
 			}
 		}
 	}

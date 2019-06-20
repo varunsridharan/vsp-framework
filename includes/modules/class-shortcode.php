@@ -47,10 +47,9 @@ abstract class Shortcode extends Base {
 	 * VSP_Shortcode constructor.
 	 *
 	 * @param array $options
-	 * @param array $defaults
 	 */
-	public function __construct( $options = array(), $defaults = array() ) {
-		parent::__construct( $options, $defaults );
+	public function __construct( $options = array() ) {
+		parent::__construct( $options );
 		add_shortcode( $this->shortcode_name, array( &$this, 'render_shortcode' ) );
 		if ( empty( $this->defaults ) ) {
 			$this->defaults = $this->defaults();
