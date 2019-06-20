@@ -42,18 +42,18 @@ class System_Tools extends Base implements Plugin_Settings {
 	 * VSP_System_Tools constructor.
 	 *
 	 * @param array $options
-	 * @param array $defaults
 	 */
-	public function __construct( $options = array(), $defaults = array() ) {
-		parent::__construct( $options, $defaults );
-		add_action( $this->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ), 999 );
+	public function __construct( $options = array() ) {
+		parent::__construct( $options );
+		add_action( $this->plugin()
+				->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ), 999 );
 	}
 
 	/**
 	 * Outputs Logs View.
 	 */
 	public function output_logs_info() {
-		$instance = $this->_instance( '\VSP\Modules\System_Logs', false, true, array() );
+		$instance = $this->_instance( '\VSP\Modules\System_Logs' );
 		$instance->render();
 	}
 

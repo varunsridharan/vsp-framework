@@ -50,7 +50,8 @@ if ( ! class_exists( 'Addons' ) ) {
 			parent::__construct( $options );
 
 			$this->headers = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
-			$slug          = $this->slug( 'hook' );
+			$slug          = $this->plugin()
+				->slug( 'hook' );
 			$hook          = $this->option( 'hook_priority' );
 			$this->active_addons();
 			add_action( 'wponion_loaded', array( $this, 'load_active_addons' ) );
@@ -155,7 +156,8 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function active_addons() {
 			if ( false === $this->active_addons ) {
-				$this->active_addons = get_option( $this->slug( 'db' ) . '_active_addons', false );
+				$this->active_addons = get_option( $this->plugin()
+						->slug( 'db' ) . '_active_addons', false );
 				$this->active_addons = ( is_array( $this->active_addons ) && ! empty( $this->active_addons ) ) ? $this->active_addons : array();
 			}
 			return $this->active_addons;
@@ -185,7 +187,8 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @return array
 		 */
 		public function update_active_addons( $addons ) {
-			update_option( $this->slug( 'db' ) . '_active_addons', $addons );
+			update_option( $this->plugin()
+					->slug( 'db' ) . '_active_addons', $addons );
 			$this->active_addons = $addons;
 			return $this->active_addons;
 		}

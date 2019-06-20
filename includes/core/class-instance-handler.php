@@ -4,6 +4,7 @@ namespace VSP\Core;
 
 use ReflectionClass;
 use ReflectionException;
+use VSP\Framework;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -17,6 +18,14 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 	 * @since 1.0
 	 */
 	abstract class Instance_Handler {
+		/**
+		 * Stores Framework Instance Class.
+		 *
+		 * @var null
+		 * @access
+		 */
+		protected static $framework_instance = array();
+
 		/**
 		 * Stores all plugins instances
 		 *
@@ -35,18 +44,19 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		 * Returns Current Instance / create a new instance
 		 *
 		 * @static
-		 * @return bool|$this|static
+		 * @return bool|self|static|$this
 		 */
 		public static function instance() {
-			if ( ! isset( self::$_instances[ static::class ] ) ) {
+			$class = static::class;
+			if ( ! isset( self::$_instances[ $class ] ) ) {
 				try {
-					$refl                              = new ReflectionClass( static::class );
-					self::$_instances[ static::class ] = $refl->newInstanceArgs( func_get_args() );
+					$refl                       = new ReflectionClass( $class );
+					self::$_instances[ $class ] = $refl->newInstanceArgs( func_get_args() );
 				} catch ( ReflectionException $exception ) {
 
 				}
 			}
-			return isset( self::$_instances[ static::class ] ) ? self::$_instances[ static::class ] : false;
+			return isset( self::$_instances[ $class ] ) ? self::$_instances[ $class ] : false;
 		}
 
 		/**
@@ -57,6 +67,9 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		 * @return bool|mixed
 		 */
 		protected function get_instance( $key ) {
+			if ( isset( self::$_instances[ $key ] ) ) {
+				return self::$_instances[ $key ];
+			}
 			return ( isset( $this->instances[ $key ] ) ) ? $this->instances[ $key ] : false;
 		}
 
@@ -80,25 +93,33 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		}
 
 		/**
-		 * @param string $class .
-		 * @param bool   $force_instance .
-		 * @param bool   $with_args .
-		 * @param array  $extra_option .
+		 * @param       $class
+		 * @param mixed ...$arguments
 		 *
 		 * @return object
 		 */
-		public function _instance( $class, $force_instance = false, $with_args = true, $extra_option = array() ) {
+		public function _instance( $class, ...$arguments ) {
 			if ( $this->get_instance( $class ) === false ) {
-				$args = $extra_option;
-				if ( true === $with_args && method_exists( $this, 'get_common_args' ) ) {
-					$args = $this->get_common_args( $extra_option );
-				}
+				try {
+					$framework_key = false;
+					$refl          = new \ReflectionClass( $class );
 
-				if ( true === $force_instance && method_exists( $class, 'instance' ) ) {
-					$this->set_instance( $class, $class::instance( $args ) );
-				} else {
-					$instances = new $class( $args );
+					if ( $this instanceof Framework ) {
+						$framework_key = static::class;
+					}
+
+					if ( false === $framework_key ) {
+						$framework_key = ( isset( $this->framework_instance ) && ! empty( $this->framework_instance ) ) ? $this->framework_instance : false;
+					}
+
+					if ( false !== $framework_key && $refl->isSubclassOf( '\VSP\Base' ) ) {
+						self::$framework_instance[ $refl->getName() ] = $framework_key;
+					}
+
+					$instances = $refl->newInstanceArgs( $arguments );
 					$this->set_instance( $class, $instances );
+				} catch ( ReflectionException $exception ) {
+
 				}
 			}
 			return $this->get_instance( $class );

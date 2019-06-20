@@ -103,7 +103,8 @@ if ( ! class_exists( 'Core' ) ) {
 		 * @return array
 		 */
 		protected function search_addons() {
-			$dirs = apply_filters( $this->slug( 'hook' ) . '_addons_dirs', array( $this->option( 'base_path' ) ) );
+			$dirs = apply_filters( $this->plugin()
+					->slug( 'hook' ) . '_addons_dirs', array( $this->option( 'base_path' ) ) );
 
 			if ( ! empty( $dirs ) ) {
 				foreach ( $dirs as $dir ) {

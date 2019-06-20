@@ -9,7 +9,8 @@ $ajax_args    = array(
 	'method'  => 'post',
 	'success' => '',
 	'data'    => array(
-		'hook_slug'    => $this->slug( 'hook' ),
+		'hook_slug'    => $this->plugin()
+			->slug( 'hook' ),
 		'action'       => 'vsp_addon_action',
 		'addon_action' => 'activate',
 	),

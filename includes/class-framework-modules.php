@@ -40,7 +40,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		 */
 		protected function _init_system_tools() {
 			if ( false !== $this->option( 'system_tools' ) ) {
-				$this->_instance( '\VSP\Modules\System_Tools', false, true, $this->option( 'system_tools' ) );
+				$this->_instance( '\VSP\Modules\System_Tools', $this->option( 'system_tools' ) );
 			}
 		}
 
@@ -55,7 +55,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		protected function _addon_init() {
 			if ( false !== $this->option( 'addons' ) ) {
 				$this->action( 'addons_init_before' );
-				$this->_instance( '\VSP\Modules\Addons', false, true, $this->option( 'addons' ) );
+				$this->_instance( '\VSP\Modules\Addons', $this->option( 'addons' ) );
 				$this->action( 'addons_init' );
 			}
 		}
@@ -75,7 +75,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 				$args = $this->option( 'settings_page' );
 				if ( is_array( $args ) ) {
 					$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
-					$this->_instance( 'VSP\Modules\WPOnion', false, true, $this->option( 'settings_page' ) );
+					$this->_instance( 'VSP\Modules\WPOnion', $this->option( 'settings_page' ) );
 					$this->settings_init();
 					$this->action( 'settings_init' );
 				}

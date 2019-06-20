@@ -15,48 +15,6 @@ if ( ! class_exists( 'Base' ) ) {
 	 */
 	class Base extends Core\Instance_Handler {
 		/**
-		 * Version
-		 *
-		 * @var null
-		 */
-		public $version = null;
-
-		/**
-		 * File
-		 *
-		 * @var null
-		 */
-		public $file = null;
-
-		/**
-		 * Plugin Slug
-		 *
-		 * @var null
-		 */
-		public $slug = null;
-
-		/**
-		 * DB_slug
-		 *
-		 * @var null
-		 */
-		public $db_slug = null;
-
-		/**
-		 * Name
-		 *
-		 * @var null
-		 */
-		public $name = null;
-
-		/**
-		 * Hook_slug
-		 *
-		 * @var null
-		 */
-		public $hook_slug = null;
-
-		/**
 		 * Options
 		 *
 		 * @var array
@@ -69,27 +27,6 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @var array
 		 */
 		protected $default_options = array();
-
-		/**
-		 * User_options
-		 *
-		 * @var array
-		 */
-		protected $user_options = array();
-
-		/**
-		 * Base_defaults
-		 *
-		 * @var array
-		 */
-		protected $base_defaults = array(
-			'version'   => '',
-			'file'      => '',
-			'slug'      => '',
-			'db_slug'   => '',
-			'hook_slug' => '',
-			'name'      => '',
-		);
 
 		/**
 		 * Clone
@@ -106,37 +43,15 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
-		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
-		 *
-		 * @param string $key .
-		 * @param string $default .
-		 *
-		 * @return $this
-		 */
-		protected function _set_core( $key = '', $default = '' ) {
-			if ( empty( $this->{$key} ) || is_null( $this->{$key} ) ) {
-				$this->{$key} = $default;
-			}
-			return $this;
-		}
-
-		/**
 		 * Merges And sets the given args
 		 *
 		 * @param array $options .
 		 * @param array $defaults .
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
-			$defaults              = empty( $defaults ) ? $this->default_options : $defaults;
-			$this->default_options = $this->parse_args( $defaults, $this->base_defaults );
-			$this->options         = empty( $options ) ? $this->user_options : $options;
-			$this->options         = $this->parse_args( $this->options, $this->default_options );
-			$this->_set_core( 'version', $this->options['version'] )
-				->_set_core( 'file', $this->options['file'] )
-				->_set_core( 'slug', $this->options['slug'] )
-				->_set_core( 'db_slug', $this->options['db_slug'] )
-				->_set_core( 'hook_slug', $this->options['hook_slug'] )
-				->_set_core( 'name', $this->options['name'] );
+			$defaults      = empty( $defaults ) ? $this->default_options : $defaults;
+			$this->options = empty( $options ) ? array() : $options;
+			$this->options = $this->parse_args( $this->options, $defaults );
 		}
 
 		/**
@@ -182,57 +97,6 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
-		 * Returns $this->file
-		 *
-		 * @return string
-		 */
-		public function file() {
-			return empty( $this->file ) ? __FILE__ : $this->file;
-		}
-
-		/**
-		 * Returns $this->version
-		 *
-		 * @return bool|mixed
-		 */
-		public function version() {
-			return $this->version;
-		}
-
-		/**
-		 * Returns with slug value for the given type
-		 * Types (slug,db,hook)
-		 *
-		 * @param string $type .
-		 *
-		 * @return string|bool
-		 */
-		public function slug( $type = 'slug' ) {
-			$return = false;
-			switch ( $type ) {
-				case 'slug':
-					$return = $this->slug;
-					break;
-				case 'db':
-					$return = $this->db_slug;
-					break;
-				case 'hook':
-					$return = $this->hook_slug;
-					break;
-			}
-			return $return;
-		}
-
-		/**
-		 * Returns $this->name
-		 *
-		 * @return bool|mixed
-		 */
-		public function plugin_name() {
-			return $this->name;
-		}
-
-		/**
 		 * Returns value from options array
 		 *
 		 * @param string $key .
@@ -255,20 +119,10 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
-		 * Returns all common array like (slug,db_slug,hook_slug,plugin_name)
-		 *
-		 * @param array $extra_options .
-		 *
-		 * @return array
+		 * @return \VSP\Framework|\VSP\Base
 		 */
-		public function get_common_args( $extra_options = array() ) {
-			return $this->parse_args( $extra_options, array(
-				'slug'      => $this->slug(),
-				'db_slug'   => $this->slug( 'db' ),
-				'hook_slug' => $this->slug( 'hook' ),
-				'name'      => $this->plugin_name(),
-				'file'      => $this->file(),
-			) );
+		public function plugin() {
+			return ( $this instanceof \VSP\Framework ) ? $this : $this->get_instance( self::$framework_instance[ static::class ] );
 		}
 
 		/**
@@ -280,7 +134,8 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return mixed
 		 */
 		private function action_filter( $type = '', $args = array() ) {
-			$args[0] = $this->slug( 'hook' ) . '_' . $args[0];
+			$args[0] = $this->plugin()
+					->slug( 'hook' ) . '_' . $args[0];
 			return call_user_func_array( $type, $args );
 		}
 
@@ -336,7 +191,9 @@ if ( ! class_exists( 'Base' ) ) {
 		 *
 		 */
 		public function plugin_url( $ex_path = '/' ) {
-			return untrailingslashit( plugins_url( $ex_path, $this->file() ) );
+			$file = $this->plugin()
+				->file();
+			return untrailingslashit( plugins_url( $ex_path, $file ) );
 		}
 
 		/**
@@ -349,7 +206,9 @@ if ( ! class_exists( 'Base' ) ) {
 		 *
 		 */
 		public function plugin_path( $ex_path = '' ) {
-			$path = untrailingslashit( plugin_dir_path( $this->file() ) );
+			$file = $this->plugin()
+				->file();
+			$path = untrailingslashit( plugin_dir_path( $file ) );
 			return ( empty( $ex_path ) ) ? $path : $path . '/' . $ex_path;
 		}
 
