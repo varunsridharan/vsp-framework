@@ -15,6 +15,48 @@ if ( ! class_exists( 'Base' ) ) {
 	 */
 	class Base extends Core\Instance_Handler {
 		/**
+		 * Version
+		 *
+		 * @var null
+		 */
+		public $version = null;
+
+		/**
+		 * File
+		 *
+		 * @var null
+		 */
+		public $file = null;
+
+		/**
+		 * Plugin Slug
+		 *
+		 * @var null
+		 */
+		public $slug = null;
+
+		/**
+		 * DB_slug
+		 *
+		 * @var null
+		 */
+		public $db_slug = null;
+
+		/**
+		 * Name
+		 *
+		 * @var null
+		 */
+		public $name = null;
+
+		/**
+		 * Hook_slug
+		 *
+		 * @var null
+		 */
+		public $hook_slug = null;
+
+		/**
 		 * Options
 		 *
 		 * @var array
@@ -64,16 +106,37 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
+		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
+		 *
+		 * @param string $key .
+		 * @param string $default .
+		 *
+		 * @return $this
+		 */
+		protected function _set_core( $key = '', $default = '' ) {
+			if ( empty( $this->{$key} ) || is_null( $this->{$key} ) ) {
+				$this->{$key} = $default;
+			}
+			return $this;
+		}
+
+		/**
 		 * Merges And sets the given args
 		 *
 		 * @param array $options .
 		 * @param array $defaults .
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
-			$defaults      = empty( $defaults ) ? $this->default_options : $defaults;
-			$defaults      = $this->parse_args( $defaults, $this->base_defaults );
-			$options       = empty( $options ) ? $this->user_options : $options;
-			$this->options = $this->parse_args( $options, $defaults );
+			$defaults              = empty( $defaults ) ? $this->default_options : $defaults;
+			$this->default_options = $this->parse_args( $defaults, $this->base_defaults );
+			$this->options         = empty( $options ) ? $this->user_options : $options;
+			$this->options         = $this->parse_args( $this->options, $this->default_options );
+			$this->_set_core( 'version', $this->options['version'] )
+				->_set_core( 'file', $this->options['file'] )
+				->_set_core( 'slug', $this->options['slug'] )
+				->_set_core( 'db_slug', $this->options['db_slug'] )
+				->_set_core( 'hook_slug', $this->options['hook_slug'] )
+				->_set_core( 'name', $this->options['name'] );
 		}
 
 		/**
@@ -124,7 +187,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return string
 		 */
 		public function file() {
-			return empty( $this->option( 'file' ) ) ? __FILE__ : $this->option( 'file' );
+			return empty( $this->file ) ? __FILE__ : $this->file;
 		}
 
 		/**
@@ -133,7 +196,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return bool|mixed
 		 */
 		public function version() {
-			return $this->option( 'version' );
+			return $this->version;
 		}
 
 		/**
@@ -148,13 +211,13 @@ if ( ! class_exists( 'Base' ) ) {
 			$return = false;
 			switch ( $type ) {
 				case 'slug':
-					$return = $this->option( 'slug' );
+					$return = $this->slug;
 					break;
 				case 'db':
-					$return = $this->option( 'db_slug' );
+					$return = $this->db_slug;
 					break;
 				case 'hook':
-					$return = $this->option( 'hook_slug' );
+					$return = $this->hook_slug;
 					break;
 			}
 			return $return;
@@ -166,7 +229,7 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @return bool|mixed
 		 */
 		public function plugin_name() {
-			return $this->option( 'name' );
+			return $this->name;
 		}
 
 		/**
