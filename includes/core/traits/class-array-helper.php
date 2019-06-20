@@ -21,73 +21,21 @@ trait Array_Helper {
 	 * @return string
 	 */
 	public static function array_to_html_attr( $array = array() ) {
-		$attrs = '';
-		if ( ! empty( $array ) ) {
-			foreach ( $array as $id => $val ) {
-				$attrs = ' ' . esc_attr( $id ) . '="' . esc_attr( $val ) . '" ';
-			}
-		}
-		return $attrs;
+		return wponion_array_to_html_attributes( $array );
 	}
 
 	/**
 	 * Converts JSON String To Array
 	 *
 	 * @param string $data
+	 * @param bool   $to_object if Set To true then it returns as object or array
 	 *
 	 * @return array|bool
 	 * @static
 	 */
-	public static function json_to_array( $data = '' ) {
-		$json = json_decode( $data, true );
+	public static function json_to( $data = '', $to_object = false ) {
+		$json = json_decode( $data, $to_object );
 		return ( null === $json ) ? false : $json;
-	}
-
-	/**
-	 * Converts JSON String To Object
-	 *
-	 * @param string $data
-	 *
-	 * @return bool|object
-	 * @static
-	 */
-	public static function json_to_object( $data = '' ) {
-		$json = json_decode( $data );
-		return ( null === $json ) ? false : $json;
-	}
-
-	/**
-	 * Safely get and trim data from $_POST
-	 *
-	 * @param string $key array key to get from $_POST array.
-	 * @param mixed  $default
-	 *
-	 * @return string value from $_POST or blank string if $_POST[ $key ] is not set
-	 * @since 3.0.0
-	 *
-	 */
-	public static function get_post( $key, $default = false ) {
-		if ( isset( $_POST[ $key ] ) ) {
-			return trim( $_POST[ $key ] );
-		}
-		return $default;
-	}
-
-	/**
-	 * Safely get and trim data from $_REQUEST
-	 *
-	 * @param string $key array key to get from $_REQUEST array.
-	 * @param mixed  $default
-	 *
-	 * @return string value from $_REQUEST or blank string if $_REQUEST[ $key ] is not set
-	 * @since 3.0.0
-	 *
-	 */
-	public static function get_request( $key, $default = false ) {
-		if ( isset( $_REQUEST[ $key ] ) ) {
-			return trim( $_REQUEST[ $key ] );
-		}
-		return $default;
 	}
 
 	/**

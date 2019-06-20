@@ -19,9 +19,7 @@ if ( ! class_exists( 'Helper' ) ) {
 		use Core\Traits\JS;
 		use Core\Traits\WP;
 		use Core\Traits\Array_Helper;
-		use Core\Traits\Validate;
 		use Core\Traits\URL;
-		use Core\Traits\File;
 		use Core\Traits\String_Helper;
 
 		/**
