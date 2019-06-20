@@ -34,9 +34,9 @@ if ( ! class_exists( 'Admin' ) ) {
 			$this->addon_cats   = self::$default_addon_cats;
 			$this->addon_counts = array_combine( array_keys( $this->addon_cats ), array_fill( 0, count( $this->addon_cats ), 0 ) );
 			$this->search_addons();
-			$this->addon_counts['all']      = count( $this->addons );
-			$this->addon_counts['active']   = count( $this->active_addons );
-			$this->addon_counts['inactive'] = count( $this->addons ) - count( $this->active_addons );
+			$this->addon_counts['all']      = ( is_array( $this->addons ) ) ? count( $this->addons ) : 0;
+			$this->addon_counts['active']   = ( is_array( $this->active_addons ) ) ? count( $this->active_addons ) : 0;
+			$this->addon_counts['inactive'] = ( is_array( $this->addons ) && is_array( $this->active_addons ) ) ? count( $this->addons ) - count( $this->active_addons ) : 0;
 			vsp_load_script( 'vsp-framework' );
 			vsp_load_style( 'vsp-framework' );
 			include VSP_PATH . 'views/addon-page.php';

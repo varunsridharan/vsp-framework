@@ -26,13 +26,6 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		);
 
 		/**
-		 * Final_options
-		 *
-		 * @var array
-		 */
-		private $final_options = array();
-
-		/**
 		 * Page_config
 		 *
 		 * @var array
@@ -57,14 +50,6 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		}
 
 		/**
-		 * Captures Settings Pages Array
-		 */
-		public function final_array() {
-			$this->final_options = wponion_builder();
-			$this->action( 'settings_options', $this->final_options );
-		}
-
-		/**
 		 * Returns Settings Default Config
 		 */
 		public function get_settings_config() {
@@ -86,9 +71,10 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		 */
 		public function init_settings() {
 			$this->get_settings_config();
-			$this->final_array();
-			if ( $this->final_options instanceof \WPO\Builder ) {
-				$this->framework = wponion_settings( $this->page_config, $this->final_options );
+			$options = wponion_builder();
+			$this->action( 'settings_options', $options );
+			if ( $options instanceof \WPO\Builder ) {
+				$this->framework = wponion_settings( $this->page_config, $options );
 			}
 		}
 	}

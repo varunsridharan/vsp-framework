@@ -70,15 +70,18 @@ if ( ! function_exists( 'vsp_list_log_files' ) ) {
 			$path        = VSP_LOG_DIR . $path;
 		}
 
-		$paths = vsp_list_files( $path, 1000 );
+		if ( file_exists( $path ) ) {
+			$paths = vsp_list_files( $path, 1000 );
 
-		foreach ( $paths as $i => $_path ) {
-			$paths[ $i ] = ltrim( vsp_censor_path( $_path, $path ), '/' );
-			if ( false !== $custom_path ) {
-				$paths[ $i ] = vsp_censor_path( $custom_path ) . '/' . $paths[ $i ];
+			foreach ( $paths as $i => $_path ) {
+				$paths[ $i ] = ltrim( vsp_censor_path( $_path, $path ), '/' );
+				if ( false !== $custom_path ) {
+					$paths[ $i ] = vsp_censor_path( $custom_path ) . '/' . $paths[ $i ];
+				}
 			}
+			return array_values( array_unique( $paths ) );
 		}
-		return array_values( array_unique( $paths ) );
+		return array();
 	}
 }
 
