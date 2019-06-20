@@ -40,10 +40,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * VSP_Framework_Loader constructor.
 		 */
 		public function __construct() {
-			self::$meta_data = [
-				'lib'          => [],
-				'integrations' => [],
-			];
 			add_action( 'plugins_loaded', [ &$this, 'load_framework' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
 			add_action( 'wponion_sysinfo_final', [ &$this, 'add_extra_info' ] );
