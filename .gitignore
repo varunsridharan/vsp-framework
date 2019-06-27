@@ -787,3 +787,4 @@ vendor/*/*LICENSE*
 vendor/*/*installed.json*
 vendor/*/*/composer.json
 vendor/*/*/.gitignore
+vendor/thewpleague/wp-query-builder/wp-query-builder.php
