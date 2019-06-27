@@ -5,26 +5,25 @@
   "homepage"    : "https://github.com/varunsridharan/vsp-framework",
   "license"     : "GPL-3.0+",
   "autoload"    : {
-	"files" : [
-	  "vsp-init.php"
-	]
+    "files" : [
+      "vsp-init.php"
+    ]
   },
-  "require-dev"     : {
-	"varunsridharan/wpallimport_rapidaddon" : "*",
-	"varunsridharan/sweetalert2-php"        : ">=1.0",
-	"varunsridharan/wp-ajaxer"              : ">=1.0",
-	"varunsridharan/wp-post"                : ">=1.0",
-	"varunsridharan/wp-transient-api"       : ">=1.0",
-	"varunsridharan/wp-db-table"            : ">=1.2.1",
-	"varunsridharan/wp-localizer"           : ">=1.0",
-	"a5hleyrich/wp-background-processing"   : ">=1.0.1"
+  "require-dev" : {
+    "varunsridharan/wpallimport_rapidaddon" : "*",
+    "varunsridharan/sweetalert2-php"        : ">=1.0",
+    "varunsridharan/wp-ajaxer"              : ">=1.0",
+    "varunsridharan/wp-post"                : ">=1.0",
+    "varunsridharan/wp-transient-api"       : ">=1.0",
+    "varunsridharan/wp-db-table"            : ">=1.2.1",
+    "varunsridharan/wp-localizer"           : ">=1.0"
   },
   "authors"     : [
-	{
-	  "name"     : "Varun Sridharan",
-	  "email"    : "varunsridharan23@gmail.com",
-	  "homepage" : "https://varunsridharan.in",
-	  "role"     : "Developer"
-	}
+    {
+      "name"     : "Varun Sridharan",
+      "email"    : "varunsridharan23@gmail.com",
+      "homepage" : "https://varunsridharan.in",
+      "role"     : "Developer"
+    }
   ]
 }

@@ -7,6 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'cf65e956ef36045d86a2d654adf24874' => $vendorDir . '/varunsridharan/sweetalert2-php/sweetalert2.php',
-    '011316cc7fd7a11c4bebeb6bcdea5621' => $vendorDir . '/varunsridharan/wp-dependencies/src/dependencies.php',
     '3137c1182dbb8ff6553f65428ecc96ee' => $baseDir . '/vsp-init.php',
 );

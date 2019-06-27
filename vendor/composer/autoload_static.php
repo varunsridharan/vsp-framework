@@ -8,7 +8,6 @@ class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
 {
     public static $files = array (
         'cf65e956ef36045d86a2d654adf24874' => __DIR__ . '/..' . '/varunsridharan/sweetalert2-php/sweetalert2.php',
-        '011316cc7fd7a11c4bebeb6bcdea5621' => __DIR__ . '/..' . '/varunsridharan/wp-dependencies/src/dependencies.php',
         '3137c1182dbb8ff6553f65428ecc96ee' => __DIR__ . '/../..' . '/vsp-init.php',
     );
 
@@ -20,7 +19,6 @@ class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
         'V' => 
         array (
             'Varunsridharan\\WordPress\\' => 25,
-            'Varunsridharan\\PHP\\' => 19,
         ),
         'T' => 
         array (
@@ -41,10 +39,6 @@ class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
             3 => __DIR__ . '/..' . '/varunsridharan/wp-post/src',
             4 => __DIR__ . '/..' . '/varunsridharan/wp-transient-api/src',
         ),
-        'Varunsridharan\\PHP\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/varunsridharan/php-autoloader/src',
-        ),
         'TheLeague\\Database\\' => 
         array (
             0 => __DIR__ . '/..' . '/thewpleague/wp-query-builder/src',
@@ -60,8 +54,6 @@ class ComposerStaticInit57b358ef600d04aab79c92228719c7ad
         'TheLeague\\Database\\Traits\\Select' => __DIR__ . '/..' . '/thewpleague/wp-query-builder/src/traits/class-select.php',
         'TheLeague\\Database\\Traits\\Translate' => __DIR__ . '/..' . '/thewpleague/wp-query-builder/src/traits/class-translate.php',
         'TheLeague\\Database\\Traits\\Where' => __DIR__ . '/..' . '/thewpleague/wp-query-builder/src/traits/class-where.php',
-        'WP_Async_Request' => __DIR__ . '/..' . '/a5hleyrich/wp-background-processing/classes/wp-async-request.php',
-        'WP_Background_Process' => __DIR__ . '/..' . '/a5hleyrich/wp-background-processing/classes/wp-background-process.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -17,8 +17,8 @@ module.exports = {
 		},
 		'assets_src/js/vsp-framework.js': {
 			dist: 'assets/js',
-			//babel: true,
-			webpack: true,
+			babel: true,
+			webpack: false,
 			watch: true,
 			uglify: true,
 			rename: 'vsp-framework.js',

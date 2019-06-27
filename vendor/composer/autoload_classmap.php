@@ -14,6 +14,4 @@ return array(
     'TheLeague\\Database\\Traits\\Select' => $vendorDir . '/thewpleague/wp-query-builder/src/traits/class-select.php',
     'TheLeague\\Database\\Traits\\Translate' => $vendorDir . '/thewpleague/wp-query-builder/src/traits/class-translate.php',
     'TheLeague\\Database\\Traits\\Where' => $vendorDir . '/thewpleague/wp-query-builder/src/traits/class-where.php',
-    'WP_Async_Request' => $vendorDir . '/a5hleyrich/wp-background-processing/classes/wp-async-request.php',
-    'WP_Background_Process' => $vendorDir . '/a5hleyrich/wp-background-processing/classes/wp-background-process.php',
 );
