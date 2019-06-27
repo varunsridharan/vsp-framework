@@ -67,8 +67,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 
 	/**
 	 * Ensures fatal errors are logged so they can be picked up in the status report.
-	 *
-	 * @since 3.2.0
 	 */
 	public function log_errors() {
 		$error = error_get_last();
@@ -94,9 +92,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array  $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function critical( $message, $context = array() ) {
 		$this->log( Logger\Levels::CRITICAL, $message, $context );
@@ -163,8 +158,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
 	 */
 	public function emergency( $message, $context = array() ) {
 		$this->log( Logger\Levels::EMERGENCY, $message, $context );
@@ -181,9 +174,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function alert( $message, $context = array() ) {
 		$this->log( Logger\Levels::ALERT, $message, $context );
@@ -200,9 +190,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function error( $message, $context = array() ) {
 		$this->log( Logger\Levels::ERROR, $message, $context );
@@ -221,9 +208,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function warning( $message, $context = array() ) {
 		$this->log( Logger\Levels::WARNING, $message, $context );
@@ -239,9 +223,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function notice( $message, $context = array() ) {
 		$this->log( Logger\Levels::NOTICE, $message, $context );
@@ -258,9 +239,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function info( $message, $context = array() ) {
 		$this->log( Logger\Levels::INFO, $message, $context );
@@ -276,9 +254,6 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @param array        $context
 	 *
 	 * @return $this
-	 *
-	 * @see VSP_Logger::log
-	 *
 	 */
 	public function debug( $message, $context = array() ) {
 		$this->log( Logger\Levels::DEBUG, $message, $context );

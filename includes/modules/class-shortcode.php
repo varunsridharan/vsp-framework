@@ -76,8 +76,7 @@ abstract class Shortcode extends Base {
 	public function render_shortcode( $atts, $content = '' ) {
 		$this->shortcode_args( $atts );
 		$this->content = $content;
-		$output        = $this->output();
-		return $output;
+		return $this->output();
 	}
 
 	/**

@@ -74,9 +74,9 @@ if ( ! function_exists( 'vsp_list_log_files' ) ) {
 			$paths = vsp_list_files( $path, 1000 );
 
 			foreach ( $paths as $i => $_path ) {
-				$paths[ $i ] = ltrim( vsp_censor_path( $_path, $path ), '/' );
+				$paths[ $i ] = ltrim( $_path, '/' );
 				if ( false !== $custom_path ) {
-					$paths[ $i ] = vsp_censor_path( $custom_path ) . '/' . $paths[ $i ];
+					$paths[ $i ] = $custom_path . '/' . $paths[ $i ];
 				}
 			}
 			return array_values( array_unique( $paths ) );

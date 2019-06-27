@@ -19,18 +19,12 @@ if ( ! class_exists( 'Ajax' ) ) {
 		/**
 		 * Ajax Action Prefix
 		 *
-		 * @example for wordpress_show_popup WordPress is the prefix
-		 *
 		 * @var string
 		 */
 		protected $action_prefix = 'vsp';
 
 		/**
-		 * Array of ajax actions
-		 *
-		 * @example array('ajax_action_1' => true,'ajax_action_2' => false)
-		 *          if value set to true then it runs for both loggedout / logged in users
-		 *          if value set to false then it runs only for the logged in user
+		 * Ajax actions
 		 *
 		 * @var array
 		 */
@@ -48,7 +42,6 @@ if ( ! class_exists( 'Ajax' ) ) {
 				$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
 				do_action( $_REQUEST['hook_slug'] . '_handle_addon_request', $this );
 			}
-
 			$this->json_error();
 		}
 

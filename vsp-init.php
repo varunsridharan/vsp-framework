@@ -59,8 +59,8 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 			$meta['Framework Version']     = $vsp_loaded['Version'];
 			$meta['Textdomain']            = $vsp_loaded['TextDomain'];
 			$meta['DomainPath']            = $vsp_loaded['DomainPath'];
-			$meta['Framework Plugin Path'] = vsp_censor_path( $vsp_loaded['plugin_path'] );
-			$meta['Framework Path']        = vsp_censor_path( $vsp_loaded['framework_path'] );
+			$meta['Framework Plugin Path'] = $vsp_loaded['plugin_path'];
+			$meta['Framework Path']        = $vsp_loaded['framework_path'];
 			$meta['Framework Included']    = self::$data;
 			$_meta['VSP Framework']        = $meta;
 			return $_meta;
@@ -204,8 +204,8 @@ if ( ! function_exists( 'vsp_register_plugin' ) ) {
 	 * @return bool
 	 */
 	function vsp_register_plugin( $callback = [] ) {
-		$framework = VSP_Framework_Loader::instance();
-		return $framework->register_callback( $callback );
+		return VSP_Framework_Loader::instance()
+			->register_callback( $callback );
 	}
 }
 
@@ -218,5 +218,20 @@ if ( ! function_exists( 'vsp_force_load' ) ) {
 	function vsp_force_load() {
 		VSP_Framework_Loader::instance()
 			->load_framework();
+	}
+}
+
+if ( ! function_exists( 'vsp_force_load_libs' ) ) {
+	/**
+	 * Loads Its libs.
+	 *
+	 * @return bool
+	 */
+	function vsp_force_load_libs() {
+		if ( file_exists( __DIR__ . 'vendor/autoload.php' ) ) {
+			include __DIR__ . 'vendor/autoload.php';
+			return true;
+		}
+		return false;
 	}
 }

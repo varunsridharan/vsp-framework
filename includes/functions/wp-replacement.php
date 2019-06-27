@@ -6,11 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'vsp_slashit' ) ) {
 	/**
-	 * @param string $path .
+	 * @param string $path
 	 *
 	 * @return string
-	 * @uses trailingslashit
-	 *
 	 */
 	function vsp_slashit( $path ) {
 		return trailingslashit( $path );
@@ -19,7 +17,7 @@ if ( ! function_exists( 'vsp_slashit' ) ) {
 
 if ( ! function_exists( 'vsp_unslashit' ) ) {
 	/**
-	 * @param string $path .
+	 * @param string $path
 	 *
 	 * @return string
 	 */
@@ -64,68 +62,11 @@ if ( ! function_exists( 'vsp_get_cache' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_has_cache' ) ) {
-	/**
-	 * @param string $key
-	 *
-	 * @return mixed
-	 */
-	function vsp_has_cache( $key ) {
-		return wponion_has_cache( $key );
-	}
-}
-
 if ( ! function_exists( 'vsp_delete_cache' ) ) {
 	/**
 	 * @param string $key
 	 */
 	function vsp_delete_cache( $key ) {
 		wponion_delete_cache( $key );
-	}
-}
-
-if ( ! function_exists( 'vsp_fix_title' ) ) {
-	/**
-	 * @param $title .
-	 *
-	 * @return string
-	 */
-	function vsp_fix_title( $title ) {
-		return sanitize_title( $title );
-	}
-}
-
-if ( ! function_exists( 'vsp_get_current_user' ) ) {
-	/**
-	 * Gets current user information.
-	 *
-	 * @param bool $user_role_only
-	 *
-	 * @return mixed|string|\WP_User
-	 */
-	function vsp_get_current_user( $user_role_only = true ) {
-		return \VSP\Helper::current_user( $user_role_only );
-	}
-}
-
-if ( ! function_exists( 'vsp_get_current_user_id' ) ) {
-	/**
-	 * Gets current wp user id.
-	 *
-	 * @return int
-	 */
-	function vsp_get_current_user_id() {
-		return \VSP\Helper::current_user_id();
-	}
-}
-
-if ( ! function_exists( 'vsp_wp_user_roles' ) ) {
-	/**
-	 * Gets all wp user roles
-	 *
-	 * @return array
-	 */
-	function vsp_wp_user_roles() {
-		return \VSP\Helper::get_user_roles();
 	}
 }

@@ -18,7 +18,7 @@ trait String_Helper {
 	 *
 	 * @var string
 	 */
-	protected static $mb_encoding = 'UTF-8';
+	protected static $mb_enc = 'UTF-8';
 
 	/**
 	 * Returns true if the haystack string starts with needle
@@ -35,7 +35,7 @@ trait String_Helper {
 			if ( '' === $needle ) {
 				return true;
 			}
-			return 0 === mb_strpos( $haystack, $needle, 0, self::$mb_encoding );
+			return 0 === mb_strpos( $haystack, $needle, 0, self::$mb_enc );
 		} else {
 			$needle = self::str_to_ascii( $needle );
 			if ( '' === $needle ) {
@@ -81,7 +81,7 @@ trait String_Helper {
 			return true;
 		}
 		if ( self::multibyte_loaded() ) {
-			return mb_substr( $haystack, -mb_strlen( $needle, self::$mb_encoding ), null, self::$mb_encoding ) === $needle;
+			return mb_substr( $haystack, -mb_strlen( $needle, self::$mb_enc ), null, self::$mb_enc ) === $needle;
 		} else {
 			$haystack = self::str_to_ascii( $haystack );
 			$needle   = self::str_to_ascii( $needle );
@@ -106,7 +106,7 @@ trait String_Helper {
 			if ( '' === $needle ) {
 				return false;
 			}
-			return false !== mb_strpos( $haystack, $needle, 0, self::$mb_encoding );
+			return false !== mb_strpos( $haystack, $needle, 0, self::$mb_enc );
 		} else {
 			$needle = self::str_to_ascii( $needle );
 			if ( '' === $needle ) {
@@ -132,11 +132,11 @@ trait String_Helper {
 	public static function str_truncate( $string, $length, $omission = '...' ) {
 		if ( self::multibyte_loaded() ) {
 			// bail if string doesn't need to be truncated
-			if ( mb_strlen( $string, self::$mb_encoding ) <= $length ) {
+			if ( mb_strlen( $string, self::$mb_enc ) <= $length ) {
 				return $string;
 			}
-			$length -= mb_strlen( $omission, self::$mb_encoding );
-			return mb_substr( $string, 0, $length, self::$mb_encoding ) . $omission;
+			$length -= mb_strlen( $omission, self::$mb_enc );
+			return mb_substr( $string, 0, $length, self::$mb_enc ) . $omission;
 		} else {
 			$string = self::str_to_ascii( $string );
 			// bail if string doesn't need to be truncated
@@ -146,36 +146,6 @@ trait String_Helper {
 			$length -= strlen( $omission );
 			return substr( $string, 0, $length ) . $omission;
 		}
-	}
-
-	/**
-	 * Converts Simple String Into Boolean
-	 *
-	 * @param $str
-	 *
-	 * @return bool
-	 * @static
-	 */
-	public static function to_bool( $str ) {
-		$return = false;
-		switch ( strtolower( $str ) ) {
-			case 'on':
-			case '1':
-			case 'yes':
-			case 'true':
-			case true:
-				$return = true;
-				break;
-			case 'off':
-			case '0':
-			case 'no':
-			case 'false':
-			case false:
-			case null:
-				$return = false;
-				break;
-		}
-		return $return;
 	}
 
 	/**
@@ -197,16 +167,12 @@ trait String_Helper {
 
 		if ( ( $bytes >= 0 ) && ( $bytes < $kilobyte ) ) {
 			return $bytes . ' B';
-
 		} elseif ( ( $bytes >= $kilobyte ) && ( $bytes < $megabyte ) ) {
 			return round( $bytes / $kilobyte, $precision ) . ' KB';
-
 		} elseif ( ( $bytes >= $megabyte ) && ( $bytes < $gigabyte ) ) {
 			return round( $bytes / $megabyte, $precision ) . ' MB';
-
 		} elseif ( ( $bytes >= $gigabyte ) && ( $bytes < $terabyte ) ) {
 			return round( $bytes / $gigabyte, $precision ) . ' GB';
-
 		} elseif ( $bytes >= $terabyte ) {
 			return round( $bytes / $terabyte, $precision ) . ' TB';
 		} else {

@@ -74,15 +74,6 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 		}
 
 		/**
-		 * Returns all instance
-		 *
-		 * @return array
-		 */
-		protected function get_all_instances() {
-			return $this->instances;
-		}
-
-		/**
 		 * Creats a new instance for a given class
 		 *
 		 * @param        $key

@@ -2,6 +2,7 @@
 
 namespace VSP\Core\Traits;
 
+use VSP\Helper;
 use WPOnion\Cache_Not_Found;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +32,7 @@ trait WP {
 		}
 
 		if ( null === $current_role ) {
-			$current_role = vsp_get_current_user( true );
+			$current_role = Helper::current_user( true );
 		}
 
 		return ( $role === $current_role ) ? true : false;

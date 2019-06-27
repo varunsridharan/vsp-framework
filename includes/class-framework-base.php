@@ -89,7 +89,7 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		}
 
 		/**
-		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
+		 * Sets Core Values like
 		 *
 		 * @param string $key .
 		 * @param string $default .
@@ -106,8 +106,8 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		/**
 		 * Merges And sets the given args
 		 *
-		 * @param array $options .
-		 * @param array $defaults .
+		 * @param array $options
+		 * @param array $defaults
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
 			$defaults              = empty( $defaults ) ? $this->default_options : $defaults;
@@ -149,11 +149,8 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 * @return string|bool
 		 */
 		public function slug( $type = 'slug' ) {
-			$return = false;
+			$return = $this->slug;
 			switch ( $type ) {
-				case 'slug':
-					$return = $this->slug;
-					break;
 				case 'db':
 					$return = $this->db_slug;
 					break;
@@ -176,8 +173,8 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		/**
 		 * Triggers Given function
 		 *
-		 * @param string $type .
-		 * @param array  $args .
+		 * @param string $type
+		 * @param array  $args
 		 *
 		 * @return mixed
 		 */

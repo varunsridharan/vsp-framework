@@ -43,19 +43,6 @@ if ( ! function_exists( 'vsp_is_screen' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_current_page_url' ) ) {
-	/**
-	 * Returns Current Page URL
-	 *
-	 * @return string
-	 */
-	function vsp_current_page_url() {
-		$page_url = ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ) ? 'https' : 'http';
-		$port     = ( isset( $_SERVER['SERVER_PORT'] ) && '80' !== $_SERVER['SERVER_PORT'] ) ? ':' . $_SERVER['SERVER_PORT'] : '';
-		return $page_url . '://' . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
-	}
-}
-
 if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 	/**
 	 * Returns Cache Time in numeric values
@@ -63,8 +50,6 @@ if ( ! function_exists( 'vsp_get_time_in_seconds' ) ) {
 	 * @param string $time .
 	 *
 	 * @return float|int
-	 * @example vsp_get_time_in_seconds('1_minute') => 60
-	 *
 	 */
 	function vsp_get_time_in_seconds( $time ) {
 		$times = explode( '_', $time );
@@ -169,9 +154,8 @@ if ( ! function_exists( 'vsp_doing_it_wrong' ) ) {
 
 if ( ! function_exists( 'vsp_get_logger' ) ) {
 	/**
-	 * Get a shared logger instance.
-	 *
-	 * Use the vsp_logging_class filter to change the logging class. You may provide one of the following:
+	 * Use the vsp_logging_class filter to change the logging class.
+	 * You may provide one of the following:
 	 *     - a class name which will be instantiated as `new $class` with no arguments
 	 *     - an instance which will be used directly as the logger
 	 * In either case, the class or instance *must* implement WC_Logger_Interface.
@@ -180,8 +164,7 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 	 * @param bool $file_name
 	 * @param bool $filesize
 	 *
-	 * @return mixed|\VSP\Modules\Logger
-	 * @see VSP_Logger_Interface
+	 * @return \VSP\Modules\Logger
 	 *
 	 */
 	function vsp_get_logger( $subpath = false, $file_name = null, $filesize = false ) {
@@ -203,7 +186,7 @@ if ( ! function_exists( 'vsp_logger' ) ) {
 	/**
 	 * Returns An Valid Instance Of Logger To Handle Logs From VSP Framework.
 	 *
-	 * @return \\VSP\Modules\Logger
+	 * @return \VSP\Modules\Logger
 	 */
 	function vsp_logger() {
 		static $logger = null;
@@ -258,9 +241,7 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 
 if ( ! function_exists( 'vsp_date_format' ) ) {
 	/**
-	 * WooCommerce Date Format - Allows to change date format for everything WooCommerce.
-	 *
-	 * @return string
+	 * @return mixed
 	 */
 	function vsp_date_format() {
 		return apply_filters( 'vsp_date_format', get_option( 'date_format' ) );
@@ -269,29 +250,10 @@ if ( ! function_exists( 'vsp_date_format' ) ) {
 
 if ( ! function_exists( 'vsp_time_format' ) ) {
 	/**
-	 * WooCommerce Time Format - Allows to change time format for everything WooCommerce.
-	 *
-	 * @return string
+	 * @return mixed
 	 */
 	function vsp_time_format() {
 		return apply_filters( 'vsp_time_format', get_option( 'time_format' ) );
-	}
-}
-
-if ( ! function_exists( 'vsp_censor_path' ) ) {
-	/**
-	 * Censors Actual Path and just provides path after that
-	 *
-	 * @param string $path
-	 * @param bool   $actual_path
-	 *
-	 * @return mixed
-	 * @example /var/www/html/wp-content/plugins will be returned as /wp-content/plugins
-	 *
-	 */
-	function vsp_censor_path( $path = '', $actual_path = false ) {
-		$actual_path = ( false === $actual_path ) ? ABSPATH : $actual_path;
-		return str_replace( vsp_unslashit( $actual_path ), '', $path );
 	}
 }
 
@@ -324,54 +286,6 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 				return __( 'Unknown error', 'vsp-framework' );
 				break;
 		}
-	}
-}
-
-if ( ! function_exists( 'vsp_is_callable' ) ) {
-	/**
-	 * @param $callback
-	 *
-	 * @return bool
-	 */
-	function vsp_is_callable( $callback ) {
-		if ( is_callable( $callback ) ) {
-			return true;
-		}
-		if ( is_string( $callback ) && has_action( $callback ) ) {
-			return true;
-		}
-		if ( is_string( $callback ) && has_filter( $callback ) ) {
-			return true;
-		}
-		return false;
-	}
-}
-if ( ! function_exists( 'vsp_callback' ) ) {
-	/**
-	 * @param       $callback
-	 * @param array $args
-	 *
-	 * @return bool|false|mixed|string
-	 */
-	function vsp_callback( $callback, $args = array() ) {
-		$data = false;
-		try {
-			if ( is_callable( $callback ) ) {
-				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
-				$data = call_user_func_array( $callback, $args );
-			} elseif ( is_string( $callback ) && has_filter( $callback ) ) {
-				$data = call_user_func_array( 'apply_filters', array_merge( array( $callback ), $args ) );
-			} elseif ( is_string( $callback ) && has_action( $callback ) ) {
-				ob_start();
-				$args = ( ! is_array( $args ) ) ? array( $args ) : $args;
-				echo call_user_func_array( 'do_action', array_merge( array( $callback ), $args ) );
-				$data = ob_get_clean();
-				ob_flush();
-			}
-		} catch ( Exception $exception ) {
-			$data = false;
-		}
-		return $data;
 	}
 }
 

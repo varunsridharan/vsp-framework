@@ -7,10 +7,7 @@ if ( ! function_exists( 'vsp_ajax_action' ) ) {
 	 * @return bool
 	 */
 	function vsp_ajax_action() {
-		if ( vsp_is_request( 'ajax' ) ) {
-			return ( isset( $_REQUEST['action'] ) ) ? $_REQUEST['action'] : false;
-		}
-		return false;
+		return ( vsp_is_request( 'ajax' ) && isset( $_REQUEST['action'] ) ) ? $_REQUEST['action'] : false;
 	}
 }
 

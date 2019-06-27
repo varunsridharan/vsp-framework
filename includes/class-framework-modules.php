@@ -21,14 +21,14 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		/**
 		 * Logging
 		 *
-		 * @var null|\VSP\Modules\Logger
+		 * @var \VSP\Modules\Logger
 		 */
 		private $logging = null;
 
 		/**
 		 * Stores Autoloader
 		 *
-		 * @var null
+		 * @var \Varunsridharan\PHP\Autoloader
 		 * @access
 		 */
 		private $autoloader = null;
@@ -47,8 +47,6 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 		/**
 		 * Function Used to init Addons Module
 		 *
-		 * @uses VSP_Framework::addons_init_before
-		 * @uses VSP_Framework::addons_init
 		 * @hook addons_init_before
 		 * @hook addons_inti
 		 */

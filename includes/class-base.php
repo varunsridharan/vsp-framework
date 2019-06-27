@@ -30,27 +30,25 @@ if ( ! class_exists( 'Base' ) ) {
 
 		/**
 		 * Class Clone.
-		 *
-		 * @throws \Exception
 		 */
 		public function __clone() {
-			vsp_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
+			vsp_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
+				->version() );
 		}
 
 		/**
-		 * Class WakeUP.
-		 *
-		 * @throws \Exception
+		 * Class Wakeup.
 		 */
 		public function __wakeup() {
-			vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
+			vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
+				->version() );
 		}
 
 		/**
 		 * Merges And sets the given args
 		 *
-		 * @param array $options .
-		 * @param array $defaults .
+		 * @param array $options
+		 * @param array $defaults
 		 */
 		protected function set_args( $options = array(), $defaults = array() ) {
 			$defaults      = empty( $defaults ) ? $this->default_options : $defaults;
@@ -61,8 +59,8 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Merges given array
 		 *
-		 * @param array $new .
-		 * @param array $defaults .
+		 * @param array $new
+		 * @param array $defaults
 		 *
 		 * @return array
 		 */
@@ -74,8 +72,8 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Returns value from options array
 		 *
-		 * @param string $key .
-		 * @param bool   $default .
+		 * @param string $key
+		 * @param bool   $default
 		 *
 		 * @return bool|mixed
 		 */
@@ -86,18 +84,18 @@ if ( ! class_exists( 'Base' ) ) {
 		/**
 		 * Sets given value for the option
 		 *
-		 * @param string                          $key .
-		 * @param string|object|array|int|integer $value .
+		 * @param string $key
+		 * @param mixed  $value
 		 */
 		protected function set_option( $key, $value ) {
 			$this->options[ $key ] = $value;
 		}
 
 		/**
-		 * @return \VSP\Framework|\VSP\Base
+		 * @return \VSP\Framework
 		 */
 		public function plugin() {
-			return ( $this instanceof \VSP\Framework ) ? $this : $this->get_instance( self::$framework_instance[ static::class ] );
+			return ( $this instanceof Framework ) ? $this : $this->get_instance( self::$framework_instance[ static::class ] );
 		}
 
 		/**
@@ -106,8 +104,6 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @param string $ex_path
 		 *
 		 * @return string
-		 * @see \plugins_url()
-		 *
 		 */
 		public function plugin_url( $ex_path = '/' ) {
 			$file = $this->plugin()
@@ -121,8 +117,6 @@ if ( ! class_exists( 'Base' ) ) {
 		 * @param string $ex_path
 		 *
 		 * @return string
-		 * @see \plugin_dir_path()
-		 *
 		 */
 		public function plugin_path( $ex_path = '' ) {
 			$file = $this->plugin()

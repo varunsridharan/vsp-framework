@@ -103,7 +103,6 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 			exit();
 		}
 
-
 		/**
 		 * Forces a log file as downloadable.
 		 *
@@ -120,7 +119,6 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 			} else {
 				echo 'File Not Found';
 			}
-
 		}
 	}
 }
