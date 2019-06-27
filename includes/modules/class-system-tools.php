@@ -19,7 +19,7 @@ if ( class_exists( '\VSP\Modules\System_Tools' ) ) {
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 1.0
  */
-class System_Tools extends Base implements Plugin_Settings {
+class System_Tools extends Base {
 	/**
 	 * Default_options
 	 *
@@ -44,9 +44,10 @@ class System_Tools extends Base implements Plugin_Settings {
 	 * @param array $options
 	 */
 	public function __construct( $options = array() ) {
-		parent::__construct( $options );
-		add_action( $this->plugin()
-				->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ), 999 );
+		$this->set_args( $options );
+		$slug = $this->plugin()
+			->slug( 'hook' );
+		add_action( $slug . '_settings_options', array( &$this, 'options' ), 999 );
 	}
 
 	/**
@@ -78,8 +79,8 @@ class System_Tools extends Base implements Plugin_Settings {
 	}
 
 	/**
-	 * @param       $given_data
-	 * @param array $default
+	 * @param string|array|bool $given_data
+	 * @param array             $default
 	 *
 	 * @return array
 	 */
@@ -108,15 +109,11 @@ class System_Tools extends Base implements Plugin_Settings {
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
 			) );
-			if ( true === $is_page ) {
-				$args->container( $menu['name'], $menu['title'], $menu['icon'] )
+
+			$container = ( true === $is_page ) ? $args : $args->container( $this->mp_slug );
+			if ( wpo_is_container( $container ) || wpo_is( $container ) ) {
+				$container->container( $menu['name'], $menu['title'], $menu['icon'] )
 					->callback( array( &$this, 'output_logs_info' ) );
-			} else {
-				$base = $args->container( $this->mp_slug );
-				if ( $base instanceof \WPO\Container ) {
-					$base->container( $menu['name'], $menu['title'], $menu['icon'] )
-						->callback( array( &$this, 'output_logs_info' ) );
-				}
 			}
 		}
 		return $args;

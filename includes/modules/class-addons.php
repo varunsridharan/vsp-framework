@@ -36,6 +36,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @param array $options .
 		 */
 		public function __construct( $options = array() ) {
+			$this->set_args( $options );
 			self::$default_addon_cats      = array(
 				'all'      => __( 'All', 'vsp-framework' ),
 				'active'   => __( 'Active', 'vsp-framework' ),
@@ -47,14 +48,13 @@ if ( ! class_exists( 'Addons' ) ) {
 				'exists'    => __( 'In Active', 'vsp-framework' ),
 				'active'    => __( 'Active', 'vsp-framework' ),
 			);
-			parent::__construct( $options );
-
-			$this->headers = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
-			$slug          = $this->plugin()
+			$this->headers                 = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
+			$slug                          = $this->plugin()
 				->slug( 'hook' );
-			$hook          = $this->option( 'hook_priority' );
+			$hook                          = $this->option( 'hook_priority' );
 			$this->active_addons();
-			add_action( 'wponion_loaded', array( $this, 'load_active_addons' ) );
+			$this->load_active_addons();
+
 			if ( vsp_is_admin() ) {
 				add_action( $slug . '_settings_options', array( $this, 'link_with_wponion' ), $hook );
 			}
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Addons' ) ) {
 			$addon  = $ajax->post( 'addon' );
 			$action = $ajax->request( 'addon_action' );
 
-			if ( !empty( $addon ) ) {
+			if ( ! empty( $addon ) ) {
 				$ajax->error( __( 'Invalid Addon', 'vsp-framework' ) );
 			}
 

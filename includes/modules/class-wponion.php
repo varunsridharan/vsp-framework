@@ -23,15 +23,22 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		protected $default_options = array( 'option_name' => false );
 
 		/**
-		 * @uses \WPOnion\Modules\Settings
+		 * WPOnion constructor.
+		 *
+		 * @param array $options
+		 *
+		 * @uses \WPOnion\Modules\Settings\Settings
 		 */
-		public function wponion() {
+		public function __construct( $options = array() ) {
+			$this->set_args( $options );
+
 			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
 			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
 			$this->options['extra_js'][] = 'vsp_load_core_assets';
 			$options                     = wponion_builder();
-			$this->action( 'settings_options', $options );
-			if ( $options instanceof \WPO\Builder ) {
+			$this->plugin()
+				->action( 'settings_options', $options );
+			if ( wpo_is( $options ) ) {
 				wponion_settings( $this->options, $options );
 			}
 		}

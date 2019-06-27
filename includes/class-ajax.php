@@ -40,13 +40,6 @@ if ( ! class_exists( 'Ajax' ) ) {
 		);
 
 		/**
-		 * VSP_Core_Ajax constructor.
-		 */
-		public function __construct() {
-			parent::__construct();
-		}
-
-		/**
 		 * Handles Ajax Request
 		 */
 		public function addon_action() {
@@ -66,7 +59,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
 				Modules\System_Logs::download_log( $_REQUEST['handle'] );
 			} else {
-				echo '<h2>' . __( 'Log File Not Found', 'vsp-framework' ) . '</h2>';
+				$this->error( __( 'Log File Not Found' ) );
 			}
 			wp_die();
 		}

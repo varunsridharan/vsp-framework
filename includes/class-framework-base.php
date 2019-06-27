@@ -80,6 +80,15 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		);
 
 		/**
+		 * Framework_Base constructor.
+		 *
+		 * @param array $options
+		 */
+		public function __construct( $options = array() ) {
+			$this->set_args( $options );
+		}
+
+		/**
 		 * Sets Core Values like (plugin_slug,db_slug,hook_slug) and more
 		 *
 		 * @param string $key .
@@ -162,6 +171,41 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 */
 		public function plugin_name() {
 			return $this->name;
+		}
+
+		/**
+		 * Triggers Given function
+		 *
+		 * @param string $type .
+		 * @param array  $args .
+		 *
+		 * @return mixed
+		 */
+		private function action_filter( $type = '', $args = array() ) {
+			$args[0] = $this->plugin()
+					->slug( 'hook' ) . '_' . $args[0];
+			return call_user_func_array( $type, $args );
+		}
+
+		/**
+		 * Triggers apply_filters
+		 *
+		 * @return mixed
+		 * @uses \apply_filters()
+		 */
+		public function filter() {
+			return $this->action_filter( 'apply_filters', func_get_args() );
+		}
+
+		/**
+		 * Triggers do_action
+		 *
+		 * @return mixed
+		 * @uses \do_action()
+		 *
+		 */
+		public function action() {
+			return $this->action_filter( 'do_action', func_get_args() );
 		}
 	}
 }

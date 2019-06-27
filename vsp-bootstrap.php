@@ -38,24 +38,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'vsp_version' ) ) {
-	/**
-	 * Provides The Version Number For VSP
-	 *
-	 * @return string
-	 */
-	function vsp_version() {
-		return '0.6';
-	}
-
-	$upload_dir = wp_upload_dir( null, false );
-	defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', vsp_version() );
-	defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
-	defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
-	defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
-	defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
-
+if ( ! defined( 'VSP_VERSION' ) ) {
 	try {
+		$upload_dir = wp_upload_dir( null, false );
+		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.6' );
+		defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
+		defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
+		defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
+		defined( 'VSP_LOG_DIR' ) || define( 'VSP_LOG_DIR', $upload_dir['basedir'] . '/vsp-logs/' );
+
 		if ( file_exists( VSP_PATH . 'vendor/autoload.php' ) ) {
 			require_once VSP_PATH . 'vendor/autoload.php';
 		}
@@ -63,14 +54,14 @@ if ( ! function_exists( 'vsp_version' ) ) {
 		if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
 			throw new ErrorException( __( 'Framework Autoloader Not Found' ) );
 		}
-		$autoloader = new \Varunsridharan\PHP\Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
+
+		new \Varunsridharan\PHP\Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
 			'prepend' => true,
 		) );
 
 		require_once __DIR__ . '/vsp-functions.php';
 		require_once __DIR__ . '/vsp-hooks.php';
 
-		do_action( 'vsp_framework_load_lib_integrations' );
 		do_action( 'vsp_framework_loaded' );
 
 		if ( vsp_is_ajax() ) {

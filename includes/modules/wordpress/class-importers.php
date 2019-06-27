@@ -23,13 +23,6 @@ if ( ! class_exists( '\VSP\Modules\WordPress\Importers' ) ) {
 		protected static $_importers = array();
 
 		/**
-		 * VSP_WP_Importers constructor.
-		 */
-		public function __construct() {
-			parent::__construct();
-		}
-
-		/**
 		 * Registers Importers
 		 *
 		 * @param string $slug .

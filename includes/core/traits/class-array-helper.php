@@ -14,17 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 trait Array_Helper {
 	/**
-	 * Converts PHP Array into html attributes
-	 *
-	 * @param array $array .
-	 *
-	 * @return string
-	 */
-	public static function array_to_html_attr( $array = array() ) {
-		return wponion_array_to_html_attributes( $array );
-	}
-
-	/**
 	 * Converts JSON String To Array
 	 *
 	 * @param string $data

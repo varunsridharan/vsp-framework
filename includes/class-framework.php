@@ -136,18 +136,6 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		}
 
 		/**
-		 * Define constant if not already set.
-		 *
-		 * @param string      $key Constant name.
-		 * @param string|bool $value Constant value.
-		 */
-		public function define( $key, $value = '' ) {
-			if ( ! defined( $key ) ) {
-				define( $key, $value );
-			}
-		}
-
-		/**
 		 * @see   VSP_Framework::__register_hooks
 		 */
 		protected function register_hooks() {

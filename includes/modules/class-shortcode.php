@@ -44,12 +44,12 @@ abstract class Shortcode extends Base {
 	protected $content = null;
 
 	/**
-	 * VSP_Shortcode constructor.
+	 * Shortcode constructor.
 	 *
 	 * @param array $options
 	 */
 	public function __construct( $options = array() ) {
-		parent::__construct( $options );
+		$this->set_args( $options );
 		add_shortcode( $this->shortcode_name, array( &$this, 'render_shortcode' ) );
 		if ( empty( $this->defaults ) ) {
 			$this->defaults = $this->defaults();

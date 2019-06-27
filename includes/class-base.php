@@ -29,14 +29,18 @@ if ( ! class_exists( 'Base' ) ) {
 		protected $default_options = array();
 
 		/**
-		 * Clone
+		 * Class Clone.
+		 *
+		 * @throws \Exception
 		 */
 		public function __clone() {
 			vsp_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
 		}
 
 		/**
-		 * WakeUp
+		 * Class WakeUP.
+		 *
+		 * @throws \Exception
 		 */
 		public function __wakeup() {
 			vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->option( 'version' ) );
@@ -53,28 +57,6 @@ if ( ! class_exists( 'Base' ) ) {
 			$this->options = empty( $options ) ? array() : $options;
 			$this->options = $this->parse_args( $this->options, $defaults );
 		}
-
-		/**
-		 * VSP_Class_Handler constructor.
-		 *
-		 * @param array $options .
-		 */
-		public function __construct( $options = array() ) {
-			$this->set_args( $options );
-
-			if ( did_action( 'wponion_loaded' ) ) {
-				$this->wponion();
-			} else {
-				add_action( 'wponion_loaded', array( &$this, 'wponion' ) );
-			}
-		}
-
-		/**
-		 * On WPOnion Loaded.
-		 */
-		public function wponion() {
-		}
-
 
 		/**
 		 * Merges given array
@@ -119,62 +101,6 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
-		 * Triggers Given function
-		 *
-		 * @param string $type .
-		 * @param array  $args .
-		 *
-		 * @return mixed
-		 */
-		private function action_filter( $type = '', $args = array() ) {
-			$args[0] = $this->plugin()
-					->slug( 'hook' ) . '_' . $args[0];
-			return call_user_func_array( $type, $args );
-		}
-
-		/**
-		 * Triggers apply_filters
-		 *
-		 * @return mixed
-		 * @uses \apply_filters()
-		 */
-		public function filter() {
-			return $this->action_filter( 'apply_filters', func_get_args() );
-		}
-
-		/**
-		 * Triggers do_action
-		 *
-		 * @return mixed
-		 * @uses \do_action()
-		 *
-		 */
-		public function action() {
-			return $this->action_filter( 'do_action', func_get_args() );
-		}
-
-		/**
-		 * Triggers add_filters
-		 *
-		 * @return mixed
-		 * @uses \add_filters()
-		 */
-		public function add_filter() {
-			return $this->action_filter( 'add_filter', func_get_args() );
-		}
-
-		/**
-		 * Triggers add_action
-		 *
-		 * @return mixed
-		 * @uses \add_action()
-		 *
-		 */
-		public function add_action() {
-			return $this->action_filter( 'add_action', func_get_args() );
-		}
-
-		/**
 		 * Get the plugin url.
 		 *
 		 * @param string $ex_path
@@ -214,20 +140,6 @@ if ( ! class_exists( 'Base' ) ) {
 		public function load_file( $file = '', $is_internal = true ) {
 			$file = ( $is_internal ) ? $this->plugin_path( $file ) : $file;
 			vsp_load_file( $file );
-		}
-
-		/**
-		 * Get Ajax URL.
-		 *
-		 * @param array  $query
-		 * @param string $scheme
-		 *
-		 * @return string
-		 * @see \admin_url()
-		 *
-		 */
-		public function ajax_url( $query = array(), $scheme = 'relative' ) {
-			return ( is_array( $query ) ) ? add_query_arg( $query, admin_url( 'admin-ajax.php', $scheme ) ) : admin_url( 'admin-ajax.php?' . $query, $scheme );
 		}
 	}
 }
