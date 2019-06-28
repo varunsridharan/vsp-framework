@@ -31,81 +31,12 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		protected static $_instances = array();
 
 		/**
-		 * is_option
+		 * Stores All Options.
 		 *
-		 * @var bool
+		 * @var array
+		 * @access
 		 */
-		protected $is_option = false;
-
-		/**
-		 * transient_limit
-		 *
-		 * @var int
-		 */
-		protected $transient_limit = 170;
-
-		/**
-		 * option_limit
-		 *
-		 * @var int
-		 */
-		protected $option_limit = 190;
-
-		/**
-		 * option_prefix
-		 *
-		 * @var string
-		 */
-		protected $option_prefix = '';
-
-		/**
-		 * option_surfix
-		 *
-		 * @var string
-		 */
-		protected $option_surfix = '';
-
-		/**
-		 * transient_prefix
-		 *
-		 * @var string
-		 */
-		protected $transient_prefix = '';
-
-		/**
-		 * transient_surfix
-		 *
-		 * @var string
-		 */
-		protected $transient_surfix = '';
-
-		/**
-		 * option_version
-		 *
-		 * @var float
-		 */
-		protected $option_version = 1.0;
-
-		/**
-		 * transient_version
-		 *
-		 * @var float
-		 */
-		protected $transient_version = 1.0;
-
-		/**
-		 * option_auto_delete
-		 *
-		 * @var bool
-		 */
-		protected $option_auto_delete = false;
-
-		/**
-		 * transient_auto_delete
-		 *
-		 * @var bool
-		 */
-		protected $transient_auto_delete = false;
+		protected $options = array();
 
 		/**
 		 * Transient_Api constructor.
@@ -113,7 +44,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param array $options
 		 */
 		public function __construct( $options = array() ) {
-			$options = wp_parse_args( $options, array(
+			$this->options = wp_parse_args( $options, array(
 				// Transients
 				'transient_version'     => 1.0,
 				'transient_auto_delete' => false,
@@ -127,12 +58,16 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 				// Global Config.
 				'is_option'             => false,
 			) );
+		}
 
-			foreach ( $options as $k => $v ) {
-				if ( isset( $this->{$k} ) ) {
-					$this->{$k} = $v;
-				}
-			}
+		/**
+		 * @param      $key
+		 * @param bool $default
+		 *
+		 * @return bool|mixed
+		 */
+		protected function option( $key, $default = false ) {
+			return ( isset( $this->options[ $key ] ) ) ? $this->options[ $key ] : $default;
 		}
 
 		/**
@@ -157,10 +92,10 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 */
 		public function get_key( $key = '', $is_option = false ) {
 			if ( true === $is_option ) {
-				return $this->option_prefix . $key . $this->option_surfix;
+				return $this->option( 'option_prefix', '' ) . $key . $this->option( 'option_surfix', '' );
 			}
 
-			return $this->transient_prefix . $key . $this->transient_surfix;
+			return $this->option( 'transient_prefix', '' ) . $key . $this->option( 'transient_surfix', '' );
 		}
 
 		/**
@@ -169,15 +104,9 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $key
 		 *
 		 * @return string
-		 * @uses \md5()
-		 * @uses \VS_Transient_WP_Api::check_length()
-		 *
 		 */
 		protected function validate_length( $key = '' ) {
-			if ( $this->check_length( $key ) === false ) {
-				return $this->validate_length( md5( $key ) );
-			}
-			return $key;
+			return ( $this->check_length( $key ) === false ) ? $this->validate_length( md5( $key ) ) : $key;
 		}
 
 		/**
@@ -188,16 +117,13 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $key
 		 *
 		 * @return bool
-		 * @uses \VS_Transient_WP_Api::$transient_limit
-		 * @uses \VS_Transient_WP_Api::$option_limit
-		 *
 		 */
 		protected function check_length( $key = '' ) {
-			if ( true === $this->is_option ) {
-				return ( strlen( $this->get_key( $key ) ) > $this->option_limit ) ? false : true;
+			if ( true === $this->option( 'is_option' ) ) {
+				return ( strlen( $this->get_key( $key ) ) > $this->option( 'option_limit' ) ) ? false : true;
 			}
 
-			return ( strlen( $this->get_key( $key ) ) > $this->transient_limit ) ? false : true;
+			return ( strlen( $this->get_key( $key ) ) > $this->option( 'transient_limit' ) ) ? false : true;
 		}
 
 		/**
@@ -208,8 +134,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $autoload
 		 *
 		 * @return bool
-		 * @uses \add_option()
-		 *
 		 */
 		protected function wp_add_option( $key = '', $value = '', $autoload = 'no' ) {
 			return \add_option( $key, $value, '', $autoload );
@@ -223,8 +147,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $autoload
 		 *
 		 * @return bool
-		 * @uses \update_option()
-		 *
 		 */
 		protected function wp_update_option( $key = '', $value = '', $autoload = 'no' ) {
 			return \update_option( $key, $value, $autoload );
@@ -236,8 +158,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $key
 		 *
 		 * @return bool
-		 * @uses \delete_option()
-		 *
 		 */
 		protected function wp_delete_option( $key = '' ) {
 			return \delete_option( $key );
@@ -250,8 +170,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param bool   $default
 		 *
 		 * @return mixed|void
-		 * @uses \get_option()
-		 *
 		 */
 		protected function wp_get_option( $key = '', $default = false ) {
 			return \get_option( $key, $default );
@@ -265,8 +183,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param int $expiration
 		 *
 		 * @return bool
-		 * @uses \set_transient()
-		 *
 		 */
 		protected function wp_set_transient( $transient, $value, $expiration = 0 ) {
 			return \set_transient( $transient, $value, $expiration );
@@ -278,8 +194,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param $transient
 		 *
 		 * @return mixed
-		 * @uses \get_transient()
-		 *
 		 */
 		protected function wp_get_transient( $transient ) {
 			return \get_transient( $transient );
@@ -291,8 +205,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param $transient
 		 *
 		 * @return bool
-		 * @uses \delete_transient()
-		 *
 		 */
 		protected function wp_delete_transient( $transient ) {
 			return \delete_transient( $transient );
@@ -316,20 +228,14 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @param string $type
 		 *
 		 * @return bool|mixed
-		 * @uses \VS_Transient_WP_Api::$transient_version
-		 *
-		 * @uses \VS_Transient_WP_Api::$option_version
 		 */
 		protected function validate_version( $value, $type = '' ) {
 			if ( false === $value || empty( $value ) || is_null( $value ) ) {
 				return false;
 			}
 
-			if ( 'option' === $type ) {
-				return version_compare( $this->option_version, $value, '=' );
-			}
-
-			return version_compare( $this->transient_version, $value, '=' );
+			$key = ( 'option' === $type ) ? 'option_version' : 'transient_version';
+			return version_compare( $this->option( $key ), $value, '=' );
 		}
 
 		/**
@@ -355,7 +261,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return mixed
 		 */
 		public function force_set( $key = '', $value = '', $expiry = '' ) {
-			if ( true === $this->is_option ) {
+			if ( true === $this->option( 'is_option' ) ) {
 				return $this->update_option( $key, $value, $expiry );
 			}
 			$this->delete_transient( $key );
@@ -373,7 +279,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 			$key         = $this->key( $key, true );
 			$version_key = $this->get_version_key( $key );
 			$_status     = $this->wp_update_option( $key, $value, $status );
-			$this->wp_update_option( $version_key, $this->option_version, $status );
+			$this->wp_update_option( $version_key, $this->option( 'option_version' ), $status );
 			return $_status;
 		}
 
@@ -402,7 +308,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 			$key         = $this->key( $_key, false );
 			$version_key = $this->get_version_key( $key );
 			$_status     = $this->wp_set_transient( $key, $value, $expiry );
-			$this->wp_set_transient( $version_key, $this->option_version, $expiry );
+			$this->wp_set_transient( $version_key, $this->option( 'option_version' ), $expiry );
 			return $_status;
 		}
 
@@ -414,11 +320,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return bool
 		 */
 		public function set( $key = '', $value = '', $expiry = '' ) {
-			if ( true === $this->is_option ) {
-				return $this->set_option( $key, $value, $expiry );
-			}
-			return $this->set_transient( $key, $value, $expiry );
-
+			return ( true === $this->option( 'is_option' ) ) ? $this->set_option( $key, $value, $expiry ) : $this->set_transient( $key, $value, $expiry );
 		}
 
 		/**
@@ -432,7 +334,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 			$key         = $this->key( $_key, true );
 			$version_key = $this->get_version_key( $key );
 			$_status     = $this->wp_add_option( $key, $value, $status );
-			$this->wp_add_option( $version_key, $this->option_version, $status );
+			$this->wp_add_option( $version_key, $this->option( 'option_version' ), $status );
 			return $_status;
 		}
 
@@ -442,11 +344,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return mixed
 		 */
 		public function get( $key = '' ) {
-			if ( true === $this->is_option ) {
-				return $this->get_option( $key );
-			}
-
-			return $this->get_transient( $key );
+			return ( true === $this->option( 'is_option' ) ) ? $this->get_option( $key ) : $this->get_transient( $key );
 		}
 
 		/**
@@ -462,7 +360,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 				$this->delete_version_issue( $_key );
 				return false;
 			}
-
 			return $this->wp_get_option( $key );
 		}
 
@@ -488,10 +385,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return bool|void
 		 */
 		public function delete( $key ) {
-			if ( true === $this->is_option ) {
-				return $this->delete_option( $key );
-			}
-			return $this->delete_transient( $key );
+			return ( true === $this->option( 'is_option' ) ) ? $this->delete_option( $key ) : $this->delete_transient( $key );
 		}
 
 		/**
@@ -516,10 +410,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return bool
 		 */
 		public function update( $key, $value = '', $expiry = '' ) {
-			if ( $this->is_option ) {
-				return $this->update_option( $key, $value, $expiry );
-			}
-			return true;
+			return ( $this->option( 'is_option' ) ) ? $this->update_option( $key, $value, $expiry ) : true;
 		}
 
 		/**
@@ -531,11 +422,11 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Transient_Api' ) ) {
 		 * @return bool
 		 */
 		protected function delete_version_issue( $key, $type = '' ) {
-			if ( true === $this->option_auto_delete && 'option' === $type ) {
+			if ( true === $this->option( 'option_auto_delete' ) && 'option' === $type ) {
 				$this->delete_option( $key );
 			}
 
-			if ( true === $this->transient_auto_delete ) {
+			if ( true === $this->option( 'transient_auto_delete' ) ) {
 				return $this->delete_transient( $key );
 			}
 			return false;

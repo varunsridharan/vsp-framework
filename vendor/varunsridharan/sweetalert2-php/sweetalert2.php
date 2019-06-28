@@ -75,7 +75,6 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 	 * @method \SweetAlert2 onOpen( $onOpen = null )
 	 * @method \SweetAlert2 onClose( $onClose = null )
 	 * @method \SweetAlert2 onAfterClose( $onAfterClose = null )
-	 *
 	 * Custom Methods
 	 * @method \SweetAlert2 warning( $warning = true )
 	 * @method \SweetAlert2 success( $success = true )
@@ -84,85 +83,6 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 	 * @method \SweetAlert2 info( $info = true )
 	 */
 	class SweetAlert2 implements \JsonSerializable {
-		/**
-		 * Stores Default Values
-		 *
-		 * @var array
-		 * @access private
-		 * @static
-		 */
-		private $defaults = array(
-			'title'                  => true,
-			'titleText'              => true,
-			'html'                   => true,
-			'text'                   => true,
-			'type'                   => true,
-			'footer'                 => true,
-			'backdrop'               => true,
-			'toast'                  => true,
-			'target'                 => true,
-			'input'                  => true,
-			'width'                  => true,
-			'padding'                => true,
-			'background'             => true,
-			'position'               => true,
-			'grow'                   => true,
-			'customClass'            => true,
-			'timer'                  => true,
-			'animation'              => true,
-			'heightAuto'             => true,
-			'allowOutsideClick'      => true,
-			'allowEscapeKey'         => true,
-			'allowEnterKey'          => true,
-			'stopKeydownPropagation' => true,
-			'keydownListenerCapture' => true,
-			'showConfirmButton'      => true,
-			'showCancelButton'       => true,
-			'confirmButtonText'      => true,
-			'cancelButtonText'       => true,
-			'confirmButtonColor'     => true,
-			'cancelButtonColor'      => true,
-			'confirmButtonAriaLabel' => true,
-			'cancelButtonAriaLabel'  => true,
-			'buttonsStyling'         => true,
-			'reverseButtons'         => true,
-			'focusConfirm'           => true,
-			'focusCancel'            => true,
-			'showCloseButton'        => true,
-			'closeButtonAriaLabel'   => true,
-			'showLoaderOnConfirm'    => true,
-			'scrollbarPadding'       => true,
-			'preConfirm'             => true,
-			'imageUrl'               => true,
-			'imageWidth'             => true,
-			'imageHeight'            => true,
-			'imageAlt'               => true,
-			'inputPlaceholder'       => true,
-			'inputValue'             => true,
-			'inputOptions'           => true,
-			'inputAutoTrim'          => true,
-			'inputAttributes'        => true,
-			'inputValidator'         => true,
-			'validationMesage'       => true,
-			'progressSteps'          => true,
-			'currentProgressStep'    => true,
-			'progressStepsDistance'  => true,
-			'onBeforeOpen'           => true,
-			'onOpen'                 => true,
-			'onClose'                => true,
-			'onAfterClose'           => true,
-
-			/**
-			 * Custom Configs.
-			 */
-
-			'warning'  => 'type',
-			'success'  => 'type',
-			'error'    => 'type',
-			'question' => 'type',
-			'info'     => 'type',
-		);
-
 		/**
 		 * Stores Thens.
 		 *
@@ -209,9 +129,9 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 * @param string $type
 		 */
 		public function __construct( $title = '', $text = '', $type = 'success' ) {
-			$this->data( 'title', $title )
-				->data( 'text', $text )
-				->data( 'type', $type );
+			$this->data( 'title', $title );
+			$this->data( 'text', $text );
+			$this->data( 'type', $type );
 		}
 
 		/**
@@ -269,7 +189,7 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 *
 		 * @return string
 		 */
-		protected function get_variable_name() {
+		protected function var_name() {
 			return 'swal2_' . md5( $this->to_json() . '-' . microtime() );
 		}
 
@@ -279,16 +199,11 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 * @return string
 		 */
 		public function render() {
-			$variable = $this->get_variable_name();
-			$output   = $this->before;
-			$output   .= 'var ' . $variable . ' =  ';
-			$output   .= 'Swal.fire(' . $this->to_json() . ')';
+			$output = $this->before . ' var ' . $this->var_name() . ' = Swal.fire(' . $this->to_json() . ') ';
 
 			if ( ! empty( $this->then ) ) {
 				foreach ( $this->then as $data ) {
-					if ( $data instanceof SweetAlert2 ) {
-						$data = $data->render();
-					}
+					$data   = ( $data instanceof SweetAlert2 ) ? $data->render() : $data;
 					$output .= '.then((result) => {' . $data . '})';
 				}
 			}
@@ -303,15 +218,7 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 * @return $this
 		 */
 		public function __call( $name, $arguments ) {
-			if ( isset( $this->defaults[ $name ] ) ) {
-				if ( true === $this->defaults[ $name ] ) {
-					$this->data( $name, $arguments[0] );
-				} else {
-					$arg = ( true === $arguments[0] ) ? $name : $arguments[0];
-					$this->data( $this->defaults[ $name ], $arg );
-				}
-			}
-			return $this;
+			return $this->data( $name, $arguments[0] );
 		}
 
 		/**
@@ -320,10 +227,7 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 * @return mixed
 		 */
 		public function __get( $name ) {
-			if ( isset( $this->config[ $name ] ) ) {
-				return $this->config[ $name ];
-			}
-			return null;
+			return ( isset( $this->config[ $name ] ) ) ? $this->config[ $name ] : null;
 		}
 
 		/**
@@ -333,18 +237,6 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 */
 		public function then( $then ) {
 			$this->then[] = $then;
-			return $this;
-		}
-
-		/**
-		 * @param $before
-		 * @param $after
-		 *
-		 * @return $this
-		 */
-		public function wrap( $before, $after ) {
-			$this->before( $before );
-			$this->after( $after );
 			return $this;
 		}
 
@@ -377,12 +269,12 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 		 * @return $this
 		 */
 		public function image( $url = false, $height = null, $width = null, $alt = null ) {
-			if ( false === $url && null === $height && null == $alt && null === $width ) {
+			if ( false === $url && null === $height && null === $alt && null === $width ) {
 				$url    = $this->title;
 				$height = $this->text;
 				$alt    = $this->type;
 				$this->title( false );
-				$this->content( false );
+				$this->text( false );
 				$this->type( false );
 			}
 			$this->data( 'imageUrl', $url );
@@ -435,7 +327,6 @@ if ( ! class_exists( 'SweetAlert2' ) ) {
 			$this->data( 'confirmButtonAriaLabel', $aria_label );
 			return $this;
 		}
-
 	}
 
 	/**
