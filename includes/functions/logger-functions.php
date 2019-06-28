@@ -86,6 +86,11 @@ if ( ! function_exists( 'vsp_list_log_files' ) ) {
 }
 
 if ( ! function_exists( 'vsp_make_log_list_tree' ) ) {
+	/**
+	 * @param $logs
+	 *
+	 * @return array
+	 */
 	function vsp_make_log_list_tree( $logs ) {
 		$tree_list = array();
 		foreach ( $logs as $log ) {

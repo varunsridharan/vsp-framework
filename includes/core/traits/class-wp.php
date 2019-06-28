@@ -3,7 +3,7 @@
 namespace VSP\Core\Traits;
 
 use VSP\Helper;
-use WPOnion\Cache_Not_Found;
+use WPOnion\Exception\Cache_Not_Found;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die;

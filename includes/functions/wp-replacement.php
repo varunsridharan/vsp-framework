@@ -55,7 +55,7 @@ if ( ! function_exists( 'vsp_get_cache' ) ) {
 	 * @param string $key
 	 *
 	 * @return mixed
-	 * @throws \WPOnion\Cache_Not_Found
+	 * @throws \WPOnion\Exception\Cache_Not_Found
 	 */
 	function vsp_get_cache( $key ) {
 		return wponion_get_cache( $key );

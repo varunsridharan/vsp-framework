@@ -55,10 +55,7 @@ if ( ! class_exists( '\VSP\Modules\WordPress\Importers' ) ) {
 					$class->dispatch();
 				}
 			}
-
 		}
-
-
 	}
 
 	if ( ! function_exists( 'vsp_add_importer' ) ) {
