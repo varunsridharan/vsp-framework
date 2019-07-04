@@ -344,7 +344,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "267.267",
+            "version": "272.272",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
