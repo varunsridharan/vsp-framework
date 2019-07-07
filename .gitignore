@@ -788,3 +788,6 @@ vendor/*/*installed.json*
 vendor/*/*/composer.json
 vendor/*/*/.gitignore
 vendor/thewpleague/wp-query-builder/wp-query-builder.php
+vendor/varunsridharan/wp-plugin-version-management/.editorconfig
+vendor/varunsridharan/wp-plugin-version-management/CHANGELOG.md
+
