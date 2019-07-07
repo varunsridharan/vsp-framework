@@ -36,8 +36,9 @@ class ComposerStaticInitc5294aee0f589b39cdfdaa80a748fc0b
             0 => __DIR__ . '/..' . '/varunsridharan/wp-ajaxer/src',
             1 => __DIR__ . '/..' . '/varunsridharan/wp-db-table/src',
             2 => __DIR__ . '/..' . '/varunsridharan/wp-localizer/src',
-            3 => __DIR__ . '/..' . '/varunsridharan/wp-post/src',
-            4 => __DIR__ . '/..' . '/varunsridharan/wp-transient-api/src',
+            3 => __DIR__ . '/..' . '/varunsridharan/wp-plugin-version-management/src',
+            4 => __DIR__ . '/..' . '/varunsridharan/wp-post/src',
+            5 => __DIR__ . '/..' . '/varunsridharan/wp-transient-api/src',
         ),
         'TheLeague\\Database\\' => 
         array (

@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '\\' => array($vendorDir . '/varunsridharan/wpallimport_rapidaddon/src'),
-    'Varunsridharan\\WordPress\\' => array($vendorDir . '/varunsridharan/wp-ajaxer/src', $vendorDir . '/varunsridharan/wp-db-table/src', $vendorDir . '/varunsridharan/wp-localizer/src', $vendorDir . '/varunsridharan/wp-post/src', $vendorDir . '/varunsridharan/wp-transient-api/src'),
+    'Varunsridharan\\WordPress\\' => array($vendorDir . '/varunsridharan/wp-ajaxer/src', $vendorDir . '/varunsridharan/wp-db-table/src', $vendorDir . '/varunsridharan/wp-localizer/src', $vendorDir . '/varunsridharan/wp-plugin-version-management/src', $vendorDir . '/varunsridharan/wp-post/src', $vendorDir . '/varunsridharan/wp-transient-api/src'),
     'TheLeague\\Database\\' => array($vendorDir . '/thewpleague/wp-query-builder/src'),
 );

@@ -10,13 +10,14 @@
     ]
   },
   "require-dev" : {
-    "varunsridharan/wpallimport_rapidaddon" : "*",
-    "varunsridharan/sweetalert2-php"        : ">=1.0",
-    "varunsridharan/wp-ajaxer"              : ">=1.0",
-    "varunsridharan/wp-post"                : ">=1.0",
-    "varunsridharan/wp-transient-api"       : ">=1.0",
-    "varunsridharan/wp-db-table"            : ">=1.2.1",
-    "varunsridharan/wp-localizer"           : ">=1.0"
+    "varunsridharan/wpallimport_rapidaddon"       : "*",
+    "varunsridharan/sweetalert2-php"              : ">=1.0",
+    "varunsridharan/wp-ajaxer"                    : ">=1.0",
+    "varunsridharan/wp-post"                      : ">=1.0",
+    "varunsridharan/wp-transient-api"             : ">=1.0",
+    "varunsridharan/wp-db-table"                  : ">=1.2.1",
+    "varunsridharan/wp-localizer"                 : ">=1.0",
+    "varunsridharan/wp-plugin-version-management" : ">=1.0"
   },
   "authors"     : [
     {
