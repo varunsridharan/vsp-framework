@@ -1,4 +1,7 @@
 <?php
+
+use VSP\Modules\WordPress\Importers;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -11,7 +14,7 @@ if ( ! function_exists( 'vsp_on_load' ) ) {
 	 * Creates A Instances For WP Importers
 	 */
 	function vsp_on_load() {
-		\VSP\Modules\WordPress\Importers::instance();
+		Importers::instance();
 	}
 }
 

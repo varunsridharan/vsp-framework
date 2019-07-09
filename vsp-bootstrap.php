@@ -34,6 +34,8 @@
  * Domain Path: languages/
  */
 
+use Varunsridharan\PHP\Autoloader;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -55,9 +57,7 @@ if ( ! defined( 'VSP_VERSION' ) ) {
 			throw new ErrorException( __( 'Framework Autoloader Not Found' ) );
 		}
 
-		new \Varunsridharan\PHP\Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
-			'prepend' => true,
-		) );
+		new Autoloader( 'VSP\\', VSP_PATH . 'includes/', array( 'prepend' => true ) );
 
 		require_once __DIR__ . '/vsp-functions.php';
 		require_once __DIR__ . '/vsp-hooks.php';

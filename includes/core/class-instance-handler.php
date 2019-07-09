@@ -93,7 +93,7 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 			if ( $this->get_instance( $class ) === false ) {
 				try {
 					$framework_key = ( $this instanceof Framework ) ? static::class : false;
-					$refl          = new \ReflectionClass( $class );
+					$refl          = new ReflectionClass( $class );
 
 					if ( false === $framework_key ) {
 						$framework_key = ( isset( $this->framework_instance ) && ! empty( $this->framework_instance ) ) ? $this->framework_instance : false;

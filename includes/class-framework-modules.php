@@ -2,6 +2,7 @@
 
 namespace VSP;
 
+use Varunsridharan\PHP\Autoloader;
 use Varunsridharan\WordPress\Localizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -106,7 +107,7 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 					'base_path' => $this->plugin_path(),
 					'options'   => array(),
 				) );
-				$this->autoloader = new \Varunsridharan\PHP\Autoloader( $args['namespace'], $args['base_path'], $args['options'] );
+				$this->autoloader = new Autoloader( $args['namespace'], $args['base_path'], $args['options'] );
 			}
 		}
 

@@ -317,7 +317,7 @@ class File_Handler extends Log_Handler {
 				$temphandle = @fopen( $file, 'w+' );
 				@fclose( $temphandle );
 				if ( defined( 'FS_CHMOD_FILE' ) ) {
-					@chmod( $file, FS_CHMOD_FILE ); // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.chmod_chmod
+					@chmod( $file, FS_CHMOD_FILE );
 				}
 			}
 			$resource = @fopen( $file, $mode );

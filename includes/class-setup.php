@@ -58,7 +58,8 @@ class Setup {
 
 		foreach ( $files as $file ) {
 			if ( wp_mkdir_p( $file['base'] ) && ! file_exists( vsp_slashit( $file['base'] ) . $file['file'] ) ) {
-				if ( $file_handle = @fopen( vsp_slashit( $file['base'] ) . $file['file'], 'w' ) ) {
+				$file_handle = @fopen( vsp_slashit( $file['base'] ) . $file['file'], 'w' );
+				if ( $file_handle ) {
 					fwrite( $file_handle, $file['content'] );
 					fclose( $file_handle );
 				}

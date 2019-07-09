@@ -1,5 +1,8 @@
 <?php
 
+use VSP\Modules\Logger;
+use VSP\Modules\Logger\File_Handler;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -171,12 +174,12 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
 		$implements = class_implements( $class );
 		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements, true ) ) {
-			$logger = ( is_object( $class ) ) ? $class : new $class( array( new \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
+			$logger = ( is_object( $class ) ) ? $class : new $class( array( new File_Handler( $subpath, $file_name, $filesize ) ) );
 		} else {
 			/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */
 			$smgs = sprintf( __( 'The class %1$s provided by %2$s filter must implement %3$s.', 'vsp-framework' ), '<code>' . esc_html( is_object( $class ) ? get_class( $class ) : $class ) . '</code>', '<code>vsp_logging_class</code>', '<code>\VSP\Core\Interfaces\Logger</code>' );
 			vsp_doing_it_wrong( __FUNCTION__, $smgs, '3.0' );
-			$logger = new \VSP\Modules\Logger( array( new  \VSP\Modules\Logger\File_Handler( $subpath, $file_name, $filesize ) ) );
+			$logger = new Logger( array( new File_Handler( $subpath, $file_name, $filesize ) ) );
 		}
 		return $logger;
 	}
@@ -225,10 +228,10 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 			$handler = vsp_logger();
 		}
 
-		if ( $handler instanceof \VSP\Modules\Logger && method_exists( $handler, $type ) ) {
+		if ( $handler instanceof Logger && method_exists( $handler, $type ) ) {
 			$handler->$type( $messages, $context );
 			return true;
-		} elseif ( vsp_logger() instanceof \VSP\Modules\Logger && method_exists( vsp_logger(), $type ) ) {
+		} elseif ( vsp_logger() instanceof Logger && method_exists( vsp_logger(), $type ) ) {
 			$msg = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler', 'vsp-framework' ) ), wp_debug_backtrace_summary( null, 0, false ) );
 			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
 			vsp_log_msg( $msg, 'critical', vsp_logger() );
