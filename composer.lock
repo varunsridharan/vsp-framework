@@ -232,16 +232,16 @@
         },
         {
             "name": "varunsridharan/wp-plugin-version-management",
-            "version": "1.0",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-plugin-version-management.git",
-                "reference": "3182ea4cd321ba7f099432480ce873d3f62171b0"
+                "reference": "32d3a89ccf482e15f87da513164076bf60443411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-plugin-version-management/zipball/3182ea4cd321ba7f099432480ce873d3f62171b0",
-                "reference": "3182ea4cd321ba7f099432480ce873d3f62171b0",
+                "url": "https://api.github.com/repos/varunsridharan/wp-plugin-version-management/zipball/32d3a89ccf482e15f87da513164076bf60443411",
+                "reference": "32d3a89ccf482e15f87da513164076bf60443411",
                 "shasum": ""
             },
             "type": "library",
@@ -264,7 +264,7 @@
             ],
             "description": "Simple WordPress Plugin Library To Handle Version Management To Provide Easy Upgrade Handling.",
             "homepage": "https://github.com/varunsridharan/wp-plugin-version-management",
-            "time": "2019-07-06T14:14:40+00:00"
+            "time": "2019-07-10T12:54:00+00:00"
         },
         {
             "name": "varunsridharan/wp-post",
@@ -380,7 +380,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "274.274",
+            "version": "278.278",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
