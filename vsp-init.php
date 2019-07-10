@@ -221,15 +221,15 @@ if ( ! function_exists( 'vsp_force_load' ) ) {
 	}
 }
 
-if ( ! function_exists( 'vsp_force_load_libs' ) ) {
+if ( ! function_exists( 'vsp_force_load_vendors' ) ) {
 	/**
 	 * Loads Its libs.
 	 *
 	 * @return bool
 	 */
-	function vsp_force_load_libs() {
-		if ( file_exists( __DIR__ . 'vendor/autoload.php' ) ) {
-			include __DIR__ . 'vendor/autoload.php';
+	function vsp_force_load_vendors() {
+		if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+			include __DIR__ . '/vendor/autoload.php';
 			return true;
 		}
 		return false;
