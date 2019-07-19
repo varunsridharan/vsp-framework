@@ -76,7 +76,9 @@ if ( ! function_exists( 'vsp_list_log_files' ) ) {
 			foreach ( $paths as $i => $_path ) {
 				$paths[ $i ] = ltrim( $_path, '/' );
 				if ( false !== $custom_path ) {
-					$paths[ $i ] = $custom_path . '/' . $paths[ $i ];
+					$paths[ $i ] = $custom_path . str_replace( $path, '', $paths[ $i ] );
+				} else {
+					$paths[ $i ] = str_replace( $path, '', $paths[ $i ] );
 				}
 			}
 			return array_values( array_unique( $paths ) );
