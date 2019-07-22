@@ -17,6 +17,7 @@ if ( ! class_exists( 'Helper' ) ) {
 	 */
 	final class Helper {
 		use Core\Traits\WP;
+		use Core\Traits\WC_Helper;
 		use Core\Traits\Array_Helper;
 		use Core\Traits\URL;
 		use Core\Traits\String_Helper;
