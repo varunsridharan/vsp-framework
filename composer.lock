@@ -91,16 +91,16 @@
         },
         {
             "name": "varunsridharan/wp-ajaxer",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-ajaxer.git",
-                "reference": "9df0302df5f1cf8968d00e8f05ea596ab0d5355c"
+                "reference": "dbf459a24ec1b32c09fcc9131dd8ae78ef7b431f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-ajaxer/zipball/9df0302df5f1cf8968d00e8f05ea596ab0d5355c",
-                "reference": "9df0302df5f1cf8968d00e8f05ea596ab0d5355c",
+                "url": "https://api.github.com/repos/varunsridharan/wp-ajaxer/zipball/dbf459a24ec1b32c09fcc9131dd8ae78ef7b431f",
+                "reference": "dbf459a24ec1b32c09fcc9131dd8ae78ef7b431f",
                 "shasum": ""
             },
             "type": "library",
@@ -116,9 +116,9 @@
             "authors": [
                 {
                     "name": "Varun",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "https://varunsridharan.in"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -143,7 +143,7 @@
                 "wp-library",
                 "wp-theme"
             ],
-            "time": "2019-06-20T05:14:59+00:00"
+            "time": "2019-07-22T09:57:44+00:00"
         },
         {
             "name": "varunsridharan/wp-db-table",
@@ -380,7 +380,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "278.278",
+            "version": "290.290",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",

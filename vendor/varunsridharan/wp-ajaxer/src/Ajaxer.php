@@ -86,6 +86,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		public function __construct() {
 			if ( false !== $this->is_single ) {
 				\add_action( 'wp_ajax_' . $this->action, array( &$this, 'ajax_request_single' ) );
+				\add_action( 'wp_ajax_nopriv_' . $this->action, array( &$this, 'ajax_request_single' ) );
 			} else {
 				foreach ( $this->actions as $action => $nopriv ) {
 					\add_action( 'wp_ajax_' . $this->ajax_slug( $action ), array( &$this, 'ajax_request' ) );
@@ -132,9 +133,9 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 			$_action = $this->extract_action_slug( $action );
 
 			if ( false !== $action && isset( $this->actions[ $_action ] ) ) {
-				if ( false === \is_user_logged_in() && true === $this->actions[ $_action ] ) {
+				if ( false === $this->is_logged_in() && true === $this->actions[ $_action ] ) {
 					$this->trigger_ajax_callback( $action );
-				} elseif ( \is_user_logged_in() === true ) {
+				} elseif ( $this->is_logged_in() === true ) {
 					$this->trigger_ajax_callback( $action );
 				}
 			}
@@ -455,6 +456,15 @@ if ( ! class_exists( '\Varunsridharan\WordPress\Ajaxer' ) ) {
 		 */
 		public function validate_request( $key, $error_title = false, $error_message = false ) {
 			return $this->validate( $key, $error_title, $error_message, 'REQUEST' );
+		}
+
+		/**
+		 * Checks if user is logged in.
+		 *
+		 * @return bool
+		 */
+		public function is_logged_in() {
+			return ( function_exists( 'is_user_logged_in' ) && is_user_logged_in() ) ? true : false;
 		}
 	}
 }
