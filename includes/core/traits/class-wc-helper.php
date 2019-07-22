@@ -57,5 +57,33 @@ trait WC_Helper {
 			return ( $slug ) ? $slugs : $gateways;
 		}
 	}
+
+	/**
+	 * @param bool $slug
+	 *
+	 * @static
+	 * @return mixed
+	 * @throws \Exception
+	 */
+	public static function wc_shipping_methods( $slug = false ) {
+		try {
+			return ( $slug ) ? vsp_get_cache( 'vsp/wc/shipping_methods/slugs' ) : vsp_get_cache( 'vsp/wc/shipping_methods/all' );
+		} catch ( Cache_Not_Found $exception ) {
+			$slugs = array();
+			if ( sizeof( WC()->shipping->shipping_methods ) > 0 ) {
+				$shipping_methods = \WC_Shipping::instance()->shipping_methods;
+			} else {
+				$shipping_methods = \WC_Shipping::instance()
+					->load_shipping_methods();
+			}
+
+			foreach ( $shipping_methods as $method ) {
+				$slugs[ $method->id ] = $method->method_title;
+			}
+			vsp_set_cache( 'vsp/wc/shipping_methods/slugs', $slugs );
+			vsp_set_cache( 'vsp/wc/shipping_methods/all', $shipping_methods );
+			return ( $slug ) ? $slugs : $shipping_methods;
+		}
+	}
 }
 
