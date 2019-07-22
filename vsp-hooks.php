@@ -1,22 +1,10 @@
 <?php
 
-use VSP\Modules\WordPress\Importers;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 add_action( 'admin_enqueue_scripts', 'vsp_register_assets', 1 );
-add_action( 'vsp_framework_loaded', 'vsp_on_load' );
-
-if ( ! function_exists( 'vsp_on_load' ) ) {
-	/**
-	 * Creates A Instances For WP Importers
-	 */
-	function vsp_on_load() {
-		Importers::instance();
-	}
-}
 
 if ( ! function_exists( 'vsp_register_assets' ) ) {
 	/**
