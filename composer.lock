@@ -175,9 +175,9 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "https://varunsridharan.in"
                 }
             ],
             "description": "A base WordPress database table class with query builder",
@@ -380,7 +380,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "290.290",
+            "version": "291.291",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
