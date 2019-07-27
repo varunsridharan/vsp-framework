@@ -85,5 +85,17 @@ trait WC_Helper {
 			return ( $slug ) ? $slugs : $shipping_methods;
 		}
 	}
+
+	/**
+	 * Fetches & Returns Product's SKU.
+	 *
+	 * @param $product_id
+	 *
+	 * @static
+	 * @return mixed
+	 */
+	public static function wc_product_sky_by_id( $product_id ) {
+		return get_post_meta( $product_id, '_sku', true );
+	}
 }
 
