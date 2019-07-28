@@ -1,14 +1,5 @@
 <?php
-/**
- * A base WordPress database table class with query builder
- *
- * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @version 1.0
- * @since 1.0
- * @link
- * @copyright 2018 Varun Sridharan
- * @license GPLV3 Or Greater (https://www.gnu.org/licenses/gpl-3.0.txt)
- */
+
 
 namespace Varunsridharan\WordPress;
 
@@ -16,13 +7,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+use TheLeague\Database\Query_Builder;
+
 if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 	/**
 	 * Class DB_Table
 	 *
 	 * @package Varunsridharan\WordPress
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 *
 	 * A base WordPress database table class, which facilitates the creation of
 	 * and schema changes to individual database tables.
@@ -38,7 +30,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 	 * - Tables upgrade via independent upgrade abstract methods
 	 * - Multisite friendly - site tables switch on "switch_blog" action
 	 */
-	abstract class DB_Table extends \TheLeague\Database\Query_Builder {
+	abstract class DB_Table extends Query_Builder {
 
 		/**
 		 * Table name, without the global table prefix
@@ -141,7 +133,7 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		/**
 		 * Returns Current Instance / create a new instance
 		 *
-		 * @return self
+		 * @return self|static
 		 */
 		public static function instance() {
 			if ( ! isset( self::$_instances[ static::class ] ) ) {
@@ -152,15 +144,11 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 
 		/**
 		 * Setup this database table
-		 *
-		 * @since 1.1.0
 		 */
 		protected abstract function set_schema();
 
 		/**
 		 * Upgrade this database table
-		 *
-		 * @since 1.1.0
 		 */
 		protected abstract function upgrade();
 
@@ -183,8 +171,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 *
 		 * Hooked to the "switch_blog" action.
 		 *
-		 * @since 1.1.0
-		 *
 		 * @param int $site_id The site being switched to
 		 */
 		public function switch_blog( $site_id = 0 ) {
@@ -198,25 +184,23 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 * Maybe upgrade the database table. Handles creation & schema changes.
 		 *
 		 * Hooked to the "admin_init" action.
-		 *
-		 * @since 1.1.0
 		 */
 		public function maybe_upgrade() {
 			if ( ! $this->exists() ) {
 				$this->create();
+			} else {
+				$needs_upgrade = version_compare( $this->version, $this->db_version, '>=' );
+
+				if ( true === $needs_upgrade ) {
+					return;
+				}
+
+				if ( $this->is_global() && ! \wp_should_upgrade_global_tables() ) {
+					return;
+				}
+
+				$this->exists() ? $this->upgrade() : $this->create();
 			}
-
-			$needs_upgrade = version_compare( (int) $this->db_version, (int) $this->version, '>=' );
-
-			if ( true === $needs_upgrade ) {
-				return;
-			}
-
-			if ( $this->is_global() && ! \wp_should_upgrade_global_tables() ) {
-				return;
-			}
-
-			$this->exists() ? $this->upgrade() : $this->create();
 
 			if ( $this->exists() ) {
 				$this->set_db_version();
@@ -225,8 +209,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 
 		/**
 		 * Setup the necessary table variables
-		 *
-		 * @since 1.1.0
 		 */
 		private function setup() {
 			$this->db = isset( $GLOBALS['wpdb'] ) ? $GLOBALS['wpdb'] : false;
@@ -252,8 +234,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 *
 		 * This must be done directly because WordPress does not have a mechanism
 		 * for manipulating them safely
-		 *
-		 * @since 1.1.0
 		 */
 		private function set_wpdb_tables() {
 			if ( $this->is_global() ) {
@@ -281,11 +261,9 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 * Set the database version for the table
 		 *
 		 * Global table version in "_sitemeta" on the main network
-		 *
-		 * @since 1.1.0
 		 */
 		private function set_db_version() {
-			$this->db_version = $this->version;
+			$this->version = $this->db_version;
 			$this->is_global() ? \update_network_option( null, $this->db_version_key, $this->version ) : \update_option( $this->db_version_key, $this->version );
 		}
 
@@ -293,17 +271,13 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 * Get the table version from the database
 		 *
 		 * Global table version from "_sitemeta" on the main network
-		 *
-		 * @since 1.1.0
 		 */
 		private function get_db_version() {
-			$this->db_version = $this->is_global() ? \get_network_option( null, $this->db_version_key, false ) : \get_option( $this->db_version_key, false );
+			$this->version = $this->is_global() ? \get_network_option( null, $this->db_version_key, false ) : \get_option( $this->db_version_key, false );
 		}
 
 		/**
 		 * Add class hooks to WordPress actions
-		 *
-		 * @since 1.1.0
 		 */
 		private function add_hooks() {
 			\add_action( 'switch_blog', array( $this, 'switch_blog' ) );
@@ -311,8 +285,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 
 		/**
 		 * Create the table
-		 *
-		 * @since 1.1.0
 		 */
 		private function create() {
 			if ( ! function_exists( 'dbDelta' ) ) {
@@ -340,8 +312,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		/**
 		 * Check if table already exists
 		 *
-		 * @since 1.1.0
-		 *
 		 * @return bool
 		 */
 		private function exists() {
@@ -354,8 +324,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 
 		/**
 		 * Check if table is global
-		 *
-		 * @since 1.2.0
 		 *
 		 * @return bool
 		 */
@@ -372,8 +340,6 @@ if ( ! class_exists( '\Varunsridharan\WordPress\DB_Table' ) ) {
 		 * - No hyphens
 		 * - No double underscores
 		 * - No trailing underscores
-		 *
-		 * @since 1.3.0
 		 *
 		 * @param string $name The name of the database table
 		 *

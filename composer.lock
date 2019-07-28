@@ -147,16 +147,16 @@
         },
         {
             "name": "varunsridharan/wp-db-table",
-            "version": "1.3",
+            "version": "1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-db-table.git",
-                "reference": "cd295148c497ca3c53074b01d6784740558a15c8"
+                "reference": "84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-db-table/zipball/cd295148c497ca3c53074b01d6784740558a15c8",
-                "reference": "cd295148c497ca3c53074b01d6784740558a15c8",
+                "url": "https://api.github.com/repos/varunsridharan/wp-db-table/zipball/84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead",
+                "reference": "84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead",
                 "shasum": ""
             },
             "require": {
@@ -175,13 +175,13 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "https://varunsridharan.in"
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "time": "2019-05-07T01:57:23+00:00"
+            "time": "2019-07-20T05:42:58+00:00"
         },
         {
             "name": "varunsridharan/wp-localizer",
@@ -380,7 +380,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "290.290",
+            "version": "295.295",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
