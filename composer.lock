@@ -73,9 +73,9 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "http://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "http://varunsridharan.in"
                 }
             ],
             "description": "This Custom PHP Lib depends on SweetAlert2 JS Lib and this php class works as Javascript code builder.",
@@ -210,9 +210,9 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "http://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "http://varunsridharan.in"
                 }
             ],
             "description": "Simple & Usefull WP Localizer Library ",
@@ -257,9 +257,9 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "http://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "http://varunsridharan.in"
                 }
             ],
             "description": "Simple WordPress Plugin Library To Handle Version Management To Provide Easy Upgrade Handling.",
@@ -293,9 +293,9 @@
             "authors": [
                 {
                     "name": "Varun",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "https://varunsridharan.in"
                 }
             ],
             "description": "Simple WP Post Class With Advanced Options.",
@@ -350,9 +350,9 @@
             "authors": [
                 {
                     "name": "Varun",
+                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in",
-                    "role": "Developer"
+                    "homepage": "https://varunsridharan.in"
                 }
             ],
             "description": "Provides Option to store Transient / options with version management.",
@@ -380,7 +380,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "295.295",
+            "version": "319.319",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
