@@ -97,5 +97,49 @@ trait WC_Helper {
 	public static function wc_product_sky_by_id( $product_id ) {
 		return get_post_meta( $product_id, '_sku', true );
 	}
+
+	/**
+	 * Checks if product exists in cart.
+	 *
+	 * @param $product_id
+	 *
+	 * @static
+	 * @return bool
+	 */
+	public static function wc_has_product_in_cart( $product_id ) {
+		foreach ( wc()->cart->get_cart() as $key => $val ) {
+			$_product = $val['data'];
+
+			if ( $product_id === $_product->get_id() ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Clears WC Cart.
+	 *
+	 * @static
+	 */
+	public static function wc_clear_cart() {
+		if ( function_exists( 'wc' ) ) {
+			wc()->cart->empty_cart( true );
+		}
+	}
+
+	/**
+	 * Clears Cart if Not Empty.
+	 *
+	 * @static
+	 */
+	public static function wc_clear_cart_if_notempty() {
+		if ( function_exists( 'wc' ) ) {
+			if ( ! empty( wc()->cart->get_cart() ) ) {
+				static::wc_clear_cart();
+			}
+		}
+	}
 }
 
