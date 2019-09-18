@@ -90,34 +90,28 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 		 * Deletes A File.
 		 */
 		public function remove_log() {
-			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'remove_log' ) ) { // WPCS: input var ok, sanitization ok.
-				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'vsp-framework' ) );
-			}
-			if ( ! empty( $_REQUEST['delete-handle'] ) ) {  // WPCS: input var ok.
-				$file = $_REQUEST['delete-handle'];
-				if ( file_exists( VSP_LOG_DIR . $file ) ) {
-					unlink( VSP_LOG_DIR . $file );
+			if ( isset( $_REQUEST['delete-handle'] ) && isset( $_REQUEST['_wpnonce'] ) ) {
+				if ( ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'remove_log' ) ) { // WPCS: input var ok, sanitization ok.
+					wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'vsp-framework' ) );
 				}
-			}
-			wp_safe_redirect( esc_url_raw( remove_query_arg( array( 'delete-handle', '_wpnonce' ) ) ) );
-			exit();
-		}
 
-		/**
-		 * Forces a log file as downloadable.
-		 *
-		 * @param $file
-		 */
-		public static function download_log( $file ) {
-			header( 'Cache-Control: private' );
-			header( 'Content-Type: application/stream' );
-			if ( file_exists( VSP_LOG_DIR . $file ) ) {
-				$size = filesize( VSP_LOG_DIR . $file );
-				header( "Content-Disposition: attachment; filename=$file" );
-				header( 'Content-Length: ' . $size );
-				readfile( VSP_LOG_DIR . $file );
+				$file     = $_REQUEST['delete-handle'];
+				$ff_regx  = '/\.([^.]+)$/';
+				$ff_types = array( 'log', 'txt' );
+				if ( preg_match( $ff_regx, $file, $m ) && in_array( $m[1], $ff_types, true ) ) {
+					$files = vsp_list_log_files();
+					foreach ( $files as $f ) {
+						if ( preg_match( $ff_regx, $f, $m2 ) && in_array( $m2[1], $ff_types, true ) ) {
+							if ( $f === $file && file_exists( VSP_LOG_DIR . $f ) ) {
+								unlink( VSP_LOG_DIR . $f );
+							}
+						}
+					}
+				}
+				wp_safe_redirect( esc_url_raw( remove_query_arg( array( 'delete-handle', '_wpnonce' ) ) ) );
+				exit();
 			} else {
-				echo 'File Not Found';
+				wp_die( esc_html__( 'Invalid wpnonce or log file not found!.', 'vsp-framework' ) );
 			}
 		}
 	}
