@@ -49,10 +49,39 @@ if ( ! class_exists( 'Ajax' ) ) {
 		 * Handles Log Download.
 		 */
 		public function download_log() {
+			if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
+				$this->error( __( 'Invalid Nonce' ) );
+			}
+
+			if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'download_log' ) ) {
+				$this->error( __( 'Nonce Expired' ) );
+			}
+
 			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
-				Modules\System_Logs::download_log( $_REQUEST['handle'] );
+				$file     = $_REQUEST['handle'];
+				$ff_regx  = '/\.([^.]+)$/';
+				$ff_types = array( 'log', 'txt' );
+				if ( preg_match( $ff_regx, $file, $m ) && in_array( $m[1], $ff_types, true ) ) {
+					$files = vsp_list_log_files();
+					foreach ( $files as $f ) {
+						if ( preg_match( $ff_regx, $f, $m2 ) && in_array( $m2[1], $ff_types, true ) ) {
+							if ( $f === $file && file_exists( VSP_LOG_DIR . $f ) ) {
+								header( 'Cache-Control: private' );
+								header( 'Content-Type: application/stream' );
+								$size = filesize( VSP_LOG_DIR . $f );
+								header( "Content-Disposition: attachment; filename=$f" );
+								header( 'Content-Length: ' . $size );
+								readfile( VSP_LOG_DIR . $f );
+								wp_die();
+							}
+						}
+					}
+					$this->error( __( 'Log File Not Found !' ) );
+				} else {
+					$this->error( __( 'Invalid Log File Extension' ) );
+				}
 			} else {
-				$this->error( __( 'Log File Not Found' ) );
+				$this->error( __( 'Invalid Log File' ) );
 			}
 			wp_die();
 		}
