@@ -193,8 +193,10 @@ class File_Handler extends Log_Handler {
 			if ( false !== $this->sub_path ) {
 				Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) . $this->sub_path );
 				return vsp_slashit( VSP_LOG_DIR ) . vsp_slashit( $this->sub_path ) . $this->get_log_file_name( $handle );
+			} else {
+				Setup::check_create_log_folder( vsp_slashit( VSP_LOG_DIR ) );
+				return vsp_slashit( VSP_LOG_DIR ) . $this->get_log_file_name( $handle );
 			}
-			return vsp_slashit( VSP_LOG_DIR ) . $this->get_log_file_name( $handle );
 		} else {
 			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.0' );
 			return false;
