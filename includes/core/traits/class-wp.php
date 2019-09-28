@@ -74,16 +74,7 @@ trait WP {
 	 * @return array
 	 */
 	public static function filter_roles( $required = array() ) {
-		$existing = self::user_roles_lists( false );
-		if ( ! is_array( $required ) ) {
-			return $existing;
-		}
-		foreach ( $existing as $slug => $name ) {
-			if ( ! in_array( $slug, $required, true ) ) {
-				unset( $existing[ $slug ] );
-			}
-		}
-		return $existing;
+		return self::filter_array_data( $required, self::user_roles_lists( false ) );
 	}
 
 	/**

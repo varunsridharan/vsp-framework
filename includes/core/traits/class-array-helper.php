@@ -96,5 +96,30 @@ trait Array_Helper {
 		}
 		return ( $preserve_type && ( is_object( $args ) || is_object( $defaults ) ) ) ? (object) $output : $output;
 	}
+
+	/**
+	 * Filters An Array based on the given value
+	 *
+	 * @param array $required
+	 * @param array $existing
+	 *
+	 * @static
+	 * @return array
+	 * @example
+	 * $required = array('somekey1','somekey2');
+	 * $existing = array('somekey1'=>'OMG','somekey2'=>"EOO",'somekey3'=>'okclose');
+	 * $return = array('somekey1' => 'OMG','somekey2' => "EOO");
+	 */
+	public static function filter_array_data( $required, $existing ) {
+		if ( ! is_array( $required ) ) {
+			return $existing;
+		}
+		foreach ( $existing as $slug => $name ) {
+			if ( ! in_array( $slug, $required, true ) ) {
+				unset( $existing[ $slug ] );
+			}
+		}
+		return $existing;
+	}
 }
 
