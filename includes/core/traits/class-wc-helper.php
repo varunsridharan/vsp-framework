@@ -122,24 +122,29 @@ trait WC_Helper {
 	 * Clears WC Cart.
 	 *
 	 * @static
+	 * @return bool
 	 */
 	public static function wc_clear_cart() {
 		if ( function_exists( 'wc' ) ) {
 			wc()->cart->empty_cart( true );
+			return true;
 		}
+		return false;
 	}
 
 	/**
 	 * Clears Cart if Not Empty.
 	 *
 	 * @static
+	 * @return bool
 	 */
 	public static function wc_clear_cart_if_notempty() {
 		if ( function_exists( 'wc' ) ) {
 			if ( ! empty( wc()->cart->get_cart() ) ) {
-				static::wc_clear_cart();
+				return static::wc_clear_cart();
 			}
 		}
+		return false;
 	}
 }
 
