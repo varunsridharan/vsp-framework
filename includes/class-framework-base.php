@@ -199,7 +199,6 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 *
 		 * @return mixed
 		 * @uses \do_action()
-		 *
 		 */
 		public function action() {
 			return $this->action_filter( 'do_action', func_get_args() );
