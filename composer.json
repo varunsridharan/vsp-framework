@@ -7,7 +7,10 @@
   "autoload"    : {
     "files" : [
       "vsp-init.php"
-    ]
+    ],
+    "psr-4" : {
+      "VSP\\" : "includes/"
+    }
   },
   "require-dev" : {
     "varunsridharan/wpallimport_rapidaddon"       : "*",
