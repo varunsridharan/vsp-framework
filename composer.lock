@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7c710fbf0c6bb7dcd78638f5e42a172",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "a501a6617c1e8c46aefd7f5b9ce5ae25",
+    "packages": [
         {
             "name": "thewpleague/wp-query-builder",
             "version": "1.0.9",
@@ -380,7 +379,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "295.295",
+            "version": "385.385",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
@@ -406,6 +405,93 @@
                 }
             ],
             "time": "2019-05-07T04:45:52+00:00"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "symfony/finder",
+            "version": "v4.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "5e575faa95548d0586f6bedaeabec259714e44d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/5e575faa95548d0586f6bedaeabec259714e44d1",
+                "reference": "5e575faa95548d0586f6bedaeabec259714e44d1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-09-16T11:29:48+00:00"
+        },
+        {
+            "name": "varunsridharan/php-classmap-generator",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/php-classmap-generator.git",
+                "reference": "35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/php-classmap-generator/zipball/35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa",
+                "reference": "35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/finder": "*"
+            },
+            "bin": [
+                "bin/classmap-generator.bat"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight PHP Classmap Generator",
+            "time": "2019-10-25T04:48:09+00:00"
         }
     ],
     "aliases": [],
