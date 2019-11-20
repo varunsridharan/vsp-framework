@@ -37,5 +37,25 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Product' ) ) {
 			}
 			return false;
 		}
+
+		/**
+		 * Returns Product Type.
+		 *
+		 * @param \WC_Product|int $product
+		 *
+		 * @return mixed|string
+		 * @static
+		 */
+		public static function get_product_type( $product ) {
+			if ( is_numeric( $product ) ) {
+				$product = wc_get_product( $product );
+			}
+
+			if ( ! $product instanceof \WC_Product ) {
+				return false;
+			}
+
+			return ( static::is_version_gte_3_0() ) ? $product->get_type() : $product->product_type;
+		}
 	}
 }
