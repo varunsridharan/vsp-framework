@@ -47,16 +47,16 @@
         },
         {
             "name": "varunsridharan/sweetalert2-php",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/sweetalert2-php.git",
-                "reference": "dc5dcf3f91ee15fa3a3b1bdd2887aba7a741720b"
+                "reference": "d6f7eb37bd28d22bfb56176a51a558e5d71cd954"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/dc5dcf3f91ee15fa3a3b1bdd2887aba7a741720b",
-                "reference": "dc5dcf3f91ee15fa3a3b1bdd2887aba7a741720b",
+                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/d6f7eb37bd28d22bfb56176a51a558e5d71cd954",
+                "reference": "d6f7eb37bd28d22bfb56176a51a558e5d71cd954",
                 "shasum": ""
             },
             "type": "library",
@@ -86,7 +86,7 @@
                 "sweetalert",
                 "sweetalert2"
             ],
-            "time": "2019-06-28T11:09:25+00:00"
+            "time": "2020-03-16T13:02:30+00:00"
         },
         {
             "name": "varunsridharan/wp-ajaxer",
@@ -115,9 +115,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -174,9 +174,9 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "A base WordPress database table class with query builder",
