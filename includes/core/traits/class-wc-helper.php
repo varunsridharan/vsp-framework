@@ -70,7 +70,7 @@ trait WC_Helper {
 			return ( $slug ) ? vsp_get_cache( 'vsp/wc/shipping_methods/slugs' ) : vsp_get_cache( 'vsp/wc/shipping_methods/all' );
 		} catch ( Cache_Not_Found $exception ) {
 			$slugs = array();
-			if ( sizeof( WC()->shipping->shipping_methods ) > 0 ) {
+			if ( ! empty( WC()->shipping->shipping_methods ) && sizeof( WC()->shipping->shipping_methods ) > 0 ) {
 				$shipping_methods = \WC_Shipping::instance()->shipping_methods;
 			} else {
 				$shipping_methods = \WC_Shipping::instance()
