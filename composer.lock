@@ -47,16 +47,16 @@
         },
         {
             "name": "varunsridharan/sweetalert2-php",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/sweetalert2-php.git",
-                "reference": "d6f7eb37bd28d22bfb56176a51a558e5d71cd954"
+                "reference": "123ba880d4c25b6840ed8015a7bacc2666b67184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/d6f7eb37bd28d22bfb56176a51a558e5d71cd954",
-                "reference": "d6f7eb37bd28d22bfb56176a51a558e5d71cd954",
+                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/123ba880d4c25b6840ed8015a7bacc2666b67184",
+                "reference": "123ba880d4c25b6840ed8015a7bacc2666b67184",
                 "shasum": ""
             },
             "type": "library",
@@ -96,7 +96,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-16T13:02:30+00:00"
+            "time": "2020-04-06T04:19:14+00:00"
         },
         {
             "name": "varunsridharan/wp-ajaxer",
@@ -156,16 +156,16 @@
         },
         {
             "name": "varunsridharan/wp-db-table",
-            "version": "1.4",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-db-table.git",
-                "reference": "84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead"
+                "reference": "3eadf8c5fdc0be6b0228d53d51c72107c0aa4632"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-db-table/zipball/84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead",
-                "reference": "84cbc7b6648b7c354dd40a24bc5f5eb2f78f1ead",
+                "url": "https://api.github.com/repos/varunsridharan/wp-db-table/zipball/3eadf8c5fdc0be6b0228d53d51c72107c0aa4632",
+                "reference": "3eadf8c5fdc0be6b0228d53d51c72107c0aa4632",
                 "shasum": ""
             },
             "require": {
@@ -184,13 +184,23 @@
             "authors": [
                 {
                     "name": "Varun Sridharan",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "time": "2019-07-20T05:42:58+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-03-20T09:01:01+00:00"
         },
         {
             "name": "varunsridharan/wp-localizer",
@@ -389,7 +399,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "528.528",
+            "version": "549.549",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
@@ -420,16 +430,16 @@
     "packages-dev": [
         {
             "name": "symfony/finder",
-            "version": "v5.0.5",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6251f201187ca9d66f6b099d3de65d279e971138"
+                "reference": "600a52c29afc0d1caa74acbec8d3095ca7e9910d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6251f201187ca9d66f6b099d3de65d279e971138",
-                "reference": "6251f201187ca9d66f6b099d3de65d279e971138",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/600a52c29afc0d1caa74acbec8d3095ca7e9910d",
+                "reference": "600a52c29afc0d1caa74acbec8d3095ca7e9910d",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +489,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-02-14T07:43:07+00:00"
+            "time": "2020-03-27T16:56:45+00:00"
         },
         {
             "name": "varunsridharan/php-classmap-generator",

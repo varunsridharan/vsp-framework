@@ -6,10 +6,8 @@ $req_title    = __( 'Required Plugin', 'vsp-framework' );
 $last_updated = __( 'Last Updated', 'vsp-framework' );
 $req_desc     = __( 'Above Mentioned Plugin name with version are Tested Upto', 'vsp-framework' );
 $ajax_args    = array(
-	'method'  => 'post',
-	'success' => '',
-	'error'   => 'function(res){ window.wponion_error_swal(res).fire(); }',
-	'data'    => array(
+	'method' => 'post',
+	'data'   => array(
 		'hook_slug'    => $this->plugin()
 			->slug( 'hook' ),
 		'action'       => 'vsp_addon_action',
@@ -73,7 +71,7 @@ $ajax_args    = array(
 		<div class="name column-name">
 			<h3><a href="{$addon['url']}" target="_blank" title="{$addon['name']}"> $title <span class="version">[{$addon['version']}]</span></a>
 			<a href="{$addon['icon']}" data-fancybox="addon-{$addon['uid']}-gallery" target="_blank" title="{$addon['name']}"><img  class="plugin-icon addon-icon" src="{$addon['icon']}" alt="{$addon['name']}"></a></h3>
-		</div>	
+		</div>
 		<div class="desc column-description"><p>{$desc}</p><p class="authors"> <cite> By <a href="{$addon['author_url']}" title="">{$addon['author']}</a> </cite></p></div>
 	</div>
 	<div class="plugin-card-top required_plugins">$rplugins</div>

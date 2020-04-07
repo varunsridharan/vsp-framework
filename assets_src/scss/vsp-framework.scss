@@ -48,19 +48,21 @@
 	position:   relative;
 
 	.vsp_nothing_found {
-		display:    inline-block;
+		display:    block;
 		margin:     10% auto;
-		margin-top: 5%;
 		text-align: center;
 
-		span {
-			height: 200px;
-			width:  200px;
+		i {
+			position:      relative;
+			margin:        0;
+			text-align:    center;
+			display:       block;
+			margin-bottom: 35px;
+			width:         100%;
 
-			&.dashicons:before {
-				font-size:   200px;
-				color:       transparent;
-				text-shadow: 0 0 0 #0000001a;
+			&.wponion-icon:before {
+				font-size: 10rem;
+				color:     #0000001a;
 			}
 		}
 

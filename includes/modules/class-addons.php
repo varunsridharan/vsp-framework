@@ -71,7 +71,7 @@ if ( ! class_exists( 'Addons' ) ) {
 			$addon  = $ajax->post( 'addon' );
 			$action = $ajax->request( 'addon_action' );
 
-			if ( ! empty( $addon ) ) {
+			if ( empty( $addon ) ) {
 				$ajax->error( __( 'Invalid Addon', 'vsp-framework' ) );
 			}
 
