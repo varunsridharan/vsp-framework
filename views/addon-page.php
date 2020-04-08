@@ -15,8 +15,8 @@ $ajax_args    = array(
 	),
 );
 ?>
-<div id="vsp_addons_listing_container">
-	<div class="wp-filter">
+<div id="vsp_addons_listing_container" class="wponion-row row">
+	<div class="wp-filter col-xs-12">
 		<ul class="filter-links addon-category">
 			<?php
 			foreach ( $this->addon_cats as $slug => $title ) {
@@ -27,7 +27,7 @@ $ajax_args    = array(
 		</ul>
 	</div>
 
-	<div class="wp-list-table widefat plugin-install">
+	<div class="wp-list-table widefat plugin-install col-xs-12">
 		<div class="the-list addon_listing">
 			<?php
 			foreach ( $this->addons as $addon ) {
