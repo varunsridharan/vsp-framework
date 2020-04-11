@@ -4,6 +4,7 @@ namespace VSP\Core\Traits;
 
 use WC_Payment_Gateway;
 use WC_Payment_Gateways;
+use WC_Shipping_Zones;
 use WPOnion\Exception\Cache_Not_Found;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -70,7 +71,7 @@ trait WC_Helper {
 			return ( $slug ) ? vsp_get_cache( 'vsp/wc/shipping_methods/slugs' ) : vsp_get_cache( 'vsp/wc/shipping_methods/all' );
 		} catch ( Cache_Not_Found $exception ) {
 			$slugs = array();
-			if ( ! empty( WC()->shipping->shipping_methods ) && sizeof( WC()->shipping->shipping_methods ) > 0 ) {
+			if ( ! empty( WC()->shipping->shipping_methods ) && count( WC()->shipping->shipping_methods ) > 0 ) {
 				$shipping_methods = \WC_Shipping::instance()->shipping_methods;
 			} else {
 				$shipping_methods = \WC_Shipping::instance()
@@ -83,6 +84,42 @@ trait WC_Helper {
 			vsp_set_cache( 'vsp/wc/shipping_methods/slugs', $slugs );
 			vsp_set_cache( 'vsp/wc/shipping_methods/all', $shipping_methods );
 			return ( $slug ) ? $slugs : $shipping_methods;
+		}
+	}
+
+	/**
+	 * Fetches All Shipping Methods By Instance ID.
+	 *
+	 * @static
+	 * @return array
+	 */
+	public static function wc_shipping_methods_by_instance() {
+		try {
+			return vsp_get_cache( 'vsp/wc/shipping_methods_instance' );
+		} catch ( Cache_Not_Found $exception ) {
+			/**
+			 * @var \WC_Shipping_Zone   $zone
+			 * @var \WC_Shipping_Method $shipping_method
+			 */
+			try {
+				$delivery_zones = WC_Shipping_Zones::get_zones();
+			} catch ( \Exception $exception_inner ) {
+				$delivery_zones = array();
+			}
+			$return = array();
+			if ( ! empty( $delivery_zones ) ) {
+				foreach ( $delivery_zones as $zone ) {
+					if ( ! empty( $zone['shipping_methods'] ) ) {
+						$store = array();
+						foreach ( $zone['shipping_methods'] as $shipping_method ) {
+							$store[ $shipping_method->get_instance_id() ] = $shipping_method->get_title();
+						}
+						$return[ $zone['zone_name'] ] = $store;
+					}
+				}
+			}
+			vsp_set_cache( 'vsp/wc/shipping_methods_instance', $return );
+			return $return;
 		}
 	}
 
