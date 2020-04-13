@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 if ( ! class_exists( '\VSP\Framework_Admin' ) ) {
 	/**
 	 * Class Framework_Admin

@@ -2,12 +2,11 @@
 
 namespace VSP\Modules;
 
-use VSP\Base;
-use VSP\Core\Interfaces\Plugin_Settings;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use VSP\Base;
 
 if ( class_exists( '\VSP\Modules\System_Tools' ) ) {
 	return;

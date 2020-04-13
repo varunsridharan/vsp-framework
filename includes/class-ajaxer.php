@@ -2,11 +2,11 @@
 
 namespace VSP;
 
-use Varunsridharan\WordPress\Ajaxer as VS_Ajaxer;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use Varunsridharan\WordPress\Ajaxer as VS_Ajaxer;
 
 if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 	/**

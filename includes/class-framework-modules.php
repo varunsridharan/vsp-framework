@@ -2,13 +2,12 @@
 
 namespace VSP;
 
-use Varunsridharan\PHP\Autoloader;
-use Varunsridharan\WordPress\Localizer;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use Varunsridharan\PHP\Autoloader;
+use Varunsridharan\WordPress\Localizer;
 
 if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 	/**

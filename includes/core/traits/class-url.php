@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-
 /**
  * Trait VSP_Framework_IP_Trait
  *

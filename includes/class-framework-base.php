@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 	/**
 	 * Class Framework_Base

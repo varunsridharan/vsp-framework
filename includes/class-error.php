@@ -2,11 +2,11 @@
 
 namespace VSP;
 
-use WP_Error;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use WP_Error;
 
 if ( ! class_exists( '\VSP\Error' ) ) {
 	/**

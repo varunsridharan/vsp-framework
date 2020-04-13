@@ -2,12 +2,12 @@
 
 namespace VSP;
 
-use VSP\Core\Traits\WC_Compatibility\Version;
-use VSP\Core\Traits\WC_Compatibility\Product;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use VSP\Core\Traits\WC_Compatibility\Version;
+use VSP\Core\Traits\WC_Compatibility\Product;
 
 if ( ! class_exists( '\VSP\WC_Compatibility' ) ) {
 	/**

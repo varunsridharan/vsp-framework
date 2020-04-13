@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	/**
 	 * Class VSP_Framework_Loader

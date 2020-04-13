@@ -2,13 +2,13 @@
 
 namespace VSP\Core;
 
-use ReflectionClass;
-use ReflectionException;
-use VSP\Framework;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+use ReflectionClass;
+use ReflectionException;
+use VSP\Framework;
 
 if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 	/**

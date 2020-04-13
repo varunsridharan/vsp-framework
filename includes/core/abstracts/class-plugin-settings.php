@@ -2,11 +2,11 @@
 
 namespace VSP\Core\Abstracts;
 
-use VSP\Base;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use VSP\Base;
 
 /**
  * Class Plugin_Settings

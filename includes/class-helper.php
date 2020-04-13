@@ -2,11 +2,11 @@
 
 namespace VSP;
 
-use WPOnion\Exception\Cache_Not_Found;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use WPOnion\Exception\Cache_Not_Found;
 
 if ( ! class_exists( 'Helper' ) ) {
 	/**

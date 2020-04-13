@@ -2,11 +2,11 @@
 
 namespace VSP\Modules;
 
-use Exception;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use Exception;
 
 /**
  * Class VSP_Logger

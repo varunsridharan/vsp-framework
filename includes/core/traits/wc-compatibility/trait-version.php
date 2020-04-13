@@ -2,7 +2,6 @@
 
 namespace VSP\Core\Traits\WC_Compatibility;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }

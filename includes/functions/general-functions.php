@@ -1,9 +1,9 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 use VSP\Modules\Logger;
 use VSP\Modules\Logger\File_Handler;
-
-defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'vsp_current_screen' ) ) {
 	/**

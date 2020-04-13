@@ -2,11 +2,11 @@
 
 namespace VSP\Modules;
 
-use VSP\Base;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use VSP\Base;
 
 if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 	/**

@@ -2,12 +2,12 @@
 
 namespace VSP\Modules\Logger;
 
-use VSP\Core\Abstracts\Log_Handler;
-use VSP\Setup;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
+use VSP\Core\Abstracts\Log_Handler;
+use VSP\Setup;
 
 /**
  * Class VSP_Log_Handler_File

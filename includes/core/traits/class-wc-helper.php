@@ -2,16 +2,16 @@
 
 namespace VSP\Core\Traits;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 use Exception;
 use WC_Payment_Gateway;
 use WC_Payment_Gateways;
 use WC_Shipping;
 use WC_Shipping_Zones;
 use WPOnion\Exception\Cache_Not_Found;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
 
 /**
  * Trait WC_Helper
