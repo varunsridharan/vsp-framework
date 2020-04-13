@@ -3,7 +3,6 @@
 namespace VSP\Modules;
 
 use VSP\Base;
-use function wponion_builder;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -46,7 +45,7 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
 			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
 			$this->options['extra_js'][] = 'vsp_load_core_assets';
-			$options                     = wponion_builder();
+			$options                     = \wponion_builder();
 			$this->plugin()
 				->action( 'settings_options', $options );
 			if ( wpo_is( $options ) ) {
