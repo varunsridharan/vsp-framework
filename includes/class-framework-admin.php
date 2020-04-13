@@ -24,7 +24,9 @@ if ( ! class_exists( '\VSP\Framework_Admin' ) ) {
 		 * @see \VSP_Framework::__register_hooks
 		 */
 		public function _register_admin_hooks() {
+			/** @uses admin_assets */
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ), 1 );
+			/** @uses wp_admin_init */
 			add_action( 'admin_init', array( $this, 'wp_admin_init' ) );
 		}
 	}

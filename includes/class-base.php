@@ -92,6 +92,8 @@ if ( ! class_exists( 'Base' ) ) {
 		}
 
 		/**
+		 * Returns Plugin's Instance.
+		 *
 		 * @return \VSP\Framework
 		 */
 		public function plugin() {

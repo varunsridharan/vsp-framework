@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! function_exists( 'vsp_send_json_callback' ) ) {
 	/**
 	 * Send Json Callback array in ajax.

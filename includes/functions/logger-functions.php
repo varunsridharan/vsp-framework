@@ -1,7 +1,12 @@
 <?php
+
+defined( 'ABSPATH' ) || exit;
+
 if ( ! function_exists( 'vsp_print_log_files_ui' ) ) {
 	/**
-	 * @param        $tree
+	 * Generates Log File HTML.
+	 *
+	 * @param array  $tree
 	 * @param string $current_file
 	 * @param string $label
 	 * @param int    $level
@@ -57,7 +62,9 @@ if ( ! function_exists( 'vsp_print_log_files_ui' ) ) {
 
 if ( ! function_exists( 'vsp_list_log_files' ) ) {
 	/**
-	 * @param bool $path
+	 * Generates An Array of log files inside a given directory.
+	 *
+	 * @param bool|string $path
 	 *
 	 * @return bool|string[]
 	 */
@@ -89,7 +96,9 @@ if ( ! function_exists( 'vsp_list_log_files' ) ) {
 
 if ( ! function_exists( 'vsp_make_log_list_tree' ) ) {
 	/**
-	 * @param $logs
+	 * Creates Nested Array based on file nesting.
+	 *
+	 * @param array $logs
 	 *
 	 * @return array
 	 */

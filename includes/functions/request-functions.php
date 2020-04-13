@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'vsp_ajax_action' ) ) {
 	/**

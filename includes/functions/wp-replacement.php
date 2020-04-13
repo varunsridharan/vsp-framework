@@ -1,11 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'vsp_slashit' ) ) {
 	/**
+	 * Appends a trailing slash.
+	 *
 	 * @param string $path
 	 *
 	 * @return string
@@ -17,6 +17,8 @@ if ( ! function_exists( 'vsp_slashit' ) ) {
 
 if ( ! function_exists( 'vsp_unslashit' ) ) {
 	/**
+	 * Removes trailing forward slashes and backslashes if they exist.
+	 *
 	 * @param string $path
 	 *
 	 * @return string
@@ -28,7 +30,9 @@ if ( ! function_exists( 'vsp_unslashit' ) ) {
 
 if ( ! function_exists( 'vsp_set_cache' ) ) {
 	/**
-	 * @param string $key
+	 * Set Data Cache For Given Cache ID
+	 *
+	 * @param string $key cache_id.
 	 * @param mixed  $value
 	 *
 	 * @return mixed
@@ -40,8 +44,10 @@ if ( ! function_exists( 'vsp_set_cache' ) ) {
 
 if ( ! function_exists( 'vsp_get_cache_defaults' ) ) {
 	/**
-	 * @param string     $key
-	 * @param bool|mixed $defaults
+	 * Set Cache With Defaults.
+	 *
+	 * @param string $key cache_id.
+	 * @param mixed  $defaults
 	 *
 	 * @return bool|mixed
 	 */
@@ -52,7 +58,9 @@ if ( ! function_exists( 'vsp_get_cache_defaults' ) ) {
 
 if ( ! function_exists( 'vsp_get_cache' ) ) {
 	/**
-	 * @param string $key
+	 * Fetch & Returns Cached Data.
+	 *
+	 * @param string $key cache_id.
 	 *
 	 * @return mixed
 	 * @throws \WPOnion\Exception\Cache_Not_Found
@@ -64,7 +72,9 @@ if ( ! function_exists( 'vsp_get_cache' ) ) {
 
 if ( ! function_exists( 'vsp_delete_cache' ) ) {
 	/**
-	 * @param string $key
+	 * Deletes Cached Data For Given Key.
+	 *
+	 * @param string $key cache_id.
 	 */
 	function vsp_delete_cache( $key ) {
 		wponion_delete_cache( $key );

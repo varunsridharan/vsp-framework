@@ -39,8 +39,10 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 			}
 		}
 
+		/**
+		 * Runs On WPOnion Load.
+		 */
 		public function wpo_load() {
-
 			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
 			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
 			$this->options['extra_js'][] = 'vsp_load_core_assets';

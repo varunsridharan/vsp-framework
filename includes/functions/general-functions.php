@@ -3,9 +3,7 @@
 use VSP\Modules\Logger;
 use VSP\Modules\Logger\File_Handler;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'vsp_current_screen' ) ) {
 	/**
@@ -112,7 +110,7 @@ if ( ! function_exists( 'vsp_placeholder_img' ) ) {
 	/**
 	 * Returns VSP Placeholder Image
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	function vsp_placeholder_img() {
 		return apply_filters( 'vsp_placeholder_img', vsp_img( 'noimage.png' ) );
@@ -268,7 +266,7 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 	function vsp_json_last_error() {
 		switch ( function_exists( 'json_last_error' ) ? json_last_error() : -1 ) {
 			case JSON_ERROR_NONE:
-				return null; // __('No errors');
+				return null;
 				break;
 			case JSON_ERROR_DEPTH:
 				return __( 'Maximum stack depth exceeded', 'vsp-framework' );

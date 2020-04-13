@@ -28,6 +28,8 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 		protected $custom_path = null;
 
 		/**
+		 * Reads System Log.
+		 *
 		 * @param      $filepath
 		 * @param int  $lines
 		 * @param bool $adaptive

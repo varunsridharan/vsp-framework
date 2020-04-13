@@ -44,12 +44,16 @@ if ( ! class_exists( 'Core' ) ) {
 		protected static $required_plugins_status = array();
 
 		/**
+		 * Stores Addon Categorys List.
+		 *
 		 * @var array
 		 * @access
 		 */
 		protected $addon_cats = array();
 
 		/**
+		 * Stores All Adodns Count.
+		 *
 		 * @var array
 		 * @access
 		 */
@@ -120,7 +124,7 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Returns Only Selected Addon.
 		 *
-		 * @param $addon
+		 * @param string $addon
 		 *
 		 * @return bool|mixed
 		 */
@@ -132,7 +136,7 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Search For Addons in given folder.
 		 *
-		 * @param      $dir
+		 * @param string $dir
 		 *
 		 * @return array
 		 */
@@ -158,7 +162,7 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Checks and returns addon information.
 		 *
-		 * @param $addons
+		 * @param array $addons
 		 */
 		protected function get_addons_informations( $addons ) {
 			if ( ! empty( $addons ) ) {
@@ -176,7 +180,9 @@ if ( ! class_exists( 'Core' ) ) {
 		}
 
 		/**
-		 * @param $addon
+		 * Read's Addon's Information.
+		 *
+		 * @param array $addon
 		 *
 		 * @return array
 		 */
@@ -213,9 +219,9 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Handles Date Format.
 		 *
-		 * @param $last_updated
+		 * @param string $last_updated
 		 *
-		 * @return false|string
+		 * @return string
 		 */
 		protected function handle_last_updated( $last_updated ) {
 			return ( ! empty( $last_updated ) ) ? date( vsp_date_format(), strtotime( $last_updated ) ) : $last_updated;
@@ -224,10 +230,10 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Handles Addon Icon.
 		 *
-		 * @param $icon
-		 * @param $addon
+		 * @param string $icon
+		 * @param array  $addon
 		 *
-		 * @return mixed|string
+		 * @return string
 		 */
 		protected function handle_icon( $icon, $addon ) {
 			if ( $icon ) {
@@ -243,7 +249,7 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Handles Each Addons Required Plugins.
 		 *
-		 * @param $plugins
+		 * @param array $plugins
 		 *
 		 * @return mixed
 		 */
@@ -272,7 +278,7 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Handles Addon Category.
 		 *
-		 * @param $category
+		 * @param array|string $category
 		 *
 		 * @return array
 		 */
@@ -302,8 +308,8 @@ if ( ! class_exists( 'Core' ) ) {
 		/**
 		 * Handles Addon Screenshots.
 		 *
-		 * @param $screenshots
-		 * @param $addon
+		 * @param array $screenshots
+		 * @param array $addon
 		 *
 		 * @return mixed
 		 */
@@ -340,8 +346,10 @@ if ( ! class_exists( 'Core' ) ) {
 		}
 
 		/**
-		 * @param      $path
-		 * @param bool $raw If set to true then it returns raw information that is passed in addon.json
+		 * Reads Addon's JSON file.
+		 *
+		 * @param string $path addon json file path.
+		 * @param bool   $raw If set to true then it returns raw information that is passed in addon.json
 		 *
 		 * @return array|mixed|object
 		 */

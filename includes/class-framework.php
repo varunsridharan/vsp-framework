@@ -92,6 +92,7 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 		 */
 		private function _register_hooks() {
 			add_action( 'init', array( $this, '_wp_init' ), 20 );
+			/** @uses frontend_assets */
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_assets' ) );
 
 			if ( vsp_is_admin() ) {

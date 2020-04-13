@@ -2,6 +2,8 @@
 
 namespace VSP\Modules;
 
+use Exception;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -116,21 +118,24 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 * @return $this
 	 */
 	public function log( $level, $message, $context = array() ) {
-		if ( ! Logger\Levels::is_valid_level( $level ) ) {
-			/* translators: 1: VSP_Logger::log 2: level */
-			vsp_doing_it_wrong( __METHOD__, sprintf( __( '%1$s was called with an invalid level "%2$s".', 'vsp-framework' ), '<code>VSP_Logger::log</code>', $level ), '3.0' );
-		}
-		if ( $this->should_handle( $level ) ) {
-			$timestamp = current_time( 'timestamp' );
-			$message   = apply_filters( 'vsp_logger_log_message', $message, $level, $context );
-
-			if ( is_array( $message ) ) {
-				$message = implode( PHP_EOL, $message );
+		try {
+			if ( ! Logger\Levels::is_valid_level( $level ) ) {
+				/* translators: 1: VSP_Logger::log 2: level */
+				vsp_doing_it_wrong( __METHOD__, sprintf( __( '%1$s was called with an invalid level "%2$s".', 'vsp-framework' ), '<code>VSP_Logger::log</code>', $level ), '3.0' );
 			}
+			if ( $this->should_handle( $level ) ) {
+				$timestamp = current_time( 'timestamp' );
+				$message   = apply_filters( 'vsp_logger_log_message', $message, $level, $context );
 
-			foreach ( $this->handlers as $handler ) {
-				$handler->handle( $timestamp, $level, $message, $context );
+				if ( is_array( $message ) ) {
+					$message = implode( PHP_EOL, $message );
+				}
+
+				foreach ( $this->handlers as $handler ) {
+					$handler->handle( $timestamp, $level, $message, $context );
+				}
 			}
+		} catch ( Exception$exception ) {
 		}
 		return $this;
 	}
