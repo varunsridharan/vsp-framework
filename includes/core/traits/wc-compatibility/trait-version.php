@@ -32,7 +32,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 * @since 4.6.0
 		 */
 		public static function is_version_gte_3_0() {
-			return self::version() && version_compare( self::version(), '3.0', '>=' );
+			return static::version() && version_compare( static::version(), '3.0', '>=' );
 		}
 
 		/**
@@ -42,7 +42,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 * @since 4.6.0
 		 */
 		public static function is_version_lt_3_0() {
-			return self::version() && version_compare( self::version(), '3.0', '<' );
+			return static::version() && version_compare( static::version(), '3.0', '<' );
 		}
 
 		/**
@@ -52,7 +52,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 * @since 4.6.5
 		 */
 		public static function is_version_gte_3_1() {
-			return self::version() && version_compare( self::version(), '3.1', '>=' );
+			return static::version() && version_compare( static::version(), '3.1', '>=' );
 		}
 
 		/**
@@ -62,7 +62,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 * @since 4.6.5
 		 */
 		public static function is_version_lt_3_1() {
-			return self::version() && version_compare( self::version(), '3.1', '<' );
+			return static::version() && version_compare( static::version(), '3.1', '<' );
 		}
 
 		/**
@@ -76,7 +76,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 *
 		 */
 		public static function is_version_gte( $version ) {
-			return self::version() && version_compare( self::version(), $version, '>=' );
+			return static::version() && version_compare( static::version(), $version, '>=' );
 		}
 
 		/**
@@ -90,7 +90,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 *
 		 */
 		public static function is_version_lt( $version ) {
-			return self::version() && version_compare( self::version(), $version, '<' );
+			return static::version() && version_compare( static::version(), $version, '<' );
 		}
 
 		/**
@@ -102,7 +102,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Version' ) ) {
 		 * @since 2.0.0
 		 */
 		public static function is_version_gt( $version ) {
-			return self::version() && version_compare( self::version(), $version, '>' );
+			return static::version() && version_compare( static::version(), $version, '>' );
 		}
 	}
 }
