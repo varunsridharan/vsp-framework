@@ -13,7 +13,8 @@
     ]
   },
   "require-dev" : {
-    "varunsridharan/php-classmap-generator" : "*"
+    "varunsridharan/php-classmap-generator" : "*",
+    "wponion/wponion"                       : "*"
   },
   "require"     : {
     "varunsridharan/wpallimport_rapidaddon"       : "*",
