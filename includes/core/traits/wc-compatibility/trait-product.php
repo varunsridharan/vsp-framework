@@ -3,6 +3,8 @@
 namespace VSP\Core\Traits\WC_Compatibility;
 
 
+use WC_Product;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -28,11 +30,11 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Product' ) ) {
 				return $product;
 			}
 
-			if ( $product instanceof \WC_Product && method_exists( $product, 'get_id' ) ) {
+			if ( $product instanceof WC_Product && method_exists( $product, 'get_id' ) ) {
 				return $product->get_id();
 			}
 
-			if ( static::is_version_lt_3_0() && $product instanceof \WC_Product && isset( $product->ID ) ) {
+			if ( static::is_version_lt_3_0() && $product instanceof WC_Product && isset( $product->ID ) ) {
 				return $product->ID;
 			}
 			return false;
@@ -51,7 +53,7 @@ if ( ! trait_exists( '\VSP\Core\Traits\WC_Compatibility\Product' ) ) {
 				$product = wc_get_product( $product );
 			}
 
-			if ( ! $product instanceof \WC_Product ) {
+			if ( ! $product instanceof WC_Product ) {
 				return false;
 			}
 
