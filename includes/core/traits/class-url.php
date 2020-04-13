@@ -67,12 +67,8 @@ trait URL {
 	 * @return string → returns the data with links created around URLS
 	 */
 	public static function auto_link( $url, $custom = null ) {
-		$regex = '@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@';
-		if ( null === $custom ) {
-			$replace = '<a href="http$2://$4">$1$2$3$4</a>';
-		} else {
-			$replace = '<a href="http$2://$4">' . $custom . '</a>';
-		}
+		$regex   = '@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@';
+		$replace = ( null === $custom ) ? '<a href="http$2://$4">$1$2$3$4</a>' : '<a href="http$2://$4">' . $custom . '</a>';
 		return preg_replace( $regex, $replace, $url );
 	}
 

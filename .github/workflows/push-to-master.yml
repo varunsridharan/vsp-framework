@@ -1,4 +1,4 @@
-name: PHP ApiGen
+name: On Push
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - master
 
 jobs:
-  apigen:
+  PHP_Docs_ApiGen:
     runs-on: ubuntu-latest
     steps:
-      - name: Checking Out Repo Data
+      - name: Fetching Repository
         uses: actions/checkout@v1
-      - name: PHP Docs Generator
+      - name: Generating PHP Documentation
         uses: varunsridharan/action-apigen@1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

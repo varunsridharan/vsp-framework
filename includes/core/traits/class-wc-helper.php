@@ -2,8 +2,10 @@
 
 namespace VSP\Core\Traits;
 
+use Exception;
 use WC_Payment_Gateway;
 use WC_Payment_Gateways;
+use WC_Shipping;
 use WC_Shipping_Zones;
 use WPOnion\Exception\Cache_Not_Found;
 
@@ -22,14 +24,15 @@ trait WC_Helper {
 	/**
 	 * Fetches Gateways From WooCommerce And Returns It.
 	 *
-	 * @param bool $slug
+	 * @param bool   $slug
+	 * @param string $cache_key Custom Cache key for customized data via filter.
 	 *
 	 * @static
 	 * @return array|mixed
 	 */
-	public static function wc_payment_methods( $slug = false ) {
+	public static function wc_payment_methods( $slug = false, $cache_key = 'vsp' ) {
 		try {
-			return ( $slug ) ? vsp_get_cache( 'vsp/wc/payment_methods/slugs' ) : vsp_get_cache( 'vsp/wc/payment_methods/all' );
+			return ( $slug ) ? vsp_get_cache( $cache_key . '/wc/payment_methods/slugs' ) : vsp_get_cache( $cache_key . '/wc/payment_methods/all' );
 		} catch ( Cache_Not_Found $exception ) {
 			$methods  = WC_Payment_Gateways::instance()->payment_gateways;
 			$gateways = array();
@@ -45,44 +48,50 @@ trait WC_Helper {
 							$method->id           = 'mollie_' . $method->id;
 							$method->description  = $method->description . ' (Mollie)';
 							$gateways[]           = $method;
-							$slugs[ $method->id ] = $method->title;
+							$slugs[ $method->id ] = apply_filters( 'vsp_wc_payment_gateway_label', $method->title, $method, $cache_key );
 						}
 					} else {
 						$gateways[]           = $method;
-						$slugs[ $method->id ] = $method->title;
+						$slugs[ $method->id ] = apply_filters( 'vsp_wc_payment_gateway_label', $method->title, $method, $cache_key );
 					}
 				}
 			}
-			vsp_set_cache( 'vsp/wc/paymet_methods/slugs', $slugs );
-			vsp_set_cache( 'vsp/wc/paymet_methods/all', $gateways );
+			vsp_set_cache( $cache_key . '/wc/paymet_methods/slugs', $slugs );
+			vsp_set_cache( $cache_key . '/wc/paymet_methods/all', $gateways );
 			return ( $slug ) ? $slugs : $gateways;
 		}
 	}
 
 	/**
-	 * @param bool $slug
+	 * @param bool   $slug
+	 * @param string $cache_key Custom Cache key for customized data via filter.
 	 *
 	 * @static
 	 * @return mixed
 	 * @throws \Exception
 	 */
-	public static function wc_shipping_methods( $slug = false ) {
+	public static function wc_shipping_methods( $slug = false, $cache_key = 'vsp' ) {
 		try {
-			return ( $slug ) ? vsp_get_cache( 'vsp/wc/shipping_methods/slugs' ) : vsp_get_cache( 'vsp/wc/shipping_methods/all' );
+			return ( $slug ) ? vsp_get_cache( $cache_key . '/wc/shipping_methods/slugs' ) : vsp_get_cache( $cache_key . '/wc/shipping_methods/all' );
 		} catch ( Cache_Not_Found $exception ) {
-			$slugs = array();
-			if ( ! empty( WC()->shipping->shipping_methods ) && count( WC()->shipping->shipping_methods ) > 0 ) {
-				$shipping_methods = \WC_Shipping::instance()->shipping_methods;
-			} else {
-				$shipping_methods = \WC_Shipping::instance()
-					->load_shipping_methods();
+			$slugs      = array();
+			$is_smv     = ( ! empty( WC()->shipping->shipping_methods ) && count( WC()->shipping->shipping_methods ) > 0 );
+			$s_instance = WC_Shipping::instance();
+
+			try {
+				$shipping_methods = ( $is_smv ) ? $s_instance->shipping_methods : $s_instance->load_shipping_methods();
+			} catch ( Exception $exception ) {
+				$shipping_methods = array();
 			}
 
-			foreach ( $shipping_methods as $method ) {
-				$slugs[ $method->id ] = $method->method_title;
+			if ( ! empty( $shipping_methods ) ) {
+				foreach ( $shipping_methods as $method ) {
+					$slugs[ $method->id ] = apply_filters( 'vsp_wc_shipping_methods_label', $method->method_title, $method );
+				}
+
+				vsp_set_cache( $cache_key . '/wc/shipping_methods/slugs', $slugs );
+				vsp_set_cache( $cache_key . '/wc/shipping_methods/all', $shipping_methods );
 			}
-			vsp_set_cache( 'vsp/wc/shipping_methods/slugs', $slugs );
-			vsp_set_cache( 'vsp/wc/shipping_methods/all', $shipping_methods );
 			return ( $slug ) ? $slugs : $shipping_methods;
 		}
 	}
@@ -90,12 +99,14 @@ trait WC_Helper {
 	/**
 	 * Fetches All Shipping Methods By Instance ID.
 	 *
+	 * @param string $cache_key Custom Cache key for customized data via filter.
+	 *
 	 * @static
 	 * @return array
 	 */
-	public static function wc_shipping_methods_by_instance() {
+	public static function wc_shipping_methods_by_instance( $cache_key = 'vsp' ) {
 		try {
-			return vsp_get_cache( 'vsp/wc/shipping_methods_instance' );
+			return vsp_get_cache( $cache_key . '/wc/shipping_methods_instance' );
 		} catch ( Cache_Not_Found $exception ) {
 			/**
 			 * @var \WC_Shipping_Zone   $zone
@@ -103,7 +114,7 @@ trait WC_Helper {
 			 */
 			try {
 				$delivery_zones = WC_Shipping_Zones::get_zones();
-			} catch ( \Exception $exception_inner ) {
+			} catch ( Exception $exception_inner ) {
 				$delivery_zones = array();
 			}
 			$return = array();
@@ -112,13 +123,13 @@ trait WC_Helper {
 					if ( ! empty( $zone['shipping_methods'] ) ) {
 						$store = array();
 						foreach ( $zone['shipping_methods'] as $shipping_method ) {
-							$store[ $shipping_method->get_instance_id() ] = $shipping_method->get_title();
+							$store[ $shipping_method->get_instance_id() ] = apply_filters( 'vsp_wc_shipping_methods_by_instance_label', $shipping_method->get_title(), $shipping_method );
 						}
 						$return[ $zone['zone_name'] ] = $store;
 					}
 				}
 			}
-			vsp_set_cache( 'vsp/wc/shipping_methods_instance', $return );
+			$exception->set( $return );
 			return $return;
 		}
 	}
@@ -176,12 +187,7 @@ trait WC_Helper {
 	 * @return bool
 	 */
 	public static function wc_clear_cart_if_notempty() {
-		if ( function_exists( 'wc' ) ) {
-			if ( ! empty( wc()->cart->get_cart() ) ) {
-				return static::wc_clear_cart();
-			}
-		}
-		return false;
+		return ( function_exists( 'wc' ) && ! empty( wc()->cart->get_cart() ) ) ? static::wc_clear_cart() : false;
 	}
 }
 
