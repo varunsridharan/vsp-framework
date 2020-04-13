@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a501a6617c1e8c46aefd7f5b9ce5ae25",
+    "content-hash": "86754be9e94d593440f2bfbcae12df28",
     "packages": [
         {
             "name": "thewpleague/wp-query-builder",
@@ -44,6 +44,41 @@
             ],
             "description": "A WordPress Query builder",
             "time": "2018-08-09T09:44:40+00:00"
+        },
+        {
+            "name": "varunsridharan/php-autoloader",
+            "version": "2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/php-autoloader.git",
+                "reference": "ec9df2b2bfdf5f23c56654c22c288bbefea00ca7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/php-autoloader/zipball/ec9df2b2bfdf5f23c56654c22c288bbefea00ca7",
+                "reference": "ec9df2b2bfdf5f23c56654c22c288bbefea00ca7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\PHP\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight PSR-4 PHP Autoloader Class.",
+            "time": "2019-10-04T09:42:21+00:00"
         },
         {
             "name": "varunsridharan/sweetalert2-php",
@@ -86,16 +121,6 @@
                 "sweetalert",
                 "sweetalert2"
             ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-04-06T04:19:14+00:00"
         },
         {
@@ -125,9 +150,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -153,6 +178,45 @@
                 "wp-theme"
             ],
             "time": "2019-07-22T09:57:44+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-conditional-logic",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-conditional-logic.git",
+                "reference": "56a6e973d7804e5594fec51d428f5a8483239bf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-conditional-logic/zipball/56a6e973d7804e5594fec51d428f5a8483239bf4",
+                "reference": "56a6e973d7804e5594fec51d428f5a8483239bf4",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Varunsridharan\\WordPress\\": "./src"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Varun Sridharan",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "http://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple WordPress Library To Evaluate / Handle Conditional Logic.",
+            "homepage": "https://github.com/varunsridharan/wp-conditional-logic/",
+            "time": "2019-05-10T15:23:43+00:00"
         },
         {
             "name": "varunsridharan/wp-db-table",
@@ -190,17 +254,65 @@
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "funding": [
+            "time": "2020-03-20T09:01:01+00:00"
+        },
+        {
+            "name": "varunsridharan/wp-dependencies",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varunsridharan/wp-dependencies.git",
+                "reference": "b1514529480223b8cfae5cbc33c7cc9e4ee7420b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varunsridharan/wp-dependencies/zipball/b1514529480223b8cfae5cbc33c7cc9e4ee7420b",
+                "reference": "b1514529480223b8cfae5cbc33c7cc9e4ee7420b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./src/dependencies.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
                 {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
+                    "name": "Varun Sridharan",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "http://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
-            "time": "2020-03-20T09:01:01+00:00"
+            "description": "Provides Function To Check if a plugin is active/inactive & function to compare versions.",
+            "homepage": "https://github.com/varunsridharan/wp-dependencies/",
+            "keywords": [
+                "dependencies",
+                "vsp-libs",
+                "wordpress",
+                "wordpress-dependencies",
+                "wordpress-development",
+                "wordpress-library",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-plugin-development",
+                "wordpress-plugin-library",
+                "wordpress-plugins",
+                "wordpress-theme",
+                "wordpress-theme-development",
+                "wordpress-theme-library",
+                "wp",
+                "wp-addon",
+                "wp-dependencies",
+                "wp-library",
+                "wp-plugin",
+                "wp-theme"
+            ],
+            "time": "2019-06-28T11:21:34+00:00"
         },
         {
             "name": "varunsridharan/wp-localizer",
@@ -399,7 +511,7 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "549.549",
+            "version": "554.554",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
@@ -425,6 +537,78 @@
                 }
             ],
             "time": "2019-05-07T04:45:52+00:00"
+        },
+        {
+            "name": "wponion/wponion",
+            "version": "1.4.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wponion/wponion.git",
+                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/50b0f89cec58b6a2143beb13754e01fc1c36a017",
+                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017",
+                "shasum": ""
+            },
+            "require": {
+                "varunsridharan/php-autoloader": "^2.0",
+                "varunsridharan/wp-conditional-logic": "^1.0",
+                "varunsridharan/wp-dependencies": "^1.0"
+            },
+            "conflict": {
+                "wponion/dev": "dev-master",
+                "wponion/wponion": "dev-development"
+            },
+            "require-dev": {
+                "mustangostang/spyc": "*",
+                "varunsridharan/php-classmap-generator": "*",
+                "varunsridharan/wp-cli-textdomain": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "index.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Varun Sridharan",
+                    "email": "varunsridharan23@gmail.com",
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "~ Lightweight, Flexible & Rapid WP Development Framework ~",
+            "homepage": "https://wponion.com",
+            "keywords": [
+                "gutenberg",
+                "settings-api",
+                "wordpress",
+                "wordpress-gutenberg",
+                "wordpress-metabox-options",
+                "wordpress-metaboxes",
+                "wordpress-options",
+                "wordpress-options-builder",
+                "wordpress-options-framework",
+                "wordpress-options-plugin",
+                "wordpress-php-library",
+                "wordpress-plugin",
+                "wordpress-settings",
+                "wordpress-settings-api",
+                "wordpress-taxonomies",
+                "wordpress-theme",
+                "wordpress-widget",
+                "wp-plugin-settings",
+                "wponion",
+                "wponion-framework"
+            ],
+            "time": "2020-04-06T07:13:57+00:00"
         }
     ],
     "packages-dev": [
@@ -475,20 +659,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -534,6 +704,5 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
