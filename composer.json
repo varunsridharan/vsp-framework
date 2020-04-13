@@ -13,11 +13,11 @@
     ]
   },
   "require-dev" : {
-    "varunsridharan/php-classmap-generator" : "*",
-    "wponion/wponion"                       : "*"
+    "varunsridharan/php-classmap-generator" : "*"
   },
   "require"     : {
     "varunsridharan/wpallimport_rapidaddon"       : "*",
+    "wponion/wponion"                             : "*",
     "varunsridharan/sweetalert2-php"              : ">=1.0",
     "varunsridharan/wp-ajaxer"                    : ">=1.0",
     "varunsridharan/wp-post"                      : ">=1.0",
