@@ -24,6 +24,8 @@ if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 		protected $wpo_assets = false;
 
 		/**
+		 * Merge user defined arguments into defaults array.
+		 *
 		 * @param $data
 		 *
 		 * @return array
@@ -33,6 +35,8 @@ if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 		}
 
 		/**
+		 * Send a JSON response back to an Ajax request, indicating failure.
+		 *
 		 * @param mixed $data
 		 * @param null  $status_code
 		 */
@@ -41,6 +45,8 @@ if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 		}
 
 		/**
+		 * Send a JSON response back to an Ajax request, indicating success.
+		 *
 		 * @param mixed $data
 		 * @param null  $status_code
 		 */
