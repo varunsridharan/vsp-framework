@@ -50,11 +50,11 @@ if ( ! class_exists( 'Ajax' ) ) {
 		 */
 		public function download_log() {
 			if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-				$this->error( __( 'Invalid Nonce' ) );
+				$this->error( __( 'Invalid Nonce', 'vsp-framework' ) );
 			}
 
 			if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'download_log' ) ) {
-				$this->error( __( 'Nonce Expired' ) );
+				$this->error( __( 'Nonce Expired', 'vsp-framework' ) );
 			}
 
 			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
@@ -76,12 +76,12 @@ if ( ! class_exists( 'Ajax' ) ) {
 							}
 						}
 					}
-					$this->error( __( 'Log File Not Found !' ) );
+					$this->error( __( 'Log File Not Found !', 'vsp-framework' ) );
 				} else {
-					$this->error( __( 'Invalid Log File Extension' ) );
+					$this->error( __( 'Invalid Log File Extension', 'vsp-framework' ) );
 				}
 			} else {
-				$this->error( __( 'Invalid Log File' ) );
+				$this->error( __( 'Invalid Log File', 'vsp-framework' ) );
 			}
 			wp_die();
 		}

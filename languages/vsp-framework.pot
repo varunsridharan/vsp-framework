@@ -1,15 +1,15 @@
-# Copyright (C) 2019 Varun Sridharan
+# Copyright (C) 2020 Varun Sridharan
 # This file is distributed under the same license as the VSP Framework plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: VSP Framework 0.1.5.8\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/vsp-framework\n"
+"Project-Id-Version: VSP Framework 0.8.3\n"
+"Report-Msgid-Bugs-To: https:\/\/github.com\/varunsridharan\/vsp-framework\n\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: hello@wponion.com\n\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-06-20T09:57:35+05:30\n"
+"POT-Creation-Date: 2020-04-14T07:03:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: vsp-framework\n"
@@ -26,146 +26,162 @@ msgstr ""
 msgid "http://varunsridharan.in"
 msgstr ""
 
-#: includes/class-ajax.php:67
-msgid "Log File Not Found"
+#: includes/class-ajax.php:41
+msgid "Addon Action Not Provided"
+msgstr ""
+
+#: includes/class-ajax.php:42
+msgid "Unable To Process Your Request"
+msgstr ""
+
+#: includes/class-ajax.php:53
+msgid "Invalid Nonce"
+msgstr ""
+
+#: includes/class-ajax.php:57
+msgid "Nonce Expired"
+msgstr ""
+
+#: includes/class-ajax.php:79
+msgid "Log File Not Found !"
+msgstr ""
+
+#: includes/class-ajax.php:81
+msgid "Invalid Log File Extension"
+msgstr ""
+
+#: includes/class-ajax.php:84
+msgid "Invalid Log File"
 msgstr ""
 
 #: includes/class-base.php:35
 msgid "Cloning instances of the class is forbidden."
 msgstr ""
 
-#: includes/class-base.php:42
+#: includes/class-base.php:43
 msgid "Unserializing instances of the class is forbidden."
 msgstr ""
 
-#: includes/class-helper.php:82
+#: includes/class-helper.php:80
 msgid "year"
 msgstr ""
 
-#: includes/class-helper.php:83
+#: includes/class-helper.php:81
 msgid "years"
 msgstr ""
 
-#: includes/class-helper.php:84
+#: includes/class-helper.php:82
 msgid "month"
 msgstr ""
 
-#: includes/class-helper.php:85
+#: includes/class-helper.php:83
 msgid "months"
 msgstr ""
 
-#: includes/class-helper.php:86
+#: includes/class-helper.php:84
 msgid "week"
 msgstr ""
 
-#: includes/class-helper.php:87
+#: includes/class-helper.php:85
 msgid "weeks"
 msgstr ""
 
-#: includes/class-helper.php:88
+#: includes/class-helper.php:86
 msgid "day"
 msgstr ""
 
-#: includes/class-helper.php:89
+#: includes/class-helper.php:87
 msgid "days"
 msgstr ""
 
-#: includes/class-helper.php:90
+#: includes/class-helper.php:88
 msgid "hour"
 msgstr ""
 
-#: includes/class-helper.php:91
+#: includes/class-helper.php:89
 msgid "hours"
 msgstr ""
 
-#: includes/class-helper.php:92
+#: includes/class-helper.php:90
 msgid "minute"
 msgstr ""
 
-#: includes/class-helper.php:93
+#: includes/class-helper.php:91
 msgid "minutes"
 msgstr ""
 
-#: includes/class-helper.php:94
+#: includes/class-helper.php:92
 msgid "second"
 msgstr ""
 
-#: includes/class-helper.php:95
+#: includes/class-helper.php:93
 msgid "seconds"
 msgstr ""
 
-#: includes/core/traits/class-wp.php:135
+#: includes/core/traits/class-wp.php:126
 msgid "Visitor / Logged-Out User"
 msgstr ""
 
 #. translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface
-#: includes/functions/general-functions.php:192
+#: includes/functions/general-functions.php:178
 msgid "The class %1$s provided by %2$s filter must implement %3$s."
 msgstr ""
 
-#: includes/functions/general-functions.php:247
+#: includes/functions/general-functions.php:233
 msgid "Tried To Log A Message But Failed Got unknown Handler"
 msgstr ""
 
-#: includes/functions/general-functions.php:307
+#: includes/functions/general-functions.php:272
 msgid "Maximum stack depth exceeded"
 msgstr ""
 
-#: includes/functions/general-functions.php:310
+#: includes/functions/general-functions.php:275
 msgid "Underflow or the modes mismatch"
 msgstr ""
 
-#: includes/functions/general-functions.php:313
+#: includes/functions/general-functions.php:278
 msgid "Unexpected control character found"
 msgstr ""
 
-#: includes/functions/general-functions.php:316
+#: includes/functions/general-functions.php:281
 msgid "Syntax error, malformed JSON"
 msgstr ""
 
-#: includes/functions/general-functions.php:319
+#: includes/functions/general-functions.php:284
 msgid "Malformed UTF-8 characters, possibly incorrectly encoded"
 msgstr ""
 
-#: includes/functions/general-functions.php:322
+#: includes/functions/general-functions.php:287
 msgid "Unknown error"
 msgstr ""
 
-#: includes/functions/logger-functions.php:27
+#: includes/functions/logger-functions.php:32
 msgid "folder"
 msgstr ""
 
-#: includes/modules/class-addons.php:40
+#: includes/modules/class-addons.php:41
 msgid "All"
 msgstr ""
 
-#: includes/modules/class-addons.php:41
-#: includes/modules/class-addons.php:48
+#: includes/modules/class-addons.php:42
+#: includes/modules/class-addons.php:49
 msgid "Active"
 msgstr ""
 
-#: includes/modules/class-addons.php:42
+#: includes/modules/class-addons.php:43
 msgid "Inactive"
 msgstr ""
 
-#: includes/modules/class-addons.php:43
+#: includes/modules/class-addons.php:44
 msgid "General"
 msgstr ""
 
-#: includes/modules/class-addons.php:46
+#: includes/modules/class-addons.php:47
 msgid "Not Installed"
 msgstr ""
 
-#: includes/modules/class-addons.php:47
+#: includes/modules/class-addons.php:48
 msgid "In Active"
-msgstr ""
-
-#: includes/modules/class-addons.php:72
-msgid "Addon Action Not Provided"
-msgstr ""
-
-#: includes/modules/class-addons.php:73
-msgid "Unable To Process Your Request"
 msgstr ""
 
 #: includes/modules/class-addons.php:75
@@ -208,20 +224,20 @@ msgstr ""
 msgid "Addon Is Not Active"
 msgstr ""
 
-#: includes/modules/class-addons.php:119
+#: includes/modules/class-addons.php:116
 msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
 msgstr ""
 
-#: includes/modules/class-addons.php:142
+#: includes/modules/class-addons.php:140
 msgid " Has Deactivated Some of its addons"
 msgstr ""
 
-#: includes/modules/class-addons.php:144
+#: includes/modules/class-addons.php:142
 msgid "I Understand. Will Fix It"
 msgstr ""
 
 #. translators: 1: class name 2: VSP_Log_Handler_Interface
-#: includes/modules/class-logger.php:52
+#: includes/modules/class-logger.php:54
 msgid "The provided handler %1$s does not implement %2$s."
 msgstr ""
 
@@ -230,12 +246,16 @@ msgid "File & Line No :"
 msgstr ""
 
 #. translators: 1: VSP_Logger::log 2: level
-#: includes/modules/class-logger.php:126
+#: includes/modules/class-logger.php:124
 msgid "%1$s was called with an invalid level \"%2$s\"."
 msgstr ""
 
-#: includes/modules/class-system-logs.php:94
+#: includes/modules/class-system-logs.php:98
 msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: includes/modules/class-system-logs.php:117
+msgid "Invalid wpnonce or log file not found!."
 msgstr ""
 
 #: includes/modules/class-system-tools.php:70
@@ -246,37 +266,9 @@ msgstr ""
 msgid "System Logs"
 msgstr ""
 
-#: includes/modules/logger/class-file-handler.php:199
-#: includes/modules/logger/class-file-handler.php:221
+#: includes/modules/logger/class-file-handler.php:201
+#: includes/modules/logger/class-file-handler.php:223
 msgid "This method should not be called before plugins_loaded."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:142
-msgid "Before you can upload your import file, you will need to fix the following error:"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:163
-msgid "Upload file and import"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:236
-msgid "Sorry, there has been an error."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:259
-msgid "The file does not exist, please try again."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:273
-msgid "The CSV is invalid."
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:333
-msgid "Import completed"
-msgstr ""
-
-#: includes/modules/wordpress/class-importer.php:343
-msgid "Import Errors - "
 msgstr ""
 
 #: views/addon-page.php:5
@@ -291,11 +283,11 @@ msgstr ""
 msgid "Above Mentioned Plugin name with version are Tested Upto"
 msgstr ""
 
-#: views/addon-page.php:35
+#: views/addon-page.php:34
 msgid "Activate"
 msgstr ""
 
-#: views/addon-page.php:36
+#: views/addon-page.php:35
 msgid "De-Activate"
 msgstr ""
 
@@ -311,11 +303,47 @@ msgstr ""
 msgid "Delete Log"
 msgstr ""
 
-#: vsp-bootstrap.php:83
+#: vsp-bootstrap.php:57
+msgid "Framework Autoloader Not Found"
+msgstr ""
+
+#: vsp-bootstrap.php:77
 msgid "Autoloder For VSP-Framework Not Found."
 msgstr ""
 
+#: vsp-bootstrap.php:78
+msgid "Please Contact The Author Of The Plugin"
+msgstr ""
+
+#: vsp-bootstrap.php:79
+msgid "Plugin Path :"
+msgstr ""
+
+#: vsp-bootstrap.php:80
+msgid "Error : "
+msgstr ""
+
 #. translators: Add Requested Plugin Name & Required Plugin Name
-#: vsp-functions.php:220
+#: vsp-functions.php:161
 msgid "%1$s Requires %2$s to be installed & activated."
+msgstr ""
+
+#. translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
+#: vsp-functions.php:171
+msgid "%1$s Requires %2$s Version %3$s Or Higher. Please Update Your %2$s To %3$s"
+msgstr ""
+
+#. translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
+#: vsp-functions.php:179
+msgid "%1$s Requires %2$s Version %3$s. Please Update Your %2$s To %3$s"
+msgstr ""
+
+#. translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
+#: vsp-functions.php:187
+msgid "%1$s Requires %2$s Version %3$s. Please Downgrade Your %2$s"
+msgstr ""
+
+#. translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
+#: vsp-functions.php:196
+msgid "%1$s Requires %2$s Version %3$s Or Lower. Please Downgrade Your %2$s To %3$s"
 msgstr ""

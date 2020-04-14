@@ -168,7 +168,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 				case '>=':
 					if ( ! plugin_version_gte( $args['req_plugin'], $args['version'] ) ) {
 						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
-						$msg = __( '%1$s Requires %2$s Version %3$s Or Higher. Please Update Your %2$s To %3$s' );
+						$msg = __( '%1$s Requires %2$s Version %3$s Or Higher. Please Update Your %2$s To %3$s', 'vsp-framework' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;
@@ -176,7 +176,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 				case '>':
 					if ( ! plugin_version_gt( $args['req_plugin'], $args['version'] ) ) {
 						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
-						$msg = __( '%1$s Requires %2$s Version %3$s. Please Update Your %2$s To %3$s' );
+						$msg = __( '%1$s Requires %2$s Version %3$s. Please Update Your %2$s To %3$s', 'vsp-framework' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;
@@ -184,7 +184,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 				case '<':
 					if ( ! plugin_version_lt( $args['req_plugin'], $args['version'] ) ) {
 						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
-						$msg = __( '%1$s Requires %2$s Version %3$s. Please Downgrade Your %2$s' );
+						$msg = __( '%1$s Requires %2$s Version %3$s. Please Downgrade Your %2$s', 'vsp-framework' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;
@@ -193,7 +193,7 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 				case '<=':
 					if ( ! plugin_version_lte( $args['req_plugin'], $args['version'] ) ) {
 						// translators: Add Requested Plugin Name & Required Plugin Name & Required Plugin Version.
-						$msg = __( '%1$s Requires %2$s Version %3$s Or Lower. Please Downgrade Your %2$s To %3$s' );
+						$msg = __( '%1$s Requires %2$s Version %3$s Or Lower. Please Downgrade Your %2$s To %3$s', 'vsp-framework' );
 						$msg = sprintf( $msg, '<strong>' . $args['plugin_name'] . '</strong>', '<strong>' . $args['req_plugin_name'] . '</strong>', '<code>' . $args['version'] . '</code>' );
 					}
 					break;

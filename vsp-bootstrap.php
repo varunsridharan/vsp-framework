@@ -27,7 +27,7 @@
  *
  * Framework Name: VSP Framework
  * Plugin Name: VSP Framework
- * Version: 0.8.2
+ * Version: 0.8.3
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! defined( 'VSP_VERSION' ) ) {
 	try {
 		$upload_dir = wp_upload_dir( null, false );
-		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.2' );
+		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.3' );
 		defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
 		defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 		defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
@@ -54,7 +54,7 @@ if ( ! defined( 'VSP_VERSION' ) ) {
 		}
 
 		if ( ! class_exists( '\Varunsridharan\PHP\Autoloader' ) ) {
-			throw new ErrorException( __( 'Framework Autoloader Not Found' ) );
+			throw new ErrorException( __( 'Framework Autoloader Not Found', 'vsp-framework' ) );
 		}
 
 		new Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
@@ -75,9 +75,9 @@ if ( ! defined( 'VSP_VERSION' ) ) {
 	} catch ( Exception $exception ) {
 		$path = str_replace( untrailingslashit( ABSPATH ), '', plugin_dir_path( __DIR__ ) );
 		$msg  = '<h4 style="text-align: center">' . __( 'Autoloder For VSP-Framework Not Found.', 'vsp-framework' ) . '</h4>';
-		$msg  .= '<i style="text-align: center; display: block;">' . __( 'Please Contact The Author Of The Plugin' ) . '</i><br/>';
-		$msg  .= '<strong>' . __( 'Plugin Path :' ) . '</strong>' . ' <code style="padding: 2px 5px;background: #ffe6ee;border: 1px solid #ffb3cb;border-radius: 5px;margin-left: 10px;">' . $path . '</code> <br/> <br/>';
-		$msg  .= '<strong style="font-style: italic; color:red;">' . __( 'Error : ' ) . ' </strong> ' . $exception->getMessage();
+		$msg  .= '<i style="text-align: center; display: block;">' . __( 'Please Contact The Author Of The Plugin', 'vsp-framework' ) . '</i><br/>';
+		$msg  .= '<strong>' . __( 'Plugin Path :', 'vsp-framework' ) . '</strong>' . ' <code style="padding: 2px 5px;background: #ffe6ee;border: 1px solid #ffb3cb;border-radius: 5px;margin-left: 10px;">' . $path . '</code> <br/> <br/>';
+		$msg  .= '<strong style="font-style: italic; color:red;">' . __( 'Error : ', 'vsp-framework' ) . ' </strong> ' . $exception->getMessage();
 		wp_die( $msg );
 	}
 }

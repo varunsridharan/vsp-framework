@@ -5,7 +5,10 @@
   "homepage"    : "https://github.com/varunsridharan/vsp-framework",
   "license"     : "GPL-3.0+",
   "scripts"     : {
-    "autoloader" : "classmap-generator \"includes/\" ./vsp-classmaps.php"
+    "classmaps"      : "classmap-generator \"includes/\" ./vsp-classmaps.php",
+    "makepot"        : "makepot ./wp-pot.json",
+    "add-textdomain" : "add-textdomain -i vsp-framework ./",
+    "build"          : [ "@classmaps", "@add-textdomain", "@makepot" ]
   },
   "autoload"    : {
     "files" : [
@@ -13,7 +16,8 @@
     ]
   },
   "require-dev" : {
-    "varunsridharan/php-classmap-generator" : "*"
+    "varunsridharan/php-classmap-generator" : "*",
+    "varunsridharan/wp-cli-textdomain"      : "^1.1"
   },
   "require"     : {
     "varunsridharan/wpallimport_rapidaddon"       : "*",

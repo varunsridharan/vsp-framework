@@ -1,0 +1,10 @@
+{
+  "src"     : "./",
+  "dist"    : "./languages/vsp-framework.pot",
+  "domain"  : "vsp-framework",
+  "exclude" : "assets/,assets_src/,node_modules/,vendor/",
+  "headers" : {
+    "Report-Msgid-Bugs-To" : "https://github.com/varunsridharan/vsp-framework\n",
+    "Language-Team"        : "hello@wponion.com\n"
+  }
+}
