@@ -121,16 +121,6 @@
                 "sweetalert",
                 "sweetalert2"
             ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-04-06T04:19:14+00:00"
         },
         {
@@ -160,9 +150,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -264,16 +254,6 @@
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-03-20T09:01:01+00:00"
         },
         {
@@ -560,16 +540,16 @@
         },
         {
             "name": "wponion/wponion",
-            "version": "1.4.5.1",
+            "version": "1.4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017"
+                "reference": "1cfc6330747768ffee4ec285189726ea88af1e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/50b0f89cec58b6a2143beb13754e01fc1c36a017",
-                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/1cfc6330747768ffee4ec285189726ea88af1e01",
+                "reference": "1cfc6330747768ffee4ec285189726ea88af1e01",
                 "shasum": ""
             },
             "require": {
@@ -628,7 +608,7 @@
                 "wponion",
                 "wponion-framework"
             ],
-            "time": "2020-04-06T07:13:57+00:00"
+            "time": "2020-04-15T01:34:37+00:00"
         }
     ],
     "packages-dev": [
@@ -942,20 +922,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -1256,6 +1222,5 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
