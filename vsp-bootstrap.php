@@ -27,7 +27,7 @@
  *
  * Framework Name: VSP Framework
  * Plugin Name: VSP Framework
- * Version: 0.8.3
+ * Version: 0.8.4
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! defined( 'VSP_VERSION' ) ) {
 	try {
 		$upload_dir = wp_upload_dir( null, false );
-		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.3' );
+		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.4' );
 		defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
 		defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 		defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );
@@ -58,8 +58,8 @@ if ( ! defined( 'VSP_VERSION' ) ) {
 		}
 
 		new Autoloader( 'VSP\\', VSP_PATH . 'includes/', array(
-			'prepend'   => true,
-			'classmaps' => __DIR__ . '/vsp-classmaps.php',
+			'prepend'  => true,
+			'classmap' => __DIR__ . '/vsp-classmaps.php',
 		) );
 
 		require_once __DIR__ . '/vsp-functions.php';
