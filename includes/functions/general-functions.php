@@ -242,6 +242,8 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 
 if ( ! function_exists( 'vsp_date_format' ) ) {
 	/**
+	 * Returns Site's Date Format From Database
+	 *
 	 * @return mixed
 	 */
 	function vsp_date_format() {
@@ -251,6 +253,8 @@ if ( ! function_exists( 'vsp_date_format' ) ) {
 
 if ( ! function_exists( 'vsp_time_format' ) ) {
 	/**
+	 * Returns Site's Time Format From Database
+	 *
 	 * @return mixed
 	 */
 	function vsp_time_format() {
@@ -260,6 +264,8 @@ if ( ! function_exists( 'vsp_time_format' ) ) {
 
 if ( ! function_exists( 'vsp_json_last_error' ) ) {
 	/**
+	 * Checks if last json had any errors.
+	 *
 	 * @return string|null
 	 * @since 2.4.10
 	 */

@@ -122,6 +122,8 @@ if ( ! function_exists( 'vsp_get_file_paths' ) ) {
 
 if ( ! function_exists( 'vsp_list_files' ) ) {
 	/**
+	 * Generates Nested Array Output of Files inside a folder.
+	 *
 	 * @param       $path
 	 * @param int   $levels
 	 * @param array $exclusions
@@ -216,6 +218,9 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 
 if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	/**
+	 * Adds WooCommerce Plugin Required Notice if not exists.
+	 * Also checks for version based on plugin's input.
+	 *
 	 * @param string $plugin_name
 	 * @param string $wc_version
 	 * @param string $wc_compare
