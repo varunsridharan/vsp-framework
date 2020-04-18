@@ -1,0 +1,98 @@
+<?php
+
+namespace VSP\Core\Traits;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
+/**
+ * Trait Price_Handler
+ *
+ * @package VSP\Core\Traits
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @since 0.8.5
+ */
+trait Price_Handler {
+	/**
+	 * Handles Price Calculation.
+	 *
+	 * @param string|int $existing_price
+	 * @param string|int $new_price
+	 * @param string     $operator
+	 *
+	 * @return bool
+	 */
+	public static function handle_fixed_pricing( $existing_price, $new_price, $operator ) {
+		switch ( $operator ) {
+			case 'add':
+			case 'ADD':
+			case '+':
+				return $existing_price + $new_price;
+				break;
+			case 'sub':
+			case 'SUB':
+			case '-':
+				return $existing_price - $new_price;
+				break;
+		}
+		return false;
+	}
+
+	/**
+	 * Handles Percentage Calculation.
+	 *
+	 * @param $existing_price
+	 * @param $new_price
+	 * @param $operator
+	 *
+	 * @return bool
+	 */
+	public static function handle_percentage_pricing( $existing_price, $new_price, $operator ) {
+		$price = $new_price;
+		switch ( $operator ) {
+			case 'add':
+			case 'ADD':
+			case '+':
+				$price = $existing_price + ( $existing_price * ( $new_price / 100 ) );
+				break;
+			case 'sub':
+			case 'SUB':
+			case '-':
+				$price = $existing_price - ( $existing_price * ( $new_price / 100 ) );
+				break;
+		}
+		return (float) $price;
+	}
+
+	/**
+	 * Handles Price Calcultion Concept.
+	 *
+	 * @param string|int  $existing_price
+	 * @param string|int  $new_price
+	 * @param string      $operator
+	 * @param string      $rule
+	 * @param bool|string $force_update
+	 *
+	 * @return string
+	 */
+	public static function handle_pricing( $existing_price, $new_price, $operator, $rule, $force_update ) {
+		if ( empty( $existing_price ) ) {
+			if ( ! empty( $fupdate ) && in_array( $fupdate, array( true, 'yes', 'on', 1, '1' ), true ) ) {
+				return $new_price;
+			}
+			return $existing_price;
+		}
+
+		$price = $new_price;
+		switch ( $rule ) {
+			case 'fixed':
+				$price = static::handle_fixed_pricing( $existing_price, $new_price, $operator );
+				break;
+			case 'percentage':
+				$price = static::handle_percentage_pricing( $existing_price, $new_price, $operator );
+				break;
+		}
+		return wc_format_decimal( $price );
+	}
+}

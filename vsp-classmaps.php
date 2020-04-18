@@ -1,8 +1,8 @@
 <?php
 /**
- * Last Updated: Thu 16-Apr-2020 / 01:05:59:am
- * Total Class:  35
- * Namespace: 
+ * Last Updated: Sat 18-Apr-2020 / 01:48:09:pm
+ * Total Class:  36
+ * Namespace:
  */
 
 return array (
@@ -25,6 +25,7 @@ return array (
   'VSP\\Core\\Interfaces\\Logger' => 'core/interfaces/logger.php',
   'VSP\\Core\\Traits\\Array_Helper' => 'core/traits/class-array-helper.php',
   'VSP\\Core\\Traits\\Framework' => 'core/traits/class-framework.php',
+  'VSP\\Core\\Traits\\Price_Handler' => 'core/traits/class-price-handler.php',
   'VSP\\Core\\Traits\\String_Helper' => 'core/traits/class-string-helper.php',
   'VSP\\Core\\Traits\\URL' => 'core/traits/class-url.php',
   'VSP\\Core\\Traits\\WC_Helper' => 'core/traits/class-wc-helper.php',
