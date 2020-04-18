@@ -1,19 +1,19 @@
 <?php
 
-namespace VSP\Core\Traits;
+namespace VSP\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
 /**
- * Trait Price_Handler
+ * Class Price_Calculation
  *
- * @package VSP\Core\Traits
+ * @package VSP\Helper
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  * @since 0.8.5
  */
-trait Price_Handler {
+class Price_Calculation {
 	/**
 	 * Handles Price Calculation.
 	 *
@@ -23,7 +23,7 @@ trait Price_Handler {
 	 *
 	 * @return bool
 	 */
-	public static function handle_fixed_pricing( $existing_price, $new_price, $operator ) {
+	public static function fixed( $existing_price, $new_price, $operator ) {
 		switch ( $operator ) {
 			case 'add':
 			case 'ADD':
@@ -48,7 +48,7 @@ trait Price_Handler {
 	 *
 	 * @return bool
 	 */
-	public static function handle_percentage_pricing( $existing_price, $new_price, $operator ) {
+	public static function percentage( $existing_price, $new_price, $operator ) {
 		$price = $new_price;
 		switch ( $operator ) {
 			case 'add':
@@ -76,7 +76,7 @@ trait Price_Handler {
 	 *
 	 * @return string
 	 */
-	public static function handle_pricing( $existing_price, $new_price, $operator, $rule, $force_update ) {
+	public static function get( $existing_price, $new_price, $operator, $rule, $force_update ) {
 		if ( empty( $existing_price ) ) {
 			if ( ! empty( $force_update ) && in_array( $force_update, array( true, 'yes', 'on', 1, '1' ), true ) ) {
 				return $new_price;
@@ -87,10 +87,10 @@ trait Price_Handler {
 		$price = $new_price;
 		switch ( $rule ) {
 			case 'fixed':
-				$price = static::handle_fixed_pricing( $existing_price, $new_price, $operator );
+				$price = static::fixed( $existing_price, $new_price, $operator );
 				break;
 			case 'percentage':
-				$price = static::handle_percentage_pricing( $existing_price, $new_price, $operator );
+				$price = static::percentage( $existing_price, $new_price, $operator );
 				break;
 		}
 		return wc_format_decimal( $price );

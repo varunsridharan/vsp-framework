@@ -1,8 +1,8 @@
 <?php
 /**
- * Last Updated: Sat 18-Apr-2020 / 01:48:09:pm
+ * Last Updated: Sat 18-Apr-2020 / 01:52:15:pm
  * Total Class:  36
- * Namespace:
+ * Namespace: 
  */
 
 return array (
@@ -25,13 +25,13 @@ return array (
   'VSP\\Core\\Interfaces\\Logger' => 'core/interfaces/logger.php',
   'VSP\\Core\\Traits\\Array_Helper' => 'core/traits/class-array-helper.php',
   'VSP\\Core\\Traits\\Framework' => 'core/traits/class-framework.php',
-  'VSP\\Core\\Traits\\Price_Handler' => 'core/traits/class-price-handler.php',
   'VSP\\Core\\Traits\\String_Helper' => 'core/traits/class-string-helper.php',
   'VSP\\Core\\Traits\\URL' => 'core/traits/class-url.php',
   'VSP\\Core\\Traits\\WC_Helper' => 'core/traits/class-wc-helper.php',
   'VSP\\Core\\Traits\\WP' => 'core/traits/class-wp.php',
   'VSP\\Core\\Traits\\WC_Compatibility\\Product' => 'core/traits/wc-compatibility/trait-product.php',
   'VSP\\Core\\Traits\\WC_Compatibility\\Version' => 'core/traits/wc-compatibility/trait-version.php',
+  'VSP\\Helper\\Price_Calculation' => 'helper/class-price-handler.php',
   'VSP\\Modules\\Addons\\Admin' => 'modules/addons/class-admin.php',
   'VSP\\Modules\\Addons\\Core' => 'modules/addons/class-core.php',
   'VSP\\Modules\\Addons' => 'modules/class-addons.php',

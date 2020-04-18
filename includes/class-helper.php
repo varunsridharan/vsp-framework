@@ -21,7 +21,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		use Core\Traits\Array_Helper;
 		use Core\Traits\URL;
 		use Core\Traits\String_Helper;
-		use Core\Traits\Price_Handler;
 
 		/**
 		 * Gets the key value from globals.
