@@ -42,9 +42,9 @@ trait Price_Handler {
 	/**
 	 * Handles Percentage Calculation.
 	 *
-	 * @param $existing_price
-	 * @param $new_price
-	 * @param $operator
+	 * @param string|int $existing_price
+	 * @param string|int $new_price
+	 * @param string     $operator
 	 *
 	 * @return bool
 	 */
@@ -78,7 +78,7 @@ trait Price_Handler {
 	 */
 	public static function handle_pricing( $existing_price, $new_price, $operator, $rule, $force_update ) {
 		if ( empty( $existing_price ) ) {
-			if ( ! empty( $fupdate ) && in_array( $fupdate, array( true, 'yes', 'on', 1, '1' ), true ) ) {
+			if ( ! empty( $force_update ) && in_array( $force_update, array( true, 'yes', 'on', 1, '1' ), true ) ) {
 				return $new_price;
 			}
 			return $existing_price;
