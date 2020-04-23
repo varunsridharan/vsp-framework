@@ -1,7 +1,7 @@
 <?php
 /**
- * Last Updated: Sat 18-Apr-2020 / 01:52:15:pm
- * Total Class:  36
+ * Last Updated: Thu 23-Apr-2020 / 07:06:44:pm
+ * Total Class:  37
  * Namespace: 
  */
 
@@ -9,6 +9,7 @@ return array (
   'VSP\\Ajax' => 'class-ajax.php',
   'VSP\\Ajaxer' => 'class-ajaxer.php',
   'VSP\\Base' => 'class-base.php',
+  'VSP\\Cache' => 'class-cache.php',
   'VSP\\Error' => 'class-error.php',
   'VSP\\Framework_Admin' => 'class-framework-admin.php',
   'VSP\\Framework_Base' => 'class-framework-base.php',
