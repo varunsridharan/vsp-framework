@@ -117,5 +117,21 @@ if ( ! class_exists( 'Helper' ) ) {
 			}
 			return false;
 		}
+
+		/**
+		 * Converts VSP Error To WC Notice.
+		 *
+		 * @param \VSP\Error $vsp_error
+		 *
+		 * @static
+		 * @since 0.8.7
+		 */
+		public static function vsp_error_to_wc_notice( $vsp_error ) {
+			if ( ! empty( $vsp_error->get_error_codes() ) ) {
+				foreach ( $vsp_error->get_error_codes() as $code ) {
+					wc_add_notice( $vsp_error->get_error_message( $code ), 'error', $vsp_error->get_error_data( $code ) );
+				}
+			}
+		}
 	}
 }

@@ -167,6 +167,36 @@ trait WC_Helper {
 	}
 
 	/**
+	 * Returns A list of Product ids From WooComerce Cart.
+	 *
+	 * @param string      $type ARRAY_A / ARRAY_N.
+	 * @param bool|string $child If set to true then it also adds variation ids,
+	 *
+	 * @return array
+	 * @static
+	 * @since 0.8.7
+	 */
+	public static function wc_get_product_ids_in_cart( $type = ARRAY_A, $child = true ) {
+		$return = array();
+		foreach ( wc()->cart->get_cart() as $key => $val ) {
+			/** @var \WC_Product $_product */
+			$_product = $val['data'];
+			$parent   = $_product->get_parent_id();
+			$id       = $_product->get_id();
+			$key      = ( 0 === $parent ) ? $id : $parent;
+
+			if ( 'only' === $child && $parent > 0 ) {
+				$return[ $id ] = $id;
+			} elseif ( true === $child ) {
+				$return[ $key ] = $id;
+			} elseif ( false === $child ) {
+				$return[ $id ] = $id;
+			}
+		}
+		return ( ARRAY_N === $type ) ? array_keys( $return ) : $return;
+	}
+
+	/**
 	 * Clears WC Cart.
 	 *
 	 * @static
@@ -181,13 +211,24 @@ trait WC_Helper {
 	}
 
 	/**
+	 * Checks if WooCommerce Cart is empty.
+	 *
+	 * @static
+	 * @return bool
+	 * @since 0.8.7
+	 */
+	public static function wc_is_cart_empty() {
+		return ( empty( wc()->cart->get_cart() ) );
+	}
+
+	/**
 	 * Clears Cart if Not Empty.
 	 *
 	 * @static
 	 * @return bool
 	 */
 	public static function wc_clear_cart_if_notempty() {
-		return ( function_exists( 'wc' ) && ! empty( wc()->cart->get_cart() ) ) ? static::wc_clear_cart() : false;
+		return ( function_exists( 'wc' ) && ! static::wc_is_cart_empty() ) ? static::wc_clear_cart() : false;
 	}
 }
 
