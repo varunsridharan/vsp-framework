@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class VSP\Modules\Logger\File_Handler</title>
+
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-VSP.html">
+						VSP<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Core.html">
+						Core<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Core.Abstracts.html">
+						Abstracts					</a>
+
+						</li>
+				<li>
+					<a href="namespace-VSP.Core.Interfaces.html">
+						Interfaces					</a>
+
+						</li>
+				<li>
+					<a href="namespace-VSP.Core.Traits.html">
+						Traits<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Core.Traits.WC_Compatibility.html">
+						WC_Compatibility					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-VSP.Helper.html">
+						Helper					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-VSP.Modules.html">
+						Modules<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Modules.Addons.html">
+						Addons					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-VSP.Modules.Logger.html">
+						Logger					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-VSP.Modules.Logger.File_Handler.html">File_Handler</a></li>
+				<li><a href="class-VSP.Modules.Logger.Levels.html">Levels</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-VSP.Modules.Logger.html" title="Summary of VSP\Modules\Logger"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class File_Handler</h1>
+
+
+	<div class="description">
+	<p>Class VSP_Log_Handler_File</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-VSP.Core.Abstracts.Log_Handler.html"><span>VSP\Core\Abstracts\Log_Handler</span></a>
+			
+			 implements 
+				<a href="class-VSP.Core.Interfaces.Log_Handler.html"><span>VSP\Core\Interfaces\Log_Handler</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>VSP\Modules\Logger\File_Handler</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a>\<a href="namespace-VSP.Modules.html">Modules</a>\<a href="namespace-VSP.Modules.Logger.html">Logger</a><br>
+		
+
+				<b>Author:</b>
+				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
+				<b>Since:</b>
+				1.0<br>
+			<b>Located at</b> <a href="source-class-VSP.Modules.Logger.File_Handler.html#12-392" title="Go to source code">includes/modules/logger/class-file-handler.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#56-72" title="Go to source code">__construct</a>( <span>boolean <var>$sub_path</var> = <span class="php-keyword1">false</span></span>, <span>string|boolean|null <var>$file_name</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$log_size_limit</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			<p>VSP_Log_Handler_File constructor.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>VSP_Log_Handler_File constructor.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sub_path</var></dt>
+					<dd></dd>
+					<dt><var>$file_name</var></dt>
+					<dd></dd>
+					<dt><var>$log_size_limit</var></dt>
+					<dd>Optional. Size limit for log files. Default 5mb.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__destruct" id="___destruct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___destruct">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#74-85" title="Go to source code">__destruct</a>( )</code>
+
+		<div class="description short">
+			<p>Destructor.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Destructor.</p>
+
+<p>Cleans up open file handles.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="handle" id="_handle">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_handle">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#87-111" title="Go to source code">handle</a>( <span>integer <var>$timestamp</var></span>, <span>string <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var></span> )</code>
+
+		<div class="description short">
+			<p>Handle a log entry.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Handle a log entry.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$timestamp</var></dt>
+					<dd>Log timestamp.</dd>
+					<dt><var>$level</var></dt>
+					<dd>emergency|alert|critical|error|warning|notice|info|debug.</dd>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd><p>{
+     Additional information for log handlers.</p></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>False if value was not handled and true if value was handled.
+				</div>
+
+
+				<h4>Type</h4>
+				<div class="list">
+						string  $source Optional. Determines log file to write to. Default 'log'.<br>
+						<p>bool    $_legacy Optional. Default false. True to use outdated log format
+        originally used in deprecated VSP_Logger::add calls.
+}</p><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="format_entry" id="_format_entry">
+
+		<td class="attributes"><code>
+			 protected static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_format_entry">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#113-138" title="Go to source code">format_entry</a>( <span>integer <var>$timestamp</var></span>, <span>string <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var></span> )</code>
+
+		<div class="description short">
+			<p>Builds a log entry text from timestamp, level and message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Builds a log entry text from timestamp, level and message.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$timestamp</var></dt>
+					<dd>Log timestamp.</dd>
+					<dt><var>$level</var></dt>
+					<dd>emergency|alert|critical|error|warning|notice|info|debug.</dd>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Additional information for log handlers.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Formatted log entry.
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-VSP.Core.Abstracts.Log_Handler.html#_format_entry">VSP\Core\Abstracts\Log_Handler::format_entry()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="add" id="_add">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#140-160" title="Go to source code">add</a>( <span>string <var>$entry</var></span>, <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a log entry to chosen file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a log entry to chosen file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$entry</var></dt>
+					<dd>Log entry text.</dd>
+					<dt><var>$handle</var></dt>
+					<dd>Log entry handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>True if write was successful.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="should_rotate" id="_should_rotate">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_should_rotate">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#162-182" title="Go to source code">should_rotate</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Check if log file should be rotated.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check if log file should be rotated.</p>
+
+<p>Compares the size of the log file to determine whether it is over the size limit.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>True if if should be rotated.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_log_file_path" id="_get_log_file_path">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean|string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_log_file_path">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#184-204" title="Go to source code">get_log_file_path</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Get a log file path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get a log file path.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log name.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean|string<br>The log file path or false if path cannot be determined.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_log_file_name" id="_get_log_file_name">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean|string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_log_file_name">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#206-226" title="Go to source code">get_log_file_name</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Get a log file name.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get a log file name.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log name.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean|string<br>The log file name or false if cannot be determined.
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						3.3<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="is_open" id="_is_open">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_is_open">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#228-237" title="Go to source code">is_open</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Check if a handle is open.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check if a handle is open.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>True if $handle is open.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="log_rotate" id="_log_rotate">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_log_rotate">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#239-258" title="Go to source code">log_rotate</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Rotate log files.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Rotate log files.</p>
+
+<p>Logs are rotated by prepending '.x' to the '.log' suffix.
+The current log plus 10 historical logs are maintained.
+For example: base.9.log -> [ REMOVED ] base.8.log -> base.9.log ... base.0.log -> base.1.log base.log   -> base.0.log</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="increment_log_infix" id="_increment_log_infix">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_increment_log_infix">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#260-286" title="Go to source code">increment_log_infix</a>( <span>string <var>$handle</var></span>, <span>null|integer <var>$number</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			<p>Increment a log file suffix.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Increment a log file suffix.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+					<dt><var>$number</var></dt>
+					<dd>Optional. Default null. Log suffix number to be incremented.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>True if increment was successful, otherwise false.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="close" id="_close">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_close">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#288-302" title="Go to source code">close</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Close a handle.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Close a handle.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>success
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="open" id="_open">
+
+		<td class="attributes"><code>
+			 protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_open">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#304-332" title="Go to source code">open</a>( <span>string <var>$handle</var></span>, <span>string <var>$mode</var> = <span class="php-quote">'a'</span> </span> )</code>
+
+		<div class="description short">
+			<p>Open log file for writing.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Open log file for writing.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+					<dt><var>$mode</var></dt>
+					<dd>Optional. File mode. Default 'a'.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Success.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache_log" id="_cache_log">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cache_log">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#334-345" title="Go to source code">cache_log</a>( <span>string <var>$entry</var></span>, <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Cache log to write later.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Cache log to write later.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$entry</var></dt>
+					<dd>Log entry text.</dd>
+					<dt><var>$handle</var></dt>
+					<dd>Log entry handle.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="clear" id="_clear">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_clear">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#347-362" title="Go to source code">clear</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Clear entries from chosen file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Clear entries from chosen file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="remove" id="_remove">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_remove">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#364-382" title="Go to source code">remove</a>( <span>string <var>$handle</var></span> )</code>
+
+		<div class="description short">
+			<p>Remove/delete the chosen file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Remove/delete the chosen file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handle</var></dt>
+					<dd>Log handle.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="write_cached_logs" id="_write_cached_logs">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_write_cached_logs">#</a>
+		<code><a href="source-class-VSP.Modules.Logger.File_Handler.html#384-391" title="Go to source code">write_cached_logs</a>( )</code>
+
+		<div class="description short">
+			<p>Write cached logs.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Write cached logs.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-VSP.Core.Abstracts.Log_Handler.html#methods">VSP\Core\Abstracts\Log_Handler</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-VSP.Core.Abstracts.Log_Handler.html#_format_time">format_time()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="sub_path" id="$sub_path">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Modules.Logger.File_Handler.html#19-24" title="Go to source code"><var>$sub_path</var></a>
+
+			<div class="description short">
+				<p>sub_path</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>sub_path</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$sub_path" class="anchor">#</a>
+				<code><span class="php-keyword1">false</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="handles" id="$handles">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Modules.Logger.File_Handler.html#26-31" title="Go to source code"><var>$handles</var></a>
+
+			<div class="description short">
+				<p>Stores open file handles.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Stores open file handles.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$handles" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="log_size_limit" id="$log_size_limit">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Modules.Logger.File_Handler.html#33-38" title="Go to source code"><var>$log_size_limit</var></a>
+
+			<div class="description short">
+				<p>File size limit for log files in bytes.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>File size limit for log files in bytes.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$log_size_limit" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="cached_logs" id="$cached_logs">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Modules.Logger.File_Handler.html#40-48" title="Go to source code"><var>$cached_logs</var></a>
+
+			<div class="description short">
+				<p>Cache logs that could not be written.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Cache logs that could not be written.</p>
+
+<p>If a log is written too early in the request, pluggable functions may be unavailable. These
+logs will be cached and written on 'plugins_loaded' action.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$cached_logs" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="file_name" id="$file_name">
+		<td class="attributes"><code>
+			protected  
+			null
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Modules.Logger.File_Handler.html#50-54" title="Go to source code"><var>$file_name</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$file_name" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
+<script src="elementlist.js?c8295df1b0ece3236e8e80469c600e89a1bf7d7e"></script>
+</body>
+</html>

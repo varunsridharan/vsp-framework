@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Interface VSP\Core\Interfaces\Logger</title>
+
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-VSP.html">
+						VSP<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-VSP.Core.html">
+						Core<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Core.Abstracts.html">
+						Abstracts					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-VSP.Core.Interfaces.html">
+						Interfaces					</a>
+
+						</li>
+				<li>
+					<a href="namespace-VSP.Core.Traits.html">
+						Traits<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Core.Traits.WC_Compatibility.html">
+						WC_Compatibility					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-VSP.Helper.html">
+						Helper					</a>
+
+						</li>
+				<li>
+					<a href="namespace-VSP.Modules.html">
+						Modules<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-VSP.Modules.Addons.html">
+						Addons					</a>
+
+						</li>
+				<li>
+					<a href="namespace-VSP.Modules.Logger.html">
+						Logger					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-VSP.Core.Interfaces.Framework_Interface.html">Framework_Interface</a></li>
+				<li><a href="class-VSP.Core.Interfaces.Log_Handler.html">Log_Handler</a></li>
+				<li class="active"><a href="class-VSP.Core.Interfaces.Logger.html">Logger</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-VSP.Core.Interfaces.html" title="Summary of VSP\Core\Interfaces"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Interface Logger</h1>
+
+
+	<div class="description">
+	<p>Interface VSP_Logger_Interface</p>
+	</div>
+
+
+
+
+
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-VSP.Modules.Logger.html">VSP\Modules\Logger</a>
+	</div>
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a>\<a href="namespace-VSP.Core.html">Core</a>\<a href="namespace-VSP.Core.Interfaces.html">Interfaces</a><br>
+		
+
+				<b>Author:</b>
+				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
+				<b>Since:</b>
+				1.0<br>
+			<b>Located at</b> <a href="source-class-VSP.Core.Interfaces.Logger.html#9-119" title="Go to source code">includes/core/interfaces/logger.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="log" id="_log">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_log">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#16-31" title="Go to source code">log</a>( <span>string <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Add a log entry.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a log entry.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$level</var></dt>
+					<dd><p>One of the following:
+    'emergency': System is unusable.
+    'alert': Action must be taken immediately.
+    'critical': Critical conditions.
+    'error': Error conditions.
+    'warning': Warning conditions.
+    'notice': Normal but significant condition.
+    'info': Informational messages.
+    'debug': Debug-level messages.</p></dd>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="emergency" id="_emergency">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_emergency">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#33-41" title="Go to source code">emergency</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds an emergency level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds an emergency level message.</p>
+
+<p>System is unusable.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="alert" id="_alert">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_alert">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#43-52" title="Go to source code">alert</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds an alert level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds an alert level message.</p>
+
+<p>Action must be taken immediately.
+Example: Entire website down, database unavailable, etc.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="critical" id="_critical">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_critical">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#54-63" title="Go to source code">critical</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds a critical level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a critical level message.</p>
+
+<p>Critical conditions.
+Example: Application component unavailable, unexpected exception.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="error" id="_error">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_error">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#65-74" title="Go to source code">error</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds an error level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds an error level message.</p>
+
+<p>Runtime errors that do not require immediate action but should typically be logged
+and monitored.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="warning" id="_warning">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_warning">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#76-87" title="Go to source code">warning</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds a warning level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a warning level message.</p>
+
+<p>Exceptional occurrences that are not errors.</p>
+
+<p>Example: Use of deprecated APIs, poor use of an API, undesirable things that are not
+necessarily wrong.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notice" id="_notice">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notice">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#89-97" title="Go to source code">notice</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds a notice level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a notice level message.</p>
+
+<p>Normal but significant events.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="info" id="_info">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_info">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#99-108" title="Go to source code">info</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds a info level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a info level message.</p>
+
+<p>Interesting events.
+Example: User logs in, SQL logs.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="debug" id="_debug">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_debug">#</a>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#110-118" title="Go to source code">debug</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+
+		<div class="description short">
+			<p>Adds a debug level message.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a debug level message.</p>
+
+<p>Detailed debug information.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd>Log message.</dd>
+					<dt><var>$context</var></dt>
+					<dd>Optional. Additional information for log handlers.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
+<script src="elementlist.js?c8295df1b0ece3236e8e80469c600e89a1bf7d7e"></script>
+</body>
+</html>
