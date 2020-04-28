@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use VSP\Base;
-use function wponion_builder;
+use function \wponion_builder;
 
 if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 	/**
