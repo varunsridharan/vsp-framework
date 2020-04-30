@@ -42,10 +42,10 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		 * Runs On WPOnion Load.
 		 */
 		public function wpo_load() {
-			$this->options['extra_js']   = ( isset( $this->options['extra_js'] ) ) ? $this->options['extra_js'] : array();
-			$this->options['extra_js']   = ( ! is_array( $this->options['extra_js'] ) ) ? array( $this->options['extra_js'] ) : $this->options['extra_js'];
-			$this->options['extra_js'][] = 'vsp_load_core_assets';
-			$options                     = wponion_builder();
+			$this->options['assets']   = ( isset( $this->options['assets'] ) ) ? $this->options['assets'] : array();
+			$this->options['assets']   = ( ! is_array( $this->options['assets'] ) ) ? array( $this->options['assets'] ) : $this->options['assets'];
+			$this->options['assets'][] = 'vsp_load_core_assets';
+			$options                   = wponion_builder();
 			$this->plugin()
 				->action( 'settings_options', $options );
 			if ( wpo_is( $options ) ) {
