@@ -2,15 +2,12 @@
 
 namespace VSP\Core\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Trait VSP_Framework_IP_Trait
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 trait URL {
 	/**
@@ -19,7 +16,6 @@ trait URL {
 	 * @param $segments
 	 *
 	 * @return string
-	 * @static
 	 */
 	public static function get_first_segment( $segments ) {
 		$var = is_array( $segments ) ? $segments : self::segment_uri( $segments );
@@ -32,7 +28,6 @@ trait URL {
 	 * @param null $uri
 	 *
 	 * @return array string → segments
-	 * @static
 	 */
 	public static function segment_uri( $uri = null ) {
 		$uri = ( ! is_null( $uri ) ) ? $uri : $_SERVER['REQUEST_URI'];
@@ -47,7 +42,6 @@ trait URL {
 	 * @param string $slug → URL slug to clean up
 	 *
 	 * @return null|string|string[]
-	 * @static
 	 */
 	public static function generate_safe_slug( $slug ) {
 		$slug = preg_replace( '/[^a-zA-Z0-9]/', '-', $slug );
@@ -66,9 +60,8 @@ trait URL {
 	 * @return string → returns the data with links created around URLS
 	 */
 	public static function auto_link( $url, $custom = null ) {
-		$regex   = '@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@';
 		$replace = ( null === $custom ) ? '<a href="http$2://$4">$1$2$3$4</a>' : '<a href="http$2://$4">' . $custom . '</a>';
-		return preg_replace( $regex, $replace, $url );
+		return preg_replace( '@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@', $replace, $url );
 	}
 
 	/**

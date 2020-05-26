@@ -2,9 +2,7 @@
 
 namespace VSP\Core\Traits\WC_Compatibility;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use WC_Product;
 

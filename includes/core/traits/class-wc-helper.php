@@ -2,9 +2,7 @@
 
 namespace VSP\Core\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use Exception;
 use WC_Payment_Gateway;
@@ -18,7 +16,6 @@ use WPOnion\Exception\Cache_Not_Found;
  *
  * @package VSP\Core\Traits
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 trait WC_Helper {
 	/**

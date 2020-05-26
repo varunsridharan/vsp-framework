@@ -2,15 +2,12 @@
 
 namespace VSP\Core\Interfaces;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Interface VSP_Logger_Interface
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 interface Logger {
 	/**

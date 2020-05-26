@@ -2,9 +2,7 @@
 
 namespace VSP\Core;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 use ReflectionClass;
 use ReflectionException;
@@ -15,7 +13,6 @@ if ( ! class_exists( '\VSP\Core\Instance_Handler' ) ) {
 	 * Class VSP_Class_Handler
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Instance_Handler {
 		/**

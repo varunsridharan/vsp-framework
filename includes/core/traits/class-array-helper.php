@@ -2,15 +2,12 @@
 
 namespace VSP\Core\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Trait VSP_Framework_Array_Trait
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 trait Array_Helper {
 	/**
@@ -20,7 +17,6 @@ trait Array_Helper {
 	 * @param bool   $to_object if Set To true then it returns as object or array
 	 *
 	 * @return array|bool
-	 * @static
 	 */
 	public static function json_to( $data = '', $to_object = false ) {
 		$json = json_decode( $data, $to_object );
@@ -34,7 +30,6 @@ trait Array_Helper {
 	 * @param $group_callback_function
 	 *
 	 * @return array
-	 * @static
 	 * @example array_group_by(['one', 'two', 'three'], 'strlen') // [3 => ['one', 'two'], 5 => ['three']]
 	 */
 	public static function array_group_by( $items, $group_callback_function ) {
@@ -59,7 +54,6 @@ trait Array_Helper {
 	 * @param $items
 	 *
 	 * @return bool
-	 * @static
 	 */
 	public static function array_has_duplicates( $items ) {
 		return count( $items ) > count( array_unique( $items ) );
@@ -75,7 +69,7 @@ trait Array_Helper {
 	 * @param boolean      $preserve_type Optional. Convert output array into object if $args or $defaults if it is. Default true.
 	 * @param boolean      $preserve_integer_keys Optional. If given, integer keys will be preserved and merged instead of appended.
 	 *
-	 * @return array|object  $output                 Merged user defined values with defaults.
+	 * @return array|object $output Merged user defined values with defaults.
 	 */
 	public static function parse_args( $args, $defaults, $deep = false, $preserve_type = true, $preserve_integer_keys = false ) {
 		if ( false === $deep ) {
@@ -103,7 +97,6 @@ trait Array_Helper {
 	 * @param array $required
 	 * @param array $existing
 	 *
-	 * @static
 	 * @return array
 	 * @example
 	 * $required = array('somekey1','somekey2');

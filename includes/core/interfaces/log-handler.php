@@ -2,17 +2,12 @@
 
 namespace VSP\Core\Interfaces;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
-
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Interface VSP_Log_Handler_Interface
- * Functions that must be defined to correctly fulfill log handler API.
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 interface Log_Handler {
 	/**

@@ -2,15 +2,12 @@
 
 namespace VSP\Core\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Trait VSP_String_Trait
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 trait String_Helper {
 	/**
@@ -54,8 +51,6 @@ trait String_Helper {
 	 * @param string $string string to make ASCII
 	 *
 	 * @return string
-	 * @since 2.2.0
-	 *
 	 */
 	public static function str_to_ascii( $string ) {
 		// strip ASCII chars 32 and under
@@ -66,15 +61,12 @@ trait String_Helper {
 
 	/**
 	 * Return true if the haystack string ends with needle
-	 *
 	 * Note: case-sensitive
 	 *
 	 * @param string $haystack
 	 * @param string $needle
 	 *
 	 * @return bool
-	 * @since 2.2.0
-	 *
 	 */
 	public static function str_ends_with( $haystack, $needle ) {
 		if ( '' === $needle ) {
@@ -91,15 +83,12 @@ trait String_Helper {
 
 	/**
 	 * Returns true if the needle exists in haystack
-	 *
 	 * Note: case-sensitive
 	 *
 	 * @param string $haystack
 	 * @param string $needle
 	 *
 	 * @return bool
-	 * @since 2.2.0
-	 *
 	 */
 	public static function str_exists( $haystack, $needle ) {
 		if ( self::multibyte_loaded() ) {
@@ -126,8 +115,6 @@ trait String_Helper {
 	 * @param string $omission omission text, defaults to '...'
 	 *
 	 * @return string
-	 * @since 2.2.0
-	 *
 	 */
 	public static function str_truncate( $string, $length, $omission = '...' ) {
 		if ( self::multibyte_loaded() ) {
@@ -155,9 +142,7 @@ trait String_Helper {
 	 * @param int $precision
 	 *
 	 * @return string
-	 * @static
 	 * @example 1024B => 1KB | 1024KB => 1MB | 1024MB => 1GB
-	 *
 	 */
 	public static function to_human_bytes( $bytes, $precision = 2 ) {
 		$kilobyte = 1024;

@@ -2,15 +2,12 @@
 
 namespace VSP\Core\Abstracts;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class VSP_Log_Handler
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 abstract class Log_Handler implements \VSP\Core\Interfaces\Log_Handler {
 

@@ -2,9 +2,7 @@
 
 namespace VSP\Core\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Helper;
 use WPOnion\Exception\Cache_Not_Found;
@@ -13,7 +11,6 @@ use WPOnion\Exception\Cache_Not_Found;
  * Trait VSP_Framework_WP_Trait
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 trait WP {
 	/**

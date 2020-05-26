@@ -2,9 +2,7 @@
 
 namespace VSP\Core\Abstracts;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
@@ -13,7 +11,6 @@ use VSP\Base;
  *
  * @package VSP\Core\Abstracts
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 abstract class Plugin_Settings extends Base {
 	/**
