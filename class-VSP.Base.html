@@ -156,6 +156,9 @@
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>VSP\Base</span></b>			
 			
+			 uses 
+					WPOnion\Traits\Class_Options (not available)
+
 			
 		</dd>
 	</dl>
@@ -193,9 +196,7 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-				<b>Since:</b>
-				1.0<br>
-			<b>Located at</b> <a href="source-class-VSP.Base.html#10-140" title="Go to source code">includes/class-base.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Base.html#10-76" title="Go to source code">includes/class-base.php</a>
 		<br>
 	</div>
 
@@ -215,7 +216,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___clone">#</a>
-		<code><a href="source-class-VSP.Base.html#31-37" title="Go to source code">__clone</a>( )</code>
+		<code><a href="source-class-VSP.Base.html#18-24" title="Go to source code">__clone</a>( )</code>
 
 		<div class="description short">
 			<p>Class Clone.</p>
@@ -245,7 +246,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___wakeup">#</a>
-		<code><a href="source-class-VSP.Base.html#39-45" title="Go to source code">__wakeup</a>( )</code>
+		<code><a href="source-class-VSP.Base.html#26-32" title="Go to source code">__wakeup</a>( )</code>
 
 		<div class="description short">
 			<p>Class Wakeup.</p>
@@ -255,162 +256,6 @@
 			<p>Class Wakeup.</p>
 
 
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="set_args" id="_set_args">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_set_args">#</a>
-		<code><a href="source-class-VSP.Base.html#47-57" title="Go to source code">set_args</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$defaults</var> = <span class="php-keyword1">array</span>() </span> )</code>
-
-		<div class="description short">
-			<p>Merges And sets the given args</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Merges And sets the given args</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$options</var></dt>
-					<dd></dd>
-					<dt><var>$defaults</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="parse_args" id="_parse_args">
-
-		<td class="attributes"><code>
-			 protected 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_parse_args">#</a>
-		<code><a href="source-class-VSP.Base.html#59-70" title="Go to source code">parse_args</a>( <span>array <var>$new</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$defaults</var> = <span class="php-keyword1">array</span>() </span> )</code>
-
-		<div class="description short">
-			<p>Merges given array</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Merges given array</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$new</var></dt>
-					<dd></dd>
-					<dt><var>$defaults</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="option" id="_option">
-
-		<td class="attributes"><code>
-			 protected 
-
-			boolean|mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_option">#</a>
-		<code><a href="source-class-VSP.Base.html#72-82" title="Go to source code">option</a>( <span>string <var>$key</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$default</var> = <span class="php-keyword1">false</span> </span> )</code>
-
-		<div class="description short">
-			<p>Returns value from options array</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns value from options array</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd></dd>
-					<dt><var>$default</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean|mixed
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="set_option" id="_set_option">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_set_option">#</a>
-		<code><a href="source-class-VSP.Base.html#84-92" title="Go to source code">set_option</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
-
-		<div class="description short">
-			<p>Sets given value for the option</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets given value for the option</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd></dd>
-					<dt><var>$value</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
@@ -431,7 +276,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_plugin">#</a>
-		<code><a href="source-class-VSP.Base.html#94-101" title="Go to source code">plugin</a>( )</code>
+		<code><a href="source-class-VSP.Base.html#34-41" title="Go to source code">plugin</a>( )</code>
 
 		<div class="description short">
 			<p>Returns Plugin's Instance.</p>
@@ -465,7 +310,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_plugin_url">#</a>
-		<code><a href="source-class-VSP.Base.html#103-114" title="Go to source code">plugin_url</a>( <span>string <var>$ex_path</var> = <span class="php-quote">'/'</span> </span> )</code>
+		<code><a href="source-class-VSP.Base.html#43-52" title="Go to source code">plugin_url</a>( <span>string <var>$ex_path</var> = <span class="php-quote">'/'</span> </span> )</code>
 
 		<div class="description short">
 			<p>Get the plugin url.</p>
@@ -504,7 +349,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_plugin_path">#</a>
-		<code><a href="source-class-VSP.Base.html#116-128" title="Go to source code">plugin_path</a>( <span>string <var>$ex_path</var> = <span class="php-quote">''</span> </span> )</code>
+		<code><a href="source-class-VSP.Base.html#54-64" title="Go to source code">plugin_path</a>( <span>string <var>$ex_path</var> = <span class="php-quote">''</span> </span> )</code>
 
 		<div class="description short">
 			<p>Get the plugin path.</p>
@@ -543,7 +388,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_file">#</a>
-		<code><a href="source-class-VSP.Base.html#130-139" title="Go to source code">load_file</a>( <span>string <var>$file</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$is_internal</var> = <span class="php-keyword1">true</span> </span> )</code>
+		<code><a href="source-class-VSP.Base.html#66-75" title="Go to source code">load_file</a>( <span>string <var>$file</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$is_internal</var> = <span class="php-keyword1">true</span> </span> )</code>
 
 		<div class="description short">
 			<p>Loads A Required File.</p>
@@ -592,59 +437,6 @@
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="options" id="$options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Base.html#17-22" title="Go to source code"><var>$options</var></a>
-
-			<div class="description short">
-				<p>Options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$options" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="default_options" id="$default_options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Base.html#24-29" title="Go to source code"><var>$default_options</var></a>
-
-			<div class="description short">
-				<p>Default_options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Default_options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$default_options" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-VSP.Core.Instance_Handler.html#properties">VSP\Core\Instance_Handler</a></caption>
@@ -668,6 +460,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?c8295df1b0ece3236e8e80469c600e89a1bf7d7e"></script>
+<script src="elementlist.js?a3f10f8189738cd839cb5d238f5fade4b6a2b23e"></script>
 </body>
 </html>
