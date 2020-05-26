@@ -14,7 +14,6 @@ if ( ! class_exists( '\VSP\Error' ) ) {
 	 *
 	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	class Error extends WP_Error {
 		/**

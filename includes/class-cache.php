@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( '\VSP\Cache' ) ) {
 	/**
@@ -12,7 +10,6 @@ if ( ! class_exists( '\VSP\Cache' ) ) {
 	 *
 	 * @package VSP\Core\Abstracts
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 2.0
 	 */
 	class Cache {
 		/**
@@ -28,9 +25,7 @@ if ( ! class_exists( '\VSP\Cache' ) ) {
 		 *
 		 * @param $key
 		 *
-		 * @static
 		 * @return string
-		 * @since 2.0
 		 */
 		protected static function cache_key( $key ) {
 			return ( ! empty( static::$prefix ) ) ? static::$prefix . '/' . $key : $key;

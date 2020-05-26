@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use Varunsridharan\WordPress\Ajaxer;
 
@@ -13,7 +11,6 @@ if ( ! class_exists( 'Ajax' ) ) {
 	 * Class VSP_Core_Ajax
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	final class Ajax extends Ajaxer {
 		/**

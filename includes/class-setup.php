@@ -2,18 +2,15 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
- * Class VSP_Framework_Setup
+ * Class Setup
  *
+ * @package VSP
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 class Setup {
-
 	/**
 	 * Handles File Setup Class.
 	 */

@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use Varunsridharan\WordPress\Ajaxer as VS_Ajaxer;
 
@@ -14,12 +12,10 @@ if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 	 *
 	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Ajaxer extends VS_Ajaxer {
 		/**
 		 * @var bool
-		 * @access
 		 */
 		protected $wpo_assets = false;
 
@@ -55,5 +51,3 @@ if ( ! class_exists( '\VSP\Ajaxer' ) ) {
 		}
 	}
 }
-
-return new Ajax();
