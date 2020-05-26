@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 	/**
@@ -12,7 +10,6 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 	 *
 	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Framework_Base extends Base {
 		/**
@@ -58,25 +55,21 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		public $hook_slug = null;
 
 		/**
-		 * User_options
+		 * Returns base_defaults Values.
 		 *
-		 * @var array
+		 * @return string[]
+		 * @since {NEWVERSION}
 		 */
-		protected $user_options = array();
-
-		/**
-		 * Base_defaults
-		 *
-		 * @var array
-		 */
-		protected $base_defaults = array(
-			'version'   => '',
-			'file'      => '',
-			'slug'      => '',
-			'db_slug'   => '',
-			'hook_slug' => '',
-			'name'      => '',
-		);
+		protected function base_defaults() {
+			return array(
+				'version'   => '',
+				'file'      => '',
+				'slug'      => '',
+				'db_slug'   => '',
+				'hook_slug' => '',
+				'name'      => '',
+			);
+		}
 
 		/**
 		 * Framework_Base constructor.
@@ -109,16 +102,13 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 * @param array $defaults
 		 */
 		public function set_args( $options = array(), $defaults = array() ) {
-			$defaults              = empty( $defaults ) ? $this->default_options : $defaults;
-			$this->default_options = $this->parse_args( $defaults, $this->base_defaults );
-			$this->options         = empty( $options ) ? $this->user_options : $options;
-			$this->options         = $this->parse_args( $this->options, $this->default_options );
-			$this->_set_core( 'version', $this->options['version'] )
-				->_set_core( 'file', $this->options['file'] )
-				->_set_core( 'slug', $this->options['slug'] )
-				->_set_core( 'db_slug', $this->options['db_slug'] )
-				->_set_core( 'hook_slug', $this->options['hook_slug'] )
-				->_set_core( 'name', $this->options['name'] );
+			parent::set_args( $options, $defaults );
+			$this->_set_core( 'version', $this->option( 'version' ) )
+				->_set_core( 'file', $this->option( 'file' ) )
+				->_set_core( 'slug', $this->option( 'slug' ) )
+				->_set_core( 'db_slug', $this->option( 'db_slug' ) )
+				->_set_core( 'hook_slug', $this->option( 'hook_slug' ) )
+				->_set_core( 'name', $this->option( 'name' ) );
 		}
 
 		/**
@@ -149,14 +139,8 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 */
 		public function slug( $type = 'slug' ) {
 			$return = $this->slug;
-			switch ( $type ) {
-				case 'db':
-					$return = $this->db_slug;
-					break;
-				case 'hook':
-					$return = $this->hook_slug;
-					break;
-			}
+			$return = ( 'db' === $type ) ? $this->db_slug : $return;
+			$return = ( 'hook' === $type ) ? $this->hook_slug : $return;
 			return $return;
 		}
 
@@ -178,8 +162,7 @@ if ( ! class_exists( '\VSP\Framework_Base' ) ) {
 		 * @return mixed
 		 */
 		private function action_filter( $type = '', $args = array() ) {
-			$args[0] = $this->plugin()
-					->slug( 'hook' ) . '_' . $args[0];
+			$args[0] = $this->plugin()->slug( 'hook' ) . '_' . $args[0];
 			return call_user_func_array( $type, $args );
 		}
 
