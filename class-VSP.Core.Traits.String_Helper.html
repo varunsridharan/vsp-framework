@@ -159,9 +159,7 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-				<b>Since:</b>
-				1.0<br>
-			<b>Located at</b> <a href="source-class-VSP.Core.Traits.String_Helper.html#9-182" title="Go to source code">includes/core/traits/class-string-helper.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Core.Traits.String_Helper.html#7-167" title="Go to source code">includes/core/traits/class-string-helper.php</a>
 		<br>
 	</div>
 
@@ -181,7 +179,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_str_starts_with">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#23-46" title="Go to source code">str_starts_with</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#20-43" title="Go to source code">str_starts_with</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
 
 		<div class="description short">
 			<p>Returns true if the haystack string starts with needle</p>
@@ -224,7 +222,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_str_to_ascii">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#48-65" title="Go to source code">str_to_ascii</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#45-60" title="Go to source code">str_to_ascii</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			<p>Returns a string with all non-ASCII characters removed. This is useful
@@ -252,10 +250,6 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						2.2.0<br>
-				</div>
 
 
 		</div>
@@ -273,16 +267,16 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 
 		<td class="name"><div>
 		<a class="anchor" href="#_str_ends_with">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#67-90" title="Go to source code">str_ends_with</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#62-82" title="Go to source code">str_ends_with</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
 
 		<div class="description short">
-			<p>Return true if the haystack string ends with needle</p>
+			<p>Return true if the haystack string ends with needle
+Note: case-sensitive</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return true if the haystack string ends with needle</p>
-
-<p>Note: case-sensitive</p>
+			<p>Return true if the haystack string ends with needle
+Note: case-sensitive</p>
 
 
 				<h4>Parameters</h4>
@@ -299,10 +293,6 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						2.2.0<br>
-				</div>
 
 
 		</div>
@@ -320,16 +310,16 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 
 		<td class="name"><div>
 		<a class="anchor" href="#_str_exists">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#92-117" title="Go to source code">str_exists</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#84-106" title="Go to source code">str_exists</a>( <span>string <var>$haystack</var></span>, <span>string <var>$needle</var></span> )</code>
 
 		<div class="description short">
-			<p>Returns true if the needle exists in haystack</p>
+			<p>Returns true if the needle exists in haystack
+Note: case-sensitive</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns true if the needle exists in haystack</p>
-
-<p>Note: case-sensitive</p>
+			<p>Returns true if the needle exists in haystack
+Note: case-sensitive</p>
 
 
 				<h4>Parameters</h4>
@@ -346,10 +336,6 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						2.2.0<br>
-				</div>
 
 
 		</div>
@@ -367,7 +353,7 @@ safely handle UTF-8. Note this only allows ASCII chars in the range
 
 		<td class="name"><div>
 		<a class="anchor" href="#_str_truncate">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#119-149" title="Go to source code">str_truncate</a>( <span>string <var>$string</var></span>, <span>integer <var>$length</var></span>, <span>string <var>$omission</var> = <span class="php-quote">'...'</span> </span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#108-136" title="Go to source code">str_truncate</a>( <span>string <var>$string</var></span>, <span>integer <var>$length</var></span>, <span>string <var>$omission</var> = <span class="php-quote">'...'</span> </span> )</code>
 
 		<div class="description short">
 			<p>Truncates a given $string after a given $length if string is longer than
@@ -397,10 +383,6 @@ for a total length not exceeding $length</p>
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						2.2.0<br>
-				</div>
 
 
 		</div>
@@ -418,7 +400,7 @@ for a total length not exceeding $length</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_to_human_bytes">#</a>
-		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#151-181" title="Go to source code">to_human_bytes</a>( <span> <var>$bytes</var></span>, <span>integer <var>$precision</var> = <span class="php-num">2</span> </span> )</code>
+		<code><a href="source-class-VSP.Core.Traits.String_Helper.html#138-166" title="Go to source code">to_human_bytes</a>( <span> <var>$bytes</var></span>, <span>integer <var>$precision</var> = <span class="php-num">2</span> </span> )</code>
 
 		<div class="description short">
 			<p>Converts Numeric Value into Human Readable View</p>
@@ -473,7 +455,7 @@ for a total length not exceeding $length</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-VSP.Core.Traits.String_Helper.html#16-21" title="Go to source code"><var>$mb_enc</var></a>
+				<a href="source-class-VSP.Core.Traits.String_Helper.html#13-18" title="Go to source code"><var>$mb_enc</var></a>
 
 			<div class="description short">
 				<p>MB_ENCODING</p>
@@ -506,6 +488,6 @@ for a total length not exceeding $length</p>
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?a3f10f8189738cd839cb5d238f5fade4b6a2b23e"></script>
+<script src="elementlist.js?4ad81c8822f804faf077445a913cc3d3d61df977"></script>
 </body>
 </html>

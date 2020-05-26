@@ -89,7 +89,6 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-VSP.Core.Interfaces.Framework_Interface.html">Framework_Interface</a></li>
 				<li><a href="class-VSP.Core.Interfaces.Log_Handler.html">Log_Handler</a></li>
 				<li class="active"><a href="class-VSP.Core.Interfaces.Logger.html">Logger</a></li>
 			</ul>
@@ -156,9 +155,7 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-				<b>Since:</b>
-				1.0<br>
-			<b>Located at</b> <a href="source-class-VSP.Core.Interfaces.Logger.html#9-119" title="Go to source code">includes/core/interfaces/logger.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Core.Interfaces.Logger.html#7-116" title="Go to source code">includes/core/interfaces/logger.php</a>
 		<br>
 	</div>
 
@@ -178,7 +175,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_log">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#16-31" title="Go to source code">log</a>( <span>string <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#13-28" title="Go to source code">log</a>( <span>string <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Add a log entry.</p>
@@ -225,7 +222,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_emergency">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#33-41" title="Go to source code">emergency</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#30-38" title="Go to source code">emergency</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds an emergency level message.</p>
@@ -264,7 +261,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_alert">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#43-52" title="Go to source code">alert</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#40-49" title="Go to source code">alert</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds an alert level message.</p>
@@ -304,7 +301,7 @@ Example: Entire website down, database unavailable, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_critical">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#54-63" title="Go to source code">critical</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#51-60" title="Go to source code">critical</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds a critical level message.</p>
@@ -344,7 +341,7 @@ Example: Application component unavailable, unexpected exception.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_error">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#65-74" title="Go to source code">error</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#62-71" title="Go to source code">error</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds an error level message.</p>
@@ -384,7 +381,7 @@ and monitored.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_warning">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#76-87" title="Go to source code">warning</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#73-84" title="Go to source code">warning</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds a warning level message.</p>
@@ -426,7 +423,7 @@ necessarily wrong.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_notice">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#89-97" title="Go to source code">notice</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#86-94" title="Go to source code">notice</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds a notice level message.</p>
@@ -465,7 +462,7 @@ necessarily wrong.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_info">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#99-108" title="Go to source code">info</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#96-105" title="Go to source code">info</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds a info level message.</p>
@@ -505,7 +502,7 @@ Example: User logs in, SQL logs.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_debug">#</a>
-		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#110-118" title="Go to source code">debug</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Core.Interfaces.Logger.html#107-115" title="Go to source code">debug</a>( <span>string <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Adds a debug level message.</p>
@@ -559,6 +556,6 @@ Example: User logs in, SQL logs.</p>
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?a3f10f8189738cd839cb5d238f5fade4b6a2b23e"></script>
+<script src="elementlist.js?4ad81c8822f804faf077445a913cc3d3d61df977"></script>
 </body>
 </html>

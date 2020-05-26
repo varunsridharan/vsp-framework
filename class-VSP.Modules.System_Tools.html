@@ -155,6 +155,9 @@
 					WPOnion\Traits\Class_Options (not available)
 
 			
+					WPOnion\Traits\Hooks (not available)
+
+			
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
@@ -179,11 +182,9 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-				<b>Since:</b>
-				1.0<br>
 				<b>Used by:</b>
 				VSP\Framework_Modules::_init_system_tools()<br>
-			<b>Located at</b> <a href="source-class-VSP.Modules.System_Tools.html#15-120" title="Go to source code">includes/modules/class-system-tools.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Modules.System_Tools.html#9-110" title="Go to source code">includes/modules/class-system-tools.php</a>
 		<br>
 	</div>
 
@@ -191,6 +192,40 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="defaults" id="_defaults">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaults">#</a>
+		<code><a href="source-class-VSP.Modules.System_Tools.html#20-31" title="Go to source code">defaults</a>( )</code>
+
+		<div class="description short">
+			<p>Default_options</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Default_options</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
@@ -203,7 +238,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-VSP.Modules.System_Tools.html#40-50" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Modules.System_Tools.html#33-42" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>VSP_System_Tools constructor.</p>
@@ -238,7 +273,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_output_logs_info">#</a>
-		<code><a href="source-class-VSP.Modules.System_Tools.html#52-58" title="Go to source code">output_logs_info</a>( )</code>
+		<code><a href="source-class-VSP.Modules.System_Tools.html#44-50" title="Go to source code">output_logs_info</a>( )</code>
 
 		<div class="description short">
 			<p>Outputs Logs View.</p>
@@ -268,7 +303,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_options">#</a>
-		<code><a href="source-class-VSP.Modules.System_Tools.html#60-78" title="Go to source code">options</a>( <span>array|WPO\Container <var>$builder</var></span> )</code>
+		<code><a href="source-class-VSP.Modules.System_Tools.html#52-70" title="Go to source code">options</a>( <span>array|WPO\Container <var>$builder</var></span> )</code>
 
 		<div class="description short">
 			<p>Adds Pages To Settings.</p>
@@ -303,7 +338,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_system_logs_menu">#</a>
-		<code><a href="source-class-VSP.Modules.System_Tools.html#98-119" title="Go to source code">system_logs_menu</a>( <span>array|WPO\Builder <var>$args</var> = <span class="php-keyword1">array</span>()</span>, <span>boolean <var>$is_page</var> = <span class="php-keyword1">true</span> </span> )</code>
+		<code><a href="source-class-VSP.Modules.System_Tools.html#90-109" title="Go to source code">system_logs_menu</a>( <span>array|WPO\Builder <var>$args</var> = <span class="php-keyword1">array</span>()</span>, <span>boolean <var>$is_page</var> = <span class="php-keyword1">true</span> </span> )</code>
 
 		<div class="description short">
 			
@@ -369,38 +404,6 @@
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="default_options" id="$default_options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Modules.System_Tools.html#22-31" title="Go to source code"><var>$default_options</var></a>
-
-			<div class="description short">
-				<p>Default_options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Default_options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$default_options" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'system_tools'</span> =&gt; <span class="php-keyword1">true</span>,
-    <span class="php-quote">'menu'</span>         =&gt; <span class="php-keyword1">true</span>,
-    <span class="php-quote">'logging'</span>      =&gt; <span class="php-keyword1">true</span>,
-)</code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-VSP.Core.Instance_Handler.html#properties">VSP\Core\Instance_Handler</a></caption>
@@ -424,6 +427,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?a3f10f8189738cd839cb5d238f5fade4b6a2b23e"></script>
+<script src="elementlist.js?4ad81c8822f804faf077445a913cc3d3d61df977"></script>
 </body>
 </html>

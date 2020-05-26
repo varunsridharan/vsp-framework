@@ -162,6 +162,9 @@ This class should be extened and used in a plugins class</p>
 					WPOnion\Traits\Class_Options (not available)
 
 			
+					WPOnion\Traits\Hooks (not available)
+
+			
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
@@ -174,8 +177,6 @@ This class should be extened and used in a plugins class</p>
 			<img src="resources/inherit.png" alt="Extended by">
 			<a href="class-VSP.Framework_Admin.html"><span>VSP\Framework_Admin</span></a>
 			
-			 implements 
-				<a href="class-VSP.Core.Interfaces.Framework_Interface.html"><span>VSP\Core\Interfaces\Framework_Interface</span></a>
 			
 			 uses 
 					<a href="class-VSP.Core.Traits.Framework.html"><span>VSP\Core\Traits\Framework</span></a>
@@ -211,9 +212,7 @@ This class should be extened and used in a plugins class</p>
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-				<b>Since:</b>
-				1.0<br>
-			<b>Located at</b> <a href="source-class-VSP.Framework.html#10-136" title="Go to source code">includes/class-framework.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Framework.html#7-135" title="Go to source code">includes/class-framework.php</a>
 		<br>
 	</div>
 
@@ -221,6 +220,46 @@ This class should be extened and used in a plugins class</p>
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="base_defaults" id="_base_defaults">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array|string[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_base_defaults">#</a>
+		<code><a href="source-class-VSP.Framework.html#15-36" title="Go to source code">base_defaults</a>( )</code>
+
+		<div class="description short">
+			<p>Returns Defaults Args.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns Defaults Args.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array|string[]
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						{NEWVERSION}<br>
+				</div>
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-VSP.Framework_Base.html#_base_defaults">VSP\Framework_Base::base_defaults()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
@@ -233,7 +272,7 @@ This class should be extened and used in a plugins class</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-VSP.Framework.html#39-51" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<code><a href="source-class-VSP.Framework.html#38-50" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>() </span> )</code>
 
 		<div class="description short">
 			<p>Framework constructor.</p>
@@ -274,7 +313,7 @@ This class should be extened and used in a plugins class</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__init_plugin">#</a>
-		<code><a href="source-class-VSP.Framework.html#53-65" title="Go to source code">_init_plugin</a>( )</code>
+		<code><a href="source-class-VSP.Framework.html#52-64" title="Go to source code">_init_plugin</a>( )</code>
 
 		<div class="description short">
 			<p>Function Called When vsp_framework_init hook is fired</p>
@@ -313,7 +352,7 @@ This class should be extened and used in a plugins class</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__wp_init">#</a>
-		<code><a href="source-class-VSP.Framework.html#116-123" title="Go to source code">_wp_init</a>( )</code>
+		<code><a href="source-class-VSP.Framework.html#115-122" title="Go to source code">_wp_init</a>( )</code>
 
 		<div class="description short">
 			<p>Function Calls When wp_inited</p>
@@ -347,7 +386,7 @@ This class should be extened and used in a plugins class</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_register_hooks">#</a>
-		<code><a href="source-class-VSP.Framework.html#125-129" title="Go to source code">register_hooks</a>( )</code>
+		<code><a href="source-class-VSP.Framework.html#124-128" title="Go to source code">register_hooks</a>( )</code>
 
 		<div class="description short">
 			
@@ -381,7 +420,7 @@ This class should be extened and used in a plugins class</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_load_files">#</a>
-		<code><a href="source-class-VSP.Framework.html#131-135" title="Go to source code">load_files</a>( )</code>
+		<code><a href="source-class-VSP.Framework.html#130-134" title="Go to source code">load_files</a>( )</code>
 
 		<div class="description short">
 			
@@ -434,7 +473,6 @@ This class should be extened and used in a plugins class</p>
 		<td><code>
 			<a href="class-VSP.Framework_Base.html#__set_core">_set_core()</a>, 
 			<a href="class-VSP.Framework_Base.html#_action">action()</a>, 
-			<a href="class-VSP.Framework_Base.html#_base_defaults">base_defaults()</a>, 
 			<a href="class-VSP.Framework_Base.html#_file">file()</a>, 
 			<a href="class-VSP.Framework_Base.html#_filter">filter()</a>, 
 			<a href="class-VSP.Framework_Base.html#_plugin_name">plugin_name()</a>, 
@@ -496,47 +534,6 @@ This class should be extened and used in a plugins class</p>
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="default_options" id="$default_options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Framework.html#19-37" title="Go to source code"><var>$default_options</var></a>
-
-			<div class="description short">
-				<p>Default_options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Default_options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$default_options" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>(
-        <span class="php-comment">/* @see https://docs.wponion.com/modules/settings */</span>
-        <span class="php-quote">'settings_page'</span> =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-comment">/* @see http://github.com/varunsridharan/php-autoloader */</span>
-        <span class="php-quote">'autoloader'</span>    =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-quote">'logging'</span>       =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-comment">/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-addons.php#L43-L51 */</span>
-        <span class="php-quote">'addons'</span>        =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-comment">/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-system-tools.php#L38-L41 */</span>
-        <span class="php-quote">'system_tools'</span>  =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-comment">/* @see https://github.com/varunsridharan/wp-localizer */</span>
-        <span class="php-quote">'localizer'</span>     =&gt; <span class="php-keyword1">false</span>,
-        <span class="php-quote">'plugin_file'</span>   =&gt; __FILE__,
-    )</code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-VSP.Framework_Base.html#properties">VSP\Framework_Base</a></caption>
@@ -573,6 +570,6 @@ This class should be extened and used in a plugins class</p>
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?a3f10f8189738cd839cb5d238f5fade4b6a2b23e"></script>
+<script src="elementlist.js?4ad81c8822f804faf077445a913cc3d3d61df977"></script>
 </body>
 </html>
