@@ -2,9 +2,7 @@
 
 namespace VSP\Modules;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
@@ -13,21 +11,12 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 	 * Class VSP_Settings_WPOnion
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	class WPOnion extends Base {
-		/**
-		 * @var array
-		 * @access
-		 */
-		protected $default_options = array( 'option_name' => false );
-
 		/**
 		 * WPOnion constructor.
 		 *
 		 * @param array $options
-		 *
-		 * @uses \WPOnion\Modules\Settings\Settings
 		 */
 		public function __construct( $options = array() ) {
 			$this->set_args( $options );
@@ -39,18 +28,22 @@ if ( ! class_exists( '\VSP\Modules\WPOnion' ) ) {
 		}
 
 		/**
+		 * Filters & Returns Fields.
+		 *
+		 * @return mixed
+		 * @since {NEWVERSION}
+		 */
+		public function fields() {
+			return $this->plugin()->action( 'settings_options', wponion_builder() );
+		}
+
+		/**
 		 * Runs On WPOnion Load.
 		 */
 		public function wpo_load() {
-			$this->options['assets']   = ( isset( $this->options['assets'] ) ) ? $this->options['assets'] : array();
-			$this->options['assets']   = ( ! is_array( $this->options['assets'] ) ) ? array( $this->options['assets'] ) : $this->options['assets'];
-			$this->options['assets'][] = 'vsp_load_core_assets';
-			$options                   = wponion_builder();
-			$this->plugin()
-				->action( 'settings_options', $options );
-			if ( wpo_is( $options ) ) {
-				wponion_settings( $this->options, $options );
-			}
+			$assets   = wponion_cast_array( $this->option( 'assets', array() ) );
+			$assets[] = 'vsp_load_core_assets';
+			wponion_settings( $this->option(), array( &$this, 'fields' ) );
 		}
 	}
 }
