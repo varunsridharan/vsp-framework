@@ -2,18 +2,14 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
-
-use WPOnion\Exception\Cache_Not_Found;
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Helper' ) ) {
 	/**
-	 * Class VSP_Helper
+	 * Class Helper
 	 *
+	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	final class Helper {
 		use Core\Traits\WP;
@@ -29,7 +25,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		 *
 		 * @return string|boolean|bool
 		 * @since 1.1.4
-		 *
 		 */
 		protected static function global_vars( $key ) {
 			if ( isset( $_SERVER[ $key ] ) ) {
@@ -46,7 +41,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * indicates it's safe to use the mb_*() string methods
 		 *
 		 * @return bool
-		 * @since 2.2.0
 		 */
 		public static function multibyte_loaded() {
 			return extension_loaded( 'mbstring' );
@@ -56,7 +50,6 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * Generates A Rand MD5 String and returns it.
 		 *
 		 * @return string
-		 * @static
 		 */
 		public static function rand_md5() {
 			return md5( time() . '-' . uniqid( rand(), true ) . '-' . mt_rand( 1, 1000 ) );
@@ -73,29 +66,23 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * @return string
 		 */
 		public static function human_time( $seconds ) {
-			try {
-				$translation = vsp_get_cache( 'vsp/human_time' );
-			} catch ( Cache_Not_Found $exception ) {
-				$translation = array(
-					'year'    => __( 'year', 'vsp-framework' ),
-					'years'   => __( 'years', 'vsp-framework' ),
-					'month'   => __( 'month', 'vsp-framework' ),
-					'months'  => __( 'months', 'vsp-framework' ),
-					'week'    => __( 'week', 'vsp-framework' ),
-					'weeks'   => __( 'weeks', 'vsp-framework' ),
-					'day'     => __( 'day', 'vsp-framework' ),
-					'days'    => __( 'days', 'vsp-framework' ),
-					'hour'    => __( 'hour', 'vsp-framework' ),
-					'hours'   => __( 'hours', 'vsp-framework' ),
-					'minute'  => __( 'minute', 'vsp-framework' ),
-					'minutes' => __( 'minutes', 'vsp-framework' ),
-					'second'  => __( 'second', 'vsp-framework' ),
-					'seconds' => __( 'seconds', 'vsp-framework' ),
-				);
-				vsp_set_cache( 'vsp/humna_time', $translation );
-			}
-
-			$tokens = array(
+			$translation = array(
+				'year'    => __( 'year', 'vsp-framework' ),
+				'years'   => __( 'years', 'vsp-framework' ),
+				'month'   => __( 'month', 'vsp-framework' ),
+				'months'  => __( 'months', 'vsp-framework' ),
+				'week'    => __( 'week', 'vsp-framework' ),
+				'weeks'   => __( 'weeks', 'vsp-framework' ),
+				'day'     => __( 'day', 'vsp-framework' ),
+				'days'    => __( 'days', 'vsp-framework' ),
+				'hour'    => __( 'hour', 'vsp-framework' ),
+				'hours'   => __( 'hours', 'vsp-framework' ),
+				'minute'  => __( 'minute', 'vsp-framework' ),
+				'minutes' => __( 'minutes', 'vsp-framework' ),
+				'second'  => __( 'second', 'vsp-framework' ),
+				'seconds' => __( 'seconds', 'vsp-framework' ),
+			);
+			$tokens      = array(
 				31536000 => 'year',
 				2592000  => 'month',
 				604800   => 'week',
@@ -111,8 +98,7 @@ if ( ! class_exists( 'Helper' ) ) {
 				}
 
 				$number_of_units = floor( $seconds / $unit );
-
-				$key = ( 1 !== $number_of_units ) ? 's' : '';
+				$key             = ( 1 !== $number_of_units ) ? 's' : '';
 				return $number_of_units . ' ' . $translation[ $translation_key . $key ];
 			}
 			return false;
