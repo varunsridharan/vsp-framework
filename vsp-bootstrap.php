@@ -36,9 +36,7 @@
 
 use Varunsridharan\PHP\Autoloader;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! defined( 'VSP_VERSION' ) ) {
 	try {

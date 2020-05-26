@@ -206,8 +206,7 @@ if ( ! function_exists( 'vsp_register_plugin' ) ) {
 	 * @return bool
 	 */
 	function vsp_register_plugin( $callback = [] ) {
-		return VSP_Framework_Loader::instance()
-			->register_callback( $callback );
+		return VSP_Framework_Loader::instance()->register_callback( $callback );
 	}
 }
 
@@ -218,8 +217,7 @@ if ( ! function_exists( 'vsp_force_load' ) ) {
 	 * Should not be used anywhere else.
 	 */
 	function vsp_force_load() {
-		VSP_Framework_Loader::instance()
-			->load_framework();
+		VSP_Framework_Loader::instance()->load_framework();
 	}
 }
 
