@@ -23,7 +23,6 @@ trait WP {
 	 * @param null $current_role
 	 *
 	 * @return bool
-	 * @static
 	 */
 	public static function is_user_role( $role = null, $current_role = null ) {
 		if ( in_array( $role, array( 'logedout', 'loggedout', 'visitor' ), true ) ) {
@@ -34,7 +33,7 @@ trait WP {
 			$current_role = Helper::current_user( true );
 		}
 
-		return ( $role === $current_role ) ? true : false;
+		return ( $role === $current_role );
 	}
 
 	/**
@@ -102,7 +101,6 @@ trait WP {
 	 * @param string|bool $slug
 	 * @param string|bool $default
 	 *
-	 * @static
 	 * @return mixed
 	 */
 	public static function user_role_title( $slug, $default = false ) {
@@ -114,7 +112,6 @@ trait WP {
 	 * @param bool $only_wp
 	 *
 	 * @return array
-	 * @static
 	 */
 	public static function get_user_roles( $only_wp = false ) {
 		try {

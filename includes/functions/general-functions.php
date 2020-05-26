@@ -113,7 +113,7 @@ if ( ! function_exists( 'vsp_placeholder_img' ) ) {
 	 * @return string
 	 */
 	function vsp_placeholder_img() {
-		return apply_filters( 'vsp_placeholder_img', vsp_img( 'noimage.png' ) );
+		return apply_filters( 'vsp_placeholder_img', vsp_url( 'assets/img/noimage.png' ) );
 	}
 }
 
