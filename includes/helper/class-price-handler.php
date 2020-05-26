@@ -2,9 +2,7 @@
 
 namespace VSP\Helper;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Price_Calculation

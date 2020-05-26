@@ -2,9 +2,7 @@
 
 namespace VSP\Modules\Addons;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
@@ -14,14 +12,12 @@ if ( ! class_exists( 'Core' ) ) {
 	 *
 	 * @package VSP\Modules\Addons
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Core extends Base {
 		/**
 		 * Set To True If its in Display Mode.
 		 *
 		 * @var bool
-		 * @access
 		 */
 		protected $in_display = false;
 
@@ -29,8 +25,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores Default Categories.
 		 *
 		 * @var array
-		 * @access
-		 * @static
 		 */
 		protected static $default_addon_cats = array();
 
@@ -38,8 +32,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores Required Plugins Status.
 		 *
 		 * @var array
-		 * @access
-		 * @static
 		 */
 		protected static $required_plugins_status = array();
 
@@ -47,7 +39,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores Addon Categorys List.
 		 *
 		 * @var array
-		 * @access
 		 */
 		protected $addon_cats = array();
 
@@ -55,7 +46,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores All Adodns Count.
 		 *
 		 * @var array
-		 * @access
 		 */
 		protected $addon_counts = array();
 
@@ -63,7 +53,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores All Addon Information
 		 *
 		 * @var array
-		 * @access
 		 */
 		protected $addons = array();
 
@@ -71,7 +60,6 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores Default Headers.
 		 *
 		 * @var array
-		 * @access
 		 */
 		protected $default_headers = array(
 			'file'             => false,
@@ -91,13 +79,11 @@ if ( ! class_exists( 'Core' ) ) {
 		 * Stores All Active Addons.
 		 *
 		 * @var array
-		 * @access
 		 */
 		protected $active_addons = false;
 
 		/**
 		 * @var array
-		 * @access
 		 */
 		protected $headers = array();
 

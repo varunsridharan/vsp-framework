@@ -2,9 +2,7 @@
 
 namespace VSP\Modules\Addons;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Admin' ) ) {
 	/**
@@ -12,7 +10,6 @@ if ( ! class_exists( 'Admin' ) ) {
 	 *
 	 * @package VSP\Modules\Addons
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Admin extends Core {
 		/**
