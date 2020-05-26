@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 use Varunsridharan\PHP\Autoloader;
 use Varunsridharan\WordPress\Localizer;
@@ -15,7 +13,6 @@ if ( ! class_exists( '\VSP\Framework_Modules' ) ) {
 	 *
 	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Framework_Modules extends Framework_Admin {
 		/**
