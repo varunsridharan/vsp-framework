@@ -2,9 +2,7 @@
 
 namespace VSP\Modules\Logger;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Core\Abstracts\Log_Handler;
 use VSP\Setup;
@@ -49,7 +47,6 @@ class File_Handler extends Log_Handler {
 
 	/**
 	 * @var null
-	 * @access
 	 */
 	protected $file_name = null;
 

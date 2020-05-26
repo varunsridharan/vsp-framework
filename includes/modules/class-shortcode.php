@@ -2,9 +2,7 @@
 
 namespace VSP\Modules;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
@@ -12,7 +10,6 @@ use VSP\Base;
  * Class VSP_Shortcode
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 abstract class Shortcode extends Base {
 	/**
@@ -20,21 +17,7 @@ abstract class Shortcode extends Base {
 	 *
 	 * @var string
 	 */
-	protected $shortcode_name = '';
-
-	/**
-	 * Default Shortcode Options
-	 *
-	 * @var array
-	 */
-	protected $defaults = array();
-
-	/**
-	 * Actual Shortcode Options
-	 *
-	 * @var array
-	 */
-	protected $options = array();
+	protected $name = '';
 
 	/**
 	 * Shortcode Content
@@ -45,15 +28,9 @@ abstract class Shortcode extends Base {
 
 	/**
 	 * Shortcode constructor.
-	 *
-	 * @param array $options
 	 */
-	public function __construct( $options = array() ) {
-		$this->set_args( $options );
-		add_shortcode( $this->shortcode_name, array( &$this, 'render_shortcode' ) );
-		if ( empty( $this->defaults ) ) {
-			$this->defaults = $this->defaults();
-		}
+	public function __construct() {
+		add_shortcode( $this->name, array( &$this, 'render_shortcode' ) );
 	}
 
 	/**
@@ -61,9 +38,7 @@ abstract class Shortcode extends Base {
 	 *
 	 * @return array
 	 */
-	protected function defaults() {
-		return array();
-	}
+	abstract protected function defaults();
 
 	/**
 	 * Renders Shortcode.
@@ -74,19 +49,10 @@ abstract class Shortcode extends Base {
 	 * @return mixed
 	 */
 	public function render_shortcode( $atts, $content = '' ) {
-		$this->shortcode_args( $atts );
+		$this->settings = shortcode_atts( $this->defaults(), $atts, $this->name );
+		$this->after_merge();
 		$this->content = $content;
 		return $this->output();
-	}
-
-	/**
-	 * Merges Default Shortcode Args With Given Shortcode
-	 *
-	 * @param $atts
-	 */
-	protected function shortcode_args( $atts ) {
-		$this->options = shortcode_atts( $this->defaults, $atts, $this->shortcode_name );
-		$this->after_merge();
 	}
 
 	/**
@@ -98,7 +64,7 @@ abstract class Shortcode extends Base {
 	/**
 	 * Hookable Function to render shortcode HTML.
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	abstract protected function output();
 }

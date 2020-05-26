@@ -2,9 +2,7 @@
 
 namespace VSP\Modules;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
@@ -13,18 +11,15 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 	 * Class VSP_System_Logs
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	class System_Logs extends Base {
 		/**
 		 * @var bool
-		 * @access
 		 */
 		protected $current = false;
 
 		/**
 		 * @var null
-		 * @access
 		 */
 		protected $custom_path = null;
 
@@ -36,7 +31,6 @@ if ( ! class_exists( '\VSP\Modules\System_Logs' ) ) {
 		 * @param bool $adaptive
 		 *
 		 * @return bool|string
-		 * @static
 		 */
 		public function read_file( $filepath, $lines = 200, $adaptive = true ) {
 			$f = @fopen( $filepath, 'rb' );

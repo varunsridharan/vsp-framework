@@ -2,9 +2,7 @@
 
 namespace VSP\Modules;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 use Exception;
 
@@ -12,7 +10,6 @@ use Exception;
  * Class VSP_Logger
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 class Logger implements \VSP\Core\Interfaces\Logger {
 	/**

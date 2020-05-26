@@ -2,33 +2,30 @@
 
 namespace VSP\Modules;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Addons' ) ) {
 	/**
 	 * Class VSP_Addons
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	class Addons extends Addons\Admin {
 		/**
-		 * Default_options
-		 *
-		 * @var array
+		 * @return array
 		 */
-		protected $default_options = array(
-			'base_path'               => '',
-			'base_url'                => '',
-			'addon_listing_tab_name'  => 'addons',
-			'addon_listing_tab_title' => 'Addons',
-			'addon_listing_tab_icon'  => 'fa fa-plus',
-			'headers'                 => array(),
-			'show_category_count'     => true,
-			'hook_priority'           => 99,
-		);
+		protected function defaults() {
+			return array(
+				'base_path'               => '',
+				'base_url'                => '',
+				'addon_listing_tab_name'  => 'addons',
+				'addon_listing_tab_title' => 'Addons',
+				'addon_listing_tab_icon'  => 'fa fa-plus',
+				'headers'                 => array(),
+				'show_category_count'     => true,
+				'hook_priority'           => 99,
+			);
+		}
 
 		/**
 		 * VSP_Addons constructor.
@@ -49,8 +46,7 @@ if ( ! class_exists( 'Addons' ) ) {
 				'active'    => __( 'Active', 'vsp-framework' ),
 			);
 			$this->headers                 = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
-			$slug                          = $this->plugin()
-				->slug( 'hook' );
+			$slug                          = $this->plugin()->slug( 'hook' );
 			$hook                          = $this->option( 'hook_priority' );
 			$this->active_addons();
 			$this->load_active_addons();
@@ -141,9 +137,7 @@ if ( ! class_exists( 'Addons' ) ) {
 				$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
 				$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 
-				wponion_error_admin_notice( $msg, $title, array(
-					'large' => true,
-				) )->setSticky( true );
+				wponion_error_admin_notice( $msg, $title, array( 'large' => true ) )->set_sticky( true );
 			}
 		}
 
@@ -154,9 +148,8 @@ if ( ! class_exists( 'Addons' ) ) {
 		 */
 		public function active_addons() {
 			if ( false === $this->active_addons ) {
-				$this->active_addons = get_option( $this->plugin()
-						->slug( 'db' ) . '_active_addons', false );
-				$this->active_addons = ( is_array( $this->active_addons ) && ! empty( $this->active_addons ) ) ? $this->active_addons : array();
+				$this->active_addons = wponion_cast_array( get_option( $this->plugin()
+						->slug( 'db' ) . '_active_addons' ) );
 			}
 			return $this->active_addons;
 		}
@@ -185,8 +178,7 @@ if ( ! class_exists( 'Addons' ) ) {
 		 * @return array
 		 */
 		public function update_active_addons( $addons ) {
-			update_option( $this->plugin()
-					->slug( 'db' ) . '_active_addons', $addons );
+			update_option( $this->plugin()->slug( 'db' ) . '_active_addons', $addons );
 			$this->active_addons = $addons;
 			return $this->active_addons;
 		}
