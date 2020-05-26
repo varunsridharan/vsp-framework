@@ -1,8 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'vsp_url' ) ) {
 	/**
@@ -14,62 +12,7 @@ if ( ! function_exists( 'vsp_url' ) ) {
 	 * @return string
 	 */
 	function vsp_url( $extra = '', $is_url = true ) {
-		return ( $is_url ) ? VSP_URL . $extra : vsp_path( $extra );
-	}
-}
-
-if ( ! function_exists( 'vsp_path' ) ) {
-	/**
-	 * Returns VSP Framework Full PATH
-	 *
-	 * @param string $extra
-	 *
-	 * @return string
-	 */
-	function vsp_path( $extra = '' ) {
-		return VSP_PATH . $extra;
-	}
-}
-
-if ( ! function_exists( 'vsp_js' ) ) {
-	/**
-	 * Returns VSP Framework assets/js Path / URL base on given values
-	 *
-	 * @param string $extra
-	 * @param bool   $url
-	 *
-	 * @return string
-	 */
-	function vsp_js( $extra = '', $url = true ) {
-		return ( $url ) ? vsp_url( 'assets/js/' . $extra ) : vsp_path( 'assets/js/' . $extra );
-	}
-}
-
-if ( ! function_exists( 'vsp_css' ) ) {
-	/**
-	 * Returns VSP Framework assets/css Path / URL base on given values
-	 *
-	 * @param string $extra
-	 * @param bool   $url
-	 *
-	 * @return string
-	 */
-	function vsp_css( $extra = '', $url = true ) {
-		return ( $url ) ? vsp_url( 'assets/css/' . $extra ) : vsp_path( 'assets/css/' . $extra );
-	}
-}
-
-if ( ! function_exists( 'vsp_img' ) ) {
-	/**
-	 * Returns VSP Framework assets/img Path / URL base on given values
-	 *
-	 * @param string $extra .
-	 * @param bool   $url .
-	 *
-	 * @return string
-	 */
-	function vsp_img( $extra = '', $url = true ) {
-		return ( $url ) ? vsp_url( 'assets/img/' . $extra ) : vsp_path( 'assets/img/' . $extra );
+		return ( $is_url ) ? VSP_URL . $extra : VSP_PATH . $extra;
 	}
 }
 
@@ -86,19 +29,15 @@ if ( ! function_exists( 'vsp_load_file' ) ) {
 	 * @example vsp_load_file("mypath/class-*.php")
 	 */
 	function vsp_load_file( $search_type, $is_require = true, $once = false ) {
-		foreach ( vsp_get_file_paths( $search_type ) as $files ) {
-			if ( $is_require ) {
-				if ( $once ) {
-					require_once $files;
-				} else {
-					require $files;
-				}
+		foreach ( vsp_get_file_paths( $search_type ) as $src ) {
+			if ( $is_require && $once ) {
+				require_once $src;
+			} elseif ( $is_require ) {
+				require $src;
+			} elseif ( $once ) {
+				include_once $src;
 			} else {
-				if ( $once ) {
-					include_once $files;
-				} else {
-					include $files;
-				}
+				include $src;
 			}
 		}
 	}
@@ -113,7 +52,6 @@ if ( ! function_exists( 'vsp_get_file_paths' ) ) {
 	 * @return array
 	 * @example vsp_load_file("mypath/*.php")
 	 * @example vsp_load_file("mypath/class-*.php")
-	 *
 	 */
 	function vsp_get_file_paths( $path ) {
 		return glob( $path );
@@ -212,7 +150,8 @@ if ( ! function_exists( 'vsp_validate_required_plugin' ) ) {
 				wponion_error_admin_notice( $msg );
 			}
 		}
-		return ( false !== $msg ) ? true : false;
+
+		return ( false !== $msg );
 	}
 }
 
@@ -221,21 +160,20 @@ if ( ! function_exists( 'vsp_add_wc_required_notice' ) ) {
 	 * Adds WooCommerce Plugin Required Notice if not exists.
 	 * Also checks for version based on plugin's input.
 	 *
-	 * @param string $plugin_name
-	 * @param string $wc_version
-	 * @param string $wc_compare
+	 * @param string $name
+	 * @param string $version
+	 * @param string $compare
 	 *
 	 * @return bool
 	 */
-	function vsp_add_wc_required_notice( $plugin_name = '', $wc_version = '3.0', $wc_compare = '>=' ) {
+	function vsp_add_wc_required_notice( $name = '', $version = '3.0', $compare = '>=' ) {
 		return vsp_validate_required_plugin( array(
-			'plugin_name'     => $plugin_name, // Your Plugin Name.
-			'req_plugin'      => 'woocommerce/woocommerce.php', // Plugin File Eg : woocommerce/woocommerce.php
-			'req_plugin_name' => 'WooCommerce', // Name of the plugin.
-			'version'         => $wc_version, // Plugin Version
-			'compare'         => $wc_compare, // Eg : gte,gt.lt,lte
+			'plugin_name'     => $name,
+			'req_plugin'      => 'woocommerce/woocommerce.php',
+			'req_plugin_name' => 'WooCommerce',
+			'version'         => $version,
+			'compare'         => $compare,
 		) );
-
 	}
 }
 
