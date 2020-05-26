@@ -2,9 +2,7 @@
 
 namespace VSP\Modules\Logger;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Class VSP_Log_Levels

@@ -6,10 +6,6 @@ defined( 'ABSPATH' ) || exit;
 
 use VSP\Base;
 
-if ( class_exists( '\VSP\Modules\System_Tools' ) ) {
-	return;
-}
-
 /**
  * Class VSP_System_Tools
  *

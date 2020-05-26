@@ -6,82 +6,80 @@ defined( 'ABSPATH' ) || exit;
 
 use Varunsridharan\WordPress\Ajaxer;
 
-if ( ! class_exists( 'Ajax' ) ) {
+/**
+ * Class VSP_Core_Ajax
+ *
+ * @author Varun Sridharan <varunsridharan23@gmail.com>
+ */
+final class Ajax extends Ajaxer {
 	/**
-	 * Class VSP_Core_Ajax
+	 * Ajax Action Prefix
 	 *
-	 * @author Varun Sridharan <varunsridharan23@gmail.com>
+	 * @var string
 	 */
-	final class Ajax extends Ajaxer {
-		/**
-		 * Ajax Action Prefix
-		 *
-		 * @var string
-		 */
-		protected $action_prefix = 'vsp';
+	protected $action_prefix = 'vsp';
 
-		/**
-		 * Ajax actions
-		 *
-		 * @var array
-		 */
-		protected $actions = array(
-			'addon_action' => false,
-			'download_log' => true,
-		);
+	/**
+	 * Ajax actions
+	 *
+	 * @var array
+	 */
+	protected $actions = array(
+		'addon_action' => false,
+		'download_log' => true,
+	);
 
-		/**
-		 * Handles Ajax Request
-		 */
-		public function addon_action() {
-			if ( $this->has_request( 'hook_slug' ) ) {
-				$this->validate_request( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
-				$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
-				do_action( $_REQUEST['hook_slug'] . '_handle_addon_request', $this );
-			}
-			$this->json_error();
+	/**
+	 * Handles Ajax Request
+	 */
+	public function addon_action() {
+		if ( $this->has_request( 'hook_slug' ) ) {
+			$this->validate_request( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
+			$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
+			do_action( $_REQUEST['hook_slug'] . '_handle_addon_request', $this );
+		}
+		$this->json_error();
+	}
+
+	/**
+	 * Handles Log Download.
+	 */
+	public function download_log() {
+		if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
+			$this->error( __( 'Invalid Nonce', 'vsp-framework' ) );
 		}
 
-		/**
-		 * Handles Log Download.
-		 */
-		public function download_log() {
-			if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-				$this->error( __( 'Invalid Nonce', 'vsp-framework' ) );
-			}
+		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'download_log' ) ) {
+			$this->error( __( 'Nonce Expired', 'vsp-framework' ) );
+		}
 
-			if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'download_log' ) ) {
-				$this->error( __( 'Nonce Expired', 'vsp-framework' ) );
-			}
-
-			if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
-				$file     = $_REQUEST['handle'];
-				$ff_regx  = '/\.([^.]+)$/';
-				$ff_types = array( 'log', 'txt' );
-				if ( preg_match( $ff_regx, $file, $m ) && in_array( $m[1], $ff_types, true ) ) {
-					$files = vsp_list_log_files();
-					foreach ( $files as $f ) {
-						if ( preg_match( $ff_regx, $f, $m2 ) && in_array( $m2[1], $ff_types, true ) ) {
-							if ( $f === $file && file_exists( VSP_LOG_DIR . $f ) ) {
-								header( 'Cache-Control: private' );
-								header( 'Content-Type: application/stream' );
-								$size = filesize( VSP_LOG_DIR . $f );
-								header( "Content-Disposition: attachment; filename=$f" );
-								header( 'Content-Length: ' . $size );
-								readfile( VSP_LOG_DIR . $f );
-								wp_die();
-							}
+		if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
+			$file     = $_REQUEST['handle'];
+			$ff_regx  = '/\.([^.]+)$/';
+			$ff_types = array( 'log', 'txt' );
+			if ( preg_match( $ff_regx, $file, $m ) && in_array( $m[1], $ff_types, true ) ) {
+				$files = vsp_list_log_files();
+				foreach ( $files as $f ) {
+					if ( preg_match( $ff_regx, $f, $m2 ) && in_array( $m2[1], $ff_types, true ) ) {
+						if ( $f === $file && file_exists( VSP_LOG_DIR . $f ) ) {
+							header( 'Cache-Control: private' );
+							header( 'Content-Type: application/stream' );
+							$size = filesize( VSP_LOG_DIR . $f );
+							header( "Content-Disposition: attachment; filename=$f" );
+							header( 'Content-Length: ' . $size );
+							readfile( VSP_LOG_DIR . $f );
+							wp_die();
 						}
 					}
-					$this->error( __( 'Log File Not Found !', 'vsp-framework' ) );
-				} else {
-					$this->error( __( 'Invalid Log File Extension', 'vsp-framework' ) );
 				}
+				$this->error( __( 'Log File Not Found !', 'vsp-framework' ) );
 			} else {
-				$this->error( __( 'Invalid Log File', 'vsp-framework' ) );
+				$this->error( __( 'Invalid Log File Extension', 'vsp-framework' ) );
 			}
-			wp_die();
+		} else {
+			$this->error( __( 'Invalid Log File', 'vsp-framework' ) );
 		}
+		wp_die();
 	}
 }
 

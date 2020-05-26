@@ -8,7 +8,8 @@
     "classmaps"      : "classmap-generator \"includes/\" ./vsp-classmaps.php",
     "makepot"        : "makepot ./wp-pot.json",
     "add-textdomain" : "add-textdomain -i vsp-framework ./",
-    "build"          : [ "@classmaps", "@add-textdomain", "@makepot" ]
+    "build"          : [ "@classmaps", "@add-textdomain", "@makepot" ],
+    "wpo-dev"        : "rm -rf ./vendor/wponion/wponion && git clone --branch development https://github.com/wponion/wponion ./vendor/wponion/wponion/"
   },
   "autoload"    : {
     "files" : [
