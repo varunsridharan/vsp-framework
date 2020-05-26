@@ -2,9 +2,7 @@
 
 namespace VSP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( '\VSP\Framework' ) ) {
 	/**
@@ -13,28 +11,30 @@ if ( ! class_exists( '\VSP\Framework' ) ) {
 	 *
 	 * @package VSP
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	abstract class Framework extends Framework_Modules {
 		/**
-		 * Default_options
+		 * Returns Defaults Args.
 		 *
-		 * @var array
+		 * @return array|string[]
+		 * @since {NEWVERSION}
 		 */
-		protected $default_options = array(
-			/* @see https://docs.wponion.com/modules/settings */
-			'settings_page' => false,
-			/* @see http://github.com/varunsridharan/php-autoloader */
-			'autoloader'    => false,
-			'logging'       => false,
-			/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-addons.php#L43-L51 */
-			'addons'        => false,
-			/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-system-tools.php#L38-L41 */
-			'system_tools'  => false,
-			/* @see https://github.com/varunsridharan/wp-localizer */
-			'localizer'     => false,
-			'plugin_file'   => __FILE__,
-		);
+		protected function base_defaults() {
+			return $this->parse_args( array(
+				/* @see https://docs.wponion.com/modules/settings */
+				'settings_page' => false,
+				/* @see http://github.com/varunsridharan/php-autoloader */
+				'autoloader'    => false,
+				'logging'       => false,
+				/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-addons.php#L43-L51 */
+				'addons'        => false,
+				/* @see https://github.com/varunsridharan/vsp-framework/blob/master/includes/modules/class-system-tools.php#L38-L41 */
+				'system_tools'  => false,
+				/* @see https://github.com/varunsridharan/wp-localizer */
+				'localizer'     => false,
+				'plugin_file'   => __FILE__,
+			), parent::base_defaults() );
+		}
 
 		/**
 		 * Framework constructor.
