@@ -230,11 +230,17 @@ if ( ! function_exists( 'vsp_log_msg' ) ) {
 			$handler->$type( $messages, $context );
 			return true;
 		} elseif ( vsp_logger() instanceof Logger && method_exists( vsp_logger(), $type ) ) {
-			$msg = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler', 'vsp-framework' ) ), wp_debug_backtrace_summary( null, 0, false ) );
-			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
-			vsp_log_msg( $msg, 'critical', vsp_logger() );
-			vsp_log_msg( $messages, 'critical', vsp_logger() );
-			vsp_log_msg( '----------------------------------------------------------------', 'notice', vsp_logger() );
+			$msg     = array_merge( array( __( 'Tried To Log A Message But Failed Got unknown Handler', 'vsp-framework' ) ), wp_debug_backtrace_summary( null, 0, false ) );
+			$content = <<<TEXT
+
+//////////////////////// = VSP Critical = /////////////////////////////////
+${msg}
+${messages}
+/////////////////////////////////////////////////////////////////
+
+TEXT;
+
+			vsp_log_msg( $content, 'notice', vsp_logger() );
 		}
 		return false;
 	}
