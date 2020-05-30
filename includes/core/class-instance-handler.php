@@ -18,7 +18,6 @@ abstract class Instance_Handler {
 	 * Stores Framework Instance Class.
 	 *
 	 * @var null
-	 * @access
 	 */
 	protected static $framework_instance = array();
 
@@ -39,7 +38,6 @@ abstract class Instance_Handler {
 	/**
 	 * Returns Current Instance / create a new instance
 	 *
-	 * @static
 	 * @return bool|self|static|$this
 	 */
 	public static function instance() {

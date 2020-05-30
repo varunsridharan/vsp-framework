@@ -11,7 +11,6 @@ use VSP\Setup;
  * Class VSP_Log_Handler_File
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 class File_Handler extends Log_Handler {
 	/**
@@ -206,8 +205,6 @@ class File_Handler extends Log_Handler {
 	 * @param string $handle Log name.
 	 *
 	 * @return bool|string The log file name or false if cannot be determined.
-	 * @since 3.3
-	 *
 	 */
 	public function get_log_file_name( $handle ) {
 		if ( function_exists( 'wp_hash' ) ) {

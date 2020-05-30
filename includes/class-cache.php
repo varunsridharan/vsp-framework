@@ -15,7 +15,6 @@ class Cache {
 	 * Cache Key Prefix.
 	 *
 	 * @var string
-	 * @since 2.0
 	 */
 	protected static $prefix = 'vsp';
 

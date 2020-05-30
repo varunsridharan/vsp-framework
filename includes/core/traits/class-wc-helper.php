@@ -24,7 +24,6 @@ trait WC_Helper {
 	 * @param bool   $slug
 	 * @param string $cache_key Custom Cache key for customized data via filter.
 	 *
-	 * @static
 	 * @return array|mixed
 	 */
 	public static function wc_payment_methods( $slug = false, $cache_key = 'vsp' ) {
@@ -63,7 +62,6 @@ trait WC_Helper {
 	 * @param bool   $slug
 	 * @param string $cache_key Custom Cache key for customized data via filter.
 	 *
-	 * @static
 	 * @return mixed
 	 * @throws \Exception
 	 */
@@ -98,7 +96,6 @@ trait WC_Helper {
 	 *
 	 * @param string $cache_key Custom Cache key for customized data via filter.
 	 *
-	 * @static
 	 * @return array
 	 */
 	public static function wc_shipping_methods_by_instance( $cache_key = 'vsp' ) {
@@ -136,7 +133,6 @@ trait WC_Helper {
 	 *
 	 * @param $product_id
 	 *
-	 * @static
 	 * @return mixed
 	 */
 	public static function wc_product_sky_by_id( $product_id ) {
@@ -148,7 +144,6 @@ trait WC_Helper {
 	 *
 	 * @param $product_id
 	 *
-	 * @static
 	 * @return bool
 	 */
 	public static function wc_has_product_in_cart( $product_id ) {
@@ -170,7 +165,6 @@ trait WC_Helper {
 	 * @param bool|string $child If set to true then it also adds variation ids,
 	 *
 	 * @return array
-	 * @static
 	 * @since 0.8.7
 	 */
 	public static function wc_get_product_ids_in_cart( $type = ARRAY_A, $child = true ) {
@@ -196,7 +190,6 @@ trait WC_Helper {
 	/**
 	 * Clears WC Cart.
 	 *
-	 * @static
 	 * @return bool
 	 */
 	public static function wc_clear_cart() {
@@ -210,7 +203,6 @@ trait WC_Helper {
 	/**
 	 * Checks if WooCommerce Cart is empty.
 	 *
-	 * @static
 	 * @return bool
 	 * @since 0.8.7
 	 */
@@ -221,7 +213,6 @@ trait WC_Helper {
 	/**
 	 * Clears Cart if Not Empty.
 	 *
-	 * @static
 	 * @return bool
 	 */
 	public static function wc_clear_cart_if_notempty() {

@@ -18,7 +18,6 @@ trait Product {
 	 *
 	 * @param $product
 	 *
-	 * @static
 	 * @return int|mixed
 	 */
 	public static function get_product_id( $product ) {
@@ -42,7 +41,6 @@ trait Product {
 	 * @param \WC_Product|int $product
 	 *
 	 * @return mixed|string
-	 * @static
 	 */
 	public static function get_product_type( $product ) {
 		if ( is_numeric( $product ) ) {

@@ -267,7 +267,6 @@ if ( ! function_exists( 'vsp_json_last_error' ) ) {
 	 * Checks if last json had any errors.
 	 *
 	 * @return string|null
-	 * @since 2.4.10
 	 */
 	function vsp_json_last_error() {
 		switch ( function_exists( 'json_last_error' ) ? json_last_error() : -1 ) {

@@ -8,7 +8,6 @@ defined( 'ABSPATH' ) || exit;
  * Class VSP_Log_Levels
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
- * @since 1.0
  */
 class Levels {
 	/**

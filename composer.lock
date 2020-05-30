@@ -191,25 +191,26 @@
         },
         {
             "name": "varunsridharan/wp-conditional-logic",
-            "version": "1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-conditional-logic.git",
-                "reference": "56a6e973d7804e5594fec51d428f5a8483239bf4"
+                "reference": "e0fa820b495ccce6cb6a30619ba45a774c4b56bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-conditional-logic/zipball/56a6e973d7804e5594fec51d428f5a8483239bf4",
-                "reference": "56a6e973d7804e5594fec51d428f5a8483239bf4",
+                "url": "https://api.github.com/repos/varunsridharan/wp-conditional-logic/zipball/e0fa820b495ccce6cb6a30619ba45a774c4b56bc",
+                "reference": "e0fa820b495ccce6cb6a30619ba45a774c4b56bc",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Varunsridharan\\WordPress\\": "./src"
+                    "Varunsridharan\\WordPress\\WP_Conditional_Logic\\": "src/"
                 },
                 "files": [
-                    "src/functions.php"
+                    "src/functions.php",
+                    "src/WP_Conditional_Logic.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -226,7 +227,17 @@
             ],
             "description": "Simple WordPress Library To Evaluate / Handle Conditional Logic.",
             "homepage": "https://github.com/varunsridharan/wp-conditional-logic/",
-            "time": "2019-05-10T15:23:43+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-07T14:18:14+00:00"
         },
         {
             "name": "varunsridharan/wp-db-table",
@@ -383,16 +394,16 @@
         },
         {
             "name": "varunsridharan/wp-plugin-version-management",
-            "version": "1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-plugin-version-management.git",
-                "reference": "32d3a89ccf482e15f87da513164076bf60443411"
+                "reference": "55c07307a9b0b843de51ae5f4cb2eb13ad75f905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-plugin-version-management/zipball/32d3a89ccf482e15f87da513164076bf60443411",
-                "reference": "32d3a89ccf482e15f87da513164076bf60443411",
+                "url": "https://api.github.com/repos/varunsridharan/wp-plugin-version-management/zipball/55c07307a9b0b843de51ae5f4cb2eb13ad75f905",
+                "reference": "55c07307a9b0b843de51ae5f4cb2eb13ad75f905",
                 "shasum": ""
             },
             "type": "library",
@@ -415,7 +426,17 @@
             ],
             "description": "Simple WordPress Plugin Library To Handle Version Management To Provide Easy Upgrade Handling.",
             "homepage": "https://github.com/varunsridharan/wp-plugin-version-management",
-            "time": "2019-07-10T12:54:00+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-07T14:51:23+00:00"
         },
         {
             "name": "varunsridharan/wp-post",
@@ -531,16 +552,16 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "555.555",
+            "version": "88913999",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
-                "reference": "5c33371b21d2dd750eea485bfdde327b8ff9a916"
+                "reference": "d8d9365b3079c4de22014c860c12479b2319c22a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/5c33371b21d2dd750eea485bfdde327b8ff9a916",
-                "reference": "5c33371b21d2dd750eea485bfdde327b8ff9a916",
+                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
+                "reference": "d8d9365b3079c4de22014c860c12479b2319c22a",
                 "shasum": ""
             },
             "type": "library",
@@ -556,20 +577,20 @@
                     "email": "varunsridharan23@gmail.com"
                 }
             ],
-            "time": "2019-05-07T04:45:52+00:00"
+            "time": "2020-04-27T09:03:13+00:00"
         },
         {
             "name": "wponion/wponion",
-            "version": "1.4.5.1",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017"
+                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/50b0f89cec58b6a2143beb13754e01fc1c36a017",
-                "reference": "50b0f89cec58b6a2143beb13754e01fc1c36a017",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
+                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
                 "shasum": ""
             },
             "require": {
@@ -628,7 +649,21 @@
                 "wponion",
                 "wponion-framework"
             ],
-            "time": "2020-04-06T07:13:57+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/varunsridharan",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-05-06T03:00:52+00:00"
         }
     ],
     "packages-dev": [
@@ -897,7 +932,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",

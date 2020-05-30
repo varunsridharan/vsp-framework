@@ -7,7 +7,6 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 	 * Class VSP_Framework_Loader
 	 *
 	 * @author Varun Sridharan <varunsridharan23@gmail.com>
-	 * @since 1.0
 	 */
 	final class VSP_Framework_Loader {
 		/**

@@ -22,8 +22,6 @@ class Setup {
 	 * Checks if file exists if not creates the folder.
 	 *
 	 * @param bool $dir
-	 *
-	 * @static
 	 */
 	public static function check_create_log_folder( $dir = false ) {
 		$dir = ( false === $dir ) ? VSP_LOG_DIR : $dir;
@@ -36,8 +34,6 @@ class Setup {
 	 * Creates Log Folder If not exists.
 	 *
 	 * @param $dir
-	 *
-	 * @static
 	 */
 	public static function create_folders( $dir ) {
 		$files = array(

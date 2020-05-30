@@ -136,7 +136,6 @@ trait WP {
 	 * network name on multisite installations.
 	 *
 	 * @return string
-	 * @since 4.6.0
 	 */
 	public static function get_site_name() {
 		return ( is_multisite() ) ? get_blog_details()->blogname : get_bloginfo( 'name' );

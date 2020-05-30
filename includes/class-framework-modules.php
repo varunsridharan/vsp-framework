@@ -25,7 +25,6 @@ abstract class Framework_Modules extends Framework_Admin {
 	 * Stores Autoloader
 	 *
 	 * @var \Varunsridharan\PHP\Autoloader
-	 * @access
 	 */
 	private $autoloader = null;
 

@@ -23,7 +23,6 @@ final class Helper {
 	 * @param string $key
 	 *
 	 * @return string|boolean|bool
-	 * @since 1.1.4
 	 */
 	protected static function global_vars( $key ) {
 		if ( isset( $_SERVER[ $key ] ) ) {
@@ -108,7 +107,6 @@ final class Helper {
 	 *
 	 * @param \VSP\Error $vsp_error
 	 *
-	 * @static
 	 * @since 0.8.7
 	 */
 	public static function vsp_error_to_wc_notice( $vsp_error ) {
