@@ -19,11 +19,7 @@ class WPOnion extends Base {
 	 */
 	public function __construct( $options = array() ) {
 		$this->set_args( $options );
-		if ( did_action( 'wponion_loaded' ) ) {
-			$this->wpo_load();
-		} else {
-			add_action( 'wponion_loaded', array( &$this, 'wpo_load' ) );
-		}
+		$this->wpo_load();
 	}
 
 	/**
@@ -42,6 +38,7 @@ class WPOnion extends Base {
 	public function wpo_load() {
 		$assets   = wponion_cast_array( $this->option( 'assets', array() ) );
 		$assets[] = 'vsp_load_core_assets';
-		wponion_settings( $this->option(), array( &$this, 'fields' ) );
+		$fields   = ( wponion_is_version( '1.3.6' ) ) ? $this->fields() : array( &$this, 'fields' );
+		wponion_settings( $this->option(), $fields );
 	}
 }

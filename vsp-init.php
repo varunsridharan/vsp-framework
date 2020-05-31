@@ -42,6 +42,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'wponion_loaded', [ &$this, 'load_framework' ], 0 );
+			add_action( 'wponion/loaded', [ &$this, 'load_framework' ], 0 );
 			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
 			add_action( 'wponion_sysinfo_final', [ &$this, 'add_extra_info' ] );
 		}
@@ -71,17 +72,19 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 * Loads Framework From A Plugin which has the latest version
 		 */
 		public function load_framework() {
-			$frameworks     = self::get();
-			$latest_version = max( array_keys( $frameworks ) );
-			$info           = ( isset( $frameworks[ $latest_version ] ) ) ? $frameworks[ $latest_version ] : [];
-			if ( empty( $info ) ) {
-				$msg = base64_encode( wp_json_encode( self::$data ) );
-				$ms  = 'Unable To Load VSP Framework. Please Contact The Author';
-				$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . 'ERROR ID : ' . '</strong>' . $msg . '</p>';
-				wp_die( $ms );
+			if ( empty( self::$_loaded ) ) {
+				$lists  = self::get();
+				$latest = max( array_keys( $lists ) );
+				$info   = ( isset( $lists[ $latest ] ) ) ? $lists[ $latest ] : [];
+				if ( empty( $info ) ) {
+					$msg = base64_encode( wp_json_encode( self::$data ) );
+					$ms  = 'Unable To Load VSP Framework. Please Contact The Author';
+					$ms  = $ms . '<p style="word-break: break-all;"> <strong>' . 'ERROR ID : ' . '</strong>' . $msg . '</p>';
+					wp_die( $ms );
+				}
+				self::$_loaded = $info;
+				require_once $info['framework_path'] . 'vsp-bootstrap.php';
 			}
-			self::$_loaded = $info;
-			require_once $info['framework_path'] . 'vsp-bootstrap.php';
 		}
 
 		/**
