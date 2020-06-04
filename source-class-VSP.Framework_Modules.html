@@ -266,9 +266,9 @@
 </span></span><span id="47" class="l"><span class="php-comment">     */</span>
 </span><span id="48" class="l">    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> _addon_init() {
 </span><span id="49" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'addons'</span> ) ) {
-</span><span id="50" class="l">            <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'addons_init_before'</span> );
+</span><span id="50" class="l">            <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'addons_init_before'</span> );
 </span><span id="51" class="l">            <span class="php-var">$this</span>-&gt;_instance( <span class="php-quote">'\VSP\Modules\Addons'</span>, <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'addons'</span> ) );
-</span><span id="52" class="l">            <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'addons_init'</span> );
+</span><span id="52" class="l">            <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'addons_init'</span> );
 </span><span id="53" class="l">        }
 </span><span id="54" class="l">    }
 </span><span id="55" class="l">
@@ -283,13 +283,13 @@
 </span><span id="64" class="l">    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> _settings_init() {
 </span><span id="65" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'settings_page'</span> ) ) {
 </span><span id="66" class="l">            <span class="php-var">$this</span>-&gt;settings_init_before();
-</span><span id="67" class="l">            <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'settings_init_before'</span> );
+</span><span id="67" class="l">            <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'settings_init_before'</span> );
 </span><span id="68" class="l">            <span class="php-var">$args</span> = <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'settings_page'</span> );
 </span><span id="69" class="l">            <span class="php-keyword1">if</span> ( <span class="php-keyword2">is_array</span>( <span class="php-var">$args</span> ) ) {
 </span><span id="70" class="l">                <span class="php-var">$args</span>[<span class="php-quote">'option_name'</span>] = ( <span class="php-keyword1">isset</span>( <span class="php-var">$args</span>[<span class="php-quote">'option_name'</span>] ) ) ? <span class="php-var">$args</span>[<span class="php-quote">'option_name'</span>] : <span class="php-var">$this</span>-&gt;slug( <span class="php-quote">'db'</span> );
 </span><span id="71" class="l">                <span class="php-var">$this</span>-&gt;_instance( <span class="php-quote">'VSP\Modules\WPOnion'</span>, <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'settings_page'</span> ) );
 </span><span id="72" class="l">                <span class="php-var">$this</span>-&gt;settings_init();
-</span><span id="73" class="l">                <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'settings_init'</span> );
+</span><span id="73" class="l">                <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'settings_init'</span> );
 </span><span id="74" class="l">            }
 </span><span id="75" class="l">        }
 </span><span id="76" class="l">    }
@@ -301,9 +301,9 @@
 </span></span><span id="82" class="l"><span class="php-comment">     */</span>
 </span><span id="83" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> _logging_init() {
 </span><span id="84" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'logging'</span> ) ) {
-</span><span id="85" class="l">            <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'logging_init_before'</span> );
+</span><span id="85" class="l">            <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'logging_init_before'</span> );
 </span><span id="86" class="l">            <span class="php-var">$this</span>-&gt;logging = vsp_get_logger( <span class="php-var">$this</span>-&gt;slug() );
-</span><span id="87" class="l">            <span class="php-var">$this</span>-&gt;action( <span class="php-quote">'loggin_init'</span> );
+</span><span id="87" class="l">            <span class="php-var">$this</span>-&gt;do_action( <span class="php-quote">'loggin_init'</span> );
 </span><span id="88" class="l">        }
 </span><span id="89" class="l">    }
 </span><span id="90" class="l">
