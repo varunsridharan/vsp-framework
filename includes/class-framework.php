@@ -16,7 +16,6 @@ abstract class Framework extends Framework_Modules {
 	 * Returns Defaults Args.
 	 *
 	 * @return array|string[]
-	 * @since {NEWVERSION}
 	 */
 	protected function base_defaults() {
 		return $this->parse_args( array(

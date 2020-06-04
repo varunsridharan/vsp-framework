@@ -1,8 +1,8 @@
 <?php
 /**
- * Last Updated: Wed 06-May-2020 / 10:06:28:am
- * Total Class:  37
- * Namespace:
+ * Last Updated: Thu 04-Jun-2020 / 12:24:55:pm
+ * Total Class:  36
+ * Namespace: 
  */
 
 return array (
@@ -21,7 +21,6 @@ return array (
   'VSP\\Core\\Abstracts\\Log_Handler' => 'core/abstracts/class-log-handler.php',
   'VSP\\Core\\Abstracts\\Plugin_Settings' => 'core/abstracts/class-plugin-settings.php',
   'VSP\\Core\\Instance_Handler' => 'core/class-instance-handler.php',
-  'VSP\\Core\\Interfaces\\Framework_Interface' => 'core/interfaces/framework-interface.php',
   'VSP\\Core\\Interfaces\\Log_Handler' => 'core/interfaces/log-handler.php',
   'VSP\\Core\\Interfaces\\Logger' => 'core/interfaces/logger.php',
   'VSP\\Core\\Traits\\Array_Helper' => 'core/traits/class-array-helper.php',

@@ -11,7 +11,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  *
  * Framework Name: VSP Framework
- * Version: 0.8.8
+ * Plugin Name: VSP Framework
+ * Version: 0.8.9
  * Author: Varun Sridharan
  * Author URI:http://varunsridharan.in
  * Text Domain:vsp-framework
@@ -22,10 +23,10 @@ use Varunsridharan\PHP\Autoloader;
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! defined( 'VSP_VERSION' ) ) {
+if ( ! class_exists( '\VSP\Framework', false ) ) {
 	try {
 		$upload_dir = wp_upload_dir( null, false );
-		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.8' );
+		defined( 'VSP_VERSION' ) || define( 'VSP_VERSION', '0.8.9' );
 		defined( 'VSP_PATH' ) || define( 'VSP_PATH', plugin_dir_path( __FILE__ ) );
 		defined( 'VSP_URL' ) || define( 'VSP_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 		defined( 'VSP_CORE' ) || define( 'VSP_CORE', VSP_PATH . 'core/' );

@@ -16,7 +16,6 @@ abstract class Framework_Base extends Base {
 	 * Returns base_defaults Values.
 	 *
 	 * @return array
-	 * @since {NEWVERSION}
 	 */
 	protected function base_defaults() {
 		return array(

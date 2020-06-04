@@ -26,7 +26,7 @@ class WPOnion extends Base {
 	 * Filters & Returns Fields.
 	 *
 	 * @return mixed
-	 * @since {NEWVERSION}
+	 * @since 0.8.9
 	 */
 	public function fields() {
 		return $this->plugin()->do_action( 'settings_options', wponion_builder() );
