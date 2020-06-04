@@ -29,7 +29,7 @@ trait Product {
 			return $product->get_id();
 		}
 
-		if ( static::is_version_lt_3_0() && $product instanceof WC_Product && isset( $product->ID ) ) {
+		if ( static::compare( '3.0', '<' ) && $product instanceof WC_Product && isset( $product->ID ) ) {
 			return $product->ID;
 		}
 		return false;
@@ -51,6 +51,6 @@ trait Product {
 			return false;
 		}
 
-		return ( static::is_version_gte_3_0() ) ? $product->get_type() : $product->product_type;
+		return ( static::compare( '3.0', '>=' ) ) ? $product->get_type() : $product->product_type;
 	}
 }
