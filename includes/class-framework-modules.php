@@ -47,9 +47,9 @@ abstract class Framework_Modules extends Framework_Admin {
 	 */
 	protected function _addon_init() {
 		if ( false !== $this->option( 'addons' ) ) {
-			$this->action( 'addons_init_before' );
+			$this->do_action( 'addons_init_before' );
 			$this->_instance( '\VSP\Modules\Addons', $this->option( 'addons' ) );
-			$this->action( 'addons_init' );
+			$this->do_action( 'addons_init' );
 		}
 	}
 
@@ -64,13 +64,13 @@ abstract class Framework_Modules extends Framework_Admin {
 	protected function _settings_init() {
 		if ( false !== $this->option( 'settings_page' ) ) {
 			$this->settings_init_before();
-			$this->action( 'settings_init_before' );
+			$this->do_action( 'settings_init_before' );
 			$args = $this->option( 'settings_page' );
 			if ( is_array( $args ) ) {
 				$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
 				$this->_instance( 'VSP\Modules\WPOnion', $this->option( 'settings_page' ) );
 				$this->settings_init();
-				$this->action( 'settings_init' );
+				$this->do_action( 'settings_init' );
 			}
 		}
 	}
@@ -82,9 +82,9 @@ abstract class Framework_Modules extends Framework_Admin {
 	 */
 	public function _logging_init() {
 		if ( false !== $this->option( 'logging' ) ) {
-			$this->action( 'logging_init_before' );
+			$this->do_action( 'logging_init_before' );
 			$this->logging = vsp_get_logger( $this->slug() );
-			$this->action( 'loggin_init' );
+			$this->do_action( 'loggin_init' );
 		}
 	}
 

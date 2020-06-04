@@ -131,8 +131,7 @@ class Addons extends Addons\Admin {
 			}
 		}
 		if ( ! empty( $deactivated_plugins ) ) {
-			$title = '<strong>' . $this->plugin()
-					->plugin_name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
+			$title = '<strong>' . $this->plugin()->name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
 			$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
 			$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 

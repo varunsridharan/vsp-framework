@@ -5,7 +5,7 @@ namespace VSP;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class VSP\Framework
+ * Class Framework
  * This class should be extened and used in a plugins class
  *
  * @package VSP
@@ -109,7 +109,7 @@ abstract class Framework extends Framework_Modules {
 	 */
 	private function _load_required_files() {
 		$this->load_files();
-		$this->action( 'loaded' );
+		$this->do_action( 'loaded' );
 	}
 
 	/**
