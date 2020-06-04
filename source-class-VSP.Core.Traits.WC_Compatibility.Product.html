@@ -248,7 +248,7 @@
 </span><span id="29" class="l">            <span class="php-keyword1">return</span> <span class="php-var">$product</span>-&gt;get_id();
 </span><span id="30" class="l">        }
 </span><span id="31" class="l">
-</span><span id="32" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">static</span>::is_version_lt_3_0() &amp;&amp; <span class="php-var">$product</span> <span class="php-keyword1">instanceof</span> WC_Product &amp;&amp; <span class="php-keyword1">isset</span>( <span class="php-var">$product</span>-&gt;ID ) ) {
+</span><span id="32" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">static</span>::compare( <span class="php-quote">'3.0'</span>, <span class="php-quote">'&lt;'</span> ) &amp;&amp; <span class="php-var">$product</span> <span class="php-keyword1">instanceof</span> WC_Product &amp;&amp; <span class="php-keyword1">isset</span>( <span class="php-var">$product</span>-&gt;ID ) ) {
 </span><span id="33" class="l">            <span class="php-keyword1">return</span> <span class="php-var">$product</span>-&gt;ID;
 </span><span id="34" class="l">        }
 </span><span id="35" class="l">        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
@@ -270,7 +270,7 @@
 </span><span id="51" class="l">            <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="52" class="l">        }
 </span><span id="53" class="l">
-</span><span id="54" class="l">        <span class="php-keyword1">return</span> ( <span class="php-keyword1">static</span>::is_version_gte_3_0() ) ? <span class="php-var">$product</span>-&gt;get_type() : <span class="php-var">$product</span>-&gt;product_type;
+</span><span id="54" class="l">        <span class="php-keyword1">return</span> ( <span class="php-keyword1">static</span>::compare( <span class="php-quote">'3.0'</span>, <span class="php-quote">'&gt;='</span> ) ) ? <span class="php-var">$product</span>-&gt;get_type() : <span class="php-var">$product</span>-&gt;product_type;
 </span><span id="55" class="l">    }
 </span><span id="56" class="l">}
 </span><span id="57" class="l"></span></code></pre>
