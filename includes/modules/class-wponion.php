@@ -38,7 +38,7 @@ class WPOnion extends Base {
 	public function wpo_load() {
 		$assets   = wponion_cast_array( $this->option( 'assets', array() ) );
 		$assets[] = 'vsp_load_core_assets';
-		$fields   = ( wponion_is_version( '1.3.6' ) ) ? $this->fields() : array( &$this, 'fields' );
+		$fields   = ( wponion_is_version( '1.4.6', '>' ) ) ? array( &$this, 'fields' ) : $this->fields();
 		wponion_settings( $this->option(), $fields );
 	}
 }
