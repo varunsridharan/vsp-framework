@@ -257,7 +257,7 @@
 </span><span id="38" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> wpo_load() {
 </span><span id="39" class="l">        <span class="php-var">$assets</span>   = wponion_cast_array( <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'assets'</span>, <span class="php-keyword1">array</span>() ) );
 </span><span id="40" class="l">        <span class="php-var">$assets</span>[] = <span class="php-quote">'vsp_load_core_assets'</span>;
-</span><span id="41" class="l">        <span class="php-var">$fields</span>   = ( wponion_is_version( <span class="php-quote">'1.3.6'</span> ) ) ? <span class="php-var">$this</span>-&gt;fields() : <span class="php-keyword1">array</span>( &amp;<span class="php-var">$this</span>, <span class="php-quote">'fields'</span> );
+</span><span id="41" class="l">        <span class="php-var">$fields</span>   = ( wponion_is_version( <span class="php-quote">'1.4.6'</span>, <span class="php-quote">'&gt;'</span> ) ) ? <span class="php-keyword1">array</span>( &amp;<span class="php-var">$this</span>, <span class="php-quote">'fields'</span> ) : <span class="php-var">$this</span>-&gt;fields();
 </span><span id="42" class="l">        wponion_settings( <span class="php-var">$this</span>-&gt;option(), <span class="php-var">$fields</span> );
 </span><span id="43" class="l">    }
 </span><span id="44" class="l">}
