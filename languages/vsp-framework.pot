@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the VSP Framework plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: VSP Framework 0.8.9\n"
+"Project-Id-Version: VSP Framework 0.8.9.1\n"
 "Report-Msgid-Bugs-To: https:\/\/github.com\/varunsridharan\/vsp-framework\n"
 "Last-Translator: Varun Sridharan\n"
 "Language-Team: varunsridharan23@gmail.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-04T12:26:03+05:30\n"
+"POT-Creation-Date: 2020-06-05T12:31:37+05:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: vsp-framework\n"
@@ -303,23 +303,23 @@ msgstr ""
 msgid "Delete Log"
 msgstr ""
 
-#: vsp-bootstrap.php:31
+#: vsp-bootstrap.php:40
 msgid "Framework Autoloader Not Found"
 msgstr ""
 
-#: vsp-bootstrap.php:51
+#: vsp-bootstrap.php:60
 msgid "Autoloder For VSP-Framework Not Found."
 msgstr ""
 
-#: vsp-bootstrap.php:52
+#: vsp-bootstrap.php:61
 msgid "Please Contact The Author Of The Plugin"
 msgstr ""
 
-#: vsp-bootstrap.php:53
+#: vsp-bootstrap.php:62
 msgid "Plugin Path :"
 msgstr ""
 
-#: vsp-bootstrap.php:54
+#: vsp-bootstrap.php:63
 msgid "Error : "
 msgstr ""
 
