@@ -44,23 +44,27 @@ class Base extends Core\Instance_Handler {
 	/**
 	 * Get the plugin url.
 	 *
-	 * @param string $ex_path
+	 * @param string      $ex_path
+	 * @param bool|string $plugin_file
 	 *
 	 * @return string
 	 */
-	public function plugin_url( $ex_path = '/' ) {
-		return untrailingslashit( plugins_url( $ex_path, $this->plugin()->file() ) );
+	public function plugin_url( $ex_path = '/', $plugin_file = false ) {
+		$file = ( false !== $plugin_file ) ? $plugin_file : $this->plugin()->file();
+		return untrailingslashit( plugins_url( $ex_path, $file ) );
 	}
 
 	/**
 	 * Get the plugin path.
 	 *
-	 * @param string $ex_path
+	 * @param string      $ex_path
+	 * @param bool|string $plugin_file
 	 *
 	 * @return string
 	 */
-	public function plugin_path( $ex_path = '' ) {
-		$path = untrailingslashit( plugin_dir_path( $this->plugin()->file() ) );
+	public function plugin_path( $ex_path = '', $plugin_file = false ) {
+		$file = ( false !== $plugin_file ) ? $plugin_file : $this->plugin()->file();
+		$path = untrailingslashit( plugin_dir_path( $file ) );
 		return ( empty( $ex_path ) ) ? $path : $path . '/' . $ex_path;
 	}
 

@@ -29,7 +29,9 @@ class WPOnion extends Base {
 	 * @since 0.8.9
 	 */
 	public function fields() {
-		return $this->plugin()->do_action( 'settings_options', wponion_builder() );
+		$builder = wponion_builder();
+		$this->plugin()->do_action( 'settings_options', $builder );
+		return $builder;
 	}
 
 	/**
