@@ -121,16 +121,6 @@
                 "sweetalert",
                 "sweetalert2"
             ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-04-06T04:19:14+00:00"
         },
         {
@@ -160,9 +150,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -227,16 +217,6 @@
             ],
             "description": "Simple WordPress Library To Evaluate / Handle Conditional Logic.",
             "homepage": "https://github.com/varunsridharan/wp-conditional-logic/",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-05-07T14:18:14+00:00"
         },
         {
@@ -275,16 +255,6 @@
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-03-20T09:01:01+00:00"
         },
         {
@@ -426,16 +396,6 @@
             ],
             "description": "Simple WordPress Plugin Library To Handle Version Management To Provide Easy Upgrade Handling.",
             "homepage": "https://github.com/varunsridharan/wp-plugin-version-management",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-05-07T14:51:23+00:00"
         },
         {
@@ -648,20 +608,6 @@
                 "wp-plugin-settings",
                 "wponion",
                 "wponion-framework"
-            ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/varunsridharan",
-                    "type": "patreon"
-                }
             ],
             "time": "2020-05-06T03:00:52+00:00"
         }
@@ -932,25 +878,25 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.0.8",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "600a52c29afc0d1caa74acbec8d3095ca7e9910d"
+                "reference": "4298870062bfc667cb78d2b379be4bf5dec5f187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/600a52c29afc0d1caa74acbec8d3095ca7e9910d",
-                "reference": "600a52c29afc0d1caa74acbec8d3095ca7e9910d",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/4298870062bfc667cb78d2b379be4bf5dec5f187",
+                "reference": "4298870062bfc667cb78d2b379be4bf5dec5f187",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.5"
+                "php": ">=7.2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -977,34 +923,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-05-20T17:43:50+00:00"
         },
         {
             "name": "varunsridharan/php-classmap-generator",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/php-classmap-generator.git",
-                "reference": "35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa"
+                "reference": "d725695cf78344764fe1fd70eaf07cc6c9692a06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/php-classmap-generator/zipball/35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa",
-                "reference": "35d2fc55eb56d83bc9ec5fcb00353328d2eea6aa",
+                "url": "https://api.github.com/repos/varunsridharan/php-classmap-generator/zipball/d725695cf78344764fe1fd70eaf07cc6c9692a06",
+                "reference": "d725695cf78344764fe1fd70eaf07cc6c9692a06",
                 "shasum": ""
             },
             "require": {
@@ -1027,7 +959,7 @@
                 }
             ],
             "description": "Lightweight PHP Classmap Generator",
-            "time": "2019-10-25T04:48:09+00:00"
+            "time": "2020-06-06T02:54:56+00:00"
         },
         {
             "name": "varunsridharan/wp-cli-textdomain",
@@ -1291,6 +1223,5 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
