@@ -121,16 +121,6 @@
                 "sweetalert",
                 "sweetalert2"
             ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-04-06T04:19:14+00:00"
         },
         {
@@ -160,9 +150,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -227,16 +217,6 @@
             ],
             "description": "Simple WordPress Library To Evaluate / Handle Conditional Logic.",
             "homepage": "https://github.com/varunsridharan/wp-conditional-logic/",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-05-07T14:18:14+00:00"
         },
         {
@@ -275,16 +255,6 @@
                 }
             ],
             "description": "A base WordPress database table class with query builder",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-03-20T09:01:01+00:00"
         },
         {
@@ -426,16 +396,6 @@
             ],
             "description": "Simple WordPress Plugin Library To Handle Version Management To Provide Easy Upgrade Handling.",
             "homepage": "https://github.com/varunsridharan/wp-plugin-version-management",
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                }
-            ],
             "time": "2020-05-07T14:51:23+00:00"
         },
         {
@@ -555,12 +515,12 @@
             "version": "88913999",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
+                "url": "https://github.com/varunsridharan/wp-all-import-rapid-addon.git",
                 "reference": "d8d9365b3079c4de22014c860c12479b2319c22a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
+                "url": "https://api.github.com/repos/varunsridharan/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
                 "reference": "d8d9365b3079c4de22014c860c12479b2319c22a",
                 "shasum": ""
             },
@@ -581,16 +541,16 @@
         },
         {
             "name": "wponion/wponion",
-            "version": "1.4.6",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770"
+                "reference": "3a9d5af0b234c6beb02ebc1f4d718044b8119344"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
-                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/3a9d5af0b234c6beb02ebc1f4d718044b8119344",
+                "reference": "3a9d5af0b234c6beb02ebc1f4d718044b8119344",
                 "shasum": ""
             },
             "require": {
@@ -649,21 +609,7 @@
                 "wponion",
                 "wponion-framework"
             ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/varunsridharan23",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/varunsridharan",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-05-06T03:00:52+00:00"
+            "time": "2020-06-14T08:28:52+00:00"
         }
     ],
     "packages-dev": [
@@ -977,20 +923,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -1291,6 +1223,5 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
