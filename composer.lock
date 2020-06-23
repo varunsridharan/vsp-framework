@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -555,12 +555,12 @@
             "version": "88913999",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
+                "url": "https://github.com/varunsridharan/wp-all-import-rapid-addon.git",
                 "reference": "d8d9365b3079c4de22014c860c12479b2319c22a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
+                "url": "https://api.github.com/repos/varunsridharan/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
                 "reference": "d8d9365b3079c4de22014c860c12479b2319c22a",
                 "shasum": ""
             },
@@ -577,20 +577,30 @@
                     "email": "varunsridharan23@gmail.com"
                 }
             ],
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
             "time": "2020-04-27T09:03:13+00:00"
         },
         {
             "name": "wponion/wponion",
-            "version": "1.4.6",
+            "version": "1.5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770"
+                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
-                "reference": "f6cb6f9a8bd31ca35dfd088f7baa0093adeee770",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/1db222d6b7da3a96dd533ddc0cc0009b08c879da",
+                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da",
                 "shasum": ""
             },
             "require": {
@@ -655,15 +665,15 @@
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/varunsridharan",
-                    "type": "github"
+                    "url": "https://opencollective.com/wponion",
+                    "type": "open_collective"
                 },
                 {
                     "url": "https://www.patreon.com/varunsridharan",
                     "type": "patreon"
                 }
             ],
-            "time": "2020-05-06T03:00:52+00:00"
+            "time": "2020-06-23T02:18:45+00:00"
         }
     ],
     "packages-dev": [
