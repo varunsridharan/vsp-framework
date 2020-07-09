@@ -223,7 +223,7 @@ abstract class Core extends Base {
 	protected function handle_icon( $icon, $addon ) {
 		if ( $icon ) {
 			if ( true !== wponion_is_url( $icon ) && file_exists( $addon['addon_path'] . $icon ) ) {
-				return $addon['addon_path'] . $icon;
+				return $addon['addon_url'] . $icon;
 			} elseif ( true === wponion_is_url( $icon ) ) {
 				return $icon;
 			}
