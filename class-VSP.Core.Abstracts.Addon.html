@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class VSP\Modules\WPOnion</title>
+	<title>Class VSP\Core\Abstracts\Addon</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -29,13 +29,13 @@
 					</a>
 
 						<ul>
-				<li>
+				<li class="active">
 					<a href="namespace-VSP.Core.html">
 						Core<span></span>
 					</a>
 
 						<ul>
-				<li>
+				<li class="active">
 					<a href="namespace-VSP.Core.Abstracts.html">
 						Abstracts					</a>
 
@@ -62,7 +62,7 @@
 						Helper					</a>
 
 						</li>
-				<li class="active">
+				<li>
 					<a href="namespace-VSP.Modules.html">
 						Modules<span></span>
 					</a>
@@ -88,12 +88,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-VSP.Modules.Addons.html">Addons</a></li>
-				<li><a href="class-VSP.Modules.Logger.html">Logger</a></li>
-				<li><a href="class-VSP.Modules.Shortcode.html">Shortcode</a></li>
-				<li><a href="class-VSP.Modules.System_Logs.html">System_Logs</a></li>
-				<li><a href="class-VSP.Modules.System_Tools.html">System_Tools</a></li>
-				<li class="active"><a href="class-VSP.Modules.WPOnion.html">WPOnion</a></li>
+				<li class="active"><a href="class-VSP.Core.Abstracts.Addon.html">Addon</a></li>
+				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">Log_Handler</a></li>
+				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">Plugin_Settings</a></li>
 			</ul>
 
 
@@ -120,7 +117,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-VSP.Modules.html" title="Summary of VSP\Modules"><span>Namespace</span></a>
+				<a href="namespace-VSP.Core.Abstracts.html" title="Summary of VSP\Core\Abstracts"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -132,11 +129,11 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class WPOnion</h1>
+	<h1>Class Addon</h1>
 
 
 	<div class="description">
-	<p>Class VSP_Settings_WPOnion</p>
+	<p>Class VSP_Log_Handler</p>
 	</div>
 
 	<dl class="tree">
@@ -148,8 +145,7 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-VSP.Base.html"><span>VSP\Base</span></a>
-			
+<b><span>VSP\Core\Abstracts\Addon</span></b>			
 			
 			 uses 
 					WPOnion\Traits\Class_Options (not available)
@@ -157,12 +153,6 @@
 			
 					WPOnion\Traits\Hooks (not available)
 
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>VSP\Modules\WPOnion</span></b>			
-			
 			
 		</dd>
 	</dl>
@@ -175,14 +165,14 @@
 
 
 	<div class="info">
+		<b>Abstract</b><br>
 		
-		
-		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a>\<a href="namespace-VSP.Modules.html">Modules</a><br>
+		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a>\<a href="namespace-VSP.Core.html">Core</a>\<a href="namespace-VSP.Core.Abstracts.html">Abstracts</a><br>
 		
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-			<b>Located at</b> <a href="source-class-VSP.Modules.WPOnion.html#9-46" title="Go to source code">includes/modules/class-wponion.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Core.Abstracts.Addon.html#12-68" title="Go to source code">includes/core/abstracts/clss-addon.php</a>
 		<br>
 	</div>
 
@@ -190,102 +180,115 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="addon_file" id="_addon_file">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			
+			false|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-VSP.Modules.WPOnion.html#15-23" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>() </span> )</code>
+		<a class="anchor" href="#_addon_file">#</a>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#28-39" title="Go to source code">addon_file</a>( )</code>
 
 		<div class="description short">
-			<p>WPOnion constructor.</p>
+			<p>Finds And Returns Valid Addon Path File.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>WPOnion constructor.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$options</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="fields" id="_fields">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_fields">#</a>
-		<code><a href="source-class-VSP.Modules.WPOnion.html#25-35" title="Go to source code">fields</a>( )</code>
-
-		<div class="description short">
-			<p>Filters &amp; Returns Fields.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Filters &amp; Returns Fields.</p>
+			<p>Finds And Returns Valid Addon Path File.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					false|string
 				</div>
 
 
-				<h4>Since</h4>
-				<div class="list">
-						0.8.9<br>
-				</div>
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="wpo_load" id="_wpo_load">
+	<tr data-order="addon_url" id="_addon_url">
 
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_wpo_load">#</a>
-		<code><a href="source-class-VSP.Modules.WPOnion.html#37-45" title="Go to source code">wpo_load</a>( )</code>
+		<a class="anchor" href="#_addon_url">#</a>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#41-52" title="Go to source code">addon_url</a>( <span>string <var>$ex_path</var> = <span class="php-quote">'/'</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
 
 		<div class="description short">
-			<p>Runs On WPOnion Load.</p>
+			<p>Get the plugin url.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Runs On WPOnion Load.</p>
+			<p>Get the plugin url.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$ex_path</var></dt>
+					<dd></dd>
+					<dt><var>$addon_file</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addon_path" id="_addon_path">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addon_path">#</a>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#54-66" title="Go to source code">addon_path</a>( <span>string <var>$ex_path</var> = <span class="php-quote">''</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
+
+		<div class="description short">
+			<p>Get the plugin path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the plugin path.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$ex_path</var></dt>
+					<dd></dd>
+					<dt><var>$addon_file</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -295,19 +298,6 @@
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-VSP.Base.html#methods">VSP\Base</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-VSP.Base.html#___clone">__clone()</a>, 
-			<a href="class-VSP.Base.html#___wakeup">__wakeup()</a>, 
-			<a href="class-VSP.Base.html#_load_file">load_file()</a>, 
-			<a href="class-VSP.Base.html#_plugin">plugin()</a>, 
-			<a href="class-VSP.Base.html#_plugin_path">plugin_path()</a>, 
-			<a href="class-VSP.Base.html#_plugin_url">plugin_url()</a>
-		</code></td>
-	</tr>
-	</table>
 	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-VSP.Core.Instance_Handler.html#methods">VSP\Core\Instance_Handler</a></caption>
 	<tr>

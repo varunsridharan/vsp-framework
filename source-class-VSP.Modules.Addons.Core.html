@@ -93,6 +93,7 @@
 				<li><a href="class-VSP.Ajaxer.html">VSP\Ajaxer</a></li>
 				<li><a href="class-VSP.Base.html">VSP\Base</a></li>
 				<li><a href="class-VSP.Cache.html">VSP\Cache</a></li>
+				<li><a href="class-VSP.Core.Abstracts.Addon.html">VSP\Core\Abstracts\Addon</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">VSP\Core\Abstracts\Log_Handler</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">VSP\Core\Abstracts\Plugin_Settings</a></li>
 				<li><a href="class-VSP.Core.Instance_Handler.html">VSP\Core\Instance_Handler</a></li>
@@ -442,7 +443,7 @@
 </span><span id="223" class="l">    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> handle_icon( <span class="php-var">$icon</span>, <span class="php-var">$addon</span> ) {
 </span><span id="224" class="l">        <span class="php-keyword1">if</span> ( <span class="php-var">$icon</span> ) {
 </span><span id="225" class="l">            <span class="php-keyword1">if</span> ( <span class="php-keyword1">true</span> !== wponion_is_url( <span class="php-var">$icon</span> ) &amp;&amp; <span class="php-keyword2">file_exists</span>( <span class="php-var">$addon</span>[<span class="php-quote">'addon_path'</span>] . <span class="php-var">$icon</span> ) ) {
-</span><span id="226" class="l">                <span class="php-keyword1">return</span> <span class="php-var">$addon</span>[<span class="php-quote">'addon_path'</span>] . <span class="php-var">$icon</span>;
+</span><span id="226" class="l">                <span class="php-keyword1">return</span> <span class="php-var">$addon</span>[<span class="php-quote">'addon_url'</span>] . <span class="php-var">$icon</span>;
 </span><span id="227" class="l">            } <span class="php-keyword1">elseif</span> ( <span class="php-keyword1">true</span> === wponion_is_url( <span class="php-var">$icon</span> ) ) {
 </span><span id="228" class="l">                <span class="php-keyword1">return</span> <span class="php-var">$icon</span>;
 </span><span id="229" class="l">            }
@@ -576,6 +577,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?4ad81c8822f804faf077445a913cc3d3d61df977"></script>
+<script src="elementlist.js?eec0389aed71c90c54458451a7328906260a3f53"></script>
 </body>
 </html>
