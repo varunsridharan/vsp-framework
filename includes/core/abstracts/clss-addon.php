@@ -26,11 +26,27 @@ abstract class Addon extends Instance_Handler {
 	private $addon_file = '';
 
 	/**
+	 * Stores Hook Priority
+	 *
+	 * @var int
+	 */
+	protected $settings_priority = 20;
+
+	/**
 	 * Addon constructor.
 	 */
 	public function __construct() {
-		add_action( $this->plugin()->slug( 'hook' ) . '_settings_options', array( &$this, 'settings' ) );
+		$slug = $this->plugin()->slug( 'hook' );
+		$this->add_action( $slug . '_settings_options', 'settings', $this->settings_priority );
+		$this->init();
 	}
+
+	/**
+	 * Triggers Right After construct Call.
+	 *
+	 * @return mixed
+	 */
+	abstract protected function init();
 
 	/**
 	 * This function should return parent plugins instance.
