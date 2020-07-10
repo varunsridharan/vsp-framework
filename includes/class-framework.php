@@ -60,6 +60,7 @@ abstract class Framework extends Framework_Modules {
 		$this->_init_class();
 		$this->_register_hooks();
 		$this->plugin_init();
+		$this->do_action( 'init' );
 	}
 
 	/**
