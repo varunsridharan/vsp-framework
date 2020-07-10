@@ -173,6 +173,11 @@ abstract class Core extends Base {
 	 */
 	protected function get_addon_information( $addon ) {
 		$data = $this->read_addon_json( $addon['addon_path'] );
+
+		if ( empty( $data['file'] ) && file_exists( $addon['addon_path'] . '/addon.php' ) ) {
+			$data['file'] = 'addon.php';
+		}
+
 		if ( ! empty( $data ) && ! empty( $data['file'] ) ) {
 			$data                               = $this->parse_args( $data, $addon );
 			$data['required_plugins']           = ( isset( $data['required_plugins'] ) ) ? $data['required_plugins'] : array();
