@@ -26,6 +26,20 @@ abstract class Addon extends Instance_Handler {
 	private $addon_file = '';
 
 	/**
+	 * Addon constructor.
+	 */
+	public function __construct() {
+		add_action( $this->plugin()->slug( 'hook' ) . '_settings_options', array( &$this, 'settings' ) );
+	}
+
+	/**
+	 * This function should return parent plugins instance.
+	 *
+	 * @return \VSP\Framework
+	 */
+	abstract protected function plugin();
+
+	/**
 	 * Finds And Returns Valid Addon Path File.
 	 *
 	 * @return false|string
@@ -64,5 +78,10 @@ abstract class Addon extends Instance_Handler {
 		$path = untrailingslashit( plugin_dir_path( $file ) );
 		return ( empty( $ex_path ) ) ? $path : $path . '/' . $ex_path;
 	}
+
+	/**
+	 * @param \WPO\Builder $builder WPOnion's Builder Instance.
+	 */
+	abstract public function settings( $builder );
 
 }
