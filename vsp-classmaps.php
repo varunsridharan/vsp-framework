@@ -1,7 +1,7 @@
 <?php
 /**
- * Last Updated: Fri 05-Jun-2020 / 12:31:36:pm
- * Total Class:  36
+ * Last Updated: Fri 10-Jul-2020 / 08:59:57:am
+ * Total Class:  37
  * Namespace: 
  */
 
@@ -20,6 +20,7 @@ return array (
   'VSP\\WC_Compatibility' => 'class-wc-compatibility.php',
   'VSP\\Core\\Abstracts\\Log_Handler' => 'core/abstracts/class-log-handler.php',
   'VSP\\Core\\Abstracts\\Plugin_Settings' => 'core/abstracts/class-plugin-settings.php',
+  'VSP\\Core\\Abstracts\\Addon' => 'core/abstracts/clss-addon.php',
   'VSP\\Core\\Instance_Handler' => 'core/class-instance-handler.php',
   'VSP\\Core\\Interfaces\\Log_Handler' => 'core/interfaces/log-handler.php',
   'VSP\\Core\\Interfaces\\Logger' => 'core/interfaces/logger.php',
