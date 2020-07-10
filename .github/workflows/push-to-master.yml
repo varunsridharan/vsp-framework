@@ -12,6 +12,6 @@ jobs:
       - name: Fetching Repository
         uses: actions/checkout@v2
       - name: Generating PHP Documentation
-        uses: varunsridharan/action-apigen@2.1
+        uses: varunsridharan/action-apigen@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
