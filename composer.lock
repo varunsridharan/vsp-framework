@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -552,16 +552,16 @@
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
-            "version": "88913999",
+            "version": "164946925",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vsp-libs/wp-all-import-rapid-addon.git",
-                "reference": "d8d9365b3079c4de22014c860c12479b2319c22a"
+                "url": "https://github.com/varunsridharan/wpallimport_rapidaddon.git",
+                "reference": "e8987f6daddd52003122d164b4c573724da1cd84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsp-libs/wp-all-import-rapid-addon/zipball/d8d9365b3079c4de22014c860c12479b2319c22a",
-                "reference": "d8d9365b3079c4de22014c860c12479b2319c22a",
+                "url": "https://api.github.com/repos/varunsridharan/wpallimport_rapidaddon/zipball/e8987f6daddd52003122d164b4c573724da1cd84",
+                "reference": "e8987f6daddd52003122d164b4c573724da1cd84",
                 "shasum": ""
             },
             "type": "library",
@@ -577,7 +577,21 @@
                     "email": "varunsridharan23@gmail.com"
                 }
             ],
-            "time": "2020-04-27T09:03:13+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-07-10T19:17:22+00:00"
         },
         {
             "name": "wponion/wponion",
