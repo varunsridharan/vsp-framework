@@ -172,7 +172,7 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-			<b>Located at</b> <a href="source-class-VSP.Core.Abstracts.Addon.html#12-87" title="Go to source code">includes/core/abstracts/clss-addon.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Core.Abstracts.Addon.html#12-103" title="Go to source code">includes/core/abstracts/clss-addon.php</a>
 		<br>
 	</div>
 
@@ -192,7 +192,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#28-33" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#35-42" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			<p>Addon constructor.</p>
@@ -203,6 +203,40 @@
 
 
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="init" id="_init">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_init">#</a>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#44-49" title="Go to source code">init</a>( )</code>
+
+		<div class="description short">
+			<p>Triggers Right After construct Call.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Triggers Right After construct Call.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -222,7 +256,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_plugin">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#35-40" title="Go to source code">plugin</a>( )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#51-56" title="Go to source code">plugin</a>( )</code>
 
 		<div class="description short">
 			<p>This function should return parent plugins instance.</p>
@@ -256,7 +290,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addon_file">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#42-53" title="Go to source code">addon_file</a>( )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#58-69" title="Go to source code">addon_file</a>( )</code>
 
 		<div class="description short">
 			<p>Finds And Returns Valid Addon Path File.</p>
@@ -290,7 +324,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addon_url">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#55-66" title="Go to source code">addon_url</a>( <span>string <var>$ex_path</var> = <span class="php-quote">'/'</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#71-82" title="Go to source code">addon_url</a>( <span>string <var>$ex_path</var> = <span class="php-quote">'/'</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
 
 		<div class="description short">
 			<p>Get the plugin url.</p>
@@ -331,7 +365,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addon_path">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#68-80" title="Go to source code">addon_path</a>( <span>string <var>$ex_path</var> = <span class="php-quote">''</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#84-96" title="Go to source code">addon_path</a>( <span>string <var>$ex_path</var> = <span class="php-quote">''</span></span>, <span>boolean|string <var>$addon_file</var> = <span class="php-keyword1">false</span> </span> )</code>
 
 		<div class="description short">
 			<p>Get the plugin path.</p>
@@ -372,7 +406,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_settings">#</a>
-		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#82-85" title="Go to source code">settings</a>( <span>WPO\Builder <var>$builder</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Abstracts.Addon.html#98-101" title="Go to source code">settings</a>( <span>WPO\Builder <var>$builder</var></span> )</code>
 
 		<div class="description short">
 			
@@ -419,6 +453,34 @@
 
 
 
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="settings_priority" id="$settings_priority">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Core.Abstracts.Addon.html#28-33" title="Go to source code"><var>$settings_priority</var></a>
+
+			<div class="description short">
+				<p>Stores Hook Priority</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Stores Hook Priority</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$settings_priority" class="anchor">#</a>
+				<code><span class="php-num">20</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-VSP.Core.Instance_Handler.html#properties">VSP\Core\Instance_Handler</a></caption>
