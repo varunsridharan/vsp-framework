@@ -59,6 +59,11 @@
 						</li>
 							</ul></li></ul></li>
 				<li>
+					<a href="namespace-VSP.Deprecation.html">
+						Deprecation					</a>
+
+						</li>
+				<li>
 					<a href="namespace-VSP.Helper.html">
 						Helper					</a>
 
@@ -97,6 +102,8 @@
 				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">VSP\Core\Abstracts\Log_Handler</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">VSP\Core\Abstracts\Plugin_Settings</a></li>
 				<li><a href="class-VSP.Core.Instance_Handler.html">VSP\Core\Instance_Handler</a></li>
+				<li><a href="class-VSP.Deprecation.Actions.html">VSP\Deprecation\Actions</a></li>
+				<li><a href="class-VSP.Deprecation.Filters.html">VSP\Deprecation\Filters</a></li>
 				<li><a href="class-VSP.Error.html">VSP\Error</a></li>
 				<li><a href="class-VSP.Framework.html">VSP\Framework</a></li>
 				<li><a href="class-VSP.Framework_Admin.html">VSP\Framework_Admin</a></li>
@@ -244,7 +251,7 @@
 </span><span id="24" class="l">    <span class="php-keyword1">protected</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> format_entry( <span class="php-var">$timestamp</span>, <span class="php-var">$level</span>, <span class="php-var">$message</span>, <span class="php-var">$context</span> ) {
 </span><span id="25" class="l">        <span class="php-var">$time</span>    = self::format_time( <span class="php-var">$timestamp</span> );
 </span><span id="26" class="l">        <span class="php-var">$level_s</span> = <span class="php-keyword2">strtoupper</span>( <span class="php-var">$level</span> );
-</span><span id="27" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp_format_log_entry'</span>, <span class="php-quote">&quot;</span><span class="php-var">{$time}</span><span class="php-quote"> </span><span class="php-var">{$level_s}</span><span class="php-quote"> </span><span class="php-var">{$message}</span><span class="php-quote">&quot;</span>, <span class="php-keyword1">array</span>(
+</span><span id="27" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp/log/format/entry'</span>, <span class="php-quote">&quot;</span><span class="php-var">{$time}</span><span class="php-quote"> </span><span class="php-var">{$level_s}</span><span class="php-quote"> </span><span class="php-var">{$message}</span><span class="php-quote">&quot;</span>, <span class="php-keyword1">array</span>(
 </span><span id="28" class="l">            <span class="php-quote">'timestamp'</span> =&gt; <span class="php-var">$timestamp</span>,
 </span><span id="29" class="l">            <span class="php-quote">'level'</span>     =&gt; <span class="php-var">$level</span>,
 </span><span id="30" class="l">            <span class="php-quote">'message'</span>   =&gt; <span class="php-var">$message</span>,
@@ -271,6 +278,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?eec0389aed71c90c54458451a7328906260a3f53"></script>
+<script src="elementlist.js?d0e71b4e8ac25b904d3e677b42ca0b1a6a391518"></script>
 </body>
 </html>

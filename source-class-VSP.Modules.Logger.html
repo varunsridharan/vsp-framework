@@ -59,6 +59,11 @@
 						</li>
 							</ul></li></ul></li>
 				<li>
+					<a href="namespace-VSP.Deprecation.html">
+						Deprecation					</a>
+
+						</li>
+				<li>
 					<a href="namespace-VSP.Helper.html">
 						Helper					</a>
 
@@ -97,6 +102,8 @@
 				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">VSP\Core\Abstracts\Log_Handler</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">VSP\Core\Abstracts\Plugin_Settings</a></li>
 				<li><a href="class-VSP.Core.Instance_Handler.html">VSP\Core\Instance_Handler</a></li>
+				<li><a href="class-VSP.Deprecation.Actions.html">VSP\Deprecation\Actions</a></li>
+				<li><a href="class-VSP.Deprecation.Filters.html">VSP\Deprecation\Filters</a></li>
 				<li><a href="class-VSP.Error.html">VSP\Error</a></li>
 				<li><a href="class-VSP.Framework.html">VSP\Framework</a></li>
 				<li><a href="class-VSP.Framework_Admin.html">VSP\Framework_Admin</a></li>
@@ -258,7 +265,7 @@
 </span></span><span id="38" class="l"><span class="php-comment">     */</span>
 </span><span id="39" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct( <span class="php-var">$handlers</span> = <span class="php-keyword1">null</span>, <span class="php-var">$threshold</span> = <span class="php-keyword1">null</span> ) {
 </span><span id="40" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">null</span> === <span class="php-var">$handlers</span> ) {
-</span><span id="41" class="l">            <span class="php-var">$handlers</span> = apply_filters( <span class="php-quote">'vsp_register_log_handlers'</span>, <span class="php-keyword1">array</span>() );
+</span><span id="41" class="l">            <span class="php-var">$handlers</span> = apply_filters( <span class="php-quote">'vsp/log/register/handlers'</span>, <span class="php-keyword1">array</span>() );
 </span><span id="42" class="l">        }
 </span><span id="43" class="l">        <span class="php-var">$register_handlers</span> = <span class="php-keyword1">array</span>();
 </span><span id="44" class="l">        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>( <span class="php-var">$handlers</span> ) &amp;&amp; <span class="php-keyword2">is_array</span>( <span class="php-var">$handlers</span> ) ) {
@@ -342,7 +349,7 @@
 </span><span id="122" class="l">            }
 </span><span id="123" class="l">            <span class="php-keyword1">if</span> ( <span class="php-var">$this</span>-&gt;should_handle( <span class="php-var">$level</span> ) ) {
 </span><span id="124" class="l">                <span class="php-var">$timestamp</span> = current_time( <span class="php-quote">'timestamp'</span> );
-</span><span id="125" class="l">                <span class="php-var">$message</span>   = apply_filters( <span class="php-quote">'vsp_logger_log_message'</span>, <span class="php-var">$message</span>, <span class="php-var">$level</span>, <span class="php-var">$context</span> );
+</span><span id="125" class="l">                <span class="php-var">$message</span>   = apply_filters( <span class="php-quote">'vsp/log/message'</span>, <span class="php-var">$message</span>, <span class="php-var">$level</span>, <span class="php-var">$context</span> );
 </span><span id="126" class="l">
 </span><span id="127" class="l">                <span class="php-keyword1">if</span> ( <span class="php-keyword2">is_array</span>( <span class="php-var">$message</span> ) ) {
 </span><span id="128" class="l">                    <span class="php-var">$message</span> = <span class="php-keyword2">implode</span>( PHP_EOL, <span class="php-var">$message</span> );
@@ -490,6 +497,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?eec0389aed71c90c54458451a7328906260a3f53"></script>
+<script src="elementlist.js?d0e71b4e8ac25b904d3e677b42ca0b1a6a391518"></script>
 </body>
 </html>

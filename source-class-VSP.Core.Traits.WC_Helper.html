@@ -59,6 +59,11 @@
 						</li>
 							</ul></li></ul></li>
 				<li>
+					<a href="namespace-VSP.Deprecation.html">
+						Deprecation					</a>
+
+						</li>
+				<li>
 					<a href="namespace-VSP.Helper.html">
 						Helper					</a>
 
@@ -97,6 +102,8 @@
 				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">VSP\Core\Abstracts\Log_Handler</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">VSP\Core\Abstracts\Plugin_Settings</a></li>
 				<li><a href="class-VSP.Core.Instance_Handler.html">VSP\Core\Instance_Handler</a></li>
+				<li><a href="class-VSP.Deprecation.Actions.html">VSP\Deprecation\Actions</a></li>
+				<li><a href="class-VSP.Deprecation.Filters.html">VSP\Deprecation\Filters</a></li>
 				<li><a href="class-VSP.Error.html">VSP\Error</a></li>
 				<li><a href="class-VSP.Framework.html">VSP\Framework</a></li>
 				<li><a href="class-VSP.Framework_Admin.html">VSP\Framework_Admin</a></li>
@@ -264,11 +271,11 @@
 </span><span id="44" class="l">                            <span class="php-var">$method</span>-&gt;id           = <span class="php-quote">'mollie_'</span> . <span class="php-var">$method</span>-&gt;id;
 </span><span id="45" class="l">                            <span class="php-var">$method</span>-&gt;description  = <span class="php-var">$method</span>-&gt;description . <span class="php-quote">' (Mollie)'</span>;
 </span><span id="46" class="l">                            <span class="php-var">$gateways</span>[]           = <span class="php-var">$method</span>;
-</span><span id="47" class="l">                            <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp_wc_payment_gateway_label'</span>, <span class="php-var">$method</span>-&gt;title, <span class="php-var">$method</span>, <span class="php-var">$cache_key</span> );
+</span><span id="47" class="l">                            <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp/wc/payment_gateway/label'</span>, <span class="php-var">$method</span>-&gt;title, <span class="php-var">$method</span>, <span class="php-var">$cache_key</span> );
 </span><span id="48" class="l">                        }
 </span><span id="49" class="l">                    } <span class="php-keyword1">else</span> {
 </span><span id="50" class="l">                        <span class="php-var">$gateways</span>[]           = <span class="php-var">$method</span>;
-</span><span id="51" class="l">                        <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp_wc_payment_gateway_label'</span>, <span class="php-var">$method</span>-&gt;title, <span class="php-var">$method</span>, <span class="php-var">$cache_key</span> );
+</span><span id="51" class="l">                        <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp/wc/payment_gateway/label'</span>, <span class="php-var">$method</span>-&gt;title, <span class="php-var">$method</span>, <span class="php-var">$cache_key</span> );
 </span><span id="52" class="l">                    }
 </span><span id="53" class="l">                }
 </span><span id="54" class="l">            }
@@ -301,7 +308,7 @@
 </span><span id="81" class="l">
 </span><span id="82" class="l">            <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>( <span class="php-var">$shipping_methods</span> ) ) {
 </span><span id="83" class="l">                <span class="php-keyword1">foreach</span> ( <span class="php-var">$shipping_methods</span> <span class="php-keyword1">as</span> <span class="php-var">$method</span> ) {
-</span><span id="84" class="l">                    <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp_wc_shipping_methods_label'</span>, <span class="php-var">$method</span>-&gt;method_title, <span class="php-var">$method</span> );
+</span><span id="84" class="l">                    <span class="php-var">$slugs</span>[ <span class="php-var">$method</span>-&gt;id ] = apply_filters( <span class="php-quote">'vsp/wc/shipping_methods/label'</span>, <span class="php-var">$method</span>-&gt;method_title, <span class="php-var">$method</span> );
 </span><span id="85" class="l">                }
 </span><span id="86" class="l">
 </span><span id="87" class="l">                vsp_set_cache( <span class="php-var">$cache_key</span> . <span class="php-quote">'/wc/shipping_methods/slugs'</span>, <span class="php-var">$slugs</span> );
@@ -337,7 +344,7 @@
 </span><span id="117" class="l">                    <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>( <span class="php-var">$zone</span>[<span class="php-quote">'shipping_methods'</span>] ) ) {
 </span><span id="118" class="l">                        <span class="php-var">$store</span> = <span class="php-keyword1">array</span>();
 </span><span id="119" class="l">                        <span class="php-keyword1">foreach</span> ( <span class="php-var">$zone</span>[<span class="php-quote">'shipping_methods'</span>] <span class="php-keyword1">as</span> <span class="php-var">$shipping_method</span> ) {
-</span><span id="120" class="l">                            <span class="php-var">$store</span>[ <span class="php-var">$shipping_method</span>-&gt;get_instance_id() ] = apply_filters( <span class="php-quote">'vsp_wc_shipping_methods_by_instance_label'</span>, <span class="php-var">$shipping_method</span>-&gt;get_title(), <span class="php-var">$shipping_method</span> );
+</span><span id="120" class="l">                            <span class="php-var">$store</span>[ <span class="php-var">$shipping_method</span>-&gt;get_instance_id() ] = apply_filters( <span class="php-quote">'vsp/wc/shipping_methods/instance/label'</span>, <span class="php-var">$shipping_method</span>-&gt;get_title(), <span class="php-var">$shipping_method</span> );
 </span><span id="121" class="l">                        }
 </span><span id="122" class="l">                        <span class="php-var">$return</span>[ <span class="php-var">$zone</span>[<span class="php-quote">'zone_name'</span>] ] = <span class="php-var">$store</span>;
 </span><span id="123" class="l">                    }
@@ -448,6 +455,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?eec0389aed71c90c54458451a7328906260a3f53"></script>
+<script src="elementlist.js?d0e71b4e8ac25b904d3e677b42ca0b1a6a391518"></script>
 </body>
 </html>

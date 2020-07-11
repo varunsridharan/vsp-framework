@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class VSP\Ajax</title>
+	<title>Class VSP\Deprecation\Actions</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -57,7 +57,7 @@
 
 						</li>
 							</ul></li></ul></li>
-				<li>
+				<li class="active">
 					<a href="namespace-VSP.Deprecation.html">
 						Deprecation					</a>
 
@@ -93,18 +93,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-VSP.Ajax.html">Ajax</a></li>
-				<li><a href="class-VSP.Ajaxer.html">Ajaxer</a></li>
-				<li><a href="class-VSP.Base.html">Base</a></li>
-				<li><a href="class-VSP.Cache.html">Cache</a></li>
-				<li><a href="class-VSP.Error.html">Error</a></li>
-				<li><a href="class-VSP.Framework.html">Framework</a></li>
-				<li><a href="class-VSP.Framework_Admin.html">Framework_Admin</a></li>
-				<li><a href="class-VSP.Framework_Base.html">Framework_Base</a></li>
-				<li><a href="class-VSP.Framework_Modules.html">Framework_Modules</a></li>
-				<li><a href="class-VSP.Helper.html">Helper</a></li>
-				<li><a href="class-VSP.Setup.html">Setup</a></li>
-				<li><a href="class-VSP.WC_Compatibility.html">WC_Compatibility</a></li>
+				<li class="active"><a href="class-VSP.Deprecation.Actions.html">Actions</a></li>
+				<li><a href="class-VSP.Deprecation.Filters.html">Filters</a></li>
 			</ul>
 
 
@@ -131,7 +121,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-VSP.html" title="Summary of VSP"><span>Namespace</span></a>
+				<a href="namespace-VSP.Deprecation.html" title="Summary of VSP\Deprecation"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -143,22 +133,22 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Ajax</h1>
+	<h1>Class Actions</h1>
 
 
 	<div class="description">
-	<p>Class VSP_Core_Ajax</p>
+	<p>Handles deprecation notices and triggering of legacy action hooks.</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-Varunsridharan\WordPress\Ajaxer
+WPOnion\Bridge\Deprecated_Hooks
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>VSP\Ajax</span></b>			
+<b><span>VSP\Deprecation\Actions</span></b>			
 			
 			
 		</dd>
@@ -172,14 +162,12 @@ Varunsridharan\WordPress\Ajaxer
 
 
 	<div class="info">
-		<b>Final</b><br>
 		
-		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a><br>
+		
+		<b>Namespace:</b> <a href="namespace-VSP.html">VSP</a>\<a href="namespace-VSP.Deprecation.html">Deprecation</a><br>
 		
 
-				<b>Author:</b>
-				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-			<b>Located at</b> <a href="source-class-VSP.Ajax.html#9-84" title="Go to source code">includes/class-ajax.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Deprecation.Actions.html#9-49" title="Go to source code">includes/deprecation/class-actions.php</a>
 		<br>
 	</div>
 
@@ -187,59 +175,40 @@ Varunsridharan\WordPress\Ajaxer
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="addon_action" id="_addon_action">
+	<tr data-order="trigger_hook" id="_trigger_hook">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_addon_action">#</a>
-		<code><a href="source-class-VSP.Ajax.html#32-42" title="Go to source code">addon_action</a>( )</code>
+		<a class="anchor" href="#_trigger_hook">#</a>
+		<code><a href="source-class-VSP.Deprecation.Actions.html#38-48" title="Go to source code">trigger_hook</a>( <span>string <var>$old_hook</var></span>, <span>array <var>$new_callback_args</var></span> )</code>
 
 		<div class="description short">
-			<p>Handles Ajax Request</p>
+			<p>Fire off a legacy hook with it's args.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Handles Ajax Request</p>
+			<p>Fire off a legacy hook with it's args.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$old_hook</var></dt>
+					<dd>Old hook name.</dd>
+					<dt><var>$new_callback_args</var></dt>
+					<dd>New callback args.</dd>
+				</dl></div>
 
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="download_log" id="_download_log">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_download_log">#</a>
-		<code><a href="source-class-VSP.Ajax.html#44-83" title="Go to source code">download_log</a>( )</code>
-
-		<div class="description short">
-			<p>Handles Log Download.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Handles Log Download.</p>
-
-
-
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -262,55 +231,64 @@ Varunsridharan\WordPress\Ajaxer
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="action_prefix" id="$action_prefix">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Ajax.html#15-20" title="Go to source code"><var>$action_prefix</var></a>
-
-			<div class="description short">
-				<p>Ajax Action Prefix</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Ajax Action Prefix</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$action_prefix" class="anchor">#</a>
-				<code><span class="php-quote">'vsp'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="actions" id="$actions">
+	<tr data-order="deprecated_hooks" id="$deprecated_hooks">
 		<td class="attributes"><code>
 			protected  
 			array
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-VSP.Ajax.html#22-30" title="Go to source code"><var>$actions</var></a>
+				<a href="source-class-VSP.Deprecation.Actions.html#13-24" title="Go to source code"><var>$deprecated_hooks</var></a>
 
 			<div class="description short">
-				<p>Ajax actions</p>
+				<p>Array of deprecated hooks we need to handle.
+Format of 'new' => 'old'.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Ajax actions</p>
+				<p>Array of deprecated hooks we need to handle.
+Format of 'new' => 'old'.</p>
 
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$actions" class="anchor">#</a>
+				<a href="#$deprecated_hooks" class="anchor">#</a>
 				<code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'addon_action'</span> =&gt; <span class="php-keyword1">false</span>,
-    <span class="php-quote">'download_log'</span> =&gt; <span class="php-keyword1">true</span>,
+    <span class="php-quote">'vsp/loaded'</span>     =&gt; <span class="php-quote">'vsp_framework_loaded'</span>,
+    <span class="php-quote">'vsp/log/clear'</span>  =&gt; <span class="php-quote">'vsp_log_clear'</span>,
+    <span class="php-quote">'vsp/log/remove'</span> =&gt; <span class="php-quote">'vsp_log_remove'</span>,
+    <span class="php-quote">'vsp/init'</span>       =&gt; <span class="php-quote">'vsp_framework_init'</span>,
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="deprecated_version" id="$deprecated_version">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-VSP.Deprecation.Actions.html#26-36" title="Go to source code"><var>$deprecated_version</var></a>
+
+			<div class="description short">
+				<p>Array of versions on each hook has been deprecated.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Array of versions on each hook has been deprecated.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$deprecated_version" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'vsp_framework_loaded'</span> =&gt; <span class="php-quote">'0.9'</span>,
+    <span class="php-quote">'vsp_log_clear'</span>        =&gt; <span class="php-quote">'0.9'</span>,
+    <span class="php-quote">'vsp_log_remove'</span>       =&gt; <span class="php-quote">'0.9'</span>,
+    <span class="php-quote">'vsp_framework_init'</span>   =&gt; <span class="php-quote">'0.9'</span>,
 )</code>
 			</div>
 		</td>

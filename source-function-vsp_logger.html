@@ -59,6 +59,11 @@
 						</li>
 							</ul></li></ul></li>
 				<li>
+					<a href="namespace-VSP.Deprecation.html">
+						Deprecation					</a>
+
+						</li>
+				<li>
 					<a href="namespace-VSP.Helper.html">
 						Helper					</a>
 
@@ -97,6 +102,8 @@
 				<li><a href="class-VSP.Core.Abstracts.Log_Handler.html">VSP\Core\Abstracts\Log_Handler</a></li>
 				<li><a href="class-VSP.Core.Abstracts.Plugin_Settings.html">VSP\Core\Abstracts\Plugin_Settings</a></li>
 				<li><a href="class-VSP.Core.Instance_Handler.html">VSP\Core\Instance_Handler</a></li>
+				<li><a href="class-VSP.Deprecation.Actions.html">VSP\Deprecation\Actions</a></li>
+				<li><a href="class-VSP.Deprecation.Filters.html">VSP\Deprecation\Filters</a></li>
 				<li><a href="class-VSP.Error.html">VSP\Error</a></li>
 				<li><a href="class-VSP.Framework.html">VSP\Framework</a></li>
 				<li><a href="class-VSP.Framework_Admin.html">VSP\Framework_Admin</a></li>
@@ -333,7 +340,7 @@
 </span></span><span id="113" class="l"><span class="php-comment">     * @return string
 </span></span><span id="114" class="l"><span class="php-comment">     */</span>
 </span><span id="115" class="l">    <span class="php-keyword1">function</span> vsp_placeholder_img() {
-</span><span id="116" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp_placeholder_img'</span>, vsp_url( <span class="php-quote">'assets/img/noimage.png'</span> ) );
+</span><span id="116" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp/placeholder_img'</span>, vsp_url( <span class="php-quote">'assets/img/noimage.png'</span> ) );
 </span><span id="117" class="l">    }
 </span><span id="118" class="l">}
 </span><span id="119" class="l">
@@ -389,7 +396,7 @@
 </span></span><span id="169" class="l"><span class="php-comment">     *
 </span></span><span id="170" class="l"><span class="php-comment">     */</span>
 </span><span id="171" class="l">    <span class="php-keyword1">function</span> vsp_get_logger( <span class="php-var">$subpath</span> = <span class="php-keyword1">false</span>, <span class="php-var">$file_name</span> = <span class="php-keyword1">null</span>, <span class="php-var">$filesize</span> = <span class="php-keyword1">false</span> ) {
-</span><span id="172" class="l">        <span class="php-var">$class</span>      = apply_filters( <span class="php-quote">'vsp_logging_class'</span>, <span class="php-quote">'\VSP\Modules\Logger'</span> );
+</span><span id="172" class="l">        <span class="php-var">$class</span>      = apply_filters( <span class="php-quote">'vsp/log/class'</span>, <span class="php-quote">'\VSP\Modules\Logger'</span> );
 </span><span id="173" class="l">        <span class="php-var">$implements</span> = <span class="php-keyword2">class_implements</span>( <span class="php-var">$class</span> );
 </span><span id="174" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword2">is_array</span>( <span class="php-var">$implements</span> ) &amp;&amp; <span class="php-keyword2">in_array</span>( <span class="php-quote">'VSP\Core\Interfaces\Logger'</span>, <span class="php-var">$implements</span>, <span class="php-keyword1">true</span> ) ) {
 </span><span id="175" class="l">            <span class="php-var">$logger</span> = ( <span class="php-keyword2">is_object</span>( <span class="php-var">$class</span> ) ) ? <span class="php-var">$class</span> : <span class="php-keyword1">new</span> <span class="php-var">$class</span>( <span class="php-keyword1">array</span>( <span class="php-keyword1">new</span> File_Handler( <span class="php-var">$subpath</span>, <span class="php-var">$file_name</span>, <span class="php-var">$filesize</span> ) ) );
@@ -473,7 +480,7 @@
 </span></span><span id="253" class="l"><span class="php-comment">     * @return mixed
 </span></span><span id="254" class="l"><span class="php-comment">     */</span>
 </span><span id="255" class="l">    <span class="php-keyword1">function</span> vsp_date_format() {
-</span><span id="256" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp_date_format'</span>, get_option( <span class="php-quote">'date_format'</span> ) );
+</span><span id="256" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp/date/format'</span>, get_option( <span class="php-quote">'date_format'</span> ) );
 </span><span id="257" class="l">    }
 </span><span id="258" class="l">}
 </span><span id="259" class="l">
@@ -484,7 +491,7 @@
 </span></span><span id="264" class="l"><span class="php-comment">     * @return mixed
 </span></span><span id="265" class="l"><span class="php-comment">     */</span>
 </span><span id="266" class="l">    <span class="php-keyword1">function</span> vsp_time_format() {
-</span><span id="267" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp_time_format'</span>, get_option( <span class="php-quote">'time_format'</span> ) );
+</span><span id="267" class="l">        <span class="php-keyword1">return</span> apply_filters( <span class="php-quote">'vsp/time/format'</span>, get_option( <span class="php-quote">'time_format'</span> ) );
 </span><span id="268" class="l">    }
 </span><span id="269" class="l">}
 </span><span id="270" class="l">
@@ -558,6 +565,6 @@
 </div>
 </div>
 <script src="resources/combined.js?58699d70ee1015ed63e509c64f4dd9d3b29ddbbe"></script>
-<script src="elementlist.js?eec0389aed71c90c54458451a7328906260a3f53"></script>
+<script src="elementlist.js?d0e71b4e8ac25b904d3e677b42ca0b1a6a391518"></script>
 </body>
 </html>
