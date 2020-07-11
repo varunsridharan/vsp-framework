@@ -20,6 +20,8 @@
  */
 
 use Varunsridharan\PHP\Autoloader;
+use VSP\Deprecation\Actions;
+use VSP\Deprecation\Filters;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -45,16 +47,19 @@ if ( ! class_exists( '\VSP\Framework', false ) ) {
 			'classmap' => __DIR__ . '/vsp-classmaps.php',
 		) );
 
+		Actions::instance();
+		Filters::instance();
+
 		require_once __DIR__ . '/vsp-functions.php';
 		require_once __DIR__ . '/vsp-hooks.php';
 
-		do_action( 'vsp_framework_loaded' );
+		do_action( 'vsp/loaded' );
 
 		if ( vsp_is_ajax() ) {
 			require_once __DIR__ . '/includes/class-ajax.php';
 		}
 
-		do_action( 'vsp_framework_init' );
+		do_action( 'vsp/init' );
 	} catch ( Exception $exception ) {
 		$path = str_replace( untrailingslashit( ABSPATH ), '', plugin_dir_path( __DIR__ ) );
 		$msg  = '<h4 style="text-align: center">' . __( 'Autoloder For VSP-Framework Not Found.', 'vsp-framework' ) . '</h4>';

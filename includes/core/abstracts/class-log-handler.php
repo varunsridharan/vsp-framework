@@ -24,7 +24,7 @@ abstract class Log_Handler implements \VSP\Core\Interfaces\Log_Handler {
 	protected static function format_entry( $timestamp, $level, $message, $context ) {
 		$time    = self::format_time( $timestamp );
 		$level_s = strtoupper( $level );
-		return apply_filters( 'vsp_format_log_entry', "{$time} {$level_s} {$message}", array(
+		return apply_filters( 'vsp/log/format/entry', "{$time} {$level_s} {$message}", array(
 			'timestamp' => $timestamp,
 			'level'     => $level,
 			'message'   => $message,

@@ -113,7 +113,7 @@ if ( ! function_exists( 'vsp_placeholder_img' ) ) {
 	 * @return string
 	 */
 	function vsp_placeholder_img() {
-		return apply_filters( 'vsp_placeholder_img', vsp_url( 'assets/img/noimage.png' ) );
+		return apply_filters( 'vsp/placeholder_img', vsp_url( 'assets/img/noimage.png' ) );
 	}
 }
 
@@ -169,7 +169,7 @@ if ( ! function_exists( 'vsp_get_logger' ) ) {
 	 *
 	 */
 	function vsp_get_logger( $subpath = false, $file_name = null, $filesize = false ) {
-		$class      = apply_filters( 'vsp_logging_class', '\VSP\Modules\Logger' );
+		$class      = apply_filters( 'vsp/log/class', '\VSP\Modules\Logger' );
 		$implements = class_implements( $class );
 		if ( is_array( $implements ) && in_array( 'VSP\Core\Interfaces\Logger', $implements, true ) ) {
 			$logger = ( is_object( $class ) ) ? $class : new $class( array( new File_Handler( $subpath, $file_name, $filesize ) ) );
@@ -253,7 +253,7 @@ if ( ! function_exists( 'vsp_date_format' ) ) {
 	 * @return mixed
 	 */
 	function vsp_date_format() {
-		return apply_filters( 'vsp_date_format', get_option( 'date_format' ) );
+		return apply_filters( 'vsp/date/format', get_option( 'date_format' ) );
 	}
 }
 
@@ -264,7 +264,7 @@ if ( ! function_exists( 'vsp_time_format' ) ) {
 	 * @return mixed
 	 */
 	function vsp_time_format() {
-		return apply_filters( 'vsp_time_format', get_option( 'time_format' ) );
+		return apply_filters( 'vsp/time/format', get_option( 'time_format' ) );
 	}
 }
 

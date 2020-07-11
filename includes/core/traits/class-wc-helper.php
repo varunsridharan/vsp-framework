@@ -44,11 +44,11 @@ trait WC_Helper {
 							$method->id           = 'mollie_' . $method->id;
 							$method->description  = $method->description . ' (Mollie)';
 							$gateways[]           = $method;
-							$slugs[ $method->id ] = apply_filters( 'vsp_wc_payment_gateway_label', $method->title, $method, $cache_key );
+							$slugs[ $method->id ] = apply_filters( 'vsp/wc/payment_gateway/label', $method->title, $method, $cache_key );
 						}
 					} else {
 						$gateways[]           = $method;
-						$slugs[ $method->id ] = apply_filters( 'vsp_wc_payment_gateway_label', $method->title, $method, $cache_key );
+						$slugs[ $method->id ] = apply_filters( 'vsp/wc/payment_gateway/label', $method->title, $method, $cache_key );
 					}
 				}
 			}
@@ -81,7 +81,7 @@ trait WC_Helper {
 
 			if ( ! empty( $shipping_methods ) ) {
 				foreach ( $shipping_methods as $method ) {
-					$slugs[ $method->id ] = apply_filters( 'vsp_wc_shipping_methods_label', $method->method_title, $method );
+					$slugs[ $method->id ] = apply_filters( 'vsp/wc/shipping_methods/label', $method->method_title, $method );
 				}
 
 				vsp_set_cache( $cache_key . '/wc/shipping_methods/slugs', $slugs );
@@ -117,7 +117,7 @@ trait WC_Helper {
 					if ( ! empty( $zone['shipping_methods'] ) ) {
 						$store = array();
 						foreach ( $zone['shipping_methods'] as $shipping_method ) {
-							$store[ $shipping_method->get_instance_id() ] = apply_filters( 'vsp_wc_shipping_methods_by_instance_label', $shipping_method->get_title(), $shipping_method );
+							$store[ $shipping_method->get_instance_id() ] = apply_filters( 'vsp/wc/shipping_methods/instance/label', $shipping_method->get_title(), $shipping_method );
 						}
 						$return[ $zone['zone_name'] ] = $store;
 					}

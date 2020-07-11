@@ -45,7 +45,7 @@ abstract class Framework extends Framework_Modules {
 		parent::__construct( $options );
 		$this->_autoloader_init();
 		$this->_load_required_files();
-		add_action( 'vsp_framework_init', array( &$this, '_init_plugin' ) );
+		add_action( 'vsp/init', array( &$this, '_init_plugin' ) );
 	}
 
 	/**

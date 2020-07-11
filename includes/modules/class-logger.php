@@ -38,7 +38,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 	 */
 	public function __construct( $handlers = null, $threshold = null ) {
 		if ( null === $handlers ) {
-			$handlers = apply_filters( 'vsp_register_log_handlers', array() );
+			$handlers = apply_filters( 'vsp/log/register/handlers', array() );
 		}
 		$register_handlers = array();
 		if ( ! empty( $handlers ) && is_array( $handlers ) ) {
@@ -122,7 +122,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 			}
 			if ( $this->should_handle( $level ) ) {
 				$timestamp = current_time( 'timestamp' );
-				$message   = apply_filters( 'vsp_logger_log_message', $message, $level, $context );
+				$message   = apply_filters( 'vsp/log/message', $message, $level, $context );
 
 				if ( is_array( $message ) ) {
 					$message = implode( PHP_EOL, $message );

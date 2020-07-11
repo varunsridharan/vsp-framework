@@ -42,7 +42,7 @@ if ( ! class_exists( 'VSP_Framework_Loader' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'wponion/loaded', [ &$this, 'load_framework' ], 0 );
-			add_action( 'vsp_framework_loaded', [ &$this, 'load_plugins' ], -1 );
+			add_action( 'vsp/loaded', [ &$this, 'load_plugins' ], -1 );
 			add_action( 'wponion/sysinfo/datas', [ &$this, 'add_extra_info' ] );
 		}
 

@@ -64,7 +64,7 @@ class File_Handler extends Log_Handler {
 		$this->log_size_limit = $log_size_limit;
 		$this->sub_path       = $sub_path;
 		$this->file_name      = $file_name;
-		add_action( 'vsp_framework_init', array( $this, 'write_cached_logs' ), 1 );
+		add_action( 'vsp/init', array( $this, 'write_cached_logs' ), 1 );
 	}
 
 	/**
@@ -123,7 +123,7 @@ class File_Handler extends Log_Handler {
 			} else {
 				$handle = 'log';
 			}
-			$message = apply_filters( 'vsp_logger_add_message', $message, $handle );
+			$message = apply_filters( 'vsp/log/add/message', $message, $handle );
 			$time    = date_i18n( 'm-d-Y @ H:i:s' );
 			$entry   = "{$time} - {$message}";
 		} else {
@@ -351,7 +351,7 @@ class File_Handler extends Log_Handler {
 		if ( $this->open( $handle, 'w' ) && is_resource( $this->handles[ $handle ] ) ) {
 			$result = true;
 		}
-		do_action( 'vsp_log_clear', $handle );
+		do_action( 'vsp/log/clear', $handle );
 		return $result;
 	}
 
@@ -370,7 +370,7 @@ class File_Handler extends Log_Handler {
 				$this->close( $handle ); // Close first to be certain no processes keep it alive after it is unlinked.
 				$removed = unlink( $file ); // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
 			}
-			do_action( 'vsp_log_remove', $handle, $removed );
+			do_action( 'vsp/log/remove', $handle, $removed );
 		}
 		return $removed;
 	}
