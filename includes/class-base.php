@@ -111,4 +111,38 @@ class Base extends Core\Instance_Handler {
 	public function do_action() {
 		return $this->hooker( 'do_action', func_get_args() );
 	}
+
+
+	/**
+	 * Triggers deprecated apply_filters
+	 *
+	 * @param string      $tag
+	 * @param mixed       $args
+	 * @param string      $version
+	 * @param string|null $replacement
+	 * @param string|null $message
+	 *
+	 * @return mixed
+	 * @since {NEWVERSION}
+	 */
+	public function do_deprecated_filter( $tag, $args, $version, $replacement = null, $message = null ) {
+		$tag = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		return wponion_apply_deprecated_filters( $tag, $args, $version, $replacement, $message );
+	}
+
+	/**
+	 * Triggers deprecated do_action
+	 *
+	 * @param string      $tag
+	 * @param mixed       $args
+	 * @param string      $version
+	 * @param string|null $replacement
+	 * @param string|null $message
+	 *
+	 * @since {NEWVERSION}
+	 */
+	public function do_deprecated_action( $tag, $args, $version, $replacement = null, $message = null ) {
+		$tag = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		return wponion_do_deprecated_action( $tag, $args, $version, $replacement, $message );
+	}
 }
