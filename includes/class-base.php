@@ -78,4 +78,37 @@ class Base extends Core\Instance_Handler {
 		$file = ( $is_internal ) ? $this->plugin_path( $file ) : $file;
 		vsp_load_file( $file );
 	}
+
+	/**
+	 * Triggers Given function
+	 *
+	 * @param string $type
+	 * @param array  $args
+	 *
+	 * @return mixed
+	 */
+	private function hooker( $type = '', $args = array() ) {
+		$args[0] = $this->plugin()->slug( 'hook' ) . '_' . $args[0];
+		return call_user_func_array( $type, $args );
+	}
+
+	/**
+	 * Triggers apply_filters
+	 *
+	 * @return mixed
+	 * @uses \apply_filters()
+	 */
+	public function apply_filter() {
+		return $this->hooker( 'apply_filters', func_get_args() );
+	}
+
+	/**
+	 * Triggers do_action
+	 *
+	 * @return mixed
+	 * @uses \do_action()
+	 */
+	public function do_action() {
+		return $this->hooker( 'do_action', func_get_args() );
+	}
 }
