@@ -47,9 +47,11 @@ abstract class Framework_Modules extends Framework_Admin {
 	 */
 	protected function _addon_init() {
 		if ( false !== $this->option( 'addons' ) ) {
-			$this->do_action( 'addons_init_before' );
+			$this->do_deprecated_action( 'addons_init_before', null, '0.9', 'addons/init/before' );
+			$this->do_action( 'addons/init/before' );
 			$this->_instance( '\VSP\Modules\Addons', $this->option( 'addons' ) );
-			$this->do_action( 'addons_init' );
+			$this->do_deprecated_action( 'addons_init', null, '0.9', 'addons/init' );
+			$this->do_action( 'addons/init' );
 		}
 	}
 
@@ -64,13 +66,15 @@ abstract class Framework_Modules extends Framework_Admin {
 	protected function _settings_init() {
 		if ( false !== $this->option( 'settings_page' ) ) {
 			$this->settings_init_before();
-			$this->do_action( 'settings_init_before' );
+			$this->do_deprecated_action( 'settings_init_before', null, '0.9', 'settings/init/before' );
+			$this->do_action( 'settings/init/before' );
 			$args = $this->option( 'settings_page' );
 			if ( is_array( $args ) ) {
 				$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
 				$this->_instance( 'VSP\Modules\WPOnion', $this->option( 'settings_page' ) );
 				$this->settings_init();
-				$this->do_action( 'settings_init' );
+				$this->do_deprecated_action( 'settings_init', null, '0.9', 'settings/init' );
+				$this->do_action( 'settings/init' );
 			}
 		}
 	}
@@ -82,9 +86,11 @@ abstract class Framework_Modules extends Framework_Admin {
 	 */
 	public function _logging_init() {
 		if ( false !== $this->option( 'logging' ) ) {
-			$this->do_action( 'logging_init_before' );
+			$this->do_deprecated_action( 'logging_init_before', null, '0.9', 'logger/init/before' );
+			$this->do_action( 'logger/init/before' );
 			$this->logging = vsp_get_logger( $this->slug() );
-			$this->do_action( 'loggin_init' );
+			$this->do_deprecated_action( 'loggin_init', null, '0.9', 'logger/init' );
+			$this->do_action( 'logger/init' );
 		}
 	}
 

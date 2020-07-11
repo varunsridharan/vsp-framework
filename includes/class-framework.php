@@ -60,6 +60,7 @@ abstract class Framework extends Framework_Modules {
 		$this->_init_class();
 		$this->_register_hooks();
 		$this->plugin_init();
+		$this->do_deprecated_action( 'init', null, '0.9', 'init' );
 		$this->do_action( 'init' );
 	}
 
@@ -109,6 +110,7 @@ abstract class Framework extends Framework_Modules {
 	 */
 	private function _load_required_files() {
 		$this->load_files();
+		$this->do_deprecated_action( 'loaded', null, '0.9', 'loaded' );
 		$this->do_action( 'loaded' );
 	}
 

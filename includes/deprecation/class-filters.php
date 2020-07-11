@@ -36,17 +36,17 @@ class Filters extends Deprecated_Hooks {
 	 * @var array
 	 */
 	protected $deprecated_version = array(
-		'vsp_wc_payment_gateway_label'              => '1.9',
-		'vsp_wc_shipping_methods_label'             => '1.9',
-		'vsp_wc_shipping_methods_by_instance_label' => '1.9',
-		'vsp_placeholder_img'                       => '1.9',
-		'vsp_logging_class'                         => '1.9',
-		'vsp_date_format'                           => '1.9',
-		'vsp_time_format'                           => '1.9',
-		'vsp_format_log_entry'                      => '1.9',
-		'vsp_register_log_handlers'                 => '1.9',
-		'vsp_logger_log_message'                    => '1.9',
-		'vsp_logger_add_message'                    => '1.9',
+		'vsp_wc_payment_gateway_label'              => '0.9',
+		'vsp_wc_shipping_methods_label'             => '0.9',
+		'vsp_wc_shipping_methods_by_instance_label' => '0.9',
+		'vsp_placeholder_img'                       => '0.9',
+		'vsp_logging_class'                         => '0.9',
+		'vsp_date_format'                           => '0.9',
+		'vsp_time_format'                           => '0.9',
+		'vsp_format_log_entry'                      => '0.9',
+		'vsp_register_log_handlers'                 => '0.9',
+		'vsp_logger_log_message'                    => '0.9',
+		'vsp_logger_add_message'                    => '0.9',
 	);
 
 	/**

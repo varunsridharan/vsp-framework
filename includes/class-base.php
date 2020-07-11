@@ -126,7 +126,8 @@ class Base extends Core\Instance_Handler {
 	 * @since {NEWVERSION}
 	 */
 	public function do_deprecated_filter( $tag, $args, $version, $replacement = null, $message = null ) {
-		$tag = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		$tag         = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		$replacement = $this->plugin()->slug( 'hook' ) . '/' . $replacement;
 		return wponion_apply_deprecated_filters( $tag, $args, $version, $replacement, $message );
 	}
 
@@ -142,7 +143,8 @@ class Base extends Core\Instance_Handler {
 	 * @since {NEWVERSION}
 	 */
 	public function do_deprecated_action( $tag, $args, $version, $replacement = null, $message = null ) {
-		$tag = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		$tag         = $this->plugin()->slug( 'hook' ) . '_' . $tag;
+		$replacement = $this->plugin()->slug( 'hook' ) . '/' . $replacement;
 		return wponion_do_deprecated_action( $tag, $args, $version, $replacement, $message );
 	}
 }
