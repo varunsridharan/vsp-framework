@@ -88,7 +88,7 @@ class Base extends Core\Instance_Handler {
 	 * @return mixed
 	 */
 	private function hooker( $type = '', $args = array() ) {
-		$args[0] = $this->plugin()->slug( 'hook' ) . '_' . $args[0];
+		$args[0] = $this->plugin()->slug( 'hook' ) . '/' . $args[0];
 		return call_user_func_array( $type, $args );
 	}
 
