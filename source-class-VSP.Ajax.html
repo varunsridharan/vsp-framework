@@ -263,7 +263,7 @@
 </span><span id="36" class="l">        <span class="php-keyword1">if</span> ( <span class="php-var">$this</span>-&gt;has_request( <span class="php-quote">'hook_slug'</span> ) ) {
 </span><span id="37" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon_action'</span>, __( <span class="php-quote">'Addon Action Not Provided'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="38" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon'</span>, __( <span class="php-quote">'Unable To Process Your Request'</span>, <span class="php-quote">'vsp-framework'</span> ) );
-</span><span id="39" class="l">            do_action( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'hook_slug'</span>] . <span class="php-quote">'_handle_addon_request'</span>, <span class="php-var">$this</span> );
+</span><span id="39" class="l">            do_action( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'hook_slug'</span>] . <span class="php-quote">'/addon/ajax/handle/request'</span>, <span class="php-var">$this</span> );
 </span><span id="40" class="l">        }
 </span><span id="41" class="l">        <span class="php-var">$this</span>-&gt;json_error();
 </span><span id="42" class="l">    }
