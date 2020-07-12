@@ -93,7 +93,7 @@ abstract class Core extends Base {
 	 */
 	protected function search_addons() {
 		$slug = $this->plugin();
-		$dirs = apply_filters( $slug->slug( 'hook' ) . '_addons_dirs', array( $this->option( 'base_path' ) ) );
+		$dirs = apply_filters( $slug->slug( 'hook' ) . '/addons/dirs', array( $this->option( 'base_path' ) ) );
 
 		if ( ! empty( $dirs ) ) {
 			foreach ( $dirs as $dir ) {

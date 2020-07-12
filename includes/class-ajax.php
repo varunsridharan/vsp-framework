@@ -36,7 +36,7 @@ final class Ajax extends Ajaxer {
 		if ( $this->has_request( 'hook_slug' ) ) {
 			$this->validate_request( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
 			$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
-			do_action( $_REQUEST['hook_slug'] . '_handle_addon_request', $this );
+			do_action( $_REQUEST['hook_slug'] . '/addon/ajax/handle/request', $this );
 		}
 		$this->json_error();
 	}
