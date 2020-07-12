@@ -30,7 +30,8 @@ class WPOnion extends Base {
 	 */
 	public function fields() {
 		$builder = wponion_builder();
-		$this->plugin()->do_action( 'settings_options', $builder );
+		$this->do_deprecated_action( 'settings_options', array( $builder ), '0.9', 'settings/fields' );
+		$this->do_action( 'settings/fields', $builder );
 		return $builder;
 	}
 

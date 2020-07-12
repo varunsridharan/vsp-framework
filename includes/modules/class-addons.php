@@ -51,11 +51,11 @@ class Addons extends Addons\Admin {
 		$this->load_active_addons();
 
 		if ( vsp_is_admin() ) {
-			add_action( $slug . '_settings_options', array( $this, 'link_with_wponion' ), $hook );
+			$this->add_action( $slug . '/settings/fields', 'link_with_wponion', $hook );
 		}
 
 		if ( vsp_is_ajax() ) {
-			add_action( $slug . '_handle_addon_request', array( $this, 'handle_ajax_request' ) );
+			add_action( $slug . '/addon/ajax/handle/request', array( $this, 'handle_ajax_request' ) );
 		}
 	}
 
@@ -131,7 +131,8 @@ class Addons extends Addons\Admin {
 			}
 		}
 		if ( ! empty( $deactivated_plugins ) ) {
-			$title = '<strong>' . $this->plugin()->name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
+			$title = '<strong>' . $this->plugin()
+					->name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
 			$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
 			$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 

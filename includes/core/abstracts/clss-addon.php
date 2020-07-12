@@ -37,8 +37,8 @@ abstract class Addon extends Instance_Handler {
 	 */
 	public function __construct() {
 		$slug = $this->plugin()->slug( 'hook' );
-		$this->add_action( $slug . '_settings_options', 'settings', $this->settings_priority );
-		$this->add_action( $slug . '_init', 'init' );
+		$this->add_action( $slug . '/settings/fields', 'settings', $this->settings_priority );
+		$this->add_action( $slug . '/init', 'init' );
 	}
 
 	/**

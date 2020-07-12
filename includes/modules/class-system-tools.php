@@ -37,8 +37,7 @@ class System_Tools extends Base {
 	 */
 	public function __construct( $options = array() ) {
 		$this->set_args( $options );
-		$slug = $this->plugin()->slug( 'hook' );
-		add_action( $slug . '_settings_options', array( &$this, 'options' ), 999 );
+		$this->add_action( $this->plugin()->slug( 'hook' ) . '/settings/fields', 'options', 999 );
 	}
 
 	/**

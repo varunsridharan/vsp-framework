@@ -23,7 +23,7 @@ abstract class Plugin_Settings extends Base {
 	 */
 	public function __construct() {
 		$slug = $this->plugin();
-		add_action( $slug->slug( 'hook' ) . '_settings_options', array( &$this, 'options' ) );
+		$this->add_action( $this->plugin()->slug( 'hook' ) . '/settings/fields', 'options' );
 	}
 
 	/**
