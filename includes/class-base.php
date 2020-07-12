@@ -112,7 +112,6 @@ class Base extends Core\Instance_Handler {
 		return $this->hooker( 'do_action', func_get_args() );
 	}
 
-
 	/**
 	 * Triggers deprecated apply_filters
 	 *

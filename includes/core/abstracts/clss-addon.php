@@ -3,7 +3,7 @@
 namespace VSP\Core\Abstracts;
 
 use ReflectionClass;
-use VSP\Core\Instance_Handler;
+use VSP\Base;
 use WPOnion\Traits\Class_Options;
 use WPOnion\Traits\Hooks;
 
@@ -13,8 +13,9 @@ defined( 'ABSPATH' ) || exit;
  * Class VSP_Log_Handler
  *
  * @author Varun Sridharan <varunsridharan23@gmail.com>
+ * @todo each plugin should create a plugin method and provide a valid instance of the plugin.
  */
-abstract class Addon extends Instance_Handler {
+abstract class Addon extends Base {
 	use Class_Options;
 	use Hooks;
 
@@ -47,13 +48,6 @@ abstract class Addon extends Instance_Handler {
 	 * @return mixed
 	 */
 	abstract protected function init();
-
-	/**
-	 * This function should return parent plugins instance.
-	 *
-	 * @return \VSP\Framework
-	 */
-	abstract protected function plugin();
 
 	/**
 	 * Finds And Returns Valid Addon Path File.
