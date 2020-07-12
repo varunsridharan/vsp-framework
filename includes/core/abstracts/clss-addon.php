@@ -94,4 +94,26 @@ abstract class Addon extends Base {
 	 */
 	abstract public function settings( $builder );
 
+	/**
+	 * Appends Custom Slug.
+	 *
+	 * @return mixed
+	 */
+	public function do_action() {
+		$args    = func_get_args();
+		$args[0] = 'addon/' . $args[0];
+		return parent::do_action( ...$args );
+	}
+
+	/**
+	 * Appends Custom Slug.
+	 *
+	 * @return mixed
+	 */
+	public function apply_filter() {
+		$args    = func_get_args();
+		$args[0] = 'addon/' . $args[0];
+		return parent::apply_filter( ...$args );
+	}
+
 }
