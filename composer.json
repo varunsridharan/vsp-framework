@@ -21,7 +21,6 @@
     "varunsridharan/wp-cli-textdomain"      : "^1.1"
   },
   "require"     : {
-    "varunsridharan/wpallimport_rapidaddon"       : "*",
     "wponion/wponion"                             : "*",
     "varunsridharan/sweetalert2-php"              : ">=1.0",
     "varunsridharan/wp-ajaxer"                    : ">=1.0",
