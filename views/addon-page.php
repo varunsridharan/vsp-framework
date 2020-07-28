@@ -8,8 +8,7 @@ $req_desc     = __( 'Above Mentioned Plugin name with version are Tested Upto', 
 $ajax_args    = array(
 	'method' => 'post',
 	'data'   => array(
-		'hook_slug'    => $this->plugin()
-			->slug( 'hook' ),
+		'hook_slug'    => $this->plugin()->slug( 'hook' ),
 		'action'       => 'vsp_addon_action',
 		'addon_action' => 'activate',
 	),
@@ -65,6 +64,13 @@ $ajax_args    = array(
 				$ajax_args['success']              = 'function(){var $elm = jQuery("div#addon-' . $uid . ' .addon-actions");$elm.find(".deactivate").hide();$elm.find(".activate").show();}';
 				$deactivate                        = wponion_inline_ajax( $ajax_args, $deactivate );
 
+				if ( ! empty( $addon['last_updated'] ) ) {
+					$addon['last_updated'] = <<<HTML
+<div class="column-updated last-updated"><strong>{$last_updated}</strong> : {$addon['last_updated']}</div>
+HTML;
+
+				}
+
 				echo <<<HTML
 <div id="addon-{$addon['uid']}" class="plugin-card addon {$category} {$is_active}">
 	<div class="plugin-card-top">
@@ -77,7 +83,8 @@ $ajax_args    = array(
 	<div class="plugin-card-top required_plugins">$rplugins</div>
 	<div class="hidden" style="visibility: hidden;">$screens</div>
 	<div class="plugin-card-bottom">
-		<div class="column-updated last-updated"><strong>{$last_updated}</strong> : {$addon['last_updated']}</div><div class="column-downloaded addon-actions"> {$active} {$deactivate}</div>
+		{$addon['last_updated']}
+		<div class="column-downloaded addon-actions"> {$active} {$deactivate}</div>
 	</div>
 </div>
 HTML;

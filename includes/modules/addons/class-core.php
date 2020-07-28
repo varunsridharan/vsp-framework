@@ -196,7 +196,7 @@ abstract class Core extends Base {
 				$data['category']     = $this->handle_category( $data['category'] );
 				$data['screenshots']  = ( isset( $data['screenshots'] ) ) ? $data['screenshots'] : array();
 				$data['screenshots']  = $this->handle_screenshots( $data['screenshots'], $data );
-				$data['icon']         = ( isset( $data['icon'] ) ) ? $data['icon'] : false;
+				$data['icon']         = ( isset( $data['icon'] ) ) ? $data['icon'] : 'icon.png';
 				$data['icon']         = $this->handle_icon( $data['icon'], $addon );
 				$data['last_updated'] = $this->handle_last_updated( $data['last_updated'] );
 			}
