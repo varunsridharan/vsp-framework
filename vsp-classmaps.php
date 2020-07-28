@@ -1,9 +1,6 @@
 <?php
-/**
- * Last Updated: Fri 10-Jul-2020 / 08:59:57:am
- * Total Class:  37
- * Namespace: 
- */
+// Last Updated: Tue 28-Jul-2020 | 08:34:58:am
+// Total Class: 39
 
 return array (
   'VSP\\Ajax' => 'class-ajax.php',
@@ -32,6 +29,8 @@ return array (
   'VSP\\Core\\Traits\\WP' => 'core/traits/class-wp.php',
   'VSP\\Core\\Traits\\WC_Compatibility\\Product' => 'core/traits/wc-compatibility/trait-product.php',
   'VSP\\Core\\Traits\\WC_Compatibility\\Version' => 'core/traits/wc-compatibility/trait-version.php',
+  'VSP\\Deprecation\\Actions' => 'deprecation/class-actions.php',
+  'VSP\\Deprecation\\Filters' => 'deprecation/class-filters.php',
   'VSP\\Helper\\Price_Calculation' => 'helper/class-price-handler.php',
   'VSP\\Modules\\Addons\\Admin' => 'modules/addons/class-admin.php',
   'VSP\\Modules\\Addons\\Core' => 'modules/addons/class-core.php',

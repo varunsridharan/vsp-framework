@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the VSP Framework plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: VSP Framework 0.8.9.1\n"
+"Project-Id-Version: VSP Framework 0.8.9.2\n"
 "Report-Msgid-Bugs-To: https:\/\/github.com\/varunsridharan\/vsp-framework\n"
 "Last-Translator: Varun Sridharan\n"
 "Language-Team: varunsridharan23@gmail.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-05T12:31:37+05:30\n"
+"POT-Creation-Date: 2020-07-28T08:34:59+05:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: vsp-framework\n"
@@ -228,11 +228,11 @@ msgstr ""
 msgid "Following addons are deactivated because some of its required plugins are deactivated / uninstalled"
 msgstr ""
 
-#: includes/modules/class-addons.php:134
+#: includes/modules/class-addons.php:135
 msgid " Has Deactivated Some of its addons"
 msgstr ""
 
-#: includes/modules/class-addons.php:136
+#: includes/modules/class-addons.php:137
 msgid "I Understand. Will Fix It"
 msgstr ""
 
@@ -258,11 +258,11 @@ msgstr ""
 msgid "Invalid wpnonce or log file not found!."
 msgstr ""
 
-#: includes/modules/class-system-tools.php:62
+#: includes/modules/class-system-tools.php:61
 msgid "System Tools"
 msgstr ""
 
-#: includes/modules/class-system-tools.php:99
+#: includes/modules/class-system-tools.php:98
 msgid "System Logs"
 msgstr ""
 
@@ -283,11 +283,11 @@ msgstr ""
 msgid "Above Mentioned Plugin name with version are Tested Upto"
 msgstr ""
 
-#: views/addon-page.php:34
+#: views/addon-page.php:33
 msgid "Activate"
 msgstr ""
 
-#: views/addon-page.php:35
+#: views/addon-page.php:34
 msgid "De-Activate"
 msgstr ""
 
@@ -303,23 +303,23 @@ msgstr ""
 msgid "Delete Log"
 msgstr ""
 
-#: vsp-bootstrap.php:40
+#: vsp-bootstrap.php:42
 msgid "Framework Autoloader Not Found"
 msgstr ""
 
-#: vsp-bootstrap.php:60
+#: vsp-bootstrap.php:65
 msgid "Autoloder For VSP-Framework Not Found."
 msgstr ""
 
-#: vsp-bootstrap.php:61
+#: vsp-bootstrap.php:66
 msgid "Please Contact The Author Of The Plugin"
 msgstr ""
 
-#: vsp-bootstrap.php:62
+#: vsp-bootstrap.php:67
 msgid "Plugin Path :"
 msgstr ""
 
-#: vsp-bootstrap.php:63
+#: vsp-bootstrap.php:68
 msgid "Error : "
 msgstr ""
 
