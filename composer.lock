@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -595,16 +595,16 @@
         },
         {
             "name": "wponion/wponion",
-            "version": "1.5.3.1",
+            "version": "1.5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da"
+                "reference": "6a0e5522029cc92ab8db363d7b7d99bcd8bb90b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/1db222d6b7da3a96dd533ddc0cc0009b08c879da",
-                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/6a0e5522029cc92ab8db363d7b7d99bcd8bb90b2",
+                "reference": "6a0e5522029cc92ab8db363d7b7d99bcd8bb90b2",
                 "shasum": ""
             },
             "require": {
@@ -677,7 +677,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-06-23T02:18:45+00:00"
+            "time": "2020-07-29T01:42:10+00:00"
         }
     ],
     "packages-dev": [
