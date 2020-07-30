@@ -175,7 +175,7 @@
 
 				<b>Author:</b>
 				Varun Sridharan <a href="&#109;&#x61;i&#108;&#x74;&#111;&#58;&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x76;&#97;&#114;&#x75;&#110;&#115;&#x72;&#105;&#x64;&#x68;&#97;&#x72;&#x61;&#110;&#x32;3&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a><br>
-			<b>Located at</b> <a href="source-class-VSP.Core.Instance_Handler.html#11-108" title="Go to source code">includes/core/class-instance-handler.php</a>
+			<b>Located at</b> <a href="source-class-VSP.Core.Instance_Handler.html#11-150" title="Go to source code">includes/core/class-instance-handler.php</a>
 		<br>
 	</div>
 
@@ -195,7 +195,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_instance">#</a>
-		<code><a href="source-class-VSP.Core.Instance_Handler.html#38-54" title="Go to source code">instance</a>( )</code>
+		<code><a href="source-class-VSP.Core.Instance_Handler.html#31-47" title="Go to source code">instance</a>( )</code>
 
 		<div class="description short">
 			<p>Returns Current Instance / create a new instance</p>
@@ -229,7 +229,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get_instance">#</a>
-		<code><a href="source-class-VSP.Core.Instance_Handler.html#56-68" title="Go to source code">get_instance</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Instance_Handler.html#49-61" title="Go to source code">get_instance</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			<p>Gets Given key's instance</p>
@@ -268,7 +268,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set_instance">#</a>
-		<code><a href="source-class-VSP.Core.Instance_Handler.html#70-78" title="Go to source code">set_instance</a>( <span> <var>$key</var></span>, <span> <var>$instance</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Instance_Handler.html#63-71" title="Go to source code">set_instance</a>( <span> <var>$key</var></span>, <span> <var>$instance</var></span> )</code>
 
 		<div class="description short">
 			<p>Creats a new instance for a given class</p>
@@ -305,7 +305,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#__instance">#</a>
-		<code><a href="source-class-VSP.Core.Instance_Handler.html#80-107" title="Go to source code">_instance</a>( <span> <var>$class</var></span>, <span>mixed <var>$arguments</var></span> )</code>
+		<code><a href="source-class-VSP.Core.Instance_Handler.html#113-128" title="Go to source code">_instance</a>( <span> <var>$class</var></span>, <span>mixed <var>$arguments</var></span> )</code>
 
 		<div class="description short">
 			
@@ -334,6 +334,53 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean|mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-VSP.Core.Instance_Handler.html#130-149" title="Go to source code">create</a>( <span> <var>$id</var></span>, <span> <var>$class</var></span>, <span>mixed <var>$arguments</var></span> )</code>
+
+		<div class="description short">
+			<p>Creates New Instance &amp; Stores It.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates New Instance &amp; Stores It.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+					<dt><var>$arguments</var></dt>
+					<dd>$arguments</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean|mixed
+				</div>
+
+
+				<h4>Since</h4>
+				<div class="list">
+						{NEWVERSION}<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 
@@ -349,31 +396,6 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="framework_instance" id="$framework_instance">
-		<td class="attributes"><code>
-			protected static 
-			null
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-VSP.Core.Instance_Handler.html#17-22" title="Go to source code"><var>$framework_instance</var></a>
-
-			<div class="description short">
-				<p>Stores Framework Instance Class.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Stores Framework Instance Class.</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$framework_instance" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
 	<tr data-order="instances" id="$instances">
 		<td class="attributes"><code>
 			protected  
@@ -381,7 +403,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-VSP.Core.Instance_Handler.html#31-36" title="Go to source code"><var>$instances</var></a>
+				<a href="source-class-VSP.Core.Instance_Handler.html#24-29" title="Go to source code"><var>$instances</var></a>
 
 			<div class="description short">
 				<p>Stores plugins class instances</p>
