@@ -15,13 +15,6 @@ use VSP\Framework;
  */
 abstract class Instance_Handler {
 	/**
-	 * Stores Framework Instance Class.
-	 *
-	 * @var null
-	 */
-	protected static $framework_instance = array();
-
-	/**
 	 * Stores all plugins instances
 	 *
 	 * @var array
@@ -78,6 +71,46 @@ abstract class Instance_Handler {
 	}
 
 	/**
+	 * Checks & Fetches Framework Key.
+	 *
+	 * @return array|bool|false|string
+	 * @since {NEWVERSION}
+	 */
+	private function get_framework_key() {
+		if ( $this instanceof Framework ) {
+			return static::class;
+		}
+
+		if ( property_exists( $this, 'plugin_class' ) && ! empty( $this->plugin_class ) ) {
+			return ( $this->plugin_class instanceof Framework ) ? get_class( $this->plugin_class ) : $this->plugin_class;
+		}
+		return false;
+	}
+
+	/**
+	 * Generates Class Instance.
+	 *
+	 * @param string $class
+	 * @param mixed  $arguments
+	 *
+	 * @return object
+	 * @throws \ReflectionException
+	 * @since {NEWVERSION}
+	 */
+	private function generate_instance( $class, $arguments ) {
+		$refl = new ReflectionClass( $class );
+		if ( $refl->isSubclassOf( '\VSP\Base' ) ) {
+			$instance     = $refl->newInstanceWithoutConstructor();
+			$plugin_class = $refl->getProperty( 'plugin_class' );
+			$plugin_class->setAccessible( 'public' );
+			$plugin_class->setValue( $instance, $this->get_framework_key() );
+			$plugin_class->setAccessible( 'protected' );
+			return $instance->__construct( ...$arguments );
+		}
+		return $refl->newInstanceArgs( $arguments );
+	}
+
+	/**
 	 * @param       $class
 	 * @param mixed ...$arguments
 	 *
@@ -86,23 +119,32 @@ abstract class Instance_Handler {
 	public function _instance( $class, ...$arguments ) {
 		if ( $this->get_instance( $class ) === false ) {
 			try {
-				$framework_key = ( $this instanceof Framework ) ? static::class : false;
-				$refl          = new ReflectionClass( $class );
-
-				if ( false === $framework_key ) {
-					$framework_key = ( isset( $this->framework_instance ) && ! empty( $this->framework_instance ) ) ? $this->framework_instance : false;
-				}
-
-				if ( false !== $framework_key && $refl->isSubclassOf( '\VSP\Base' ) ) {
-					self::$framework_instance[ $refl->getName() ] = $framework_key;
-				}
-
-				$instances = $refl->newInstanceArgs( $arguments );
-				$this->set_instance( $class, $instances );
+				$ins = $this->generate_instance( $class, $arguments );
+				$this->set_instance( $class, $ins );
 			} catch ( ReflectionException $exception ) {
-
 			}
 		}
 		return $this->get_instance( $class );
+	}
+
+	/**
+	 * Creates New Instance & Stores It.
+	 *
+	 * @param       $id
+	 * @param       $class
+	 * @param mixed ...$arguments
+	 *
+	 * @return bool|mixed
+	 * @since {NEWVERSION}
+	 */
+	public function create( $id, $class, ...$arguments ) {
+		if ( $this->get_instance( $id ) === false ) {
+			try {
+				$ins = $this->generate_instance( $class, $arguments );
+				$this->set_instance( $id, $ins );
+			} catch ( ReflectionException $exception ) {
+			}
+		}
+		return $this->get_instance( $id );
 	}
 }

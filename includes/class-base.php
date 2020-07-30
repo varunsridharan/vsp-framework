@@ -17,6 +17,14 @@ class Base extends Core\Instance_Handler {
 	use Hooks;
 
 	/**
+	 * Stores Plugin's Base Class Name.
+	 *
+	 * @var string
+	 * @since {NEWVERSION}
+	 */
+	protected $plugin_class = '';
+
+	/**
 	 * Class Clone.
 	 */
 	public function __clone() {
@@ -38,7 +46,7 @@ class Base extends Core\Instance_Handler {
 	 * @return \VSP\Framework
 	 */
 	public function plugin() {
-		return ( $this instanceof Framework ) ? $this : $this->get_instance( self::$framework_instance[ static::class ] );
+		return ( $this instanceof Framework ) ? $this : $this->get_instance( $this->plugin_class );
 	}
 
 	/**

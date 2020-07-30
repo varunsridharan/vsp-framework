@@ -71,7 +71,7 @@ abstract class Framework_Modules extends Framework_Admin {
 			$args = $this->option( 'settings_page' );
 			if ( is_array( $args ) ) {
 				$args['option_name'] = ( isset( $args['option_name'] ) ) ? $args['option_name'] : $this->slug( 'db' );
-				$this->_instance( 'VSP\Modules\WPOnion', $this->option( 'settings_page' ) );
+				$this->_instance( '\VSP\Modules\WPOnion', $this->option( 'settings_page' ) );
 				$this->settings_init();
 				$this->do_deprecated_action( 'settings_init', null, '0.9', 'settings/init' );
 				$this->do_action( 'settings/init' );
