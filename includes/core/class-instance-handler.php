@@ -130,14 +130,15 @@ abstract class Instance_Handler {
 	/**
 	 * Creates New Instance & Stores It.
 	 *
-	 * @param       $id
-	 * @param       $class
-	 * @param mixed ...$arguments
+	 * @param string $class
+	 * @param string $id
+	 * @param mixed  ...$arguments
 	 *
 	 * @return bool|mixed
 	 * @since {NEWVERSION}
 	 */
-	public function create( $id, $class, ...$arguments ) {
+	public function create( $class, $id = '', ...$arguments ) {
+		$id = ( empty( $id ) ) ? $class : $id;
 		if ( $this->get_instance( $id ) === false ) {
 			try {
 				$ins = $this->generate_instance( $class, $arguments );
