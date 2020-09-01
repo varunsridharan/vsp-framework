@@ -147,14 +147,15 @@ trait WC_Helper {
 	 * @return bool
 	 */
 	public static function wc_has_product_in_cart( $product_id ) {
-		foreach ( wc()->cart->get_cart() as $key => $val ) {
-			$_product = $val['data'];
+		if ( method_exists( wc()->cart, 'get_cart' ) ) {
+			foreach ( wc()->cart->get_cart() as $key => $val ) {
+				$_product = $val['data'];
 
-			if ( $product_id === $_product->get_id() ) {
-				return true;
+				if ( $product_id === $_product->get_id() ) {
+					return true;
+				}
 			}
 		}
-
 		return false;
 	}
 
@@ -169,22 +170,25 @@ trait WC_Helper {
 	 */
 	public static function wc_get_product_ids_in_cart( $type = ARRAY_A, $child = true ) {
 		$return = array();
-		foreach ( wc()->cart->get_cart() as $key => $val ) {
-			/** @var \WC_Product $_product */
-			$_product = $val['data'];
-			$parent   = $_product->get_parent_id();
-			$id       = $_product->get_id();
-			$key      = ( 0 === $parent ) ? $id : $parent;
+		if ( method_exists( wc()->cart, 'get_cart' ) ) {
+			foreach ( wc()->cart->get_cart() as $key => $val ) {
+				/** @var \WC_Product $_product */
+				$_product = $val['data'];
+				$parent   = $_product->get_parent_id();
+				$id       = $_product->get_id();
+				$key      = ( 0 === $parent ) ? $id : $parent;
 
-			if ( 'only' === $child && $parent > 0 ) {
-				$return[ $id ] = $id;
-			} elseif ( true === $child ) {
-				$return[ $key ] = $id;
-			} elseif ( false === $child ) {
-				$return[ $id ] = $id;
+				if ( 'only' === $child && $parent > 0 ) {
+					$return[ $id ] = $id;
+				} elseif ( true === $child ) {
+					$return[ $key ] = $id;
+				} elseif ( false === $child ) {
+					$return[ $id ] = $id;
+				}
 			}
+			return ( ARRAY_N === $type ) ? array_keys( $return ) : $return;
 		}
-		return ( ARRAY_N === $type ) ? array_keys( $return ) : $return;
+		return array();
 	}
 
 	/**
@@ -193,7 +197,7 @@ trait WC_Helper {
 	 * @return bool
 	 */
 	public static function wc_clear_cart() {
-		if ( function_exists( 'wc' ) ) {
+		if ( function_exists( 'wc' ) && method_exists( wc()->cart, 'empty_cart' ) ) {
 			wc()->cart->empty_cart( true );
 			return true;
 		}
@@ -207,7 +211,7 @@ trait WC_Helper {
 	 * @since 0.8.7
 	 */
 	public static function wc_is_cart_empty() {
-		return ( empty( wc()->cart->get_cart() ) );
+		return ( method_exists( wc()->cart, 'get_cart' ) && empty( wc()->cart->get_cart() ) );
 	}
 
 	/**
