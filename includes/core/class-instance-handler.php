@@ -6,6 +6,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ReflectionClass;
 use ReflectionException;
+use ReflectionMethod;
 use VSP\Framework;
 
 /**
@@ -105,7 +106,10 @@ abstract class Instance_Handler {
 			$plugin_class->setAccessible( 'public' );
 			$plugin_class->setValue( $instance, $this->get_framework_key() );
 			$plugin_class->setAccessible( 'protected' );
-			return $instance->__construct( ...$arguments );
+			$constructor = $refl->getConstructor();
+			if ( $constructor instanceof ReflectionMethod && $constructor->isConstructor() ) {
+				$constructor->invokeArgs( $instance, $arguments );
+			}
 		}
 		return $refl->newInstanceArgs( $arguments );
 	}
@@ -121,6 +125,7 @@ abstract class Instance_Handler {
 			try {
 				$ins = $this->generate_instance( $class, $arguments );
 				$this->set_instance( $class, $ins );
+				return $ins;
 			} catch ( ReflectionException $exception ) {
 			}
 		}
