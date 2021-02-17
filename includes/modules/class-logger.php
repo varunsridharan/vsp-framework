@@ -48,7 +48,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 					$register_handlers[] = $handler;
 				} else {
 					/* translators: 1: class name 2: VSP_Log_Handler_Interface */
-					vsp_doing_it_wrong( __METHOD__, sprintf( __( 'The provided handler %1$s does not implement %2$s.', 'vsp-framework' ), '<code>' . esc_html( is_object( $handler ) ? get_class( $handler ) : $handler ) . '</code>', '<code>VSP\Core\Interfaces\Log_Handler</code>' ), '3.0' );
+					vsp_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'The provided handler %1$s does not implement %2$s.', 'vsp-framework' ), '<code>' . esc_html( is_object( $handler ) ? get_class( $handler ) : $handler ) . '</code>', '<code>VSP\Core\Interfaces\Log_Handler</code>' ), '3.0' );
 				}
 			}
 		}
@@ -71,7 +71,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 		$error = error_get_last();
 
 		if ( E_ERROR === $error['type'] ) {
-			vsp_log_msg( __( 'File & Line No :', 'vsp-framework' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
+			vsp_log_msg( esc_html__( 'File & Line No :', 'vsp-framework' ) . $error['file'] . '-' . $error['line'], 'critical', false, array(
 				'source' => 'fatal-errors',
 			) );
 
@@ -118,7 +118,7 @@ class Logger implements \VSP\Core\Interfaces\Logger {
 		try {
 			if ( ! Logger\Levels::is_valid_level( $level ) ) {
 				/* translators: 1: VSP_Logger::log 2: level */
-				vsp_doing_it_wrong( __METHOD__, sprintf( __( '%1$s was called with an invalid level "%2$s".', 'vsp-framework' ), '<code>VSP_Logger::log</code>', $level ), '3.0' );
+				vsp_doing_it_wrong( __METHOD__, sprintf( esc_html__( '%1$s was called with an invalid level "%2$s".', 'vsp-framework' ), '<code>VSP_Logger::log</code>', $level ), '3.0' );
 			}
 			if ( $this->should_handle( $level ) ) {
 				$timestamp = current_time( 'timestamp' );

@@ -34,15 +34,15 @@ class Addons extends Addons\Admin {
 	public function __construct( $options = array() ) {
 		$this->set_args( $options );
 		self::$default_addon_cats      = array(
-			'all'      => __( 'All', 'vsp-framework' ),
-			'active'   => __( 'Active', 'vsp-framework' ),
-			'inactive' => __( 'Inactive', 'vsp-framework' ),
-			'general'  => __( 'General', 'vsp-framework' ),
+			'all'      => esc_html__( 'All', 'vsp-framework' ),
+			'active'   => esc_html__( 'Active', 'vsp-framework' ),
+			'inactive' => esc_html__( 'Inactive', 'vsp-framework' ),
+			'general'  => esc_html__( 'General', 'vsp-framework' ),
 		);
 		self::$required_plugins_status = array(
-			'notexists' => __( 'Not Installed', 'vsp-framework' ),
-			'exists'    => __( 'In Active', 'vsp-framework' ),
-			'active'    => __( 'Active', 'vsp-framework' ),
+			'notexists' => esc_html__( 'Not Installed', 'vsp-framework' ),
+			'exists'    => esc_html__( 'In Active', 'vsp-framework' ),
+			'active'    => esc_html__( 'Active', 'vsp-framework' ),
 		);
 		$this->headers                 = $this->parse_args( $this->option( 'headers' ), $this->default_headers );
 		$slug                          = $this->plugin()->slug( 'hook' );
@@ -67,11 +67,11 @@ class Addons extends Addons\Admin {
 		$action = $ajax->request( 'addon_action' );
 
 		if ( empty( $addon ) ) {
-			$ajax->error( __( 'Invalid Addon', 'vsp-framework' ) );
+			$ajax->error( esc_html__( 'Invalid Addon', 'vsp-framework' ) );
 		}
 
 		if ( ! in_array( $action, array( 'activate', 'deactivate' ), true ) ) {
-			$ajax->error( __( 'Invalid Addon Action', 'vsp-framework' ) );
+			$ajax->error( esc_html__( 'Invalid Addon Action', 'vsp-framework' ) );
 		}
 
 		switch ( $action ) {
@@ -80,25 +80,25 @@ class Addons extends Addons\Admin {
 					$data = $this->search_addon( $addon );
 
 					if ( ! is_array( $data ) ) {
-						vsp_send_callback_error( swal2_error( __( 'Addon Not Found', 'vsp-framework' ), __( 'Selected Addon Not Found. Please Contact The Developer', 'vsp-framework' ) ) );
+						vsp_send_callback_error( swal2_error( esc_html__( 'Addon Not Found', 'vsp-framework' ), esc_html__( 'Selected Addon Not Found. Please Contact The Developer', 'vsp-framework' ) ) );
 					}
 
 					if ( isset( $data['required_plugins'] ) && is_array( $data['required_plugins'] ) && ! empty( $data['required_plugins'] ) && true !== $data['required_plugins_fulfilled'] ) {
-						$msg = swal2_error( __( 'Activation Failed', 'vsp-framework' ), __( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) );
+						$msg = swal2_error( esc_html__( 'Activation Failed', 'vsp-framework' ), esc_html__( 'Addon\'s Requried Plugins Not Active / Installed', 'vsp-framework' ) );
 						vsp_send_callback_error( $msg );
 					}
 
 					if ( $this->activate_addon( $addon ) ) {
-						vsp_send_callback_success( swal2_success( __( 'Addon Activated', 'vsp-framework' ) ) );
+						vsp_send_callback_success( swal2_success( esc_html__( 'Addon Activated', 'vsp-framework' ) ) );
 					}
 				}
-				vsp_send_callback_error( swal2_warning( __( 'Addon Already Active', 'vsp-framework' ) ) );
+				vsp_send_callback_error( swal2_warning( esc_html__( 'Addon Already Active', 'vsp-framework' ) ) );
 				break;
 			case 'deactivate':
 				if ( $this->is_active( $addon ) && $this->deactivate_addon( $addon ) ) {
-					vsp_send_callback_success( swal2_warning( __( 'Addon De-Activated', 'vsp-framework' ) ) );
+					vsp_send_callback_success( swal2_warning( esc_html__( 'Addon De-Activated', 'vsp-framework' ) ) );
 				}
-				vsp_send_callback_error( swal2_warning( __( 'Addon Is Not Active', 'vsp-framework' ) ) );
+				vsp_send_callback_error( swal2_warning( esc_html__( 'Addon Is Not Active', 'vsp-framework' ) ) );
 				break;
 		}
 	}
@@ -108,7 +108,7 @@ class Addons extends Addons\Admin {
 	 */
 	public function load_active_addons() {
 		$active_addons       = $this->active_addons();
-		$msg                 = __( 'Following addons are deactivated because some of its required plugins are deactivated / uninstalled', 'vsp-framework' );
+		$msg                 = esc_html__( 'Following addons are deactivated because some of its required plugins are deactivated / uninstalled', 'vsp-framework' );
 		$deactivated_plugins = '';
 		if ( ! empty( $active_addons ) ) {
 			foreach ( $active_addons as $pathid ) {
@@ -132,9 +132,9 @@ class Addons extends Addons\Admin {
 		}
 		if ( ! empty( $deactivated_plugins ) ) {
 			$title = '<strong>' . $this->plugin()
-					->name() . '</strong>' . __( ' Has Deactivated Some of its addons', 'vsp-framework' );
+					->name() . '</strong>' . esc_html__( ' Has Deactivated Some of its addons', 'vsp-framework' );
 			$msg   = $msg . '<ul>' . $deactivated_plugins . '</ul>';
-			$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . __( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
+			$msg   .= '<p><button class="button button-secondary wpo-stick-dismiss">' . esc_html__( 'I Understand. Will Fix It', 'vsp-framework' ) . '</button></p>';
 
 			wponion_error_admin_notice( $msg, $title, array( 'large' => true ) )->set_sticky( true );
 		}

@@ -34,8 +34,8 @@ final class Ajax extends Ajaxer {
 	 */
 	public function addon_action() {
 		if ( $this->has_request( 'hook_slug' ) ) {
-			$this->validate_request( 'addon_action', __( 'Addon Action Not Provided', 'vsp-framework' ) );
-			$this->validate_request( 'addon', __( 'Unable To Process Your Request', 'vsp-framework' ) );
+			$this->validate_request( 'addon_action', esc_html__( 'Addon Action Not Provided', 'vsp-framework' ) );
+			$this->validate_request( 'addon', esc_html__( 'Unable To Process Your Request', 'vsp-framework' ) );
 			do_action( $_REQUEST['hook_slug'] . '/addon/ajax/handle/request', $this );
 		}
 		$this->json_error();
@@ -46,11 +46,11 @@ final class Ajax extends Ajaxer {
 	 */
 	public function download_log() {
 		if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-			$this->error( __( 'Invalid Nonce', 'vsp-framework' ) );
+			$this->error( esc_html__( 'Invalid Nonce', 'vsp-framework' ) );
 		}
 
 		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'download_log' ) ) {
-			$this->error( __( 'Nonce Expired', 'vsp-framework' ) );
+			$this->error( esc_html__( 'Nonce Expired', 'vsp-framework' ) );
 		}
 
 		if ( isset( $_REQUEST['handle'] ) && ! empty( $_REQUEST['handle'] ) ) {
@@ -72,12 +72,12 @@ final class Ajax extends Ajaxer {
 						}
 					}
 				}
-				$this->error( __( 'Log File Not Found !', 'vsp-framework' ) );
+				$this->error( esc_html__( 'Log File Not Found !', 'vsp-framework' ) );
 			} else {
-				$this->error( __( 'Invalid Log File Extension', 'vsp-framework' ) );
+				$this->error( esc_html__( 'Invalid Log File Extension', 'vsp-framework' ) );
 			}
 		} else {
-			$this->error( __( 'Invalid Log File', 'vsp-framework' ) );
+			$this->error( esc_html__( 'Invalid Log File', 'vsp-framework' ) );
 		}
 		wp_die();
 	}

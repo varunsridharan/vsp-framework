@@ -58,7 +58,7 @@ class System_Tools extends Base {
 			$this->system_logs_menu( $builder, true );
 		} else {
 			$menu       = $this->menu_data( $this->option( 'menu' ), array(
-				'title' => __( 'System Tools', 'vsp-framework' ),
+				'title' => esc_html__( 'System Tools', 'vsp-framework' ),
 				'icon'  => 'fa fa-gear',
 				'name'  => 'system-tools',
 			) );
@@ -95,7 +95,7 @@ class System_Tools extends Base {
 	protected function system_logs_menu( $args = array(), $is_page = true ) {
 		if ( false !== $this->option( 'logging' ) ) {
 			$m   = $this->menu_data( $this->option( 'logging' ), array(
-				'title' => __( 'System Logs', 'vsp-framework' ),
+				'title' => esc_html__( 'System Logs', 'vsp-framework' ),
 				'icon'  => 'fa fa-file',
 				'name'  => 'system-logs',
 			) );

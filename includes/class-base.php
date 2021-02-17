@@ -28,7 +28,7 @@ class Base extends Core\Instance_Handler {
 	 * Class Clone.
 	 */
 	public function __clone() {
-		vsp_doing_it_wrong( __FUNCTION__, __( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
+		vsp_doing_it_wrong( __FUNCTION__, esc_html__( 'Cloning instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
 			->version() );
 	}
 
@@ -36,7 +36,7 @@ class Base extends Core\Instance_Handler {
 	 * Class Wakeup.
 	 */
 	public function __wakeup() {
-		vsp_doing_it_wrong( __FUNCTION__, __( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
+		vsp_doing_it_wrong( __FUNCTION__, esc_html__( 'Unserializing instances of the class is forbidden.', 'vsp-framework' ), $this->plugin()
 			->version() );
 	}
 

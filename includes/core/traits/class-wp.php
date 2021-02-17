@@ -117,7 +117,7 @@ trait WP {
 			$user_roles = array();
 			if ( function_exists( 'wp_roles' ) ) {
 				$user_roles            = wp_roles()->roles;
-				$user_roles['visitor'] = array( 'name' => __( 'Visitor / Logged-Out User', 'vsp-framework' ) );
+				$user_roles['visitor'] = array( 'name' => esc_html__( 'Visitor / Logged-Out User', 'vsp-framework' ) );
 			}
 			vsp_set_cache( 'vsp/user_roles/list', $user_roles );
 		}

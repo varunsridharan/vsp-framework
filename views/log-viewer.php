@@ -16,7 +16,7 @@ if ( empty( $plugin_editable_files ) ) {
 	echo '<div class="vsp_nothing_found_wrap">
 		<div class="vsp_nothing_found">
 			' . wpo_icon( 'wpoic-file-text' ) . '
-			<h2>' . __( 'No Logs Found', 'vsp-framework' ) . '</h2>
+			<h2>' . esc_html__( 'No Logs Found', 'vsp-framework' ) . '</h2>
 		</div>
 	</div>';
 } else {
@@ -45,12 +45,12 @@ if ( empty( $plugin_editable_files ) ) {
 				<?php
 				if ( ! empty( $file ) ) {
 					$href = wp_nonce_url( admin_url( 'admin-ajax.php?action=vsp_download_log&handle=' . $file ), 'download_log' );
-					echo wponion_tooltip( __( 'Download', 'vsp-framework' ), array(
+					echo wponion_tooltip( esc_html__( 'Download', 'vsp-framework' ), array(
 						'element' => "<a href=\"$href\" target=\"_blank\" class=\"wpo-btn wpo-btn-secondary wpo-btn-sm log-download-handle\">" . wpo_icon( 'wpoic-file_download' ) . '</a>',
 					) );
 
 					$href = wp_nonce_url( add_query_arg( 'delete-handle', $file ), 'remove_log' );
-					echo ' ' . wponion_tooltip( __( 'Delete Log', 'vsp-framework' ), array(
+					echo ' ' . wponion_tooltip( esc_html__( 'Delete Log', 'vsp-framework' ), array(
 							'element' => "<a href=\"$href\" class=\"wpo-btn wpo-btn-danger wpo-btn-sm log-delete-handle\">" . wpo_icon( 'wpoic-delete' ) . '</a>',
 						) );
 				}

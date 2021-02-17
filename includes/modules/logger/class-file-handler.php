@@ -194,7 +194,7 @@ class File_Handler extends Log_Handler {
 				return vsp_slashit( VSP_LOG_DIR ) . $this->get_log_file_name( $handle );
 			}
 		} else {
-			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.0' );
+			vsp_doing_it_wrong( __METHOD__, esc_html__( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.0' );
 			return false;
 		}
 	}
@@ -214,7 +214,7 @@ class File_Handler extends Log_Handler {
 				return sanitize_file_name( $this->file_name . '-' . wp_hash( $handle . '_' . $this->sub_path ) . '.log' );
 			}
 		} else {
-			vsp_doing_it_wrong( __METHOD__, __( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.3' );
+			vsp_doing_it_wrong( __METHOD__, esc_html__( 'This method should not be called before plugins_loaded.', 'vsp-framework' ), '3.3' );
 			return false;
 		}
 	}
