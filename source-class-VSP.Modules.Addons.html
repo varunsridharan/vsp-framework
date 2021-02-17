@@ -261,15 +261,15 @@
 </span><span id="34" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct( <span class="php-var">$options</span> = <span class="php-keyword1">array</span>() ) {
 </span><span id="35" class="l">        <span class="php-var">$this</span>-&gt;set_args( <span class="php-var">$options</span> );
 </span><span id="36" class="l">        self::<span class="php-var">$default_addon_cats</span>      = <span class="php-keyword1">array</span>(
-</span><span id="37" class="l">            <span class="php-quote">'all'</span>      =&gt; __( <span class="php-quote">'All'</span>, <span class="php-quote">'vsp-framework'</span> ),
-</span><span id="38" class="l">            <span class="php-quote">'active'</span>   =&gt; __( <span class="php-quote">'Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
-</span><span id="39" class="l">            <span class="php-quote">'inactive'</span> =&gt; __( <span class="php-quote">'Inactive'</span>, <span class="php-quote">'vsp-framework'</span> ),
-</span><span id="40" class="l">            <span class="php-quote">'general'</span>  =&gt; __( <span class="php-quote">'General'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="37" class="l">            <span class="php-quote">'all'</span>      =&gt; esc_html__( <span class="php-quote">'All'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="38" class="l">            <span class="php-quote">'active'</span>   =&gt; esc_html__( <span class="php-quote">'Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="39" class="l">            <span class="php-quote">'inactive'</span> =&gt; esc_html__( <span class="php-quote">'Inactive'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="40" class="l">            <span class="php-quote">'general'</span>  =&gt; esc_html__( <span class="php-quote">'General'</span>, <span class="php-quote">'vsp-framework'</span> ),
 </span><span id="41" class="l">        );
 </span><span id="42" class="l">        self::<span class="php-var">$required_plugins_status</span> = <span class="php-keyword1">array</span>(
-</span><span id="43" class="l">            <span class="php-quote">'notexists'</span> =&gt; __( <span class="php-quote">'Not Installed'</span>, <span class="php-quote">'vsp-framework'</span> ),
-</span><span id="44" class="l">            <span class="php-quote">'exists'</span>    =&gt; __( <span class="php-quote">'In Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
-</span><span id="45" class="l">            <span class="php-quote">'active'</span>    =&gt; __( <span class="php-quote">'Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="43" class="l">            <span class="php-quote">'notexists'</span> =&gt; esc_html__( <span class="php-quote">'Not Installed'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="44" class="l">            <span class="php-quote">'exists'</span>    =&gt; esc_html__( <span class="php-quote">'In Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="45" class="l">            <span class="php-quote">'active'</span>    =&gt; esc_html__( <span class="php-quote">'Active'</span>, <span class="php-quote">'vsp-framework'</span> ),
 </span><span id="46" class="l">        );
 </span><span id="47" class="l">        <span class="php-var">$this</span>-&gt;headers                 = <span class="php-var">$this</span>-&gt;parse_args( <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'headers'</span> ), <span class="php-var">$this</span>-&gt;default_headers );
 </span><span id="48" class="l">        <span class="php-var">$slug</span>                          = <span class="php-var">$this</span>-&gt;plugin()-&gt;slug( <span class="php-quote">'hook'</span> );
@@ -294,11 +294,11 @@
 </span><span id="67" class="l">        <span class="php-var">$action</span> = <span class="php-var">$ajax</span>-&gt;request( <span class="php-quote">'addon_action'</span> );
 </span><span id="68" class="l">
 </span><span id="69" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">empty</span>( <span class="php-var">$addon</span> ) ) {
-</span><span id="70" class="l">            <span class="php-var">$ajax</span>-&gt;error( __( <span class="php-quote">'Invalid Addon'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="70" class="l">            <span class="php-var">$ajax</span>-&gt;error( esc_html__( <span class="php-quote">'Invalid Addon'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="71" class="l">        }
 </span><span id="72" class="l">
 </span><span id="73" class="l">        <span class="php-keyword1">if</span> ( ! <span class="php-keyword2">in_array</span>( <span class="php-var">$action</span>, <span class="php-keyword1">array</span>( <span class="php-quote">'activate'</span>, <span class="php-quote">'deactivate'</span> ), <span class="php-keyword1">true</span> ) ) {
-</span><span id="74" class="l">            <span class="php-var">$ajax</span>-&gt;error( __( <span class="php-quote">'Invalid Addon Action'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="74" class="l">            <span class="php-var">$ajax</span>-&gt;error( esc_html__( <span class="php-quote">'Invalid Addon Action'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="75" class="l">        }
 </span><span id="76" class="l">
 </span><span id="77" class="l">        <span class="php-keyword1">switch</span> ( <span class="php-var">$action</span> ) {
@@ -307,25 +307,25 @@
 </span><span id="80" class="l">                    <span class="php-var">$data</span> = <span class="php-var">$this</span>-&gt;search_addon( <span class="php-var">$addon</span> );
 </span><span id="81" class="l">
 </span><span id="82" class="l">                    <span class="php-keyword1">if</span> ( ! <span class="php-keyword2">is_array</span>( <span class="php-var">$data</span> ) ) {
-</span><span id="83" class="l">                        vsp_send_callback_error( swal2_error( __( <span class="php-quote">'Addon Not Found'</span>, <span class="php-quote">'vsp-framework'</span> ), __( <span class="php-quote">'Selected Addon Not Found. Please Contact The Developer'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
+</span><span id="83" class="l">                        vsp_send_callback_error( swal2_error( esc_html__( <span class="php-quote">'Addon Not Found'</span>, <span class="php-quote">'vsp-framework'</span> ), esc_html__( <span class="php-quote">'Selected Addon Not Found. Please Contact The Developer'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
 </span><span id="84" class="l">                    }
 </span><span id="85" class="l">
 </span><span id="86" class="l">                    <span class="php-keyword1">if</span> ( <span class="php-keyword1">isset</span>( <span class="php-var">$data</span>[<span class="php-quote">'required_plugins'</span>] ) &amp;&amp; <span class="php-keyword2">is_array</span>( <span class="php-var">$data</span>[<span class="php-quote">'required_plugins'</span>] ) &amp;&amp; ! <span class="php-keyword1">empty</span>( <span class="php-var">$data</span>[<span class="php-quote">'required_plugins'</span>] ) &amp;&amp; <span class="php-keyword1">true</span> !== <span class="php-var">$data</span>[<span class="php-quote">'required_plugins_fulfilled'</span>] ) {
-</span><span id="87" class="l">                        <span class="php-var">$msg</span> = swal2_error( __( <span class="php-quote">'Activation Failed'</span>, <span class="php-quote">'vsp-framework'</span> ), __( <span class="php-quote">'Addon\'s Requried Plugins Not Active / Installed'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="87" class="l">                        <span class="php-var">$msg</span> = swal2_error( esc_html__( <span class="php-quote">'Activation Failed'</span>, <span class="php-quote">'vsp-framework'</span> ), esc_html__( <span class="php-quote">'Addon\'s Requried Plugins Not Active / Installed'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="88" class="l">                        vsp_send_callback_error( <span class="php-var">$msg</span> );
 </span><span id="89" class="l">                    }
 </span><span id="90" class="l">
 </span><span id="91" class="l">                    <span class="php-keyword1">if</span> ( <span class="php-var">$this</span>-&gt;activate_addon( <span class="php-var">$addon</span> ) ) {
-</span><span id="92" class="l">                        vsp_send_callback_success( swal2_success( __( <span class="php-quote">'Addon Activated'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
+</span><span id="92" class="l">                        vsp_send_callback_success( swal2_success( esc_html__( <span class="php-quote">'Addon Activated'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
 </span><span id="93" class="l">                    }
 </span><span id="94" class="l">                }
-</span><span id="95" class="l">                vsp_send_callback_error( swal2_warning( __( <span class="php-quote">'Addon Already Active'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
+</span><span id="95" class="l">                vsp_send_callback_error( swal2_warning( esc_html__( <span class="php-quote">'Addon Already Active'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
 </span><span id="96" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="97" class="l">            <span class="php-keyword1">case</span> <span class="php-quote">'deactivate'</span>:
 </span><span id="98" class="l">                <span class="php-keyword1">if</span> ( <span class="php-var">$this</span>-&gt;is_active( <span class="php-var">$addon</span> ) &amp;&amp; <span class="php-var">$this</span>-&gt;deactivate_addon( <span class="php-var">$addon</span> ) ) {
-</span><span id="99" class="l">                    vsp_send_callback_success( swal2_warning( __( <span class="php-quote">'Addon De-Activated'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
+</span><span id="99" class="l">                    vsp_send_callback_success( swal2_warning( esc_html__( <span class="php-quote">'Addon De-Activated'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
 </span><span id="100" class="l">                }
-</span><span id="101" class="l">                vsp_send_callback_error( swal2_warning( __( <span class="php-quote">'Addon Is Not Active'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
+</span><span id="101" class="l">                vsp_send_callback_error( swal2_warning( esc_html__( <span class="php-quote">'Addon Is Not Active'</span>, <span class="php-quote">'vsp-framework'</span> ) ) );
 </span><span id="102" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="103" class="l">        }
 </span><span id="104" class="l">    }
@@ -335,7 +335,7 @@
 </span></span><span id="108" class="l"><span class="php-comment">     */</span>
 </span><span id="109" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> load_active_addons() {
 </span><span id="110" class="l">        <span class="php-var">$active_addons</span>       = <span class="php-var">$this</span>-&gt;active_addons();
-</span><span id="111" class="l">        <span class="php-var">$msg</span>                 = __( <span class="php-quote">'Following addons are deactivated because some of its required plugins are deactivated / uninstalled'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="111" class="l">        <span class="php-var">$msg</span>                 = esc_html__( <span class="php-quote">'Following addons are deactivated because some of its required plugins are deactivated / uninstalled'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="112" class="l">        <span class="php-var">$deactivated_plugins</span> = <span class="php-quote">''</span>;
 </span><span id="113" class="l">        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>( <span class="php-var">$active_addons</span> ) ) {
 </span><span id="114" class="l">            <span class="php-keyword1">foreach</span> ( <span class="php-var">$active_addons</span> <span class="php-keyword1">as</span> <span class="php-var">$pathid</span> ) {
@@ -359,9 +359,9 @@
 </span><span id="132" class="l">        }
 </span><span id="133" class="l">        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>( <span class="php-var">$deactivated_plugins</span> ) ) {
 </span><span id="134" class="l">            <span class="php-var">$title</span> = <span class="php-quote">'&lt;strong&gt;'</span> . <span class="php-var">$this</span>-&gt;plugin()
-</span><span id="135" class="l">                    -&gt;name() . <span class="php-quote">'&lt;/strong&gt;'</span> . __( <span class="php-quote">' Has Deactivated Some of its addons'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="135" class="l">                    -&gt;name() . <span class="php-quote">'&lt;/strong&gt;'</span> . esc_html__( <span class="php-quote">' Has Deactivated Some of its addons'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="136" class="l">            <span class="php-var">$msg</span>   = <span class="php-var">$msg</span> . <span class="php-quote">'&lt;ul&gt;'</span> . <span class="php-var">$deactivated_plugins</span> . <span class="php-quote">'&lt;/ul&gt;'</span>;
-</span><span id="137" class="l">            <span class="php-var">$msg</span>   .= <span class="php-quote">'&lt;p&gt;&lt;button class=&quot;button button-secondary wpo-stick-dismiss&quot;&gt;'</span> . __( <span class="php-quote">'I Understand. Will Fix It'</span>, <span class="php-quote">'vsp-framework'</span> ) . <span class="php-quote">'&lt;/button&gt;&lt;/p&gt;'</span>;
+</span><span id="137" class="l">            <span class="php-var">$msg</span>   .= <span class="php-quote">'&lt;p&gt;&lt;button class=&quot;button button-secondary wpo-stick-dismiss&quot;&gt;'</span> . esc_html__( <span class="php-quote">'I Understand. Will Fix It'</span>, <span class="php-quote">'vsp-framework'</span> ) . <span class="php-quote">'&lt;/button&gt;&lt;/p&gt;'</span>;
 </span><span id="138" class="l">
 </span><span id="139" class="l">            wponion_error_admin_notice( <span class="php-var">$msg</span>, <span class="php-var">$title</span>, <span class="php-keyword1">array</span>( <span class="php-quote">'large'</span> =&gt; <span class="php-keyword1">true</span> ) )-&gt;set_sticky( <span class="php-keyword1">true</span> );
 </span><span id="140" class="l">        }

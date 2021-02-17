@@ -285,7 +285,7 @@
 </span><span id="58" class="l">            <span class="php-var">$this</span>-&gt;system_logs_menu( <span class="php-var">$builder</span>, <span class="php-keyword1">true</span> );
 </span><span id="59" class="l">        } <span class="php-keyword1">else</span> {
 </span><span id="60" class="l">            <span class="php-var">$menu</span>       = <span class="php-var">$this</span>-&gt;menu_data( <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'menu'</span> ), <span class="php-keyword1">array</span>(
-</span><span id="61" class="l">                <span class="php-quote">'title'</span> =&gt; __( <span class="php-quote">'System Tools'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="61" class="l">                <span class="php-quote">'title'</span> =&gt; esc_html__( <span class="php-quote">'System Tools'</span>, <span class="php-quote">'vsp-framework'</span> ),
 </span><span id="62" class="l">                <span class="php-quote">'icon'</span>  =&gt; <span class="php-quote">'fa fa-gear'</span>,
 </span><span id="63" class="l">                <span class="php-quote">'name'</span>  =&gt; <span class="php-quote">'system-tools'</span>,
 </span><span id="64" class="l">            ) );
@@ -322,7 +322,7 @@
 </span><span id="95" class="l">    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> system_logs_menu( <span class="php-var">$args</span> = <span class="php-keyword1">array</span>(), <span class="php-var">$is_page</span> = <span class="php-keyword1">true</span> ) {
 </span><span id="96" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'logging'</span> ) ) {
 </span><span id="97" class="l">            <span class="php-var">$m</span>   = <span class="php-var">$this</span>-&gt;menu_data( <span class="php-var">$this</span>-&gt;option( <span class="php-quote">'logging'</span> ), <span class="php-keyword1">array</span>(
-</span><span id="98" class="l">                <span class="php-quote">'title'</span> =&gt; __( <span class="php-quote">'System Logs'</span>, <span class="php-quote">'vsp-framework'</span> ),
+</span><span id="98" class="l">                <span class="php-quote">'title'</span> =&gt; esc_html__( <span class="php-quote">'System Logs'</span>, <span class="php-quote">'vsp-framework'</span> ),
 </span><span id="99" class="l">                <span class="php-quote">'icon'</span>  =&gt; <span class="php-quote">'fa fa-file'</span>,
 </span><span id="100" class="l">                <span class="php-quote">'name'</span>  =&gt; <span class="php-quote">'system-logs'</span>,
 </span><span id="101" class="l">            ) );

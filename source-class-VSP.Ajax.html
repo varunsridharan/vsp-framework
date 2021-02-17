@@ -261,8 +261,8 @@
 </span></span><span id="34" class="l"><span class="php-comment">     */</span>
 </span><span id="35" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> addon_action() {
 </span><span id="36" class="l">        <span class="php-keyword1">if</span> ( <span class="php-var">$this</span>-&gt;has_request( <span class="php-quote">'hook_slug'</span> ) ) {
-</span><span id="37" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon_action'</span>, __( <span class="php-quote">'Addon Action Not Provided'</span>, <span class="php-quote">'vsp-framework'</span> ) );
-</span><span id="38" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon'</span>, __( <span class="php-quote">'Unable To Process Your Request'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="37" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon_action'</span>, esc_html__( <span class="php-quote">'Addon Action Not Provided'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="38" class="l">            <span class="php-var">$this</span>-&gt;validate_request( <span class="php-quote">'addon'</span>, esc_html__( <span class="php-quote">'Unable To Process Your Request'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="39" class="l">            do_action( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'hook_slug'</span>] . <span class="php-quote">'/addon/ajax/handle/request'</span>, <span class="php-var">$this</span> );
 </span><span id="40" class="l">        }
 </span><span id="41" class="l">        <span class="php-var">$this</span>-&gt;json_error();
@@ -273,11 +273,11 @@
 </span></span><span id="46" class="l"><span class="php-comment">     */</span>
 </span><span id="47" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> download_log() {
 </span><span id="48" class="l">        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">isset</span>( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'_wpnonce'</span>] ) ) {
-</span><span id="49" class="l">            <span class="php-var">$this</span>-&gt;error( __( <span class="php-quote">'Invalid Nonce'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="49" class="l">            <span class="php-var">$this</span>-&gt;error( esc_html__( <span class="php-quote">'Invalid Nonce'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="50" class="l">        }
 </span><span id="51" class="l">
 </span><span id="52" class="l">        <span class="php-keyword1">if</span> ( ! wp_verify_nonce( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'_wpnonce'</span>], <span class="php-quote">'download_log'</span> ) ) {
-</span><span id="53" class="l">            <span class="php-var">$this</span>-&gt;error( __( <span class="php-quote">'Nonce Expired'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="53" class="l">            <span class="php-var">$this</span>-&gt;error( esc_html__( <span class="php-quote">'Nonce Expired'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="54" class="l">        }
 </span><span id="55" class="l">
 </span><span id="56" class="l">        <span class="php-keyword1">if</span> ( <span class="php-keyword1">isset</span>( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'handle'</span>] ) &amp;&amp; ! <span class="php-keyword1">empty</span>( <span class="php-var">$_REQUEST</span>[<span class="php-quote">'handle'</span>] ) ) {
@@ -299,12 +299,12 @@
 </span><span id="72" class="l">                        }
 </span><span id="73" class="l">                    }
 </span><span id="74" class="l">                }
-</span><span id="75" class="l">                <span class="php-var">$this</span>-&gt;error( __( <span class="php-quote">'Log File Not Found !'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="75" class="l">                <span class="php-var">$this</span>-&gt;error( esc_html__( <span class="php-quote">'Log File Not Found !'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="76" class="l">            } <span class="php-keyword1">else</span> {
-</span><span id="77" class="l">                <span class="php-var">$this</span>-&gt;error( __( <span class="php-quote">'Invalid Log File Extension'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="77" class="l">                <span class="php-var">$this</span>-&gt;error( esc_html__( <span class="php-quote">'Invalid Log File Extension'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="78" class="l">            }
 </span><span id="79" class="l">        } <span class="php-keyword1">else</span> {
-</span><span id="80" class="l">            <span class="php-var">$this</span>-&gt;error( __( <span class="php-quote">'Invalid Log File'</span>, <span class="php-quote">'vsp-framework'</span> ) );
+</span><span id="80" class="l">            <span class="php-var">$this</span>-&gt;error( esc_html__( <span class="php-quote">'Invalid Log File'</span>, <span class="php-quote">'vsp-framework'</span> ) );
 </span><span id="81" class="l">        }
 </span><span id="82" class="l">        wp_die();
 </span><span id="83" class="l">    }

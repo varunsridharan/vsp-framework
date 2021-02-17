@@ -402,7 +402,7 @@
 </span><span id="175" class="l">            <span class="php-var">$logger</span> = ( <span class="php-keyword2">is_object</span>( <span class="php-var">$class</span> ) ) ? <span class="php-var">$class</span> : <span class="php-keyword1">new</span> <span class="php-var">$class</span>( <span class="php-keyword1">array</span>( <span class="php-keyword1">new</span> File_Handler( <span class="php-var">$subpath</span>, <span class="php-var">$file_name</span>, <span class="php-var">$filesize</span> ) ) );
 </span><span id="176" class="l">        } <span class="php-keyword1">else</span> {
 </span><span id="177" class="l">            <span class="php-comment">/* translators: 1: class name 2: woocommerce_logging_class 3: WC_Logger_Interface */</span>
-</span><span id="178" class="l">            <span class="php-var">$smgs</span> = <span class="php-keyword2">sprintf</span>( __( <span class="php-quote">'The class %1$s provided by %2$s filter must implement %3$s.'</span>, <span class="php-quote">'vsp-framework'</span> ), <span class="php-quote">'&lt;code&gt;'</span> . esc_html( <span class="php-keyword2">is_object</span>( <span class="php-var">$class</span> ) ? <span class="php-keyword2">get_class</span>( <span class="php-var">$class</span> ) : <span class="php-var">$class</span> ) . <span class="php-quote">'&lt;/code&gt;'</span>, <span class="php-quote">'&lt;code&gt;vsp_logging_class&lt;/code&gt;'</span>, <span class="php-quote">'&lt;code&gt;\VSP\Core\Interfaces\Logger&lt;/code&gt;'</span> );
+</span><span id="178" class="l">            <span class="php-var">$smgs</span> = <span class="php-keyword2">sprintf</span>( esc_html__( <span class="php-quote">'The class %1$s provided by %2$s filter must implement %3$s.'</span>, <span class="php-quote">'vsp-framework'</span> ), <span class="php-quote">'&lt;code&gt;'</span> . esc_html( <span class="php-keyword2">is_object</span>( <span class="php-var">$class</span> ) ? <span class="php-keyword2">get_class</span>( <span class="php-var">$class</span> ) : <span class="php-var">$class</span> ) . <span class="php-quote">'&lt;/code&gt;'</span>, <span class="php-quote">'&lt;code&gt;vsp_logging_class&lt;/code&gt;'</span>, <span class="php-quote">'&lt;code&gt;\VSP\Core\Interfaces\Logger&lt;/code&gt;'</span> );
 </span><span id="179" class="l">            vsp_doing_it_wrong( __FUNCTION__, <span class="php-var">$smgs</span>, <span class="php-quote">'3.0'</span> );
 </span><span id="180" class="l">            <span class="php-var">$logger</span> = <span class="php-keyword1">new</span> Logger( <span class="php-keyword1">array</span>( <span class="php-keyword1">new</span> File_Handler( <span class="php-var">$subpath</span>, <span class="php-var">$file_name</span>, <span class="php-var">$filesize</span> ) ) );
 </span><span id="181" class="l">        }
@@ -457,7 +457,7 @@
 </span><span id="230" class="l">            <span class="php-var">$handler</span>-&gt;<span class="php-var">$type</span>( <span class="php-var">$messages</span>, <span class="php-var">$context</span> );
 </span><span id="231" class="l">            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
 </span><span id="232" class="l">        } <span class="php-keyword1">elseif</span> ( vsp_logger() <span class="php-keyword1">instanceof</span> Logger &amp;&amp; <span class="php-keyword2">method_exists</span>( vsp_logger(), <span class="php-var">$type</span> ) ) {
-</span><span id="233" class="l">            <span class="php-var">$msg</span>     = <span class="php-keyword2">array_merge</span>( <span class="php-keyword1">array</span>( __( <span class="php-quote">'Tried To Log A Message But Failed Got unknown Handler'</span>, <span class="php-quote">'vsp-framework'</span> ) ), wp_debug_backtrace_summary( <span class="php-keyword1">null</span>, <span class="php-num">0</span>, <span class="php-keyword1">false</span> ) );
+</span><span id="233" class="l">            <span class="php-var">$msg</span>     = <span class="php-keyword2">array_merge</span>( <span class="php-keyword1">array</span>( esc_html__( <span class="php-quote">'Tried To Log A Message But Failed Got unknown Handler'</span>, <span class="php-quote">'vsp-framework'</span> ) ), wp_debug_backtrace_summary( <span class="php-keyword1">null</span>, <span class="php-num">0</span>, <span class="php-keyword1">false</span> ) );
 </span><span id="234" class="l">            <span class="php-var">$content</span> = <span class="php-quote">&lt;&lt;&lt;TEXT
 </span></span><span id="235" class="l"><span class="php-quote">
 </span></span><span id="236" class="l"><span class="php-quote">//////////////////////// = VSP Critical = /////////////////////////////////
@@ -507,22 +507,22 @@
 </span><span id="280" class="l">                <span class="php-keyword1">return</span> <span class="php-keyword1">null</span>;
 </span><span id="281" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="282" class="l">            <span class="php-keyword1">case</span> JSON_ERROR_DEPTH:
-</span><span id="283" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Maximum stack depth exceeded'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="283" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Maximum stack depth exceeded'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="284" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="285" class="l">            <span class="php-keyword1">case</span> JSON_ERROR_STATE_MISMATCH:
-</span><span id="286" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Underflow or the modes mismatch'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="286" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Underflow or the modes mismatch'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="287" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="288" class="l">            <span class="php-keyword1">case</span> JSON_ERROR_CTRL_CHAR:
-</span><span id="289" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Unexpected control character found'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="289" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Unexpected control character found'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="290" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="291" class="l">            <span class="php-keyword1">case</span> JSON_ERROR_SYNTAX:
-</span><span id="292" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Syntax error, malformed JSON'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="292" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Syntax error, malformed JSON'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="293" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="294" class="l">            <span class="php-keyword1">case</span> JSON_ERROR_UTF8:
-</span><span id="295" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Malformed UTF-8 characters, possibly incorrectly encoded'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="295" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Malformed UTF-8 characters, possibly incorrectly encoded'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="296" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="297" class="l">            <span class="php-keyword1">default</span>:
-</span><span id="298" class="l">                <span class="php-keyword1">return</span> __( <span class="php-quote">'Unknown error'</span>, <span class="php-quote">'vsp-framework'</span> );
+</span><span id="298" class="l">                <span class="php-keyword1">return</span> esc_html__( <span class="php-quote">'Unknown error'</span>, <span class="php-quote">'vsp-framework'</span> );
 </span><span id="299" class="l">                <span class="php-keyword1">break</span>;
 </span><span id="300" class="l">        }
 </span><span id="301" class="l">    }
