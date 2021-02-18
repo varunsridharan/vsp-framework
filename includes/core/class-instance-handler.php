@@ -110,6 +110,7 @@ abstract class Instance_Handler {
 			if ( $constructor instanceof ReflectionMethod && $constructor->isConstructor() ) {
 				$constructor->invokeArgs( $instance, $arguments );
 			}
+			return $instance;
 		}
 		return $refl->newInstanceArgs( $arguments );
 	}
