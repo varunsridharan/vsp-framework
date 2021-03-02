@@ -459,7 +459,7 @@
 </span></span><span id="232" class="l"><span class="php-comment">     *
 </span></span><span id="233" class="l"><span class="php-comment">     * @return array|mixed
 </span></span><span id="234" class="l"><span class="php-comment">     */</span>
-</span><span id="235" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> wc_get_tax_classes( <span class="php-var">$slug</span> = <span class="php-keyword1">false</span>, <span class="php-var">$cache_key</span> = <span class="php-quote">'vsp'</span> ) {
+</span><span id="235" class="l">    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> wc_get_tax_classes( <span class="php-var">$slug</span> = <span class="php-keyword1">false</span>, <span class="php-var">$cache_key</span> = <span class="php-quote">'vsp'</span> ) {
 </span><span id="236" class="l">        <span class="php-keyword1">try</span> {
 </span><span id="237" class="l">            <span class="php-keyword1">return</span> ( <span class="php-var">$slug</span> ) ? vsp_get_cache( <span class="php-var">$cache_key</span> . <span class="php-quote">'/wc/tax_classes/slugs'</span> ) : vsp_get_cache( <span class="php-var">$cache_key</span> . <span class="php-quote">'/wc/tax_classes/all'</span> );
 </span><span id="238" class="l">        } <span class="php-keyword1">catch</span> ( Cache_Not_Found <span class="php-var">$exception</span> ) {
