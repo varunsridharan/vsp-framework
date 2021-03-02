@@ -232,7 +232,7 @@ trait WC_Helper {
 	 *
 	 * @return array|mixed
 	 */
-	public function wc_get_tax_classes( $slug = false, $cache_key = 'vsp' ) {
+	public static function wc_get_tax_classes( $slug = false, $cache_key = 'vsp' ) {
 		try {
 			return ( $slug ) ? vsp_get_cache( $cache_key . '/wc/tax_classes/slugs' ) : vsp_get_cache( $cache_key . '/wc/tax_classes/all' );
 		} catch ( Cache_Not_Found $exception ) {
