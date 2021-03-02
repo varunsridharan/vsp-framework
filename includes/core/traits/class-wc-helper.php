@@ -9,6 +9,7 @@ use WC_Payment_Gateway;
 use WC_Payment_Gateways;
 use WC_Shipping;
 use WC_Shipping_Zones;
+use WC_Tax;
 use WPOnion\Exception\Cache_Not_Found;
 
 /**
@@ -221,6 +222,31 @@ trait WC_Helper {
 	 */
 	public static function wc_clear_cart_if_notempty() {
 		return ( function_exists( 'wc' ) && ! static::wc_is_cart_empty() ) ? static::wc_clear_cart() : false;
+	}
+
+	/**
+	 * Returns A List of enabled tax classes in WooCommerce.
+	 *
+	 * @param false  $slug if set to true then it returns only the tax class slugs
+	 * @param string $cache_key
+	 *
+	 * @return array|mixed
+	 */
+	public function wc_get_tax_classes( $slug = false, $cache_key = 'vsp' ) {
+		try {
+			return ( $slug ) ? vsp_get_cache( $cache_key . '/wc/tax_classes/slugs' ) : vsp_get_cache( $cache_key . '/wc/tax_classes/all' );
+		} catch ( Cache_Not_Found $exception ) {
+			$tax         = WC_Tax::get_tax_classes();
+			$tax_slugs   = WC_Tax::get_tax_class_slugs();
+			$tax_classes = array_combine( $tax_slugs, $tax );
+			$tax_slugs[] = 'standard';
+			$tax_classes = array_merge( array( 'standard' => esc_html__( 'Standard' ) ), $tax_classes );
+
+			vsp_set_cache( $cache_key . '/wc/tax_classes/slugs', $tax_slugs );
+			vsp_set_cache( $cache_key . '/wc/tax_classes/all', $tax_classes );
+
+			return ( $slug ) ? $tax_slugs : $tax_classes;
+		}
 	}
 }
 
