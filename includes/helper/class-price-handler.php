@@ -13,6 +13,60 @@ defined( 'ABSPATH' ) || exit;
  */
 class Price_Calculation {
 	/**
+	 * Returns All Possible Price Types
+	 *
+	 * @static
+	 * @return mixed|void
+	 * @since 0.8.9.7
+	 */
+	public static function types() {
+		return apply_filters( 'vsp/price_calculation/types', array(
+			'fixed'      => esc_html__( 'Fixed' ),
+			'percentage' => esc_html__( 'Percentage (%)' ),
+		) );
+	}
+
+	/**
+	 * Returns All Possible Price Operators
+	 *
+	 * @static
+	 * @return mixed|void
+	 * @since 0.8.9.7
+	 */
+	public static function operators() {
+		return apply_filters( 'vsp/price_calculation/operators', array(
+			'add' => esc_html__( 'Add (+)' ),
+			'sub' => esc_html__( 'Subtract (-)' ),
+		) );
+	}
+
+	/**
+	 * Validates if given value is addition key.
+	 *
+	 * @param $type
+	 *
+	 * @static
+	 * @return bool
+	 * @since 0.8.9.7
+	 */
+	public static function is_operator_add( $type ) {
+		return ( in_array( strtolower( $type ), array( 'add', '+' ), true ) );
+	}
+
+	/**
+	 * Validates if given value is subraction key.
+	 *
+	 * @param $type
+	 *
+	 * @static
+	 * @return bool
+	 * @since 0.8.9.7
+	 */
+	public static function is_operator_sub( $type ) {
+		return ( in_array( strtolower( $type ), array( 'sub', '-' ), true ) );
+	}
+
+	/**
 	 * Handles Price Calculation.
 	 *
 	 * @param string|int $existing_price
@@ -22,17 +76,10 @@ class Price_Calculation {
 	 * @return bool
 	 */
 	public static function fixed( $existing_price, $new_price, $operator ) {
-		switch ( $operator ) {
-			case 'add':
-			case 'ADD':
-			case '+':
-				return $existing_price + $new_price;
-				break;
-			case 'sub':
-			case 'SUB':
-			case '-':
-				return $existing_price - $new_price;
-				break;
+		if ( self::is_operator_add( $operator ) ) {
+			return $existing_price + $new_price;
+		} elseif ( self::is_operator_sub( $operator ) ) {
+			return $existing_price - $new_price;
 		}
 		return false;
 	}
@@ -48,17 +95,10 @@ class Price_Calculation {
 	 */
 	public static function percentage( $existing_price, $new_price, $operator ) {
 		$price = $new_price;
-		switch ( $operator ) {
-			case 'add':
-			case 'ADD':
-			case '+':
-				$price = $existing_price + ( $existing_price * ( $new_price / 100 ) );
-				break;
-			case 'sub':
-			case 'SUB':
-			case '-':
-				$price = $existing_price - ( $existing_price * ( $new_price / 100 ) );
-				break;
+		if ( self::is_operator_add( $operator ) ) {
+			$price = $existing_price + ( $existing_price * ( $new_price / 100 ) );
+		} elseif ( self::is_operator_sub( $operator ) ) {
+			$price = $existing_price - ( $existing_price * ( $new_price / 100 ) );
 		}
 		return (float) $price;
 	}
@@ -89,6 +129,12 @@ class Price_Calculation {
 				break;
 			case 'percentage':
 				$price = static::percentage( $existing_price, $new_price, $operator );
+				break;
+			default:
+				$types = array_keys( self::types() );
+				if ( in_array( $rule, $types, true ) ) {
+					$price = apply_filters( 'vsp/price_calculation/' . $rule, $existing_price, $new_price, $operator );
+				}
 				break;
 		}
 		return wc_format_decimal( $price );
