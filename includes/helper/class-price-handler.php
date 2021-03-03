@@ -21,8 +21,8 @@ class Price_Calculation {
 	 */
 	public static function types() {
 		return apply_filters( 'vsp/price_calculation/types', array(
-			'fixed'      => esc_html__( 'Fixed' ),
-			'percentage' => esc_html__( 'Percentage (%)' ),
+			'fixed'      => esc_html__( 'Fixed', 'vsp-framework' ),
+			'percentage' => esc_html__( 'Percentage (%)', 'vsp-framework' ),
 		) );
 	}
 
@@ -35,8 +35,8 @@ class Price_Calculation {
 	 */
 	public static function operators() {
 		return apply_filters( 'vsp/price_calculation/operators', array(
-			'add' => esc_html__( 'Add (+)' ),
-			'sub' => esc_html__( 'Subtract (-)' ),
+			'add' => esc_html__( 'Add (+)', 'vsp-framework' ),
+			'sub' => esc_html__( 'Subtract (-)', 'vsp-framework' ),
 		) );
 	}
 

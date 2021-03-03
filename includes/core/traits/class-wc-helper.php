@@ -240,7 +240,7 @@ trait WC_Helper {
 			$tax_slugs   = WC_Tax::get_tax_class_slugs();
 			$tax_classes = array_combine( $tax_slugs, $tax );
 			$tax_slugs[] = 'standard';
-			$tax_classes = array_merge( array( 'standard' => esc_html__( 'Standard' ) ), $tax_classes );
+			$tax_classes = array_merge( array( 'standard' => esc_html__( 'Standard', 'vsp-framework' ) ), $tax_classes );
 
 			vsp_set_cache( $cache_key . '/wc/tax_classes/slugs', $tax_slugs );
 			vsp_set_cache( $cache_key . '/wc/tax_classes/all', $tax_classes );
