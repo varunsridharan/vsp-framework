@@ -467,7 +467,7 @@
 </span><span id="240" class="l">            <span class="php-var">$tax_slugs</span>   = WC_Tax::get_tax_class_slugs();
 </span><span id="241" class="l">            <span class="php-var">$tax_classes</span> = <span class="php-keyword2">array_combine</span>( <span class="php-var">$tax_slugs</span>, <span class="php-var">$tax</span> );
 </span><span id="242" class="l">            <span class="php-var">$tax_slugs</span>[] = <span class="php-quote">'standard'</span>;
-</span><span id="243" class="l">            <span class="php-var">$tax_classes</span> = <span class="php-keyword2">array_merge</span>( <span class="php-keyword1">array</span>( <span class="php-quote">'standard'</span> =&gt; esc_html__( <span class="php-quote">'Standard'</span> ) ), <span class="php-var">$tax_classes</span> );
+</span><span id="243" class="l">            <span class="php-var">$tax_classes</span> = <span class="php-keyword2">array_merge</span>( <span class="php-keyword1">array</span>( <span class="php-quote">'standard'</span> =&gt; esc_html__( <span class="php-quote">'Standard'</span>, <span class="php-quote">'vsp-framework'</span> ) ), <span class="php-var">$tax_classes</span> );
 </span><span id="244" class="l">
 </span><span id="245" class="l">            vsp_set_cache( <span class="php-var">$cache_key</span> . <span class="php-quote">'/wc/tax_classes/slugs'</span>, <span class="php-var">$tax_slugs</span> );
 </span><span id="246" class="l">            vsp_set_cache( <span class="php-var">$cache_key</span> . <span class="php-quote">'/wc/tax_classes/all'</span>, <span class="php-var">$tax_classes</span> );
