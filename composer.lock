@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -595,16 +595,16 @@
         },
         {
             "name": "wponion/wponion",
-            "version": "1.5.3.1",
+            "version": "1.5.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wponion/wponion.git",
-                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da"
+                "reference": "3c647482f61cd7003b7b5d39d9fa7466ed3455a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wponion/wponion/zipball/1db222d6b7da3a96dd533ddc0cc0009b08c879da",
-                "reference": "1db222d6b7da3a96dd533ddc0cc0009b08c879da",
+                "url": "https://api.github.com/repos/wponion/wponion/zipball/3c647482f61cd7003b7b5d39d9fa7466ed3455a1",
+                "reference": "3c647482f61cd7003b7b5d39d9fa7466ed3455a1",
                 "shasum": ""
             },
             "require": {
@@ -669,6 +669,14 @@
                     "type": "custom"
                 },
                 {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                },
+                {
                     "url": "https://opencollective.com/wponion",
                     "type": "open_collective"
                 },
@@ -677,7 +685,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-06-23T02:18:45+00:00"
+            "time": "2021-03-08T12:42:12+00:00"
         }
     ],
     "packages-dev": [
