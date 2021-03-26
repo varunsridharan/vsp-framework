@@ -85,4 +85,44 @@ abstract class Framework_Base extends Base {
 	public function name() {
 		return $this->option( 'name' );
 	}
+
+	/**
+	 * Returns A Valid Documentation Link
+	 *
+	 * @return string
+	 * @since 0.8.9.8
+	 */
+	public function link_documentation() {
+		return sprintf( 'https://p.sva.wiki/%1$s', $this->slug() );
+	}
+
+	/**
+	 * Returns A Valid ChangeLog Link
+	 *
+	 * @return string
+	 * @since 0.8.9.8
+	 */
+	public function link_changelog() {
+		return sprintf( $this->link_documentation() . '/%1$s', 'change-log' );
+	}
+
+	/**
+	 * Returns A Valid Support Link
+	 *
+	 * @return string
+	 * @since 0.8.9.8
+	 */
+	public function link_support() {
+		return sprintf( 'https://support.varunsridharan.in/?item=%1$s', $this->slug() );
+	}
+
+	/**
+	 * Returns A Valid Demo Link
+	 *
+	 * @return string
+	 * @since 0.8.9.8
+	 */
+	public function link_demo() {
+		return sprintf( 'https://%1$s.sva.one/', $this->slug() );
+	}
 }
