@@ -82,16 +82,16 @@
         },
         {
             "name": "varunsridharan/sweetalert2-php",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/sweetalert2-php.git",
-                "reference": "123ba880d4c25b6840ed8015a7bacc2666b67184"
+                "reference": "63d04033c5cfba0e9b64f3e32b4ecfc701285617"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/123ba880d4c25b6840ed8015a7bacc2666b67184",
-                "reference": "123ba880d4c25b6840ed8015a7bacc2666b67184",
+                "url": "https://api.github.com/repos/varunsridharan/sweetalert2-php/zipball/63d04033c5cfba0e9b64f3e32b4ecfc701285617",
+                "reference": "63d04033c5cfba0e9b64f3e32b4ecfc701285617",
                 "shasum": ""
             },
             "type": "library",
@@ -102,7 +102,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0-or-later"
+                "MIT"
             ],
             "authors": [
                 {
@@ -127,11 +127,15 @@
                     "type": "custom"
                 },
                 {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
                     "url": "https://github.com/varunsridharan",
                     "type": "github"
                 }
             ],
-            "time": "2020-04-06T04:19:14+00:00"
+            "time": "2021-04-11T05:15:12+00:00"
         },
         {
             "name": "varunsridharan/wp-ajaxer",
@@ -160,9 +164,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
