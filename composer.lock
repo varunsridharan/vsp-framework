@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -440,16 +440,16 @@
         },
         {
             "name": "varunsridharan/wp-post",
-            "version": "1.5",
+            "version": "1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-post.git",
-                "reference": "3f249808ecee8353ad743880039070bafb36c749"
+                "reference": "a25038a4f502e1846f67d9bb036e7bbb515fad96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-post/zipball/3f249808ecee8353ad743880039070bafb36c749",
-                "reference": "3f249808ecee8353ad743880039070bafb36c749",
+                "url": "https://api.github.com/repos/varunsridharan/wp-post/zipball/a25038a4f502e1846f67d9bb036e7bbb515fad96",
+                "reference": "a25038a4f502e1846f67d9bb036e7bbb515fad96",
                 "shasum": ""
             },
             "type": "library",
@@ -493,7 +493,21 @@
                 "wp-posts",
                 "wp-theme"
             ],
-            "time": "2019-05-07T05:21:34+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-11T07:39:22+00:00"
         },
         {
             "name": "varunsridharan/wp-transient-api",
