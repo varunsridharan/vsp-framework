@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -497,22 +497,22 @@
         },
         {
             "name": "varunsridharan/wp-transient-api",
-            "version": "1.7.1",
+            "version": "1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-transient-api.git",
-                "reference": "c6997b4ef82da5282289b7a68ba920e4e406295e"
+                "reference": "cdfc47d94666fd21434f728ff9faa5ee9d30d0bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-transient-api/zipball/c6997b4ef82da5282289b7a68ba920e4e406295e",
-                "reference": "c6997b4ef82da5282289b7a68ba920e4e406295e",
+                "url": "https://api.github.com/repos/varunsridharan/wp-transient-api/zipball/cdfc47d94666fd21434f728ff9faa5ee9d30d0bf",
+                "reference": "cdfc47d94666fd21434f728ff9faa5ee9d30d0bf",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Varunsridharan\\WordPress\\": "./src"
+                    "Varunsridharan\\WordPress\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -548,7 +548,21 @@
                 "wp-plugin",
                 "wp-theme"
             ],
-            "time": "2019-06-28T10:46:11+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-11T07:59:55+00:00"
         },
         {
             "name": "varunsridharan/wpallimport_rapidaddon",
