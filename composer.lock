@@ -160,9 +160,9 @@
             "authors": [
                 {
                     "name": "Varun",
-                    "role": "Developer",
                     "email": "varunsridharan23@gmail.com",
-                    "homepage": "https://varunsridharan.in"
+                    "homepage": "https://varunsridharan.in",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple Lightweight Ajax Handler For WP Theme/Plugin Developers.",
@@ -347,16 +347,16 @@
         },
         {
             "name": "varunsridharan/wp-localizer",
-            "version": "1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/varunsridharan/wp-localizer.git",
-                "reference": "b3e4f582cd769fa436503f5096a93f115459dfa7"
+                "reference": "e119c70287f87af08e312faebffc7c71b2c99072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/varunsridharan/wp-localizer/zipball/b3e4f582cd769fa436503f5096a93f115459dfa7",
-                "reference": "b3e4f582cd769fa436503f5096a93f115459dfa7",
+                "url": "https://api.github.com/repos/varunsridharan/wp-localizer/zipball/e119c70287f87af08e312faebffc7c71b2c99072",
+                "reference": "e119c70287f87af08e312faebffc7c71b2c99072",
                 "shasum": ""
             },
             "type": "library",
@@ -390,7 +390,21 @@
                 "wordpress-theme",
                 "wordpress-theme-library"
             ],
-            "time": "2019-04-26T08:36:46+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/varunsridharan23",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/varunsridharan",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/varunsridharan",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-11T07:22:42+00:00"
         },
         {
             "name": "varunsridharan/wp-plugin-version-management",
